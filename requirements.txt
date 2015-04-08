@@ -1,0 +1,7 @@
+django
+django-compressor
+django-templatetag-handlebars
+#django-easy-pjax
+
+-e git+https://github.com/scottwoodall/django-easy-pjax/#egg=django-easy-pjax
+-e git+https://github.com/laginha/django-mobileesp/#egg=django_mobileesp

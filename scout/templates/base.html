@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="320">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+        <meta http-equiv="cleartype" content="on">
+        
+        {% load staticfiles %}
+        {% load compress %}
+        
+        <!-- favicon and mobile device icons-->
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% static "vendor/ico/apple-touch-icon-144x144-precomposed.png" %}">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static "vendor/ico/apple-touch-icon-114x114-precomposed.png" %}">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static "vendor/ico/apple-touch-icon-72x72-precomposed.png" %}">
+        <link rel="apple-touch-icon-precomposed" sizes="57x57" href="{% static "vendor/ico/apple-touch-icon-57x57-precomposed.png" %}"> 
+        <link rel="shortcut icon" href="{% static "vendor/ico/favicon.ico" %}">
+        
+        <!-- windows8 - tile icon  & color -->
+        <meta name="msapplication-TileImage" content="{% static "vendor/ico/apple-touch-icon-144x144-precomposed.png" %}">
+        <meta name="msapplication-TileColor" content="#222222">
+        
+        <!-- ios webapps - delete if not needed -->
+        <!--
+        <meta name="apple-touch-fullscreen" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="apple-mobile-web-app-title" content="">
+        -->
+        <!-- critical css (above the fold styles) -->
+        {% compress css inline %}
+            <link rel="stylesheet" href="{% static "vendor/css/normalize-3.0.1.min.css" %}">
+            <style rel="stylesheet" type="text/less">
+                body { background: lighten(aqua, 48%) !important; }
+            </style>
+        {% endcompress %}
+        
+        <!-- regular css -->
+        {% compress css %}
+        
+            {% if not low_fidelity %}
+            <!-- bootstrap & font awesome -->
+            <link rel="stylesheet" href="{% static "vendor/css/bootstrap-3.3.1.min.css" %}">
+            <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.0.3.min.css" %}">
+            <!-- insert your webfonts here -->
+            {% endif %}
+            
+            {% if devtools_bar %}
+            <link rel="stylesheet" href="{% static "trestle/css/devtools.less" %}" type="text/less">
+            {% endif %}
+            
+            <!-- insert your mobile styles here -->
+            {% if not request.is_mobile and not request.is_tablet %}
+            <!-- insert your desktop styles here -->
+            {% endif %}
+            
+        {% endcompress %}
+        
+        {% if not less_compiled %}
+            <!-- less.js -->
+            <script src="{% static 'vendor/js/less-2.0.0.min.js' %}" type="text/javascript"></script>
+        {% endif %}
+        
+        
+    </head>
+    <body>
+       
+        <div id="header"> 
+            <h1>Scout</h1>
+        </div>
+        
+        <div id="navigation">
+            <ul>
+                <li><a data-pjax href="/">Example</a></li>
+                <li><a data-pjax href="/test/">Test</a></li>
+            </ul>
+        </div>
+        
+        <div id="content">
+        
+            <!-- pjax loading -->
+            <div id="pjax-loading" style="display:none;">loading...</div>
+            
+            <!-- all pjax content will render inside of this id -->
+            <div id="pjax-container">
+                {% block content %}{% endblock %}
+            </div>            
+        
+        </div>
+                     
+        <div id="footer">
+            <!-- example of request.is_mobile and request.is_tablet usage in templates -->    
+            {% if request.is_mobile %}
+            <p class="text-muted credit">Courtesy of <a href="">Charlon</a> and <a href="">Craig</a>. UW-IT ACA</p>
+            {% else %}
+            <p class="text-muted credit">Courtesy of <a href="">Charlon Palacay</a> and <a href="">Craig Stimmel</a>. UW-IT ACA</p>
+            {% endif %}
+        </div>
+        
+        {% if devtools_bar %}
+        <!-- devtools bar -->
+        <div id="dev_device">
+            <span class="label label-device">
+            Device: {% if request.is_mobile %}Mobile{% elif request.is_tablet %}Tablet{% else %}Desktop{%endif %}    
+            </span>
+        </div>
+        <div id="dev_viewport">
+            <span class="label label-fold">The fold</span>
+        </div>
+        {% endif %}
+                
+        <!-- javascript -->
+        {% compress js %}
+
+            <script src="{% static "vendor/js/jquery-1.11.0.min.js" %}"></script>
+            <script src="{% static "vendor/js/jquery-pjax-1.9.3.min.js" %}"></script>
+                    
+            {% if not low_fidelity %}
+            <script src="{% static "vendor/js/modernizr-2.6.2.min.js" %}"></script>
+            <script src="{% static "vendor/js/bootstrap-3.2.0.min.js" %}"></script>
+            {% endif %}
+            
+            {% if devtools_bar %}
+            <script src="{% static "trestle/js/devtools.js" %}"></script>
+            {% endif %}
+            
+            <script src="{% static "trestle/js/example.js" %}"></script>
+            <!-- app js goes here -->
+            
+        {% endcompress %}
+        
+        {% if google_analytics %}
+            <!-- google analytics -->
+            <script>
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+                
+                ga('create', '');
+                ga('send', 'pageview');        
+            </script>
+        {% endif %}
+        
+    </body>
+</html>
