@@ -1,14 +1,14 @@
-PROJECTNAME
-===========
+SCOUT
+=====
 
 This README documents whatever steps are necessary to get your application up and running.
 
-## Install ##
+## Installing the project ##
 
 **Create and activate your virtual environment**
     
-    $ virtualenv [projectenv]
-    $ cd [projectenv]
+    $ virtualenv scoutenv
+    $ cd scoutenv
     $ source bin/activate
 
 **Install Node**
@@ -21,16 +21,16 @@ This README documents whatever steps are necessary to get your application up an
 
 **Clone repository:**
     
-    $ (projectenv) git clone [repository_location]/projectname.git
+    $ (scoutenv) git clone https://github.com/charlon/scout.git
 
 **Install dependencies:**
 
-    $ (projectenv) cd [projectname]
-    $ (projectenv) pip install -r requirements.txt
+    $ (scoutenv) cd scout
+    $ (scoutenv) pip install -r requirements.txt
 
 **Create local_settings.py**
     
-    $ (projectenv) cp projectname/local_example.py projectname/local_settings.py
+    $ (scoutenv) cp scout/local_example.py scout/local_settings.py
 
 **Update local_settings.py settings**
 
@@ -40,20 +40,8 @@ Generate a secret key for your project using the URL provided
 
 **Test your server:**
     
-    $ (projectenv) python manage.py runserver 0.0.0.0:8000
+    $ (scoutenv) python manage.py runserver 0:8000
     
     
 **It worked!** You should see the Django server running when viewing http://localhost:8000
 
-
-## Working ##
-
-**Activate your virtualenv:**
-    
-    $ cd projectenv
-    $ source bin/activate
-    
-**Run server:**
-    
-    $ cd projectname
-    $ (projectenv) python manage.py runserver 0.0.0.0:8000
