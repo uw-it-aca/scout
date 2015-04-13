@@ -6,8 +6,8 @@ from django.conf.urls import patterns, include, url
 urlpatterns = patterns('',
     # Examples:
     
-    url(r'^$', 'scout.views.example', name='example'),
-    url(r'^test/', 'scout.views.test', name='test'),
+    url(r'^$', 'food.views.eatery_list', name='eatery_list'),
+    url(r'^detail/', 'food.views.eatery_detail', name='eatery_detail'),
     
     # url(r'^blog/', include('blog.urls')),
     #url(r'^admin/', include(admin.site.urls)),

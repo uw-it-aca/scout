@@ -1,0 +1,14 @@
+{% extends "scout/base.html, scout/base-pjax.html"|pjax:request %}
+
+{% block title %}Eatery List{% endblock %}
+
+{% block content %}
+
+<h3>Eatery List</h3>
+
+<ul>
+    <li><a data-pjax href="/detail/">Eatery 1</a></li>    
+    <li><a data-pjax href="/detail/">Eatery 2</a></li>
+</ul>
+
+{% endblock %}
