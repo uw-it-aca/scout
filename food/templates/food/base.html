@@ -4,12 +4,16 @@
 
 {% block extra_css %}
 
-    <!-- insert your mobile styles here -->
-            
+    <!-- mobile styles here -->   
     <link rel="stylesheet" href="{% static "food/css/mobile.less" %}" type="text/less">
     
+    {% if request.is_tablet %}
+    <!-- table styles here -->
+    <link rel="stylesheet" href="{% static "food/css/tablet.less" %}" type="text/less">
+    {% endif %}
+    
     {% if not request.is_mobile and not request.is_tablet %}
-    <!-- insert your desktop styles here -->
+    <!-- desktop styles here -->
     <link rel="stylesheet" href="{% static "food/css/desktop.less" %}" type="text/less">
     {% endif %}
             
