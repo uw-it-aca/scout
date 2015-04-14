@@ -1,4 +1,4 @@
-{% extends "scout/base.html, scout/base-pjax.html"|pjax:request %}
+{% extends "food/base.html" %}
 
 {% block title %}Eatery Detail{% endblock %}
 
@@ -11,5 +11,7 @@
 <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Maecenas faucibus mollis interdum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper nulla non metus auctor fringilla.</p>
 
 <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+
+<p><a data-pjax href="/">Back to list</a></p>
 
 {% endblock %}

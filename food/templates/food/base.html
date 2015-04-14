@@ -1,0 +1,21 @@
+{% extends "scout/base.html, scout/base-pjax.html"|pjax:request %}
+
+{% load staticfiles %}
+
+{% block extra_css %}
+
+    <!-- insert your mobile styles here -->
+            
+    <link rel="stylesheet" href="{% static "food/css/mobile.less" %}" type="text/less">
+    
+    {% if not request.is_mobile and not request.is_tablet %}
+    <!-- insert your desktop styles here -->
+    <link rel="stylesheet" href="{% static "food/css/desktop.less" %}" type="text/less">
+    {% endif %}
+            
+        
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static "food/js/main.js" %}"></script>
+{% endblock %}

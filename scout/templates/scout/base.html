@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
+        <title>Eatery List</title>
         <meta name="description" content="">
         <meta name="HandheldFriendly" content="True">
         <meta name="MobileOptimized" content="320">
@@ -33,10 +33,13 @@
         -->
         <!-- critical css (above the fold styles) -->
         {% compress css inline %}
+            
             <link rel="stylesheet" href="{% static "vendor/css/normalize-3.0.1.min.css" %}">
+            
             <style rel="stylesheet" type="text/less">
                 body { background: lighten(aqua, 48%) !important; }
             </style>
+            
         {% endcompress %}
         
         <!-- regular css -->
@@ -53,10 +56,8 @@
             <link rel="stylesheet" href="{% static "trestle/css/devtools.less" %}" type="text/less">
             {% endif %}
             
-            <!-- insert your mobile styles here -->
-            {% if not request.is_mobile and not request.is_tablet %}
-            <!-- insert your desktop styles here -->
-            {% endif %}
+            <!-- app js goes here -->
+            {% block extra_css %}{% endblock %}
             
         {% endcompress %}
         
@@ -121,8 +122,8 @@
             <script src="{% static "trestle/js/devtools.js" %}"></script>
             {% endif %}
             
-            <script src="{% static "trestle/js/example.js" %}"></script>
             <!-- app js goes here -->
+            {% block extra_js %}{% endblock %}
             
         {% endcompress %}
         
