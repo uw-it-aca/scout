@@ -4,20 +4,20 @@
 
 {% block extra_css %}
 
-    <!-- mobile styles here -->   
+    <!-- mobile -->   
     <link rel="stylesheet" href="{% static "food/css/mobile.less" %}" type="text/less">
     
     {% if request.is_tablet %}
-    <!-- table styles here -->
+    <!-- mobile + table -->
     <link rel="stylesheet" href="{% static "food/css/tablet.less" %}" type="text/less">
     {% endif %}
     
     {% if not request.is_mobile and not request.is_tablet %}
-    <!-- desktop styles here -->
+    <!-- mobile + tablet + desktop -->
+    <link rel="stylesheet" href="{% static "food/css/tablet.less" %}" type="text/less">
     <link rel="stylesheet" href="{% static "food/css/desktop.less" %}" type="text/less">
     {% endif %}
             
-        
 {% endblock %}
 
 {% block extra_js %}

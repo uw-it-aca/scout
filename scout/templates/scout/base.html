@@ -34,22 +34,35 @@
         <!-- critical css (above the fold styles) -->
         {% compress css inline %}
             
+            {% if low_fidelity %}
             <link rel="stylesheet" href="{% static "vendor/css/normalize-3.0.1.min.css" %}">
+            {% endif %}
             
             <style rel="stylesheet" type="text/less">
-                body { background: lighten(aqua, 48%) !important; }
+                                
+                #header { background: #555; line-height: 80px; 
+                    h1 { margin: 0 20px; line-height: 80px; color: #fff; text-transform: uppercase; font-family: 'Oswald', sans-serif; font-weight: 700; }
+                }
+                
+                #content { margin: 0 20px; 
+                    
+                    h3 { font-family: 'Oswald', sans-serif; font-weight: 300; }
+                }
+                
             </style>
             
         {% endcompress %}
         
+        <!-- insert your webfonts here -->
+        <link href='http://fonts.googleapis.com/css?family=Oswald:400,700,300' rel='stylesheet' type='text/css'>
+            
         <!-- regular css -->
         {% compress css %}
         
             {% if not low_fidelity %}
             <!-- bootstrap & font awesome -->
-            <link rel="stylesheet" href="{% static "vendor/css/bootstrap-3.3.1.min.css" %}">
+            <link rel="stylesheet" href="{% static "vendor/css/bootstrap-3.3.4.min.css" %}">
             <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.0.3.min.css" %}">
-            <!-- insert your webfonts here -->
             {% endif %}
             
             {% if devtools_bar %}
@@ -73,7 +86,7 @@
         <div id="header"> 
             <h1>Scout</h1>
         </div>
-    
+            
         <div id="content">
         
             <!-- pjax loading -->
@@ -115,7 +128,7 @@
                     
             {% if not low_fidelity %}
             <script src="{% static "vendor/js/modernizr-2.6.2.min.js" %}"></script>
-            <script src="{% static "vendor/js/bootstrap-3.2.0.min.js" %}"></script>
+            <script src="{% static "vendor/js/bootstrap-3.3.4.min.js" %}"></script>
             {% endif %}
             
             {% if devtools_bar %}
