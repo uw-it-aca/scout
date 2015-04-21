@@ -7,8 +7,5 @@ import json
 
 # create your views here
 
-def example(request):
-    return render_to_response('example.html', context_instance=RequestContext(request))
-
-def test(request):
-    return render_to_response('test.html', context_instance=RequestContext(request))
+def favorites_list(request):
+    return render_to_response('scout/favorites.html', context_instance=RequestContext(request))
