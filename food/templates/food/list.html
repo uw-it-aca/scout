@@ -4,9 +4,6 @@
 
 {% block content %}
 
-<div class="clearfix" style="position: relative;">
-    
-    <div {% if not request.is_mobile and not request.is_tablet %}style="margin-right: 400px;"{% endif %}>
     <h3>Eatery List</h3>
     
     <div class="list-group">
@@ -80,16 +77,4 @@
         </a> 
     </div>
     
-    </div>
-    
-    {% if not request.is_mobile and not request.is_tablet %}
-    <div style="position: fixed; top:150px; right: 20px; bottom: 20px;  width:30%; background: #ddd;">
-        <div style="padding:10px;">
-            <p>MAP: fixed to top on scroll...</p>
-        </div>
-    </div>
-    {% endif %}
-    
-</div>
-
 {% endblock %}

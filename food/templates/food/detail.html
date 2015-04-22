@@ -2,6 +2,8 @@
 
 {% block title %}Eatery Detail{% endblock %}
 
+{% load staticfiles %}
+
 {% block content %}
 
 <h3>Eatery Detail</h3>
@@ -12,11 +14,13 @@
     </div>
 </div>
 
+{% if request.is_mobile or request.is_tablet %}
 <div class="panel panel-default">   
-    <div class="panel-body">
-        <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Maecenas faucibus mollis interdum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper nulla non metus auctor fringilla.</p>
+    <div class="panel-body" style="height:200px; background: #ddd url('{% static 'scout/img/uwmap.png' %}');">
+        Map
     </div>
 </div>
+{% endif %}
 
 <div class="panel panel-default">   
     <div class="panel-body">

@@ -78,6 +78,20 @@
             <link rel="stylesheet" href="{% static "trestle/css/devtools.less" %}" type="text/less">
             {% endif %}
             
+            <!-- mobile -->   
+            <link rel="stylesheet" href="{% static "scout/css/mobile.less" %}" type="text/less">
+            
+            {% if request.is_tablet %}
+            <!-- mobile + table -->
+            <link rel="stylesheet" href="{% static "scout/css/tablet.less" %}" type="text/less">
+            {% endif %}
+            
+            {% if not request.is_mobile and not request.is_tablet %}
+            <!-- mobile + tablet + desktop -->
+            <link rel="stylesheet" href="{% static "scout/css/tablet.less" %}" type="text/less">
+            <link rel="stylesheet" href="{% static "scout/css/desktop.less" %}" type="text/less">
+            {% endif %}
+    
             <!-- app js goes here -->
             {% block extra_css %}{% endblock %}
             
@@ -92,35 +106,45 @@
     </head>
     <body>
        
-        <div id="header"> 
-            <h1><a data-pjax href="/">Scout</a></h1>
-            <ul class="nav">
-                <li><a data-pjax href="/food/">Food</a></li>
-                <li><a data-pjax href="/inventory/">Inventory</a></li>
-            </ul>   
-        </div>
+        <div id="application">
+            <div id="header"> 
+                <h1><a data-pjax href="/">Scout</a></h1>
+                <ul class="nav">
+                    <li><a data-pjax href="/food/">Food</a></li>
+                    <li><a data-pjax href="/inventory/">Inventory</a></li>
+                </ul>   
+            </div>
+                
+            <div id="content">
             
-        <div id="content">
-        
-            <!-- pjax loading -->
-            <div id="pjax-loading" style="display:none;">loading...</div>
-            
-            <!-- all pjax content will render inside of this id -->
-            <div id="pjax-container">
-                {% block content %}{% endblock %}
-            </div>            
-        
+                <!-- pjax loading -->
+                <div id="pjax-loading" style="display:none;">loading...</div>
+                
+                <!-- all pjax content will render inside of this id -->
+                <div id="pjax-container">
+                    {% block content %}{% endblock %}
+                </div>
+    
+            </div>
+            <div id="footer">
+                <!-- example of request.is_mobile and request.is_tablet usage in templates -->    
+                {% if request.is_mobile %}
+                <p class="text-muted credit">Courtesy of <a href="">Charlon</a> and <a href="">Craig</a>. UW-IT ACA</p>
+                {% else %}
+                <p class="text-muted credit">Courtesy of <a href="">Charlon Palacay</a> and <a href="">Craig Stimmel</a>. UW-IT ACA</p>
+                {% endif %}
+            </div>
         </div>
+        
+        {% if not request.is_mobile and not request.is_tablet %}
+        <div id="map" style="background: #ddd url('{% static 'scout/img/uwmap.png' %}');">
+            <div style="padding:10px;">
+                <p>MAP: fixed to top on scroll...</p>
+            </div>
+        </div>
+        {% endif %}   
                      
-        <div id="footer">
-            <!-- example of request.is_mobile and request.is_tablet usage in templates -->    
-            {% if request.is_mobile %}
-            <p class="text-muted credit">Courtesy of <a href="">Charlon</a> and <a href="">Craig</a>. UW-IT ACA</p>
-            {% else %}
-            <p class="text-muted credit">Courtesy of <a href="">Charlon Palacay</a> and <a href="">Craig Stimmel</a>. UW-IT ACA</p>
-            {% endif %}
-        </div>
-        
+    
         {% if devtools_bar %}
         <!-- devtools bar -->
         <div id="dev_device">
