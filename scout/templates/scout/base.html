@@ -44,15 +44,17 @@
                     h1 { margin: 0 20px; line-height: 56px; color: #fff; text-transform: uppercase; font-family: 'Oswald', sans-serif; font-weight: 300; font-size: 30px; }
                     .nav { background: #333; line-height: 40px; color: #fff; 
                         
-                        ul { margin: 0; padding: 0; }
                         li { list-style: none; display: inline-block; width: 49%; text-transform: uppercase; text-align: center; 
                             &:hover { background: #666; }
+                            a { padding: 0; }
                         }
                 
                     }
                 }
                 
                 #content { margin: 0 20px; 
+                    
+                    #pjax-loading { line-height: 300px; text-align: center; color: #ccc; }
                     h3 { font-family: 'Oswald', sans-serif; font-weight: 300; }
                 }
                 
@@ -92,12 +94,10 @@
        
         <div id="header"> 
             <h1><a data-pjax href="/">Scout</a></h1>
-            <div class="nav">
-                <ul>
-                    <li><a data-pjax href="/food/">food</a></li>
-                    <li><a data-pjax href="/inventory/">inventory</a></li>
-                </ul>
-            </div>
+            <ul class="nav">
+                <li><a data-pjax href="/food/">Food</a></li>
+                <li><a data-pjax href="/inventory/">Inventory</a></li>
+            </ul>   
         </div>
             
         <div id="content">
