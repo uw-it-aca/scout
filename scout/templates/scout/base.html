@@ -42,11 +42,11 @@
                                 
                 #header { background: #555;
                     h1 { margin: 0 20px; line-height: 56px; color: #fff; text-transform: uppercase; font-family: 'Oswald', sans-serif; font-weight: 300; font-size: 30px; }
-                    .nav { background: #333; line-height: 40px; color: #fff; 
+                    .navi { background: #333; line-height: 40px; color: #fff; display: -webkit-flex; display: flex; margin: 0; padding: 0;
                         
-                        li { list-style: none; display: inline-block; width: 49%; text-transform: uppercase; text-align: center; 
+                        li { list-style: none; margin:0; padding: 0; flex:1; -webkit-flex: 1; -webkit-box-flex: 1; text-transform: uppercase; text-align: center; justify-content: space-between;
                             &:hover { background: #666; }
-                            a { padding: 0; }
+                            a { padding: 0; display: block; }
                         }
                 
                     }
@@ -106,15 +106,16 @@
     </head>
     <body>
        
-        <div id="application">
+
             <div id="header"> 
                 <h1><a data-pjax href="/">Scout</a></h1>
-                <ul class="nav">
+                <ul class="navi">
                     <li><a data-pjax href="/food/">Food</a></li>
                     <li><a data-pjax href="/inventory/">Inventory</a></li>
                 </ul>   
             </div>
-                
+         
+         <div id="scroll">       
             <div id="content">
             
                 <!-- pjax loading -->
@@ -126,6 +127,7 @@
                 </div>
     
             </div>
+            
             <div id="footer">
                 <!-- example of request.is_mobile and request.is_tablet usage in templates -->    
                 {% if request.is_mobile %}
@@ -134,7 +136,7 @@
                 <p class="text-muted credit">Courtesy of <a href="">Charlon Palacay</a> and <a href="">Craig Stimmel</a>. UW-IT ACA</p>
                 {% endif %}
             </div>
-        </div>
+         </div>
         
         {% if not request.is_mobile and not request.is_tablet %}
         <div id="map" style="background: #ddd url('{% static 'scout/img/uwmap.png' %}');">
