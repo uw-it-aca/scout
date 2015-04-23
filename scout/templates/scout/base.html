@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Scout</title>
+        <title>Campus Scout</title>
         <meta name="description" content="">
         <meta name="HandheldFriendly" content="True">
         <meta name="MobileOptimized" content="320">
@@ -94,8 +94,6 @@
             <link rel="stylesheet" href="{% static "scout/css/desktop.less" %}" type="text/less">
             {% endif %}
     
-            <!-- app js goes here -->
-            {% block extra_css %}{% endblock %}
             
         {% endcompress %}
         
@@ -110,12 +108,29 @@
        
 
         <div id="header"> 
-            <h1><a data-pjax href="/">Scout</a> <span style="font-size:13px;"><a data-pjax href="/">list</a></span> <span style="font-size:13px;"><a data-pjax href="/map/">map</a></span></h1>
-            <ul class="navi">
-                <li><a data-pjax href="/study/">Study</a></li>
-                <li><a data-pjax href="/food/">Food</a></li>
-                <li><a data-pjax href="/inventory/">Inventory</a></li>
-            </ul>   
+            
+            <h1><a data-pjax href="/">Campus Scout</a></h1>
+            
+            <div style="display:inline-block; position:absolute; right:10px; top: 0; line-height:56px; font-size:14px; text-transform:uppercase;">
+                <span><a data-pjax href="/favorites/">favorites</a></span>
+            </div>
+            
+            <div class="navi" style="position:relative;">
+                <div style="display:inline-block; line-height:40px; font-size:14px; text-transform:uppercase; margin-left:20px;">
+                    <span><a data-pjax href="/filters/">Filters</a></span>
+                </div>
+                
+                {% if request.is_mobile or request.is_tablet %}
+                <div style="display:inline-block; position:absolute; right:10px; top: 0; line-height:40px; font-size:14px; text-transform:uppercase;">
+                    <span><a data-pjax href="/list/">list</a> | 
+                    <a data-pjax href="/map/">Map</a></span>
+                </div>
+                {% endif %}
+                
+            </div>
+            
+            </div>
+    
         </div>
          
          <div id="scroll">    
@@ -174,10 +189,8 @@
             {% endif %}
             
             <script src="{% static "scout/js/scout.js" %}"></script>
-            
-            <!-- app js goes here -->
-            {% block extra_js %}{% endblock %}
-            
+            <script src="{% static "scout/js/map.js" %}"></script>
+             
         {% endcompress %}
         
         {% if google_analytics %}

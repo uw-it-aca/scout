@@ -1,9 +1,14 @@
 {% extends "scout/base.html, scout/base-pjax.html"|pjax:request %}
+{% load staticfiles %}
 
 {% block title %}Map{% endblock %}
 
 {% block content %}
 
-<p>this is a map</p>
+<div style="position:absolute; top: 96px; left:0; right:0; bottom:0; background:red; background: #ddd url('{% static 'scout/img/uwmap.png' %}'); z-index:999;">
+
+    
+
+</div>
 
 {% endblock %}

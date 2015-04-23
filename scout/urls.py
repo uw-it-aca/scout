@@ -6,15 +6,20 @@ from django.conf.urls import patterns, include, url
 urlpatterns = patterns('',
     # Examples:
     
-   
-    
+    # include applications 
     # url(r'^blog/', include('blog.urls')),
-    #url(r'^admin/', include(admin.site.urls)),
+    # url(r'^admin/', include(admin.site.urls)),
     
-    # include applications
-    url(r'^food/', include('food.urls')),
+    # application urls
     
-    url(r'^map/', 'scout.views.map_display', name='map_display'),
-    url(r'^$', 'scout.views.favorites_list', name='favorites_list'),
+    url(r'^map/', 'scout.views.map_view', name='map_view'),
+    url(r'^list/', 'scout.views.list_view', name='list_view'),
+    
+    url(r'^detail/', 'scout.views.detail_view', name='detail_view'),
+      
+    url(r'^favorites/', 'scout.views.favorites_view', name='favorites_view'),
+    url(r'^filters/', 'scout.views.filters_view', name='filters_view'),
+    
+    url(r'^$', 'scout.views.home_view', name='home_view'),
      
 )

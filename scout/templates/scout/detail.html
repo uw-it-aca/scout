@@ -1,12 +1,12 @@
-{% extends "food/base.html" %}
+{% extends "scout/base.html, scout/base-pjax.html"|pjax:request %}
 
-{% block title %}Eatery Detail{% endblock %}
+{% block title %}Item Details{% endblock %}
 
 {% load staticfiles %}
 
 {% block content %}
 
-<h3>Eatery Detail</h3>
+<h3>Item Details</h3>
 
 <div class="panel panel-default">
     <div class="panel-body">

@@ -1,78 +1,78 @@
-{% extends "food/base.html" %}
+{% extends "scout/base.html, scout/base-pjax.html"|pjax:request %}
 
-{% block title %}Eatery List{% endblock %}
+{% block title %}List{% endblock %}
 
 {% block content %}
 
-    <h3>Eatery List</h3>
+    <h3>List</h3>
     
     <div class="list-group">
-        <a data-pjax href="/food/detail/?webview=true" class="list-group-item">
-            <h4 class="list-group-item-heading">Eatery 1</h4>
+        <a data-pjax href="/detail/?webview=true" class="list-group-item">
+            <h4 class="list-group-item-heading">Item 1</h4>
             <p class="list-group-item-text">Phasellus lacinia justo augue, et fringilla felis dignissim sit amet. Nunc eu vulputate ligula. Pellentesque non cursus sem.</p>
         </a>  
-        <a data-pjax href="/food/detail/?webview=true" class="list-group-item">
-            <h4 class="list-group-item-heading">Eatery 2</h4>
+        <a data-pjax href="/detail/?webview=true" class="list-group-item">
+            <h4 class="list-group-item-heading">Item 2</h4>
             <p class="list-group-item-text">Phasellus lacinia justo augue, et fringilla felis dignissim sit amet. Nunc eu vulputate ligula. Pellentesque non cursus sem.</p>
         </a> 
         <a data-pjax href="/detail/?webview=true" class="list-group-item">
-            <h4 class="list-group-item-heading">Eatery 3</h4>
+            <h4 class="list-group-item-heading">Item 3</h4>
             <p class="list-group-item-text">Phasellus lacinia justo augue, et fringilla felis dignissim sit amet. Nunc eu vulputate ligula. Pellentesque non cursus sem.</p>
         </a> 
         <a data-pjax href="/detail/?webview=true" class="list-group-item">
-            <h4 class="list-group-item-heading">Eatery 4</h4>
+            <h4 class="list-group-item-heading">Item 4</h4>
             <p class="list-group-item-text">Phasellus lacinia justo augue, et fringilla felis dignissim sit amet. Nunc eu vulputate ligula. Pellentesque non cursus sem.</p>
         </a> 
         <a data-pjax href="/detail/?webview=true" class="list-group-item">
-            <h4 class="list-group-item-heading">Eatery 5</h4>
+            <h4 class="list-group-item-heading">Item 5</h4>
             <p class="list-group-item-text">Phasellus lacinia justo augue, et fringilla felis dignissim sit amet. Nunc eu vulputate ligula. Pellentesque non cursus sem.</p>
         </a> 
         <a data-pjax href="/detail/?webview=true" class="list-group-item">
-            <h4 class="list-group-item-heading">Eatery 6</h4>
+            <h4 class="list-group-item-heading">Item 6</h4>
             <p class="list-group-item-text">Phasellus lacinia justo augue, et fringilla felis dignissim sit amet. Nunc eu vulputate ligula. Pellentesque non cursus sem.</p>
         </a> 
         <a data-pjax href="/detail/?webview=true" class="list-group-item">
-            <h4 class="list-group-item-heading">Eatery 7</h4>
+            <h4 class="list-group-item-heading">Item 7</h4>
             <p class="list-group-item-text">Phasellus lacinia justo augue, et fringilla felis dignissim sit amet. Nunc eu vulputate ligula. Pellentesque non cursus sem.</p>
         </a> 
         <a data-pjax href="/detail/?webview=true" class="list-group-item">
-            <h4 class="list-group-item-heading">Eatery 8</h4>
+            <h4 class="list-group-item-heading">Item 8</h4>
             <p class="list-group-item-text">Phasellus lacinia justo augue, et fringilla felis dignissim sit amet. Nunc eu vulputate ligula. Pellentesque non cursus sem.</p>
         </a> 
         <a data-pjax href="/detail/?webview=true" class="list-group-item">
-            <h4 class="list-group-item-heading">Eatery 9</h4>
+            <h4 class="list-group-item-heading">Item 9</h4>
             <p class="list-group-item-text">Phasellus lacinia justo augue, et fringilla felis dignissim sit amet. Nunc eu vulputate ligula. Pellentesque non cursus sem.</p>
         </a> 
         <a data-pjax href="/detail/?webview=true" class="list-group-item">
-            <h4 class="list-group-item-heading">Eatery 10</h4>
+            <h4 class="list-group-item-heading">Item 10</h4>
             <p class="list-group-item-text">Phasellus lacinia justo augue, et fringilla felis dignissim sit amet. Nunc eu vulputate ligula. Pellentesque non cursus sem.</p>
         </a> 
         <a data-pjax href="/detail/?webview=true" class="list-group-item">
-            <h4 class="list-group-item-heading">Eatery 11</h4>
+            <h4 class="list-group-item-heading">Item 11</h4>
             <p class="list-group-item-text">Phasellus lacinia justo augue, et fringilla felis dignissim sit amet. Nunc eu vulputate ligula. Pellentesque non cursus sem.</p>
         </a> 
         <a data-pjax href="/detail/?webview=true" class="list-group-item">
-            <h4 class="list-group-item-heading">Eatery 12</h4>
+            <h4 class="list-group-item-heading">Item 12</h4>
             <p class="list-group-item-text">Phasellus lacinia justo augue, et fringilla felis dignissim sit amet. Nunc eu vulputate ligula. Pellentesque non cursus sem.</p>
         </a> 
     <a data-pjax href="/detail/?webview=true" class="list-group-item">
-            <h4 class="list-group-item-heading">Eatery 13</h4>
+            <h4 class="list-group-item-heading">Item 13</h4>
             <p class="list-group-item-text">Phasellus lacinia justo augue, et fringilla felis dignissim sit amet. Nunc eu vulputate ligula. Pellentesque non cursus sem.</p>
         </a> 
         <a data-pjax href="/detail/?webview=true" class="list-group-item">
-            <h4 class="list-group-item-heading">Eatery 14</h4>
+            <h4 class="list-group-item-heading">Item 14</h4>
             <p class="list-group-item-text">Phasellus lacinia justo augue, et fringilla felis dignissim sit amet. Nunc eu vulputate ligula. Pellentesque non cursus sem.</p>
         </a> 
         <a data-pjax href="/detail/?webview=true" class="list-group-item">
-            <h4 class="list-group-item-heading">Eatery 15</h4>
+            <h4 class="list-group-item-heading">Item 15</h4>
             <p class="list-group-item-text">Phasellus lacinia justo augue, et fringilla felis dignissim sit amet. Nunc eu vulputate ligula. Pellentesque non cursus sem.</p>
         </a> 
         <a data-pjax href="/detail/?webview=true" class="list-group-item">
-            <h4 class="list-group-item-heading">Eatery 16</h4>
+            <h4 class="list-group-item-heading">Item 16</h4>
             <p class="list-group-item-text">Phasellus lacinia justo augue, et fringilla felis dignissim sit amet. Nunc eu vulputate ligula. Pellentesque non cursus sem.</p>
         </a> 
         <a data-pjax href="/detail/?webview=true" class="list-group-item">
-            <h4 class="list-group-item-heading">Eatery 17</h4>
+            <h4 class="list-group-item-heading">Item 17</h4>
             <p class="list-group-item-text">Phasellus lacinia justo augue, et fringilla felis dignissim sit amet. Nunc eu vulputate ligula. Pellentesque non cursus sem.</p>
         </a> 
     </div>
