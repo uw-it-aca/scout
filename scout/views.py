@@ -9,3 +9,6 @@ import json
 
 def favorites_list(request):
     return render_to_response('scout/favorites.html', context_instance=RequestContext(request))
+    
+def map_display(request):
+    return render_to_response('scout/map.html', context_instance=RequestContext(request))

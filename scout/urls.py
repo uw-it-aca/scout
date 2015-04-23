@@ -14,6 +14,7 @@ urlpatterns = patterns('',
     # include applications
     url(r'^food/', include('food.urls')),
     
-     url(r'^$', 'scout.views.favorites_list', name='favorites_list'),
+    url(r'^map/', 'scout.views.map_display', name='map_display'),
+    url(r'^$', 'scout.views.favorites_list', name='favorites_list'),
      
 )
