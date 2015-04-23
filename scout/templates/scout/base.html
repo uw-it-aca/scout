@@ -158,10 +158,10 @@
          </div>
         
         {% if not request.is_mobile and not request.is_tablet %}
-        <div id="map" style="background: #ddd url('{% static 'scout/img/uwmap.png' %}');">
-            <div style="padding:10px;">
-                <p>MAP: fixed to top on scroll...</p>
-            </div>
+        <div id="map" style="background: red;">
+            
+            <img src="{% static 'scout/img/uwmap.png' %}" />  
+            
         </div>
         {% endif %}   
                      
