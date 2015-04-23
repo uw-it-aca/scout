@@ -40,7 +40,8 @@
             
             <style rel="stylesheet" type="text/less">
                                 
-                #header { background: #555;
+                #header { background: #555; position: fixed; top:0; left:0; right: 0; z-index: 999;
+                    
                     h1 { margin: 0 20px; line-height: 56px; color: #fff; text-transform: uppercase; font-family: 'Oswald', sans-serif; font-weight: 300; font-size: 30px; }
                     .navi { background: #333; line-height: 40px; color: #fff; display: -webkit-flex; display: flex; margin: 0; padding: 0;
                         
@@ -52,6 +53,7 @@
                     }
                 }
                 
+                #scroll { margin-top: 110px; }
                 #content { margin: 0 20px; 
                     
                     #pjax-loading { line-height: 300px; text-align: center; color: #ccc; }
@@ -107,15 +109,17 @@
     <body>
        
 
-            <div id="header"> 
-                <h1><a data-pjax href="/">Scout</a></h1>
-                <ul class="navi">
-                    <li><a data-pjax href="/food/">Food</a></li>
-                    <li><a data-pjax href="/inventory/">Inventory</a></li>
-                </ul>   
-            </div>
+        <div id="header"> 
+            <h1><a data-pjax href="/">Scout</a></h1>
+            <ul class="navi">
+                <li><a data-pjax href="/study/">Study</a></li>
+                <li><a data-pjax href="/food/">Food</a></li>
+                <li><a data-pjax href="/inventory/">Inventory</a></li>
+            </ul>   
+        </div>
          
-         <div id="scroll">       
+         <div id="scroll">    
+                
             <div id="content">
             
                 <!-- pjax loading -->
@@ -149,13 +153,8 @@
     
         {% if devtools_bar %}
         <!-- devtools bar -->
-        <div id="dev_device">
-            <span class="label label-device">
-            Device: {% if request.is_mobile %}Mobile{% elif request.is_tablet %}Tablet{% else %}Desktop{%endif %}    
-            </span>
-        </div>
-        <div id="dev_viewport">
-            <span class="label label-fold">The fold</span>
+        <div id="dev_toolbar">
+            <span class="label label-device">Device: {% if request.is_mobile %}Mobile{% elif request.is_tablet %}Tablet{% else %}Desktop{%endif %}</span> <span class="label label-fold">The fold</span>
         </div>
         {% endif %}
                 
