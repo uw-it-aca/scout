@@ -60,13 +60,30 @@
                     h3 { font-family: 'Oswald', sans-serif; font-weight: 300; }
                 }
                 
+                #map-canvas { height: 100%; margin: 0px; padding: 0px; }
+                
             </style>
             
         {% endcompress %}
         
         <!-- insert your webfonts here -->
         <link href='http://fonts.googleapis.com/css?family=Oswald:400,700,300' rel='stylesheet' type='text/css'>
-            
+        
+        <script src="//maps.googleapis.com/maps/api/js?key=AIzaSyDJRD2mE7TejwGjYtcAH2VDOGfvwdxkb00"></script>
+        
+        <script type="text/javascript">
+          function initialize() {
+            var mapOptions = {
+              center: { lat: -34.397, lng: 150.644},
+              zoom: 8
+            };
+            var map = new google.maps.Map(document.getElementById('map-canvas'),
+                mapOptions);
+          }
+          google.maps.event.addDomListener(window, 'load', initialize);
+        </script>
+           
+           
         <!-- regular css -->
         {% compress css %}
         
@@ -158,10 +175,8 @@
          </div>
         
         {% if not request.is_mobile and not request.is_tablet %}
-        <div id="map" style="background: red;">
-            
-            <img src="{% static 'scout/img/uwmap.png' %}" />  
-            
+        <div id="map">
+            <div id="map-canvas"></div>
         </div>
         {% endif %}   
                      
