@@ -14,7 +14,9 @@ urlpatterns = patterns('',
     
     url(r'^$', 'scout.views.home_view', name='home_view'),
     
+    # mobile only route
     url(r'^map/', 'scout.views.map_view', name='map_view'),
+    
     url(r'^list/', 'scout.views.list_view', name='list_view'),
     
     url(r'^detail/\d{1,2}', 'scout.views.detail_view', name='detail_view'),

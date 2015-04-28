@@ -54,7 +54,7 @@
                 }
                 
                 #scroll { margin-top: 110px; }
-                #content { margin: 0 20px; 
+                #content { margin: 0 20px;
                     
                     #pjax-loading { line-height: 300px; text-align: center; color: #ccc; }
                     h3 { font-family: 'Oswald', sans-serif; font-weight: 300; }
@@ -163,7 +163,7 @@
         
         {% if not request.is_mobile and not request.is_tablet %}
         <div id="map">
-            <div id="map-canvas"></div>
+            include map.html here!
         </div>
         {% endif %}   
                      
