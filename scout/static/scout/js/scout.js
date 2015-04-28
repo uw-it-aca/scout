@@ -23,11 +23,22 @@ $(function() {
         // cancel showing the message when the ajax call completes.
         clearTimeout(loadingTimeout);
         
+        // load google map
+        initialize();
     });
         
     $('#pjax-container').on('pjax:timeout', function(event) {
         // Prevent default timeout redirection behavior
         event.preventDefault();
     });
+    
+    // handle back and forward button actions
+    $('#pjax-container').on('pjax:popstate', function(event) {
+                
+        // load google map
+        initialize();
+        
+    });
 
 }); 
+

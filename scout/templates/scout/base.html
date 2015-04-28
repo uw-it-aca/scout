@@ -69,21 +69,6 @@
         <!-- insert your webfonts here -->
         <link href='http://fonts.googleapis.com/css?family=Oswald:400,700,300' rel='stylesheet' type='text/css'>
         
-        <script src="//maps.googleapis.com/maps/api/js?key=AIzaSyDJRD2mE7TejwGjYtcAH2VDOGfvwdxkb00"></script>
-        
-        <script type="text/javascript">
-          function initialize() {
-            var mapOptions = {
-              center: { lat: 47.655003, lng: -122.306864},
-              zoom: 15
-            };
-            var map = new google.maps.Map(document.getElementById('map-canvas'),
-                mapOptions);
-          }
-          google.maps.event.addDomListener(window, 'load', initialize);
-        </script>
-           
-           
         <!-- regular css -->
         {% compress css %}
         
@@ -119,6 +104,8 @@
             <script src="{% static 'vendor/js/less-2.0.0.min.js' %}" type="text/javascript"></script>
         {% endif %}
         
+        <!-- google maps api -->
+        <script src="//maps.googleapis.com/maps/api/js?key=AIzaSyDJRD2mE7TejwGjYtcAH2VDOGfvwdxkb00"></script>
         
     </head>
     <body>
@@ -203,8 +190,8 @@
             <script src="{% static "trestle/js/devtools.js" %}"></script>
             {% endif %}
             
-            <script src="{% static "scout/js/scout.js" %}"></script>
             <script src="{% static "scout/js/map.js" %}"></script>
+            <script src="{% static "scout/js/scout.js" %}"></script>
              
         {% endcompress %}
         
