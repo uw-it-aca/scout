@@ -48,7 +48,7 @@ $(function() {
     
     // manual pjax via click event
     
-    $('#list_link').click(function() {
+    $('#map_link').click(function() {
         
         //alert( "Handler for .click() called." );
         var $url = $cur.find("a").attr("href");
@@ -58,6 +58,8 @@ $(function() {
     
 }); 
 
+// ### GLOBAL LOAD EVENT (pjax fallback) ###############
+$(window).load(handleRoutes);
 
 function handleRoutes(jQuery) {
     
