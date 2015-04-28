@@ -17,6 +17,8 @@ function initialize() {
         zoom: 16
     };
     */
+     
+    // url routing 
         
     // "details" page was loaded
     if (pathname.indexOf("/detail/") >= 0) {
@@ -25,7 +27,7 @@ function initialize() {
         
         // uw fountain
         myLatlng = new google.maps.LatLng(47.653811, -122.307815);
-        mapOptions = { center: myLatlng, zoom: 19 };
+        mapOptions = { center: myLatlng, zoom: 19, scrollwheel: false };
     }
     else {
          
@@ -34,6 +36,7 @@ function initialize() {
         mapOptions = { center: myLatlng, zoom: 16 };
     }
     
+
     var map = new google.maps.Map(document.getElementById('map-canvas'),
         mapOptions);
         

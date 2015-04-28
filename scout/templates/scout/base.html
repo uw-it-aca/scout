@@ -125,9 +125,9 @@
                 </div>
                 
                 {% if request.is_mobile or request.is_tablet %}
-                <div style="display:inline-block; position:absolute; right:10px; top: 0; line-height:40px; font-size:14px; text-transform:uppercase;">
-                    <span><a data-pjax href="/list/">list</a> | 
-                    <a data-pjax href="/map/">Map</a></span>
+                <div data-js id="list_map_switcher" style="display:inline-block; position:absolute; right:10px; top: 0; line-height:40px; font-size:14px; text-transform:uppercase;">
+                    <span><a data-pjax id="list_link" href="/list/">list</a> 
+                    <a data-pjax id="map_link" href="/map/">Map</a></span>
                 </div>
                 {% endif %}
                 
@@ -136,6 +136,8 @@
             </div>
     
         </div>
+         
+         
          
          <div id="scroll">    
                 
@@ -161,12 +163,13 @@
             </div>
          </div>
         
+        <!--
         {% if not request.is_mobile and not request.is_tablet %}
         <div id="map">
             {% include "scout/partials/gmap.html" %}
         </div>
         {% endif %}   
-                     
+        -->             
     
         {% if devtools_bar %}
         <!-- devtools bar -->

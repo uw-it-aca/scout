@@ -16,8 +16,8 @@
 
 {% if request.is_mobile or request.is_tablet %}
 <div class="panel panel-default">   
-    <div class="panel-body" style="height:200px; background: #ddd url('{% static 'scout/img/uwmap.png' %}');">
-        Map
+    <div class="panel-body" style="height:200px; padding: 0;">
+        {% include "scout/partials/gmap.html" %}
     </div>
 </div>
 {% endif %}
@@ -27,5 +27,11 @@
         <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
     </div>
 </div>
+
+{% if not request.is_mobile and not request.is_tablet %}
+<div id="map">
+    {% include "scout/partials/gmap.html" %}
+</div>
+{% endif %} 
 
 {% endblock %}

@@ -12,7 +12,7 @@ urlpatterns = patterns('',
     
     # application urls
     
-    url(r'^$', 'scout.views.home_view', name='home_view'),
+    url(r'^$', 'scout.views.list_view', name='list_view'),
     
     # mobile only route
     url(r'^map/', 'scout.views.map_view', name='map_view'),

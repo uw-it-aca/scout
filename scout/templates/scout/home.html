@@ -16,5 +16,11 @@
     </ul>
 </div>
 
+{% if not request.is_mobile and not request.is_tablet %}
+<div id="map">
+    {% include "scout/partials/gmap.html" %}
+</div>
+{% endif %} 
+
 
 {% endblock %}

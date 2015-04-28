@@ -8,4 +8,10 @@
 
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non urna et lorem venenatis varius quis sit amet dui. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur a nisi odio. Integer interdum tempor ante vitae dictum. Nullam volutpat diam id odio pulvinar, vel vehicula erat sodales. Maecenas magna ante, interdum id libero et, sodales volutpat orci. </p>
 
+{% if not request.is_mobile and not request.is_tablet %}
+<div id="map">
+    {% include "scout/partials/gmap.html" %}
+</div>
+{% endif %} 
+
 {% endblock %}
