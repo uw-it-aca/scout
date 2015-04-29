@@ -35,6 +35,7 @@
         {% compress css inline %}
             
             {% if low_fidelity %}
+            <!-- normalize only -->
             <link rel="stylesheet" href="{% static "vendor/css/normalize-3.0.1.min.css" %}">
             {% endif %}
             
@@ -193,8 +194,11 @@
             {% endif %}
             
             <script src="{% static "scout/js/map.js" %}"></script>
+            
+            {% if is_webapp %}
             <script src="{% static "scout/js/scout.js" %}"></script>
-             
+            {% endif %}
+            
         {% endcompress %}
         
         {% if google_analytics %}
