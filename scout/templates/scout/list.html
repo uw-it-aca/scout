@@ -1,10 +1,12 @@
 {% extends "scout/base.html, scout/base-pjax.html"|pjax:request %}
 
-{% block title %}List{% endblock %}
+{% block title %}Food List{% endblock %}
 
 {% block content %}
-
-    <h3>Food</h3>
+    
+    {% if is_webapp %}
+    <h3>Food List</h3>
+    {% endif %} 
     
     <div class="list-group">
         <a data-pjax href="/seattle/food/18374" class="list-group-item">

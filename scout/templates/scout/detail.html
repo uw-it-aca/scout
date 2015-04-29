@@ -1,13 +1,15 @@
 {% extends "scout/base.html, scout/base-pjax.html"|pjax:request %}
 
-{% block title %}Item Details{% endblock %}
+{% block title %}Food Spot Details{% endblock %}
 
 {% load staticfiles %}
 
 {% block content %}
 
+{% if is_webapp %}
 <h3>Food Spot Details</h3>
-
+{% endif %}
+    
 <div class="panel panel-default">
     <div class="panel-body">
         <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec sed odio dui. Curabitur blandit tempus porttitor. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>

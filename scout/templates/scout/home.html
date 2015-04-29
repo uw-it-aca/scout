@@ -1,10 +1,12 @@
 {% extends "scout/base.html, scout/base-pjax.html"|pjax:request %}
 
-{% block title %}Campus Scout{% endblock %}
+{% block title %}Food Scout{% endblock %}
 
 {% block content %}
 
-<h3>Find stuff on campus..</h3>
+{% if is_webapp %}
+<h3>Food Scout</h3>
+{% endif %}
 
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non urna et lorem venenatis varius quis sit amet dui. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur a nisi odio. Integer interdum tempor ante vitae dictum. Nullam volutpat diam id odio pulvinar, vel vehicula erat sodales. Maecenas magna ante, interdum id libero et, sodales volutpat orci. </p>
 

@@ -62,7 +62,7 @@
                 }
                 
                 #scroll { margin-top: 110px; }
-                #content { margin: 0 20px;
+                #content { margin: 20px;
                     
                     #pjax-loading { line-height: 300px; text-align: center; color: #ccc; }
                     h3 { font-family: 'Oswald', sans-serif; font-weight: 300; }
@@ -119,17 +119,13 @@
     <body {% if not is_webapp %}class="hybrid"{% endif %}>
        
         {% if is_webapp %}
-        
         <div id="header"> 
             
             <h1><a data-pjax href="/">Food Scout</a></h1>
             
             {% if request.is_mobile or request.is_tablet %}
             <div id="list_map_switcher" style="display:inline-block; position:absolute; right:10px; top: 0; line-height:56px; font-size:14px; text-transform:uppercase;">
-                
-                
                 <span><a data-pjax id="map_link" href="/seattle/food/map/">Map</a></span>
-                
             </div>
             {% endif %}
             
@@ -138,18 +134,12 @@
                     <span><a data-pjax href="/filters/">Filters</a></span>
                 </div>
                 
-                
                 <div style="display:inline-block; position:absolute; right:10px; top: 0; line-height:40px; font-size:14px; text-transform:uppercase;">
                     <span><a data-pjax href="/favorites/">favorites</a></span>
                 </div>
-                
-                
             </div>
-            
-            </div>
-    
+
         </div>
-        
         {% endif %}
          
          
@@ -167,6 +157,7 @@
     
             </div>
             
+            {% if is_webapp %}
             <div id="footer">
                 <!-- example of request.is_mobile and request.is_tablet usage in templates -->    
                 {% if request.is_mobile %}
@@ -175,16 +166,10 @@
                 <p class="text-muted credit">Courtesy of <a href="">Charlon Palacay</a> and <a href="">Craig Stimmel</a>. UW-IT ACA</p>
                 {% endif %}
             </div>
+            {% endif %}
+            
          </div>
-        
-        <!--
-        {% if not request.is_mobile and not request.is_tablet %}
-        <div id="map">
-            {% include "scout/partials/gmap.html" %}
-        </div>
-        {% endif %}   
-        -->             
-    
+       
         {% if devtools_bar %}
         <!-- devtools bar -->
         <div id="dev_toolbar">
