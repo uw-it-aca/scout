@@ -39,6 +39,12 @@
             {% endif %}
             
             <style rel="stylesheet" type="text/less">
+                
+                .hybrid {
+                    
+                    #scroll { margin-top: 0; top:0; }
+                    #map { top: 0; }
+                }
                                 
                 #header { background: #555; position: fixed; top:0; left:0; right: 0; z-index: 999;
                     
@@ -110,9 +116,10 @@
         <script src="//maps.googleapis.com/maps/api/js?key=AIzaSyDJRD2mE7TejwGjYtcAH2VDOGfvwdxkb00"></script>
         
     </head>
-    <body>
+    <body {% if not is_webapp %}class="hybrid"{% endif %}>
        
-
+        {% if is_webapp %}
+        
         <div id="header"> 
             
             <h1><a data-pjax href="/">Food Scout</a></h1>
@@ -142,7 +149,8 @@
             </div>
     
         </div>
-         
+        
+        {% endif %}
          
          
          <div id="scroll">    

@@ -25,14 +25,12 @@ $(function() {
         // cancel showing the message when the ajax call completes.
         clearTimeout(loadingTimeout);
         
-       
-        
         // handle url routes
         handleRoutes();
         
-         // load google map
+        // load google maps
         loadGoogleMaps();
-                        
+                                
     });
         
     $('#pjax-container').on('pjax:timeout', function(event) {
@@ -45,6 +43,10 @@ $(function() {
         
     });
     
+    $('#pjax-container').on('pjax:popstate', function(event) {
+        
+        loadGoogleMaps();
+    });
     
     // manual pjax via click event
     

@@ -117,6 +117,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'scout.context_processors.google_analytics',
     'scout.context_processors.devtools_bar',
     'scout.context_processors.low_fidelity',
+    'scout.context_processors.is_webapp',
 )
 
 TEMPLATE_DIRS = (

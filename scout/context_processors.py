@@ -27,3 +27,12 @@ def low_fidelity(request):
     return {
         'low_fidelity': lofi
     }
+
+
+def is_webapp(request):
+    
+    hybridapp = request.GET.get('hybrid')
+    
+    return {
+        'is_webapp' : hybridapp != 'true'
+    }
