@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Campus Scout</title>
+        <title>Food Scout</title>
         <meta name="description" content="">
         <meta name="HandheldFriendly" content="True">
         <meta name="MobileOptimized" content="320">
@@ -51,6 +51,8 @@
                         }
                 
                     }
+                    
+                    #list_map_switcher { display: none; }
                 }
                 
                 #scroll { margin-top: 110px; }
@@ -113,22 +115,27 @@
 
         <div id="header"> 
             
-            <h1><a data-pjax href="/">Campus Scout</a></h1>
+            <h1><a data-pjax href="/">Food Scout</a></h1>
             
-            <div style="display:inline-block; position:absolute; right:10px; top: 0; line-height:56px; font-size:14px; text-transform:uppercase;">
-                <span><a data-pjax href="/favorites/">favorites</a></span>
+            {% if request.is_mobile or request.is_tablet %}
+            <div id="list_map_switcher" style="display:inline-block; position:absolute; right:10px; top: 0; line-height:56px; font-size:14px; text-transform:uppercase;">
+                
+                
+                <span><a data-pjax id="map_link" href="/seattle/food/map/">Map</a></span>
+                
             </div>
+            {% endif %}
             
             <div class="navi" style="position:relative;">
                 <div style="display:inline-block; line-height:40px; font-size:14px; text-transform:uppercase; margin-left:20px;">
                     <span><a data-pjax href="/filters/">Filters</a></span>
                 </div>
                 
-                {% if request.is_mobile or request.is_tablet %}
-                <div data-js id="list_map_switcher" style="display:inline-block; position:absolute; right:10px; top: 0; line-height:40px; font-size:14px; text-transform:uppercase;">
-                    <span><a data-pjax id="map_link" href="/map/">Map</a></span>
+                
+                <div style="display:inline-block; position:absolute; right:10px; top: 0; line-height:40px; font-size:14px; text-transform:uppercase;">
+                    <span><a data-pjax href="/favorites/">favorites</a></span>
                 </div>
-                {% endif %}
+                
                 
             </div>
             

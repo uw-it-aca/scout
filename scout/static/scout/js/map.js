@@ -1,6 +1,6 @@
 var pathname;
 
-function initialize() {
+function loadGoogleMaps() {
     
     var myLatlng, mapOptions;
     
@@ -20,14 +20,23 @@ function initialize() {
      
     // url routing 
         
-    // "details" page was loaded
-    if (pathname.indexOf("/detail/") >= 0) {
-        
-        console.log('detail page loaded');
-        
+    if (pathname.indexOf("/seattle/food/18374") >= 0) {
+            
         // uw fountain
         myLatlng = new google.maps.LatLng(47.653811, -122.307815);
-        mapOptions = { center: myLatlng, zoom: 19, scrollwheel: false };
+        mapOptions = { center: myLatlng, zoom: 18, scrollwheel: false, draggable: false, disableDefaultUI: true };
+    }
+    else if (pathname.indexOf("/favorites/56874") >= 0) {
+            
+        // uw fountain
+        myLatlng = new google.maps.LatLng(47.653811, -122.307815);
+        mapOptions = { center: myLatlng, zoom: 17, scrollwheel: false, draggable: false, disableDefaultUI: true };
+    }
+    else if (pathname.indexOf("/seattle/food/") >= 0) {
+            
+        // uw fountain
+        myLatlng = new google.maps.LatLng(47.653811, -122.307815);
+        mapOptions = { center: myLatlng, zoom: 17, scrollwheel: false};
     }
     else {
          
@@ -46,7 +55,6 @@ function initialize() {
         title: 'Hello World!'
     });
     
-    
 }
 
-google.maps.event.addDomListener(window, 'load', initialize);
+google.maps.event.addDomListener(window, 'load', loadGoogleMaps);

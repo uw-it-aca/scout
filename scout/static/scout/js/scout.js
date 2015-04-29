@@ -31,7 +31,7 @@ $(function() {
         handleRoutes();
         
          // load google map
-        initialize();
+        loadGoogleMaps();
                         
     });
         
@@ -66,17 +66,20 @@ function handleRoutes(jQuery) {
     // ROUTING FOR PJAX
     pathname = window.location.pathname;
         
-    // if on "badges" page
-    if(pathname.indexOf("/detail") >= 0) {
-       console.log("loaded detail");
+    if (pathname.indexOf("/seattle/food/18374") >= 0) {
        $('#list_map_switcher').hide();
     }
-    else if (pathname.indexOf("/filters") >= 0) {
-       console.log("loaded filters");
+    else if (pathname.indexOf("/seattle/food/") >= 0) {
+       $('#list_map_switcher').show();
+    }
+    else if (pathname.indexOf("/favorites/56874") >= 0) {
        $('#list_map_switcher').hide();
+    }
+    else if (pathname.indexOf("/favorites/") >= 0) {
+       $('#list_map_switcher').show();
     }
     else {
-        $('#list_map_switcher').show();
+        $('#list_map_switcher').hide();
     }
 }
 
