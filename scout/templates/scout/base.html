@@ -117,7 +117,7 @@
         <script src="//maps.googleapis.com/maps/api/js?key=AIzaSyDJRD2mE7TejwGjYtcAH2VDOGfvwdxkb00"></script>
         
     </head>
-    <body {% if not is_webapp %}class="hybrid"{% endif %}>
+    <body {% if is_hybrid %}class="hybrid"{% endif %}>
        
         {% if is_webapp %}
         <div id="header"> 
@@ -125,6 +125,7 @@
             <h1><a data-pjax href="/">Food Scout</a></h1>
             
             {% if request.is_mobile or request.is_tablet %}
+            <!-- only show the map link for mobile and tablet -->
             <div id="list_map_switcher" style="display:inline-block; position:absolute; right:10px; top: 0; line-height:56px; font-size:14px; text-transform:uppercase;">
                 <span><a data-pjax id="map_link" href="/seattle/food/map/">Map</a></span>
             </div>

@@ -34,5 +34,6 @@ def is_webapp(request):
     hybridapp = request.GET.get('hybrid')
     
     return {
-        'is_webapp' : hybridapp != 'true'
+        'is_webapp' : hybridapp != 'true',
+        'is_hybrid' : hybridapp == 'true'
     }
