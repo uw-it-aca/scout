@@ -9,15 +9,15 @@
 {% endif %}
     
 <div class="list-group">
-    <a data-pjax href="/favorites/56874" class="list-group-item">
+    <a data-pjax href="/favorites/56874{% if is_hybrid %}?hybrid=true{% endif %}" class="list-group-item">
         <h4 class="list-group-item-heading">Favorite Food Spot 1</h4>
         <p class="list-group-item-text">Phasellus lacinia justo augue, et fringilla felis dignissim sit amet. Nunc eu vulputate ligula. Pellentesque non cursus sem.</p>
     </a>  
-    <a data-pjax href="/favorites/56874" class="list-group-item">
+    <a data-pjax href="/favorites/56874{% if is_hybrid %}?hybrid=true{% endif %}" class="list-group-item">
         <h4 class="list-group-item-heading">Favorite Food Spot 2</h4>
         <p class="list-group-item-text">Phasellus lacinia justo augue, et fringilla felis dignissim sit amet. Nunc eu vulputate ligula. Pellentesque non cursus sem.</p>
     </a> 
-    <a data-pjax href="/favorites/56874" class="list-group-item">
+    <a data-pjax href="/favorites/56874{% if is_hybrid %}?hybrid=true{% endif %}" class="list-group-item">
         <h4 class="list-group-item-heading">Favorite Food Spot 3</h4>
         <p class="list-group-item-text">Phasellus lacinia justo augue, et fringilla felis dignissim sit amet. Nunc eu vulputate ligula. Pellentesque non cursus sem.</p>
     </a> 
