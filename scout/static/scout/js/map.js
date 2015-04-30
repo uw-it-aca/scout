@@ -1,23 +1,29 @@
 var pathname;
 
-function loadGoogleMaps() {
+// dom ready
+$(function () {
+    
+    //if (typeof google !== "undefined"){
+    if (typeof google === 'object' && typeof google.maps === 'object') {
+        
+        // Map script is already loaded
+        console.log('gmap already loaded');
+        initialize();
+        
+    } else {
+        loadGoogleAPI();         
+    }     
+
+});
+    
+    
+    
+function initialize() {
     
     var myLatlng, mapOptions;
     
-    console.log('google map loaded');
-    
     pathname = window.location.pathname;
-    
-    // uw fountain
-    /*
-    var myLatlng = new google.maps.LatLng(47.653811, -122.307815);
-    
-    var mapOptions = {
-        center: myLatlng,
-        zoom: 16
-    };
-    */
-     
+         
     // url routing 
         
     if (pathname.indexOf("/seattle/food/18374") >= 0) {
@@ -61,4 +67,18 @@ function loadGoogleMaps() {
     
 }
 
-google.maps.event.addDomListener(window, 'load', loadGoogleMaps);
+function loadGoogleAPI() {
+    
+    console.log('google map loaded');
+    
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+          
+    script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp' +
+      '&signed_in=true&callback=initialize';
+      
+    document.body.appendChild(script);
+    
+}
+
+

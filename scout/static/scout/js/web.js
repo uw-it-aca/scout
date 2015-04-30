@@ -29,7 +29,7 @@ $(function() {
         handleRoutes();
         
         // load google maps
-        loadGoogleMaps();
+        initialize();
                                 
     });
         
@@ -45,7 +45,8 @@ $(function() {
     
     $('#pjax-container').on('pjax:popstate', function(event) {
         
-        loadGoogleMaps();
+        console.log("popstate fired");
+        initialize();
     });
     
     // manual pjax via click event
