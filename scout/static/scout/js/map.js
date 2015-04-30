@@ -1,7 +1,7 @@
 var pathname;
-
-// dom ready
-$(function () {
+var myLatlng, mapOptions, map, marker;
+ 
+function gmap() {
     
     //if (typeof google !== "undefined"){
     if (typeof google === 'object' && typeof google.maps === 'object') {
@@ -14,14 +14,10 @@ $(function () {
         loadGoogleAPI();         
     }     
 
-});
-    
-    
-    
+}
+        
 function initialize() {
-    
-    var myLatlng, mapOptions;
-    
+   
     pathname = window.location.pathname;
          
     // url routing 
@@ -43,6 +39,8 @@ function initialize() {
         // uw fountain
         myLatlng = new google.maps.LatLng(47.653811, -122.307815);
         mapOptions = { center: myLatlng, zoom: 17, scrollwheel: false};
+        
+        console.log("seattle food list");
     }
     else {
          
@@ -54,11 +52,10 @@ function initialize() {
     // load the map only if map-canvas exists
         
     if (document.getElementById("map-canvas")) {
+            
+        map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
         
-        var map = new google.maps.Map(document.getElementById('map-canvas'),
-        mapOptions);
-        
-        var marker = new google.maps.Marker({
+        marker = new google.maps.Marker({
             position: myLatlng,
             map: map,
             title: 'Hello World!'
@@ -68,9 +65,7 @@ function initialize() {
 }
 
 function loadGoogleAPI() {
-    
-    console.log('google map loaded');
-    
+        
     var script = document.createElement('script');
     script.type = 'text/javascript';
           
