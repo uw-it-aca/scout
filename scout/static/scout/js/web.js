@@ -25,11 +25,10 @@ $(function() {
         // cancel showing the message when the ajax call completes.
         clearTimeout(loadingTimeout);
         
-        // handle url routes
-        handleRoutes();
+        // handle map link
+        mapSwitcher();
         
-        // load google maps
-        gmap();
+        initialize();
                                 
     });
         
@@ -46,9 +45,11 @@ $(function() {
     $('#pjax-container').on('pjax:popstate', function(event) {
         
         console.log("popstate fired");
-        gmap();
+            
+        initialize();
+                
     });
-    
+
     // manual pjax via click event
     
     $('#map_link').click(function() {
@@ -62,9 +63,9 @@ $(function() {
 }); 
 
 // ### GLOBAL LOAD EVENT (pjax fallback) ###############
-$(window).load(handleRoutes, loadGoogleAPI);
+$(window).load(mapSwitcher);
 
-function handleRoutes(jQuery) {
+function mapSwitcher(jQuery) {
     
     // ROUTING FOR PJAX
     pathname = window.location.pathname;
@@ -85,4 +86,3 @@ function handleRoutes(jQuery) {
         $('#list_map_switcher').hide();
     }
 }
-

@@ -175,6 +175,8 @@
             <span class="label label-device">Device: {% if request.is_mobile %}Mobile{% elif request.is_tablet %}Tablet{% else %}Desktop{%endif %}</span> <span class="label label-fold">The fold</span>
         </div>
         {% endif %}
+        
+        <script src='//maps.googleapis.com/maps/api/js?v=3&sensor=false&signed_in=true&callback=initialize' defer></script>
                 
         <!-- javascript -->
         {% compress js %}
@@ -211,6 +213,8 @@
                 ga('send', 'pageview');        
             </script>
         {% endif %}
+        
+        
         
     </body>
 </html>
