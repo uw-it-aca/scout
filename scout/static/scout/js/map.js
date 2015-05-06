@@ -1,8 +1,6 @@
 var pathname;
             
-function initialize() {
-   
-    
+function initializeMap() {
    
     pathname = window.location.pathname;
     
@@ -27,7 +25,7 @@ function initialize() {
         // uw fountain
         myLatlng = new google.maps.LatLng(47.653811, -122.307815);
         mapOptions = { center: myLatlng, zoom: 17, scrollwheel: false};
-        
+            
     }
     else {
          
@@ -36,8 +34,7 @@ function initialize() {
         mapOptions = { center: myLatlng, zoom: 16 };
     }
     
-    
-    
+
     // load the map only if map-canvas exists
         
     if (document.getElementById("map-canvas")) {
@@ -50,32 +47,7 @@ function initialize() {
             title: 'Hello World!',
             animation: google.maps.Animation.DROP,
         });
-        
+                
     }
     
 }
-
-/****
-function loadScript() {
-     
-     /*   
-    var script = document.createElement('script');
-    script.type = 'text/javascript';
-          
-    script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&callback=initialize';
-    
-    document.body.appendChild(script);
-
-    
-    
-    if (typeof google == "undefined") {
-      jQuery.getScript("https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&callback=initialize")
-      // no success callback necessary, google can load our stuff-todo-function
-    } else {
-       // if gmaps already loaded, we can just continue whatever else we want to do
-       initialize()
-    }
-
-}
-
-***/

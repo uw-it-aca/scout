@@ -28,7 +28,8 @@ $(function() {
         // handle map link
         mapSwitcher();
         
-        initialize();
+        // load google map
+        initializeMap();
                                 
     });
         
@@ -36,18 +37,15 @@ $(function() {
         // Prevent default timeout redirection behavior
         event.preventDefault();
     });
-    
-    $('#pjax-container').on('pjax:end', function(event) {
-        
-        
-    });
-    
+
+    // handle back and forward buttons
     $('#pjax-container').on('pjax:popstate', function(event) {
+                        
+        $(document).one('pjax:end', function(event) {
         
-        console.log("popstate fired");
-            
-        initialize();
-                
+            // load google map
+            initializeMap();
+        });            
     });
 
     // manual pjax via click event
