@@ -22,11 +22,5 @@
         <p class="list-group-item-text">Phasellus lacinia justo augue, et fringilla felis dignissim sit amet. Nunc eu vulputate ligula. Pellentesque non cursus sem.</p>
     </a> 
 </div>
-
-{% if not request.is_mobile and not request.is_tablet %}
-<div id="map">
-    {% include "scout/partials/gmap.html" %}
-</div>
-{% endif %} 
     
 {% endblock %}
