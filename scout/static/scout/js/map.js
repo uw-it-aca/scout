@@ -43,16 +43,21 @@ function initializeMap() {
     // load the map only if map-canvas exists
         
     if (document.getElementById("map-canvas")) {
+        map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+        addMarker(myLatlng);
+    }               
         
-    map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-                    
+}
+
+
+// Add a marker to the map and push to the array.
+function addMarker(myLatlng) {
+    
     marker = new google.maps.Marker({
-            position: myLatlng,
-            map: map,
-            title: 'Hello World!',
-            animation: google.maps.Animation.DROP,
-        });
-                
-    }
+        position: myLatlng,
+        map: map,
+        title: 'Hello World!',
+        animation: google.maps.Animation.DROP,
+    });
     
 }
