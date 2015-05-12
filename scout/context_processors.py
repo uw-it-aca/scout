@@ -14,21 +14,6 @@ def google_analytics(request):
         'google_analytics': ga_key
     }
 
-def devtools_bar(request):
-    
-    devtools = getattr(settings, 'TRESTLE_DEVTOOLS_ENABLED', False)
-    return {
-        'devtools_bar': devtools
-    }
-
-def low_fidelity(request):
-    
-    lofi = getattr(settings, 'TRESTLE_FIDELITY_LOW_ENABLED', True)
-    return {
-        'low_fidelity': lofi
-    }
-
-
 def is_webapp(request):
     
     hybridapp = request.GET.get('hybrid')

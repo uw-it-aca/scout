@@ -1,0 +1,2 @@
+/*** aca devtools ***/
+#dev_toolbar{position:absolute;border-top:dotted 2px #2ecc71;height:2px;width:100%;z-index:9999;bottom:0}#dev_toolbar .label-device{position:absolute;top:-25px;left:10px;text-transform:uppercase;background-color:#2ecc71}#dev_toolbar .label-fold{position:absolute;top:-25px;right:10px;text-transform:uppercase;background-color:#2ecc71}
