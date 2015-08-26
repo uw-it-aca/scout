@@ -65,3 +65,6 @@ docs/_build/
 # project specific
 static/CACHE
 *.sqlite3
+
+#sass cache
+*.sass-cache

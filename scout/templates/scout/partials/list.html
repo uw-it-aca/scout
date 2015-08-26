@@ -1,3 +1,6 @@
+{% extends "scout/base.html, scout/base-pjax.html"|pjax:request %}
+
+{% block content %}
 <div class="scout-list">
     <a data-pjax href="/detail/18374{% if is_hybrid %}?hybrid=true{% endif %}" class="list-group-item">
         <h4>Food Spot 1</h4>
@@ -68,3 +71,4 @@
         <p>Phasellus lacinia justo augue, et fringilla felis dignissim sit amet. Nunc eu vulputate ligula. Pellentesque non cursus sem.</p>
     </a> 
 </div>
+{% endblock %}

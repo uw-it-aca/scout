@@ -26,7 +26,7 @@ urlpatterns = patterns('',
     # partials
     
     url(r'^partials/list/', 'scout.views.partial_list_view', name='partial_list_view'),
-    url(r'^partials/detail/', 'scout.views.partial_detail_view', name='partial_detail_view'),    
+    url(r'^partials/detail/\d{1,2}', 'scout.views.partial_detail_view', name='partial_detail_view'),    
 
 )
 
