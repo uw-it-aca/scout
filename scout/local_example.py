@@ -19,7 +19,11 @@ ALLOWED_HOSTS = []
 STATIC_ROOT = '/tmp/'
 
 # django compressor and less-c compiler
-COMPRESS_PRECOMPILERS = (('text/less', 'lessc {infile} {outfile}'),)
+COMPRESS_PRECOMPILERS = (
+    ('text/less', 'lessc {infile} {outfile}'),
+    ('text/x-sass', 'sass {infile} {outfile}'),
+    ('text/x-scss', 'sass --scss {infile} {outfile}'),
+)
 COMPRESS_ENABLED = True # True if you want to compress your development build
 COMPRESS_OFFLINE = False # True if you want to compress your build offline
 COMPRESS_OUTPUT_DIR = ''

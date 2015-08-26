@@ -1,0 +1,40 @@
+.hybrid {
+                    
+    .scout-scroll { margin-top: 0; top:0; }
+    .scout-map { top: 0; }
+}
+                
+.scout-header { background: #555; position: fixed; top:0; left:0; right: 0; z-index: 999;
+    
+    h1 { margin: 0 20px; line-height: 56px; height:56px; color: #fff; text-transform: uppercase; font-family: 'Oswald', sans-serif; font-weight: 300; font-size: 30px; 
+        a { color: #fff; text-decoration: none; }
+    }
+    
+    .scout-navigation { position: relative; background: #333; line-height: 40px; color: #fff; display: -webkit-flex; display: flex; margin: 0; padding: 0;
+        
+
+        a { padding: 0; display: block; color: #ddd; text-decoration: none; }
+
+    }
+    
+    .scout-map-link { display: none; 
+        a { color: #ddd; text-decoration: none; }
+    }
+}
+
+.scout-scroll { margin-top: 110px; }
+
+.scout-content { margin: 20px;
+    
+    .scout-pjax-loading { line-height: 300px; text-align: center; color: #ccc; }
+    
+    h3 { font-family: 'Oswald', sans-serif; font-weight: 300; }
+    
+    .scout-list { 
+        h4 { color: #aaa; }
+        p { color: #333; }
+        a { text-decoration: none; }
+    }
+}
+
+.scout-map-canvas { height: 100%; margin: 0px; padding: 0px; }

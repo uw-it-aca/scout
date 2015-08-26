@@ -5,16 +5,26 @@
 {% block content %}
 
 {% if is_webapp %}
-<h3>Food Scout</h3>
+<h3>Scout</h3>
 {% endif %}
 
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non urna et lorem venenatis varius quis sit amet dui. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur a nisi odio. Integer interdum tempor ante vitae dictum. Nullam volutpat diam id odio pulvinar, vel vehicula erat sodales. Maecenas magna ante, interdum id libero et, sodales volutpat orci. </p>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non urna et lorem venenatis varius quis sit amet dui. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur a nisi odio.</p>
 
+<h4>Campus</h4>
 <div>
     <ul>
         <li><a data-pjax href="/seattle/food/{% if is_hybrid %}?hybrid=true{% endif %}">Seattle</a></li>
         <li>Bothell</li>
         <li>Tacoma</li>
+    </ul>
+</div>
+
+<h4>Nearby</h4>
+<div>
+    <ul>
+        <li><a data-pjax href="/seattle/food/{% if is_hybrid %}?hybrid=true{% endif %}">Food</a></li>
+        <li>Spaces</li>
+        <li>Items</li>
     </ul>
 </div>
 

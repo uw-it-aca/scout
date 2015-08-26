@@ -33,111 +33,67 @@
         -->
         <!-- critical css (above the fold styles) -->
         {% compress css inline %}
-            
-            {% if low_fidelity %}
-            <!-- normalize only -->
-            <link rel="stylesheet" href="{% static "vendor/css/normalize-3.0.1.min.css" %}">
-            {% endif %}
-            
-            <style rel="stylesheet" type="text/less">
-                
-                .hybrid {
-                    
-                    #scroll { margin-top: 0; top:0; }
-                    #map { top: 0; }
-                }
-                                
-                #header { background: #555; position: fixed; top:0; left:0; right: 0; z-index: 999;
-                    
-                    h1 { margin: 0 20px; line-height: 56px; height:56px; color: #fff; text-transform: uppercase; font-family: 'Oswald', sans-serif; font-weight: 300; font-size: 30px; }
-                    .navi { background: #333; line-height: 40px; color: #fff; display: -webkit-flex; display: flex; margin: 0; padding: 0;
-                        
-                        li { list-style: none; margin:0; padding: 0; flex:1; -webkit-flex: 1; -webkit-box-flex: 1; text-transform: uppercase; text-align: center; justify-content: space-between;
-                            &:hover { background: #666; }
-                            a { padding: 0; display: block; }
-                        }
-                
-                    }
-                    
-                    #list_map_switcher { display: none; }
-                }
-                
-                #scroll { margin-top: 110px; }
-                #content { margin: 20px;
-                    
-                    #pjax-loading { line-height: 300px; text-align: center; color: #ccc; }
-                    h3 { font-family: 'Oswald', sans-serif; font-weight: 300; }
-                }
-                
-                #map-canvas { height: 100%; margin: 0px; padding: 0px; }
-                
-            </style>
-            
+        <!-- inline -->   
+        <link rel="stylesheet" href="{% static "scout/css/inline.scss" %}" type="text/x-scss">
         {% endcompress %}
         
-        <!-- insert your webfonts here -->
-        <link href='http://fonts.googleapis.com/css?family=Oswald:400,700,300' rel='stylesheet' type='text/css'>
+        <!-- webfonts -->
+        <link href='//fonts.googleapis.com/css?family=Oswald:400,700,300' rel='stylesheet' type='text/css'>
         
         {% if request.is_mobile %}
         {% compress css %}
         <!-- bootstrap & font awesome -->
-        <link rel="stylesheet" href="{% static "vendor/css/bootstrap-3.3.4.min.css" %}">
+        <link rel="stylesheet" href="{% static "vendor/css/normalize-3.0.1.min.css" %}">
         <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.0.3.min.css" %}">
-        <!-- devtools -->
-        <link rel="stylesheet" href="{% static "vendor/css/aca-devtools.min.css" %}">
         <!-- mobile -->   
-        <link rel="stylesheet" href="{% static "scout/css/mobile.less" %}" type="text/less">
+        <link rel="stylesheet" href="{% static "scout/css/mobile.scss" %}" type="text/x-scss">
         {% endcompress %}
         {% endif %}
         
         {% if request.is_tablet %}
         {% compress css %}
         <!-- bootstrap & font awesome -->
-        <link rel="stylesheet" href="{% static "vendor/css/bootstrap-3.3.4.min.css" %}">
+        <link rel="stylesheet" href="{% static "vendor/css/normalize-3.0.1.min.css" %}">
         <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.0.3.min.css" %}">
-        <!-- devtools -->
-        <link rel="stylesheet" href="{% static "vendor/css/aca-devtools.min.css" %}">
         <!-- mobile + table -->
-        <link rel="stylesheet" href="{% static "scout/css/mobile.less" %}" type="text/less">
-        <link rel="stylesheet" href="{% static "scout/css/tablet.less" %}" type="text/less">
+        <link rel="stylesheet" href="{% static "scout/css/mobile.scss" %}" type="text/x-scss">
+        <link rel="stylesheet" href="{% static "scout/css/tablet.scss" %}" type="text/x-scss">
         {% endcompress %}
         {% endif %}
         
         {% if not request.is_mobile and not request.is_tablet %}
         {% compress css %}
         <!-- bootstrap & font awesome -->
-        <link rel="stylesheet" href="{% static "vendor/css/bootstrap-3.3.4.min.css" %}">
+        <link rel="stylesheet" href="{% static "vendor/css/normalize-3.0.1.min.css" %}">
         <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.0.3.min.css" %}">
-        <!-- devtools -->
-        <link rel="stylesheet" href="{% static "vendor/css/aca-devtools.min.css" %}">
         <!-- mobile + tablet + desktop -->
-        <link rel="stylesheet" href="{% static "scout/css/mobile.less" %}" type="text/less">
-        <link rel="stylesheet" href="{% static "scout/css/tablet.less" %}" type="text/less">
-        <link rel="stylesheet" href="{% static "scout/css/desktop.less" %}" type="text/less">
+        <link rel="stylesheet" href="{% static "scout/css/mobile.scss" %}" type="text/x-scss">
+        <link rel="stylesheet" href="{% static "scout/css/tablet.scss" %}" type="text/x-scss">
+        <link rel="stylesheet" href="{% static "scout/css/desktop.scss" %}" type="text/x-scss">
         {% endcompress %}
         {% endif %}
     
         {% if not less_compiled %}
-            <!-- less.js -->
-            <script src="{% static 'vendor/js/less-2.0.0.min.js' %}" type="text/javascript"></script>
+        <!-- less.js -->
+        <script src="{% static 'vendor/js/less-2.0.0.min.js' %}" type="text/javascript"></script>
         {% endif %}
     
     </head>
     <body {% if is_hybrid %}class="hybrid"{% endif %}>
        
         {% if is_webapp %}
-        <div id="header"> 
+        <div id="header" class="scout-header"> 
             
-            <h1><a data-pjax href="/">Food Scout</a></h1>
+            <h1><a data-pjax href="/">Scout</a></h1>
             
             {% if request.is_mobile or request.is_tablet %}
             <!-- only show the map link for mobile and tablet -->
-            <div id="list_map_switcher" style="display:inline-block; position:absolute; right:10px; top: 0; line-height:56px; font-size:14px; text-transform:uppercase;">
+            <div id="list_map_switcher" class="scout-map-link" style="display:inline-block; position:absolute; right:10px; top: 0; line-height:56px; font-size:14px; text-transform:uppercase;">
                 <span><a data-pjax id="map_link" href="/seattle/food/map/">Map</a></span>
             </div>
             {% endif %}
             
-            <div class="navi" style="position:relative;">
+            <div class="scout-navigation">
                 <div style="display:inline-block; line-height:40px; font-size:14px; text-transform:uppercase; margin-left:20px;">
                     <span><a data-pjax href="/filters/">Filters</a></span>
                 </div>
@@ -151,20 +107,20 @@
         {% endif %}
          
          
-         <div id="scroll">    
+        <div id="scroll" class="scout-scroll">    
                 
-            <div id="content">
+            <div id="content" class="scout-content">
             
                 <!-- pjax loading -->
-                <div id="pjax-loading" style="display:none;">loading...</div>
+                <div id="pjax-loading" class="scout-pjax-loading" style="display:none;">loading...</div>
                 
                 <!-- all pjax content will render inside of this id -->
-                <div id="pjax-container">
+                <div id="pjax-container" class="scout-pjax-content">
                     {% block content %}{% endblock %}
                 </div>
                 
                 {% if not request.is_mobile and not request.is_tablet %}
-                <div id="map">
+                <div id="map" class="scout-map">
                     {% include "scout/partials/gmap.html" %}
                 </div>
                 {% endif %} 
@@ -172,7 +128,7 @@
             </div>
             
             {% if is_webapp %}
-            <div id="footer">
+            <div id="footer" class="scout-footer">
                 <!-- example of request.is_mobile and request.is_tablet usage in templates -->    
                 {% if request.is_mobile %}
                 <p class="text-muted credit">Courtesy of Charlon and Craig. UW-IT ACA</p>
@@ -182,13 +138,8 @@
             </div>
             {% endif %}
             
-         </div>
-       
-        <!-- devtools bar -->
-        <div id="dev_toolbar">
-            <span class="label label-device">Device: {% if request.is_mobile %}Mobile{% elif request.is_tablet %}Tablet{% else %}Desktop{%endif %}</span> <span class="label label-fold">The fold</span>
         </div>
-        
+       
         <script src='//maps.googleapis.com/maps/api/js?v=3&sensor=false&signed_in=true&callback=initializeMap' defer></script>
                 
         {% compress js %}
@@ -196,8 +147,6 @@
         <script src="{% static "vendor/js/jquery-1.11.0.min.js" %}"></script>
         <script src="{% static "vendor/js/jquery-pjax-1.9.3.min.js" %}"></script>
         <script src="{% static "vendor/js/modernizr-2.6.2.min.js" %}"></script>
-        <script src="{% static "vendor/js/bootstrap-3.3.4.min.js" %}"></script>
-        <script src="{% static "vendor/js/aca-devtools.min.js" %}"></script>
         <script src="{% static "scout/js/map.js" %}"></script>
         {% endcompress %}
         
