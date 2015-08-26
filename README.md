@@ -15,10 +15,6 @@ This README documents whatever steps are necessary to get your application up an
 
     This process varies per platform.
 
-**Install Less**
-
-    $ npm install less
-
 **Clone repository:**
     
     $ (scoutenv) git clone https://github.com/charlon/scout.git

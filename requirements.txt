@@ -2,6 +2,5 @@ django
 django-compressor
 django-templatetag-handlebars
 django-easy-pjax
-
-#-e git+https://github.com/nigma/django-easy-pjax/#egg=django-easy-pjax
--e git+https://github.com/laginha/django-mobileesp/#egg=django_mobileesp
+django_mobileesp
+libsass
