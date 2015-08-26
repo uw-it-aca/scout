@@ -68,14 +68,11 @@ function mapSwitcher(jQuery) {
     // ROUTING FOR PJAX
     pathname = window.location.pathname;
         
-    if (pathname.indexOf("/seattle/food/18374") >= 0) {
+    if (pathname.indexOf("/detail/56874") >= 0) {
        $('#list_map_switcher').hide();
     }
-    else if (pathname.indexOf("/seattle/food/") >= 0) {
+    else if (pathname.indexOf("/list/") >= 0) {
        $('#list_map_switcher').show();
-    }
-    else if (pathname.indexOf("/favorites/56874") >= 0) {
-       $('#list_map_switcher').hide();
     }
     else if (pathname.indexOf("/favorites/") >= 0) {
        $('#list_map_switcher').show();

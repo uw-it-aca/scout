@@ -9,21 +9,14 @@ function initializeMap() {
     
     // url routing 
         
-    if (pathname.indexOf("/seattle/food/18374") >= 0) {
+    if (pathname.indexOf("/detail/56874") >= 0) {
             
         // uw fountain
         myLatlng = new google.maps.LatLng(47.653811, -122.307815);
         mapOptions = { center: myLatlng, zoom: 18, scrollwheel: false, draggable: false, disableDefaultUI: true };
         
     }
-    else if (pathname.indexOf("/favorites/56874") >= 0) {
-            
-        // uw fountain
-        myLatlng = new google.maps.LatLng(47.653811, -122.307815);
-        mapOptions = { center: myLatlng, zoom: 17, scrollwheel: false, draggable: false, disableDefaultUI: true };
-        
-    }
-    else if (pathname.indexOf("/seattle/food/") >= 0) {
+    else if (pathname.indexOf("/list/") >= 0) {
             
         // uw fountain
         myLatlng = new google.maps.LatLng(47.653811, -122.307815);
@@ -48,6 +41,7 @@ function initializeMap() {
     }               
         
 }
+
 
 
 // Add a marker to the map and push to the array.
