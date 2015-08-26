@@ -11,10 +11,6 @@ This README documents whatever steps are necessary to get your application up an
     $ cd scoutenv
     $ source bin/activate
 
-**Install Node**
-
-    This process varies per platform.
-
 **Clone repository:**
     
     $ (scoutenv) git clone https://github.com/charlon/scout.git
