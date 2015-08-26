@@ -24,3 +24,11 @@ def detail_view(request):
       
 def filters_view(request):
     return render_to_response('scout/filters.html', context_instance=RequestContext(request))
+    
+# partials
+
+def partial_list_view(request):
+    return render_to_response('scout/partials/list.html', context_instance=RequestContext(request))
+
+def partial_detail_view(request):
+    return render_to_response('scout/partials/detail.html', context_instance=RequestContext(request))

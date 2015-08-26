@@ -121,7 +121,7 @@
                 
                 {% if not request.is_mobile and not request.is_tablet %}
                 <div id="map" class="scout-map">
-                    {% include "scout/partials/gmap.html" %}
+                    <div id="map-canvas" class="scout-map-canvas"></div>
                 </div>
                 {% endif %} 
     
