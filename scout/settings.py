@@ -23,8 +23,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     
     'compressor',
-    'easy_pjax',
-    'templatetag_handlebars',
+    'turbolinks',
     'scout',
     
     # add your apps below...
@@ -39,6 +38,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     
     'django_mobileesp.middleware.UserAgentDetectionMiddleware',
+    'turbolinks.middleware.TurbolinksMiddleware',
 )
 
 ROOT_URLCONF = 'scout.urls'
