@@ -24,9 +24,4 @@
     </ul>
 </div>
 
-{% if is_hybrid %}
-<p><a data-pjax href="/favorites/{% if is_hybrid %}?hybrid=true{% endif %}">Favorites</a></p>
-<p><a data-pjax href="/filters/{% if is_hybrid %}?hybrid=true{% endif %}">Filters</a></p>
-{% endif %}
-
 {% endblock %}
