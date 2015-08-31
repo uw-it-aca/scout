@@ -1,11 +1,8 @@
-{% extends "scout/base-web.html" %}
-
+{% extends is_hybrid|yesno:"scout/base-hybrid.html,scout/base-web.html" %}
 
 {% block title %}Filters{% endblock %}
 
 {% block content %}
-
-<h3>Filters</h3>
     
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non urna et lorem venenatis varius quis sit amet dui. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur a nisi odio. Integer interdum tempor ante vitae dictum. Nullam volutpat diam id odio pulvinar, vel vehicula erat sodales. Maecenas magna ante, interdum id libero et, sodales volutpat orci. </p>
 

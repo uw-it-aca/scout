@@ -1,4 +1,4 @@
-{% extends base_template %}
+{% extends is_hybrid|yesno:"scout/base-hybrid.html,scout/base-web.html" %}
 
 {% block title %}Favorites{% endblock %}
 
@@ -6,15 +6,15 @@
     
 <div class="scout-list">
     <a data-pjax href="/detail/56874{% if is_hybrid %}?hybrid=true{% endif %}" class="list-group-item">
-        <h4>Favorite Food Spot 1</h4>
+        <h4>Spot 1</h4>
         <p>Phasellus lacinia justo augue, et fringilla felis dignissim sit amet. Nunc eu vulputate ligula. Pellentesque non cursus sem.</p>
     </a>  
     <a data-pjax href="/detail/56874{% if is_hybrid %}?hybrid=true{% endif %}" class="list-group-item">
-        <h4>Favorite Food Spot 2</h4>
+        <h4>Spot 2</h4>
         <p>Phasellus lacinia justo augue, et fringilla felis dignissim sit amet. Nunc eu vulputate ligula. Pellentesque non cursus sem.</p>
     </a> 
     <a data-pjax href="/detail/56874{% if is_hybrid %}?hybrid=true{% endif %}" class="list-group-item">
-        <h4>Favorite Food Spot 3</h4>
+        <h4>Spot 3</h4>
         <p>Phasellus lacinia justo augue, et fringilla felis dignissim sit amet. Nunc eu vulputate ligula. Pellentesque non cursus sem.</p>
     </a> 
 </div>

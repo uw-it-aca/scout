@@ -19,5 +19,5 @@ def is_hybrid(request):
     hybridapp = request.GET.get('hybrid')
     
     return {
-        'is_hybrid' : hybridapp == 'true'
+        'is_hybrid' : hybridapp
     }

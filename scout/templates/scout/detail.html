@@ -1,12 +1,15 @@
-{% extends base_template %}
+{% extends is_hybrid|yesno:"scout/base-hybrid.html,scout/base-web.html" %}
 
-{% block title %}Spot Details{% endblock %}
+{% block title %}Details{% endblock %}
 
 {% load staticfiles %}
 
 {% block content %}
 
 <div class="panel panel-default">
+    
+    <h4>Spot Name</h4>
+    
     <div class="panel-body">
         <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec sed odio dui. Curabitur blandit tempus porttitor. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
     </div>
