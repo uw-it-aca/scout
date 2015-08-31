@@ -115,7 +115,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     # trestle context processors
     'scout.context_processors.less_compiled',
     'scout.context_processors.google_analytics',
-    'scout.context_processors.is_webapp',
+    'scout.context_processors.is_hybrid',
 )
 
 TEMPLATE_DIRS = (

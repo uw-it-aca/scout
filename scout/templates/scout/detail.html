@@ -1,15 +1,29 @@
-{% extends "scout/base.html, scout/base-pjax.html"|pjax:request %}
+{% extends base_template %}
 
-{% block title %}Food Spot Details{% endblock %}
+{% block title %}Spot Details{% endblock %}
 
 {% load staticfiles %}
 
 {% block content %}
 
-{% if is_webapp %}
-<h3>Food Spot Details</h3>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec sed odio dui. Curabitur blandit tempus porttitor. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
+    </div>
+</div>
+
+{% if request.is_mobile or request.is_tablet %}
+<div class="panel panel-default">   
+    <div class="panel-body" style="height:200px; padding: 0;">
+        <div id="map-canvas" class="scout-map-canvas"></div>
+    </div>
+</div>
 {% endif %}
-    
-{% include "scout/partials/detail.html" %}
+
+<div class="panel panel-default">   
+    <div class="panel-body">
+        <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+    </div>
+</div>
 
 {% endblock %}

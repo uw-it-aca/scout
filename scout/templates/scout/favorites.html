@@ -1,12 +1,8 @@
-{% extends "scout/base.html, scout/base-pjax.html"|pjax:request %}
+{% extends base_template %}
 
 {% block title %}Favorites{% endblock %}
 
 {% block content %}
-
-{% if is_webapp %}
-<h3>Favorites</h3>
-{% endif %}
     
 <div class="scout-list">
     <a data-pjax href="/detail/56874{% if is_hybrid %}?hybrid=true{% endif %}" class="list-group-item">

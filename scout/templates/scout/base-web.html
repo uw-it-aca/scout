@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>{% block title %}Food Scout{% endblock %}</title>
+        <title>{% block title %}Scout{% endblock %}</title>
         <meta name="description" content="">
         <meta name="HandheldFriendly" content="True">
         <meta name="MobileOptimized" content="320">
@@ -25,12 +25,11 @@
         <meta name="msapplication-TileColor" content="#222222">
         
         <!-- ios webapps - delete if not needed -->
-        <!--
         <meta name="apple-touch-fullscreen" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <meta name="apple-mobile-web-app-title" content="">
-        -->
+
         <!-- critical css (above the fold styles) -->
         {% compress css inline %}
         <!-- inline -->   
@@ -79,9 +78,8 @@
         {% endif %}
     
     </head>
-    <body {% if is_hybrid %}class="hybrid"{% endif %}>
+    <body>
        
-        {% if is_webapp %}
         <div id="header" class="scout-header"> 
             
             <h1><a data-pjax href="/">Scout</a></h1>
@@ -104,17 +102,11 @@
             </div>
 
         </div>
-        {% endif %}
-         
          
         <div id="scroll" class="scout-scroll">    
                 
             <div id="content" class="scout-content">
-            
-                <!-- pjax loading -->
-                <div id="pjax-loading" class="scout-pjax-loading" style="display:none;">loading...</div>
-                
-                <!-- all pjax content will render inside of this id -->
+                                
                 <div id="pjax-container" class="scout-pjax-content">
                     {% block content %}{% endblock %}
                 </div>
@@ -127,7 +119,6 @@
     
             </div>
             
-            {% if is_webapp %}
             <div id="footer" class="scout-footer">
                 <!-- example of request.is_mobile and request.is_tablet usage in templates -->    
                 {% if request.is_mobile %}
@@ -136,7 +127,6 @@
                 <p class="text-muted credit">Courtesy of Charlon Palacay and Craig Stimmel. UW-IT ACA</p>
                 {% endif %}
             </div>
-            {% endif %}
             
         </div>
        
@@ -150,11 +140,9 @@
         <script src="{% static "scout/js/map.js" %}"></script>
         {% endcompress %}
         
-        {% if is_webapp %}
         {% compress js %}
         <script src="{% static "scout/js/web.js" %}"></script>
         {% endcompress %}
-        {% endif %}
             
         {% if google_analytics %}
             <!-- google analytics -->

@@ -14,11 +14,10 @@ def google_analytics(request):
         'google_analytics': ga_key
     }
 
-def is_webapp(request):
+def is_hybrid(request):
     
     hybridapp = request.GET.get('hybrid')
     
     return {
-        'is_webapp' : hybridapp != 'true',
         'is_hybrid' : hybridapp == 'true'
     }
