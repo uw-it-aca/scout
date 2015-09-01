@@ -42,6 +42,24 @@
         {% endcompress %}
         {% endif %}
         
+        {% if request.is_and %}
+        {% compress css %}
+        <link rel="stylesheet" href="{% static "scout/css/android.scss" %}" type="text/x-scss">
+        {% endcompress %}
+        {% endif %}
+        
+        {% if request.is_ios %}
+        {% compress css %}
+        <link rel="stylesheet" href="{% static "scout/css/ios.scss" %}" type="text/x-scss">
+        {% endcompress %}
+        {% endif %}
+        
+        {% if request.is_win %}
+        {% compress css %}
+        <link rel="stylesheet" href="{% static "scout/css/windows.scss" %}" type="text/x-scss">
+        {% endcompress %}
+        {% endif %}
+        
     </head>
     <body>
                        

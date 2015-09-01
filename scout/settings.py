@@ -95,9 +95,9 @@ DETECT_USER_AGENTS = {
     'is_tablet' : agent.detectTierTablet,
     'is_mobile': agent.detectMobileQuick,
     
-    'is_android': agent.detectAndroid,
+    'is_and': agent.detectAndroid,
     'is_ios': agent.detectIos,
-    'is_windows_phone': agent.detectWindowsPhone,
+    'is_win': agent.detectWindowsPhone,
 }
 
 # template context processors
