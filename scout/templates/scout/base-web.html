@@ -32,40 +32,35 @@
 
         <!-- critical css (above the fold styles) -->
         {% compress css inline %}
-        <!-- inline -->   
-        <link rel="stylesheet" href="{% static "scout/css/inline.scss" %}" type="text/x-scss">
+        <!-- inline -->  
+        <link rel="stylesheet" href="{% static "vendor/css/normalize-3.0.1.min.css" %}">
+        <link rel="stylesheet" href="{% static "scout/css/inline-web.scss" %}" type="text/x-scss">
         {% endcompress %}
         
         <!-- webfonts -->
         <link href='//fonts.googleapis.com/css?family=Oswald:400,700,300' rel='stylesheet' type='text/css'>
         
         {% if request.is_mobile %}
-        {% compress css %}
-        <!-- bootstrap & font awesome -->
-        <link rel="stylesheet" href="{% static "vendor/css/normalize-3.0.1.min.css" %}">
-        <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.0.3.min.css" %}">
         <!-- mobile -->   
+        {% compress css %}
+        <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.0.3.min.css" %}">
         <link rel="stylesheet" href="{% static "scout/css/mobile.scss" %}" type="text/x-scss">
         {% endcompress %}
         {% endif %}
         
         {% if request.is_tablet %}
-        {% compress css %}
-        <!-- bootstrap & font awesome -->
-        <link rel="stylesheet" href="{% static "vendor/css/normalize-3.0.1.min.css" %}">
-        <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.0.3.min.css" %}">
         <!-- mobile + table -->
+        {% compress css %}
+        <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.0.3.min.css" %}">
         <link rel="stylesheet" href="{% static "scout/css/mobile.scss" %}" type="text/x-scss">
         <link rel="stylesheet" href="{% static "scout/css/tablet.scss" %}" type="text/x-scss">
         {% endcompress %}
         {% endif %}
         
-        {% if not request.is_mobile and not request.is_tablet %}
-        {% compress css %}
-        <!-- bootstrap & font awesome -->
-        <link rel="stylesheet" href="{% static "vendor/css/normalize-3.0.1.min.css" %}">
-        <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.0.3.min.css" %}">
+        {% if is_desktop %}
         <!-- mobile + tablet + desktop -->
+        {% compress css %}
+        <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.0.3.min.css" %}">
         <link rel="stylesheet" href="{% static "scout/css/mobile.scss" %}" type="text/x-scss">
         <link rel="stylesheet" href="{% static "scout/css/tablet.scss" %}" type="text/x-scss">
         <link rel="stylesheet" href="{% static "scout/css/desktop.scss" %}" type="text/x-scss">
@@ -74,7 +69,7 @@
     
     </head>
     <body>
-       
+
         <div id="header" class="scout-header"> 
             
             <h1><a href="/">Scout</a></h1>
