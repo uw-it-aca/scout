@@ -38,3 +38,10 @@
 }
 
 .scout-map-canvas { height: 100%; margin: 0px; padding: 0px; }
+
+// turbolinks
+
+html.turbolinks-progress-bar::before {
+  background-color: red !important;
+  height: 5px !important;
+}
