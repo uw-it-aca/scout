@@ -23,7 +23,6 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     
     'compressor',
-    'turbolinks',
     'scout',
     
     # add your apps below...

@@ -20,6 +20,19 @@
         <link rel="stylesheet" href="{% static "scout/css/inline-hybrid.scss" %}" type="text/x-scss">
         {% endcompress %}
     
+    </head>
+    <body>
+                       
+        <div id="content" class="scout-content">
+        
+            <!-- all pjax content will render inside of this id -->
+            <div class="scout-pjax-content">
+                {% block content %}{% endblock %}
+            </div>
+            
+        </div>
+       
+        
         {% if request.is_mobile and request.is_and %}
         <!-- mobile + android -->  
         {% compress css %}
@@ -76,20 +89,6 @@
         <link rel="stylesheet" href="{% static "scout/css/windows.scss" %}" type="text/x-scss">
         {% endcompress %}
         {% endif %}
-        
-    </head>
-    <body>
-                       
-        <div id="content" class="scout-content">
-        
-            <!-- all pjax content will render inside of this id -->
-            <div class="scout-pjax-content">
-                {% block content %}{% endblock %}
-            </div>
-            
-        </div>
-       
-        <!--<script src='//maps.googleapis.com/maps/api/js?v=3&sensor=false&signed_in=true&callback=initializeMap' defer></script>-->
                 
         {% compress js %}
         <!-- global javascript -->

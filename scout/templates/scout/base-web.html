@@ -36,37 +36,7 @@
         <link rel="stylesheet" href="{% static "vendor/css/normalize-3.0.1.min.css" %}">
         <link rel="stylesheet" href="{% static "scout/css/inline-web.scss" %}" type="text/x-scss">
         {% endcompress %}
-        
-        <!-- webfonts -->
-        <link href='//fonts.googleapis.com/css?family=Oswald:400,700,300' rel='stylesheet' type='text/css'>
-        
-        {% if request.is_mobile %}
-        <!-- mobile -->   
-        {% compress css %}
-        <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.0.3.min.css" %}">
-        <link rel="stylesheet" href="{% static "scout/css/mobile.scss" %}" type="text/x-scss">
-        {% endcompress %}
-        {% endif %}
-        
-        {% if request.is_tablet %}
-        <!-- mobile + table -->
-        {% compress css %}
-        <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.0.3.min.css" %}">
-        <link rel="stylesheet" href="{% static "scout/css/mobile.scss" %}" type="text/x-scss">
-        <link rel="stylesheet" href="{% static "scout/css/tablet.scss" %}" type="text/x-scss">
-        {% endcompress %}
-        {% endif %}
-        
-        {% if is_desktop %}
-        <!-- mobile + tablet + desktop -->
-        {% compress css %}
-        <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.0.3.min.css" %}">
-        <link rel="stylesheet" href="{% static "scout/css/mobile.scss" %}" type="text/x-scss">
-        <link rel="stylesheet" href="{% static "scout/css/tablet.scss" %}" type="text/x-scss">
-        <link rel="stylesheet" href="{% static "scout/css/desktop.scss" %}" type="text/x-scss">
-        {% endcompress %}
-        {% endif %}
-    
+                    
     </head>
     <body>
 
@@ -120,29 +90,54 @@
             </div>
             
         </div>
+        
+        {% if request.is_mobile %}
+        <!-- mobile -->   
+        {% compress css %}
+        <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.0.3.min.css" %}">
+        <link rel="stylesheet" href="{% static "scout/css/mobile.scss" %}" type="text/x-scss">
+        {% endcompress %}
+        {% endif %}
+        
+        {% if request.is_tablet %}
+        <!-- mobile + table -->
+        {% compress css %}
+        <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.0.3.min.css" %}">
+        <link rel="stylesheet" href="{% static "scout/css/mobile.scss" %}" type="text/x-scss">
+        <link rel="stylesheet" href="{% static "scout/css/tablet.scss" %}" type="text/x-scss">
+        {% endcompress %}
+        {% endif %}
+        
+        {% if is_desktop %}
+        <!-- mobile + tablet + desktop -->
+        {% compress css %}
+        <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.0.3.min.css" %}">
+        <link rel="stylesheet" href="{% static "scout/css/mobile.scss" %}" type="text/x-scss">
+        <link rel="stylesheet" href="{% static "scout/css/tablet.scss" %}" type="text/x-scss">
+        <link rel="stylesheet" href="{% static "scout/css/desktop.scss" %}" type="text/x-scss">
+        {% endcompress %}
+        {% endif %}
        
-        {% compress js %}
+       {% compress js %}
         <!-- global javascript -->
         <script src="{% static "vendor/js/jquery-1.11.0.min.js" %}"></script>
-        <script src="{% static "vendor/js/turbolinks.min.js" %}"></script>
         <script src="{% static "scout/js/map.js" %}"></script>
         <script src="{% static "scout/js/web.js" %}"></script>
         {% endcompress %}
-            
+
+
         {% if google_analytics %}
-            <!-- google analytics -->
-            <script>
-                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-                })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-                
-                ga('create', '');
-                ga('send', 'pageview');        
-            </script>
+        <!-- google analytics -->
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+            
+            ga('create', '');
+            ga('send', 'pageview');        
+        </script>
         {% endif %}
-        
-        
-        
+            
     </body>
 </html>
