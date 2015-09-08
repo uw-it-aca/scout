@@ -7,7 +7,7 @@
         <meta name="description" content="">
         <meta name="HandheldFriendly" content="True">
         <meta name="MobileOptimized" content="320">
-        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+        <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
         <meta http-equiv="cleartype" content="on">
         
         {% load staticfiles %}
@@ -17,31 +17,9 @@
         {% compress css inline %}
         <!-- inline -->   
         <link rel="stylesheet" href="{% static "vendor/css/normalize-3.0.1.min.css" %}">
-        <link rel="stylesheet" href="{% static "scout/css/inline.scss" %}" type="text/x-scss">
+        <link rel="stylesheet" href="{% static "scout/css/inline-hybrid.scss" %}" type="text/x-scss">
         {% endcompress %}
-        
-        <!-- webfonts -->
-        <link href='//fonts.googleapis.com/css?family=Oswald:400,700,300' rel='stylesheet' type='text/css'>
-        
-        {% if request.is_mobile %}
-        {% compress css %}
-        <!-- bootstrap & font awesome -->
-        <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.0.3.min.css" %}">
-        <!-- mobile -->   
-        <link rel="stylesheet" href="{% static "scout/css/mobile.scss" %}" type="text/x-scss">
-        {% endcompress %}
-        {% endif %}
-        
-        {% if request.is_tablet %}
-        {% compress css %}
-        <!-- bootstrap & font awesome -->
-        <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.0.3.min.css" %}">
-        <!-- mobile + table -->
-        <link rel="stylesheet" href="{% static "scout/css/mobile.scss" %}" type="text/x-scss">
-        <link rel="stylesheet" href="{% static "scout/css/tablet.scss" %}" type="text/x-scss">
-        {% endcompress %}
-        {% endif %}
-        
+    
     </head>
     <body>
                        
@@ -54,7 +32,63 @@
             
         </div>
        
-        <script src='//maps.googleapis.com/maps/api/js?v=3&sensor=false&signed_in=true&callback=initializeMap' defer></script>
+        
+        {% if request.is_mobile and request.is_and %}
+        <!-- mobile + android -->  
+        {% compress css %}
+        <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.0.3.min.css" %}">
+        <link rel="stylesheet" href="{% static "scout/css/mobile.scss" %}" type="text/x-scss">
+        <link rel="stylesheet" href="{% static "scout/css/android.scss" %}" type="text/x-scss">
+        {% endcompress %}
+        {% endif %}
+        
+        {% if request.is_mobile and request.is_ios %}
+        <!-- mobile + ios -->   
+        {% compress css %}
+        <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.0.3.min.css" %}">
+        <link rel="stylesheet" href="{% static "scout/css/mobile.scss" %}" type="text/x-scss">
+        <link rel="stylesheet" href="{% static "scout/css/ios.scss" %}" type="text/x-scss">
+        {% endcompress %}
+        {% endif %}
+        
+        {% if request.is_mobile and request.is_win %}
+        <!-- mobile + windows -->   
+        {% compress css %}
+        <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.0.3.min.css" %}">
+        <link rel="stylesheet" href="{% static "scout/css/mobile.scss" %}" type="text/x-scss">
+        <link rel="stylesheet" href="{% static "scout/css/windows.scss" %}" type="text/x-scss">
+        {% endcompress %}
+        {% endif %}
+        
+        {% if request.is_tablet and request.is_and %}
+        <!-- mobile + tablet + android -->
+        {% compress css %}
+        <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.0.3.min.css" %}">
+        <link rel="stylesheet" href="{% static "scout/css/mobile.scss" %}" type="text/x-scss">
+        <link rel="stylesheet" href="{% static "scout/css/tablet.scss" %}" type="text/x-scss">
+        <link rel="stylesheet" href="{% static "scout/css/android.scss" %}" type="text/x-scss">
+        {% endcompress %}
+        {% endif %}
+        
+        {% if request.is_tablet and request.is_ios %}
+        <!-- mobile + tablet + ios -->
+        {% compress css %}
+        <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.0.3.min.css" %}">
+        <link rel="stylesheet" href="{% static "scout/css/mobile.scss" %}" type="text/x-scss">
+        <link rel="stylesheet" href="{% static "scout/css/tablet.scss" %}" type="text/x-scss">
+        <link rel="stylesheet" href="{% static "scout/css/ios.scss" %}" type="text/x-scss">
+        {% endcompress %}
+        {% endif %}
+        
+        {% if request.is_tablet and request.is_win %}
+        <!-- mobile + tablet + windows -->
+        {% compress css %}
+        <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.0.3.min.css" %}">
+        <link rel="stylesheet" href="{% static "scout/css/mobile.scss" %}" type="text/x-scss">
+        <link rel="stylesheet" href="{% static "scout/css/tablet.scss" %}" type="text/x-scss">
+        <link rel="stylesheet" href="{% static "scout/css/windows.scss" %}" type="text/x-scss">
+        {% endcompress %}
+        {% endif %}
                 
         {% compress js %}
         <!-- global javascript -->

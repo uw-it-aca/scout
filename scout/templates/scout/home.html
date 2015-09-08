@@ -9,7 +9,7 @@
 <h4>Campus</h4>
 <div>
     <ul>
-        <li><a data-pjax href="/list/{% if is_hybrid %}?hybrid=true{% endif %}">Seattle</a></li>
+        <li><a data-pjax href="/list/{% if is_hybrid %}?hybrid=true&x_push_page=true&x_page_title=Seattle+List{% endif %}">Seattle</a></li>
         <li>Bothell</li>
         <li>Tacoma</li>
     </ul>
@@ -18,10 +18,15 @@
 <h4>Nearby</h4>
 <div>
     <ul>
-        <li><a data-pjax href="/list/{% if is_hybrid %}?hybrid=true{% endif %}">Food</a></li>
+        <li><a data-pjax href="/list/{% if is_hybrid %}?hybrid=true&x_push_page=true&x_page_title=Food+List{% endif %}">Food</a></li>
         <li>Spaces</li>
         <li>Items</li>
     </ul>
 </div>
 
+{% endblock %}
+
+
+{% block subcontent %}
+akslfdj aslkd flaksdfj asklfdj asldkfj
 {% endblock %}

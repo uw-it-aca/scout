@@ -23,8 +23,6 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     
     'compressor',
-    'easy_pjax',
-    'templatetag_handlebars',
     'scout',
     
     # add your apps below...
@@ -39,6 +37,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     
     'django_mobileesp.middleware.UserAgentDetectionMiddleware',
+    'turbolinks.middleware.TurbolinksMiddleware',
 )
 
 ROOT_URLCONF = 'scout.urls'
@@ -95,9 +94,9 @@ DETECT_USER_AGENTS = {
     'is_tablet' : agent.detectTierTablet,
     'is_mobile': agent.detectMobileQuick,
     
-    'is_android': agent.detectAndroid,
+    'is_and': agent.detectAndroid,
     'is_ios': agent.detectIos,
-    'is_windows_phone': agent.detectWindowsPhone,
+    'is_win': agent.detectWindowsPhone,
 }
 
 # template context processors
@@ -115,6 +114,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     # trestle context processors
     'scout.context_processors.less_compiled',
     'scout.context_processors.google_analytics',
+    'scout.context_processors.is_desktop',
     'scout.context_processors.is_hybrid',
 )
 

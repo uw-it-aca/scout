@@ -1,6 +1,6 @@
 django
 django-compressor
 django-templatetag-handlebars
-django-easy-pjax
 django_mobileesp
+django-turbolinks
 libsass
