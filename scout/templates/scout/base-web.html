@@ -57,7 +57,7 @@
                 </div>
                 
                 <div style="display:inline-block; position:absolute; right:10px; top: 0; line-height:40px; font-size:14px; text-transform:uppercase;">
-                    <span><a data-no-turbolink href="/favorites/">favorites</a></span>
+                    <span><a href="/favorites/">favorites</a></span>
                 </div>
             </div>
 
@@ -91,6 +91,13 @@
             
         </div>
         
+        {% compress js %}
+        <!-- global javascript -->
+        <script src="{% static "vendor/js/jquery-1.11.0.min.js" %}"></script>
+        <script src="{% static "scout/js/map.js" %}"></script>
+        <script src="{% static "scout/js/web.js" %}"></script>
+        {% endcompress %}
+        
         {% if request.is_mobile %}
         <!-- mobile -->   
         {% compress css %}
@@ -117,15 +124,7 @@
         <link rel="stylesheet" href="{% static "scout/css/desktop.scss" %}" type="text/x-scss">
         {% endcompress %}
         {% endif %}
-       
-       {% compress js %}
-        <!-- global javascript -->
-        <script src="{% static "vendor/js/jquery-1.11.0.min.js" %}"></script>
-        <script src="{% static "scout/js/map.js" %}"></script>
-        <script src="{% static "scout/js/web.js" %}"></script>
-        {% endcompress %}
-
-
+        
         {% if google_analytics %}
         <!-- google analytics -->
         <script>
@@ -138,6 +137,6 @@
             ga('send', 'pageview');        
         </script>
         {% endif %}
-            
+        
     </body>
 </html>
