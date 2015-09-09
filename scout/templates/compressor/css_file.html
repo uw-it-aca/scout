@@ -1,0 +1,5 @@
+<script>
+    loadCSS( "{{ compressed.url }}" );
+</script>
+
+<noscript><link class="balah" rel="stylesheet" href="{{ compressed.url }}" type="text/css"{% if compressed.media %} media="{{ compressed.media }}"{% endif %} /></noscript>
