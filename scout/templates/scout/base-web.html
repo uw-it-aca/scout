@@ -60,11 +60,20 @@
         <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.0.3.min.css" %}">
         <link rel="stylesheet" href="{% static "scout/css/mobile.scss" %}" type="text/x-scss">
         <link rel="stylesheet" href="{% static "scout/css/tablet.scss" %}" type="text/x-scss">
-        {% endcompress %}
-        {% compress css %}
         <link rel="stylesheet" href="{% static "scout/css/desktop.scss" %}" type="text/x-scss">
         {% endcompress %}
+        {% compress css %}
+        
+        {% endcompress %}
         {% endif %}
+        
+         {% compress js %}
+        <!-- global javascript -->
+        <script src="{% static "vendor/js/jquery-1.11.0.min.js" %}"></script>
+        <script src="{% static "vendor/js/turbolinks.min.js" %}"></script>
+        <script src="{% static "scout/js/map.js" %}"></script>
+        <script src="{% static "scout/js/web.js" %}"></script>
+        {% endcompress %}
                            
     </head>
     <body>
@@ -120,13 +129,6 @@
             
         </div>
         
-        {% compress js %}
-        <!-- global javascript -->
-        <script src="{% static "vendor/js/jquery-1.11.0.min.js" %}"></script>
-        <script src="{% static "scout/js/map.js" %}"></script>
-        <script src="{% static "scout/js/web.js" %}"></script>
-        {% endcompress %}
-
         {% if google_analytics %}
         <!-- google analytics -->
         <script>
