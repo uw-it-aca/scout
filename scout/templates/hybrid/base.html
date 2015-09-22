@@ -17,7 +17,7 @@
         {% compress css inline %}
         <!-- inline -->   
         <link rel="stylesheet" href="{% static "vendor/css/normalize-3.0.1.min.css" %}">
-        <link rel="stylesheet" href="{% static "scout/css/inline-hybrid.scss" %}" type="text/x-scss">
+        <link rel="stylesheet" href="{% static "hybrid/css/inline-hybrid.scss" %}" type="text/x-scss">
         {% endcompress %}
         
         {% if request.is_mobile and request.is_and %}
@@ -25,7 +25,7 @@
         {% compress css %}
         <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.0.3.min.css" %}">
         <link rel="stylesheet" href="{% static "scout/css/mobile.scss" %}" type="text/x-scss">
-        <link rel="stylesheet" href="{% static "scout/css/android.scss" %}" type="text/x-scss">
+        <link rel="stylesheet" href="{% static "hybrid/css/android.scss" %}" type="text/x-scss">
         {% endcompress %}
         {% endif %}
         
@@ -34,7 +34,7 @@
         {% compress css %}
         <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.0.3.min.css" %}">
         <link rel="stylesheet" href="{% static "scout/css/mobile.scss" %}" type="text/x-scss">
-        <link rel="stylesheet" href="{% static "scout/css/ios.scss" %}" type="text/x-scss">
+        <link rel="stylesheet" href="{% static "hybrid/css/ios.scss" %}" type="text/x-scss">
         {% endcompress %}
         {% endif %}
         
@@ -43,7 +43,7 @@
         {% compress css %}
         <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.0.3.min.css" %}">
         <link rel="stylesheet" href="{% static "scout/css/mobile.scss" %}" type="text/x-scss">
-        <link rel="stylesheet" href="{% static "scout/css/windows.scss" %}" type="text/x-scss">
+        <link rel="stylesheet" href="{% static "hybrid/css/windows.scss" %}" type="text/x-scss">
         {% endcompress %}
         {% endif %}
         
@@ -53,7 +53,7 @@
         <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.0.3.min.css" %}">
         <link rel="stylesheet" href="{% static "scout/css/mobile.scss" %}" type="text/x-scss">
         <link rel="stylesheet" href="{% static "scout/css/tablet.scss" %}" type="text/x-scss">
-        <link rel="stylesheet" href="{% static "scout/css/android.scss" %}" type="text/x-scss">
+        <link rel="stylesheet" href="{% static "hybrid/css/android.scss" %}" type="text/x-scss">
         {% endcompress %}
         {% endif %}
         
@@ -63,7 +63,7 @@
         <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.0.3.min.css" %}">
         <link rel="stylesheet" href="{% static "scout/css/mobile.scss" %}" type="text/x-scss">
         <link rel="stylesheet" href="{% static "scout/css/tablet.scss" %}" type="text/x-scss">
-        <link rel="stylesheet" href="{% static "scout/css/ios.scss" %}" type="text/x-scss">
+        <link rel="stylesheet" href="{% static "hybrid/css/ios.scss" %}" type="text/x-scss">
         {% endcompress %}
         {% endif %}
         
@@ -73,26 +73,30 @@
         <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.0.3.min.css" %}">
         <link rel="stylesheet" href="{% static "scout/css/mobile.scss" %}" type="text/x-scss">
         <link rel="stylesheet" href="{% static "scout/css/tablet.scss" %}" type="text/x-scss">
-        <link rel="stylesheet" href="{% static "scout/css/windows.scss" %}" type="text/x-scss">
+        <link rel="stylesheet" href="{% static "hybrid/css/windows.scss" %}" type="text/x-scss">
         {% endcompress %}
         {% endif %}
     
     </head>
     <body>
                        
-        <div id="content" class="scout-content">
+        <div id="content" class="scout-hybrid">
         
-            <!-- all pjax content will render inside of this id -->
-            <div class="scout-pjax-content">
+            <div class="scout-hybrid-content">
                 {% block content %}{% endblock %}
             </div>
             
         </div>
                        
-        {% compress js %}
-        <!-- global javascript -->
-        <script src="{% static "vendor/js/jquery-1.11.0.min.js" %}"></script>
-        <script src="{% static "scout/js/hybrid.js" %}"></script>
+        {% compress js inline %}
+        <script>
+        var links = document.getElementsByTagName('link');
+        for(var i = 0; i < links.length; i++){
+            var link = links[i];
+            if(link.getAttribute('media') === 'only foo')
+                link.setAttribute('media', 'all');
+        }
+        </script>
         {% endcompress %}
         
     </body>

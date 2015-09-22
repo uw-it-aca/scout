@@ -113,8 +113,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.tz',
     'django.contrib.messages.context_processors.messages',
     
-    # trestle context processors
-    'scout.context_processors.less_compiled',
+    # custom context processors
     'scout.context_processors.google_analytics',
     'scout.context_processors.is_desktop',
     'scout.context_processors.is_hybrid',

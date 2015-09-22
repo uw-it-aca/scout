@@ -38,11 +38,5 @@ COMPRESS_JS_FILTERS = [
 # google analytics tracking
 #GOOGLE_ANALYTICS_KEY = "UA-XXXXXXXX-X"
 
-# enforce fidelity model
-TRESTLE_FIDELITY_LOW_ENABLED = True
-
-# devtools
-TRESTLE_DEVTOOLS_ENABLED = True
-
 # htmlmin
 HTML_MINIFY = True
