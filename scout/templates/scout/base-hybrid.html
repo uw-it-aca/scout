@@ -20,10 +20,6 @@
         <link rel="stylesheet" href="{% static "scout/css/inline-hybrid.scss" %}" type="text/x-scss">
         {% endcompress %}
         
-        {% compress js inline %}
-        <script src="{% static "vendor/js/loadCSS.js" %}"></script>
-        {% endcompress %}
-        
         {% if request.is_mobile and request.is_and %}
         <!-- mobile + android -->  
         {% compress css %}
@@ -80,7 +76,6 @@
         <link rel="stylesheet" href="{% static "scout/css/windows.scss" %}" type="text/x-scss">
         {% endcompress %}
         {% endif %}
-
     
     </head>
     <body>
@@ -97,6 +92,7 @@
         {% compress js %}
         <!-- global javascript -->
         <script src="{% static "vendor/js/jquery-1.11.0.min.js" %}"></script>
+        <script src="{% static "scout/js/hybrid.js" %}"></script>
         {% endcompress %}
         
     </body>
