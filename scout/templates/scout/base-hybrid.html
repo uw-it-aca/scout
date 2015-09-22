@@ -19,19 +19,7 @@
         <link rel="stylesheet" href="{% static "vendor/css/normalize-3.0.1.min.css" %}">
         <link rel="stylesheet" href="{% static "scout/css/inline-hybrid.scss" %}" type="text/x-scss">
         {% endcompress %}
-    
-    </head>
-    <body>
-                       
-        <div id="content" class="scout-content">
         
-            <!-- all pjax content will render inside of this id -->
-            <div class="scout-pjax-content">
-                {% block content %}{% endblock %}
-            </div>
-            
-        </div>
-       
         {% if request.is_mobile and request.is_and %}
         <!-- mobile + android -->  
         {% compress css %}
@@ -88,10 +76,23 @@
         <link rel="stylesheet" href="{% static "scout/css/windows.scss" %}" type="text/x-scss">
         {% endcompress %}
         {% endif %}
-                
+    
+    </head>
+    <body>
+                       
+        <div id="content" class="scout-content">
+        
+            <!-- all pjax content will render inside of this id -->
+            <div class="scout-pjax-content">
+                {% block content %}{% endblock %}
+            </div>
+            
+        </div>
+                       
         {% compress js %}
         <!-- global javascript -->
         <script src="{% static "vendor/js/jquery-1.11.0.min.js" %}"></script>
+        <script src="{% static "scout/js/hybrid.js" %}"></script>
         {% endcompress %}
         
     </body>

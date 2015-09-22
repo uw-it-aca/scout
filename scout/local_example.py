@@ -43,3 +43,6 @@ TRESTLE_FIDELITY_LOW_ENABLED = True
 
 # devtools
 TRESTLE_DEVTOOLS_ENABLED = True
+
+# htmlmin
+HTML_MINIFY = True
