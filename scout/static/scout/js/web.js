@@ -5,6 +5,8 @@ $( document ).ready(function() {
     
     //Turbolinks.ProgressBar.start();
     
+    console.log("blajfdlksjalaskdfjfasd");
+    
 });
 
 
