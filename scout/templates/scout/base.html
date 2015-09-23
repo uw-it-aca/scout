@@ -31,48 +31,46 @@
         <meta name="apple-mobile-web-app-title" content="">
                  
         {% if request.is_mobile %}
-        
-        <!-- critical (above the fold styles) -->
-        {% compress css inline %}
-        <link rel="stylesheet" href="{% static "vendor/css/normalize-3.0.1.min.css" %}">
-        <link rel="stylesheet" href="{% static "scout/css/inline.scss" %}" type="text/x-scss">
-        {% endcompress %}
-        
-        <!-- async (mobile) -->   
-        {% compress css %}
-        <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.0.3.min.css" %}">
-        <link rel="stylesheet" href="{% static "scout/css/mobile.scss" %}" type="text/x-scss">
+            <!-- critical (above the fold styles) -->
+            {% compress css inline %}
+            <link rel="stylesheet" href="{% static "vendor/css/normalize-3.0.1.min.css" %}">
+            <link rel="stylesheet" href="{% static "scout/css/critical.scss" %}" type="text/x-scss">
+            {% endcompress %}
+            <!-- async (mobile) -->   
+            {% compress css %}
+            <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.0.3.min.css" %}">
+            <link rel="stylesheet" href="{% static "scout/css/mobile.scss" %}" type="text/x-scss">
         {% endcompress %}
         {% endif %}
         
         {% if request.is_tablet %}
-        <!-- critical (above the fold styles) -->
-        {% compress css inline %}
-        <!-- inline -->   
-        <link rel="stylesheet" href="{% static "vendor/css/normalize-3.0.1.min.css" %}">
-        <link rel="stylesheet" href="{% static "scout/css/inline-web.scss" %}" type="text/x-scss">
-        {% endcompress %}
-        <!-- async (mobile + tablet) -->
-        {% compress css %}
-        <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.0.3.min.css" %}">
-        <link rel="stylesheet" href="{% static "scout/css/mobile.scss" %}" type="text/x-scss">
-        <link rel="stylesheet" href="{% static "scout/css/tablet.scss" %}" type="text/x-scss">
-        {% endcompress %}
+            <!-- critical (above the fold styles) -->
+            {% compress css inline %}
+            <!-- inline -->   
+            <link rel="stylesheet" href="{% static "vendor/css/normalize-3.0.1.min.css" %}">
+            <link rel="stylesheet" href="{% static "scout/css/critical.scss" %}" type="text/x-scss">
+            {% endcompress %}
+            <!-- async (mobile + tablet) -->
+            {% compress css %}
+            <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.0.3.min.css" %}">
+            <link rel="stylesheet" href="{% static "scout/css/mobile.scss" %}" type="text/x-scss">
+            <link rel="stylesheet" href="{% static "scout/css/tablet.scss" %}" type="text/x-scss">
+            {% endcompress %}
         {% endif %}
         
         {% if is_desktop %}
-        <!-- critical (above the fold styles) -->
-        {% compress css inline %}
-        <link rel="stylesheet" href="{% static "vendor/css/normalize-3.0.1.min.css" %}">
-        <link rel="stylesheet" href="{% static "scout/css/inline-web.scss" %}" type="text/x-scss">
-        <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.0.3.min.css" %}">
-        <link rel="stylesheet" href="{% static "scout/css/mobile.scss" %}" type="text/x-scss">
-        <link rel="stylesheet" href="{% static "scout/css/tablet.scss" %}" type="text/x-scss">
-        {% endcompress %}
-        <!-- async (mobile + tablet + desktop) -->
-        {% compress css %}
-        <link rel="stylesheet" href="{% static "scout/css/desktop.scss" %}" type="text/x-scss">
-        {% endcompress %}
+            <!-- critical (above the fold styles) -->
+            {% compress css inline %}
+            <link rel="stylesheet" href="{% static "vendor/css/normalize-3.0.1.min.css" %}">
+            <link rel="stylesheet" href="{% static "scout/css/critical.scss" %}" type="text/x-scss">
+            <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.0.3.min.css" %}">
+            <link rel="stylesheet" href="{% static "scout/css/mobile.scss" %}" type="text/x-scss">
+            <link rel="stylesheet" href="{% static "scout/css/tablet.scss" %}" type="text/x-scss">
+            <link rel="stylesheet" href="{% static "scout/css/desktop.scss" %}" type="text/x-scss">
+            {% endcompress %}
+            <!-- async (mobile + tablet + desktop) -->
+            {% compress css %}
+            {% endcompress %}
         {% endif %}
                  
     </head>
