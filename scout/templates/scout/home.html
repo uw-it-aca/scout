@@ -4,96 +4,54 @@
 
 {% block content %}
 
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non urna et lorem venenatis varius quis sit amet dui. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur a nisi odio.</p>
-
-<h4>Campus</h4>
-<div class="list-block">
-    <ul>
-        <li><a data-pjax href="/list/{% if is_hybrid %}?hybrid=true&x_push_page=true&x_page_title=Seattle+List{% endif %}">Seattle</a></li>
-        <li>Bothell</li>
-        <li>Tacoma</li>
-    </ul>
-</div>
-
-<h4>Nearby</h4>
-<div class="list-block">
-    <ul>
-        <li><a data-pjax href="/list/{% if is_hybrid %}?hybrid=true&x_push_page=true&x_page_title=Food+List{% endif %}">Food</a></li>
-        <li>Spaces</li>
-        <li>Items</li>
-    </ul>
-</div>
-
-{% if is_hybrid %}
-
-<!-- Content block -->
-<div class="content-block">
-    <p>Here comes paragraph within content block. Donec et nulla auctor massa pharetra adipiscing ut sit amet sem. Suspendisse molestie velit vitae mattis tincidunt. Ut sit amet quam mollis, vulputate turpis vel, sagittis felis. </p>
-</div>
-
-<!-- We can wrap content with additional "content-block-inner" element for additional highlighting -->
-<div class="content-block">
-  <div class="content-block-inner">Here comes another text block additionaly wrapped with "content-block-inner". Praesent nec imperdiet diam. Maecenas vel lectus porttitor, consectetur magna nec, viverra sem. Aliquam sed risus dolor. Morbi tincidunt ut libero id sodales. Integer blandit varius nisi quis consectetur. </div>
-</div>
-
-<div class="content-block-title">Simple Cards</div>
-<div class="card">
-  <div class="card-content">
-    <div class="card-content-inner">This is simple card with plain text. But card could contain its own header, footer, list view, image, and any elements inside.</div>
-  </div>
-</div>
-
-<div class="content-block">
-<div class="card">
-  <div class="card-header">Card header</div>
-  <div class="card-content">
-    <div class="card-content-inner">Card with header and footer. Card header is used to display card title and footer for some additional information or for custom actions.</div>
-  </div>
-  <div class="card-footer">Card Footer</div>
-</div>
-</div>
-
-<div class="card">
-  <div class="card-content">
-    <div class="card-content-inner">Another card. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse feugiat sem est, non tincidunt ligula volutpat sit amet. Mauris aliquet magna justo. </div>
-  </div>
-</div> 
-
-<div class="content-block-title">Styled Cards</div>
- 
-<div class="card demo-card-header-pic">
-  <div style="" valign="bottom" class="card-header color-white no-border">Journey To Mountains</div>
-  <div class="card-content">
-    <div class="card-content-inner">
-      <p class="color-gray">Posted on January 21, 2015</p>
-      <p>Quisque eget vestibulum nulla...</p>
+    {% if is_hybrid %}
+    
+    <div class="content-block-title">Welcome</div>
+        <!-- Inset content block -->
+        <div class="content-block inset">
+          <div class="content-block-inner">
+            <p>Donec et nulla auctor massa pharetra adipiscing ut sit amet sem. Suspendisse molestie velit vitae mattis tincidunt. Ut sit amet quam mollis, vulputate turpis vel, sagittis felis. </p>
+            
+            <p><a href="/favorites/?hybrid=true">Your Favorites</a></p>
+          </div>
+        </div>
+    
+    <div class="content-block-title">Choose your Campus</div>
+        <div class="list-block">
+          <ul>
+            <li class="item-content">
+              <div class="item-inner">
+                <div class="item-title"><a href="/list/?hybrid=true&x_push_page=true&x_page_title=Seattle+List">Seattle</a></div>
+              </div>
+            </li>
+            <li class="item-content">
+              <div class="item-inner">
+                <div class="item-title">Bothell</div>
+              </div>
+            </li>
+            <li class="item-content">
+              <div class="item-inner">
+                <div class="item-title">Tacoma</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+    
+    
+    {% else %}
+    
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non urna et lorem venenatis varius quis sit amet dui. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur a nisi odio.</p>
+    
+    <h4>Choose your Campus</h4>
+    <div>
+        <ul>
+            <li><a data-pjax href="/list/">Seattle</a></li>
+            <li>Bothell</li>
+            <li>Tacoma</li>
+        </ul>
     </div>
-  </div>
-  <div class="card-footer">
-    <a href="#" class="link">Like</a>
-    <a href="#" class="link">Read more</a>
-  </div>
-</div>
-
-<div class="list-block cards-list">
-  <ul>
-    <li class="card">
-      <div class="card-header">Card Header</div>
-      <div class="card-content">
-        <div class="card-content-inner">Card content</div>
-      </div>
-      <div class="card-footer">Card footer</div>
-    </li>
-    <li class="card">
-      <div class="card-header">Card Header</div>
-      <div class="card-content">
-        <div class="card-content-inner">Card content</div>
-      </div>
-      <div class="card-footer">Card footer</div>
-    </li>
-  </ul>
-</div>
-{% endif %}
+    
+    {% endif %}
 
 {% endblock %}
 
