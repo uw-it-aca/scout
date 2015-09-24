@@ -15,42 +15,60 @@
 
         {% if request.is_and %}
             
-            <!-- material design lite -->
-            <link rel="stylesheet" href="//storage.googleapis.com/code.getmdl.io/1.0.4/material.indigo-pink.min.css">
-            <script src="//storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script>
-            <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
-
+            <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/framework7/1.2.0/css/framework7.material.colors.min.css" media="only foo">
+            <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/framework7/1.2.0/css/framework7.material.min.css" media="only foo">
+            
             <!-- android -->  
-            {% compress css inline %}
+            {% compress css %}
             <link rel="stylesheet" href="{% static "hybrid/css/android.scss" %}" type="text/x-scss">
             {% endcompress %}
             
         {% endif %}
         
         {% if request.is_ios %}
+        
+            <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/framework7/1.2.0/css/framework7.ios.colors.min.css" media="only foo">
+            <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/framework7/1.2.0/css/framework7.ios.min.css" media="only foo">
+            
             <!-- ios -->   
-            {% compress css inline %}
-            <link rel="stylesheet" href="{% static "vendor/css/normalize-3.0.1.min.css" %}">
-            <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.0.3.min.css" %}">
+            {% compress css %}
             <link rel="stylesheet" href="{% static "hybrid/css/ios.scss" %}" type="text/x-scss">
             {% endcompress %}
         {% endif %}
         
-        {% if request.is_win %}
-            <!-- windows -->   
-            {% compress css inline %}
-            <link rel="stylesheet" href="{% static "vendor/css/normalize-3.0.1.min.css" %}">
-            <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.0.3.min.css" %}">
-            <link rel="stylesheet" href="{% static "hybrid/css/windows.scss" %}" type="text/x-scss">
-            {% endcompress %}
-        {% endif %}
-    
     </head>
-    <body>
-                       
-        <div id="content">
-            {% block content %}{% endblock %}
+    <body class="theme-red">
+    
+    <div class="views">
+    <div class="view view-main">
+            
+          <div class="pages">
+            <div class="page">
+              <div class="page-content">
+                {% block content %}{% endblock %}
+              </div>
+            </div>
+          </div>
+          
         </div>
+      </div>
+    
+    
+    {% compress js inline %}
+    <script>
+        var links = document.getElementsByTagName('link');
+        for(var i = 0; i < links.length; i++){
+            var link = links[i];
+            if(link.getAttribute('media') === 'only foo')
+                //link.setAttribute('media', 'all');
+                link.removeAttribute("media");
+        }
+    </script>
+    {% endcompress %}
+         
+    <!-- javascript -->
+    {% compress js %}
+    {% endcompress %}
                        
     </body>
 </html>
