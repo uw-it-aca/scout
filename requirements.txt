@@ -2,4 +2,5 @@ django
 django-compressor
 django_mobileesp
 django-turbolinks
+django-htmlmin
 libsass
