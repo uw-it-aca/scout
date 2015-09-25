@@ -1,37 +1,14 @@
 {% extends is_hybrid|yesno:"hybrid/base.html,scout/base.html" %}
+{% load staticfiles %}
 
 {% block title %}Details{% endblock %}
 
-{% load staticfiles %}
-
-{% block content %}
-
-    {% if is_hybrid %}
-    
+{% block web %}  
     <div class="">
         
         <h4>Spot Name</h4>
         
-        <div class="">
-            <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec sed odio dui. Curabitur blandit tempus porttitor. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
-        </div>
-    </div>
-    
-        <div style="height:200px; padding: 0; background:#ddd;">
-            <p>this is a map... asdlfj dsfalkj askfl</p>
-        </div>
-    
-    <div class="">   
-        <div class="">
-            <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-        </div>
-    </div>
-    
-    {% else %}
-    
-    <div class="">
-        
-        <h4>Spot Name</h4>
+        <img src="//farm3.staticflickr.com/2101/2529856456_368530c5ab.jpg')" />
         
         <div class="">
             <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec sed odio dui. Curabitur blandit tempus porttitor. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
@@ -43,14 +20,46 @@
             <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
         </div>
     </div>
-    
-    
-    {% endif %}
-
 {% endblock %}
 
-{% block subcontent %}
-
-this is desktop subcontent
-
+{% block sidebar %}
+<p>this is desktop subcontent</p>
 {% endblock %}
+
+{% block hybrid %}
+<div class="card">
+    <div style="background:url('//farm3.staticflickr.com/2101/2529856456_368530c5ab.jpg') no-repeat; background-size:cover; height:200px;" valign="bottom" class="card-header">Spot 1</div>
+    <div class="card-content">
+        <div class="card-content-inner">
+            <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec sed odio dui. Curabitur blandit tempus porttitor. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
+            <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+        </div>
+    </div>
+</div>
+
+<div class="content-block-title">Environment</div>
+<div class="list-block">
+  <ul>
+    <li class="item-content">
+      <div class="item-inner">
+        <div class="item-title">Resources <span>asdfadsf, kajsfd</span></div>
+      </div>
+    </li>
+    <li class="item-content">
+      <div class="item-inner">
+        <div class="item-title">Food/coffee <span>asd, fadsf</span></div>
+      </div>
+    </li>
+    <li class="item-content">
+      <div class="item-inner">
+        <div class="item-title">Noise Level <span>asdfa, dsf, asdkjhdfjs</span></div>
+      </div>
+    </li>
+    <li class="item-content">
+      <div class="item-inner">
+        <div class="item-title">Lighting <span>natural light</span></div>
+      </div>
+    </li>
+  </ul>
+</div>                          
+{% endblock %}                            

@@ -104,13 +104,13 @@
             <div id="content" class="scout-content">
                                 
                 <div class="scout-pjax-content">
-                    {% block content %}{% endblock %}
+                    {% block web %}{% endblock %}
                 </div>
                 
                 {% if not request.is_mobile and not request.is_tablet %}
                 <!-- desktop only extra container -->
                 <div id="map" class="scout-map">
-                    {% block subcontent %}{% endblock %}
+                    {% block sidebar %}{% endblock %}
                 </div>
                 {% endif %} 
     

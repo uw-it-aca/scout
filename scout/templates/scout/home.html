@@ -2,59 +2,57 @@
 
 {% block title %}Scout{% endblock %}
 
-{% block content %}
+{% block web %}
 
-    {% if is_hybrid %}
-    
-    <div class="content-block-title">Welcome</div>
-        <!-- Inset content block -->
-        <div class="content-block inset">
-          <div class="content-block-inner">
-            <p>Donec et nulla auctor massa pharetra adipiscing ut sit amet sem. Suspendisse molestie velit vitae mattis tincidunt. Ut sit amet quam mollis, vulputate turpis vel, sagittis felis. </p>
-            
-            <p><a href="/favorites/?hybrid=true">Your Favorites</a></p>
-          </div>
-        </div>
-    
-    <div class="content-block-title">Choose your Campus</div>
-        <div class="list-block">
-          <ul>
-            <li class="item-content">
-              <div class="item-inner">
-                <div class="item-title"><a href="/list/?hybrid=true&x_push_page=true&x_page_title=Seattle+List">Seattle</a></div>
-              </div>
-            </li>
-            <li class="item-content">
-              <div class="item-inner">
-                <div class="item-title">Bothell</div>
-              </div>
-            </li>
-            <li class="item-content">
-              <div class="item-inner">
-                <div class="item-title">Tacoma</div>
-              </div>
-            </li>
-          </ul>
-        </div>
-    
-    
-    {% else %}
-    
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non urna et lorem venenatis varius quis sit amet dui. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur a nisi odio.</p>
-    
-    <h4>Choose your Campus</h4>
-    <div>
-        <ul>
-            <li><a data-pjax href="/list/">Seattle</a></li>
-            <li>Bothell</li>
-            <li>Tacoma</li>
-        </ul>
-    </div>
-    
-    {% endif %}
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non urna et lorem venenatis varius quis sit amet dui. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur a nisi odio.</p>
 
+<h4>Choose your Campus</h4>
+<div>
+    <ul>
+        <li><a data-pjax href="/list/">Seattle</a></li>
+        <li>Bothell</li>
+        <li>Tacoma</li>
+    </ul>
+</div>
+    
 {% endblock %}
 
-{% block subcontent %}
-akslfdj aslkd flaksdfj asklfdj asldkfj
+{% block sidebar %}
+<p>akslfdj aslkd flaksdfj asklfdj asldkfj</p>
+{% endblock %}
+
+
+{% block hybrid %}
+
+<div class="content-block-title">Welcome</div>
+<!-- Inset content block -->
+<div class="content-block">
+  <div class="content-block-inner">
+    <p>Donec et nulla auctor massa pharetra adipiscing ut sit amet sem. Suspendisse molestie velit vitae mattis tincidunt. Ut sit amet quam mollis, vulputate turpis vel, sagittis felis. </p>
+    
+    <p><a href="/favorites/?hybrid=true">Your Favorites</a></p>
+  </div>
+</div>
+
+<div class="content-block-title">Choose your Campus</div>
+<div class="list-block">
+  <ul>
+    <li class="item-content">
+      <div class="item-inner">
+        <div class="item-title"><a href="/list/?hybrid=true&x_push_page=true&x_page_title=Seattle+List">Seattle</a></div>
+      </div>
+    </li>
+    <li class="item-content">
+      <div class="item-inner">
+        <div class="item-title">Bothell</div>
+      </div>
+    </li>
+    <li class="item-content">
+      <div class="item-inner">
+        <div class="item-title">Tacoma</div>
+      </div>
+    </li>
+  </ul>
+</div>
+
 {% endblock %}

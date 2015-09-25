@@ -1,6 +1,17 @@
+/*** framework 7 overrides ***/
+
+.item-title-row { background-image: none !important; }
+
+.item-title{
+    
+    span { color: #666; font-size: 85%; }
+    
+}
 /*** ios styles  ***/
 
 .scout-list {
     
     a { background: yellow; margin-bottom: 10px; display: block; padding: 1em; text-decoration: none; }
 }
+
+
