@@ -14,6 +14,8 @@
         {% load compress %}
 
         {% if request.is_and %}
+            <!-- load google font roboto for development... should already be system font on native devices -->
+            <link href='//fonts.googleapis.com/css?family=Roboto:400,300italic,300,100italic,100,500,400italic,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css' media="only foo">
             <!-- framework7 material -->
             <link rel="stylesheet" media="only foo" type="text/css" href="{% static "vendor/css/framework7.material.min.css" %}">
             <!-- android -->  
@@ -24,11 +26,10 @@
         
         {% if request.is_ios %}
             <!-- framework7 ios -->
-            <link href='//fonts.googleapis.com/css?family=Roboto:400,300italic,300,100italic,100,500,400italic,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css' media="only foo">
+            
             <link rel="stylesheet" media="only foo" type="text/css" href="{% static "vendor/css/framework7.ios.min.css" %}">
             <!-- ios -->   
             {% compress css %}
-           
             <link rel="stylesheet" href="{% static "hybrid/css/ios.scss" %}" type="text/x-scss">
             {% endcompress %}
         {% endif %}
