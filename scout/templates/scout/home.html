@@ -6,12 +6,12 @@
 
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non urna et lorem venenatis varius quis sit amet dui. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur a nisi odio.</p>
 
-<h4>Choose your Campus</h4>
+<h4>Choose your food category:</h4>
 <div>
     <ul>
-        <li><a data-pjax href="/list/">Seattle</a></li>
-        <li>Bothell</li>
-        <li>Tacoma</li>
+        <li><a data-pjax href="/list/">Pizza</a></li>
+        <li>Burgers</li>
+        <li>Salad</li>
     </ul>
 </div>
     
@@ -28,31 +28,64 @@
 <!-- Inset content block -->
 <div class="content-block">
   <div class="content-block-inner">
-    <p>Donec et nulla auctor massa pharetra adipiscing ut sit amet sem. Suspendisse molestie velit vitae mattis tincidunt. Ut sit amet quam mollis, vulputate turpis vel, sagittis felis. </p>
-    
-    <p><a href="/favorites/?hybrid=true">Your Favorites</a></p>
+    <p>Donec et nulla auctor massa pharetra adipiscing ut sit amet sem. Suspendisse molestie velit vitae mattis tincidunt. Ut sit amet quam mollis, vulputate turpis vel, sagittis felis. </p>    
   </div>
 </div>
 
-<div class="content-block-title">Choose your Campus</div>
+<div class="content-block-title">Categories</div>
 <div class="list-block">
   <ul>
-    <li class="item-content">
-      <div class="item-inner">
-        <div class="item-title"><a href="/list/?hybrid=true&x_push_page=true&x_page_title=Seattle+List">Seattle</a></div>
-      </div>
+    <li>
+	    <a href="/list/?hybrid=true&x_push_page=true&x_page_title=Seattle+List" class="item-link">
+		  <div class="item-content">
+		    <div class="item-inner">
+			    <div class="item-title">Pizza</div>
+		    </div>
+		  </div>
+		</a>          
     </li>
-    <li class="item-content">
-      <div class="item-inner">
-        <div class="item-title">Bothell</div>
-      </div>
+    <li>
+	    <a href="/list/?hybrid=true&x_push_page=true&x_page_title=Seattle+List" class="item-link">
+		  <div class="item-content">
+		    <div class="item-inner">
+			    <div class="item-title">Burgers</div>
+		    </div>
+		  </div>
+		</a>          
     </li>
-    <li class="item-content">
-      <div class="item-inner">
-        <div class="item-title">Tacoma</div>
-      </div>
+    <li>
+	    <a href="/list/?hybrid=true&x_push_page=true&x_page_title=Seattle+List" class="item-link">
+		  <div class="item-content">
+		    <div class="item-inner">
+			    <div class="item-title">Salad</div>
+		    </div>
+		  </div>
+		</a>          
     </li>
   </ul>
 </div>
 
+<div class="content-block-title">Navigation (move to native)</div>
+<div class="list-block">
+  <ul>
+    <li>
+	    <a href="/filters/?hybrid=true&x_push_page=true&x_page_title=Seattle+List" class="item-link">
+		  <div class="item-content">
+		    <div class="item-inner">
+			    <div class="item-title">Filters</div>
+		    </div>
+		  </div>
+		</a>          
+    </li>
+    <li>
+	    <a href="/favorites/?hybrid=true&x_push_page=true&x_page_title=Seattle+List" class="item-link">
+		  <div class="item-content">
+		    <div class="item-inner">
+			    <div class="item-title">Favorites</div>
+		    </div>
+		  </div>
+		</a>          
+    </li>
+   </ul>
+</div>
 {% endblock %}
