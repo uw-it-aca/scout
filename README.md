@@ -3,7 +3,7 @@ SCOUT
 
 This README documents whatever steps are necessary to get your application up and running.
 
-## Vagrant Installation ##    
+## Vagrant Installation ##
 
 **Clone Scout Vagrant**  
     
