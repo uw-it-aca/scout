@@ -17,7 +17,10 @@ This README documents whatever steps are necessary to get your application up an
 **Run your server (from Vagrant):**
     
     $ vagrant ssh 
-    $vagrant(venv) python manage.py runserver 0:8000
+    vagrant@vagrant $ cd /vagrant/venev
+    vagrant@vagrant $ source bin/activate
+    (venv)vagrant@vagrant $ cd scoutproject
+    (venv)vagrant@vagrant $ python manage.py runserver 0:8000
     
 ## Classic Installation ##
 
