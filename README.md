@@ -106,6 +106,7 @@ This README documents whatever steps are necessary to get your application up an
     HTML_MINIFY = True
 
 **Create your database**
+
     $ (yourenv) python manage.py syncdb
 
 **Run your server:**
