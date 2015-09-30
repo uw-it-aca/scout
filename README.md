@@ -1,9 +1,9 @@
 SCOUT
 =====
 
-This README documents whatever steps are necessary to get your application up and running.
+This README documents whatever steps are necessary to get your application up and running using Vagrant or manually using our Classic Django environment.
 
-## Vagrant Installation ##
+## Vagrant ##
 
 **Clone Scout Vagrant**  
     
@@ -14,15 +14,21 @@ This README documents whatever steps are necessary to get your application up an
     $ cd scout-vagrant
     $ vagrant up
     
-**Run your server (from Vagrant):**
+**Run your Django server (from Vagrant):**
     
     $ vagrant ssh 
     vagrant@vagrant $ cd /vagrant/venev
     vagrant@vagrant $ source bin/activate
     (venv)vagrant@vagrant $ cd scoutproject
     (venv)vagrant@vagrant $ python manage.py runserver 0:8000
+
+**Other Vagrant commands**
+
+    $ vagrant halt
+    $ vagrant reload
+    $ vagrant destroy
     
-## Classic Installation ##
+## Classic ##
 
 **Create a virtualenv for your project**
     
