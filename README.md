@@ -12,6 +12,7 @@ This README documents whatever steps are necessary to get your application up an
 **Start the Vagrant box**
 
     $ cd scout-vagrant
+    $ vagrant plugin install vagrant-host-shell
     $ vagrant up
     
 **Run your Django server (from Vagrant):**
