@@ -18,7 +18,9 @@ urlpatterns = patterns('',
     url(r'^detail/\d{1,2}', 'scout.views.detail_view', name='detail_view'),
     url(r'^favorites/', 'scout.views.favorites_view', name='favorites_view'),
     url(r'^filters/', 'scout.views.filters_view', name='filters_view'),
-
+	
+	# example hybrid components
+	url(r'^components/', 'scout.views.hybrid_comps_view', name='filters_view'),
 
 )
 
