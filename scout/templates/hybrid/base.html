@@ -41,7 +41,7 @@
 	  	<!-- Your main view, should have "view-main" class -->
 	  	<div class="view view-main">
 	      
-                <div data-page="index" class="page">
+                <div class="page">
 	                
 	                {% if request.is_ios %}
 	                <!-- Search bar -->
@@ -94,9 +94,11 @@
     {% endcompress %}
          
     <!-- javascript -->
+    {% compress js %}
     <script type="text/javascript" src="{% static "vendor/js/jquery-1.11.0.min.js" %}"></script>
     <script type="text/javascript" src="{% static "vendor/js/framework7.min.js" %}"></script>
     <script type="text/javascript" src="{% static "hybrid/js/hybrid.js" %}"></script>
-                       
+    {% endcompress %}
+                      
     </body>
 </html>
