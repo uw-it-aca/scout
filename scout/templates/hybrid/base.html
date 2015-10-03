@@ -37,7 +37,11 @@
     
     <body class="theme-red">
 	        
-                <div class="page">
+	  	<div class="views">
+	  	<!-- Your main view, should have "view-main" class -->
+	  	<div class="view view-main">
+	      
+                <div data-page="index" class="page">
 	                
 	                {% if request.is_ios %}
 	                <!-- Search bar -->
@@ -74,7 +78,8 @@
                     </div>
                     
                 </div>
-
+	  	</div>
+	  	</div>
  
     {% compress js inline %}
     <script>
@@ -89,11 +94,9 @@
     {% endcompress %}
          
     <!-- javascript -->
-    {% compress js %}
-    <script src="{% static "vendor/js/jquery-1.11.0.min.js" %}"></script>
-    <script src="{% static "vendor/js/framework7.min.js" %}" async></script>
-    <script src="{% static "hybrid/js/hybrid.js" %}" async></script>
-    {% endcompress %}
+    <script type="text/javascript" src="{% static "vendor/js/jquery-1.11.0.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "vendor/js/framework7.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "hybrid/js/hybrid.js" %}"></script>
                        
     </body>
 </html>
