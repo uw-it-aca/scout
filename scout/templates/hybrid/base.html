@@ -36,19 +36,7 @@
     </head>
     
     <body class="theme-red">
-    	        
-	        {% if request.is_ios %}
-	        <!-- need to move so this works inside of page class -->
-	        <div class="navbar" style="height:auto;position:relative;">
-				<div class="subnavbar" style="position:relative;">
-					<div class="buttons-row">
-						<a href="#" class="button active">List</a>
-						<a href="#" class="button">Map</a>
-					</div>
-				</div>
-	        </div>
-	        {% endif %}
-
+	        
                 <div class="page">
 	                
 	                {% if request.is_ios %}
@@ -61,25 +49,33 @@
 					<!-- Search bar overlay-->
 					<div class="searchbar-overlay"></div>
 					{% endif %}
-					
-	                {% if request.is_and %} 
-			        <div class="toolbar tabbar" style="position:relative;">
-				        <div class="toolbar-inner">
-					        <a href="#" class="tab-link active">List</a>
-							<a href="#" class="tab-link">Map</a>
-							<span class="tab-link-highlight"></span>
-				        </div>
-			        </div>
-					{% endif %}
-					
+			
                     <div class="page-content">
+	                    
+		                {% if request.is_and %} 
+				        <div class="toolbar tabbar" style="position:relative;">
+					        <div class="toolbar-inner">
+						        <a href="#" class="tab-link active">List</a>
+								<a href="#" class="tab-link">Map</a>
+					        </div>
+				        </div>
+						{% endif %}
+						
+						{% if request.is_ios %}
+						<div class="toolbar tabbar" style="position:relative; padding:8px; height:auto;">
+							<div class="buttons-row">
+								<a href="#" class="button active">List</a>
+								<a href="#" class="button">Map</a>
+							</div>
+						</div>
+						{% endif %}
+					
                     	{% block hybrid %}{% endblock %}
                     </div>
                     
                 </div>
 
-    
-    
+ 
     {% compress js inline %}
     <script>
         var links = document.getElementsByTagName('link');
