@@ -20,7 +20,7 @@ This README documents whatever steps are necessary to get your application up an
 **Run your Django server (from Vagrant):**
     
     $ vagrant ssh 
-    vagrant@vagrant $ cd /vagrant/venev
+    vagrant@vagrant $ cd /vagrant/venv
     vagrant@vagrant $ source bin/activate
     (venv)vagrant@vagrant $ cd scoutproject
     (venv)vagrant@vagrant $ python manage.py runserver 0:8000
