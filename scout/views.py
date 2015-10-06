@@ -13,8 +13,8 @@ def discover_view(request):
 def map_view(request):
     return render_to_response('scout/map.html', context_instance=RequestContext(request))
 
-def filters_view(request):
-    return render_to_response('scout/filters.html', context_instance=RequestContext(request))
+def filter_view(request):
+    return render_to_response('scout/filter.html', context_instance=RequestContext(request))
 
 def favorites_view(request):
     return render_to_response('scout/favorites.html', context_instance=RequestContext(request))

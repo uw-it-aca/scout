@@ -6,38 +6,44 @@
 {% block web %}  
     <div class="">
         
-        <h4>Spot Name</h4>
+        <h4>[[name]]</h4>
+        <p>[[type of food]]</p>
+        <p><img src="http://placehold.it/400x300"><br>
+        [[photos]]
+        </p>
         
-        <img src="//farm3.staticflickr.com/2101/2529856456_368530c5ab.jpg')" />
-        
-
     </div>
        
-    <h4>Hours</h4>
+    <h4>[[hours]]</h4>
 	<ul>
     	<li>M, T, W, Th: 8AM - 7PM</li>
 		<li>F: 8AM - 5PM</li>
 		<li>Sa, Su: 1PM - 5PM</li>
 	</ul>
 	
-	<h4>Hours Notes</h4>
+	<h4>[[hours notes]]</h4>
 	<ul>
 		<li>Holiday hours may vary. Extended hours during finals.Interim: M-F: 9am-5pm</li>
 	</ul>
 
 	
-	<h4>Location</h4>
+	<h4>[[location]] [[campus]]</h4>
+	
 	<ul>
-		<li>Allen Library North, Ground floor</li>
+		<li>[[building]]</li>
+		<li>[[menu url]]</li>
+        <li>[[contact info]]</li>
+        <li>[[website]]</li>
+        <li>[[notes/description]]</li>
+        <li>[[payment options]]</li>
+        <li>[[delivery?]]</li>
+        <li>[[related food spots]]</li>
+        <li>[[study space assoc.]]</li>
 	</ul>
 
-    <h4>Environment</h4>
-    <ul>
-	    <li>Resources <span>asdfadsf, kajsfd</span></li>
-	    <li>Food/coffee <span>asd, fadsf</span></li>
-	    <li>Noise Level <span>asdfa, dsf, asdkjhdfjs</li>
-	    <li>Lighting <span>natural light</span></li>
-    </ul>
+    
+
+    
 {% endblock %}
 
 {% block sidebar %}
