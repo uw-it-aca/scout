@@ -24,7 +24,17 @@ This README documents whatever steps are necessary to get your application up an
     vagrant@vagrant $ source bin/activate
     (venv)vagrant@vagrant $ cd scoutproject
     (venv)vagrant@vagrant $ python manage.py runserver 0:8000
-
+    
+**Share your Django server (via Vagrant Share)
+    
+    Create a vagrantshare account if you haven't already: https://atlas.hashicorp.com/
+    Make sure you have already started your Django server. 
+    
+    In a new terminal window:
+    
+    $ vagrant login
+    $ vagrant share
+    
 **Other Vagrant commands**
 
     $ vagrant halt
