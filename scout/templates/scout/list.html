@@ -3,6 +3,11 @@
 {% block title %}List{% endblock %}
 
 {% block web %}
+
+{% if request.is_mobile or request.is_tablet %}
+<div style="text-align: right;"> <a id="map_link" href="/">List</a> | <a id="map_link" href="/map/">Map</a></div>
+{% endif %}
+            
 <ul>
     <li><a href="/detail/56874">Spot 1</a></li>
     <li><a href="/detail/56874">Spot 1</a></li>

@@ -7,8 +7,8 @@ import json
 
 # create your views here
 
-def home_view(request):
-    return render_to_response('scout/home.html', context_instance=RequestContext(request))
+def discover_view(request):
+    return render_to_response('scout/discover.html', context_instance=RequestContext(request))
     
 def map_view(request):
     return render_to_response('scout/map.html', context_instance=RequestContext(request))

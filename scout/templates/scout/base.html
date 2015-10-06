@@ -80,20 +80,9 @@
             
             <h1><a href="/">Scout</a></h1>
             
-            {% if request.is_mobile or request.is_tablet %}
-            <!-- only show the map link for mobile and tablet -->
-            <div id="list_map_switcher" class="scout-map-link" style="display:inline-block; position:absolute; right:10px; top: 0; line-height:56px; font-size:14px; text-transform:uppercase;">
-                <span><a id="map_link" href="/map/">Map</a></span>
-            </div>
-            {% endif %}
-            
             <div class="scout-navigation">
                 <div style="display:inline-block; line-height:40px; font-size:14px; text-transform:uppercase; margin-left:20px;">
                     <span><a  href="/filters/">Filters</a></span>
-                </div>
-                
-                <div style="display:inline-block; position:absolute; right:10px; top: 0; line-height:40px; font-size:14px; text-transform:uppercase;">
-                    <span><a href="/favorites/">favorites</a></span>
                 </div>
             </div>
 
