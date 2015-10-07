@@ -79,7 +79,7 @@
         <script src="{% static "vendor/js/turbolinks.min.js" %}"></script>
         <script src="{% static "scout/js/web.js" %}"></script>
         {% endcompress %}
-        
+                
     </head>
     <body>
 
@@ -105,8 +105,9 @@
                 
                 {% if not request.is_mobile and not request.is_tablet %}
                 <!-- desktop only extra container -->
-                <div id="map" class="scout-map">
-                    {% block sidebar %}{% endblock %}
+                <div class="scout-map">
+	                <div id="map" style="height:100%;"></div>
+	                {% block sidebar %}{% endblock %}
                 </div>
                 {% endif %} 
     
@@ -135,6 +136,10 @@
             ga('send', 'pageview');
         </script>
         {% endif %}
+        
+         
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJRD2mE7TejwGjYtcAH2VDOGfvwdxkb00&callback=initMap"
+        async defer></script>
         
     </body>
 </html>

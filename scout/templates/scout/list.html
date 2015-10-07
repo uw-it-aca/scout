@@ -22,11 +22,19 @@
     <li><a href="/detail/56874" style="display:block;"><img src="http://placehold.it/80x80"> [[name]], [[location]], [[type of food]], [[distance]], [[is_open]], [[campus]], [[food category]]</a></li>
     <li><a href="/detail/56874" style="display:block;"><img src="http://placehold.it/80x80"> [[name]], [[location]], [[type of food]], [[distance]], [[is_open]], [[campus]], [[food category]]</a></li>
 </ul>
+
 {% endblock %}
 
 {% block sidebar %}
-<h2>map</h2>
-[[latitude]], [[longitude]] of corresponding spots
+<script>
+var map;
+function initMap() {
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: -34.397, lng: 150.644},
+    zoom: 8
+  });
+}
+</script> 
 {% endblock %}
 
 {% block hybrid %}
