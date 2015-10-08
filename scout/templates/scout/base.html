@@ -77,9 +77,17 @@
         {% compress js %}
         <script src="{% static "vendor/js/jquery-1.11.0.min.js" %}"></script>
         <script src="{% static "vendor/js/jquery-turbolinks.min.js" %}"></script>
+		
+		<!-- app js -->
         <script src="{% static "scout/js/web.js" %}"></script>
+        
+        
+        <!-- turbolinks must be last -->
         <script src="{% static "vendor/js/turbolinks.min.js" %}"></script>
+        
         {% endcompress %}
+        
+        <script src="https://maps.googleapis.com/maps/api/js"></script>
                 
     </head>
     <body>
@@ -107,7 +115,6 @@
                 {% if not request.is_mobile and not request.is_tablet %}
                 <!-- desktop only extra container -->
                 <div class="scout-map">
-	                <div id="map" style="height:100%;"></div>
 	                {% block sidebar %}{% endblock %}
                 </div>
                 {% endif %} 
@@ -139,8 +146,7 @@
         {% endif %}
         
          
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJRD2mE7TejwGjYtcAH2VDOGfvwdxkb00&callback=initMap"
-        async defer></script>
+
         
     </body>
 </html>
