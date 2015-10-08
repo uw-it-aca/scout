@@ -28,13 +28,14 @@
 {% block sidebar %}
 
 <!-- show a map on the list page -->
-<div id="this_map" style="height:100%;"></div>
+<div id="list_map" style="height:100%;"></div>
 
+<!-- since turbolinks loads the full body... initialize map stuff locally in the template. then, call the function in the map.js file -->     
 <script>
+
+function initializeListMap() {
 	
-function initializeMap() {
-	
-	var mapExists = document.getElementById("this_map"); 
+	var mapExists = document.getElementById("list_map"); 
 	var myLatlng, mapOptions;
 	
 	if(mapExists) {
@@ -42,7 +43,7 @@ function initializeMap() {
 		myLatlng = new google.maps.LatLng(47.653811, -122.307815);
         mapOptions = { center: myLatlng, zoom: 16, scrollwheel: false, draggable: false, disableDefaultUI: true };
 		
-		var map = new google.maps.Map(document.getElementById('this_map'), mapOptions);
+		var map = new google.maps.Map(document.getElementById('list_map'), mapOptions);
                     
         var marker = new google.maps.Marker({
             position: myLatlng,
@@ -51,12 +52,9 @@ function initializeMap() {
             animation: google.maps.Animation.DROP,
         });
 	}
+	
 }
 
-$(document).on('ready page:load page:restore', function(event) {
-  initializeMap(); 
-});
-	  
 </script>
 
 {% endblock %}
