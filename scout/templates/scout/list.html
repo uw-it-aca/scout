@@ -41,7 +41,7 @@ function initializeListMap() {
 	if(mapExists) {
 	
 		myLatlng = new google.maps.LatLng(47.653811, -122.307815);
-        mapOptions = { center: myLatlng, zoom: 16, scrollwheel: false, draggable: false, disableDefaultUI: true };
+        mapOptions = { center: myLatlng, zoom: 16 };
 		
 		var map = new google.maps.Map(document.getElementById('list_map'), mapOptions);
                     

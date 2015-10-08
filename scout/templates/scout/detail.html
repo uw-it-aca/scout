@@ -47,8 +47,37 @@
 {% endblock %}
 
 {% block sidebar %}
-<h2>map</h2>
-[[latitude]], [[longitude]]
+
+<!-- show a map on the list page -->
+<div id="detail_map" style="height:100%;"></div>
+
+<!-- since turbolinks loads the full body... initialize map stuff locally in the template. then, call the function in the map.js file -->     
+<script>
+
+function initializeDetailMap() {
+	
+	var mapExists = document.getElementById("detail_map"); 
+	var myLatlng, mapOptions;
+	
+	if(mapExists) {
+	
+		myLatlng = new google.maps.LatLng(47.653811, -122.307815);
+        mapOptions = { center: myLatlng, zoom: 17, scrollwheel: false, draggable: false, disableDefaultUI: true };
+		
+		var map = new google.maps.Map(document.getElementById('detail_map'), mapOptions);
+                    
+        var marker = new google.maps.Marker({
+            position: myLatlng,
+            map: map,
+            title: 'Hello World!',
+            animation: google.maps.Animation.DROP,
+        });
+	}
+	
+}
+
+</script>
+
 {% endblock %}
 
 {% block hybrid %}

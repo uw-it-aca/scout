@@ -6,8 +6,14 @@ $(document).on('ready page:load page:restore', function(event) {
 	
 	if($("#list_map").length > 0) {
 		
-		console.log("loading map");
+		console.log("loading list map");
 		initializeListMap();
 	}
-
+	
+	if($("#detail_map").length > 0) {
+		
+		console.log("loading detail map");
+		initializeDetailMap();
+	}
+	
 });
