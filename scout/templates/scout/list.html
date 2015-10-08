@@ -39,18 +39,37 @@ function initializeListMap() {
 	var myLatlng, mapOptions;
 	
 	if(mapExists) {
-	
+		
+		// center map on uw fountain
 		myLatlng = new google.maps.LatLng(47.653811, -122.307815);
-        mapOptions = { center: myLatlng, zoom: 16 };
+        mapOptions = { center: myLatlng, zoom: 17 };
 		
 		var map = new google.maps.Map(document.getElementById('list_map'), mapOptions);
-                    
+         
+        /** single marker           
         var marker = new google.maps.Marker({
             position: myLatlng,
             map: map,
             title: 'Hello World!',
             animation: google.maps.Animation.DROP,
         });
+        **/
+        
+        // multiple pins on a single map
+        var locations = [ ["47.6551526", "-122.3079563"], ["47.6558366", "-122.3085307"], ["47.6539295", "-122.3080857"] ]
+        
+        var marker, i;
+		
+		for (i = 0; i < locations.length; i++) {  
+			
+			marker = new google.maps.Marker({
+		    position: new google.maps.LatLng(locations[i][0], locations[i][1]),
+		    map: map,
+            animation: google.maps.Animation.DROP
+		    });
+		
+		}
+
 	}
 	
 }
