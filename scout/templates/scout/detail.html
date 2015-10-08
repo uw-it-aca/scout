@@ -8,7 +8,7 @@
         
         <h4>[[name]]</h4>
         <p>[[type of food]]</p>
-        <p><img src="http://placehold.it/400x300"><br>
+        <p><img src="http://placehold.it/340x300"><br>
         [[photos]]
         </p>
         
@@ -28,6 +28,42 @@
 
 	
 	<h4>[[location]] [[campus]]</h4>
+	
+	{% if request.is_mobile %}
+	
+	<div style="height:200px;">
+		<div id="detail_map" style="height:100%;"></div>
+	</div>
+	
+	<!-- since turbolinks loads the full body... initialize map stuff locally in the template. then, call the function in the map.js file -->     
+	<script>
+	
+	function initializeDetailMap() {
+		
+		var mapExists = document.getElementById("detail_map"); 
+		var myLatlng, mapOptions;
+		
+		if(mapExists) {
+			
+			// center map direction on spot location				
+			myLatlng = new google.maps.LatLng(47.6551526, -122.3079563);
+	        mapOptions = { center: myLatlng, zoom: 18, scrollwheel: false, draggable: false, disableDefaultUI: true };
+			
+			var map = new google.maps.Map(document.getElementById('detail_map'), mapOptions);
+	                    
+	        var marker = new google.maps.Marker({
+	            position: myLatlng,
+	            map: map,
+	            title: 'Hello World!',
+	            animation: google.maps.Animation.DROP,
+	        });
+		}
+		
+	}
+	
+	</script>
+
+	{% endif %}
 	
 	<ul>
 		<li>[[building]]</li>
