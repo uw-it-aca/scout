@@ -26,29 +26,39 @@
 {% endblock %}
 
 {% block sidebar %}
+
 <!-- show a map on the list page -->
 <div id="this_map" style="height:100%;"></div>
+
 <script>
 	
 function initializeMap() {
+	
 	var mapExists = document.getElementById("this_map"); 
+	var myLatlng, mapOptions;
 	
 	if(mapExists) {
-		var mapCanvas = document.getElementById('this_map');
-		var mapOptions = {
-			center: new google.maps.LatLng(44.5403, -78.5463),
-			zoom: 8,
-			mapTypeId: google.maps.MapTypeId.ROADMAP
-    	}
-		var map = new google.maps.Map(mapCanvas, mapOptions)
+	
+		myLatlng = new google.maps.LatLng(47.653811, -122.307815);
+        mapOptions = { center: myLatlng, zoom: 16, scrollwheel: false, draggable: false, disableDefaultUI: true };
+		
+		var map = new google.maps.Map(document.getElementById('this_map'), mapOptions);
+                    
+        var marker = new google.maps.Marker({
+            position: myLatlng,
+            map: map,
+            title: 'Hello World!',
+            animation: google.maps.Animation.DROP,
+        });
 	}
 }
 
-$(function () { 
+$(document).on('ready page:load page:restore', function(event) {
   initializeMap(); 
 });
 	  
 </script>
+
 {% endblock %}
 
 {% block hybrid %}
