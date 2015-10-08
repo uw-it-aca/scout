@@ -3,23 +3,38 @@
 {% block title %}List{% endblock %}
 
 {% block web %}
+
+{% if request.is_mobile or request.is_tablet %}
+<div style="text-align: right;"> <a id="map_link" href="/">List</a> | <a id="map_link" href="/map/">Map</a></div>
+{% endif %}
+
+<h2>All food</h2>
+            
 <ul>
-    <li><a href="/detail/56874">Spot 1</a></li>
-    <li><a href="/detail/56874">Spot 1</a></li>
-    <li><a href="/detail/56874">Spot 1</a></li>
-    <li><a href="/detail/56874">Spot 1</a></li>
-    <li><a href="/detail/56874">Spot 1</a></li>
-    <li><a href="/detail/56874">Spot 1</a></li>
-    <li><a href="/detail/56874">Spot 1</a></li>
-    <li><a href="/detail/56874">Spot 1</a></li>
-    <li><a href="/detail/56874">Spot 1</a></li>
-    <li><a href="/detail/56874">Spot 1</a></li>
-    <li><a href="/detail/56874">Spot 1</a></li>
+    <li><a href="/detail/56874" style="display:block;"><img src="http://placehold.it/80x80"> [[name]], [[location]], [[type of food]], [[distance]], [[is_open]], [[campus]], [[food category]]</a></li>
+    <li><a href="/detail/56874" style="display:block;"><img src="http://placehold.it/80x80"> [[name]], [[location]], [[type of food]], [[distance]], [[is_open]], [[campus]], [[food category]]</a></li>
+    <li><a href="/detail/56874" style="display:block;"><img src="http://placehold.it/80x80"> [[name]], [[location]], [[type of food]], [[distance]], [[is_open]], [[campus]], [[food category]]</a></li>
+    <li><a href="/detail/56874" style="display:block;"><img src="http://placehold.it/80x80"> [[name]], [[location]], [[type of food]], [[distance]], [[is_open]], [[campus]], [[food category]]</a></li>
+    <li><a href="/detail/56874" style="display:block;"><img src="http://placehold.it/80x80"> [[name]], [[location]], [[type of food]], [[distance]], [[is_open]], [[campus]], [[food category]]</a></li>
+    <li><a href="/detail/56874" style="display:block;"><img src="http://placehold.it/80x80"> [[name]], [[location]], [[type of food]], [[distance]], [[is_open]], [[campus]], [[food category]]</a></li>
+    <li><a href="/detail/56874" style="display:block;"><img src="http://placehold.it/80x80"> [[name]], [[location]], [[type of food]], [[distance]], [[is_open]], [[campus]], [[food category]]</a></li>
+    <li><a href="/detail/56874" style="display:block;"><img src="http://placehold.it/80x80"> [[name]], [[location]], [[type of food]], [[distance]], [[is_open]], [[campus]], [[food category]]</a></li>
+    <li><a href="/detail/56874" style="display:block;"><img src="http://placehold.it/80x80"> [[name]], [[location]], [[type of food]], [[distance]], [[is_open]], [[campus]], [[food category]]</a></li>
+    <li><a href="/detail/56874" style="display:block;"><img src="http://placehold.it/80x80"> [[name]], [[location]], [[type of food]], [[distance]], [[is_open]], [[campus]], [[food category]]</a></li>
 </ul>
+
 {% endblock %}
 
 {% block sidebar %}
-<p>akslfdj aslkd flaksdfj asklfdj asldkfj sladjflk l asfdlkj lkjsadflk l;kjsaf dl;k lkajsfd lkj sadfkj lkasjdf</p>
+<script>
+var map;
+function initMap() {
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: -34.397, lng: 150.644},
+    zoom: 8
+  });
+}
+</script> 
 {% endblock %}
 
 {% block hybrid %}
