@@ -2,7 +2,10 @@
 
 .page { position: relative; }
 
-.list-block { margin: 0; }
+.list-block { margin: 0; 
+	
+	ul:before { height: 0; }
+}
 
 .item-title-row { background-image: none !important; }
 
