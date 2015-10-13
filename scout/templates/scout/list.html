@@ -8,19 +8,31 @@
 <div style="text-align: right;"> <a id="map_link" href="/">List</a> | <a id="map_link" href="/map/">Map</a></div>
 {% endif %}
 
-<h2>All food</h2>
+<h2>All [[filtered_by]]</h2>
             
 <ul>
-    <li><a href="/detail/56874" style="display:block;"><div style="background:#ccc;width:80px;height:80px;">&nbsp;</div> [[name]], [[location]], [[type of food]], [[distance]], [[is_open]], [[campus]], [[food category]]</a></li>
-    <li><a href="/detail/56874" style="display:block;"><div style="background:#ccc;width:80px;height:80px;">&nbsp;</div> [[name]], [[location]], [[type of food]], [[distance]], [[is_open]], [[campus]], [[food category]]</a></li>
-    <li><a href="/detail/56874" style="display:block;"><div style="background:#ccc;width:80px;height:80px;">&nbsp;</div> [[name]], [[location]], [[type of food]], [[distance]], [[is_open]], [[campus]], [[food category]]</a></li>
-    <li><a href="/detail/56874" style="display:block;"><div style="background:#ccc;width:80px;height:80px;">&nbsp;</div> [[name]], [[location]], [[type of food]], [[distance]], [[is_open]], [[campus]], [[food category]]</a></li>
-    <li><a href="/detail/56874" style="display:block;"><div style="background:#ccc;width:80px;height:80px;">&nbsp;</div> [[name]], [[location]], [[type of food]], [[distance]], [[is_open]], [[campus]], [[food category]]</a></li>
-    <li><a href="/detail/56874" style="display:block;"><div style="background:#ccc;width:80px;height:80px;">&nbsp;</div> [[name]], [[location]], [[type of food]], [[distance]], [[is_open]], [[campus]], [[food category]]</a></li>
-    <li><a href="/detail/56874" style="display:block;"><div style="background:#ccc;width:80px;height:80px;">&nbsp;</div> [[name]], [[location]], [[type of food]], [[distance]], [[is_open]], [[campus]], [[food category]]</a></li>
-    <li><a href="/detail/56874" style="display:block;"><div style="background:#ccc;width:80px;height:80px;">&nbsp;</div> [[name]], [[location]], [[type of food]], [[distance]], [[is_open]], [[campus]], [[food category]]</a></li>
-    <li><a href="/detail/56874" style="display:block;"><div style="background:#ccc;width:80px;height:80px;">&nbsp;</div> [[name]], [[location]], [[type of food]], [[distance]], [[is_open]], [[campus]], [[food category]]</a></li>
-    <li><a href="/detail/56874" style="display:block;"><div style="background:#ccc;width:80px;height:80px;">&nbsp;</div> [[name]], [[location]], [[type of food]], [[distance]], [[is_open]], [[campus]], [[food category]]</a></li>
+    <li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location]], [[building]], [[types of food]], [[distance?]], [[is_open]], [[campus]], [[food category]]</a></li>
+    
+    <li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location]], [[building]], [[types of food]], [[distance?]], [[is_open]], [[campus]], [[food category]]</a></li>
+    
+    <li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location]], [[building]], [[types of food]], [[distance?]], [[is_open]], [[campus]], [[food category]]</a></li>
+    
+    <li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location]], [[building]], [[types of food]], [[distance?]], [[is_open]], [[campus]], [[food category]]</a></li>
+
+	<li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location]], [[building]], [[types of food]], [[distance?]], [[is_open]], [[campus]], [[food category]]</a></li>
+	
+	<li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location]], [[building]], [[types of food]], [[distance?]], [[is_open]], [[campus]], [[food category]]</a></li>
+	
+	<li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location]], [[building]], [[types of food]], [[distance?]], [[is_open]], [[campus]], [[food category]]</a></li>
+	
+	<li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location]], [[building]], [[types of food]], [[distance?]], [[is_open]], [[campus]], [[food category]]</a></li>
+	
+	<li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location]], [[building]], [[types of food]], [[distance?]], [[is_open]], [[campus]], [[food category]]</a></li>
+	
+	<li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location]], [[building]], [[types of food]], [[distance?]], [[is_open]], [[campus]], [[food category]]</a></li>
+	
+	<li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location]], [[building]], [[types of food]], [[distance?]], [[is_open]], [[campus]], [[food category]]</a></li>
+	
 </ul>
 
 {% endblock %}
@@ -41,8 +53,11 @@ function initializeListMap() {
 	if(mapExists) {
 		
 		// center map on uw fountain
-		myLatlng = new google.maps.LatLng(47.653811, -122.307815);
-        mapOptions = { center: myLatlng, zoom: 16 };
+		mapCenter = new google.maps.LatLng(47.653811, -122.307815);
+        mapOptions = { 
+	        center: mapCenter, 
+	        zoom: 16,
+	    };
 		
 		var map = new google.maps.Map(document.getElementById('list_map'), mapOptions);
          
@@ -56,7 +71,11 @@ function initializeListMap() {
         **/
         
         // multiple pins on a single map
-        var locations = [ ["47.6551526", "-122.3079563"], ["47.6558366", "-122.3085307"], ["47.6539295", "-122.3080857"] ]
+        var locations = [
+        	["47.6551526", "-122.3079563"], 
+			["47.6558366", "-122.3085307"], 
+			["47.6539295", "-122.3080857"]
+		]
         
         var marker, i;
 		
@@ -88,7 +107,7 @@ function initializeListMap() {
     <ul>
         <li>
             <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Bobs+Burgers" class="item-link item-content">
-                <div class="item-media"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg" width="80"></div>
+                <div class="item-media"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"></div>
                 <div class="item-inner">
                     <div class="item-title-row">
                         <div class="item-title">Bob's Burgers</div>
@@ -100,7 +119,7 @@ function initializeListMap() {
         </li>
         <li>
             <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Pagliacci" class="item-link item-content">
-                <div class="item-media"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg" width="80"></div>
+                <div class="item-media"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg" ></div>
                 <div class="item-inner">
                     <div class="item-title-row">
                         <div class="item-title">Pagliacci</div>
@@ -112,7 +131,7 @@ function initializeListMap() {
         </li>
         <li>
             <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=By+George" class="item-link item-content">
-                <div class="item-media"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg" width="80"></div>
+                <div class="item-media"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg" ></div>
                 <div class="item-inner">
                     <div class="item-title-row">
                         <div class="item-title">By George</div>
@@ -124,7 +143,7 @@ function initializeListMap() {
         </li>
         <li>
             <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Spot+Detail" class="item-link item-content">
-                <div class="item-media"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg" width="80"></div>
+                <div class="item-media"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg" ></div>
                 <div class="item-inner">
                     <div class="item-title-row">
                         <div class="item-title">Spot 1</div>
@@ -136,7 +155,7 @@ function initializeListMap() {
         </li>
         <li>
             <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Spot+Detail" class="item-link item-content">
-                <div class="item-media"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg" width="80"></div>
+                <div class="item-media"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg" ></div>
                 <div class="item-inner">
                     <div class="item-title-row">
                         <div class="item-title">Spot 1</div>
@@ -148,7 +167,7 @@ function initializeListMap() {
         </li>
         <li>
             <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Spot+Detail" class="item-link item-content">
-                <div class="item-media"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg" width="80"></div>
+                <div class="item-media"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg" ></div>
                 <div class="item-inner">
                     <div class="item-title-row">
                         <div class="item-title">Spot 1</div>
@@ -160,7 +179,7 @@ function initializeListMap() {
         </li>
         <li>
             <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Spot+Detail" class="item-link item-content">
-                <div class="item-media"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg" width="80"></div>
+                <div class="item-media"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg" ></div>
                 <div class="item-inner">
                     <div class="item-title-row">
                         <div class="item-title">Spot 1</div>
@@ -172,7 +191,7 @@ function initializeListMap() {
         </li>
         <li>
             <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Spot+Detail" class="item-link item-content">
-                <div class="item-media"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg" width="80"></div>
+                <div class="item-media"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg" ></div>
                 <div class="item-inner">
                     <div class="item-title-row">
                         <div class="item-title">Spot 1</div>
@@ -184,7 +203,7 @@ function initializeListMap() {
         </li>
         <li>
             <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Spot+Detail" class="item-link item-content">
-                <div class="item-media"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg" width="80"></div>
+                <div class="item-media"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg" ></div>
                 <div class="item-inner">
                     <div class="item-title-row">
                         <div class="item-title">Spot 1</div>
@@ -196,7 +215,7 @@ function initializeListMap() {
         </li>
         <li>
             <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Spot+Detail" class="item-link item-content">
-                <div class="item-media"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg" width="80"></div>
+                <div class="item-media"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg" ></div>
                 <div class="item-inner">
                     <div class="item-title-row">
                         <div class="item-title">Spot 1</div>
@@ -208,7 +227,7 @@ function initializeListMap() {
         </li>
         <li>
             <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Spot+Detail" class="item-link item-content">
-                <div class="item-media"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg" width="80"></div>
+                <div class="item-media"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg" ></div>
                 <div class="item-inner">
                     <div class="item-title-row">
                         <div class="item-title">Spot 1</div>
@@ -220,7 +239,7 @@ function initializeListMap() {
         </li>
         <li>
             <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Spot+Detail" class="item-link item-content">
-                <div class="item-media"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg" width="80"></div>
+                <div class="item-media"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg" ></div>
                 <div class="item-inner">
                     <div class="item-title-row">
                         <div class="item-title">Spot 1</div>
@@ -232,7 +251,7 @@ function initializeListMap() {
         </li>
         <li>
             <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Spot+Detail" class="item-link item-content">
-                <div class="item-media"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg" width="80"></div>
+                <div class="item-media"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg" ></div>
                 <div class="item-inner">
                     <div class="item-title-row">
                         <div class="item-title">Spot 1</div>
