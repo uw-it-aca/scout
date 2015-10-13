@@ -6,42 +6,115 @@
 {% block web %}  
     <div class="">
         
-        <h4>Spot Name</h4>
+        <h2>Cultivate [[name]]</h2>
+        <p>Burgers, Salads, Appetizers, Entres [[types of food]]<br/>
+        View the menu: [[menu url]]</p>
         
-        <img src="//farm3.staticflickr.com/2101/2529856456_368530c5ab.jpg')" />
+        <div style="background:url('//farm5.staticflickr.com/4030/4270568382_00a87abe91.jpg') no-repeat; background-size:cover; height:300px;">&nbsp;</div>
         
-
+        [[photos]]
+        </p>
+        
     </div>
        
-    <h4>Hours</h4>
+    <h4>[[hours]]</h4>
 	<ul>
     	<li>M, T, W, Th: 8AM - 7PM</li>
 		<li>F: 8AM - 5PM</li>
 		<li>Sa, Su: 1PM - 5PM</li>
 	</ul>
 	
-	<h4>Hours Notes</h4>
+	<h4>[[hours notes]]</h4>
 	<ul>
 		<li>Holiday hours may vary. Extended hours during finals.Interim: M-F: 9am-5pm</li>
 	</ul>
 
 	
-	<h4>Location</h4>
+	<h4>[[location]] [[campus]]</h4>
+	
+	{% if request.is_mobile %}
+	
+	<div style="height:200px;">
+		<div id="detail_map" style="height:100%;"></div>
+	</div>
+	
+	<!-- since turbolinks loads the full body... initialize map stuff locally in the template. then, call the function in the map.js file -->     
+	<script>
+	
+	function initializeDetailMap() {
+		
+		var mapExists = document.getElementById("detail_map"); 
+		var myLatlng, mapOptions;
+		
+		if(mapExists) {
+			
+			// center map direction on spot location				
+			myLatlng = new google.maps.LatLng(47.6551526, -122.3079563);
+	        mapOptions = { center: myLatlng, zoom: 18, scrollwheel: false, draggable: false, disableDefaultUI: true };
+			
+			var map = new google.maps.Map(document.getElementById('detail_map'), mapOptions);
+	                    
+	        var marker = new google.maps.Marker({
+	            position: myLatlng,
+	            map: map,
+	            title: 'Hello World!',
+	            animation: google.maps.Animation.DROP,
+	        });
+		}
+		
+	}
+	
+	</script>
+
+	{% endif %}
+	
 	<ul>
-		<li>Allen Library North, Ground floor</li>
+		<li>[[building]]</li>
+        <li>[[contact info]]</li>
+        <li>[[website]]</li>
+        <li>[[notes/description]]</li>
+        <li>[[payment options]]</li>
+        <li>[[delivery?]]</li>
+        <li>[[related food spots]]</li>
+        <li>[[study space assoc.]]</li>
 	</ul>
 
-    <h4>Environment</h4>
-    <ul>
-	    <li>Resources <span>asdfadsf, kajsfd</span></li>
-	    <li>Food/coffee <span>asd, fadsf</span></li>
-	    <li>Noise Level <span>asdfa, dsf, asdkjhdfjs</li>
-	    <li>Lighting <span>natural light</span></li>
-    </ul>
+    
 {% endblock %}
 
 {% block sidebar %}
-<p>this is desktop subcontent</p>
+
+<!-- show a map on the list page -->
+<div id="detail_map" style="height:100%;"></div>
+
+<!-- since turbolinks loads the full body... initialize map stuff locally in the template. then, call the function in the map.js file -->     
+<script>
+
+function initializeDetailMap() {
+	
+	var mapExists = document.getElementById("detail_map"); 
+	var myLatlng, mapOptions;
+	
+	if(mapExists) {
+		
+		// center map direction on spot location				
+		myLatlng = new google.maps.LatLng(47.6551526, -122.3079563);
+        mapOptions = { center: myLatlng, zoom: 19, /*scrollwheel: false, draggable: false, disableDefaultUI: true*/ };
+		
+		var map = new google.maps.Map(document.getElementById('detail_map'), mapOptions);
+                    
+        var marker = new google.maps.Marker({
+            position: myLatlng,
+            map: map,
+            title: 'Hello World!',
+            animation: google.maps.Animation.DROP,
+        });
+	}
+	
+}
+
+</script>
+
 {% endblock %}
 
 {% block hybrid %}

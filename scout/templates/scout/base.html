@@ -72,7 +72,25 @@
             {% compress css %}
             {% endcompress %}
         {% endif %}
-                 
+        
+        <script src="https://maps.googleapis.com/maps/api/js"></script>
+        
+        <!-- javascript -->
+        {% compress js %}
+        <script src="{% static "vendor/js/jquery-1.11.0.min.js" %}"></script>
+        <!--<script src="{% static "vendor/js/jquery-turbolinks.min.js" %}"></script>-->
+		
+		<!-- app js -->
+        <script src="{% static "scout/js/web.js" %}"></script>
+        <script src="{% static "scout/js/map.js" %}"></script>
+        
+        <!-- turbolinks must be last -->
+        <script src="{% static "vendor/js/turbolinks.min.js" %}"></script>
+        
+        {% endcompress %}
+        
+	    
+        
     </head>
     <body>
 
@@ -80,20 +98,9 @@
             
             <h1><a href="/">Scout</a></h1>
             
-            {% if request.is_mobile or request.is_tablet %}
-            <!-- only show the map link for mobile and tablet -->
-            <div id="list_map_switcher" class="scout-map-link" style="display:inline-block; position:absolute; right:10px; top: 0; line-height:56px; font-size:14px; text-transform:uppercase;">
-                <span><a id="map_link" href="/map/">Map</a></span>
-            </div>
-            {% endif %}
-            
             <div class="scout-navigation">
                 <div style="display:inline-block; line-height:40px; font-size:14px; text-transform:uppercase; margin-left:20px;">
-                    <span><a  href="/filters/">Filters</a></span>
-                </div>
-                
-                <div style="display:inline-block; position:absolute; right:10px; top: 0; line-height:40px; font-size:14px; text-transform:uppercase;">
-                    <span><a href="/favorites/">favorites</a></span>
+                    <span><a  href="/discover/">Discover</a>&nbsp;&nbsp;&nbsp;&nbsp;<a  href="/filter/">Filter</a></span>
                 </div>
             </div>
 
@@ -109,20 +116,15 @@
                 
                 {% if not request.is_mobile and not request.is_tablet %}
                 <!-- desktop only extra container -->
-                <div id="map" class="scout-map">
-                    {% block sidebar %}{% endblock %}
+                <div class="scout-map">
+	                {% block sidebar %}{% endblock %}
                 </div>
                 {% endif %} 
     
             </div>
             
             <div id="footer" class="scout-footer">
-                <!-- example of request.is_mobile and request.is_tablet usage in templates -->    
-                {% if request.is_mobile %}
-                <p class="text-muted credit">Courtesy of Charlon and Craig. UW-IT ACA</p>
-                {% else %}
-                <p class="text-muted credit">Courtesy of Charlon Palacay and Craig Stimmel. UW-IT ACA</p>
-                {% endif %}
+                <p class="text-muted credit">Courtesy of UW-IT ACA and HFS</p>
             </div>
             
         </div>
@@ -140,13 +142,5 @@
         </script>
         {% endif %}
         
-        {% compress js %}
-        <!-- global javascript -->
-        <script src="{% static "vendor/js/jquery-1.11.0.min.js" %}"></script>
-        <script src="{% static "vendor/js/turbolinks.min.js" %}"></script>
-        <script src="{% static "scout/js/map.js" %}"></script>
-        <script src="{% static "scout/js/web.js" %}"></script>
-        {% endcompress %}
-       
     </body>
 </html>
