@@ -48,25 +48,34 @@
                 </div>
 	  	</div>
 	  	</div>
- 
-    {% compress js inline %}
-    <script>
-        var links = document.getElementsByTagName('link');
-        for(var i = 0; i < links.length; i++){
-            var link = links[i];
-            if(link.getAttribute('media') === 'only foo')
-                link.setAttribute('media', 'all');
-                //link.removeAttribute("media");
-        }
-    </script>
-    {% endcompress %}
-         
+          
     <!-- javascript -->
+    
+    {% if request.is_and %}
     {% compress js %}
     <script type="text/javascript" src="{% static "vendor/js/jquery-1.11.0.min.js" %}"></script>
     <script type="text/javascript" src="{% static "vendor/js/framework7.min.js" %}"></script>
-    <script type="text/javascript" src="{% static "hybrid/js/hybrid.js" %}"></script>
+    <script type="text/javascript" src="{% static "hybrid/js/android.js" %}"></script>
     {% endcompress %}
-                      
+    {% endif %}
+        
+    {% if request.is_ios %}
+    {% compress js %}
+    <script type="text/javascript" src="{% static "vendor/js/jquery-1.11.0.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "vendor/js/framework7.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "hybrid/js/ios.js" %}"></script>
+    {% endcompress %}   
+    {% endif %}
+       
+    <script>
+    var links = document.getElementsByTagName('link');
+    for(var i = 0; i < links.length; i++){
+        var link = links[i];
+        if(link.getAttribute('media') === 'only foo')
+            link.setAttribute('media', 'all');
+            //link.removeAttribute("media");
+    }
+    </script>
+    
     </body>
 </html>
