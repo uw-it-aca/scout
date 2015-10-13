@@ -14,10 +14,9 @@
         {% load compress %}
 
         {% if request.is_and %}
-            <!-- load google font roboto for development... should already be system font on native devices -->
-            <link href='//fonts.googleapis.com/css?family=Roboto:400,300italic,300,100italic,100,500,400italic,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css' media="only foo">
             <!-- framework7 material -->
-            <link rel="stylesheet" media="only foo" type="text/css" href="{% static "vendor/css/framework7.material.min.css" %}">
+            <link rel="stylesheet" media="only foo" type="text/css" href="{% static "vendor/css/framework7.material.css" %}">
+            <link rel="stylesheet" media="only foo" type="text/css" href="{% static "vendor/css/framework7.material.colors.css" %}">
             <!-- android -->  
             {% compress css %}
             <link rel="stylesheet" href="{% static "hybrid/css/android.scss" %}" type="text/x-scss">
@@ -26,8 +25,8 @@
         
         {% if request.is_ios %}
             <!-- framework7 ios -->
-            
-            <link rel="stylesheet" media="only foo" type="text/css" href="{% static "vendor/css/framework7.ios.min.css" %}">
+            <link rel="stylesheet" media="only foo" type="text/css" href="{% static "vendor/css/framework7.ios.css" %}">
+            <link rel="stylesheet" media="only foo" type="text/css" href="{% static "vendor/css/framework7.ios.colors.css" %}">
             <!-- ios -->   
             {% compress css %}
             <link rel="stylesheet" href="{% static "hybrid/css/ios.scss" %}" type="text/x-scss">
@@ -35,21 +34,21 @@
         {% endif %}
         
     </head>
-    <body>
     
-    <div class="views">
-        <div class="view view-main">
-            <div class="pages">
+    <body class="theme-red">
+	        
+	  	<div class="views">
+	  	<!-- Your main view, should have "view-main" class -->
+	  	<div class="view view-main">
+	      
                 <div class="page">
                     <div class="page-content" style="position: relative;">
                     {% block hybrid %}{% endblock %}
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    
-    
+	  	</div>
+	  	</div>
+ 
     {% compress js inline %}
     <script>
         var links = document.getElementsByTagName('link');
@@ -64,7 +63,10 @@
          
     <!-- javascript -->
     {% compress js %}
+    <script type="text/javascript" src="{% static "vendor/js/jquery-1.11.0.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "vendor/js/framework7.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "hybrid/js/hybrid.js" %}"></script>
     {% endcompress %}
-                       
+                      
     </body>
 </html>
