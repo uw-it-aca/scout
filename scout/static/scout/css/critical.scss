@@ -1,3 +1,12 @@
+// turbolinks
+
+html.turbolinks-progress-bar::before {
+  background-color: red !important;
+  height: 5px !important;
+}
+
+// scout
+
 .scout-header { background: #555; position: fixed; top:0; left:0; right: 0; z-index: 999;
     
     h1 { margin: 0 20px; line-height: 56px; height:56px; color: #fff; text-transform: uppercase; font-family: 'Oswald', sans-serif; font-weight: 300; font-size: 30px; 
@@ -7,7 +16,7 @@
     .scout-navigation { position: relative; background: #333; line-height: 40px; color: #fff; display: -webkit-flex; display: flex; margin: 0; padding: 0;
         
 
-        a { padding: 0; display: block; color: #ddd; text-decoration: none; }
+        a { padding: 0; display: inline-block; color: #ddd; text-decoration: none; }
 
     }
     
@@ -17,9 +26,3 @@
 }
 
 
-// turbolinks
-
-html.turbolinks-progress-bar::before {
-  background-color: red !important;
-  height: 5px !important;
-}
