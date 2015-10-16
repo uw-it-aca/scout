@@ -4,3 +4,5 @@ django_mobileesp
 django-turbolinks
 django-htmlmin
 libsass
+
+-e .
