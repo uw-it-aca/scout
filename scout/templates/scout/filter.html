@@ -24,44 +24,68 @@
 
 <script>
 window.onerror = function(err) {
-log('window.onerror: ' + err)
+	//log('window.onerror: ' + err)
 }
+
 function connectWebViewJavascriptBridge(callback) {
-if (window.WebViewJavascriptBridge) {
-  callback(WebViewJavascriptBridge)
-} else {
-  document.addEventListener('WebViewJavascriptBridgeReady', function() {
-    callback(WebViewJavascriptBridge)
-  }, false)
+	if (window.WebViewJavascriptBridge) {
+		callback(WebViewJavascriptBridge)
+	} else {
+		document.addEventListener('WebViewJavascriptBridgeReady', function() {
+			callback(WebViewJavascriptBridge)
+		}, false)
+	}
 }
-}
+
 connectWebViewJavascriptBridge(function(bridge) {
-var uniqueId = 1
-function log(message, data) {
-  var log = document.getElementById('log')
-  var el = document.createElement('div')
-  el.className = 'logLine'
-  el.innerHTML = uniqueId++ + '. ' + message + (data ? ':<br/>' + JSON.stringify(data) : '')
-  if (log.children.length) { log.insertBefore(el, log.children[0]) }
-  else { log.appendChild(el) }
-}
-bridge.init()
-bridge.registerHandler('testJavascriptHandler', function(data, responseCallback) {
-  log('ObjC called testJavascriptHandler with', data)
-  var responseData = { 'Javascript Says':'Right back atcha!' }
-  log('JS responding with', responseData)
-  responseCallback(responseData)
-})
-var callbackButton = document.getElementById('buttons').appendChild(document.createElement('button'))
-callbackButton.innerHTML = 'Fire testObjcCallback'
-callbackButton.className = 'btn btn-success btn-sm btn-block'
-callbackButton.onclick = function(e) {
-  e.preventDefault()
-  log('JS calling handler "testObjcCallback"')
-  bridge.callHandler('testObjcCallback', {'foo': 'bar'}, function(response) {
-    log('JS got response', response)
-  })
-}
+	
+	/*** comment out the logging example
+	var uniqueId = 1
+	
+	function log(message, data) {
+		
+		var log = document.getElementById('log')
+		var el = document.createElement('div')
+		el.className = 'logLine'
+		el.innerHTML = uniqueId++ + '. ' + message + (data ? ':<br/>' + JSON.stringify(data) : '')
+		
+		if (log.children.length) { 
+			log.insertBefore(el, log.children[0]) 
+		}
+		else { 
+			log.appendChild(el) 
+		}
+	}
+	***/
+		
+	bridge.init()
+		
+	bridge.registerHandler('testJavascriptHandler', function(data, responseCallback) {
+		
+		//log('ObjC called testJavascriptHandler with', data)
+		var responseData = { 'Javascript Says':'Right back atcha!' }
+		//log('JS responding with', responseData)
+		//responseCallback(responseData)
+		
+		// handle the filter options on the page and go to the filtered url
+		window.location.href='/?hybrid=true&x_clear_stack_and_replace=true&x_right_button=filter_button&x_page_title=Filtered+Title';
+	})
+	
+	/**	
+	var callbackButton = document.getElementById('buttons').appendChild(document.createElement('button'))
+	
+	callbackButton.innerHTML = 'Fire testObjcCallback'
+	
+	callbackButton.onclick = function(e) {
+		e.preventDefault()
+		log('JS calling handler "testObjcCallback"')
+		
+		bridge.callHandler('testObjcCallback', {'foo': 'bar'}, function(response) {
+			log('JS got response', response);			
+		})
+	
+	}
+	**/
 })
 </script>
 
