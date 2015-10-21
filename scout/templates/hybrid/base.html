@@ -14,23 +14,43 @@
         {% load compress %}
 
         {% if request.is_and %}
+            
             <!-- framework7 material -->
             <link rel="stylesheet" media="only foo" type="text/css" href="{% static "vendor/css/framework7.material.css" %}">
             <link rel="stylesheet" media="only foo" type="text/css" href="{% static "vendor/css/framework7.material.colors.css" %}">
-            <!-- android -->  
+            
+            <!-- android css -->  
             {% compress css %}
             <link rel="stylesheet" href="{% static "hybrid/css/android.scss" %}" type="text/x-scss">
             {% endcompress %}
+            
+            {% compress js %}
+            <!-- javascript -->
+		    <script type="text/javascript" src="{% static "vendor/js/jquery-1.11.0.min.js" %}"></script>
+		    <script type="text/javascript" src="{% static "vendor/js/framework7.min.js" %}"></script>
+		    <script type="text/javascript" src="{% static "hybrid/js/android.js" %}"></script>
+		    {% endcompress %}
+		    
         {% endif %}
         
         {% if request.is_ios %}
+        
             <!-- framework7 ios -->
             <link rel="stylesheet" media="only foo" type="text/css" href="{% static "vendor/css/framework7.ios.css" %}">
             <link rel="stylesheet" media="only foo" type="text/css" href="{% static "vendor/css/framework7.ios.colors.css" %}">
+            
             <!-- ios -->   
             {% compress css %}
             <link rel="stylesheet" href="{% static "hybrid/css/ios.scss" %}" type="text/x-scss">
             {% endcompress %}
+            
+            {% compress js %}
+            <!-- javascript -->
+		    <script type="text/javascript" src="{% static "vendor/js/jquery-1.11.0.min.js" %}"></script>
+		    <script type="text/javascript" src="{% static "vendor/js/framework7.min.js" %}"></script>
+		    <script type="text/javascript" src="{% static "hybrid/js/ios.js" %}"></script>
+		    {% endcompress %}  
+    
         {% endif %}
         
     </head>
@@ -48,25 +68,7 @@
                 </div>
 	  	</div>
 	  	</div>
-          
-    <!-- javascript -->
-    
-    {% if request.is_and %}
-    {% compress js %}
-    <script type="text/javascript" src="{% static "vendor/js/jquery-1.11.0.min.js" %}"></script>
-    <script type="text/javascript" src="{% static "vendor/js/framework7.min.js" %}"></script>
-    <script type="text/javascript" src="{% static "hybrid/js/android.js" %}"></script>
-    {% endcompress %}
-    {% endif %}
-        
-    {% if request.is_ios %}
-    {% compress js %}
-    <script type="text/javascript" src="{% static "vendor/js/jquery-1.11.0.min.js" %}"></script>
-    <script type="text/javascript" src="{% static "vendor/js/framework7.min.js" %}"></script>
-    <script type="text/javascript" src="{% static "hybrid/js/ios.js" %}"></script>
-    {% endcompress %}   
-    {% endif %}
-       
+                 
     <script>
     var links = document.getElementsByTagName('link');
     for(var i = 0; i < links.length; i++){
@@ -78,4 +80,5 @@
     </script>
     
     </body>
+    
 </html>
