@@ -27,7 +27,7 @@ html:not(.watch-active-state) .theme-custom .button:not(.button-fill):active,
 .color-red.button:not(.button-fill).active-state,
 .color-red.buttons-row .button.active-state,
 .theme-custom .button:not(.button-fill).active-state {
-  background-color: rgba(255, 59, 48, 0.15);
+  background-color: rgba($maincolor, 0.15)
 }
 .color-red.button:not(.button-fill).active,
 .color-red.buttons-row .button.active,
