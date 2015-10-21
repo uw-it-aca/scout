@@ -8,7 +8,9 @@
     
 <p>filters filters filters Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non urna et lorem venenatis varius quis sit amet dui. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur a nisi odio. Integer interdum tempor ante vitae dictum. Nullam volutpat diam id odio pulvinar, vel vehicula erat sodales. Maecenas magna ante, interdum id libero et, sodales volutpat orci. </p>
 
-<div><button>view results</button></div>
+<div>
+<input type="button" onclick="location.href='/?type=cafe&food=pizza';" value="View Results" />
+</div>
 
 {% endblock %}
 
@@ -18,6 +20,235 @@
 
 {% block hybrid %}
     
-<p>Filters filters filters Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non urna et lorem venenatis varius quis sit amet dui. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur a nisi odio. Integer interdum tempor ante vitae dictum. Nullam volutpat diam id odio pulvinar, vel vehicula erat sodales. Maecenas magna ante, interdum id libero et, sodales volutpat orci. </p>
 
+
+<div class="content-block-title">Filter</div>
+<!-- Inset content block -->
+<div class="content-block">
+  <div class="content-block-inner">
+    <p>Filters filters filters Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non urna et lorem venenatis varius quis sit amet dui. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur a nisi odio.</p>   
+  </div>
+</div>
+
+
+<div class="content-block-title">Checkbox group</div>
+<div class="list-block">
+<ul>
+<li>
+<label class="label-checkbox item-content">
+<input type="checkbox" name="ks-checkbox" value="Books" checked="checked">
+<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+<div class="item-inner">
+<div class="item-title">Books</div>
+</div>
+</label>
+</li>
+<li>
+<label class="label-checkbox item-content">
+<input type="checkbox" name="ks-checkbox" value="Movies">
+<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+<div class="item-inner">
+<div class="item-title">Movies</div>
+</div>
+</label>
+</li>
+<li>
+<label class="label-checkbox item-content">
+<input type="checkbox" name="ks-checkbox" value="Food">
+<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+<div class="item-inner">
+<div class="item-title">Food</div>
+</div>
+</label>
+</li>
+<li>
+<label class="label-checkbox item-content">
+<input type="checkbox" name="ks-checkbox" value="Drinks">
+<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+<div class="item-inner">
+<div class="item-title">Drinks</div>
+</div>
+</label>
+</li>
+</ul>
+</div>
+
+<div class="content-block-title">Radio buttons group</div>
+<div class="list-block">
+<ul>
+<li>
+<label class="label-radio item-content">
+<input type="radio" name="ks-radio" value="Books" checked="checked">
+<div class="item-inner">
+<div class="item-title">Books</div>
+</div>
+</label>
+</li>
+<li>
+<label class="label-radio item-content">
+<input type="radio" name="ks-radio" value="Movies">
+<div class="item-inner">
+<div class="item-title">Movies</div>
+</div>
+</label>
+</li>
+<li>
+<label class="label-radio item-content">
+<input type="radio" name="ks-radio" value="Food">
+<div class="item-inner">
+<div class="item-title">Food</div>
+</div>
+</label>
+</li>
+<li>
+<label class="label-radio item-content">
+<input type="radio" name="ks-radio" value="Drinks">
+<div class="item-inner">
+<div class="item-title">Drinks</div>
+</div>
+</label>
+</li>
+</ul>
+</div>
+
+<div class="content-block-title">Labels and inputs</div>
+<div class="list-block">
+<ul>
+<li>
+<div class="item-content">
+<div class="item-inner">
+<div class="item-title label">Name</div>
+<div class="item-input">
+<input type="text" placeholder="Your name">
+</div>
+</div>
+</div>
+</li>
+<li>
+<div class="item-content">
+<div class="item-inner">
+<div class="item-title label">E-mail</div>
+<div class="item-input">
+<input type="email" placeholder="E-mail">
+</div>
+</div>
+</div>
+</li>
+<li>
+<div class="item-content">
+<div class="item-inner">
+<div class="item-title label">Gender</div>
+<div class="item-input">
+<select>
+<option>Male</option>
+<option>Female</option>
+</select>
+</div>
+</div>
+</div>
+</li>
+<li>
+<div class="item-content">
+<div class="item-inner">
+<div class="item-title label">Birth date</div>
+<div class="item-input">
+<input type="date" placeholder="Birth day" value="2014-04-30">
+</div>
+</div>
+</div>
+</li>
+<li>
+<div class="item-content">
+<div class="item-inner">
+<div class="item-title label">Switch</div>
+<div class="item-input">
+<label class="label-switch">
+<input type="checkbox">
+<div class="checkbox"></div>
+</label>
+</div>
+</div>
+</div>
+</li>
+</ul>
+</div>
+
+<div class="content-block">
+  <div class="content-block-inner">
+    <button>Reset filters</button>
+  </div>
+</div>
+
+<script>
+window.onerror = function(err) {
+	//log('window.onerror: ' + err)
+}
+
+function connectWebViewJavascriptBridge(callback) {
+	if (window.WebViewJavascriptBridge) {
+		callback(WebViewJavascriptBridge)
+	} else {
+		document.addEventListener('WebViewJavascriptBridgeReady', function() {
+			callback(WebViewJavascriptBridge)
+		}, false)
+	}
+}
+
+connectWebViewJavascriptBridge(function(bridge) {
+	
+	/*** comment out the logging example
+	var uniqueId = 1
+	
+	function log(message, data) {
+		
+		var log = document.getElementById('log')
+		var el = document.createElement('div')
+		el.className = 'logLine'
+		el.innerHTML = uniqueId++ + '. ' + message + (data ? ':<br/>' + JSON.stringify(data) : '')
+		
+		if (log.children.length) { 
+			log.insertBefore(el, log.children[0]) 
+		}
+		else { 
+			log.appendChild(el) 
+		}
+	}
+	***/
+		
+	bridge.init()
+		
+	bridge.registerHandler('testJavascriptHandler', function(data, responseCallback) {
+		
+		//log('ObjC called testJavascriptHandler with', data)
+		var responseData = { 'Javascript Says':'Right back atcha!' }
+		//log('JS responding with', responseData)
+		//responseCallback(responseData)
+		
+		alert("button clicked from native!");
+		
+		// handle the filter options on the page and go to the filtered url
+		window.location.href='/?hybrid=true&x_pop_page_and_replace=true&x_page_title=Filtered+Title&x_right_button=filter_button&x_left_button=discover_button';
+	})
+	
+	/**	
+	var callbackButton = document.getElementById('buttons').appendChild(document.createElement('button'))
+	
+	callbackButton.innerHTML = 'Fire testObjcCallback'
+	
+	callbackButton.onclick = function(e) {
+		e.preventDefault()
+		log('JS calling handler "testObjcCallback"')
+		
+		bridge.callHandler('testObjcCallback', {'foo': 'bar'}, function(response) {
+			log('JS got response', response);			
+		})
+	
+	}
+	**/
+})
+</script>
+
+<div id='buttons'></div> 
+<div id='log' style="margin-top: 20px"></div>
+  
 {% endblock %}
