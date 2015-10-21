@@ -96,14 +96,16 @@
 
         <div id="header" class="scout-header"> 
             
-            <h1><a href="/">Scout</a></h1>
+            <h1>{% block page_header %}<a href="/">Scout</a>{% endblock %}</h1>
             
-            <div class="scout-navigation">
+            <div class="scout-navigation"> 
                 <div style="display:inline-block; line-height:40px; font-size:14px; text-transform:uppercase; margin-left:20px;">
+                    {% block main_nav %}
                     <span><a  href="/discover/">Discover</a>&nbsp;&nbsp;&nbsp;&nbsp;<a  href="/filter/">Filter</a></span>
+                    {% endblock %}
                 </div>
             </div>
-
+            
         </div>
          
         <div id="scroll" class="scout-scroll">    
@@ -114,12 +116,14 @@
                     {% block web %}{% endblock %}
                 </div>
                 
+                {% block map%}
                 {% if not request.is_mobile and not request.is_tablet %}
                 <!-- desktop only extra container -->
                 <div class="scout-map">
 	                {% block sidebar %}{% endblock %}
                 </div>
-                {% endif %} 
+                {% endif %}
+                {% endblock %} 
     
             </div>
             
