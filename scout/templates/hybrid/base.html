@@ -17,10 +17,10 @@
             
             <!-- framework7 material -->
             <link rel="stylesheet" media="only foo" type="text/css" href="{% static "vendor/css/framework7.material.css" %}">
-            <link rel="stylesheet" media="only foo" type="text/css" href="{% static "vendor/css/framework7.material.colors.css" %}">
             
             <!-- android css -->  
             {% compress css %}
+            <link rel="stylesheet" href="{% static "hybrid/css/android-theme.scss" %}" type="text/x-scss">
             <link rel="stylesheet" href="{% static "hybrid/css/android.scss" %}" type="text/x-scss">
             {% endcompress %}
             
@@ -37,10 +37,10 @@
         
             <!-- framework7 ios -->
             <link rel="stylesheet" media="only foo" type="text/css" href="{% static "vendor/css/framework7.ios.css" %}">
-            <link rel="stylesheet" media="only foo" type="text/css" href="{% static "vendor/css/framework7.ios.colors.css" %}">
             
             <!-- ios -->   
             {% compress css %}
+            <link rel="stylesheet" href="{% static "hybrid/css/ios-theme.scss" %}" type="text/x-scss">
             <link rel="stylesheet" href="{% static "hybrid/css/ios.scss" %}" type="text/x-scss">
             {% endcompress %}
             
@@ -55,7 +55,7 @@
         
     </head>
     
-    <body class="theme-red">
+    <body class="theme-custom">
 	        
 	  	<div class="views">
 	  	<!-- Your main view, should have "view-main" class -->
