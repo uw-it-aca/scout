@@ -1,0 +1,240 @@
+/*** sass variables ***/
+
+$maincolor: #c0392b;
+
+/** framework7 theme classes ***/
+
+.color-red {
+  color: $maincolor;
+}
+.list-block .item-link.list-button.color-red,
+.tabbar a.active.color-red,
+a.color-red {
+  color: $maincolor;
+}
+.label-switch input[type="checkbox"]:checked + .checkbox.color-red,
+.label-switch.color-red input[type="checkbox"]:checked + .checkbox {
+  background-color: $maincolor;
+}
+.theme-custom .button:not(.button-fill) {
+  color: $maincolor;
+}
+.theme-custom .navbar .button:not(.button-fill),
+.theme-custom.navbar .button:not(.button-fill),
+.theme-custom .toolbar .button:not(.button-fill),
+.theme-custom.toolbar .button:not(.button-fill),
+.theme-custom .subnavbar .button:not(.button-fill),
+.theme-custom.subnavbar .button:not(.button-fill) {
+  color: #fff;
+}
+.button.color-red:not(.button-fill),
+.color-red.buttons-row .button:not(.button-fill) {
+  color: $maincolor !important;
+}
+.theme-custom .button.button-fill {
+  background: $maincolor;
+  color: #fff;
+}
+html:not(.watch-active-state) .theme-custom .button.button-fill:active,
+.theme-custom .button.button-fill.active-state {
+  background: #d32f2f;
+}
+.button.button-fill.bg-red,
+.button.button-fill.color-red {
+  background: $maincolor !important;
+  color: #fff;
+}
+html:not(.watch-active-state) .button.button-fill.bg-red:active,
+html:not(.watch-active-state) .button.button-fill.color-red:active,
+.button.button-fill.bg-red.active-state,
+.button.button-fill.color-red.active-state {
+  background: #d32f2f !important;
+}
+.color-red i.icon,
+i.icon.color-red {
+  color: $maincolor;
+}
+i.icon-next.color-red,
+i.icon-next.theme-custom {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20fill%3D'%23f44336'%20width%3D'24'%20height%3D'24'%20viewBox%3D'0%200%2024%2024'%3E%3Cpath%20d%3D'M10%206L8.59%207.41%2013.17%2012l-4.58%204.59L10%2018l6-6z'%2F%3E%3Cpath%20d%3D'M0%200h24v24H0z'%20fill%3D'none'%2F%3E%3C%2Fsvg%3E");
+}
+i.icon-prev.color-red,
+i.icon-prev.theme-custom {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20fill%3D'%23f44336'%20width%3D'24'%20height%3D'24'%20viewBox%3D'0%200%2024%2024'%3E%3Cpath%20d%3D'M15.41%207.41L14%206l-6%206%206%206%201.41-1.41L10.83%2012z'%2F%3E%3Cpath%20d%3D'M0%200h24v24H0z'%20fill%3D'none'%2F%3E%3C%2Fsvg%3E");
+}
+i.icon-back.color-red,
+i.icon-back.theme-custom {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'24'%20height%3D'24'%20viewBox%3D'0%200%2024%2024'%3E%3Cpath%20d%3D'M20%2011H7.83l5.59-5.59L12%204l-8%208%208%208%201.41-1.41L7.83%2013H20v-2z'%20fill%3D'%23f44336'%2F%3E%3C%2Fsvg%3E");
+}
+i.icon-forward.color-red,
+i.icon-forward.theme-custom {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'24'%20height%3D'24'%20viewBox%3D'0%200%2024%2024'%3E%3Cpath%20d%3D'M12%204l-1.41%201.41L16.17%2011H4v2h12.17l-5.58%205.59L12%2020l8-8z'%20fill%3D'%23f44336'%2F%3E%3C%2Fsvg%3E");
+}
+i.icon-bars.color-red,
+i.icon-bars.theme-custom {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'24'%20height%3D'24'%20viewBox%3D'0%200%2024%2024'%3E%3Cpath%20d%3D'M3%2018h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z'%20fill%3D'%23f44336'%2F%3E%3C%2Fsvg%3E");
+}
+.preloader.color-red svg circle,
+.preloader.preloader-red svg circle {
+  stroke: $maincolor;
+}
+.theme-custom a {
+  color: $maincolor;
+}
+.theme-custom .navbar,
+.navbar.theme-custom,
+.theme-custom .toolbar,
+.toolbar.theme-custom,
+.theme-custom .subnavbar,
+.subnavbar.theme-custom {
+  background-color: $maincolor;
+}
+.theme-custom .range-slider input[type="range"]::-webkit-slider-thumb:before,
+.range-slider.theme-custom input[type="range"]::-webkit-slider-thumb:before {
+  background-color: $maincolor;
+}
+.theme-custom .range-slider input[type="range"]::-webkit-slider-thumb,
+.range-slider.theme-custom input[type="range"]::-webkit-slider-thumb {
+  background-color: $maincolor;
+}
+.theme-custom .label-switch input[type="checkbox"]:checked + .checkbox,
+.label-switch.theme-custom input[type="checkbox"]:checked + .checkbox {
+  background-color: rgba(244, 67, 54, 0.5);
+}
+.theme-custom .label-switch input[type="checkbox"]:checked + .checkbox:after,
+.label-switch.theme-custom input[type="checkbox"]:checked + .checkbox:after {
+  background-color: $maincolor;
+}
+.theme-custom label.label-checkbox,
+label.label-checkbox.theme-custom {
+  cursor: pointer;
+}
+.theme-custom label.label-checkbox i.icon-form-checkbox:after,
+label.label-checkbox.theme-custom i.icon-form-checkbox:after {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20fill%3D'%23ffffff'%20width%3D'24'%20height%3D'24'%20viewBox%3D'0%200%2024%2024'%3E%3Cpath%20d%3D'M9%2016.17L4.83%2012l-1.42%201.41L9%2019%2021%207l-1.41-1.41z'%2F%3E%3C%2Fsvg%3E");
+}
+.theme-custom label.label-checkbox input[type="checkbox"]:checked + .item-media i.icon-form-checkbox,
+label.label-checkbox.theme-custom input[type="checkbox"]:checked + .item-media i.icon-form-checkbox,
+.theme-custom label.label-checkbox input[type="radio"]:checked + .item-media i.icon-form-checkbox,
+label.label-checkbox.theme-custom input[type="radio"]:checked + .item-media i.icon-form-checkbox,
+.theme-custom label.label-checkbox input[type="checkbox"]:checked ~ .item-after i.icon-form-checkbox,
+label.label-checkbox.theme-custom input[type="checkbox"]:checked ~ .item-after i.icon-form-checkbox,
+.theme-custom label.label-checkbox input[type="radio"]:checked ~ .item-after i.icon-form-checkbox,
+label.label-checkbox.theme-custom input[type="radio"]:checked ~ .item-after i.icon-form-checkbox,
+.theme-custom label.label-checkbox input[type="checkbox"]:checked ~ .item-inner i.icon-form-checkbox,
+label.label-checkbox.theme-custom input[type="checkbox"]:checked ~ .item-inner i.icon-form-checkbox,
+.theme-custom label.label-checkbox input[type="radio"]:checked ~ .item-inner i.icon-form-checkbox,
+label.label-checkbox.theme-custom input[type="radio"]:checked ~ .item-inner i.icon-form-checkbox {
+  border-color: $maincolor;
+  background-color: $maincolor;
+}
+.theme-custom label.label-radio i.icon-form-radio:after,
+label.label-radio.theme-custom i.icon-form-radio:after {
+  background-color: $maincolor;
+}
+.theme-custom label.label-radio input[type="checkbox"]:checked + .item-media i.icon-form-radio,
+label.label-radio.theme-custom input[type="checkbox"]:checked + .item-media i.icon-form-radio,
+.theme-custom label.label-radio input[type="radio"]:checked + .item-media i.icon-form-radio,
+label.label-radio.theme-custom input[type="radio"]:checked + .item-media i.icon-form-radio,
+.theme-custom label.label-radio input[type="checkbox"]:checked ~ .item-after i.icon-form-radio,
+label.label-radio.theme-custom input[type="checkbox"]:checked ~ .item-after i.icon-form-radio,
+.theme-custom label.label-radio input[type="radio"]:checked ~ .item-after i.icon-form-radio,
+label.label-radio.theme-custom input[type="radio"]:checked ~ .item-after i.icon-form-radio,
+.theme-custom label.label-radio input[type="checkbox"]:checked ~ .item-inner i.icon-form-radio,
+label.label-radio.theme-custom input[type="checkbox"]:checked ~ .item-inner i.icon-form-radio,
+.theme-custom label.label-radio input[type="radio"]:checked ~ .item-inner i.icon-form-radio,
+label.label-radio.theme-custom input[type="radio"]:checked ~ .item-inner i.icon-form-radio {
+  border-color: $maincolor;
+}
+.theme-custom label.label-radio input[type="checkbox"]:checked + .item-media i.icon-form-radio:after,
+label.label-radio.theme-custom input[type="checkbox"]:checked + .item-media i.icon-form-radio:after,
+.theme-custom label.label-radio input[type="radio"]:checked + .item-media i.icon-form-radio:after,
+label.label-radio.theme-custom input[type="radio"]:checked + .item-media i.icon-form-radio:after,
+.theme-custom label.label-radio input[type="checkbox"]:checked ~ .item-after i.icon-form-radio:after,
+label.label-radio.theme-custom input[type="checkbox"]:checked ~ .item-after i.icon-form-radio:after,
+.theme-custom label.label-radio input[type="radio"]:checked ~ .item-after i.icon-form-radio:after,
+label.label-radio.theme-custom input[type="radio"]:checked ~ .item-after i.icon-form-radio:after,
+.theme-custom label.label-radio input[type="checkbox"]:checked ~ .item-inner i.icon-form-radio:after,
+label.label-radio.theme-custom input[type="checkbox"]:checked ~ .item-inner i.icon-form-radio:after,
+.theme-custom label.label-radio input[type="radio"]:checked ~ .item-inner i.icon-form-radio:after,
+label.label-radio.theme-custom input[type="radio"]:checked ~ .item-inner i.icon-form-radio:after {
+  background-color: $maincolor;
+}
+.theme-custom .focus-state .label,
+.theme-custom .focus-state .floating-label {
+  color: $maincolor;
+}
+.theme-custom .item-input-field.focus-state:after,
+.theme-custom .input-field.focus-state:after,
+.theme-custom .item-input-field.not-empty-state:after,
+.theme-custom .input-field.not-empty-state:after {
+  background: $maincolor;
+}
+.theme-custom .picker-calendar-day.picker-calendar-day-today span {
+  color: $maincolor;
+}
+.theme-custom .picker-calendar-day.picker-calendar-day-selected span {
+  background-color: $maincolor;
+  color: #fff;
+}
+.theme-custom .picker-header {
+  background-color: $maincolor;
+}
+.theme-custom .modal-button {
+  color: $maincolor;
+}
+.swiper-pagination.color-red .swiper-pagination-bullet-active,
+.theme-custom .swiper-pagination .swiper-pagination-bullet-active {
+  background-color: $maincolor;
+}
+.swiper-button-next.color-red,
+.swiper-container-rtl .swiper-button-prev.color-red,
+.theme-custom .swiper-button-next,
+.theme-custom .swiper-container-rtl .swiper-button-prev {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M27%2C22L27%2C22L5%2C44l-2.1-2.1L22.8%2C22L2.9%2C2.1L5%2C0L27%2C22L27%2C22z'%20fill%3D'%23f44336'%2F%3E%3C%2Fsvg%3E");
+}
+.swiper-button-prev.color-red,
+.swiper-container-rtl .swiper-button-next.color-red,
+.theme-custom .swiper-button-prev,
+.theme-custom .swiper-container-rtl .swiper-button-next {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M0%2C22L22%2C0l2.1%2C2.1L4.2%2C22l19.9%2C19.9L22%2C44L0%2C22L0%2C22L0%2C22z'%20fill%3D'%23f44336'%2F%3E%3C%2Fsvg%3E");
+}
+.bg-red,
+a.bg-red,
+.list-block .swipeout-actions-left a.bg-red,
+.list-block .swipeout-actions-right a.bg-red {
+  background-color: $maincolor;
+}
+.border-red {
+  border-color: $maincolor;
+}
+.list-block .border-red.item-inner:after,
+.list-block ul.border-red:after,
+.border-red:after,
+.list-block .border-red.item-inner:before,
+.list-block ul.border-red:before,
+.border-red:before {
+  background-color: $maincolor;
+}
+.theme-custom .floating-button,
+.floating-button.theme-custom,
+.floating-button.color-red {
+  color: #fff;
+  background: $maincolor;
+}
+html:not(.watch-active-state) .theme-custom .floating-button:active,
+html:not(.watch-active-state) .floating-button.theme-custom:active,
+html:not(.watch-active-state) .floating-button.color-red:active,
+.theme-custom .floating-button.active-state,
+.floating-button.theme-custom.active-state,
+.floating-button.color-red.active-state {
+  background: #d32f2f;
+}
+.theme-custom .floating-button i,
+.floating-button.theme-custom i,
+.floating-button.color-red i {
+  color: inherit;
+}
+.ripple-red .ripple-wave {
+  background-color: rgba(244, 67, 54, 0.3);
+}

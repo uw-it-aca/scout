@@ -2,9 +2,12 @@
 
 .item-media {
     
-    img {     border-radius: 100%; }
+    img { border-radius: 100%; }
 }
 
+.button .ripple-wave {
+    background-color: #ff0000;
+}  
 /*** android styles  ***/
 
 body { font-family: 'Roboto', sans-serif; }
