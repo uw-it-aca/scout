@@ -73,23 +73,36 @@
             {% endcompress %}
         {% endif %}
         
-        <script src="https://maps.googleapis.com/maps/api/js"></script>
-        
         <!-- javascript -->
         {% compress js %}
-        <script src="{% static "vendor/js/jquery-1.11.0.min.js" %}"></script>
+        <script async="async" src="{% static "vendor/js/jquery-1.11.0.min.js" %}"></script>
         <!--<script src="{% static "vendor/js/jquery-turbolinks.min.js" %}"></script>-->
 		
 		<!-- app js -->
-        <script src="{% static "scout/js/web.js" %}"></script>
-        <script src="{% static "scout/js/map.js" %}"></script>
+        <script async="async" src="{% static "scout/js/web.js" %}"></script>
+        <script async="async" src="{% static "scout/js/map.js" %}"></script>
         
         <!-- turbolinks must be last -->
-        <script src="{% static "vendor/js/turbolinks.min.js" %}"></script>
-        
+        <script async="async" src="{% static "vendor/js/turbolinks.min.js" %}"></script>
         {% endcompress %}
         
-	    
+        {% if is_desktop %}
+        <!-- this script is penalized for being a render blocker... but the trade-off is better since it works best w/ turbolinks -->
+        <script src="https://maps.googleapis.com/maps/api/js"></script>
+        {% endif %}
+                
+        {% if google_analytics %}
+        <!-- google analytics -->
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', '{{ google_analytics }}', {% if devtools_bar %}{'cookieDomain': 'none'}{% else %}'auto'{% endif %});
+            ga('send', 'pageview');
+        </script>
+        {% endif %}
         
     </head>
     <body>
@@ -129,18 +142,7 @@
             
         </div>
         
-        {% if google_analytics %}
-        <!-- google analytics -->
-        <script>
-            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-            ga('create', '{{ google_analytics }}', {% if devtools_bar %}{'cookieDomain': 'none'}{% else %}'auto'{% endif %});
-            ga('send', 'pageview');
-        </script>
-        {% endif %}
         
+                
     </body>
 </html>

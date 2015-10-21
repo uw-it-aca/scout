@@ -16,6 +16,10 @@
     
 }
 
+.item-input { text-align: right; 
+	input, select { text-align: right; }
+}
+
 /** cards not really in ios.. flat and full width **/
 .card {  margin: 0; border-radius: 0; box-shadow: none;
     .card-header { border-radius: 0; color: #fff; }

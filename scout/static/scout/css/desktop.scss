@@ -1,6 +1,8 @@
 body { overflow: hidden; }
 
+.scout-header { width: 500px; }
+
 .scout-scroll { position: absolute; top:96px; bottom: 0; width: 500px; left:0; overflow: scroll; margin-top: 0; }
 
 
-.scout-map { position: fixed; top:96px; left: 500px; bottom: 0; right: 0; overflow: scroll; background: #ddd; }
+.scout-map { position: fixed; top:0; left: 500px; bottom: 0; right: 0; overflow: scroll; background: #ddd; }
