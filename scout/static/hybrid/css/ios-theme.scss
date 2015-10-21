@@ -144,3 +144,15 @@ a.bg-red,
   background-color: $maincolor;
 }
 
+/*** custom link button ***/
+
+button.link {
+	-webkit-appearance: none;
+	border: none;
+	background: transparent;
+	padding: 0;
+	font-size: 17px;
+	color: $maincolor;
+}
+
+

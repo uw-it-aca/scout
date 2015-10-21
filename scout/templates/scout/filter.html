@@ -23,11 +23,10 @@
 
 
 <div class="content-block-title">Filter</div>
-<!-- Inset content block -->
 <div class="content-block">
-  <div class="content-block-inner">
-    <p>Filters filters filters Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non urna et lorem venenatis varius quis sit amet dui. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur a nisi odio.</p>   
-  </div>
+	<div class="content-block-inner">
+		<p>Filters filters filters Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non urna et lorem venenatis varius quis sit amet dui. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur a nisi odio.</p>   
+	</div>
 </div>
 
 
@@ -174,81 +173,45 @@
 </div>
 
 <div class="content-block">
-  <div class="content-block-inner">
-    <button>Reset filters</button>
-  </div>
+	<div class="content-block-inner">
+		<button class="link" id="reset_filter">Reset filters</button>
+	</div>
 </div>
 
 <script>
-window.onerror = function(err) {
-	//log('window.onerror: ' + err)
-}
 
-function connectWebViewJavascriptBridge(callback) {
-	if (window.WebViewJavascriptBridge) {
-		callback(WebViewJavascriptBridge)
-	} else {
-		document.addEventListener('WebViewJavascriptBridgeReady', function() {
-			callback(WebViewJavascriptBridge)
-		}, false)
-	}
-}
-
-connectWebViewJavascriptBridge(function(bridge) {
+	// native bridge event listener
 	
-	/*** comment out the logging example
-	var uniqueId = 1
+	document.addEventListener('WebViewJavascriptBridgeReady', function(event) {
+	    
+	    var bridge = event.bridge
+	    bridge.init()
 	
-	function log(message, data) {
+	    // start using the bridge by registering events
+	    
+	    bridge.registerHandler('testJavascriptHandler', function(data, responseCallback) {
 		
-		var log = document.getElementById('log')
-		var el = document.createElement('div')
-		el.className = 'logLine'
-		el.innerHTML = uniqueId++ + '. ' + message + (data ? ':<br/>' + JSON.stringify(data) : '')
-		
-		if (log.children.length) { 
-			log.insertBefore(el, log.children[0]) 
-		}
-		else { 
-			log.appendChild(el) 
-		}
-	}
-	***/
-		
-	bridge.init()
-		
-	bridge.registerHandler('testJavascriptHandler', function(data, responseCallback) {
-		
-		//log('ObjC called testJavascriptHandler with', data)
-		var responseData = { 'Javascript Says':'Right back atcha!' }
-		//log('JS responding with', responseData)
-		//responseCallback(responseData)
-		
-		alert("button clicked from native!");
-		
-		// handle the filter options on the page and go to the filtered url
-		window.location.href='/?hybrid=true&x_pop_page_and_replace=true&x_page_title=Filtered+Title&x_right_button=filter_button&x_left_button=discover_button';
-	})
-	
-	/**	
-	var callbackButton = document.getElementById('buttons').appendChild(document.createElement('button'))
-	
-	callbackButton.innerHTML = 'Fire testObjcCallback'
-	
-	callbackButton.onclick = function(e) {
-		e.preventDefault()
-		log('JS calling handler "testObjcCallback"')
-		
-		bridge.callHandler('testObjcCallback', {'foo': 'bar'}, function(response) {
-			log('JS got response', response);			
+			alert("button clicked from native!");
+			
+			// handle the filter options on the page and go to the filtered url
+			window.location.href='/?hybrid=true&x_pop_page_and_replace=true&x_page_title=Filtered+Title&x_right_button=filter_button&x_left_button=discover_button';
 		})
+	    
+	    
+	}, false)
 	
-	}
-	**/
-})
+	// jquery ready
+	
+	$( document ).ready(function() {
+		
+		// handle resetting the filters
+		$('#reset_filter').click(function() {
+			alert( "Handler for .click() called." );
+		});
+
+	});
+
 </script>
 
-<div id='buttons'></div> 
-<div id='log' style="margin-top: 20px"></div>
-  
+
 {% endblock %}
