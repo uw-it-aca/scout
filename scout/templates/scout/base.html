@@ -1,9 +1,8 @@
-<!DOCTYPE html>
-<html class="no-js">
-    <head>
+{% extends "brand/brand.html" %}
+{% block head %}
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>{% block title %}Scout{% endblock %}</title>
+        <title>Scout</title>
         <meta name="description" content="">
         <meta name="HandheldFriendly" content="True">
         <meta name="MobileOptimized" content="320">
@@ -34,6 +33,7 @@
             <!-- critical (above the fold styles) -->
             {% compress css inline %}
             <link rel="stylesheet" href="{% static "vendor/css/normalize-3.0.1.min.css" %}">
+            <link rel="stylesheet" href="{% static "brand/css/brand.scss" %}" type="text/x-scss">
             <link rel="stylesheet" href="{% static "scout/css/critical.scss" %}" type="text/x-scss">
             {% endcompress %}
             <!-- async (mobile) -->   
@@ -48,6 +48,7 @@
             {% compress css inline %}
             <!-- inline -->   
             <link rel="stylesheet" href="{% static "vendor/css/normalize-3.0.1.min.css" %}">
+            <link rel="stylesheet" href="{% static "brand/css/brand.scss" %}" type="text/x-scss">
             <link rel="stylesheet" href="{% static "scout/css/critical.scss" %}" type="text/x-scss">
             {% endcompress %}
             <!-- async (mobile + tablet) -->
@@ -62,6 +63,7 @@
             <!-- critical (above the fold styles) -->
             {% compress css inline %}
             <link rel="stylesheet" href="{% static "vendor/css/normalize-3.0.1.min.css" %}">
+            <link rel="stylesheet" href="{% static "brand/css/brand.scss" %}" type="text/x-scss">
             <link rel="stylesheet" href="{% static "scout/css/critical.scss" %}" type="text/x-scss">
             <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.0.3.min.css" %}">
             <link rel="stylesheet" href="{% static "scout/css/mobile.scss" %}" type="text/x-scss">
@@ -89,25 +91,13 @@
         
         {% endcompress %}
         
-	    
-        
-    </head>
-    <body>
+{% endblock %}
 
-        <div id="header" class="scout-header"> 
-            
-            <h1>{% block page_header %}<a href="/">Scout</a>{% endblock %}</h1>
-            
-            <div class="scout-navigation"> 
-                <div style="display:inline-block; line-height:40px; font-size:14px; text-transform:uppercase; margin-left:20px;">
-                    {% block main_nav %}
-                    <span><a  href="/discover/">Discover</a>&nbsp;&nbsp;&nbsp;&nbsp;<a  href="/filter/">Filter</a></span>
-                    {% endblock %}
-                </div>
-            </div>
-            
-        </div>
-         
+{% block header %}<a href="/">Scout</a>{% endblock %}
+
+{% block top-nav%}<span><a  href="/discover/">Discover</a>&nbsp;&nbsp;&nbsp;&nbsp;<a  href="/filter/">Filter</a></span>{% endblock %}
+
+{% block content %} 
         <div id="scroll" class="scout-scroll">    
                 
             <div id="content" class="scout-content">
@@ -116,23 +106,18 @@
                     {% block web %}{% endblock %}
                 </div>
                 
-                {% block map%}
                 {% if not request.is_mobile and not request.is_tablet %}
                 <!-- desktop only extra container -->
                 <div class="scout-map">
 	                {% block sidebar %}{% endblock %}
                 </div>
-                {% endif %}
-                {% endblock %} 
+                {% endif %} 
     
             </div>
-            
-            <div id="footer" class="scout-footer">
-                <p class="text-muted credit">Courtesy of UW-IT ACA and HFS</p>
-            </div>
-            
-        </div>
-        
+        </div>        
+{% endblock %}
+
+{% block subcontent %} 
         {% if google_analytics %}
         <!-- google analytics -->
         <script>
@@ -145,6 +130,5 @@
             ga('send', 'pageview');
         </script>
         {% endif %}
+{% endblock %}
         
-    </body>
-</html>

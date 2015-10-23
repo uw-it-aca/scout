@@ -1,0 +1,14 @@
+.scout-header { background: #555; position: fixed; top:0; left:0; right: 0; z-index: 999;
+    
+    h1 { margin: 5px 0 -9px -2px; line-height: 56px; height:56px; color: #fff; text-transform: uppercase; font-family: 'Oswald', sans-serif; font-weight: 300; font-size: 30px; padding-left: 75px;
+    background: transparent url('../img/w-mini_wht.png') no-repeat;
+    
+        a { color: #fff; text-decoration: none; }
+    }
+    
+    .scout-navigation { position: relative; background: #333; line-height: 40px; color: #fff; display: -webkit-flex; display: flex; margin: 0; padding: 0;
+        a { padding: 0; display: inline-block; color: #ddd; text-decoration: none; }
+    }
+}
+
+.scout-footer { position: absolute; padding: 0 20px; background: #555; color:white; width: 100%; font-size: 75%; bottom:0; text-align:center;}
