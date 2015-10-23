@@ -191,7 +191,7 @@
 	    
 	    bridge.registerHandler('testJavascriptHandler', function(data, responseCallback) {
 		
-			alert("button clicked from native!");
+			alert("fire button clicked from native bridge");
 			
 			// handle the filter options on the page and go to the filtered url
 			window.location.href='/?hybrid=true&x_pop_page_and_replace=true&x_page_title=Filtered+Title&x_right_button=filter_button&x_left_button=discover_button';
@@ -206,7 +206,9 @@
 		
 		// handle resetting the filters
 		$('#reset_filter').click(function() {
-			alert( "Handler for .click() called." );
+						
+			// return to list view and default state
+			window.location.href='/?hybrid=true&x_pop_page_and_replace=true&x_page_title=Food+Nearby&x_right_button=filter_button&x_left_button=discover_button'
 		});
 
 	});
