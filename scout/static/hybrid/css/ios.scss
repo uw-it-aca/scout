@@ -1,10 +1,14 @@
 /*** framework 7 overrides ***/
 
-.page { position: relative; }
+.page { position: relative; background: none !important; }
 
-.list-block { margin: 0; 
+.list-block { margin: 0;
 	
 	ul:before { height: 0; }
+	
+	ul {
+		li { background: #fff; }
+	}	
 }
 
 
@@ -30,11 +34,14 @@
     }
 }
 
-/*** ios styles  ***/
+/*** ios hybrid reset ***/
+
+body { background: #efeff4 !important; }
+
+/*** scout styles  ***/
 
 .scout-list {
     
     a { background: yellow; margin-bottom: 10px; display: block; padding: 1em; text-decoration: none; }
 }
-
 
