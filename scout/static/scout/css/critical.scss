@@ -1,17 +1,1 @@
-// turbolinks
-
-html.turbolinks-progress-bar::before {
-  background-color: red !important;
-  height: 5px !important;
-}
-
-// scout
-
-.scout-header {
-    
-    .scout-map-link { display: none; 
-        a { color: #ddd; text-decoration: none; }
-    }
-}
-
-
+// critical styles needed for first load
