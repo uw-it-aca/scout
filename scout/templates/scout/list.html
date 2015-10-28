@@ -1,14 +1,16 @@
-{% extends is_hybrid|yesno:"hybrid/base.html,scout/base.html" %}
+{% extends is_hybrid|yesno:"hybrid/base.html,scout/app.html" %}
 
 {% block title %}List{% endblock %}
 
-{% block web %}
+{% block web_content %}
 
 {% if request.is_mobile or request.is_tablet %}
 <div style="text-align: right;"> <a id="map_link" href="/">List</a> | <a id="map_link" href="/map/">Map</a></div>
 {% endif %}
 
-<h2>All [[filtered_by]]</h2>
+<h2>All [[neary_by]]</h2>
+
+<div>sort: [[price]]</div>
             
 <ul>
     <li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location]], [[building]], [[types of food]], [[distance?]], [[is_open]], [[campus]], [[food category]]</a></li>
@@ -87,7 +89,7 @@ function initializeListMap() {
     
 {% endblock %}
 
-{% block hybrid %}
+{% block hybrid_content %}
 
 <!--<div class="content-block" style="margin:5px 0;">
 	<div class="buttons-row"><a href="/?hybrid=true&x_replace_page=true&x_page_title=Scout" class="button active">List</a><a href="/map/?hybrid=true&x_replace_page=true&x_page_title=Scout" class="button">Map</a></div>

@@ -68,7 +68,7 @@
 <div class="item-inner">
 <div class="item-title label">Gender</div>
 <div class="item-input">
-<select>
+<select dir="rtl">
 <option>Male</option>
 <option>Female</option>
 </select>
@@ -150,6 +150,7 @@
 </ul>
 </div>
 
+{% if request.is_and %}
 <div class="content-block-title">With Floating Labels (android)</div>
 <div class="list-block inputs-list">
 <ul>
@@ -214,7 +215,7 @@
 <div class="item-inner">
 <div class="item-title floating-label">Gender</div>
 <div class="item-input item-input-field">
-<select>
+<select dir="rtl">
 <option> </option>
 <option>Male</option>
 <option>Female</option>
@@ -236,6 +237,8 @@
 </li>
 </ul>
 </div>
+
+{% endif %}
 
 <div class="content-block-title">Icons and inputs</div>
 <div class="list-block">
@@ -265,7 +268,7 @@
 <div class="item-media"><i class="icon icon-form-gender"></i></div>
 <div class="item-inner">
 <div class="item-input">
-<select>
+<select dir="rtl">
 <option>Male</option>
 <option>Female</option>
 </select>
@@ -326,7 +329,7 @@
 <div class="item-inner">
 <div class="item-title label">Gender</div>
 <div class="item-input">
-<select>
+<select dir="rtl">
 <option>Male</option>
 <option>Female</option>
 </select>
@@ -384,7 +387,7 @@
 <div class="item-content">
 <div class="item-inner">
 <div class="item-input">
-<select>
+<select dir="rtl">
 <option>Male</option>
 <option>Female</option>
 </select>
@@ -429,7 +432,7 @@
 <div class="item-content">
 <div class="item-inner">
 <div class="item-input">
-<select>
+<select dir="rtl">
 <option>Male</option>
 <option>Female</option>
 </select>
@@ -645,6 +648,7 @@
 </ul>
 </div>
 
+{% if request.is_ios %}
 <h2>Buttons ios</h2>
 
 <div class="content-block-title">Usual Buttons</div>
@@ -692,12 +696,11 @@
 <li><a href="#" class="list-button item-link">List Button 2</a></li>
 </ul>
 </div>
-<div class="list-block inset">
-<ul>
-<li><a href="#" class="list-button item-link color-red">Big Red Button</a></li>
-</ul>
-</div>
 
+</div>
+{% endif %} 
+
+{% if request.is_and %}
 <h2>Buttons Android</h2>
 
 <div class="content-block-title">Flat Buttons</div>
@@ -715,29 +718,10 @@
 <p class="buttons-row"><a href="#" class="button button-fill button-raised">Button</a><a href="#" class="button button-fill button-raised">Button</a><a href="#" class="button button-fill button-raised">Button</a></p>
 </div>
 
-<div class="content-block-title">Color Buttons</div>
-<div class="content-block">
-<p class="buttons-row"><a href="#" class="button color-red">Red</a></p>
-</div>
-
-<div class="content-block-title">Color Fill Buttons</div>
-<div class="content-block">
-<p class="buttons-row"><a href="#" class="button button-fill color-red">Red</a></p>
-</div>
-
-<div class="content-block-title">Color Ripple Buttons</div>
-<div class="content-block">
-<p class="buttons-row">
-  <a href="#" class="button ripple">Button</a>
-  <a href="#" class="button color-green">Button</a>
-  <a href="#" class="button color-teal">Button</a>
-</p>
-</div>
-
 <div class="content-block-title">Big Buttons</div>
 <div class="content-block">
-<p class="buttons-row"><a href="#" class="button button-big color-red">Button</a></p>
-<p class="buttons-row"><a href="#" class="button button-big button-fill button-raised color-teal">Button</a></p>
+<p class="buttons-row"><a href="#" class="button button-big">Button</a></p>
+<p class="buttons-row"><a href="#" class="button button-big button-fill button-raised">Button</a></p>
 </div>
 
 <div class="content-block-title">List Block Buttons</div>
@@ -751,5 +735,6 @@
 </div>
 </div>
 
+{% endif %}
 
 {% endblock %}

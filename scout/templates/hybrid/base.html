@@ -29,6 +29,7 @@
 		    <script type="text/javascript" src="{% static "vendor/js/jquery-1.11.0.min.js" %}"></script>
 		    <script type="text/javascript" src="{% static "vendor/js/framework7.min.js" %}"></script>
 		    <script type="text/javascript" src="{% static "hybrid/js/android.js" %}"></script>
+		    <script type="text/javascript" src="{% static "hybrid/js/hybrid.js" %}"></script>
 		    {% endcompress %}
 		    
         {% endif %}
@@ -49,35 +50,33 @@
 		    <script type="text/javascript" src="{% static "vendor/js/jquery-1.11.0.min.js" %}"></script>
 		    <script type="text/javascript" src="{% static "vendor/js/framework7.min.js" %}"></script>
 		    <script type="text/javascript" src="{% static "hybrid/js/ios.js" %}"></script>
+		    <script type="text/javascript" src="{% static "hybrid/js/hybrid.js" %}"></script>
 		    {% endcompress %}  
     
         {% endif %}
         
     </head>
-    
-    <body class="theme-custom">
-	        
-	  	<div class="views">
-		  	
-	  		<!-- Your main view, should have "view-main" class -->
-	  		<div class="view view-main">
-	      
+    <body>
+
+    <div class="views">
+        <div class="view view-main">
+            <div class="pages">
                 <div class="page">
                     <div class="page-content" style="position: relative;">
-                    	{% block hybrid %}{% endblock %}
+                    {% block hybrid_content %}{% endblock %}
                     </div>
                 </div>
-                
-	  		</div>
-	  	</div>
-                 
+            </div>
+        </div>
+    </div>
+    
+    {% compress js inline %}
     <script>
     var links = document.getElementsByTagName('link');
     for(var i = 0; i < links.length; i++){
         var link = links[i];
         if(link.getAttribute('media') === 'only foo')
             link.setAttribute('media', 'all');
-            //link.removeAttribute("media");
     }
     </script>
          

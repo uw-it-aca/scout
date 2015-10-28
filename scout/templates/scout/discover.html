@@ -1,8 +1,8 @@
-{% extends is_hybrid|yesno:"hybrid/base.html,scout/base.html" %}
+{% extends is_hybrid|yesno:"hybrid/base.html,scout/app.html" %}
 
 {% block title %}Discover{% endblock %}
 
-{% block web %}
+{% block web_content %}
 
 <h2>Discover</h2>
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non urna et lorem venenatis varius quis sit amet dui. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur a nisi odio.</p>
@@ -49,7 +49,7 @@
 {% endblock %}
 
 
-{% block hybrid %}
+{% block hybrid_content %}
 
 <div class="content-block-title">Welcome</div>
 <!-- Inset content block -->
@@ -168,7 +168,7 @@
 <div class="list-block">
   <ul>
     <li>
-	    <a href="/components/?hybrid=true&x_push_page=true&x_page_title=Filters" class="item-link">
+	    <a href="/components/?hybrid=true&x_push_page=true&x_page_title=Framework7+Forms" class="item-link">
 		  <div class="item-content">
 		    <div class="item-inner">
 			    <div class="item-title">Components Example</div>
