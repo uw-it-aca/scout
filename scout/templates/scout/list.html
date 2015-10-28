@@ -8,7 +8,9 @@
 <div style="text-align: right;"> <a id="map_link" href="/">List</a> | <a id="map_link" href="/map/">Map</a></div>
 {% endif %}
 
-<h2>All [[filtered_by]]</h2>
+<h2>All [[neary_by]]</h2>
+
+<div>sort: [[price]]</div>
             
 <ul>
     <li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location]], [[building]], [[types of food]], [[distance?]], [[is_open]], [[campus]], [[food category]]</a></li>
@@ -42,8 +44,8 @@
 <!-- show a map on the list page -->
 <div id="list_map" style="height:100%;"></div>
 
-<!-- since turbolinks loads the full body... initialize map stuff locally in the template. then, call the function in the map.js file -->     
-<script>
+<!-- since turbolinks loads the full body... generate this function in the template. then, call the function in the map.js file -->     
+<script type="text/javascript">
 
 function initializeListMap() {
 	
@@ -60,16 +62,7 @@ function initializeListMap() {
 	    };
 		
 		var map = new google.maps.Map(document.getElementById('list_map'), mapOptions);
-         
-        /** single marker           
-        var marker = new google.maps.Marker({
-            position: myLatlng,
-            map: map,
-            title: 'Hello World!',
-            animation: google.maps.Animation.DROP,
-        });
-        **/
-        
+                 
         // multiple pins on a single map
         var locations = [
         	["47.6551526", "-122.3079563"], 
@@ -92,9 +85,8 @@ function initializeListMap() {
 	}
 	
 }
-
 </script>
-
+    
 {% endblock %}
 
 {% block hybrid_content %}

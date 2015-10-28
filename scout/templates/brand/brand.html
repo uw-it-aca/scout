@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html class="no-js">
     <head>
+	    
         {% block head %}
         {% endblock %}
+        
     </head>
     <body>
+	    
         <div id="header" class="scout-header"> 
+            
             <h1>{% block header %}{% endblock %}</h1>
+            
             <div class="scout-navigation">
                 <div style="display:inline-block; line-height:40px; font-size:14px; text-transform:uppercase; margin-left:20px;">
                     {% block top-nav%}{% endblock %}
@@ -18,11 +23,9 @@
         {% block content %}        
         {% endblock %}
            
-            <div id="footer" class="scout-footer">
-                <p class="text-muted credit">Courtesy of UW-IT ACA and HFS</p>
-            </div>
+        <div id="footer" class="scout-footer">
+            <p class="text-muted credit">Courtesy of UW-IT ACA and HFS</p>
+        </div>
         
-        {% block extra_js %}         
-        {% endblock %}
     </body>
 </html>
