@@ -2,7 +2,7 @@
 
 {% block title %}List{% endblock %}
 
-{% block web %}
+{% block web_content %}
 
 {% if request.is_mobile or request.is_tablet %}
 <div style="text-align: right;"> <a id="map_link" href="/">List</a> | <a id="map_link" href="/map/">Map</a></div>
@@ -97,7 +97,7 @@ function initializeListMap() {
 
 {% endblock %}
 
-{% block hybrid %}
+{% block hybrid_content %}
 
 <!--<div class="content-block" style="margin:5px 0;">
 	<div class="buttons-row"><a href="/?hybrid=true&x_replace_page=true&x_page_title=Scout" class="button active">List</a><a href="/map/?hybrid=true&x_replace_page=true&x_page_title=Scout" class="button">Map</a></div>

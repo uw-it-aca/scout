@@ -36,19 +36,18 @@
         
     </head>
     <body>
-    
+
     <div class="views">
         <div class="view view-main">
             <div class="pages">
                 <div class="page">
                     <div class="page-content" style="position: relative;">
-                    {% block hybrid %}{% endblock %}
+                    {% block hybrid_content %}{% endblock %}
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
     
     {% compress js inline %}
     <script>

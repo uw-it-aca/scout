@@ -103,7 +103,7 @@
             <div id="content" class="scout-content">
                                 
                 <div class="scout-pjax-content">
-                    {% block web %}{% endblock %}
+                    {% block web_content %}{% endblock %}
                 </div>
                 
                 {% if not request.is_mobile and not request.is_tablet %}
@@ -117,7 +117,7 @@
         </div>        
 {% endblock %}
 
-{% block subcontent %} 
+{% block extra_js %} 
         {% if google_analytics %}
         <!-- google analytics -->
         <script>
