@@ -1,4 +1,5 @@
 {% extends is_hybrid|yesno:"hybrid/base.html,scout/app.html" %}
+{% load staticfiles %}
 
 {% block title %}Discover{% endblock %}
 
@@ -12,40 +13,40 @@
 <h4>Restaurant types:</h4>
 <div>
     <ul>
-        <li>Cafes</li>
-        <li>Fine Dining</li>
-        <li>Cafeteria</li>
-        <li>Food Trucks</li>
-        <li>Markets</li>
+        <li><a href="/?type=cafe">Cafes</a></li>
+        <li><a href="/?type=fine_dining">Fine Dining</a></li>
+        <li><a href="/?type=cafeteria">Cafeteria</a></li>
+        <li><a href="/?type=food_truck">Food Trucks</a></li>
+        <li><a href="/?type=market">Markets</a></li>
     </ul>
 </div>
 
 <h4>Food types:</h4>
 <div>
     <ul>
-        <li><a data-pjax href="/?food=pizza">Pizza</a></li>
-        <li>Burgers</li>
-        <li>Salads</li>
-        <li>Coffee/Espresso</li>
-        <li>Sandwiches</li>
+        <li><a href="/?food=pizza">Pizza</a></li>
+        <li><a href="/?food=burgers">Burgers</a></li>
+        <li><a href="/?food=salads">Salads</a></li>
+        <li><a href="/?food=coffee">Coffee/Espresso</a></li>
+        <li><a href="/?food=sandwiches">Sandwiches</a></li>
     </ul>
 </div>
 
 <h4>Cuisine:</h4>
 <div>
     <ul>
-        <li>Itallian</a></li>
-        <li>Hawaiian</li>
-        <li>BBQ</li>
-        <li>American</li>
-        <li>Chinese</li>
+        <li><a href="/?cuisine=itallian">Itallian</a></li>
+        <li><a href="/?cuisine=hawaiian">Hawaiian</a></li>
+        <li><a href="/?cuisine=bbq">BBQ</a></li>
+        <li><a href="/?cuisine=american">American</a></li>
+        <li><a href="/?cuisine=chinese">Chinese</a></li>
     </ul>
 </div>
     
 {% endblock %}
 
 {% block sidebar %}
-<p>akslfdj aslkd flaksdfj asklfdj asldkfj</p>
+<div style="background: url('{% static "scout/img/huskygrind.jpg" %}') no-repeat; background-size:cover; background-position:center center; position:absolute; top:0; bottom:0; width: 100%;">&nbsp;</div>
 {% endblock %}
 
 
