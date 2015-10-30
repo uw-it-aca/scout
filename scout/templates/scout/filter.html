@@ -1,4 +1,5 @@
 {% extends is_hybrid|yesno:"hybrid/base.html,scout/app.html" %}
+{% load staticfiles %}
 
 {% block title %}Filter{% endblock %}
 
@@ -53,13 +54,12 @@
 {% endblock %}
 
 {% block sidebar %}
-
+<div style="background:url('{% static "scout/img/huskygrind.jpg" %}') no-repeat; background-size:cover; background-position:center center; position:absolute; top:0; bottom:0; width: 100%;">&nbsp;</div>
 {% endblock %}
+
 
 {% block hybrid_content %}
     
-
-
 <div class="content-block-title">Filter</div>
 <div class="content-block">
 	<div class="content-block-inner">
