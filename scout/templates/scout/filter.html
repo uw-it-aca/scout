@@ -6,11 +6,49 @@
 
 <h2>Filter</h2>
     
-<p>filters filters filters Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non urna et lorem venenatis varius quis sit amet dui. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur a nisi odio. Integer interdum tempor ante vitae dictum. Nullam volutpat diam id odio pulvinar, vel vehicula erat sodales. Maecenas magna ante, interdum id libero et, sodales volutpat orci. </p>
-
-<div>
-<input type="button" onclick="location.href='/?type=cafe&food=pizza';" value="View Results" />
-</div>
+<form>
+	
+    <fieldset>
+        <legend>Restaurant type</legend> 
+        <input name="" type="checkbox" value="cafes">Cafes<br>
+        <input name="" type="checkbox" value="dining">Fine Dining<br>
+        <input name="" type="checkbox" value="cafeteria">Cefeteria<br>
+        <input name="" type="checkbox" value="food_truck">Food Trucks<br>
+        <input name="" type="checkbox" value="market">Markets<br>
+    </fieldset>
+    
+    <fieldset>
+        <legend>Food types</legend> 
+        <input name="animal" type="checkbox" value="Cat">Pizza<br>
+        <input name="animal" type="checkbox" value="Dog">Burgers<br>
+        <input name="animal" type="checkbox" value="Bird">Salads<br>
+        <input name="animal" type="checkbox" value="Bird">Coffee/Espresso<br>
+        <input name="animal" type="checkbox" value="Bird">Sandwiches<br>
+    </fieldset>
+    
+    <fieldset>
+        <legend>Cuisine</legend> 
+        <input name="animal" type="checkbox" value="Cat">American<br>
+        <input name="animal" type="checkbox" value="Dog">BBQ<br>
+        <input name="animal" type="checkbox" value="Bird">Chinese<br>
+        <input name="animal" type="checkbox" value="Bird">Hawaiian<br>
+        <input name="animal" type="checkbox" value="Bird">Itallian<br>
+    </fieldset>
+    
+    <legend>Delivery</legend> 
+    <input name="animal" type="checkbox" value="Cat">Yes?<br>
+    
+    <fieldset>
+        <legend>Hours</legend> 
+        <input checked name="sex" type="radio" value="male">Open now<br>
+        <input name="sex" type="radio" value="female">Specific time
+    </fieldset>
+    
+    <div style="margin-top:1em;">
+        <input onclick="location.href='/?type=cafe&food=pizza';" type="button" value="View Results">
+    </div>
+    
+</form>
 
 {% endblock %}
 
