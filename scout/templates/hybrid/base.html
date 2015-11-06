@@ -16,8 +16,8 @@
         {% if request.is_and %}
             
             <!-- framework7 material -->
-            <link rel="stylesheet" media="only foo" type="text/css" href="{% static "vendor/css/framework7.material.css" %}">
-            
+            <link rel="stylesheet" media="only foo" type="text/css" href="{% static "hybrid/css/framework7-1.3.1.material.min.css" %}">
+                
             <!-- android css -->  
             {% compress css %}
             <link rel="stylesheet" href="{% static "hybrid/css/android-theme.scss" %}" type="text/x-scss">
@@ -35,9 +35,9 @@
         {% endif %}
         
         {% if request.is_ios %}
-        
-            <!-- framework7 ios -->
-            <link rel="stylesheet" media="only foo" type="text/css" href="{% static "vendor/css/framework7.ios.css" %}">
+        	
+        	<!-- framework7 ios -->
+            <link rel="stylesheet" media="only foo" type="text/css" href="{% static "hybrid/css/framework7-1.3.1.ios.min.css" %}">
             
             <!-- ios -->   
             {% compress css %}
@@ -48,7 +48,7 @@
             {% compress js %}
             <!-- javascript -->
 		    <script type="text/javascript" src="{% static "vendor/js/jquery-1.11.0.min.js" %}"></script>
-		    <script type="text/javascript" src="{% static "vendor/js/framework7.min.js" %}"></script>
+		    <script type="text/javascript" src="{% static "hybrid/js/framework7-1.3.1.min.js" %}"></script>
 		    <script type="text/javascript" src="{% static "hybrid/js/ios.js" %}"></script>
 		    <script type="text/javascript" src="{% static "hybrid/js/hybrid.js" %}"></script>
 		    {% endcompress %}  
