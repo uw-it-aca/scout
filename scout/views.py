@@ -26,4 +26,4 @@ def detail_view(request):
     return render_to_response('scout/detail.html', context_instance=RequestContext(request))
 
 def hybrid_comps_view(request):
-    return render_to_response('hybrid/components.html', context_instance=RequestContext(request))
+    return render_to_response('hybridize/components.html', context_instance=RequestContext(request))
