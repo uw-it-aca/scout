@@ -9,10 +9,11 @@ This README documents whatever steps are necessary to get your application up an
     
     $ git clone https://github.com/uw-it-aca/scout-vagrant
     
+## API ##
 
-"type": ["cafe", “espresso”, "market", "restaurant", "food_truck"],
+    "type": ["cafe", “espresso”, "market", "restaurant", "food_truck"],
 
-"meta_type": ["food"],
+    "meta_type": ["food"],
     
  "extended_info": {
 	    “cuisine” : [[“american”, “bbq”]],
