@@ -34,12 +34,12 @@ General extended info...
 Scout specific extended info...
     
 	 "extended_info": {
-		    “cuisine” : [[“american”, “bbq”, "chinese", "hawaiian", "itallian"]],
-			“food_served” : [[“burgers”, “salads”, “appetizers”, “pizza”, "sandwiches", "coffee_espresso"]],
+		    “cuisine” : [“american”, “bbq”, "chinese", "hawaiian", "itallian"],
+			“food_served” : [“burgers”, “salads”, “appetizers”, “pizza”, "sandwiches", "coffee_espresso"],
 			“menu_url” : “”,
 			“website_url” : “”,
 			“has_delivery” : true,
-			“payment_accepted” : [[“cash”, “visa”, “mastercard”, “husky_card”, “dining_account”]],
-			“open_period” : [[“breakfast”, “lunch”, “dinner”, “late_night”]],
+			“payment_accepted” : [“cash”, “visa”, “mastercard”, “husky_card”, “dining_account”],
+			“open_period” : [“breakfast”, “lunch”, “dinner”, “late_night”],
 	    },
 
