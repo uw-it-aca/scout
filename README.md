@@ -26,7 +26,9 @@ This meta type is needed...
 Extended Info
     
 	 "extended_info": {
-		 	"available_hours"
+		 	"campus","seattle"
+		 	"hours_notes", ""
+		 	"access_notes", ""
 		 	:
 		 	:
 		    “cuisine” : [[“american”, “bbq”]],
