@@ -9,11 +9,11 @@ The Scout project uses Vagrant and Ansible to build your development environment
     
 ## API ##
 
-asdflkjfasd
+The following types are to be used for Food finding...
 
     "type": ["cafe", “espresso”, "market", "restaurant", "food_truck"],
 
-alksdf
+This meta type is needed...
 
     "meta_type": ["food"],
 
