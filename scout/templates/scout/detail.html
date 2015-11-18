@@ -7,33 +7,38 @@
     <div class="">
         
         <h2>Cultivate [[name]]</h2>
-        <p>Burgers, Salads, Appetizers, Entres [[types of food]]<br/>
-        View the menu: [[menu url]]</p>
+        <p>Restaurant, Cafe [[type]]<br/>
+	    Open for: lunch and dinner [[extended_info:open_period]]   
+        </p>
+        
+        
+        
+        <p>Cuisine: American, BBQ [[extended_info:cuisine]]<br/>
+	    Food served: Burgers, Salads, Entres [[extended_info:food_served]]<br/>
+        View the menu: [[extended_info:menu_url]]</p>
         
         <div style="background:url('//farm5.staticflickr.com/4030/4270568382_00a87abe91.jpg') no-repeat; background-size:cover; height:300px;">&nbsp;</div>
         
-        [[photos]]
+        [[images:url]]
         </p>
         
     </div>
+   
+    <h4>Hours</h4>
        
-    <h4>[[hours]]</h4>
+    <p>[[available_hours]]</p>
 	<ul>
     	<li>M, T, W, Th: 8AM - 7PM</li>
 		<li>F: 8AM - 5PM</li>
 		<li>Sa, Su: 1PM - 5PM</li>
 	</ul>
 	
-	<h4>[[hours notes]]</h4>
+	<p>[[hours notes]]</p>
 	<ul>
 		<li>Holiday hours may vary. Extended hours during finals.Interim: M-F: 9am-5pm</li>
 	</ul>
 
-	
-	<h4>[[location]] [[campus]]</h4>
-	
 	{% if request.is_mobile %}
-	
 	<div style="height:200px;">
 		<div id="detail_map" style="height:100%;"></div>
 	</div>
@@ -67,18 +72,36 @@
 
 	{% endif %}
 	
+	<h4>Location information</h4>
 	<ul>
-		<li>[[building]]</li>
-        <li>[[contact info]]</li>
-        <li>[[website]]</li>
-        <li>[[notes/description]]</li>
-        <li>[[payment options]]</li>
-        <li>[[delivery?]]</li>
-        <li>[[related food spots]]</li>
-        <li>[[study space assoc.]]</li>
+		<li>[[location:latitude]]</li>
+		<li>[[location:longitude]]</li>
+		<li>[[location:building_name]]</li>
+		<li>[[location:floor]]</li>
+		<li>[[location:room_number]]</li>
+		<li>[[location:description]]</li>
+		<li>[[capacity]]</li>
 	</ul>
-
+		
+	
+	<h4>Misc. information</h4>
+	<ul>
+        <li>[[extended_info:website_url]]</li>
+        <li>[[extended_info:payment_accepted]]</li>
+        <li>[[extended_info:has_delivery]]</li>
+	</ul>
+	
+	<h4>Related stuff</h4>
+	<ul>
+		<li>asdf</li>
+	</ul>
     
+    <h4>Management</h4>
+    <p>this location is managed by...</p>
+    <ul>
+	    <li>[[organization]]</li>
+	    <li>[[manager]]</li>
+    </ul>
 {% endblock %}
 
 {% block sidebar %}
