@@ -5,7 +5,10 @@ This README documents whatever steps are necessary to get your application up an
 
 ## Vagrant ##
 
-The Scout project uses Vagrant and Ansible to build your development environment. Go to the scout-vagrant github repo for instructions on installing.
+The Scout project uses Vagrant and Ansible to build your development environment. Go to the scout-vagrant github repo for instructions on installation.
+
+https://github.com/uw-it-aca/scout-vagrant
+
     
 ## API ##
 
