@@ -9,6 +9,9 @@ The Scout project uses Vagrant and Ansible to build your development environment
     
 ## API ##
 
+Refer to the Spotseeker API https://github.com/uw-it-aca/spotseeker_server/wiki/REST-protocol-v1
+
+
 The following types are to be used for Food finding...
 
     "type": ["cafe", “espresso”, "market", "restaurant", "food_truck"],
@@ -20,6 +23,9 @@ This meta type is needed...
 Extended Info
     
 	 "extended_info": {
+		 	"available_hours"
+		 	:
+		 	:
 		    “cuisine” : [[“american”, “bbq”]],
 			“food_served” : [[“burgers”, “salads”, “appetizers”, “pizza”]],
 			“menu_url” : “”,
