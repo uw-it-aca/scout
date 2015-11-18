@@ -17,7 +17,7 @@ Refer to the Spotseeker API https://github.com/uw-it-aca/spotseeker_server/wiki/
 
 The following types are to be used for Food finding...
 
-    "type": ["cafe", “espresso”, "market", "restaurant", "food_truck"],
+    "type": ["cafe", "cafeteria", "market", "restaurant", "food_truck"],
 
 This meta type is needed...
 
@@ -34,8 +34,8 @@ General extended info...
 Scout specific extended info...
     
 	 "extended_info": {
-		    “cuisine” : [[“american”, “bbq”]],
-			“food_served” : [[“burgers”, “salads”, “appetizers”, “pizza”]],
+		    “cuisine” : [[“american”, “bbq”, "chinese", "hawaiian", "itallian"]],
+			“food_served” : [[“burgers”, “salads”, “appetizers”, “pizza”, "sandwiches", "coffee_espresso"]],
 			“menu_url” : “”,
 			“website_url” : “”,
 			“has_delivery” : true,
