@@ -23,14 +23,17 @@ This meta type is needed...
 
     "meta_type": ["food"],
 
-Extended Info
+General extended info...
     
 	 "extended_info": {
 		 	"campus","seattle"
 		 	"hours_notes", ""
 		 	"access_notes", ""
-		 	:
-		 	:
+	    },
+	    
+Scout specific extended info...
+    
+	 "extended_info": {
 		    “cuisine” : [[“american”, “bbq”]],
 			“food_served” : [[“burgers”, “salads”, “appetizers”, “pizza”]],
 			“menu_url” : “”,
