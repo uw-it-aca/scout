@@ -12,7 +12,7 @@ https://github.com/uw-it-aca/scout-vagrant
     
 ## API ##
 
-Refer to the Spotseeker API https://github.com/uw-it-aca/spotseeker_server/wiki/REST-protocol-v1
+Refer to the Spotseeker API https://github.com/uw-it-aca/spotseeker_server/wiki/REST-protocol-v1 to view documentation regarding core data that is needed for all spots.
 
 
 The following types are to be used for Food finding...
