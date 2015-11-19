@@ -17,13 +17,9 @@ Refer to the Spotseeker API https://github.com/uw-it-aca/spotseeker_server/wiki/
 
 The following types are to be used for Food finding...
 
-    "type": ["cafe", "cafeteria", "market", "restaurant", "food_truck"],
+    "type" : ["cafe", "cafeteria", "market", "restaurant", "food_truck"],
 
-This meta type is needed...
 
-    "meta_type": ["food"],
-
-	    
 Scout specific extended info...
     
 	"extended_info": {
@@ -33,7 +29,7 @@ Scout specific extended info...
 		"s_hours_notes" : "",
 		"s_access_notes" : "",
 		
-		"s_reservable" : "",
+		"s_reservable" : false,
 		"s_reservation_notes" : "",
 		"s_menu_url" : "",
 		"s_website_url" : "",
