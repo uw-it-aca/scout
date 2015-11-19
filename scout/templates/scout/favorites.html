@@ -1,8 +1,8 @@
-{% extends is_hybrid|yesno:"hybrid/base.html,scout/base.html" %}
+{% extends is_hybrid|yesno:"hybridize/base.html,scout/app.html" %}
 
 {% block title %}Favorites{% endblock %}
 
-{% block web %}
+{% block web_content %}
     <ul>
         <li><a href="/detail/56874">Spot 1 - Phasellus lacinia justo augue, et fringilla felis dignissim sit amet. Nunc eu vulputate ligula. Pellentesque non cursus sem.</a> 
         </li>
@@ -17,7 +17,7 @@
 
 {% block sidebar %}stuff on the side{% endblock %}
 
-{% block hybrid %}
+{% block hybrid_content %}
 
 <div class="list-block media-list">
 

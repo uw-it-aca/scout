@@ -1,0 +1,158 @@
+/*** sass variables ***/
+
+$maincolor: #8e44ad; // wisteria
+
+/** framework7 theme classes ***/
+
+.color-red {
+  color: $maincolor;
+}
+.list-block .item-link.list-button.color-red,
+.tabbar a.active.color-red,
+a.color-red {
+  color: $maincolor;
+}
+.label-switch input[type="checkbox"]:checked + .checkbox.color-red,
+.label-switch.color-red input[type="checkbox"]:checked + .checkbox {
+  background-color: $maincolor;
+}
+.color-red.button:not(.button-fill),
+.color-red.buttons-row .button,
+.theme-custom .button:not(.button-fill) {
+  border-color: $maincolor;
+}
+html:not(.watch-active-state) .color-red.button:not(.button-fill):active,
+html:not(.watch-active-state) .color-red.buttons-row .button:active,
+html:not(.watch-active-state) .theme-custom .button:not(.button-fill):active,
+.color-red.button:not(.button-fill).active-state,
+.color-red.buttons-row .button.active-state,
+.theme-custom .button:not(.button-fill).active-state {
+  background-color: rgba($maincolor, 0.15)
+}
+.color-red.button:not(.button-fill).active,
+.color-red.buttons-row .button.active,
+.theme-custom .button:not(.button-fill).active {
+  background-color: $maincolor;
+  color: #fff;
+}
+.theme-custom .button.button-fill,
+.button.button-fill.color-red {
+  background: $maincolor;
+  color: #fff;
+}
+.color-red i.icon,
+.theme-custom i.icon,
+i.icon.color-red,
+i.icon.theme-custom {
+  color: $maincolor;
+}
+i.icon-next.color-red,
+i.icon-next.theme-custom,
+.theme-custom i.icon-next {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2015%2015'%3E%3Cg%3E%3Cpath%20fill%3D'%23ff3b30'%20d%3D'M1%2C1.6l11.8%2C5.8L1%2C13.4V1.6%20M0%2C0v15l15-7.6L0%2C0L0%2C0z'%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+}
+i.icon-prev.color-red,
+i.icon-prev.theme-custom,
+.theme-custom i.icon-prev {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2015%2015'%3E%3Cg%3E%3Cpath%20fill%3D'%23ff3b30'%20d%3D'M14%2C1.6v11.8L2.2%2C7.6L14%2C1.6%20M15%2C0L0%2C7.6L15%2C15V0L15%2C0z'%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+}
+i.icon-back.color-red,
+i.icon-back.theme-custom,
+.theme-custom i.icon-back {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2012%2020'%3E%3Cpath%20d%3D'M10%2C0l2%2C2l-8%2C8l8%2C8l-2%2C2L0%2C10L10%2C0z'%20fill%3D'%23ff3b30'%2F%3E%3C%2Fsvg%3E");
+}
+i.icon-forward.color-red,
+i.icon-forward.theme-custom,
+.theme-custom i.icon-forward {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2012%2020'%3E%3Cpath%20d%3D'M2%2C20l-2-2l8-8L0%2C2l2-2l10%2C10L2%2C20z'%20fill%3D'%23ff3b30'%2F%3E%3C%2Fsvg%3E");
+}
+i.icon-bars.color-red,
+i.icon-bars.theme-custom,
+.theme-custom i.icon-bars {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2021%2014'%3E%3Cpath%20fill%3D'%23ff3b30'%20d%3D'M0%2C0h2v2H0V0z%20M4%2C0h17v1H4V0z%20M0%2C6h2v2H0V6z%20M4%2C6h17v1H4V6z%20M0%2C12h2v2H0V12z%20M4%2C12h17v1H4V12z'%2F%3E%3C%2Fsvg%3E");
+}
+@media (-webkit-min-device-pixel-ratio: 2) {
+  i.icon-bars.color-red,
+  i.icon-bars.theme-custom,
+  .theme-custom i.icon-bars {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2042%2026'%3E%3Cpath%20fill%3D'%23ff3b30'%20d%3D'M0%2C0h4v4H0V0z%20M8%2C1h34v2H8V1z%20M0%2C11h4v4H0V11z%20M8%2C12h34v2H8V12z%20M0%2C22h4v4H0V22z%20M8%2C23h34v2H8V23z'%2F%3E%3C%2Fsvg%3E");
+  }
+}
+.theme-custom a,
+.theme-custom .item-link.list-button {
+  color: $maincolor;
+}
+.theme-custom .tabbar a,
+.tabbar.theme-custom a,
+.theme-custom .tabbar a i,
+.tabbar.theme-custom a i {
+  color: inherit;
+}
+.theme-custom .tabbar a.active,
+.tabbar.theme-custom a.active,
+.theme-custom .tabbar a.active i,
+.tabbar.theme-custom a.active i {
+  color: $maincolor;
+}
+.theme-custom .range-slider input[type="range"]::-webkit-slider-thumb:before,
+.range-slider.theme-custom input[type="range"]::-webkit-slider-thumb:before {
+  background-color: $maincolor;
+}
+.theme-custom label.label-checkbox input[type="checkbox"]:checked + .item-media i.icon-form-checkbox,
+.theme-custom label.label-checkbox input[type="radio"]:checked + .item-media i.icon-form-checkbox {
+  background-color: $maincolor;
+}
+.theme-custom label.label-radio input[type="checkbox"]:checked ~ .item-inner,
+.theme-custom label.label-radio input[type="radio"]:checked ~ .item-inner {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2013%2010'%3E%3Cpolygon%20fill%3D'%23ff3b30'%20points%3D'11.6%2C0%204.4%2C7.2%201.4%2C4.2%200%2C5.6%204.4%2C10%204.4%2C10%204.4%2C10%2013%2C1.4%20'%2F%3E%3C%2Fsvg%3E");
+}
+.theme-custom .picker-calendar-day.picker-calendar-day-selected span {
+  background-color: $maincolor !important;
+}
+.swiper-pagination.color-red .swiper-pagination-bullet-active,
+.theme-custom .swiper-pagination .swiper-pagination-bullet-active {
+  background-color: $maincolor;
+}
+.swiper-button-next.color-red,
+.swiper-container-rtl .swiper-button-prev.color-red,
+.theme-custom .swiper-button-next,
+.theme-custom .swiper-container-rtl .swiper-button-prev {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M27%2C22L27%2C22L5%2C44l-2.1-2.1L22.8%2C22L2.9%2C2.1L5%2C0L27%2C22L27%2C22z'%20fill%3D'%23ff3b30'%2F%3E%3C%2Fsvg%3E");
+}
+.swiper-button-prev.color-red,
+.swiper-container-rtl .swiper-button-next.color-red,
+.theme-custom .swiper-button-prev,
+.theme-custom .swiper-container-rtl .swiper-button-next {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M0%2C22L22%2C0l2.1%2C2.1L4.2%2C22l19.9%2C19.9L22%2C44L0%2C22L0%2C22L0%2C22z'%20fill%3D'%23ff3b30'%2F%3E%3C%2Fsvg%3E");
+}
+.bg-red,
+.button.button-fill.bg-red,
+a.bg-red,
+.list-block .swipeout-actions-left a.bg-red,
+.list-block .swipeout-actions-right a.bg-red {
+  background-color: $maincolor;
+}
+.border-red {
+  border-color: $maincolor;
+}
+.list-block .border-red.item-inner:after,
+.list-block ul.border-red:after,
+.border-red:after,
+.list-block .border-red.item-inner:before,
+.list-block ul.border-red:before,
+.border-red:before {
+  background-color: $maincolor;
+}
+
+/*** custom link button ***/
+
+button.link {
+	-webkit-appearance: none;
+	border: none;
+	background: transparent;
+	padding: 0;
+	font-size: 17px;
+	color: $maincolor;
+}
+
+

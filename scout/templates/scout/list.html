@@ -1,37 +1,36 @@
-{% extends is_hybrid|yesno:"hybrid/base.html,scout/base.html" %}
+{% extends is_hybrid|yesno:"hybridize/base.html,scout/app.html" %}
 
 {% block title %}List{% endblock %}
 
-{% block web %}
+{% block web_content %}
 
 {% if request.is_mobile or request.is_tablet %}
 <div style="text-align: right;"> <a id="map_link" href="/">List</a> | <a id="map_link" href="/map/">Map</a></div>
 {% endif %}
 
-<h2>All [[filtered_by]]</h2>
+<h2>All OPEN/NEARBY (if location shared)</h2>
+<h2>All OPEN (centered at fountain)</h2>
             
 <ul>
-    <li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location]], [[building]], [[types of food]], [[distance?]], [[is_open]], [[campus]], [[food category]]</a></li>
+    <li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location:building_name]], [[extended_info:food_served]], [[extended_info:open_period]], DISTANCE_FROM_YOU</a></li>
     
-    <li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location]], [[building]], [[types of food]], [[distance?]], [[is_open]], [[campus]], [[food category]]</a></li>
-    
-    <li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location]], [[building]], [[types of food]], [[distance?]], [[is_open]], [[campus]], [[food category]]</a></li>
-    
-    <li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location]], [[building]], [[types of food]], [[distance?]], [[is_open]], [[campus]], [[food category]]</a></li>
-
-	<li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location]], [[building]], [[types of food]], [[distance?]], [[is_open]], [[campus]], [[food category]]</a></li>
-	
-	<li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location]], [[building]], [[types of food]], [[distance?]], [[is_open]], [[campus]], [[food category]]</a></li>
-	
-	<li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location]], [[building]], [[types of food]], [[distance?]], [[is_open]], [[campus]], [[food category]]</a></li>
-	
-	<li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location]], [[building]], [[types of food]], [[distance?]], [[is_open]], [[campus]], [[food category]]</a></li>
-	
-	<li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location]], [[building]], [[types of food]], [[distance?]], [[is_open]], [[campus]], [[food category]]</a></li>
-	
-	<li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location]], [[building]], [[types of food]], [[distance?]], [[is_open]], [[campus]], [[food category]]</a></li>
-	
-	<li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location]], [[building]], [[types of food]], [[distance?]], [[is_open]], [[campus]], [[food category]]</a></li>
+    <li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location:building_name]], [[extended_info:food_served]], [[extended_info:open_period]], DISTANCE_FROM_YOU</a></li>
+    <li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location:building_name]], [[extended_info:food_served]], [[extended_info:open_period]], DISTANCE_FROM_YOU</a></li>
+    <li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location:building_name]], [[extended_info:food_served]], [[extended_info:open_period]], DISTANCE_FROM_YOU</a></li>
+    <li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location:building_name]], [[extended_info:food_served]], [[extended_info:open_period]], DISTANCE_FROM_YOU</a></li>
+    <li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location:building_name]], [[extended_info:food_served]], [[extended_info:open_period]], DISTANCE_FROM_YOU</a></li>
+    <li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location:building_name]], [[extended_info:food_served]], [[extended_info:open_period]], DISTANCE_FROM_YOU</a></li>
+    <li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location:building_name]], [[extended_info:food_served]], [[extended_info:open_period]], DISTANCE_FROM_YOU</a></li>
+    <li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location:building_name]], [[extended_info:food_served]], [[extended_info:open_period]], DISTANCE_FROM_YOU</a></li>
+    <li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location:building_name]], [[extended_info:food_served]], [[extended_info:open_period]], DISTANCE_FROM_YOU</a></li>
+    <li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location:building_name]], [[extended_info:food_served]], [[extended_info:open_period]], DISTANCE_FROM_YOU</a></li>
+    <li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location:building_name]], [[extended_info:food_served]], [[extended_info:open_period]], DISTANCE_FROM_YOU</a></li>
+    <li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location:building_name]], [[extended_info:food_served]], [[extended_info:open_period]], DISTANCE_FROM_YOU</a></li>
+    <li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location:building_name]], [[extended_info:food_served]], [[extended_info:open_period]], DISTANCE_FROM_YOU</a></li>
+    <li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location:building_name]], [[extended_info:food_served]], [[extended_info:open_period]], DISTANCE_FROM_YOU</a></li>
+    <li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location:building_name]], [[extended_info:food_served]], [[extended_info:open_period]], DISTANCE_FROM_YOU</a></li>
+    <li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location:building_name]], [[extended_info:food_served]], [[extended_info:open_period]], DISTANCE_FROM_YOU</a></li>
+    <li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location:building_name]], [[extended_info:food_served]], [[extended_info:open_period]], DISTANCE_FROM_YOU</a></li>
 	
 </ul>
 
@@ -42,8 +41,8 @@
 <!-- show a map on the list page -->
 <div id="list_map" style="height:100%;"></div>
 
-<!-- since turbolinks loads the full body... initialize map stuff locally in the template. then, call the function in the map.js file -->     
-<script>
+<!-- since turbolinks loads the full body... generate this function in the template. then, call the function in the map.js file -->     
+<script type="text/javascript">
 
 function initializeListMap() {
 	
@@ -60,16 +59,7 @@ function initializeListMap() {
 	    };
 		
 		var map = new google.maps.Map(document.getElementById('list_map'), mapOptions);
-         
-        /** single marker           
-        var marker = new google.maps.Marker({
-            position: myLatlng,
-            map: map,
-            title: 'Hello World!',
-            animation: google.maps.Animation.DROP,
-        });
-        **/
-        
+                 
         // multiple pins on a single map
         var locations = [
         	["47.6551526", "-122.3079563"], 
@@ -92,12 +82,11 @@ function initializeListMap() {
 	}
 	
 }
-
 </script>
-
+    
 {% endblock %}
 
-{% block hybrid %}
+{% block hybrid_content %}
 
 <!--<div class="content-block" style="margin:5px 0;">
 	<div class="buttons-row"><a href="/?hybrid=true&x_replace_page=true&x_page_title=Scout" class="button active">List</a><a href="/map/?hybrid=true&x_replace_page=true&x_page_title=Scout" class="button">Map</a></div>

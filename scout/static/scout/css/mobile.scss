@@ -1,3 +1,13 @@
+// turbolinks
+
+html.turbolinks-progress-bar::before {
+  background-color: red !important;
+  height: 5px !important;
+}
+
+
+// scout mobile
+
 .scout-scroll { margin-top: 110px; }
 
 .scout-content { margin: 20px;
@@ -14,8 +24,6 @@
 }
 
 .scout-map-canvas { height: 100%; margin: 0px; padding: 0px; }
-
-.scout-footer { margin: 0 20px; }
 
 .overlay {
   position:absolute;
