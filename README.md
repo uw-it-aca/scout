@@ -17,7 +17,7 @@ Refer to the Spotseeker API https://github.com/uw-it-aca/spotseeker_server/wiki/
 
 The following types are to be used for Food finding...
 
-    "type" : ["cafe", "food_court", "market", "fine_dining", "food_truck"],
+    "type" : ["cafe", "food_court", "cafeteria", "market", "fine_dining", "food_truck"],
 
 
 Scout specific extended info...
@@ -26,15 +26,22 @@ Scout specific extended info...
 		
 		"s_app_type" : "food",
 		"s_campus" : "seattle",
+		
 		"s_hours_notes" : "",
 		"s_access_notes" : "",
 		
 		"s_menu_url" : "",
 		"s_website_url" : "",
-		"s_has_delivery" : true,
-	    "s_reservable" : false,
+		
+		"s_has_alert" : false,
+		"s_alert_notes" : "",
+		
+	    "s_has_reservation" : false,
 		"s_reservation_notes" : "",
-		"s_price_level" : "2",
+		
+		"s_has_coupon" : "true",
+		"s_coupon_expiration" "datime",
+		"s_coupon_url" : "",
 		
 	    "s_cuisine_american" : true,
 		"s_cuisine_chinese" : false,
