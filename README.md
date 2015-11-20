@@ -34,6 +34,7 @@ Scout specific extended info...
 		"s_has_delivery" : true,
 	    "s_reservable" : false,
 		"s_reservation_notes" : "",
+		"s_price_level" : "2",
 		
 	    "s_cuisine_american" : true,
 		"s_cuisine_chinese" : false,
@@ -53,7 +54,7 @@ Scout specific extended info...
 		"s_serves_appetizers" : true,
 		"s_serves_pizza" : true,
 		"s_serves_sandwiches" : true,
-		"s_serves_coffee" : true,
+		"s_serves_espresso" : true,
 		"s_serves_sushi" : true,
 		"s_serves_smoothies" : true,
 		"s_serves_pasta" : true,
