@@ -12,7 +12,8 @@
         <h2>Cultivate [[name]]</h2>
         <p>Restaurant, Cafe [[type]]<br/>
 	    Open for: lunch and dinner [[extended_info:s_open_xxxx]]</p>
-                
+        
+        <p>[[location_description]] Cultivate is a special destination offering full-service dining with a nod to locally-sourced cuisine and a community feel. The menu celebrates new discoveries, familiar favorites, and features a Pacific Northwest twist on regional comforts.</p>        
               
         <p>Cuisine: [[extended_info:s_cuisine_xxxx]] American, BBQ <br/>
 	    Food served: [[extended_info:s_serves_xxxx]] Burgers, Salads, Entrees<br/>
@@ -21,6 +22,8 @@
         <p>Reservations: [[extended_info:s_has_reservation]]<br/>
 		[[extended_info:s_reservation_notes]]</p>
 		
+		
+		<p>Contact: [[extended_info:s_phone]]</p>
 		
         <div style="background:url('//farm5.staticflickr.com/4030/4270568382_00a87abe91.jpg') no-repeat; background-size:cover; height:300px;">&nbsp;</div>
         
@@ -81,7 +84,7 @@
 	<ul>
 		<li>[[location:latitude]]</li>
 		<li>[[location:longitude]]</li>
-		<li>[[location:building_name]]</li>
+		<li>[[location:building_name]], [[extended_info:s_building_code]]</li>
 		<li>[[location:floor]]</li>
 		<li>[[location:room_number]]</li>
 		<li>[[location:description]]</li>
@@ -106,8 +109,8 @@
     <h4>Management</h4>
     <p>this location is managed by...</p>
     <ul>
-	    <li>[[organization]]</li>
-	    <li>[[manager]]</li>
+	    <li>[[owner]] HFS</li>
+	    <li>[[manager]] netid??</li>
     </ul>
 {% endblock %}
 
