@@ -41,7 +41,6 @@ Scout specific extended info...
 		"s_reservation_notes" : "",
 			
 		"s_phone" : "",
-		"s_building_code", "",
 		
 		"s_has_coupon" : "true",
 		"s_coupon_expiration" "datime",
