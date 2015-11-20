@@ -24,7 +24,8 @@ Scout specific extended info...
     
 	"extended_info": {
 		
-		"s_app_type" : "food",
+		"app_type" : "food",
+		
 		"s_campus" : "seattle",
 		
 		"s_hours_notes" : "",

@@ -6,17 +6,22 @@
 {% block web_content %}  
     <div class="">
         
+        <p>[[extended_info:s_has_alert]]<br/>
+	    [[extended_info:s_alert_notes]]  ALERT!! We are closed due to a grease fire!</p>
+        
         <h2>Cultivate [[name]]</h2>
         <p>Restaurant, Cafe [[type]]<br/>
-	    Open for: lunch and dinner [[extended_info:open_period]]   
-        </p>
+	    Open for: lunch and dinner [[extended_info:s_open_xxxx]]</p>
+                
+              
+        <p>Cuisine: [[extended_info:s_cuisine_xxxx]] American, BBQ <br/>
+	    Food served: [[extended_info:s_serves_xxxx]] Burgers, Salads, Entrees<br/>
+        View the menu: [[extended_info:s_menu_url]]</p>
         
-        
-        
-        <p>Cuisine: American, BBQ [[extended_info:cuisine]]<br/>
-	    Food served: Burgers, Salads, Entres [[extended_info:food_served]]<br/>
-        View the menu: [[extended_info:menu_url]]</p>
-        
+        <p>Reservations: [[extended_info:s_has_reservation]]<br/>
+		[[extended_info:s_reservation_notes]]</p>
+		
+		
         <div style="background:url('//farm5.staticflickr.com/4030/4270568382_00a87abe91.jpg') no-repeat; background-size:cover; height:300px;">&nbsp;</div>
         
         [[images:url]]
@@ -33,14 +38,9 @@
 		<li>Sa, Su: 1PM - 5PM</li>
 	</ul>
 	
-	<p>[[extended_info:hours_notes]]</p>
+	<p>[[extended_info:s_hours_notes]]</p>
 	<ul>
 		<li>Holiday hours may vary. Extended hours during finals.Interim: M-F: 9am-5pm</li>
-	</ul>
-	
-	<p>[[extended_info:access_notes]]</p>
-	<ul>
-		<li>Only dorm residents allowed.</li>
 	</ul>
 	
 	{% if request.is_mobile %}
@@ -87,20 +87,22 @@
 		<li>[[location:description]]</li>
 		<li>[[capacity]]</li>
 	</ul>
-		
+	
+	<p>[[extended_info:s_access_notes]]</p>
+	<ul>
+		<li>Only dorm residents allowed.</li>
+	</ul>	
 	
 	<h4>Misc. information</h4>
 	<ul>
-        <li>[[extended_info:website_url]]</li>
-        <li>[[extended_info:payment_accepted]]</li>
-        <li>[[extended_info:has_delivery]]</li>
+        <li>[[extended_info:s_website_url]]</li>
+        <li>[[extended_info:s_payment_xxxx]]</li>
+        <li>[[extended_info:s_has_coupon]]</li>
+        <li>[[extended_info:s_coupon_expiration]]</li>
+        <li>[[extended_info:s_coupon_url]]</li>
 	</ul>
 	
-	<h4>Related stuff</h4>
-	<ul>
-		<li>asdf</li>
-	</ul>
-    
+
     <h4>Management</h4>
     <p>this location is managed by...</p>
     <ul>
