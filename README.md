@@ -24,12 +24,14 @@ Scout specific extended info...
     
 	"extended_info": {
 		
+		// global extended info
+		
 		"app_type" : "food",
+		"campus" : "seattle",
+		"hours_notes" : "",
+		"access_notes" : "",
 		
-		"s_campus" : "seattle",
-		
-		"s_hours_notes" : "",
-		"s_access_notes" : "",
+		// scout extended info
 		
 		"s_menu_url" : "",
 		"s_website_url" : "",
@@ -55,6 +57,7 @@ Scout specific extended info...
 		"s_cuisine_indian" : false,
 		"s_cuisine_japanese" : false,
 		"s_cuisine_mexican" : false,
+		
 		"s_cuisine_bbq" : false,
 		"s_cuisine_light_lunch" : false,
 		
