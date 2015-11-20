@@ -70,11 +70,11 @@ Scout specific extended info...
 		"s_food_pasta" : true,
 		"s_food_tacos" : true,
 
-		"s_payment_cash" : true,
-		"s_payment_visa" : true,
-		"s_payment_mastercard" : true,
-		"s_payment_husky" : true,
-		"s_payment_dining" : true,
+		"s_pay_cash" : true,
+		"s_pay_visa" : true,
+		"s_pay_mastercard" : true,
+		"s_pay_husky" : true,
+		"s_pay_dining" : true,
 		
 		"s_open_breakfast" : true,
 		"s_open_lunch" : true,
