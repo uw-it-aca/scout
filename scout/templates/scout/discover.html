@@ -1,4 +1,5 @@
 {% extends is_hybrid|yesno:"hybridize/base.html,scout/app.html" %}
+
 {% load staticfiles %}
 
 {% block title %}Discover{% endblock %}
@@ -8,7 +9,7 @@
 <h2>Discover</h2>
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non urna et lorem venenatis varius quis sit amet dui. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur a nisi odio.</p>
 
-<p>Donec et nulla auctor massa pharetra adipiscing ut sit amet sem. Suspendisse molestie velit vitae mattis tincidunt. Ut sit amet quam mollis, vulputate turpis vel, sagittis felis. </p>   
+<p>Donec et nulla auctor massa pharetra adipiscing ut sit amet sem. Suspendisse molestie velit vitae mattis tincidunt. Ut sit amet quam mollis, vulputate turpis vel, sagittis felis. </p>
 
 <!--
 <h4>Restaurant types:</h4>
@@ -47,53 +48,53 @@
 
 <h4>Most popular</h4>
 <ul>
-	<li><a href="/detail/56874">Cultivate</a></li>
-	<li><a href="/detail/56874">The 8</a></li>
-	<li><a href="/detail/56874">By George</a></li>
-	<li><a href="/detail/56874">The Rotunda</a></li>
-	<li><a href="/detail/56874">Red Square BBQ</a></li>
+    <li><a href="/detail/56874">Cultivate</a></li>
+    <li><a href="/detail/56874">The 8</a></li>
+    <li><a href="/detail/56874">By George</a></li>
+    <li><a href="/detail/56874">The Rotunda</a></li>
+    <li><a href="/detail/56874">Red Square BBQ</a></li>
 </ul>
 
 <h4>Coffee near you[[extended_info:s_food_espresso ]]</h4>
 <ul>
-	<li><a href="/detail/56874">Burke Cafe</a></li>
-	<li><a href="/detail/56874">Husky Grind</a></li>
-	<li><a href="/detail/56874">Parnassus</a></li>
-	<li><a href="/detail/56874">Public Grounds</a></li>
-	<li><a href="/detail/56874">Overpass Espresso</a></li>
+    <li><a href="/detail/56874">Burke Cafe</a></li>
+    <li><a href="/detail/56874">Husky Grind</a></li>
+    <li><a href="/detail/56874">Parnassus</a></li>
+    <li><a href="/detail/56874">Public Grounds</a></li>
+    <li><a href="/detail/56874">Overpass Espresso</a></li>
 </ul>
 
 <h4>Breakfast before class [[extended_info:s_open_breakfast ]]</h4>
 <ul>
-	<li><a href="/detail/56874">Cultivate</a></li>
-	<li><a href="/detail/56874">The 8</a></li>
-	<li><a href="/detail/56874">By George</a></li>
-	<li><a href="/detail/56874">The Rotunda</a></li>
-	<li><a href="/detail/56874">Bob's Burgers</a></li>
+    <li><a href="/detail/56874">Cultivate</a></li>
+    <li><a href="/detail/56874">The 8</a></li>
+    <li><a href="/detail/56874">By George</a></li>
+    <li><a href="/detail/56874">The Rotunda</a></li>
+    <li><a href="/detail/56874">Bob's Burgers</a></li>
 </ul>
 
 <h4>Evening class muchies [[extended_info:s_open_late_night]]</h4>
 <ul>
-	<li><a href="/detail/56874">Cultivate</a></li>
-	<li><a href="/detail/56874">The 8</a></li>
-	<li><a href="/detail/56874">By George</a></li>
-	<li><a href="/detail/56874">The Rotunda</a></li>
-	<li><a href="/detail/56874">Bob's Burgers</a></li>
+    <li><a href="/detail/56874">Cultivate</a></li>
+    <li><a href="/detail/56874">The 8</a></li>
+    <li><a href="/detail/56874">By George</a></li>
+    <li><a href="/detail/56874">The Rotunda</a></li>
+    <li><a href="/detail/56874">Bob's Burgers</a></li>
 </ul>
 
 <h4>Dine w/ discounts [[extended_info:s_has_coupon]]</h4>
 <ul>
-	<li><a href="/detail/56874">Cultivate</a></li>
-	<li><a href="/detail/56874">The 8</a></li>
-	<li><a href="/detail/56874">By George</a></li>
-	<li><a href="/detail/56874">The Rotunda</a></li>
-	<li><a href="/detail/56874">Red Square BBQ</a></li>
+    <li><a href="/detail/56874">Cultivate</a></li>
+    <li><a href="/detail/56874">The 8</a></li>
+    <li><a href="/detail/56874">By George</a></li>
+    <li><a href="/detail/56874">The Rotunda</a></li>
+    <li><a href="/detail/56874">Red Square BBQ</a></li>
 </ul>
 
 {% endblock %}
 
 {% block sidebar %}
-<div style="background:url('{% static "scout/img/huskygrind.jpg" %}') no-repeat; background-size:cover; background-position:center center; position:absolute; top:0; bottom:0; width: 100%;">&nbsp;</div>
+<div style="background:url('{% static " scout/img/huskygrind.jpg " %}') no-repeat; background-size:cover; background-position:center center; position:absolute; top:0; bottom:0; width: 100%;">&nbsp;</div>
 {% endblock %}
 
 
@@ -102,14 +103,12 @@
 <div class="content-block-title">Welcome</div>
 <!-- Inset content block -->
 <div class="content-block">
-  <div class="content-block-inner">
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non urna et lorem venenatis varius quis sit amet dui. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur a nisi odio.</p>
-
-<p>Donec et nulla auctor massa pharetra adipiscing ut sit amet sem. Suspendisse molestie velit vitae mattis tincidunt. Ut sit amet quam mollis, vulputate turpis vel, sagittis felis. </p>     
-  </div>
+    <div class="content-block-inner">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non urna et lorem venenatis varius quis sit amet dui. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur a nisi odio.</p>
+        <p>Donec et nulla auctor massa pharetra adipiscing ut sit amet sem. Suspendisse molestie velit vitae mattis tincidunt. Ut sit amet quam mollis, vulputate turpis vel, sagittis felis. </p>
+    </div>
 </div>
 
-<!--
 <div class="content-block-title">Restaurant types:</div>
 <div class="list-block">
   <ul>
@@ -120,7 +119,7 @@
 			    <div class="item-title">Cafes</div>
 		    </div>
 		  </div>
-		</a>          
+		</a>
     </li>
     <li>
 	    <a href="/?hybrid=true&x_push_page=true&x_page_title=Fine+Dining" class="item-link">
@@ -129,7 +128,7 @@
 			    <div class="item-title">Fine Dining</div>
 		    </div>
 		  </div>
-		</a>          
+		</a>
     </li>
     <li>
 	    <a href="/?hybrid=true&x_push_page=true&x_page_title=Cafeteria" class="item-link">
@@ -138,7 +137,7 @@
 			    <div class="item-title">Cafeteria</div>
 		    </div>
 		  </div>
-		</a>          
+		</a>
     </li>
     <li>
 	    <a href="/?hybrid=true&x_push_page=true&x_page_title=Food+Trucks" class="item-link">
@@ -147,7 +146,7 @@
 			    <div class="item-title">Food Trucks</div>
 		    </div>
 		  </div>
-		</a>          
+		</a>
     </li>
     <li>
 	    <a href="/?hybrid=true&x_push_page=true&x_page_title=Markets" class="item-link">
@@ -156,7 +155,7 @@
 			    <div class="item-title">Markets</div>
 		    </div>
 		  </div>
-		</a>          
+		</a>
     </li>
   </ul>
 </div>
@@ -172,7 +171,7 @@
 			    <div class="item-title">Pizza</div>
 		    </div>
 		  </div>
-		</a>          
+		</a>
     </li>
     <li>
 	    <a href="/?hybrid=true&x_push_page=true&x_page_title=Burgers" class="item-link">
@@ -181,7 +180,7 @@
 			    <div class="item-title">Burgers</div>
 		    </div>
 		  </div>
-		</a>          
+		</a>
     </li>
     <li>
 	    <a href="/?hybrid=true&x_push_page=true&x_page_title=Salads" class="item-link">
@@ -190,7 +189,7 @@
 			    <div class="item-title">Salads</div>
 		    </div>
 		  </div>
-		</a>          
+		</a>
     </li>
     <li>
 	    <a href="/?hybrid=true&x_push_page=true&x_page_title=Coffee/Espresso" class="item-link">
@@ -199,7 +198,7 @@
 			    <div class="item-title">Coffee/Espresso</div>
 		    </div>
 		  </div>
-		</a>          
+		</a>
     </li>
     <li>
 	    <a href="/?hybrid=true&x_push_page=true&x_page_title=Sandwiches" class="item-link">
@@ -208,7 +207,7 @@
 			    <div class="item-title">Sandwiches</div>
 		    </div>
 		  </div>
-		</a>          
+		</a>
     </li>
   </ul>
 </div>
@@ -223,11 +222,9 @@
 			    <div class="item-title">Components Example</div>
 		    </div>
 		  </div>
-		</a>          
+		</a>
     </li>
    </ul>
 </div>
--->
-
 
 {% endblock %}
