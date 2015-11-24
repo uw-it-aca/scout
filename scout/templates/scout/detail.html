@@ -89,7 +89,23 @@
                 disableDefaultUI: true
             };
 
+            var styles = [
+                {
+                    "featureType": "all",
+                    "elementType": "all",
+                    "stylers": [
+                        {
+                            "lightness": "40"
+                        },
+                        {
+                            "saturation": "-100"
+                        }
+                    ]
+                }
+            ]
+
             var map = new google.maps.Map(document.getElementById('detail_map'), mapOptions);
+            map.setOptions({styles: styles});
 
             var marker = new google.maps.Marker({
                 position: myLatlng,
@@ -158,7 +174,23 @@
                 /*scrollwheel: false, draggable: false, disableDefaultUI: true*/
             };
 
+            var styles = [
+                {
+                    "featureType": "all",
+                    "elementType": "all",
+                    "stylers": [
+                        {
+                            "lightness": "40"
+                        },
+                        {
+                            "saturation": "-100"
+                        }
+                    ]
+                }
+            ]
+            
             var map = new google.maps.Map(document.getElementById('detail_map'), mapOptions);
+            map.setOptions({styles: styles});
 
             var marker = new google.maps.Marker({
                 position: myLatlng,
