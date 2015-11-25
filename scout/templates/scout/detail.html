@@ -170,25 +170,22 @@
             myLatlng = new google.maps.LatLng(47.6551526, -122.3079563);
             mapOptions = {
                 center: myLatlng,
-                zoom: 19,
+                zoom: 20,
                 /*scrollwheel: false, draggable: false, disableDefaultUI: true*/
             };
 
             var styles = [
                 {
-                    "featureType": "all",
+                    "featureType": "poi.place_of_worship",
                     "elementType": "all",
                     "stylers": [
                         {
-                            "lightness": "40"
-                        },
-                        {
-                            "saturation": "-100"
+                            "visibility": "off"
                         }
                     ]
                 }
             ]
-            
+
             var map = new google.maps.Map(document.getElementById('detail_map'), mapOptions);
             map.setOptions({styles: styles});
 
