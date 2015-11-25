@@ -11,22 +11,22 @@
 <h2>All OPEN_NOW (centered at fountain)</h2>
 
 <ul>
-    <li>
+    <li id="aaaa">
         <a href="/detail/56874" style="display:block;text-decoration:none;">
             <img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[type]], [[location:building_name]], [[extended_info:s_cuisine_xxxx]], [[extended_info:s_food_xxxx]]
         </a>
     </li>
-    <li>
+    <li id="bbbb">
         <a href="/detail/56874" style="display:block;text-decoration:none;">
             <img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[type]], [[location:building_name]], [[extended_info:s_cuisine_xxxx]], [[extended_info:s_food_xxxx]]
         </a>
     </li>
-    <li>
+    <li id="cccc">
         <a href="/detail/56874" style="display:block;text-decoration:none;">
             <img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[type]], [[location:building_name]], [[extended_info:s_cuisine_xxxx]], [[extended_info:s_food_xxxx]]
         </a>
     </li>
-    <li>
+    <li id="dddd">
         <a href="/detail/56874" style="display:block;text-decoration:none;">
             <img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[type]], [[location:building_name]], [[extended_info:s_cuisine_xxxx]], [[extended_info:s_food_xxxx]]
         </a>
@@ -157,53 +157,63 @@ function initializeListMap() {
 
         // multiple pins on a single map
         var locations = [
-            ["47.660611", "-122.310593"],
-            ["47.656311", "-122.310491"],
-            ["47.624822", "-122.340703"],
-            ["47.650754", "-122.309868"],
-            ["47.656622", "-122.314692"],
-            ["47.65376", "-122.301221"],
-            ["47.655838", "-122.313476"],
-            ["47.655372", "-122.305342"],
-            ["47.653616", "-122.31114"],
-            ["47.655372", "-122.305342"],
-            ["47.655842", "-122.313764"],
-            ["47.654696", "-122.317143"],
-            ["47.660416", "-122.304751"],
-            ["47.65557", "-122.31481"],
-            ["47.654591", "-122.307733"],
-            ["47.623828", "-122.341326"],
-            ["47.655784", "-122.310019"],
-            ["47.659036", "-122.308382"],
-            ["47.650942", "-122.309042"],
-            ["47.655372", "-122.305342"],
-            ["47.65557", "-122.31481"],
-            ["47.658075", "-122.303978"],
-            ["47.65845", "-122.306467"],
-            ["47.657475", "-122.310362"],
-            ["47.653262", "-122.30592"],
-            ["47.655784", "-122.310019"],
-            ["47.651238", "-122.310523"],
-            ["47.655784", "-122.310019"],
-            ["47.655372", "-122.305342"],
-            ["47.65582", "-122.308667"],
-            ["47.658075", "-122.303978"],
-            ["47.658075", "-122.303978"],
-            ["47.659043", "-122.311177"],
-            ["47.653652", "-122.308517"],
-            ["47.660785", "-122.315201"],
-            ["47.652192", "-122.312808"],
+            {
+                "spot_name" : 'Burke Cafe',
+                "id" : 'aaaa',
+                "lat" : '47.660611',
+                "lng" : '-122.310593',
+            },
+            {
+                "spot_name" : 'By George',
+                "id" : 'bbbb',
+                "lat" : '47.656311',
+                "lng" : '-122.310491',
+            },
+            {
+                "spot_name" : 'Cultivate',
+                "id" : 'cccc',
+                "lat" : '47.656622',
+                "lng" : '-122.314692',
+            },
+            {
+                "spot_name" : 'District Market',
+                "id" : 'dddd',
+                "lat" : '47.655838',
+                "lng" : '-122.313476',
+            },
 		]
 
-        var marker, i;
+        var marker, i, data;
+
+        // create and open InfoWindow.
+        var infoWindow = new google.maps.InfoWindow();
 
 		for (i = 0; i < locations.length; i++) {
 
+            data = locations[i];
+
 			marker = new google.maps.Marker({
-		    position: new google.maps.LatLng(locations[i][0], locations[i][1]),
-		    map: map,
-            animation: google.maps.Animation.DROP
+		        position: new google.maps.LatLng(data.lat, data.lng),
+		        map: map,
+                animation: google.maps.Animation.DROP
 		    });
+
+            // attach click event to the marker
+            (function (marker, data) {
+
+                google.maps.event.addListener(marker, "click", function (e) {
+                    //Wrap the content inside an HTML DIV in order to set height and width of InfoWindow.
+                    infoWindow.setContent("<div style = 'width:200px;'>" + data.spot_name + "</div>");
+                    infoWindow.open(map, marker);
+                    $('li').css('background', 'none'); // clear any highlighted spots first
+                    $('#' + data.id).css('background', '#eee');
+                });
+
+                google.maps.event.addListener(infoWindow,'closeclick',function(){
+                    $('#' + data.id).css('background', 'none');
+                });
+
+            })(marker, data);
 
 		}
 
