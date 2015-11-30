@@ -146,6 +146,15 @@ function initializeListMap() {
                         "visibility": "off"
                     }
                 ]
+            },
+            {
+                "featureType": "poi.business",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "visibility": "off"
+                    }
+                ]
             }
         ]
 
@@ -239,7 +248,7 @@ function initializeListMap() {
                 "lng" : '-122.3101554',
             },
             {
-            "spot_name" : 'Red Square BBQ',
+                "spot_name" : 'Red Square BBQ',
                 "id" : 'dddd',
                 "lat" : '47.655642',
                 "lng" : '-122.3101526',
@@ -264,7 +273,15 @@ function initializeListMap() {
 			marker = new google.maps.Marker({
 		        position: new google.maps.LatLng(data.lat, data.lng),
 		        map: map,
-                animation: google.maps.Animation.DROP
+                animation: google.maps.Animation.DROP,
+                icon: {
+            		path: google.maps.SymbolPath.CIRCLE,
+            		fillColor: '#6562aa',
+            		fillOpacity: 1,
+            		strokeColor: '#53518e',
+                    scale: 10,
+            		strokeWeight: 0
+            	},
 		    });
 
             // attach click event to the marker
