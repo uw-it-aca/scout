@@ -270,10 +270,13 @@ function initializeListMap() {
 
             data = locations[i];
 
-			marker = new google.maps.Marker({
+			marker = new MarkerWithLabel({
 		        position: new google.maps.LatLng(data.lat, data.lng),
 		        map: map,
                 animation: google.maps.Animation.DROP,
+                labelContent: data.spot_name,
+                labelAnchor: new google.maps.Point(-12, 6),
+                labelClass: "map-label", // the CSS class for the label
                 icon: {
             		path: google.maps.SymbolPath.CIRCLE,
             		fillColor: '#6562aa',
