@@ -44,7 +44,7 @@ Scout specific extended info...
 		"s_reservation_notes" : "",
 
 		"s_has_coupon" : "true",
-		"s_coupon_expiration" "datime",
+		"s_coupon_expiration" : "datetime",
 		"s_coupon_url" : "",
 
 	    "s_cuisine_american" : true,
@@ -82,4 +82,7 @@ Scout specific extended info...
 		"s_open_lunch" : true,
 		"s_open_dinner" : true,
 		"s_open_late_night" : false,
+
+        // font awesome icon
+        "s_marker_icon" : "fa-coffee",
 	},
