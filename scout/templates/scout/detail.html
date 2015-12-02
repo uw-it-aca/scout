@@ -3,143 +3,201 @@
 
 {% block title %}Details{% endblock %}
 
-{% block web_content %}  
-    <div class="">
-        
-        <h2>Cultivate [[name]]</h2>
-        <p>Restaurant, Cafe [[type]]<br/>
-	    Open for: lunch and dinner [[extended_info:open_period]]   
-        </p>
-        
-        
-        
-        <p>Cuisine: American, BBQ [[extended_info:cuisine]]<br/>
-	    Food served: Burgers, Salads, Entres [[extended_info:food_served]]<br/>
-        View the menu: [[extended_info:menu_url]]</p>
-        
-        <div style="background:url('//farm5.staticflickr.com/4030/4270568382_00a87abe91.jpg') no-repeat; background-size:cover; height:300px;">&nbsp;</div>
-        
-        [[images:url]]
-        </p>
-        
-    </div>
-   
-    <h4>Hours</h4>
-       
-    <p>[[available_hours]]</p>
-	<ul>
-    	<li>M, T, W, Th: 8AM - 7PM</li>
-		<li>F: 8AM - 5PM</li>
-		<li>Sa, Su: 1PM - 5PM</li>
-	</ul>
-	
-	<p>[[extended_info:hours_notes]]</p>
-	<ul>
-		<li>Holiday hours may vary. Extended hours during finals.Interim: M-F: 9am-5pm</li>
-	</ul>
-	
-	<p>[[extended_info:access_notes]]</p>
-	<ul>
-		<li>Only dorm residents allowed.</li>
-	</ul>
-	
-	{% if request.is_mobile %}
-	<div style="height:200px;">
-		<div id="detail_map" style="height:100%;"></div>
-	</div>
-	
-	<!-- since turbolinks loads the full body... initialize map stuff locally in the template. then, call the function in the map.js file -->     
-	<script>
-	
-	function initializeDetailMap() {
-	
-		var mapExists = document.getElementById("detail_map"); 
-		var myLatlng, mapOptions;
-		
-		if(mapExists) {
-			
-			// center map direction on spot location				
-			myLatlng = new google.maps.LatLng(47.6551526, -122.3079563);
-	        mapOptions = { center: myLatlng, zoom: 18, scrollwheel: false, draggable: false, disableDefaultUI: true };
-			
-			var map = new google.maps.Map(document.getElementById('detail_map'), mapOptions);
-	                    
-	        var marker = new google.maps.Marker({
-	            position: myLatlng,
-	            map: map,
-	            title: 'Hello World!',
-	            animation: google.maps.Animation.DROP,
-	        });
-		}
-		
-	}	
-	</script>
+{% block web_content %}
 
-	{% endif %}
-	
-	<h4>Location information</h4>
-	<ul>
-		<li>[[location:latitude]]</li>
-		<li>[[location:longitude]]</li>
-		<li>[[location:building_name]]</li>
-		<li>[[location:floor]]</li>
-		<li>[[location:room_number]]</li>
-		<li>[[location:description]]</li>
-		<li>[[capacity]]</li>
-	</ul>
-		
-	
-	<h4>Misc. information</h4>
-	<ul>
-        <li>[[extended_info:website_url]]</li>
-        <li>[[extended_info:payment_accepted]]</li>
-        <li>[[extended_info:has_delivery]]</li>
-	</ul>
-	
-	<h4>Related stuff</h4>
-	<ul>
-		<li>asdf</li>
-	</ul>
-    
-    <h4>Management</h4>
-    <p>this location is managed by...</p>
-    <ul>
-	    <li>[[organization]]</li>
-	    <li>[[manager]]</li>
-    </ul>
+<p>ALERT! [[extended_info:s_has_alert]]
+    <br/> [[extended_info:s_alert_notes]] Alert... We are closed due to a grease fire!</p>
+
+<h2>[[name]] Cultivate </h2>
+<p>[[type]] Restaurant, Cafe </p>
+
+<p>Open for:</p>
+<ul>
+    <li>[[extended_info:s_open_xxxx]] Breakfast</li>
+    <li>[[extended_info:s_open_xxxx]] Lunch</li>
+</ul>
+
+<p>[[location_description]] Cultivate is a special destination offering full-service dining with a nod to locally-sourced cuisine and a community feel. The menu celebrates new discoveries, familiar favorites, and features a Pacific Northwest twist on
+    regional comforts.</p>
+
+<p>Cuisine:</p>
+<ul>
+    <li>[[extended_info:s_cuisine_xxxx]] American</li>
+    <li>[[extended_info:s_cuisine_xxxx]] BBQ</li>
+    <li>[[extended_info:s_cuisine_xxxx]] Light Lunch</li>
+</ul>
+
+<p>Food served:</p>
+<ul>
+    <li>[[extended_info:s_food_xxxx]] Burgers</li>
+    <li>[[extended_info:s_food_xxxx]] Salads</li>
+    <li>[[extended_info:s_food_xxxx]] Entrees</li>
+</ul>
+
+<p>Reservations: [[extended_info:s_has_reservation]]
+    <br/> [[extended_info:s_reservation_notes]]
+</p>
+
+<p>Payment accepted:</p>
+<ul>
+    <li>[[extended_info:s_pay_xxxx]] Cash</li>
+    <li>[[extended_info:s_pay_xxxx]] Visa</li>
+    <li>[[extended_info:s_pay_xxxx]] Mastercard</li>
+    <li>[[extended_info:s_pay_xxxx]] Husky Card</li>
+</ul>
+
+<p>View the menu: [[extended_info:s_menu_url]]</p>
+
+<div style="background:url('//farm5.staticflickr.com/4030/4270568382_00a87abe91.jpg') no-repeat; background-size:cover; height:300px;">&nbsp;</div>
+<p>[[images:url]]</p>
+
+<h4>Hours</h4>
+
+<p>[[available_hours]]</p>
+<ul>
+    <li>M, T, W, Th: 8AM - 7PM</li>
+    <li>F: 8AM - 5PM</li>
+    <li>Sa, Su: 1PM - 5PM</li>
+</ul>
+
+<p>[[extended_info:hours_notes]]</p>
+<ul>
+    <li>Holiday hours may vary. Extended hours during finals.Interim: M-F: 9am-5pm</li>
+</ul>
+
+{% if request.is_mobile %}
+<div style="height:200px;">
+    <div id="detail_map" style="height:100%;"></div>
+</div>
+
+<!-- since turbolinks loads the full body... initialize map stuff locally in the template. then, call the function in the map.js file -->
+<script>
+    function initializeDetailMap() {
+
+        var mapExists = document.getElementById("detail_map");
+        var myLatlng, mapOptions;
+
+        if (mapExists) {
+
+            // center map direction on spot location
+            myLatlng = new google.maps.LatLng(47.6551526, -122.3079563);
+            mapOptions = {
+                center: myLatlng,
+                zoom: 18,
+                scrollwheel: false,
+                draggable: false,
+                disableDefaultUI: true
+            };
+
+            var styles = [
+                {
+                    "featureType": "all",
+                    "elementType": "all",
+                    "stylers": [
+                        {
+                            "lightness": "40"
+                        },
+                        {
+                            "saturation": "-100"
+                        }
+                    ]
+                }
+            ]
+
+            var map = new google.maps.Map(document.getElementById('detail_map'), mapOptions);
+            map.setOptions({styles: styles});
+
+            var marker = new google.maps.Marker({
+                position: myLatlng,
+                map: map,
+                title: 'Hello World!',
+                animation: google.maps.Animation.DROP,
+            });
+        }
+
+    }
+</script>
+
+{% endif %}
+
+<h4>Location information</h4>
+<ul>
+    <li>[[location:latitude]]</li>
+    <li>[[location:longitude]]</li>
+    <li>[[location:building_name]]</li>
+    <li>[[location:floor]]</li>
+    <li>[[location:room_number]]</li>
+    <li>[[location:description]]</li>
+    <li>[[capacity]]</li>
+</ul>
+
+<p>[[extended_info:access_notes]]</p>
+<ul>
+    <li>Only dorm residents allowed.</li>
+</ul>
+
+<h4>Misc. information</h4>
+<ul>
+    <li>[[extended_info:s_has_coupon]]</li>
+    <li>[[extended_info:s_coupon_expiration]]</li>
+    <li>[[extended_info:s_coupon_url]]</li>
+    <li>[[extended_info:s_phone]]</li>
+    <li>[[extended_info:s_website_url]]</li>
+</ul>
+
+<h4>Management</h4>
+<p>this location is managed by...</p>
+<ul>
+    <li>[[owner]] Housing &amp; Food Services (HFS)</li>
+    <li>[[manager]] javerage</li>
+</ul>
 {% endblock %}
 
 {% block sidebar %}
-
 <!-- show a map on the list page -->
 <div id="detail_map" style="height:100%;"></div>
 
-<!-- since turbolinks loads the full body... initialize map stuff locally in the template. then, call the function in the map.js file -->     
+<!-- since turbolinks loads the full body... initialize map stuff locally in the template. then, call the function in the map.js file -->
 <script>
+    function initializeDetailMap() {
 
-function initializeDetailMap() {
-	
-	var mapExists = document.getElementById("detail_map"); 
-	var myLatlng, mapOptions;
-	
-	if(mapExists) {
-		
-		// center map direction on spot location				
-		myLatlng = new google.maps.LatLng(47.6551526, -122.3079563);
-        mapOptions = { center: myLatlng, zoom: 19, /*scrollwheel: false, draggable: false, disableDefaultUI: true*/ };
-		
-		var map = new google.maps.Map(document.getElementById('detail_map'), mapOptions);
-                    
-        var marker = new google.maps.Marker({
-            position: myLatlng,
-            map: map,
-            title: 'Hello World!',
-            animation: google.maps.Animation.DROP,
-        });
-	}
-	
-}
+        var mapExists = document.getElementById("detail_map");
+        var myLatlng, mapOptions;
 
+        if (mapExists) {
+
+            // center map direction on spot location
+            myLatlng = new google.maps.LatLng(47.6551526, -122.3079563);
+            mapOptions = {
+                center: myLatlng,
+                zoom: 20,
+                /*scrollwheel: false, draggable: false, disableDefaultUI: true*/
+            };
+
+            var styles = [
+                {
+                    "featureType": "poi.place_of_worship",
+                    "elementType": "all",
+                    "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                    ]
+                }
+            ]
+
+            var map = new google.maps.Map(document.getElementById('detail_map'), mapOptions);
+            map.setOptions({styles: styles});
+
+            var marker = new google.maps.Marker({
+                position: myLatlng,
+                map: map,
+                title: 'Hello World!',
+                animation: google.maps.Animation.DROP,
+            });
+        }
+
+    }
 </script>
 
 {% endblock %}
@@ -150,74 +208,82 @@ function initializeDetailMap() {
     <div style="background:url('//farm3.staticflickr.com/2101/2529856456_368530c5ab.jpg') no-repeat; background-size:cover; height:200px;" valign="bottom" class="card-header">Spot Name</div>
     <div class="card-content">
         <div class="card-content-inner">
-	        <h4>Pizza, Salads</h4>
-			
-			<h4>Hours</h4>
-			<ul>
-		    	<li>M, T, W, Th: 8AM - 7PM</li>
-				<li>F: 8AM - 5PM</li>
-				<li>Sa, Su: 1PM - 5PM</li>
-			</ul>
-			<p>Holiday hours may vary. Extended hours during finals.Interim: M-F: 9am-5pm</p>
-		
-			
-			<h4>Location</h4>
-			<ul>
-				<li>Allen Library North, Ground floor</li>
-			</ul>
-            
+            <h4>Pizza, Salads</h4>
+
+            <h4>Hours</h4>
+            <ul>
+                <li>M, T, W, Th: 8AM - 7PM</li>
+                <li>F: 8AM - 5PM</li>
+                <li>Sa, Su: 1PM - 5PM</li>
+            </ul>
+            <p>Holiday hours may vary. Extended hours during finals.Interim: M-F: 9am-5pm</p>
+
+
+            <h4>Location</h4>
+            <ul>
+                <li>Allen Library North, Ground floor</li>
+            </ul>
+
         </div>
     </div>
 </div>
 
 <div class="content-block-title">Environment</div>
 <div class="list-block">
-  <ul>
-    <li class="item-content">
-      <div class="item-inner">
-        <div class="item-title">Resources <span>asdfadsf, kajsfd</span></div>
-      </div>
-    </li>
-    <li class="item-content">
-      <div class="item-inner">
-        <div class="item-title">Food/coffee <span>asd, fadsf</span></div>
-      </div>
-    </li>
-    <li class="item-content">
-      <div class="item-inner">
-        <div class="item-title">Noise Level <span>asdfa, dsf, asdkjhdfjs</span></div>
-      </div>
-    </li>
-    <li class="item-content">
-      <div class="item-inner">
-        <div class="item-title">Lighting <span>natural light</span></div>
-      </div>
-    </li>
-  </ul>
+    <ul>
+        <li class="item-content">
+            <div class="item-inner">
+                <div class="item-title">Resources
+                    <span>asdfadsf, kajsfd</span>
+                </div>
+            </div>
+        </li>
+        <li class="item-content">
+            <div class="item-inner">
+                <div class="item-title">Food/coffee
+                    <span>asd, fadsf</span>
+                </div>
+            </div>
+        </li>
+        <li class="item-content">
+            <div class="item-inner">
+                <div class="item-title">Noise Level
+                    <span>asdfa, dsf, asdkjhdfjs</span>
+                </div>
+            </div>
+        </li>
+        <li class="item-content">
+            <div class="item-inner">
+                <div class="item-title">Lighting
+                    <span>natural light</span>
+                </div>
+            </div>
+        </li>
+    </ul>
 </div>
 
 <div class="content-block-title">Getting Here</div>
 <div class="list-block">
-  <ul>
-    <li>
-	    <a href="/?hybrid=true&x_push_page=true&x_page_title=Seattle+List" class="item-link">
-		  <div class="item-content">
-		    <div class="item-inner">
-			    <div class="item-title">View this space on the map</div>
-		    </div>
-		  </div>
-		</a>          
-    </li>
-    <li>
-	    <a href="/?hybrid=true&x_push_page=true&x_page_title=Seattle+List" class="item-link">
-		  <div class="item-content">
-		    <div class="item-inner">
-			    <div class="item-title">Get directions in Maps</div>
-		    </div>
-		  </div>
-		</a>          
-    </li>
-   </ul>
+    <ul>
+        <li>
+            <a href="/?hybrid=true&x_push_page=true&x_page_title=Seattle+List" class="item-link">
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">View this space on the map</div>
+                    </div>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="/?hybrid=true&x_push_page=true&x_page_title=Seattle+List" class="item-link">
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">Get directions in Maps</div>
+                    </div>
+                </div>
+            </a>
+        </li>
+    </ul>
 </div>
-                          
-{% endblock %}                            
+
+{% endblock %}

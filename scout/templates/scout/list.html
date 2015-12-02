@@ -9,13 +9,15 @@
 {% endif %}
 
 <h2>All OPEN/NEARBY (if location shared)</h2>
-<h2>All OPEN (centered at fountain)</h2>
+<h2>All OPEN_NOW (centered at fountain)</h2>
 
 
 <ul>
     {% for spot in spots %}
-        <li><a href="{{ spot.uri }}" style="display:block;"><img src="{{spot.images.0.url}}"> {{ spot.name }}, {{ spot.building_name }}, [[extended_info:food_served]], [[extended_info:open_period]], DISTANCE_FROM_YOU</a></li>
+        <li><a href="{{ spot.uri }}" style="display:block;text-decoration:none;"><img src="{{spot.images.0.url}}"> {{ spot.name }}, {{ spot.building_name }}, [[extended_info:food_served]], [[extended_info:open_period]], DISTANCE_FROM_YOU</a></li>
     {% endfor %}
+
+
 </ul>
 
 {% endblock %}
@@ -25,62 +27,212 @@
 <!-- show a map on the list page -->
 <div id="list_map" style="height:100%;"></div>
 
-<!-- since turbolinks loads the full body... generate this function in the template. then, call the function in the map.js file -->     
+<!-- since turbolinks loads the full body... generate this function in the template. then, call the function in the map.js file -->
 <script type="text/javascript">
 
 function initializeListMap() {
-	
-	var mapExists = document.getElementById("list_map"); 
+
+	var mapExists = document.getElementById("list_map");
 	var myLatlng, mapOptions;
-	
+
 	if(mapExists) {
-		
+
 		// center map on uw fountain
 		mapCenter = new google.maps.LatLng(47.653811, -122.307815);
-        mapOptions = { 
-	        center: mapCenter, 
+        mapOptions = {
+	        center: mapCenter,
 	        zoom: 16,
 	    };
-		
+
+        var styles = [
+            {
+                "featureType": "poi.place_of_worship",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "visibility": "off"
+                    }
+                ]
+            },
+            {
+                "featureType": "poi.business",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "visibility": "off"
+                    }
+                ]
+            }
+        ]
+
 		var map = new google.maps.Map(document.getElementById('list_map'), mapOptions);
-                 
+        map.setOptions({styles: styles});
+
         // multiple pins on a single map
         var locations = [
-        	["47.6551526", "-122.3079563"], 
-			["47.6558366", "-122.3085307"], 
-			["47.6539295", "-122.3080857"]
+            {
+                "spot_name" : 'Burke Cafe',
+                "id" : 'aaaa',
+                "lat" : '47.660611',
+                "lng" : '-122.310593',
+            },
+            {
+                "spot_name" : 'By George',
+                "id" : 'bbbb',
+                "lat" : '47.6564316',
+                "lng" : '-122.310327',
+            },
+            {
+                "spot_name" : 'Cultivate',
+                "id" : 'cccc',
+                "lat" : '47.6566484',
+                "lng" : '-122.314735',
+            },
+            {
+                "spot_name" : 'District Market',
+                "id" : 'dddd',
+                "lat" : '47.6558238',
+                "lng" : '-122.3136192',
+            },
+            {
+                "spot_name" : 'Etc.',
+                "id" : 'dddd',
+                "lat" : '47.6552856',
+                "lng" : '-122.3051898',
+            },
+            {
+                "spot_name" : 'Dub Street',
+                "id" : 'dddd',
+                "lat" : '47.6554049',
+                "lng" : '-122.3050818',
+            },
+            {
+                "spot_name" : 'Firecracker',
+                "id" : 'dddd',
+                "lat" : '47.6552127',
+                "lng" : '-122.3050531',
+            },
+            {
+                "spot_name" : 'Pagliacci Pizza',
+                "id" : 'dddd',
+                "lat" : '47.6553169',
+                "lng" : '-122.3049381',
+            },
+            {
+                "spot_name" : 'Pastaria',
+                "id" : 'dddd',
+                "lat" : '47.6552933',
+                "lng" : '-122.3051108',
+            },
+            {
+                "spot_name" : 'Red Radish',
+                "id" : 'dddd',
+                "lat" : '47.655288',
+                "lng" : '-122.3051105',
+            },
+            {
+                "spot_name" : 'Banh & Naan',
+                "id" : 'dddd',
+                "lat" : '47.6552915',
+                "lng" : '-122.3051094',
+            },
+            {
+                "spot_name" : 'H-bar',
+                "id" : 'dddd',
+                "lat" : '47.6532599',
+                "lng" : '-122.3117298',
+            },
+            {
+                "spot_name" : 'Siganos',
+                "id" : 'dddd',
+                "lat" : '47.6558794',
+                "lng" : '-122.3100547',
+            },
+            {
+                "spot_name" : 'Hot Dawgs',
+                "id" : 'dddd',
+                "lat" : '47.6557342',
+                "lng" : '-122.3101554',
+            },
+            {
+                "spot_name" : 'Red Square BBQ',
+                "id" : 'dddd',
+                "lat" : '47.655642',
+                "lng" : '-122.3101526',
+            },
+            {
+                "spot_name" : 'Motosurf',
+                "id" : 'dddd',
+                "lat" : '47.6555666',
+                "lng" : '-122.3101496',
+            },
 		]
-        
-        var marker, i;
-		
-		for (i = 0; i < locations.length; i++) {  
-			
-			marker = new google.maps.Marker({
-		    position: new google.maps.LatLng(locations[i][0], locations[i][1]),
-		    map: map,
-            animation: google.maps.Animation.DROP
+
+        // create and open InfoWindow.
+        var infoWindow = new google.maps.InfoWindow();
+
+        var markers = [];
+
+		for (var i = 0; i < locations.length; i++) {
+
+            var data = locations[i];
+
+			var marker = new MarkerWithLabel({
+		        position: new google.maps.LatLng(data.lat, data.lng),
+		        map: map,
+                animation: google.maps.Animation.DROP,
+                labelContent: "<i class='fa fa-coffee'></i>",
+                labelAnchor: new google.maps.Point(6, 6),
+                labelClass: "map-label", // the CSS class for the label
+                icon: {
+            		path: google.maps.SymbolPath.CIRCLE,
+            		fillColor: '#6562aa',
+            		fillOpacity: 1,
+            		strokeColor: '#53518e',
+                    scale: 10,
+            		strokeWeight: 0
+            	},
 		    });
-		
+
+            markers.push(marker);
+
+            // attach click event to the marker
+            (function (marker, data) {
+
+                google.maps.event.addListener(marker, "click", function (e) {
+                    //Wrap the content inside an HTML DIV in order to set height and width of InfoWindow.
+                    infoWindow.setContent("<div style = 'width:200px;'>" + data.spot_name + "</div>");
+                    infoWindow.open(map, marker);
+                    $('li').css('background', 'none'); // clear any highlighted spots first
+                    $('#' + data.id).css('background', '#eee');
+                });
+
+                google.maps.event.addListener(infoWindow,'closeclick',function(){
+                    $('#' + data.id).css('background', 'none');
+                });
+
+            })(marker, data);
+
 		}
 
+        var markerCluster = new MarkerClusterer(map, markers);
+
 	}
-	
+
 }
 </script>
-    
+
 {% endblock %}
 
 {% block hybrid_content %}
 
-<!--<div class="content-block" style="margin:5px 0;">
-	<div class="buttons-row"><a href="/?hybrid=true&x_replace_page=true&x_page_title=Scout" class="button active">List</a><a href="/map/?hybrid=true&x_replace_page=true&x_page_title=Scout" class="button">Map</a></div>
-</div>-->
-
-<div class="list-block media-list">     
+<div class="list-block media-list">
     <ul>
         <li>
             <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Bobs+Burgers" class="item-link item-content">
-                <div class="item-media"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"></div>
+                <div class="item-media">
+                    <img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg">
+                </div>
                 <div class="item-inner">
                     <div class="item-title-row">
                         <div class="item-title">Bob's Burgers</div>
@@ -92,7 +244,9 @@ function initializeListMap() {
         </li>
         <li>
             <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Pagliacci" class="item-link item-content">
-                <div class="item-media"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg" ></div>
+                <div class="item-media">
+                    <img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg">
+                </div>
                 <div class="item-inner">
                     <div class="item-title-row">
                         <div class="item-title">Pagliacci</div>
@@ -104,7 +258,9 @@ function initializeListMap() {
         </li>
         <li>
             <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=By+George" class="item-link item-content">
-                <div class="item-media"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg" ></div>
+                <div class="item-media">
+                    <img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg">
+                </div>
                 <div class="item-inner">
                     <div class="item-title-row">
                         <div class="item-title">By George</div>
@@ -116,7 +272,9 @@ function initializeListMap() {
         </li>
         <li>
             <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Spot+Detail" class="item-link item-content">
-                <div class="item-media"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg" ></div>
+                <div class="item-media">
+                    <img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg">
+                </div>
                 <div class="item-inner">
                     <div class="item-title-row">
                         <div class="item-title">Spot 1</div>
@@ -128,7 +286,9 @@ function initializeListMap() {
         </li>
         <li>
             <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Spot+Detail" class="item-link item-content">
-                <div class="item-media"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg" ></div>
+                <div class="item-media">
+                    <img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg">
+                </div>
                 <div class="item-inner">
                     <div class="item-title-row">
                         <div class="item-title">Spot 1</div>
@@ -140,7 +300,9 @@ function initializeListMap() {
         </li>
         <li>
             <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Spot+Detail" class="item-link item-content">
-                <div class="item-media"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg" ></div>
+                <div class="item-media">
+                    <img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg">
+                </div>
                 <div class="item-inner">
                     <div class="item-title-row">
                         <div class="item-title">Spot 1</div>
@@ -152,7 +314,9 @@ function initializeListMap() {
         </li>
         <li>
             <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Spot+Detail" class="item-link item-content">
-                <div class="item-media"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg" ></div>
+                <div class="item-media">
+                    <img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg">
+                </div>
                 <div class="item-inner">
                     <div class="item-title-row">
                         <div class="item-title">Spot 1</div>
@@ -164,7 +328,9 @@ function initializeListMap() {
         </li>
         <li>
             <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Spot+Detail" class="item-link item-content">
-                <div class="item-media"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg" ></div>
+                <div class="item-media">
+                    <img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg">
+                </div>
                 <div class="item-inner">
                     <div class="item-title-row">
                         <div class="item-title">Spot 1</div>
@@ -176,7 +342,9 @@ function initializeListMap() {
         </li>
         <li>
             <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Spot+Detail" class="item-link item-content">
-                <div class="item-media"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg" ></div>
+                <div class="item-media">
+                    <img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg">
+                </div>
                 <div class="item-inner">
                     <div class="item-title-row">
                         <div class="item-title">Spot 1</div>
@@ -188,7 +356,9 @@ function initializeListMap() {
         </li>
         <li>
             <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Spot+Detail" class="item-link item-content">
-                <div class="item-media"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg" ></div>
+                <div class="item-media">
+                    <img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg">
+                </div>
                 <div class="item-inner">
                     <div class="item-title-row">
                         <div class="item-title">Spot 1</div>
@@ -200,7 +370,9 @@ function initializeListMap() {
         </li>
         <li>
             <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Spot+Detail" class="item-link item-content">
-                <div class="item-media"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg" ></div>
+                <div class="item-media">
+                    <img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg">
+                </div>
                 <div class="item-inner">
                     <div class="item-title-row">
                         <div class="item-title">Spot 1</div>
@@ -212,7 +384,9 @@ function initializeListMap() {
         </li>
         <li>
             <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Spot+Detail" class="item-link item-content">
-                <div class="item-media"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg" ></div>
+                <div class="item-media">
+                    <img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg">
+                </div>
                 <div class="item-inner">
                     <div class="item-title-row">
                         <div class="item-title">Spot 1</div>
@@ -224,7 +398,9 @@ function initializeListMap() {
         </li>
         <li>
             <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Spot+Detail" class="item-link item-content">
-                <div class="item-media"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg" ></div>
+                <div class="item-media">
+                    <img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg">
+                </div>
                 <div class="item-inner">
                     <div class="item-title-row">
                         <div class="item-title">Spot 1</div>
@@ -237,4 +413,3 @@ function initializeListMap() {
     </ul>
 </div>
 {% endblock %}
-

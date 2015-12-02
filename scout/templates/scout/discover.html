@@ -1,4 +1,5 @@
 {% extends is_hybrid|yesno:"hybridize/base.html,scout/app.html" %}
+
 {% load staticfiles %}
 
 {% block title %}Discover{% endblock %}
@@ -8,77 +9,52 @@
 <h2>Discover</h2>
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non urna et lorem venenatis varius quis sit amet dui. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur a nisi odio.</p>
 
-<p>Donec et nulla auctor massa pharetra adipiscing ut sit amet sem. Suspendisse molestie velit vitae mattis tincidunt. Ut sit amet quam mollis, vulputate turpis vel, sagittis felis. </p>   
+<p>Donec et nulla auctor massa pharetra adipiscing ut sit amet sem. Suspendisse molestie velit vitae mattis tincidunt. Ut sit amet quam mollis, vulputate turpis vel, sagittis felis. </p>
 
-<!--
-<h4>Restaurant types:</h4>
-<div>
-    <ul>
-        <li><a href="/?type=cafe">Cafes</a></li>
-        <li><a href="/?type=fine_dining">Fine Dining</a></li>
-        <li><a href="/?type=cafeteria">Cafeteria</a></li>
-        <li><a href="/?type=food_truck">Food Trucks</a></li>
-        <li><a href="/?type=market">Markets</a></li>
-    </ul>
-</div>
-
-<h4>Food types:</h4>
-<div>
-    <ul>
-        <li><a href="/?food=pizza">Pizza</a></li>
-        <li><a href="/?food=burgers">Burgers</a></li>
-        <li><a href="/?food=salads">Salads</a></li>
-        <li><a href="/?food=coffee">Coffee/Espresso</a></li>
-        <li><a href="/?food=sandwiches">Sandwiches</a></li>
-    </ul>
-</div>
-
-<h4>Cuisine:</h4>
-<div>
-    <ul>
-        <li><a href="/?cuisine=itallian">Itallian</a></li>
-        <li><a href="/?cuisine=hawaiian">Hawaiian</a></li>
-        <li><a href="/?cuisine=bbq">BBQ</a></li>
-        <li><a href="/?cuisine=american">American</a></li>
-        <li><a href="/?cuisine=chinese">Chinese</a></li>
-    </ul>
-</div>
--->
-
-<h4>Most popular</h4>
+<h4>Open Now</h4>
 <ul>
-	<li><a href="/detail/56874">Cultivate</a></li>
-	<li><a href="/detail/56874">The 8</a></li>
-	<li><a href="/detail/56874">By George</a></li>
-	<li><a href="/detail/56874">The Rotunda</a></li>
-	<li><a href="/detail/56874">Red Square BBQ</a></li>
+    <li><a href="/detail/56874">Cultivate</a></li>
+    <li><a href="/detail/56874">The 8</a></li>
+    <li><a href="/detail/56874">By George</a></li>
+    <li><a href="/detail/56874">The Rotunda</a></li>
+    <li><a href="/detail/56874">Red Square BBQ</a></li>
+    <li><a href="/">More...</a></li>
 </ul>
 
-<h4>Coffee near you [[type 'cafe, espresso' ]]</h4>
+<h4>Coffee near you[[extended_info:s_food_espresso ]]</h4>
 <ul>
-	<li><a href="/detail/56874">Burke Cafe</a></li>
-	<li><a href="/detail/56874">Husky Grind</a></li>
-	<li><a href="/detail/56874">Parnassus</a></li>
-	<li><a href="/detail/56874">Public Grounds</a></li>
-	<li><a href="/detail/56874">Overpass Espresso</a></li>
+    <li><a href="/detail/56874">Burke Cafe</a></li>
+    <li><a href="/detail/56874">Husky Grind</a></li>
+    <li><a href="/detail/56874">Parnassus</a></li>
+    <li><a href="/detail/56874">Public Grounds</a></li>
+    <li><a href="/detail/56874">Overpass Espresso</a></li>
 </ul>
 
-<h4>Breakfast before class [[extended_info:open_period 'breakfast' ]]</h4>
+<h4>Breakfast before class [[extended_info:s_open_breakfast ]]</h4>
 <ul>
-	<li><a href="/detail/56874">Cultivate</a></li>
-	<li><a href="/detail/56874">The 8</a></li>
-	<li><a href="/detail/56874">By George</a></li>
-	<li><a href="/detail/56874">The Rotunda</a></li>
-	<li><a href="/detail/56874">Bob's Burgers</a></li>
+    <li><a href="/detail/56874">Cultivate</a></li>
+    <li><a href="/detail/56874">The 8</a></li>
+    <li><a href="/detail/56874">By George</a></li>
+    <li><a href="/detail/56874">The Rotunda</a></li>
+    <li><a href="/detail/56874">Bob's Burgers</a></li>
 </ul>
 
-<h4>Evening class muchies [[extended_info:open_period 'late_night' ]]</h4>
+<h4>Evening class muchies [[extended_info:s_open_late_night]]</h4>
 <ul>
-	<li><a href="/detail/56874">Cultivate</a></li>
-	<li><a href="/detail/56874">The 8</a></li>
-	<li><a href="/detail/56874">By George</a></li>
-	<li><a href="/detail/56874">The Rotunda</a></li>
-	<li><a href="/detail/56874">Bob's Burgers</a></li>
+    <li><a href="/detail/56874">Cultivate</a></li>
+    <li><a href="/detail/56874">The 8</a></li>
+    <li><a href="/detail/56874">By George</a></li>
+    <li><a href="/detail/56874">The Rotunda</a></li>
+    <li><a href="/detail/56874">Bob's Burgers</a></li>
+</ul>
+
+<h4>Dine w/ discounts [[extended_info:s_has_coupon]]</h4>
+<ul>
+    <li><a href="/detail/56874">Cultivate</a></li>
+    <li><a href="/detail/56874">The 8</a></li>
+    <li><a href="/detail/56874">By George</a></li>
+    <li><a href="/detail/56874">The Rotunda</a></li>
+    <li><a href="/detail/56874">Red Square BBQ</a></li>
 </ul>
 
 {% endblock %}
@@ -87,138 +63,288 @@
 <div style="background:url('{% static "scout/img/huskygrind.jpg" %}') no-repeat; background-size:cover; background-position:center center; position:absolute; top:0; bottom:0; width: 100%;">&nbsp;</div>
 {% endblock %}
 
-
 {% block hybrid_content %}
 
-<div class="content-block-title">Welcome</div>
-<!-- Inset content block -->
-<div class="content-block">
-  <div class="content-block-inner">
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non urna et lorem venenatis varius quis sit amet dui. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur a nisi odio.</p>
-
-<p>Donec et nulla auctor massa pharetra adipiscing ut sit amet sem. Suspendisse molestie velit vitae mattis tincidunt. Ut sit amet quam mollis, vulputate turpis vel, sagittis felis. </p>     
-  </div>
+<div class="card">
+    <div style="background:url('{% static "scout/img/huskygrind.jpg" %}') no-repeat; background-size:cover; height:150px;" valign="bottom" class="card-header">Discover</div>
+    <div class="card-content">
+        <div class="card-content-inner">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non urna et lorem venenatis varius quis sit amet dui. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur a nisi odio.</p>
+            <p>Donec et nulla auctor massa pharetra adipiscing ut sit amet sem. Suspendisse molestie velit vitae mattis tincidunt. Ut sit amet quam mollis, vulputate turpis vel, sagittis felis. </p>
+        </div>
+    </div>
 </div>
 
-<!--
-<div class="content-block-title">Restaurant types:</div>
+<div class="content-block-title">Most popular:</div>
 <div class="list-block">
-  <ul>
-    <li>
-	    <a href="/?hybrid=true&x_push_page=true&x_page_title=Cafes" class="item-link">
-		  <div class="item-content">
-		    <div class="item-inner">
-			    <div class="item-title">Cafes</div>
-		    </div>
-		  </div>
-		</a>          
-    </li>
-    <li>
-	    <a href="/?hybrid=true&x_push_page=true&x_page_title=Fine+Dining" class="item-link">
-		  <div class="item-content">
-		    <div class="item-inner">
-			    <div class="item-title">Fine Dining</div>
-		    </div>
-		  </div>
-		</a>          
-    </li>
-    <li>
-	    <a href="/?hybrid=true&x_push_page=true&x_page_title=Cafeteria" class="item-link">
-		  <div class="item-content">
-		    <div class="item-inner">
-			    <div class="item-title">Cafeteria</div>
-		    </div>
-		  </div>
-		</a>          
-    </li>
-    <li>
-	    <a href="/?hybrid=true&x_push_page=true&x_page_title=Food+Trucks" class="item-link">
-		  <div class="item-content">
-		    <div class="item-inner">
-			    <div class="item-title">Food Trucks</div>
-		    </div>
-		  </div>
-		</a>          
-    </li>
-    <li>
-	    <a href="/?hybrid=true&x_push_page=true&x_page_title=Markets" class="item-link">
-		  <div class="item-content">
-		    <div class="item-inner">
-			    <div class="item-title">Markets</div>
-		    </div>
-		  </div>
-		</a>          
-    </li>
-  </ul>
+    <ul>
+        <li>
+            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=Cultivate" class="item-link">
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">Cultivate</div>
+                    </div>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=The+8" class="item-link">
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">The 8</div>
+                    </div>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=By+George" class="item-link">
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">By George</div>
+                    </div>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=The+Rotunda" class="item-link">
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">The Rotunda</div>
+                    </div>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=Red+Square+BBQ" class="item-link">
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">Red Square BBQ</div>
+                    </div>
+                </div>
+            </a>
+        </li>
+    </ul>
 </div>
 
-
-<div class="content-block-title">Food types:</div>
+<div class="content-block-title">Coffee near you:</div>
 <div class="list-block">
-  <ul>
-    <li>
-	    <a href="/?hybrid=true&x_push_page=true&x_page_title=Pizza" class="item-link">
-		  <div class="item-content">
-		    <div class="item-inner">
-			    <div class="item-title">Pizza</div>
-		    </div>
-		  </div>
-		</a>          
-    </li>
-    <li>
-	    <a href="/?hybrid=true&x_push_page=true&x_page_title=Burgers" class="item-link">
-		  <div class="item-content">
-		    <div class="item-inner">
-			    <div class="item-title">Burgers</div>
-		    </div>
-		  </div>
-		</a>          
-    </li>
-    <li>
-	    <a href="/?hybrid=true&x_push_page=true&x_page_title=Salads" class="item-link">
-		  <div class="item-content">
-		    <div class="item-inner">
-			    <div class="item-title">Salads</div>
-		    </div>
-		  </div>
-		</a>          
-    </li>
-    <li>
-	    <a href="/?hybrid=true&x_push_page=true&x_page_title=Coffee/Espresso" class="item-link">
-		  <div class="item-content">
-		    <div class="item-inner">
-			    <div class="item-title">Coffee/Espresso</div>
-		    </div>
-		  </div>
-		</a>          
-    </li>
-    <li>
-	    <a href="/?hybrid=true&x_push_page=true&x_page_title=Sandwiches" class="item-link">
-		  <div class="item-content">
-		    <div class="item-inner">
-			    <div class="item-title">Sandwiches</div>
-		    </div>
-		  </div>
-		</a>          
-    </li>
-  </ul>
+    <ul>
+        <li>
+            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=Burke+Cafe" class="item-link">
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">Burke Cafe</div>
+                    </div>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=Husky+Grind" class="item-link">
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">Husky Grind</div>
+                    </div>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=Parnasus" class="item-link">
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">Parnassus</div>
+                    </div>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=Public+Grounds" class="item-link">
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">Public Grounds</div>
+                    </div>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=Overpass+Espresso" class="item-link">
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">Overpass Espresso</div>
+                    </div>
+                </div>
+            </a>
+        </li>
+    </ul>
 </div>
+
+<div class="content-block-title">Breakfast before class:</div>
+<div class="list-block">
+    <ul>
+        <li>
+            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=Cultivate" class="item-link">
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">Cultivate</div>
+                    </div>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=The+8" class="item-link">
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">The 8</div>
+                    </div>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=By+George" class="item-link">
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">By George</div>
+                    </div>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=The+Rotunda" class="item-link">
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">The Rotunda</div>
+                    </div>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=Red+Square+BBQ" class="item-link">
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">Red Square BBQ</div>
+                    </div>
+                </div>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<div class="content-block-title">Evening class munchies:</div>
+<div class="list-block">
+    <ul>
+        <li>
+            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=Cultivate" class="item-link">
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">Cultivate</div>
+                    </div>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=The+8" class="item-link">
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">The 8</div>
+                    </div>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=By+George" class="item-link">
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">By George</div>
+                    </div>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=The+Rotunda" class="item-link">
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">The Rotunda</div>
+                    </div>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=Red+Square+BBQ" class="item-link">
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">Red Square BBQ</div>
+                    </div>
+                </div>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<div class="content-block-title">Dine with discounts:</div>
+<div class="list-block">
+    <ul>
+        <li>
+            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=Cultivate" class="item-link">
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">Cultivate</div>
+                    </div>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=The+8" class="item-link">
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">The 8</div>
+                    </div>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=By+George" class="item-link">
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">By George</div>
+                    </div>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=The+Rotunda" class="item-link">
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">The Rotunda</div>
+                    </div>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=Red+Square+BBQ" class="item-link">
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">Red Square BBQ</div>
+                    </div>
+                </div>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
 
 <div class="content-block-title">Hybrid stuff</div>
 <div class="list-block">
-  <ul>
-    <li>
-	    <a href="/components/?hybrid=true&x_push_page=true&x_page_title=Framework7+Forms" class="item-link">
-		  <div class="item-content">
-		    <div class="item-inner">
-			    <div class="item-title">Components Example</div>
-		    </div>
-		  </div>
-		</a>          
-    </li>
-   </ul>
+    <ul>
+        <li>
+            <a href="/components/?hybrid=true&x_push_page=true&x_page_title=Framework7+Forms" class="item-link">
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">Components Example</div>
+                    </div>
+                </div>
+            </a>
+        </li>
+    </ul>
 </div>
--->
-
 
 {% endblock %}
