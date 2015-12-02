@@ -82,4 +82,6 @@ Scout specific extended info...
 		"s_open_lunch" : true,
 		"s_open_dinner" : true,
 		"s_open_late_night" : false,
+
+        "s_marker_icon" : "fa-coffee",
 	},
