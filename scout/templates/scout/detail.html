@@ -31,9 +31,9 @@
 
 <p>Food served:</p>
 <ul>
-    <li>[[extended_info:s_food_xxxx]] Burgers</li>
-    <li>[[extended_info:s_food_xxxx]] Salads</li>
-    <li>[[extended_info:s_food_xxxx]] Entrees</li>
+    {% for foodtype in spot.foodtype_names %}
+        <li>{{ foodtype }}</li>
+    {% endfor %}
 </ul>
 
 <p>Reservations: [[extended_info:s_has_reservation]]

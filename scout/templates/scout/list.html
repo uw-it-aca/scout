@@ -14,7 +14,11 @@
 
 <ul>
     {% for spot in spots %}
-        <li><a href="detail/{{ spot.spot_id }}" style="display:block;text-decoration:none;"><img src="{{spot.images.0.url}}"> {{ spot.name }}, {{ spot.building_name }}, [[extended_info:food_served]], [[extended_info:open_period]], DISTANCE_FROM_YOU</a></li>
+        <li><a href="detail/{{ spot.spot_id }}" style="display:block;text-decoration:none;"><img src="{{spot.images.0.url}}"> {{ spot.name }}, {{ spot.building_name }},
+            {% for foodtype in spot.foodtype_names %}
+            {{ foodtype }},
+            {% endfor %}
+             [[extended_info:open_period]], DISTANCE_FROM_YOU</a></li>
     {% endfor %}
 
 
