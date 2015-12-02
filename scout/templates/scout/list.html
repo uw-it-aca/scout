@@ -1,4 +1,5 @@
 {% extends is_hybrid|yesno:"hybridize/base.html,scout/app.html" %}
+{% load staticfiles %}
 
 {% block title %}List{% endblock %}
 
@@ -14,14 +15,12 @@
 
 <ul>
     {% for spot in spots %}
-        <li><a href="detail/{{ spot.spot_id }}" style="display:block;text-decoration:none;"><img src="{{spot.images.0.url}}"> {{ spot.name }}, {{ spot.building_name }},
+        <li><a href="detail/{{ spot.spot_id }}" style="display:block;text-decoration:none;"><img src="{{spot.images.0.url}}" style="width:80px;"> {{ spot.name }}, {{ spot.building_name }},
             {% for foodtype in spot.foodtype_names %}
             {{ foodtype }},
             {% endfor %}
              [[extended_info:open_period]], DISTANCE_FROM_YOU</a></li>
     {% endfor %}
-
-
 </ul>
 
 {% endblock %}
@@ -251,7 +250,7 @@ function initializeListMap() {
         <li>
             <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Bobs+Burgers" class="item-link item-content">
                 <div class="item-media">
-                    <img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg">
+                    <img src="{% static "scout/img/placeholder.png" %}" style="width:80px;">
                 </div>
                 <div class="item-inner">
                     <div class="item-title-row">
@@ -265,7 +264,7 @@ function initializeListMap() {
         <li>
             <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Pagliacci" class="item-link item-content">
                 <div class="item-media">
-                    <img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg">
+                    <img src="{% static "scout/img/placeholder.png" %}" style="width:80px;">
                 </div>
                 <div class="item-inner">
                     <div class="item-title-row">
@@ -279,7 +278,7 @@ function initializeListMap() {
         <li>
             <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=By+George" class="item-link item-content">
                 <div class="item-media">
-                    <img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg">
+                    <img src="{% static "scout/img/placeholder.png" %}" style="width:80px;">
                 </div>
                 <div class="item-inner">
                     <div class="item-title-row">
@@ -293,7 +292,7 @@ function initializeListMap() {
         <li>
             <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Spot+Detail" class="item-link item-content">
                 <div class="item-media">
-                    <img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg">
+                    <img src="{% static "scout/img/placeholder.png" %}" style="width:80px;">
                 </div>
                 <div class="item-inner">
                     <div class="item-title-row">
@@ -307,7 +306,7 @@ function initializeListMap() {
         <li>
             <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Spot+Detail" class="item-link item-content">
                 <div class="item-media">
-                    <img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg">
+                    <img src="{% static "scout/img/placeholder.png" %}" style="width:80px;">
                 </div>
                 <div class="item-inner">
                     <div class="item-title-row">
@@ -321,7 +320,7 @@ function initializeListMap() {
         <li>
             <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Spot+Detail" class="item-link item-content">
                 <div class="item-media">
-                    <img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg">
+                    <img src="{% static "scout/img/placeholder.png" %}" style="width:80px;">
                 </div>
                 <div class="item-inner">
                     <div class="item-title-row">
@@ -335,7 +334,7 @@ function initializeListMap() {
         <li>
             <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Spot+Detail" class="item-link item-content">
                 <div class="item-media">
-                    <img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg">
+                    <img src="{% static "scout/img/placeholder.png" %}" style="width:80px;">
                 </div>
                 <div class="item-inner">
                     <div class="item-title-row">
@@ -349,7 +348,7 @@ function initializeListMap() {
         <li>
             <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Spot+Detail" class="item-link item-content">
                 <div class="item-media">
-                    <img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg">
+                    <img src="{% static "scout/img/placeholder.png" %}" style="width:80px;">
                 </div>
                 <div class="item-inner">
                     <div class="item-title-row">
@@ -363,7 +362,7 @@ function initializeListMap() {
         <li>
             <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Spot+Detail" class="item-link item-content">
                 <div class="item-media">
-                    <img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg">
+                    <img src="{% static "scout/img/placeholder.png" %}" style="width:80px;">
                 </div>
                 <div class="item-inner">
                     <div class="item-title-row">
@@ -377,7 +376,7 @@ function initializeListMap() {
         <li>
             <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Spot+Detail" class="item-link item-content">
                 <div class="item-media">
-                    <img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg">
+                    <img src="{% static "scout/img/placeholder.png" %}" style="width:80px;">
                 </div>
                 <div class="item-inner">
                     <div class="item-title-row">
@@ -391,7 +390,7 @@ function initializeListMap() {
         <li>
             <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Spot+Detail" class="item-link item-content">
                 <div class="item-media">
-                    <img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg">
+                    <img src="{% static "scout/img/placeholder.png" %}" style="width:80px;">
                 </div>
                 <div class="item-inner">
                     <div class="item-title-row">
@@ -405,7 +404,7 @@ function initializeListMap() {
         <li>
             <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Spot+Detail" class="item-link item-content">
                 <div class="item-media">
-                    <img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg">
+                    <img src="{% static "scout/img/placeholder.png" %}" style="width:80px;">
                 </div>
                 <div class="item-inner">
                     <div class="item-title-row">
@@ -419,7 +418,7 @@ function initializeListMap() {
         <li>
             <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Spot+Detail" class="item-link item-content">
                 <div class="item-media">
-                    <img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg">
+                    <img src="{% static "scout/img/placeholder.png" %}" style="width:80px;">
                 </div>
                 <div class="item-inner">
                     <div class="item-title-row">
