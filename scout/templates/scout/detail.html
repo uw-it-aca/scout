@@ -8,8 +8,11 @@
 <p>ALERT! [[extended_info:s_has_alert]]
     <br/> [[extended_info:s_alert_notes]] Alert... We are closed due to a grease fire!</p>
 
-<h2>[[name]] Cultivate </h2>
-<p>[[type]] Restaurant, Cafe </p>
+<h2>{{spot.name}}</h2>
+<p>{% for type in spot.spot_types %}
+    {{ type.name }}
+   {% endfor %}
+</p>
 
 <p>Open for:</p>
 <ul>
@@ -17,8 +20,7 @@
     <li>[[extended_info:s_open_xxxx]] Lunch</li>
 </ul>
 
-<p>[[location_description]] Cultivate is a special destination offering full-service dining with a nod to locally-sourced cuisine and a community feel. The menu celebrates new discoveries, familiar favorites, and features a Pacific Northwest twist on
-    regional comforts.</p>
+<p>{{spot.building_description}}</p>
 
 <p>Cuisine:</p>
 <ul>
@@ -122,13 +124,13 @@
 
 <h4>Location information</h4>
 <ul>
-    <li>[[location:latitude]]</li>
-    <li>[[location:longitude]]</li>
-    <li>[[location:building_name]]</li>
-    <li>[[location:floor]]</li>
-    <li>[[location:room_number]]</li>
-    <li>[[location:description]]</li>
-    <li>[[capacity]]</li>
+    <li>{{ spot.latitude }}</li>
+    <li>{{ spot.longitude }}</li>
+    <li>{{ spot.building_name }}</li>
+    <li>{{ spot.floor }}</li>
+    <li>{{ spot.room_number }}</li>
+    <li>{{ spot.building_description }}</li>
+    <li>{{ spot.capacity }}</li>
 </ul>
 
 <p>[[extended_info:access_notes]]</p>
@@ -148,8 +150,8 @@
 <h4>Management</h4>
 <p>this location is managed by...</p>
 <ul>
-    <li>[[owner]] Housing &amp; Food Services (HFS)</li>
-    <li>[[manager]] javerage</li>
+    <li>{{ spot.organization }}</li>
+    <li>{{ spot.manager }}</li>
 </ul>
 {% endblock %}
 
