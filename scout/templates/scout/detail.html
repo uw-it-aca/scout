@@ -5,8 +5,12 @@
 
 {% block web_content %}
 
-<p>ALERT! [[extended_info:s_has_alert]]
-    <br/> [[extended_info:s_alert_notes]] Alert... We are closed due to a grease fire!</p>
+{% if spot.has_alert %}
+<p>
+    ALERT
+    <br/> {{ spot.alert_notes }}
+</p>
+{% endif %}
 
 <h2>{{spot.name}}</h2>
 <p>{% for type in spot.spot_types %}
@@ -16,8 +20,9 @@
 
 <p>Open for:</p>
 <ul>
-    <li>[[extended_info:s_open_xxxx]] Breakfast</li>
-    <li>[[extended_info:s_open_xxxx]] Lunch</li>
+    {% for period in spot.open_periods %}
+        <li>{{ period }}</li>
+    {% endfor %}
 </ul>
 
 <p>{{spot.building_description}}</p>
@@ -36,19 +41,22 @@
     {% endfor %}
 </ul>
 
-<p>Reservations: [[extended_info:s_has_reservation]]
-    <br/> [[extended_info:s_reservation_notes]]
+
+{% if spot.has_reservation %}
+<p>Reservations:
+    <br/> {{spot.reservation_notes}}
 </p>
+
+{% endif %}
 
 <p>Payment accepted:</p>
 <ul>
-    <li>[[extended_info:s_pay_xxxx]] Cash</li>
-    <li>[[extended_info:s_pay_xxxx]] Visa</li>
-    <li>[[extended_info:s_pay_xxxx]] Mastercard</li>
-    <li>[[extended_info:s_pay_xxxx]] Husky Card</li>
+    {% for payment in spot.payment_names %}
+        <li>{{ payment }}</li>
+    {% endfor %}
 </ul>
 
-<p>View the menu: [[extended_info:s_menu_url]]</p>
+<p>View the menu: {{spot.menu_url}}</p>
 
 <div style="background:url('{% static "scout/img/placeholder.png" %}') no-repeat; background-size:cover; height:300px;">&nbsp;</div>
 
@@ -63,10 +71,12 @@
     <li>Sa, Su: 1PM - 5PM</li>
 </ul>
 
-<p>[[extended_info:hours_notes]]</p>
+{% if spot.hours_notes %}
+<p>Hours Notes:</p>
 <ul>
-    <li>Holiday hours may vary. Extended hours during finals.Interim: M-F: 9am-5pm</li>
+    <li>{{spot.hours_notes}}</li>
 </ul>
+{% endif %}
 
 {% if request.is_mobile %}
 <div style="height:200px;">
@@ -133,19 +143,20 @@
     <li>{{ spot.building_description }}</li>
     <li>{{ spot.capacity }}</li>
 </ul>
-
-<p>[[extended_info:access_notes]]</p>
+{% if spot.access_notes %}
+<p>Access Notes</p>
 <ul>
-    <li>Only dorm residents allowed.</li>
+    <li>{{spot.access_notes}}</li>
 </ul>
-
+{% endif %}
 <h4>Misc. information</h4>
 <ul>
-    <li>[[extended_info:s_has_coupon]]</li>
-    <li>[[extended_info:s_coupon_expiration]]</li>
-    <li>[[extended_info:s_coupon_url]]</li>
-    <li>[[extended_info:s_phone]]</li>
-    <li>[[extended_info:s_website_url]]</li>
+
+    {% if spot.has_coupon %} <li>{{ spot.has_coupon }}</li>{% endif %}
+    {% if spot.coupon_expiration %} <li>{{ spot.coupon_expiration }}</li>{% endif %}
+    {% if spot.coupon_url %} <li>{{ spot.coupon_url }}</li>{% endif %}
+    {% if spot.phone %} <li>{{ spot.phone }}</li>{% endif %}
+    {% if spot.website_url %} <li>{{ spot.website_url }}</li>{% endif %}
 </ul>
 
 <h4>Management</h4>

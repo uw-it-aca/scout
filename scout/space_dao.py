@@ -18,6 +18,59 @@ def get_spot_by_id(spot_id):
 def process_extended_info(spot):
     spot = add_foodtype_names_to_spot(spot)
     spot = add_cuisine_names(spot)
+    spot = add_payment_names(spot)
+    spot = add_open_periods(spot)
+    spot = add_additional_info(spot)
+    return spot
+
+
+def add_additional_info(spot):
+    spot.has_alert = _get_extended_info_by_key("s_has_alert", spot.extended_info)
+    spot.alert_notes = _get_extended_info_by_key("s_alert_notes", spot.extended_info)
+    spot.has_reservation = _get_extended_info_by_key("s_has_reservation", spot.extended_info)
+    spot.reservation_notes = _get_extended_info_by_key("s_reservation_notes", spot.extended_info)
+    spot.menu_url = _get_extended_info_by_key("s_menu_url", spot.extended_info)
+    spot.hours_notes = _get_extended_info_by_key("hours_notes", spot.extended_info)
+    spot.access_notes = _get_extended_info_by_key("s_access_notes", spot.extended_info)
+    spot.has_coupon = _get_extended_info_by_key("s_has_coupon", spot.extended_info)
+    spot.coupon_expiration = _get_extended_info_by_key("s_coupon_expiration", spot.extended_info)
+    spot.coupon_url = _get_extended_info_by_key("s_coupon_url", spot.extended_info)
+    spot.phone = _get_extended_info_by_key("s_phone", spot.extended_info)
+    spot.website_url = _get_extended_info_by_key("s_website_url", spot.extended_info)
+    return spot
+
+
+def _get_extended_info_by_key(key, extended_info):
+    for info in extended_info:
+        if info.key == key:
+            return info.value
+
+
+def _get_names_for_extended_info(prefix, mapping, info):
+    return [mapping[obj.key] for obj in info if prefix in obj.key and obj.value]
+
+
+def add_open_periods(spot):
+    OPEN_PREFIX = "s_open"
+    OPEN_MAPPING = {
+        "s_open_breakfast" : "Breakfast",
+        "s_open_lunch" : "Lunch",
+        "s_open_dinner" : "Dinner",
+        "s_open_late_night" : "Late Night"
+    }
+    spot.open_periods = _get_names_for_extended_info(OPEN_PREFIX, OPEN_MAPPING, spot.extended_info)
+    return spot
+
+def add_payment_names(spot):
+    PAYMENT_PREFIX = "s_pay"
+    PAYMENT_MAPPING = {
+        "s_pay_cash" : "Cash",
+        "s_pay_visa" : "Visa",
+        "s_pay_mastercard" : "Mastercard",
+        "s_pay_husky" : "Husky Card",
+        "s_pay_dining" : "Dining Account",
+    }
+    spot.payment_names = _get_names_for_extended_info(PAYMENT_PREFIX, PAYMENT_MAPPING, spot.extended_info)
     return spot
 
 
@@ -35,8 +88,7 @@ def add_cuisine_names(spot):
         "s_cuisine_mexican" : "Mexican",
         "s_cuisine_vietnamese" : "Vietnamese",
     }
-    cuisine_types = [CUISINE_TYPE_MAPPING[obj.key] for obj in spot.extended_info if CUISINE_TYPE_PREFIX in obj.key and obj.value]
-    spot.cuisinetype_names = cuisine_types
+    spot.cuisinetype_names = _get_names_for_extended_info(CUISINE_TYPE_PREFIX, CUISINE_TYPE_MAPPING, spot.extended_info)
     return spot
 
 
@@ -55,8 +107,6 @@ def add_foodtype_names_to_spot(spot):
         "s_food_sushi" : "Sushi",
         "s_food_tacos" : "Tacos",
     }
-    food_types = [FOOD_TYPE_MAPPING[obj.key] for obj in spot.extended_info if FOOD_TYPE_PREFIX in obj.key and obj.value]
-
-    spot.foodtype_names = food_types
+    spot.foodtype_names = _get_names_for_extended_info(FOOD_TYPE_PREFIX, FOOD_TYPE_MAPPING, spot.extended_info)
     return spot
 
