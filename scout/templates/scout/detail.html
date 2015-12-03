@@ -24,9 +24,9 @@
 
 <p>Cuisine:</p>
 <ul>
-    <li>[[extended_info:s_cuisine_xxxx]] American</li>
-    <li>[[extended_info:s_cuisine_xxxx]] BBQ</li>
-    <li>[[extended_info:s_cuisine_xxxx]] Light Lunch</li>
+    {% for cuisinetype in spot.cuisinetype_names %}
+        <li>{{ cuisinetype }}</li>
+    {% endfor %}
 </ul>
 
 <p>Food served:</p>
