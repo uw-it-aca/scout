@@ -23,7 +23,11 @@
                 {% for foodtype in spot.foodtype_names %}
                     {{ foodtype }},
                 {% endfor %}
-                [[extended_info:open_period]]
+
+                <br/>
+                {% for period in spot.open_periods %}
+                    {{ period }},
+                {% endfor %}
             </a>
         </li>
     {% endfor %}
