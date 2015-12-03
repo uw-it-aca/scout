@@ -9,17 +9,27 @@
 <div style="text-align: right;"> <a id="map_link" href="/">List</a> | <a id="map_link" href="/map/">Map</a></div>
 {% endif %}
 
-<h2>All OPEN/NEARBY (if location shared)</h2>
 <h2>All OPEN_NOW (centered at fountain)</h2>
-
 
 <ul>
     {% for spot in spots %}
-        <li><a href="detail/{{ spot.spot_id }}" style="display:block;text-decoration:none;"><img src="{{spot.images.0.url}}" style="width:80px;"> {{ spot.name }}, {{ spot.building_name }},
-            {% for foodtype in spot.foodtype_names %}
-            {{ foodtype }},
-            {% endfor %}
-             [[extended_info:open_period]], DISTANCE_FROM_YOU</a></li>
+        <li>
+            <a href="detail/{{ spot.spot_id }}" style="display:block;text-decoration:none;">
+                <!--<img src="{{spot.images.0.url}}" style="width:80px;">-->
+                <img src="{% static "scout/img/placeholder.png" %}" style="width:80px;">
+                <strong>{{ spot.name }}</strong>
+                <br/>{{ spot.building_name }}
+                <br/>
+                {% for foodtype in spot.foodtype_names %}
+                    {{ foodtype }},
+                {% endfor %}
+
+                <br/>
+                {% for period in spot.open_periods %}
+                    {{ period }},
+                {% endfor %}
+            </a>
+        </li>
     {% endfor %}
 </ul>
 
@@ -145,188 +155,24 @@ function initializeListMap() {
 
 <div class="list-block media-list">
     <ul>
+
+        {% for spot in spots %}
         <li>
-            <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Bobs+Burgers" class="item-link item-content">
+            <a href="detail/{{ spot.spot_id }}?hybrid=true&x_push_page=true&x_page_title=Bobs+Burgers" class="item-link item-content">
                 <div class="item-media">
                     <img src="{% static "scout/img/placeholder.png" %}" style="width:80px;">
                 </div>
                 <div class="item-inner">
                     <div class="item-title-row">
-                        <div class="item-title">Bob's Burgers</div>
+                        <div class="item-title">{{ spot.name }}</div>
                     </div>
-                    <div class="item-subtitle">Pizza, Salad, Category3</div>
-                    <div class="item-text">Phasellus lacinia justo augue, et fringilla felis dignissim sit amet. Nunc eu vulputate ligula. Pellentesque non cursus sem.</div>
+                    <div class="item-subtitle">{% for foodtype in spot.foodtype_names %} {{ foodtype }}, {% endfor %}</div>
+                    <div class="item-text">{{ spot.building_description }}</div>
                 </div>
             </a>
         </li>
-        <li>
-            <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Pagliacci" class="item-link item-content">
-                <div class="item-media">
-                    <img src="{% static "scout/img/placeholder.png" %}" style="width:80px;">
-                </div>
-                <div class="item-inner">
-                    <div class="item-title-row">
-                        <div class="item-title">Pagliacci</div>
-                    </div>
-                    <div class="item-subtitle">Pizza, Salad, Category3</div>
-                    <div class="item-text">Phasellus lacinia justo augue, et fringilla felis dignissim sit amet. Nunc eu vulputate ligula. Pellentesque non cursus sem.</div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=By+George" class="item-link item-content">
-                <div class="item-media">
-                    <img src="{% static "scout/img/placeholder.png" %}" style="width:80px;">
-                </div>
-                <div class="item-inner">
-                    <div class="item-title-row">
-                        <div class="item-title">By George</div>
-                    </div>
-                    <div class="item-subtitle">Pizza, Salad, Category3</div>
-                    <div class="item-text">Phasellus lacinia justo augue, et fringilla felis dignissim sit amet. Nunc eu vulputate ligula. Pellentesque non cursus sem.</div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Spot+Detail" class="item-link item-content">
-                <div class="item-media">
-                    <img src="{% static "scout/img/placeholder.png" %}" style="width:80px;">
-                </div>
-                <div class="item-inner">
-                    <div class="item-title-row">
-                        <div class="item-title">Spot 1</div>
-                    </div>
-                    <div class="item-subtitle">Pizza, Salad, Category3</div>
-                    <div class="item-text">Phasellus lacinia justo augue, et fringilla felis dignissim sit amet. Nunc eu vulputate ligula. Pellentesque non cursus sem.</div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Spot+Detail" class="item-link item-content">
-                <div class="item-media">
-                    <img src="{% static "scout/img/placeholder.png" %}" style="width:80px;">
-                </div>
-                <div class="item-inner">
-                    <div class="item-title-row">
-                        <div class="item-title">Spot 1</div>
-                    </div>
-                    <div class="item-subtitle">Pizza, Salad, Category3</div>
-                    <div class="item-text">Phasellus lacinia justo augue, et fringilla felis dignissim sit amet. Nunc eu vulputate ligula. Pellentesque non cursus sem.</div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Spot+Detail" class="item-link item-content">
-                <div class="item-media">
-                    <img src="{% static "scout/img/placeholder.png" %}" style="width:80px;">
-                </div>
-                <div class="item-inner">
-                    <div class="item-title-row">
-                        <div class="item-title">Spot 1</div>
-                    </div>
-                    <div class="item-subtitle">Pizza, Salad, Category3</div>
-                    <div class="item-text">Phasellus lacinia justo augue, et fringilla felis dignissim sit amet. Nunc eu vulputate ligula. Pellentesque non cursus sem.</div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Spot+Detail" class="item-link item-content">
-                <div class="item-media">
-                    <img src="{% static "scout/img/placeholder.png" %}" style="width:80px;">
-                </div>
-                <div class="item-inner">
-                    <div class="item-title-row">
-                        <div class="item-title">Spot 1</div>
-                    </div>
-                    <div class="item-subtitle">Pizza, Salad, Category3</div>
-                    <div class="item-text">Phasellus lacinia justo augue, et fringilla felis dignissim sit amet. Nunc eu vulputate ligula. Pellentesque non cursus sem.</div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Spot+Detail" class="item-link item-content">
-                <div class="item-media">
-                    <img src="{% static "scout/img/placeholder.png" %}" style="width:80px;">
-                </div>
-                <div class="item-inner">
-                    <div class="item-title-row">
-                        <div class="item-title">Spot 1</div>
-                    </div>
-                    <div class="item-subtitle">Pizza, Salad, Category3</div>
-                    <div class="item-text">Phasellus lacinia justo augue, et fringilla felis dignissim sit amet. Nunc eu vulputate ligula. Pellentesque non cursus sem.</div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Spot+Detail" class="item-link item-content">
-                <div class="item-media">
-                    <img src="{% static "scout/img/placeholder.png" %}" style="width:80px;">
-                </div>
-                <div class="item-inner">
-                    <div class="item-title-row">
-                        <div class="item-title">Spot 1</div>
-                    </div>
-                    <div class="item-subtitle">Pizza, Salad, Category3</div>
-                    <div class="item-text">Phasellus lacinia justo augue, et fringilla felis dignissim sit amet. Nunc eu vulputate ligula. Pellentesque non cursus sem.</div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Spot+Detail" class="item-link item-content">
-                <div class="item-media">
-                    <img src="{% static "scout/img/placeholder.png" %}" style="width:80px;">
-                </div>
-                <div class="item-inner">
-                    <div class="item-title-row">
-                        <div class="item-title">Spot 1</div>
-                    </div>
-                    <div class="item-subtitle">Pizza, Salad, Category3</div>
-                    <div class="item-text">Phasellus lacinia justo augue, et fringilla felis dignissim sit amet. Nunc eu vulputate ligula. Pellentesque non cursus sem.</div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Spot+Detail" class="item-link item-content">
-                <div class="item-media">
-                    <img src="{% static "scout/img/placeholder.png" %}" style="width:80px;">
-                </div>
-                <div class="item-inner">
-                    <div class="item-title-row">
-                        <div class="item-title">Spot 1</div>
-                    </div>
-                    <div class="item-subtitle">Pizza, Salad, Category3</div>
-                    <div class="item-text">Phasellus lacinia justo augue, et fringilla felis dignissim sit amet. Nunc eu vulputate ligula. Pellentesque non cursus sem.</div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Spot+Detail" class="item-link item-content">
-                <div class="item-media">
-                    <img src="{% static "scout/img/placeholder.png" %}" style="width:80px;">
-                </div>
-                <div class="item-inner">
-                    <div class="item-title-row">
-                        <div class="item-title">Spot 1</div>
-                    </div>
-                    <div class="item-subtitle">Pizza, Salad, Category3</div>
-                    <div class="item-text">Phasellus lacinia justo augue, et fringilla felis dignissim sit amet. Nunc eu vulputate ligula. Pellentesque non cursus sem.</div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Spot+Detail" class="item-link item-content">
-                <div class="item-media">
-                    <img src="{% static "scout/img/placeholder.png" %}" style="width:80px;">
-                </div>
-                <div class="item-inner">
-                    <div class="item-title-row">
-                        <div class="item-title">Spot 1</div>
-                    </div>
-                    <div class="item-subtitle">Pizza, Salad, Category3</div>
-                    <div class="item-text">Phasellus lacinia justo augue, et fringilla felis dignissim sit amet. Nunc eu vulputate ligula. Pellentesque non cursus sem.</div>
-                </div>
-            </a>
-        </li>
+        {% endfor %}
+
     </ul>
 </div>
 {% endblock %}
