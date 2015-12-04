@@ -21,6 +21,23 @@ def process_extended_info(spot):
     spot = add_payment_names(spot)
     spot = add_open_periods(spot)
     spot = add_additional_info(spot)
+    spot = organize_hours(spot)
+    return spot
+
+
+def organize_hours(spot):
+    hours_object = {
+        'monday': [],
+        'tuesday': [],
+        'wednesday': [],
+        'thursday': [],
+        'friday': [],
+        'saturday': [],
+        'sunday': [],
+    }
+    for hours in spot.spot_availability:
+        hours_object[hours.day].append([hours.start_time, hours.end_time])
+    spot.hours = hours_object
     return spot
 
 

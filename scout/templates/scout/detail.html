@@ -64,11 +64,14 @@
 
 <h4>Hours</h4>
 
-<p>[[available_hours]]</p>
 <ul>
-    <li>M, T, W, Th: 8AM - 7PM</li>
-    <li>F: 8AM - 5PM</li>
-    <li>Sa, Su: 1PM - 5PM</li>
+    <li>Monday: {% for hours in spot.hours.monday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
+    <li>Tuesday: {% for hours in spot.hours.tuesday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
+    <li>Wednesday: {% for hours in spot.hours.wednesday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
+    <li>Thursday: {% for hours in spot.hours.thursday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
+    <li>Friday: {% for hours in spot.hours.friday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
+    <li>Saturday: {% for hours in spot.hours.saturday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
+    <li>Sunday: {% for hours in spot.hours.sunday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
 </ul>
 
 {% if spot.hours_notes %}
@@ -226,9 +229,13 @@
 
             <h4>Hours</h4>
             <ul>
-                <li>M, T, W, Th: 8AM - 7PM</li>
-                <li>F: 8AM - 5PM</li>
-                <li>Sa, Su: 1PM - 5PM</li>
+                <li>Monday: {% for hours in spot.hours.monday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
+                <li>Tuesday: {% for hours in spot.hours.tuesday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
+                <li>Wednesday: {% for hours in spot.hours.wednesday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
+                <li>Thursday: {% for hours in spot.hours.thursday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
+                <li>Friday: {% for hours in spot.hours.friday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
+                <li>Saturday: {% for hours in spot.hours.saturday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
+                <li>Sunday: {% for hours in spot.hours.sunday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
             </ul>
             <p>Holiday hours may vary. Extended hours during finals.Interim: M-F: 9am-5pm</p>
 
