@@ -181,7 +181,7 @@
         if (mapExists) {
 
             // center map direction on spot location
-            myLatlng = new google.maps.LatLng(47.6551526, -122.3079563);
+            myLatlng = new google.maps.LatLng({{ spot.latitude }}, {{ spot.longitude }});
             mapOptions = {
                 center: myLatlng,
                 zoom: 20,
