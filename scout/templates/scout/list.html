@@ -13,7 +13,7 @@
 
 <ul>
     {% for spot in spots %}
-        <li>
+        <li id="{{ spot.spot_id }}">
             <a href="detail/{{ spot.spot_id }}" style="display:block;text-decoration:none;">
                 <!--<img src="{{spot.images.0.url}}" style="width:80px;">-->
                 <img src="{% static "scout/img/placeholder.png" %}" style="width:80px;">
@@ -131,7 +131,7 @@ function initializeListMap() {
                     infoWindow.setContent("<div style = 'width:200px;'>" + data.spot_name + "</div>");
                     infoWindow.open(map, marker);
                     $('li').css('background', 'none'); // clear any highlighted spots first
-                    $('#' + data.id).css('background', '#eee');
+                    $('#' + data.id).css('background', '#6564A8');
                 });
 
                 google.maps.event.addListener(infoWindow,'closeclick',function(){
