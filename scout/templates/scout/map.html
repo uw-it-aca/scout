@@ -10,7 +10,119 @@
 <div style="text-align: right;"> <a id="map_link" href="/">List</a> | <a id="map_link" href="/map/">Map</a></div>
 {% endif %}
 
-<p>This is a map.... Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non urna et lorem venenatis varius quis sit amet dui. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur a nisi odio. Integer interdum tempor ante vitae dictum. Nullam volutpat diam id odio pulvinar, vel vehicula erat sodales. Maecenas magna ante, interdum id libero et, sodales volutpat orci. </p>
+<!-- show a map on the list page -->
+<div class="scout-map" style="margin:0 -20px;">
+    <div id="list_map" style="height:350px;"></div>
+</div>
+
+<!-- since turbolinks loads the full body... generate this function in the template. then, call the function in the map.js file -->
+<script type="text/javascript">
+
+function initializeListMap() {
+
+	var mapExists = document.getElementById("list_map");
+	var myLatlng, mapOptions;
+
+	if(mapExists) {
+
+		// center map on uw fountain
+		mapCenter = new google.maps.LatLng(47.653811, -122.307815);
+        mapOptions = {
+	        center: mapCenter,
+	        zoom: 16,
+	    };
+
+        var styles = [
+            {
+                "featureType": "poi.place_of_worship",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "visibility": "off"
+                    }
+                ]
+            },
+            {
+                "featureType": "poi.business",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "visibility": "off"
+                    }
+                ]
+            }
+        ]
+
+		var map = new google.maps.Map(document.getElementById('list_map'), mapOptions);
+        map.setOptions({styles: styles});
+
+        // multiple pins on a single map
+        var locations = [
+            {% for spot in spots %}
+            {
+                "spot_name" : '{{ spot.name }}',
+                "id" : '{{ spot.spot_id }}',
+                "lat" : '{{ spot.latitude }}',
+                "lng" : '{{ spot.longitude }}',
+                "icon": 'fa-cutlery',
+            },
+            {% endfor %}
+		]
+
+        // create and open InfoWindow.
+        var infoWindow = new google.maps.InfoWindow();
+        var markers = [];
+
+        var bounds = new google.maps.LatLngBounds();
+
+		for (var i = 0; i < locations.length; i++) {
+
+            var data = locations[i];
+
+			var marker = new MarkerWithLabel({
+		        position: new google.maps.LatLng(data.lat, data.lng),
+		        map: map,
+                animation: google.maps.Animation.DROP,
+                labelContent: "<i class='fa " + data.icon +"'></i><span class='marker-text'>" + data.spot_name + "</span>",
+                labelAnchor: new google.maps.Point(6, 6),
+                labelClass: "map-label", // the CSS class for the label
+                icon: {
+            		path: google.maps.SymbolPath.CIRCLE,
+            		fillColor: '#6562aa',
+            		fillOpacity: 1,
+            		strokeColor: '#53518e',
+                    scale: 10,
+            		strokeWeight: 0
+            	},
+		    });
+
+            markers.push(marker);
+
+            // attach click event to the marker
+            (function (marker, data) {
+
+                google.maps.event.addListener(marker, "click", function (e) {
+
+                    window.location.href = "/detail/" + data.id;
+                });
+
+            })(marker, data);
+
+            // add the marker position to boundary
+            bounds.extend(marker.position);
+
+		}
+
+        // zoom the map automatically using the bounds of all markers
+        map.fitBounds(bounds);
+
+        // cluster the markers using marker clusterer
+        var markerCluster = new MarkerClusterer(map, markers);
+
+	}
+
+}
+</script>
 
 {% endblock %}
 

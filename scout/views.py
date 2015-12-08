@@ -13,7 +13,9 @@ def discover_view(request):
 
 
 def map_view(request):
-    return render_to_response('scout/map.html',
+    spots = get_open_spots()
+    context = {"spots": spots}
+    return render_to_response('scout/map.html', context,
                               context_instance=RequestContext(request))
 
 
