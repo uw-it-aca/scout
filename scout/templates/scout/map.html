@@ -103,7 +103,9 @@ function initializeListMap() {
 
                 google.maps.event.addListener(marker, "click", function (e) {
 
-                    window.location.href = "/detail/" + data.id;
+                    //Wrap the content inside an HTML DIV in order to set height and width of InfoWindow.
+                    infoWindow.setContent("<div style = 'width:200px;'><a href='/detail/" + data.id + "'>" + data.spot_name + "</a></div>");
+                    infoWindow.open(map, marker);
                 });
 
             })(marker, data);
