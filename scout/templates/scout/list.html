@@ -92,13 +92,13 @@ function initializeListMap() {
                 "icon": 'fa-cutlery',
             },
             {% endfor %}
-
 		]
 
         // create and open InfoWindow.
         var infoWindow = new google.maps.InfoWindow();
-
         var markers = [];
+
+        var bounds = new google.maps.LatLngBounds();
 
 		for (var i = 0; i < locations.length; i++) {
 
@@ -140,8 +140,15 @@ function initializeListMap() {
 
             })(marker, data);
 
+            // add the marker position to boundary
+            bounds.extend(marker.position);
+
 		}
 
+        // zoom the map automatically using the bounds of all markers
+        map.fitBounds(bounds);
+
+        // cluster the markers using marker clusterer
         var markerCluster = new MarkerClusterer(map, markers);
 
 	}
