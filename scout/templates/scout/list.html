@@ -108,7 +108,7 @@ function initializeListMap() {
 		        position: new google.maps.LatLng(data.lat, data.lng),
 		        map: map,
                 animation: google.maps.Animation.DROP,
-                labelContent: "<i class='fa " + data.icon +"'></i><span style='color:#000;margin-left:8px;'>" + data.spot_name + "</span>",
+                labelContent: "<i class='fa " + data.icon +"'></i><span class='marker-text'>" + data.spot_name + "</span>",
                 labelAnchor: new google.maps.Point(6, 6),
                 labelClass: "map-label", // the CSS class for the label
                 icon: {
