@@ -252,13 +252,6 @@
                {% endfor %}
             </p>
 
-            <p>Open for:</p>
-            <ul>
-                {% for period in spot.open_periods %}
-                    <li>{{ period }}</li>
-                {% endfor %}
-            </ul>
-
             <p>{{spot.building_description}}</p>
 
             <h4>Hours</h4>
@@ -318,6 +311,19 @@
     </div>
 </div>
 
+<div class="content-block-title">Open for:</div>
+<div class="list-block">
+    <ul>
+        {% for period in spot.open_periods %}
+        <li class="item-content">
+            <div class="item-inner">
+                <div class="item-title">{{ period }}</div>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
 <div class="content-block-title">Cuisine:</div>
 <div class="list-block">
     <ul>
@@ -361,10 +367,10 @@
 <div class="list-block">
     <ul>
         <li>
-            <a href="/?hybrid=true&x_push_page=true&x_page_title=Seattle+List" class="item-link">
+            <a href="maps://maps.apple.com/maps?q={{ spot.latitude }},{{ spot.longitude }}" class="item-link">
                 <div class="item-content">
                     <div class="item-inner">
-                        <div class="item-title">Open in google maps</div>
+                        <div class="item-title">Open in Google Maps</div>
                     </div>
                 </div>
             </a>
