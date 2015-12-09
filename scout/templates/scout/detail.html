@@ -13,7 +13,7 @@
 {% endif %}
 
 <h2>{{spot.name}}</h2>
-<p>{% for type in spot.spot_types %}
+<p>Type: {% for type in spot.spot_types %}
     {{ type.name }}
    {% endfor %}
 </p>
@@ -99,22 +99,28 @@
             myLatlng = new google.maps.LatLng(47.6551526, -122.3079563);
             mapOptions = {
                 center: myLatlng,
-                zoom: 18,
-                scrollwheel: false,
-                draggable: false,
-                disableDefaultUI: true
+                zoom: 17,
+                //scrollwheel: false,
+                //draggable: false,
+                //disableDefaultUI: true
             };
 
             var styles = [
                 {
-                    "featureType": "all",
+                    "featureType": "poi.place_of_worship",
                     "elementType": "all",
                     "stylers": [
                         {
-                            "lightness": "40"
-                        },
+                            "visibility": "off"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi.business",
+                    "elementType": "all",
+                    "stylers": [
                         {
-                            "saturation": "-100"
+                            "visibility": "off"
                         }
                     ]
                 }
@@ -133,7 +139,7 @@
 
     }
 </script>
-
+<p><a href="/">OPEN IN GOOGLE MAPS</a></p>
 {% endif %}
 
 <h4>Location information</h4>
@@ -188,12 +194,20 @@
             mapOptions = {
                 center: myLatlng,
                 zoom: 20,
-                /*scrollwheel: false, draggable: false, disableDefaultUI: true*/
             };
 
             var styles = [
                 {
                     "featureType": "poi.place_of_worship",
+                    "elementType": "all",
+                    "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi.business",
                     "elementType": "all",
                     "stylers": [
                         {
@@ -222,12 +236,33 @@
 {% block hybrid_content %}
 
 <div class="card">
-    <div style="background:url('{% static "scout/img/placeholder.png" %}') no-repeat; background-size:cover; height:200px;" valign="bottom" class="card-header">Spot Name</div>
+    <div style="background:url('{% static "scout/img/placeholder.png" %}') no-repeat; background-size:cover; height:200px;" valign="bottom" class="card-header">{{spot.name}}</div>
     <div class="card-content">
         <div class="card-content-inner">
-            <h4>Pizza, Salads</h4>
+
+            {% if spot.has_alert %}
+            <p>
+                ALERT
+                <br/> {{ spot.alert_notes }}
+            </p>
+            {% endif %}
+
+            <p>type: {% for type in spot.spot_types %}
+                {{ type.name }}
+               {% endfor %}
+            </p>
+
+            <p>Open for:</p>
+            <ul>
+                {% for period in spot.open_periods %}
+                    <li>{{ period }}</li>
+                {% endfor %}
+            </ul>
+
+            <p>{{spot.building_description}}</p>
 
             <h4>Hours</h4>
+
             <ul>
                 <li>Monday: {% for hours in spot.hours.monday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
                 <li>Tuesday: {% for hours in spot.hours.tuesday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
@@ -237,49 +272,88 @@
                 <li>Saturday: {% for hours in spot.hours.saturday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
                 <li>Sunday: {% for hours in spot.hours.sunday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
             </ul>
-            <p>Holiday hours may vary. Extended hours during finals.Interim: M-F: 9am-5pm</p>
 
-
-            <h4>Location</h4>
+            {% if spot.hours_notes %}
+            <p>Hours Notes:</p>
             <ul>
-                <li>Allen Library North, Ground floor</li>
+                <li>{{spot.hours_notes}}</li>
+            </ul>
+            {% endif %}
+
+
+            <h4>Location information</h4>
+            <ul>
+                <li>{{ spot.latitude }}</li>
+                <li>{{ spot.longitude }}</li>
+                <li>{{ spot.building_name }}</li>
+                <li>{{ spot.floor }}</li>
+                <li>{{ spot.room_number }}</li>
+                <li>{{ spot.building_description }}</li>
+                <li>{{ spot.capacity }}</li>
+            </ul>
+            {% if spot.access_notes %}
+            <p>Access Notes</p>
+            <ul>
+                <li>{{spot.access_notes}}</li>
+            </ul>
+            {% endif %}
+            <h4>Misc. information</h4>
+            <ul>
+
+                {% if spot.has_coupon %} <li>{{ spot.has_coupon }}</li>{% endif %}
+                {% if spot.coupon_expiration %} <li>{{ spot.coupon_expiration }}</li>{% endif %}
+                {% if spot.coupon_url %} <li>{{ spot.coupon_url }}</li>{% endif %}
+                {% if spot.phone %} <li>{{ spot.phone }}</li>{% endif %}
+                {% if spot.website_url %} <li>{{ spot.website_url }}</li>{% endif %}
+            </ul>
+
+            <h4>Management</h4>
+            <p>this location is managed by...</p>
+            <ul>
+                <li>{{ spot.organization }}</li>
+                <li>{{ spot.manager }}</li>
             </ul>
 
         </div>
     </div>
 </div>
 
-<div class="content-block-title">Environment</div>
+<div class="content-block-title">Cuisine:</div>
 <div class="list-block">
     <ul>
+        {% for cuisinetype in spot.cuisinetype_names %}
         <li class="item-content">
             <div class="item-inner">
-                <div class="item-title">Resources
-                    <span>asdfadsf, kajsfd</span>
-                </div>
+                <div class="item-title">{{ cuisinetype }}</div>
             </div>
         </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<div class="content-block-title">Food Served:</div>
+<div class="list-block">
+    <ul>
+        {% for foodtype in spot.foodtype_names %}
         <li class="item-content">
             <div class="item-inner">
-                <div class="item-title">Food/coffee
-                    <span>asd, fadsf</span>
-                </div>
+                <div class="item-title">{{ foodtype }}</div>
             </div>
         </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<div class="content-block-title">Payment Accepted:</div>
+<div class="list-block">
+    <ul>
+        {% for payment in spot.payment_names %}
         <li class="item-content">
             <div class="item-inner">
-                <div class="item-title">Noise Level
-                    <span>asdfa, dsf, asdkjhdfjs</span>
-                </div>
+                <div class="item-title">{{ payment }}</div>
             </div>
         </li>
-        <li class="item-content">
-            <div class="item-inner">
-                <div class="item-title">Lighting
-                    <span>natural light</span>
-                </div>
-            </div>
-        </li>
+        {% endfor %}
     </ul>
 </div>
 
@@ -290,16 +364,7 @@
             <a href="/?hybrid=true&x_push_page=true&x_page_title=Seattle+List" class="item-link">
                 <div class="item-content">
                     <div class="item-inner">
-                        <div class="item-title">View this space on the map</div>
-                    </div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/?hybrid=true&x_push_page=true&x_page_title=Seattle+List" class="item-link">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">Get directions in Maps</div>
+                        <div class="item-title">Open in google maps</div>
                     </div>
                 </div>
             </a>
