@@ -169,7 +169,7 @@ function initializeListMap() {
 
         {% for spot in spots %}
         <li>
-            <a href="detail/{{ spot.spot_id }}?hybrid=true&x_push_page=true&x_page_title=Bobs+Burgers" class="item-link item-content">
+            <a href="detail/{{ spot.spot_id }}?hybrid=true&x_push_page=true&x_page_title={{ spot.name.split|join:"+" }}" class="item-link item-content">
                 <div class="item-media">
                     <img src="{% static "scout/img/placeholder.png" %}" style="width:80px;">
                 </div>
