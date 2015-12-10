@@ -207,24 +207,35 @@
                     ]
                 },
                 {
-                    "featureType": "poi.business",
-                    "elementType": "labels.icon",
-                    "stylers": [
-                        {
-                            "visibility": "off"
-                        }
-                    ]
-                }
+                "featureType": "poi.business",
+                "elementType": "labels.icon",
+                "stylers": [
+                    {
+                        "visibility": "off"
+                    }
+                ]
+            }
             ]
 
             var map = new google.maps.Map(document.getElementById('detail_map'), mapOptions);
             map.setOptions({styles: styles});
 
-            var marker = new google.maps.Marker({
+            var marker = new MarkerWithLabel({
                 position: myLatlng,
                 map: map,
                 title: 'Hello World!',
                 animation: google.maps.Animation.DROP,
+                labelContent: "<i class='fa fa-cutlery'></i><span class='marker-text'>{{ spot.name }}</span>",
+                labelAnchor: new google.maps.Point(6, 6),
+                labelClass: "map-label", // the CSS class for the label
+                icon: {
+            		path: google.maps.SymbolPath.CIRCLE,
+            		fillColor: '#6562aa',
+            		fillOpacity: 1,
+            		strokeColor: '#53518e',
+                    scale: 10,
+            		strokeWeight: 0
+            	},
             });
         }
 
