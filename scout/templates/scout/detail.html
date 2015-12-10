@@ -225,16 +225,16 @@
                 map: map,
                 title: 'Hello World!',
                 animation: google.maps.Animation.DROP,
-                labelContent: "<i class='fa fa-cutlery'></i><span class='marker-text'>{{ spot.name }}</span>",
+                labelContent: "<i class='fa fa-cutlery'></i><span class='marker-text' style='margin-left:15px;font-size:12px;'>{{ spot.name }}</span>",
                 labelAnchor: new google.maps.Point(6, 6),
                 labelClass: "map-label", // the CSS class for the label
                 icon: {
             		path: google.maps.SymbolPath.CIRCLE,
-            		fillColor: '#6562aa',
+            		fillColor: '#53518e',
             		fillOpacity: 1,
-            		strokeColor: '#53518e',
-                    scale: 10,
-            		strokeWeight: 0
+            		strokeColor: '#6562aa',
+                    strokeWeight: 5,
+                    scale: 13,
             	},
             });
         }
