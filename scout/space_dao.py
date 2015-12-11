@@ -3,7 +3,9 @@ from spotseeker_restclient.spotseeker import Spotseeker
 
 def get_open_spots():
     spot_client = Spotseeker()
-    res = spot_client.search_spots(meta_type="food", open="true")
+    res = spot_client.search_spots([('open', True),
+                                    ('limit', 100),
+                                    ('extended_info:app_type', 'food')])
     for spot in res:
         spot = process_extended_info(spot)
     return res
@@ -64,7 +66,14 @@ def _get_extended_info_by_key(key, extended_info):
 
 
 def _get_names_for_extended_info(prefix, mapping, info):
-    return [mapping[obj.key] for obj in info if prefix in obj.key and obj.value]
+    names = []
+    for obj in info:
+        if prefix in obj.key and obj.value:
+            try:
+                names.append(mapping[obj.key])
+            except KeyError:
+                pass
+    return names
 
 
 def add_open_periods(spot):
