@@ -1,0 +1,20 @@
+sudo: false
+language: python
+python:
+  - "2.7"
+install: python setup.py -q install
+before_script:
+  - pip install coverage
+  - pip install python-coveralls
+  - pip install pep8
+  - cp travis-ci/manage.py manage.py
+  - python manage.py migrate --noinput
+script:
+  - pep8 scout/ --exclude=migrations
+  - coverage run --source=scout/ --omit=scout/migrations/* manage.py test scout
+after_script:
+  - coveralls
+notifications:
+  webhooks:
+      urls:
+        - https://yarn.cac.washington.edu/rest/botalyst/v1/travis-ci
