@@ -36,7 +36,6 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'scout',
-    'hybridize',
     'turbolinks',
     'spotseeker_restclient',
     'compressor'
