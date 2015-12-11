@@ -6,8 +6,16 @@
 
 {% block web_content %}
 
-<div style="background:yellow; height:300px; overflow:hidden;">
+<div style="border:solid 1px red; padding:5px;">
+Filtering by: xxxxx<br>
+Results: 50<br>
+
+<a href="" id="filter_toggle">MORE FILTERS</a>
+
+<div style="display:none; margin-top:1em;" id="filter_container">
 {% include "scout/include/filter.html" %}
+</div>
+
 </div>
 
 {% if request.is_mobile or request.is_tablet %}
