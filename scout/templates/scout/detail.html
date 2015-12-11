@@ -56,7 +56,7 @@
     {% endfor %}
 </ul>
 
-<p>View the menu: {{spot.menu_url}}</p>
+<p style="overflow:hidden; text-overflow:ellipsis;">View the menu: {{spot.menu_url}}</p>
 
 <div style="background:url('{% static "scout/img/placeholder.png" %}') no-repeat; background-size:cover; height:300px;">&nbsp;</div>
 
@@ -176,7 +176,7 @@
     {% if spot.coupon_expiration %} <li>{{ spot.coupon_expiration }}</li>{% endif %}
     {% if spot.coupon_url %} <li>{{ spot.coupon_url }}</li>{% endif %}
     {% if spot.phone %} <li>{{ spot.phone }}</li>{% endif %}
-    {% if spot.website_url %} <li>{{ spot.website_url }}</li>{% endif %}
+    {% if spot.website_url %} <li style="overflow:hidden; text-overflow:ellipsis;">{{ spot.website_url }}</li>{% endif %}
 </ul>
 
 <h4>Management</h4>
