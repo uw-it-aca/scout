@@ -35,7 +35,12 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'scout'
+    'scout',
+    'scout_manager',
+    'hybridize',
+    'turbolinks',
+    'spotseeker_restclient',
+    'compressor'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -43,17 +48,40 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.RemoteUserMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.security.SecurityMiddleware',
+    'django_mobileesp.middleware.UserAgentDetectionMiddleware',
+    'turbolinks.middleware.TurbolinksMiddleware',
+    'htmlmin.middleware.HtmlMinifyMiddleware',
+    'htmlmin.middleware.MarkRequestMiddleware'
 )
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.RemoteUserBackend',
 )
 
-ROOT_URLCONF = 'travis-ci.urls'
+ROOT_URLCONF = 'scoutproject.urls'
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+                'scout.context_processors.google_analytics',
+                'scout.context_processors.is_desktop',
+                'scout.context_processors.is_hybrid',
+            ],
+        },
+    },
+]
 
 WSGI_APPLICATION = 'travis-ci.wsgi.application'
 
@@ -83,15 +111,55 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.7/howto/static-files/
+# https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = '/tmp/'
 
 STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'compressor.finders.CompressorFinder',
-    #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+    "compressor.finders.CompressorFinder",
 )
 
-COMPRESS_ENABLED = False
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
+# django mobileesp
+
+from django_mobileesp.detector import mobileesp_agent as agent
+
+DETECT_USER_AGENTS = {
+
+    'is_tablet' : agent.detectTierTablet,
+    'is_mobile': agent.detectMobileQuick,
+
+    'is_and': agent.detectAndroid,
+    'is_ios': agent.detectIos,
+    'is_win': agent.detectWindowsPhone,
+}
+
+COMPRESS_ROOT = "/tmp/"
+COMPRESS_PRECOMPILERS = (
+    ('text/less', 'lessc {infile} {outfile}'),
+    ('text/x-sass', 'sassc {infile} {outfile}'),
+    ('text/x-scss', 'sassc {infile} {outfile}'),
+)
+COMPRESS_ENABLED = True
+COMPRESS_OFFLINE = False
+COMPRESS_OUTPUT_DIR = ''
+COMPRESS_CSS_FILTERS = [
+    'compressor.filters.css_default.CssAbsoluteFilter',
+    'compressor.filters.cssmin.CSSMinFilter'
+]
+COMPRESS_JS_FILTERS = [
+    'compressor.filters.jsmin.JSMinFilter',
+]
+
+# google analytics tracking
+#GOOGLE_ANALYTICS_KEY = "UA-XXXXXXXX-X"
+
+# htmlmin
+HTML_MINIFY = True
+
