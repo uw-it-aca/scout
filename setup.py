@@ -19,6 +19,10 @@ setup(
         'django-turbolinks',
         'django-htmlmin',
         'libsass',
+        'spotseeker_client'
+    ],
+    dependency_links=[
+        'https://github.com/uw-it-aca/spotseeker_client.git#egg=spotseeker_client'
     ],
     license='Apache License, Version 2.0',  # example license
     description='A Django app for developer resources complimentary to mdot_web client.',
