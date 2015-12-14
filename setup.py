@@ -19,7 +19,7 @@ setup(
         'django-turbolinks',
         'django-htmlmin',
         'libsass',
-        'spotseeker_client'
+        'spotseeker_restclient'
     ],
     dependency_links=[
         'git+https://github.com/uw-it-aca/spotseeker_client.git#egg=spotseeker_restclient'
