@@ -6,9 +6,7 @@ $(document).on('ready page:load page:restore', function(event) {
 
     $("#filter_toggle").click(function(e) {
         e.preventDefault();
-        $("#filter_container").toggle("slow", function() {
-            // Animation complete.
-        });
+        $("#filter_container").toggle();
     });
 
 });

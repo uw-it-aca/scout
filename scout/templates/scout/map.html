@@ -19,7 +19,9 @@ Results: 50<br>
 </div>
 
 {% if request.is_mobile or request.is_tablet %}
-<div style="text-align: right;"> <a id="map_link" href="/">List</a> | <a id="map_link" href="/map/">Map</a></div>
+<div style="text-align: center; line-height:40px; background:#ddd;margin:1em 0;">
+    <a id="map_link" href="/">List</a> | <a id="map_link" href="/map/">Map</a>
+</div>
 {% endif %}
 
 <!-- show a map on the list page -->
