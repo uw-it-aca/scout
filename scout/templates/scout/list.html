@@ -18,7 +18,7 @@ Results: 50<br>
 </div>
 
 {% if request.is_mobile or request.is_tablet %}
-<div style="text-align: center; line-height:40px; background:#ddd; margin:1em 0;"> 
+<div style="text-align: center; line-height:40px; background:#ddd; margin:1em 0;">
     <a id="map_link" href="/">List</a> | <a id="map_link" href="/map/">Map</a>
 </div>
 {% endif %}
@@ -122,7 +122,8 @@ function initializeListMap() {
 		        position: new google.maps.LatLng(data.lat, data.lng),
 		        map: map,
                 //animation: google.maps.Animation.DROP,
-                labelContent: "<i class='fa " + data.icon +"'></i><span class='marker-text'>" + data.spot_name + "</span>",
+                labelContent: "<i class='fa " + data.icon +"'></i>",
+                //labelContent: "<i class='fa " + data.icon +"'></i><span class='marker-text'>" + data.spot_name + "</span>",
                 labelAnchor: new google.maps.Point(6, 6),
                 labelClass: "map-label", // the CSS class for the label
                 icon: {
@@ -131,7 +132,7 @@ function initializeListMap() {
             		fillOpacity: 1,
             		strokeColor: '#53518e',
                     scale: 10,
-            		strokeWeight: 0
+            		strokeWeight: 3
             	},
 		    });
 
@@ -160,15 +161,15 @@ function initializeListMap() {
             })(marker, data);
 
             // add the marker position to boundary
-            bounds.extend(marker.position);
+            //bounds.extend(marker.position);
 
 		}
 
         // zoom the map automatically using the bounds of all markers
-        map.fitBounds(bounds);
+        //map.fitBounds(bounds);
 
         // cluster the markers using marker clusterer
-        var markerCluster = new MarkerClusterer(map, markers);
+        //var markerCluster = new MarkerClusterer(map, markers);
 
 	}
 
