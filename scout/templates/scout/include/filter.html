@@ -3,18 +3,18 @@
 
     <fieldset>
     <legend>Campus:</legend>
-        <select multiple>
-            <option value="xx" selected="selected">Seattle</option>
-            <option value="xx">Bothell</option>
-            <option value="xx">Tacoma</option>
-            <option value="xx">South Lake Union</option>
+        <select multiple id="campus_select">
+            <option value="seattle">Seattle</option>
+            <option value="bothell">Bothell</option>
+            <option value="tacoma">Tacoma</option>
+            <option value="south_lake_union">South Lake Union</option>
         </select>
     </fieldset>
 
     <fieldset>
-        <legend>Hours / Open for:</legend>
+        <legend>Hours / Open for: [NOT IMPLEMENTED]</legend>
         <select multiple>
-            <option value="xx" selected="selected">Breakfast</option>
+            <option value="xx">Breakfast</option>
             <option value="xx">Lunch</option>
             <option value="xx">Dinner</option>
             <option value="xx">Late Night</option>
@@ -23,63 +23,63 @@
 
     <fieldset>
         <legend>Payment accepted:</legend>
-        <select multiple>
-            <option value="xx" selected="selected">Cash</option>
-            <option value="xx">Husky Card</option>
-            <option value="xx">Dining Card</option>
-            <option value="xx">Visa</option>
-            <option value="xx">Mastercard</option>
+        <select multiple id="payment_select">
+            <option value="s_pay_cash">Cash</option>
+            <option value="s_pay_husky">Husky Card</option>
+            <option value="s_pay_dining">Dining Card</option>
+            <option value="s_pay_visa">Visa</option>
+            <option value="s_pay_mastercard">Mastercard</option>
         </select>
     </fieldset>
 
     <fieldset>
         <legend>Restaurant type</legend>
-        <select multiple>
-            <option value="xx" selected="selected">Cafes</option>
-            <option value="xx">Restaurant</option>
-            <option value="xx">Fine Dining</option>
-            <option value="xx">Food Court</option>
-            <option value="xx">Food Truck</option>
-            <option value="xx">Market</option>
+        <select multiple id="type_select">
+            <option value="cafe">Cafes</option>
+{#            <option value="xx">Restaurant</option>#}
+            <option value="fine_dining">Fine Dining</option>
+            <option value="food_court">Food Court</option>
+            <option value="food_truck">Food Truck</option>
+            <option value="market">Market</option>
         </select>
     </fieldset>
 
     <fieldset>
         <legend>Food served</legend>
-        <select multiple>
-            <option value="xx" selected="selected">Appetizers</option>
-            <option value="xx">Burgers</option>
-            <option value="xx">Entrees</option>
-            <option value="xx">Espresso</option>
-            <option value="xx">Pasta</option>
-            <option value="xx">Pizza</option>
-            <option value="xx">Salads</option>
-            <option value="xx">Sandwiches</option>
-            <option value="xx">Smoothies</option>
-            <option value="xx">Sushi</option>
-            <option value="xx">Tacos</option>
+        <select multiple id="food_select">
+{#            <option value="xx">Appetizers</option>#}
+{#            <option value="xx">Burgers</option>#}
+            <option value="s_food_entrees">Entrees</option>
+            <option value="s_food_espresso">Espresso</option>
+{#            <option value="xx">Pasta</option>#}
+            <option value="s_food_pizza">Pizza</option>
+            <option value="s_food_salads">Salads</option>
+            <option value="s_food_sandwiches">Sandwiches</option>
+            <option value="s_food_smoothies">Smoothies</option>
+            <option value="s_food_sushi">Sushi</option>
+            <option value="s_food_tacos">Tacos</option>
         </select>
     </fieldset>
 
     <fieldset>
         <legend>Cuisine</legend>
-        <select multiple>
-            <option value="xx" selected="selected">American</option>
-            <option value="xx">BBQ</option>
-            <option value="xx">Chinese</option>
-            <option value="xx">Hawaiian</option>
-            <option value="xx">Indian</option>
-            <option value="xx">Italian</option>
-            <option value="xx">Japanese</option>
-            <option value="xx">Korean</option>
-            <option value="xx">Mexican</option>
-            <option value="xx">Vietnamese</option>
-            <option value="xx">Light Lunch</option>
+        <select multiple id="cuisine_select">
+            <option value="s_cuisine_american">American</option>
+            <option value="s_cuisine_bbq">BBQ</option>
+            <option value="s_cuisine_chinese">Chinese</option>
+{#            <option value="xx">Hawaiian</option>#}
+            <option value="s_cuisine_indian">Indian</option>
+{#            <option value="xx">Italian</option>#}
+{#            <option value="xx">Japanese</option>#}
+{#            <option value="xx">Korean</option>#}
+{#            <option value="xx">Mexican</option>#}
+            <option value="s_cuisine_vietnamese">Vietnamese</option>
+            <option value="s_cuisine_light_lunch">Light Lunch</option>
         </select>
     </fieldset>
 
     <div style="margin-top:1em;">
-        <input onclick="location.href='/';" type="button" value="View Results">&nbsp;&nbsp;
+        <input id="run_search" type="button" value="View Results">&nbsp;&nbsp;
         <input onclick="location.href='/';" type="button" value="Reset">
     </div>
 

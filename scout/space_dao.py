@@ -4,11 +4,41 @@ from spotseeker_restclient.spotseeker import Spotseeker
 def get_open_spots():
     spot_client = Spotseeker()
     res = spot_client.search_spots([('open', True),
-                                    ('limit', 100),
+                                    ('limit', 200),
                                     ('extended_info:app_type', 'food')])
     for spot in res:
         spot = process_extended_info(spot)
     return res
+
+
+def get_filtered_spots(request):
+    filters = _get_spot_filters(request)
+    # adding 'default' filter params
+    filters.append(('limit', 200))
+    filters.append(('extended_info:app_type', 'food'))
+
+    spot_client = Spotseeker()
+    res = spot_client.search_spots(filters)
+
+    for spot in res:
+        spot = process_extended_info(spot)
+    return res
+
+
+def _get_spot_filters(request):
+    params = []
+    for param in request.GET:
+        if "campus" in param:
+            params.append(("extended_info:campus", request.GET[param]))
+        if "type" in param:
+            params.append(("type", request.GET[param]))
+        if "food" in param:
+            params.append(("extended_info:" + request.GET[param], "true"))
+        if "cuisine" in param:
+            params.append(("extended_info:" + request.GET[param], "true"))
+        if "payment" in param:
+            params.append(("extended_info:" + request.GET[param], "true"))
+    return params
 
 
 def get_spot_by_id(spot_id):

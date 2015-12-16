@@ -4,7 +4,6 @@ from django.conf.urls import patterns, include, url
 urlpatterns = patterns(
     '',
     # application urls
-    url(r'^$', 'scout.views.list_view', name='list_view'),
     url(r'^discover/', 'scout.views.discover_view', name='discover_view'),
     url(r'^map/', 'scout.views.map_view', name='map_view'),
     url(r'^detail/(?P<spot_id>[0-9]{1,5})',
@@ -15,5 +14,6 @@ urlpatterns = patterns(
     # example hybrid components
     url(r'^components/', 'scout.views.hybrid_comps_view',
         name='hybrid_comps_view'),
-
+    # has to be last!
+    url(r'.*', 'scout.views.list_view', name='list_view'),
 )
