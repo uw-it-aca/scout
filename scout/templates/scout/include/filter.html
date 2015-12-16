@@ -3,79 +3,78 @@
 
     <fieldset>
     <legend>Campus:</legend>
-        <select multiple id="campus_select">
-            <option value="seattle">Seattle</option>
-            <option value="bothell">Bothell</option>
-            <option value="tacoma">Tacoma</option>
-            <option value="south_lake_union">South Lake Union</option>
-        </select>
+        <div id="campus_select">
+            <input type="checkbox" name="seattle" value="seattle" />Seattle <br />
+            <input type="checkbox" name="bothell" value="bothell" />Bothell <br />
+            <input type="checkbox" name="tacoma" value="tacoma" />Tacoma <br />
+            <input type="checkbox" name="south_lake_union" value="south_lake_union" />South Lake Union <br />
+        </div>
     </fieldset>
 
     <fieldset>
         <legend>Hours / Open for: [NOT IMPLEMENTED]</legend>
-        <select multiple>
-            <option value="xx">Breakfast</option>
-            <option value="xx">Lunch</option>
-            <option value="xx">Dinner</option>
-            <option value="xx">Late Night</option>
-        </select>
+        <div>
+            <input type="checkbox" name="breakfast" value="xx" />Breakfast <br />
+            <input type="checkbox" name="lunch" value="xx" />Lunch <br />
+            <input type="checkbox" name="dinner" value="xx" />Dinner <br />
+            <input type="checkbox" name="late_night" value="xx" />Late Night <br />
+        </div>
+
     </fieldset>
 
     <fieldset>
         <legend>Payment accepted:</legend>
-        <select multiple id="payment_select">
-            <option value="s_pay_cash">Cash</option>
-            <option value="s_pay_husky">Husky Card</option>
-            <option value="s_pay_dining">Dining Card</option>
-            <option value="s_pay_visa">Visa</option>
-            <option value="s_pay_mastercard">Mastercard</option>
-        </select>
+        <div id="payment_select">
+            <input type="checkbox" value="s_pay_cash">Cash <br />
+            <input type="checkbox" value="s_pay_husky">Husky Card <br />
+            <input type="checkbox" value="s_pay_dining">Dining Card <br />
+            <input type="checkbox" value="s_pay_visa">Visa <br />
+            <input type="checkbox" value="s_pay_mastercard">Mastercard <br />
+        </div>
     </fieldset>
 
     <fieldset>
-        <legend>Restaurant type</legend>
-        <select multiple id="type_select">
-            <option value="cafe">Cafes</option>
-{#            <option value="xx">Restaurant</option>#}
-            <option value="fine_dining">Fine Dining</option>
-            <option value="food_court">Food Court</option>
-            <option value="food_truck">Food Truck</option>
-            <option value="market">Market</option>
-        </select>
+        <legend>Type</legend>
+        <div id="type_select">
+            <input type="checkbox" value="cafe">Cafes <br />
+            <input type="checkbox" value="fine_dining">Fine Dining <br />
+            <input type="checkbox" value="food_court">Food Court <br />
+            <input type="checkbox" value="food_truck">Food Truck <br />
+            <input type="checkbox" value="market">Market <br />
+        </div>
     </fieldset>
 
     <fieldset>
         <legend>Food served</legend>
-        <select multiple id="food_select">
-{#            <option value="xx">Appetizers</option>#}
-{#            <option value="xx">Burgers</option>#}
-            <option value="s_food_entrees">Entrees</option>
-            <option value="s_food_espresso">Espresso</option>
-{#            <option value="xx">Pasta</option>#}
-            <option value="s_food_pizza">Pizza</option>
-            <option value="s_food_salads">Salads</option>
-            <option value="s_food_sandwiches">Sandwiches</option>
-            <option value="s_food_smoothies">Smoothies</option>
-            <option value="s_food_sushi">Sushi</option>
-            <option value="s_food_tacos">Tacos</option>
-        </select>
+        <div id="food_select">
+            <input type="checkbox" value="s_food_appetizers">Appetizers <br />
+            <input type="checkbox" value="s_food_burgers">Burgers <br />
+            <input type="checkbox" value="s_food_entrees">Entrees <br />
+            <input type="checkbox" value="s_food_espresso">Espresso <br />
+            <input type="checkbox" value="s_food_pasta">Pasta <br />
+            <input type="checkbox" value="s_food_pizza">Pizza <br />
+            <input type="checkbox" value="s_food_salads">Salads <br />
+            <input type="checkbox" value="s_food_sandwiches">Sandwiches <br />
+            <input type="checkbox" value="s_food_smoothies">Smoothies <br />
+            <input type="checkbox" value="s_food_sushi">Sushi <br />
+            <input type="checkbox" value="s_food_tacos">Tacos <br />
+        </div>
     </fieldset>
 
     <fieldset>
         <legend>Cuisine</legend>
-        <select multiple id="cuisine_select">
-            <option value="s_cuisine_american">American</option>
-            <option value="s_cuisine_bbq">BBQ</option>
-            <option value="s_cuisine_chinese">Chinese</option>
-{#            <option value="xx">Hawaiian</option>#}
-            <option value="s_cuisine_indian">Indian</option>
-{#            <option value="xx">Italian</option>#}
-{#            <option value="xx">Japanese</option>#}
-{#            <option value="xx">Korean</option>#}
-{#            <option value="xx">Mexican</option>#}
-            <option value="s_cuisine_vietnamese">Vietnamese</option>
-            <option value="s_cuisine_light_lunch">Light Lunch</option>
-        </select>
+        <div id="cuisine_select">
+            <input type="checkbox" value="s_cuisine_american">American <br />
+            <input type="checkbox" value="s_cuisine_bbq">BBQ <br />
+            <input type="checkbox" value="s_cuisine_chinese">Chinese <br />
+            <input type="checkbox" value="s_cuisine_indian">Indian <br />
+            <input type="checkbox" value="s_cuisine_italian">Italian <br />
+            <input type="checkbox" value="s_cuisine_japanese">Japanese <br />
+            <input type="checkbox" value="s_cuisine_korean">Korean <br />
+            <input type="checkbox" value="s_cuisine_mexican">Mexican <br />
+            <input type="checkbox" value="s_cuisine_vietnamese">Vietnamese <br />
+            <input type="checkbox" value="s_cuisine_light_lunch">Light Lunch <br />
+        </div>
     </fieldset>
 
     <div style="margin-top:1em;">

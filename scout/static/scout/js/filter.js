@@ -1,10 +1,26 @@
 var Filter = {
     get_filter_url: function() {
-        var campuses = $("#campus_select").val();
-        var payments = $("#payment_select").val();
-        var types = $("#type_select").val();
-        var foods = $("#food_select").val();
-        var cuisines = $("#cuisine_select").val();
+
+        var campuses = $("#campus_select input:checkbox:checked").map(function() {
+            return $(this).val();
+        }).get();
+
+        var payments = $("#payment_select input:checkbox:checked").map(function() {
+            return $(this).val();
+        }).get();
+
+        var types = $("#type_select input:checkbox:checked").map(function() {
+            return $(this).val();
+        }).get();
+
+        var foods = $("#food_select input:checkbox:checked").map(function() {
+            return $(this).val();
+        }).get();
+
+        var cuisines = $("#cuisine_select input:checkbox:checked").map(function() {
+            return $(this).val();
+        }).get();
+
         var params = {};
 
         params = $.extend(params, Filter._get_params_for_select(campuses,
