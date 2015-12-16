@@ -141,16 +141,14 @@ function initializeListMap() {
             // attach click event to the marker
             (function (marker, data) {
 
-                google.maps.event.addListener(marker, "click", function (e) {
+                google.maps.event.addListener(marker, "mouseover", function (e) {
                     //Wrap the content inside an HTML DIV in order to set height and width of InfoWindow.
                     infoWindow.setContent("<div style = 'width:200px;'>" + data.spot_name + "</div>");
                     infoWindow.open(map, marker);
                     $('li').css('background', 'none'); // clear any highlighted spots first
                     $('#' + data.id).css('background', '#6564A8');
 
-                    $('.scout-scroll').animate({
-                        scrollTop: $('#' + data.id).offset().top
-                    }, 1000);
+                    $('.scout-scroll').scrollTo('#' + data.id);
 
                 });
 
