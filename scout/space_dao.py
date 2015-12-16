@@ -10,6 +10,7 @@ def get_open_spots():
         spot = process_extended_info(spot)
     return res
 
+
 def get_filtered_spots(request):
     filters = _get_spot_filters(request)
     # adding 'default' filter params
