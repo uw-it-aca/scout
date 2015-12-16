@@ -4,9 +4,6 @@ $(document).on('ready page:load page:restore', function(event) {
     console.log("styles on")
 	$('link[rel="stylesheet"]').attr('media', 'all');
 
-    $("#filter_toggle").click(function(e) {
-        e.preventDefault();
-        $("#filter_container").toggle();
-    });
+    Filter.init_events();
 
 });

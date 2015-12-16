@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.template import RequestContext
 from django.shortcuts import render_to_response
-from scout.space_dao import get_open_spots, get_spot_by_id
+from scout.space_dao import get_open_spots, get_spot_by_id, get_filtered_spots
 
 import urllib
 import json
@@ -30,7 +30,10 @@ def favorites_view(request):
 
 
 def list_view(request):
-    spots = get_open_spots()
+    if len(request.GET) > 0:
+        spots = get_filtered_spots(request)
+    else:
+        spots = get_open_spots()
     context = {"spots": spots}
     return render_to_response('scout/list.html', context,
                               context_instance=RequestContext(request))
