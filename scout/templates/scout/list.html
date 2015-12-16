@@ -159,12 +159,12 @@ function initializeListMap() {
             })(marker, data);
 
             // add the marker position to boundary
-            //bounds.extend(marker.position);
+            bounds.extend(marker.position);
 
 		}
 
         // zoom the map automatically using the bounds of all markers
-        //map.fitBounds(bounds);
+        map.fitBounds(bounds);
 
         // cluster the markers using marker clusterer
         //var markerCluster = new MarkerClusterer(map, markers);
