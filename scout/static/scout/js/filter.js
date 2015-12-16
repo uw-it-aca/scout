@@ -31,7 +31,45 @@ var Filter = {
 
     },
 
+    _get_filter_label_text: function(){
+        var filter_categories = [];
+        var url = window.location.href;
+        var filter_string = "";
+        if(url.indexOf("campus") > -1){
+            filter_categories.push("Campus");
+        }
+        if(url.indexOf("payment") > -1){
+            filter_categories.push("Payment Accepted");
+        }
+        if(url.indexOf("type") > -1){
+            filter_categories.push("Restaurant Type");
+        }
+        if(url.indexOf("food") > -1){
+            filter_categories.push("Food Served");
+        }
+        if(url.indexOf("cuisine") > -1){
+            filter_categories.push("Cuisine");
+        }
+        for(var i = 0; i < filter_categories.length; i++){
+            filter_string += filter_categories[i];
+            if (i < filter_categories.length - 1){
+                filter_string += ", ";
+            }
+        }
+        return filter_string;
+    },
+
+    set_filter_text: function(){
+        var filter_text = Filter._get_filter_label_text();
+        if(filter_text.length > 0){
+            $("#filter_label_text").html(filter_text);
+        }
+
+    },
+
     init_events: function() {
+        Filter.set_filter_text();
+
         $("#run_search").click(function(){
             var filtered_url = Filter.get_filter_url();
             window.location.replace("/?"+filtered_url);
