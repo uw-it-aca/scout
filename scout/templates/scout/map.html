@@ -7,8 +7,8 @@
 {% block web_content %}
 
 <div style="border:solid 1px red; padding:5px;">
-Filtering by: xxxxx<br>
-Results: 50<br>
+Filtering by: <span id="filter_label_text">None</span><br>
+Results: {{ spots|length }}<br>
 
 <a href="" id="filter_toggle">MORE FILTERS</a>
 
@@ -133,7 +133,7 @@ function initializeListMap() {
         map.fitBounds(bounds);
 
         // cluster the markers using marker clusterer
-        var markerCluster = new MarkerClusterer(map, markers);
+        //var markerCluster = new MarkerClusterer(map, markers);
 
 	}
 
