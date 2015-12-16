@@ -23,29 +23,37 @@ Results: {{ spots|length }}<br>
 </div>
 {% endif %}
 
+<div style="padding:0 20px;">
+
 <h2>All spots (initial load)</h2>
 
-<ul>
+<ul style="padding:0;">
     {% for spot in spots %}
-        <li id="{{ spot.spot_id }}">
+        <li id="{{ spot.spot_id }}" style="margin-bottom:1.5em; list-style:none;">
             <a href="detail/{{ spot.spot_id }}" style="display:block;text-decoration:none;">
                 <!--<img src="{{spot.images.0.url}}" style="width:80px;">-->
-                <img src="{% static "scout/img/placeholder.png" %}" style="width:80px;">
-                <strong>{{ spot.name }}</strong>
-                <br/>{{ spot.building_name }}
-                <br/>
-                {% for foodtype in spot.foodtype_names %}
-                    {{ foodtype }},
-                {% endfor %}
-
-                <br/>
-                {% for period in spot.open_periods %}
-                    {{ period }},
-                {% endfor %}
+                <img src="{% static "scout/img/placeholder.png" %}" style="width:80px;float:left;">
+                <div style="display:inline-block;float:left; width:230px;margin-left:20px;">
+                    <strong>{{ spot.name }}</strong> {% for type in spot.spot_types %}({{ type.name }}){% endfor %}
+                    <br/><strong>Location:</strong> {{ spot.building_name }},{{ spot.floor }},{{ spot.room_number }}
+                    <br/>
+                    <strong>Food served:</strong>
+                    {% for foodtype in spot.foodtype_names %}
+                        {{ foodtype }},
+                    {% endfor %}
+                    <br/>
+                    <strong>Open for:</strong>
+                    {% for period in spot.open_periods %}
+                        {{ period }},
+                    {% endfor %}
+                </div>
+                <div style="clear:both;height:0;">&nbsp;</div>
             </a>
         </li>
     {% endfor %}
 </ul>
+
+</div>
 
 {% endblock %}
 
