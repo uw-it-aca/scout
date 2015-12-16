@@ -122,9 +122,7 @@
 
         <div id="content" class="scout-content">
 
-            <div class="scout-pjax-content">
-                {% block web_content %}{% endblock %}
-            </div>
+            {% block web_content %}{% endblock %}
 
             {% if not request.is_mobile and not request.is_tablet %}
             <!-- desktop only extra container -->

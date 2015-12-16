@@ -12,7 +12,11 @@
 </p>
 {% endif %}
 
+<div style="background:url('{% static "scout/img/placeholder.png" %}') no-repeat center center; background-size:cover; height:300px;">&nbsp;</div>
+<p>[[images:url]]</p>
+
 <h2>{{spot.name}}</h2>
+
 <p>Type: {% for type in spot.spot_types %}
     {{ type.name }}
    {% endfor %}
@@ -25,7 +29,8 @@
     {% endfor %}
 </ul>
 
-<p>{{spot.building_description}}</p>
+<p>Building description: {{spot.building_description}}</p>
+{% if spot.phone %} <p>Phone: {{ spot.phone }}</p>{% endif %}
 
 <p>Cuisine:</p>
 <ul>
@@ -58,9 +63,7 @@
 
 <p style="overflow:hidden; text-overflow:ellipsis;">View the menu: {{spot.menu_url}}</p>
 
-<div style="background:url('{% static "scout/img/placeholder.png" %}') no-repeat; background-size:cover; height:300px;">&nbsp;</div>
 
-<p>[[images:url]]</p>
 
 <h4>Hours</h4>
 
@@ -99,10 +102,10 @@
             myLatlng = new google.maps.LatLng({{ spot.latitude }}, {{ spot.longitude }});
             mapOptions = {
                 center: myLatlng,
-                zoom: 18,
-                //scrollwheel: false,
-                //draggable: false,
-                //disableDefaultUI: true
+                zoom: 17,
+                scrollwheel: false,
+                draggable: false,
+                disableDefaultUI: true
             };
 
             var styles = [
@@ -117,7 +120,7 @@
                 },
                 {
                     "featureType": "poi.business",
-                    "elementType": "all",
+                    "elementType": "labels.icon",
                     "stylers": [
                         {
                             "visibility": "off"
@@ -155,13 +158,12 @@
 
 <h4>Location information</h4>
 <ul>
-    <li>{{ spot.latitude }}</li>
-    <li>{{ spot.longitude }}</li>
-    <li>{{ spot.building_name }}</li>
-    <li>{{ spot.floor }}</li>
-    <li>{{ spot.room_number }}</li>
-    <li>{{ spot.building_description }}</li>
-    <li>{{ spot.capacity }}</li>
+    <li>Latitude: {{ spot.latitude }}</li>
+    <li>Longitude: {{ spot.longitude }}</li>
+    <li>Building: {{ spot.building_name }}</li>
+    <li>Floor: {{ spot.floor }}</li>
+    <li>Room: {{ spot.room_number }}</li>
+    <li>Capacity: {{ spot.capacity }}</li>
 </ul>
 {% if spot.access_notes %}
 <p>Access Notes</p>
@@ -171,19 +173,16 @@
 {% endif %}
 <h4>Misc. information</h4>
 <ul>
-
-    {% if spot.has_coupon %} <li>{{ spot.has_coupon }}</li>{% endif %}
-    {% if spot.coupon_expiration %} <li>{{ spot.coupon_expiration }}</li>{% endif %}
-    {% if spot.coupon_url %} <li>{{ spot.coupon_url }}</li>{% endif %}
-    {% if spot.phone %} <li>{{ spot.phone }}</li>{% endif %}
-    {% if spot.website_url %} <li style="overflow:hidden; text-overflow:ellipsis;">{{ spot.website_url }}</li>{% endif %}
+    {% if spot.has_coupon %} <li>Has coupon? {{ spot.has_coupon }}</li>{% endif %}
+    {% if spot.coupon_expiration %} <li>Coupon expire: {{ spot.coupon_expiration }}</li>{% endif %}
+    {% if spot.coupon_url %} <li>Coupon URL: {{ spot.coupon_url }}</li>{% endif %}
+    {% if spot.website_url %} <li style="overflow:hidden; text-overflow:ellipsis;">Website URL: {{ spot.website_url }}</li>{% endif %}
 </ul>
 
-<h4>Management</h4>
-<p>this location is managed by...</p>
+<h4>Owner</h4>
 <ul>
-    <li>{{ spot.organization }}</li>
-    <li>{{ spot.manager }}</li>
+    <li>Organization: {{ spot.organization }}</li>
+    <li>Manager: {{ spot.manager }}</li>
 </ul>
 {% endblock %}
 
@@ -303,7 +302,6 @@
                 <li>{{ spot.building_name }}</li>
                 <li>{{ spot.floor }}</li>
                 <li>{{ spot.room_number }}</li>
-                <li>{{ spot.building_description }}</li>
                 <li>{{ spot.capacity }}</li>
             </ul>
             {% if spot.access_notes %}
@@ -314,11 +312,9 @@
             {% endif %}
             <h4>Misc. information</h4>
             <ul>
-
                 {% if spot.has_coupon %} <li>{{ spot.has_coupon }}</li>{% endif %}
                 {% if spot.coupon_expiration %} <li>{{ spot.coupon_expiration }}</li>{% endif %}
                 {% if spot.coupon_url %} <li>{{ spot.coupon_url }}</li>{% endif %}
-                {% if spot.phone %} <li>{{ spot.phone }}</li>{% endif %}
                 {% if spot.website_url %} <li>{{ spot.website_url }}</li>{% endif %}
             </ul>
 
