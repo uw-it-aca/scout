@@ -150,7 +150,11 @@ function initializeListMap() {
             // attach click event to the marker
             (function (marker, data) {
 
-                google.maps.event.addListener(marker, "mouseover", function (e) {
+                google.maps.event.addListener(marker, "click", function (e) {
+
+                    map.setCenter(marker.getPosition());
+                    map.setZoom(18);
+
                     //Wrap the content inside an HTML DIV in order to set height and width of InfoWindow.
                     infoWindow.setContent("<div style = 'width:200px;'>" + data.spot_name + "</div>");
                     infoWindow.open(map, marker);

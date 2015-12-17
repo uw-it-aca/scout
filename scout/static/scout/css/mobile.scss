@@ -8,7 +8,7 @@ html.turbolinks-progress-bar::before {
 // google map & font awesome icons
 
 .gmnoprint { cursor: default !important; }
-.map-label { background: none; color: #f9f9f9; cursor: default !important;
+.map-label { background: none; color: #f9f9f9; /*cursor: default !important;*/
 
     .marker-text { color: #000; margin-left: 8px; text-shadow: 0 0 2px #fff, 0 0 2px #fff; font-weight: bold; display: inline-block; white-space: nowrap;}
     .fa-cutlery:before { margin-left: 1.8px; }
