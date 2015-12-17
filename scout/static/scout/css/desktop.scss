@@ -1,17 +1,18 @@
+// sass variables
+
+$view-panel-width: 600px;
+
+// desktop styles
+
 body { overflow: hidden; }
 
-.scout-wrapper { position:absolute; width: 500px; top:0; bottom:0; -webkit-box-shadow: 5px 0 20px 0 rgba(0,0,0,0.3);
+.scout-wrapper { position:absolute; width: $view-panel-width; top:0; bottom:0; -webkit-box-shadow: 5px 0 20px 0 rgba(0,0,0,0.3);
 box-shadow: 5px 0 20px 0 rgba(0,0,0,0.3); }
 
-.scout-header { width: 500px; /*-webkit-box-shadow: 5px 0 20px 0 rgba(0,0,0,0.3);
-box-shadow: 5px 0 20px 0 rgba(0,0,0,0.3); */}
+.scout-header { width: $view-panel-width; }
 
-.scout-scroll { position: absolute; top:92px; bottom: 38px; width: 500px; left:0; overflow: scroll; margin-top: 0; /*-webkit-box-shadow: 5px 0 20px 0 rgba(0,0,0,0.3);
-box-shadow: 5px 0 20px 0 rgba(0,0,0,0.3); */ }
+.scout-scroll { position: absolute; top:92px; bottom: 38px; width: $view-panel-width; left:0; overflow: scroll; margin-top: 0; }
 
+.scout-map { position: fixed; top:0; left: $view-panel-width; bottom: 0; right: 0; overflow: scroll; background: #ddd; z-index: -1 !important; }
 
-.scout-map { position: fixed; top:0; left: 500px; bottom: 0; right: 0; overflow: scroll; background: #ddd; z-index: -1 !important; }
-
-
-.scout-footer { width: 500px; position: absolute; bottom: 0; /* -webkit-box-shadow: 5px 0 20px 0 rgba(0,0,0,0.3);
-box-shadow: 5px 0 20px 0 rgba(0,0,0,0.3); */}
+.scout-footer { width: $view-panel-width; position: absolute; bottom: 0; }
