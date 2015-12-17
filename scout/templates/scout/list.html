@@ -23,26 +23,27 @@ Results: {{ spots|length }}<br>
 </div>
 {% endif %}
 
-<div style="padding:0 20px;">
+<div style="padding:0 ">
 
-<h2>All spots (initial load)</h2>
+<h2 style="margin-left:20px;">All spots</h2>
 
 <ul style="padding:0;">
     {% for spot in spots %}
-        <li id="{{ spot.spot_id }}" style="margin-bottom:1.5em; list-style:none;">
-            <a href="detail/{{ spot.spot_id }}" style="display:block;text-decoration:none;">
+        <li id="{{ spot.spot_id }}" style="list-style:none; border-top:solid 1px #ddd;">
+            <a href="detail/{{ spot.spot_id }}" style="display:block;text-decoration:none; padding:20px;">
                 <!--<img src="{{spot.images.0.url}}" style="width:80px;">-->
-                <img src="{% static "scout/img/placeholder.png" %}" style="width:80px;float:left;">
+                <img src="{% static "scout/img/placeholder.png" %}" style="width:80px;height:60px;float:left;">
                 <div style="display:inline-block;float:left; width:230px;margin-left:20px;">
-                    <strong>{{ spot.name }}</strong> {% for type in spot.spot_types %}({{ type.name }}){% endfor %}
-                    <br/><strong>Location:</strong> {{ spot.building_name }},{{ spot.floor }},{{ spot.room_number }}
+                    <strong>OPEN NOW / CLOSED</strong>
+                    <h3>{{ spot.name }} {% for type in spot.spot_types %}({{ type.name }}){% endfor %}</h3>
+                    <strong>Location:</strong> {{ spot.building_name }},{{ spot.floor }},{{ spot.room_number }}
                     <br/>
                     <strong>Food served:</strong>
                     {% for foodtype in spot.foodtype_names %}
                         {{ foodtype }},
                     {% endfor %}
                     <br/>
-                    <strong>Open for:</strong>
+                    <strong>Open periods:</strong>
                     {% for period in spot.open_periods %}
                         {{ period }},
                     {% endfor %}

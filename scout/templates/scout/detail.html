@@ -6,184 +6,181 @@
 {% block web_content %}
 
 {% if spot.has_alert %}
-<p>
-    ALERT
-    <br/> {{ spot.alert_notes }}
-</p>
+<p>ALERT<br/> {{ spot.alert_notes }}</p>
 {% endif %}
 
 <div style="background:url('{% static "scout/img/placeholder.png" %}') no-repeat center center; background-size:cover; height:300px;">&nbsp;</div>
-<p>[[images:url]]</p>
 
-<h2>{{spot.name}}</h2>
+<div style="padding:20px;">
+    <strong>OPEN NOW / CLOSED</strong>
 
-<p>Type: {% for type in spot.spot_types %}
-    {{ type.name }}
-   {% endfor %}
-</p>
+    <h2>{{spot.name}}</h2>
 
-<p>Open for:</p>
-<ul>
-    {% for period in spot.open_periods %}
+    <p>Type: {% for type in spot.spot_types %} {{ type.name }} {% endfor %}
+    </p>
+
+    <p>Open for:</p>
+    <ul>
+        {% for period in spot.open_periods %}
         <li>{{ period }}</li>
-    {% endfor %}
-</ul>
+        {% endfor %}
+    </ul>
 
-<p>Building description: {{spot.building_description}}</p>
-{% if spot.phone %} <p>Phone: {{ spot.phone }}</p>{% endif %}
+    <p>Building description: {{spot.building_description}}</p>
+    {% if spot.phone %}
+    <p>Phone: {{ spot.phone }}</p>{% endif %}
 
-<p>Cuisine:</p>
-<ul>
-    {% for cuisinetype in spot.cuisinetype_names %}
+    <p>Cuisine:</p>
+    <ul>
+        {% for cuisinetype in spot.cuisinetype_names %}
         <li>{{ cuisinetype }}</li>
-    {% endfor %}
-</ul>
+        {% endfor %}
+    </ul>
 
-<p>Food served:</p>
-<ul>
-    {% for foodtype in spot.foodtype_names %}
+    <p>Food served:</p>
+    <ul>
+        {% for foodtype in spot.foodtype_names %}
         <li>{{ foodtype }}</li>
-    {% endfor %}
-</ul>
+        {% endfor %}
+    </ul>
 
 
-{% if spot.has_reservation %}
-<p>Reservations:
-    <br/> {{spot.reservation_notes}}
-</p>
+    {% if spot.has_reservation %}
+    <p>Reservations:
+        <br/> {{spot.reservation_notes}}
+    </p>
 
-{% endif %}
+    {% endif %}
 
-<p>Payment accepted:</p>
-<ul>
-    {% for payment in spot.payment_names %}
+    <p>Payment accepted:</p>
+    <ul>
+        {% for payment in spot.payment_names %}
         <li>{{ payment }}</li>
-    {% endfor %}
-</ul>
+        {% endfor %}
+    </ul>
 
-<p style="overflow:hidden; text-overflow:ellipsis;">View the menu: {{spot.menu_url}}</p>
+    <p style="overflow:hidden; text-overflow:ellipsis;">View the menu: {{spot.menu_url}}</p>
 
+    <h4>Hours</h4>
+        <ul>
+            <li>Monday: {% for hours in spot.hours.monday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
+            <li>Tuesday: {% for hours in spot.hours.tuesday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
+            <li>Wednesday: {% for hours in spot.hours.wednesday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
+            <li>Thursday: {% for hours in spot.hours.thursday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
+            <li>Friday: {% for hours in spot.hours.friday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
+            <li>Saturday: {% for hours in spot.hours.saturday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
+            <li>Sunday: {% for hours in spot.hours.sunday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
+        </ul>
 
+    {% if spot.hours_notes %}
+    <p>Hours Notes:</p>
+    <ul>
+        <li>{{spot.hours_notes}}</li>
+    </ul>
+    {% endif %}
 
-<h4>Hours</h4>
+    {% if request.is_mobile %}
+    <div style="height:200px;">
+        <div id="detail_map" style="height:100%;"></div>
+    </div>
 
-<ul>
-    <li>Monday: {% for hours in spot.hours.monday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
-    <li>Tuesday: {% for hours in spot.hours.tuesday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
-    <li>Wednesday: {% for hours in spot.hours.wednesday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
-    <li>Thursday: {% for hours in spot.hours.thursday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
-    <li>Friday: {% for hours in spot.hours.friday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
-    <li>Saturday: {% for hours in spot.hours.saturday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
-    <li>Sunday: {% for hours in spot.hours.sunday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
-</ul>
+    <!-- since turbolinks loads the full body... initialize map stuff locally in the template. then, call the function in the map.js file -->
+    <script>
+        function initializeDetailMap() {
 
-{% if spot.hours_notes %}
-<p>Hours Notes:</p>
-<ul>
-    <li>{{spot.hours_notes}}</li>
-</ul>
-{% endif %}
+            var mapExists = document.getElementById("detail_map");
+            var myLatlng, mapOptions;
 
-{% if request.is_mobile %}
-<div style="height:200px;">
-    <div id="detail_map" style="height:100%;"></div>
-</div>
+            if (mapExists) {
 
-<!-- since turbolinks loads the full body... initialize map stuff locally in the template. then, call the function in the map.js file -->
-<script>
-    function initializeDetailMap() {
+                // center map direction on spot location
+                myLatlng = new google.maps.LatLng({{ spot.latitude }}, {{ spot.longitude }});
+                mapOptions = {
+                    center: myLatlng,
+                    zoom: 17,
+                    scrollwheel: false,
+                    draggable: false,
+                    disableDefaultUI: true
+                };
 
-        var mapExists = document.getElementById("detail_map");
-        var myLatlng, mapOptions;
+                var styles = [
+                    {
+                        "featureType": "poi.place_of_worship",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "visibility": "off"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "poi.business",
+                        "elementType": "labels.icon",
+                        "stylers": [
+                            {
+                                "visibility": "off"
+                            }
+                        ]
+                    }
+                ]
 
-        if (mapExists) {
+                var map = new google.maps.Map(document.getElementById('detail_map'), mapOptions);
+                map.setOptions({styles: styles});
 
-            // center map direction on spot location
-            myLatlng = new google.maps.LatLng({{ spot.latitude }}, {{ spot.longitude }});
-            mapOptions = {
-                center: myLatlng,
-                zoom: 17,
-                scrollwheel: false,
-                draggable: false,
-                disableDefaultUI: true
-            };
+                var marker = new MarkerWithLabel({
+                    position: myLatlng,
+                    map: map,
+                    title: '{{ spot.name }}!',
+                    animation: google.maps.Animation.DROP,
+                    labelContent: "<i class='fa fa-cutlery'></i><span class='marker-text' style='margin-left:15px;font-size:12px;'>{{ spot.name }}</span>",
+                    labelAnchor: new google.maps.Point(6, 6),
+                    labelClass: "map-label", // the CSS class for the label
+                    icon: {
+                		path: google.maps.SymbolPath.CIRCLE,
+                		fillColor: '#53518e',
+                		fillOpacity: 1,
+                		strokeColor: '#6562aa',
+                        strokeWeight: 5,
+                        scale: 13,
+                	},
+                });
+            }
 
-            var styles = [
-                {
-                    "featureType": "poi.place_of_worship",
-                    "elementType": "all",
-                    "stylers": [
-                        {
-                            "visibility": "off"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "poi.business",
-                    "elementType": "labels.icon",
-                    "stylers": [
-                        {
-                            "visibility": "off"
-                        }
-                    ]
-                }
-            ]
-
-            var map = new google.maps.Map(document.getElementById('detail_map'), mapOptions);
-            map.setOptions({styles: styles});
-
-            var marker = new MarkerWithLabel({
-                position: myLatlng,
-                map: map,
-                title: '{{ spot.name }}!',
-                animation: google.maps.Animation.DROP,
-                labelContent: "<i class='fa fa-cutlery'></i><span class='marker-text' style='margin-left:15px;font-size:12px;'>{{ spot.name }}</span>",
-                labelAnchor: new google.maps.Point(6, 6),
-                labelClass: "map-label", // the CSS class for the label
-                icon: {
-            		path: google.maps.SymbolPath.CIRCLE,
-            		fillColor: '#53518e',
-            		fillOpacity: 1,
-            		strokeColor: '#6562aa',
-                    strokeWeight: 5,
-                    scale: 13,
-            	},
-            });
         }
+    </script>
+    <p><a href="/">OPEN IN GOOGLE MAPS</a></p>
+    {% endif %}
 
-    }
-</script>
-<p><a href="/">OPEN IN GOOGLE MAPS</a></p>
-{% endif %}
+    <h4>Location information</h4>
+    <ul>
+        <li>Latitude: {{ spot.latitude }}</li>
+        <li>Longitude: {{ spot.longitude }}</li>
+        <li>Building: {{ spot.building_name }}</li>
+        <li>Floor: {{ spot.floor }}</li>
+        <li>Room: {{ spot.room_number }}</li>
+        <li>Capacity: {{ spot.capacity }}</li>
+    </ul>
+    {% if spot.access_notes %}
+    <p>Access Notes</p>
+    <ul>
+        <li>{{spot.access_notes}}</li>
+    </ul>
+    {% endif %}
+    <h4>Misc. information</h4>
+    <ul>
+        {% if spot.has_coupon %} <li>Has coupon? {{ spot.has_coupon }}</li>{% endif %}
+        {% if spot.coupon_expiration %} <li>Coupon expire: {{ spot.coupon_expiration }}</li>{% endif %}
+        {% if spot.coupon_url %} <li>Coupon URL: {{ spot.coupon_url }}</li>{% endif %}
+        {% if spot.website_url %} <li style="overflow:hidden; text-overflow:ellipsis;">Website URL: {{ spot.website_url }}</li>{% endif %}
+    </ul>
 
-<h4>Location information</h4>
-<ul>
-    <li>Latitude: {{ spot.latitude }}</li>
-    <li>Longitude: {{ spot.longitude }}</li>
-    <li>Building: {{ spot.building_name }}</li>
-    <li>Floor: {{ spot.floor }}</li>
-    <li>Room: {{ spot.room_number }}</li>
-    <li>Capacity: {{ spot.capacity }}</li>
-</ul>
-{% if spot.access_notes %}
-<p>Access Notes</p>
-<ul>
-    <li>{{spot.access_notes}}</li>
-</ul>
-{% endif %}
-<h4>Misc. information</h4>
-<ul>
-    {% if spot.has_coupon %} <li>Has coupon? {{ spot.has_coupon }}</li>{% endif %}
-    {% if spot.coupon_expiration %} <li>Coupon expire: {{ spot.coupon_expiration }}</li>{% endif %}
-    {% if spot.coupon_url %} <li>Coupon URL: {{ spot.coupon_url }}</li>{% endif %}
-    {% if spot.website_url %} <li style="overflow:hidden; text-overflow:ellipsis;">Website URL: {{ spot.website_url }}</li>{% endif %}
-</ul>
+    <h4>Owner</h4>
+    <ul>
+        <li>Organization: {{ spot.organization }}</li>
+        <li>Manager: {{ spot.manager }}</li>
+    </ul>
 
-<h4>Owner</h4>
-<ul>
-    <li>Organization: {{ spot.organization }}</li>
-    <li>Manager: {{ spot.manager }}</li>
-</ul>
+</div>
 {% endblock %}
 
 {% block sidebar %}
