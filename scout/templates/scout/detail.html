@@ -26,24 +26,27 @@
         {% endfor %}
     </ul>
 
-    <p>Building description: {{spot.building_description}}</p>
-    {% if spot.phone %}
-    <p>Phone: {{ spot.phone }}</p>{% endif %}
+    <p>Building description: {% if spot.building_description %}{{spot.building_description}}{% else %} <span style="color:red;">xxxxx xxx xx xxxxxxxxx xxx</span> {% endif %}</p>
+
+    <p>Phone: {% if spot.phone %}{{ spot.phone }}{% else %} <span style="color:red;">xxxxx</span> {% endif %}</p>
 
     <p>Cuisine:</p>
     <ul>
-        {% for cuisinetype in spot.cuisinetype_names %}
-        <li>{{ cuisinetype }}</li>
-        {% endfor %}
+        {% if cuisinetype %}
+            {% for cuisinetype in spot.cuisinetype_names %}
+            <li>{{ cuisinetype }}</li>
+            {% endfor %}
+        {% else %} <span style="color:red;">xxxxx</span> {% endif %}
     </ul>
 
     <p>Food served:</p>
     <ul>
-        {% for foodtype in spot.foodtype_names %}
-        <li>{{ foodtype }}</li>
-        {% endfor %}
+        {% if foodtype %}
+            {% for foodtype in spot.foodtype_names %}
+                <li>{{ foodtype }}</li>
+            {% endfor %}
+        {% else %} <span style="color:red;">xxxxx</span> {% endif %}
     </ul>
-
 
     {% if spot.has_reservation %}
     <p>Reservations:
@@ -59,7 +62,7 @@
         {% endfor %}
     </ul>
 
-    <p style="overflow:hidden; text-overflow:ellipsis;">View the menu: {{spot.menu_url}}</p>
+    <p style="overflow:hidden; text-overflow:ellipsis;">Menu URL: {% if spot.menu_url %}{{spot.menu_url}}{% else %} <span style="color:red;">xxxxx</span> {% endif %}</p>
 
     <h4>Hours</h4>
         <ul>
@@ -155,29 +158,30 @@
     <ul>
         <li>Latitude: {{ spot.latitude }}</li>
         <li>Longitude: {{ spot.longitude }}</li>
-        <li>Building: {{ spot.building_name }}</li>
-        <li>Floor: {{ spot.floor }}</li>
-        <li>Room: {{ spot.room_number }}</li>
-        <li>Capacity: {{ spot.capacity }}</li>
+        <li>Building: {% if spot.building_name %}{{ spot.building_name }}{% else %} <span style="color:red;">xxxxx</span> {% endif %}</li>
+        <li>Floor: {% if spot.floor %}{{ spot.floor }}{% else %} <span style="color:red;">xxxxx</span> {% endif %}</li>
+        <li>Room: {% if spot.room_number %}{{ spot.room_number }}{% else %} <span style="color:red;">xxxxx</span> {% endif %}</li>
     </ul>
+
     {% if spot.access_notes %}
     <p>Access Notes</p>
     <ul>
         <li>{{spot.access_notes}}</li>
     </ul>
     {% endif %}
+
     <h4>Misc. information</h4>
     <ul>
-        {% if spot.has_coupon %} <li>Has coupon? {{ spot.has_coupon }}</li>{% endif %}
-        {% if spot.coupon_expiration %} <li>Coupon expire: {{ spot.coupon_expiration }}</li>{% endif %}
-        {% if spot.coupon_url %} <li>Coupon URL: {{ spot.coupon_url }}</li>{% endif %}
-        {% if spot.website_url %} <li style="overflow:hidden; text-overflow:ellipsis;">Website URL: {{ spot.website_url }}</li>{% endif %}
+        <li>Has coupon: {% if spot.has_coupon %} {{ spot.has_coupon }}{% else %}false{% endif %}</li>
+        <li>Coupon expire: {% if spot.coupon_expiration %}{{ spot.coupon_expiration }}{% endif %}</li>
+        <li>Coupon URL: {% if spot.coupon_url %}{{ spot.coupon_url }}{% endif %}</li>
+        <li style="overflow:hidden; text-overflow:ellipsis;">{% if spot.website_url %}Website URL: {{ spot.website_url }}{% endif %}</li>
     </ul>
 
     <h4>Owner</h4>
     <ul>
-        <li>Organization: {{ spot.organization }}</li>
-        <li>Manager: {{ spot.manager }}</li>
+        <li>Organization: {% if spot.organization %}{{ spot.organization }}{% else %} <span style="color:red;">xxxxx</span> {% endif %}</li>
+        <li>Manager: {% if spot.manager %}{{ spot.manager }}{% else %} <span style="color:red;">xxxxx</span> {% endif %}</li>
     </ul>
 
 </div>
