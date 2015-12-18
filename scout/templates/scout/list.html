@@ -30,18 +30,25 @@ Results: {{ spots|length }}<br>
 <ul style="padding:0;">
     {% for spot in spots %}
         <li id="{{ spot.spot_id }}" style="list-style:none; border-top:solid 1px #ddd;">
-            <a href="detail/{{ spot.spot_id }}" style="display:block;text-decoration:none; padding:20px;">
+            <a href="detail/{{ spot.spot_id }}" style="display:block;text-decoration:none; padding:20px; color:#000;">
                 <!--<img src="{{spot.images.0.url}}" style="width:80px;">-->
                 <img src="{% static "scout/img/coffee-shop.jpg" %}" style="width:20%;float:left;">
                 <div style="display:inline-block;float:left; width:70%;margin-left:20px;">
                     <strong>OPEN NOW / CLOSED</strong>
                     <h3>{{ spot.name }} {% for type in spot.spot_types %}({{ type.name }}){% endfor %}</h3>
-                    <strong>Location:</strong> {{ spot.building_name }},{{ spot.floor }},{{ spot.room_number }}
+                    <strong>Location:</strong>
+                    <ul>
+                        <li>building: {% if spot.building_name %}{{ spot.building_name }}{% else %} <span style="color:red;">xxxxx</span> {% endif %}</li>
+                        <li>floor: {% if spot.floor %}{{ spot.floor }}{% else %} <span style="color:red;">xxxxx</span> {% endif %}</li>
+                        <li>room: {% if spot.room_number %}{{ spot.room_number }}{% else %} <span style="color:red;">xxxxx</span> {% endif %}</li>
+                    </ul>
                     <br/>
                     <strong>Food served:</strong>
-                    {% for foodtype in spot.foodtype_names %}
-                        {{ foodtype }},
-                    {% endfor %}
+                    {% if foodtype %}
+                        {% for foodtype in spot.foodtype_names %}
+                            {{ foodtype }}
+                        {% endfor %}
+                    {% else %} <span style="color:red;">xxxxx</span> {% endif %}
                     <br/>
                     <strong>Open periods:</strong>
                     {% for period in spot.open_periods %}
