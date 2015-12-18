@@ -7,7 +7,7 @@ from scout.space_dao import get_spots_by_filter
 import urllib
 import json
 
-#using drumheller fountain as the default center
+# using drumheller fountain as the default center
 DEFAULT_LAT = 47.653717
 DEFAULT_LON = -122.307755
 
@@ -18,19 +18,20 @@ def discover_view(request):
                                      ('open', True),
                                      ('center_latitude', DEFAULT_LAT),
                                      ('center_longitude', DEFAULT_LON),
-                                     ('distance', 1000),]),
-        "coffee": get_spots_by_filter([('extended_info:s_food_espresso', 'true'),
+                                     ('distance', 1000), ]),
+        "coffee": get_spots_by_filter([('extended_info:s_food_espresso',
+                                        'true'),
                                        ('limit', 5),
                                        ('open', True),
                                        ('center_latitude', DEFAULT_LAT),
                                        ('center_longitude', DEFAULT_LON),
-                                       ('distance', 1000),]),
+                                       ('distance', 1000), ]),
         "coupon": get_spots_by_filter([('extended_info:s_has_coupon',
                                         'true'),
                                        ('limit', 5),
                                        ('center_latitude', DEFAULT_LAT),
                                        ('center_longitude', DEFAULT_LON),
-                                       ('distance', 1000),])
+                                       ('distance', 1000), ])
     }
     return render_to_response('scout/discover.html',
                               context,
