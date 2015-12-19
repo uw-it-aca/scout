@@ -11,7 +11,7 @@ before_script:
   - cp travis-ci/manage.py manage.py
   - python manage.py migrate --noinput
 script:
-  - pep8 scout/ --exclude=migrations
+  - pep8 scout/ --exclude=migrations,test
   - coverage run --source=scout/ --omit=scout/migrations/* manage.py test scout
 after_script:
   - coveralls
