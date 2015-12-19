@@ -34,7 +34,7 @@ Results: {{ spots|length }}<br>
                 <!--<img src="{{spot.images.0.url}}" style="width:80px;">-->
                 <img src="{% static "scout/img/coffee-shop.jpg" %}" style="width:20%;float:left;">
                 <div style="display:inline-block;float:left; width:70%;margin-left:20px;">
-                    <strong>OPEN NOW / CLOSED</strong>
+                    <strong>{% if spot.is_open %}OPEN NOW{% else %}CLOSED{% endif %}</strong>
                     <h3>{{ spot.name }} {% for type in spot.spot_types %}({{ type.name }}){% endfor %}</h3>
                     <strong>Location:</strong>
                     <ul>

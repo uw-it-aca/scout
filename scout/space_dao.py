@@ -1,10 +1,11 @@
 from spotseeker_restclient.spotseeker import Spotseeker
+import datetime
+import pytz
 
 
-def get_open_spots():
+def get_spot_list():
     spot_client = Spotseeker()
-    res = spot_client.search_spots([('open', True),
-                                    ('limit', 200),
+    res = spot_client.search_spots([('limit', 200),
                                     ('extended_info:app_type', 'food')])
     for spot in res:
         spot = process_extended_info(spot)
@@ -63,6 +64,7 @@ def process_extended_info(spot):
     spot = add_open_periods(spot)
     spot = add_additional_info(spot)
     spot = organize_hours(spot)
+    spot.is_open = get_is_spot_open(spot)
     return spot
 
 
@@ -77,9 +79,20 @@ def organize_hours(spot):
         'sunday': [],
     }
     for hours in spot.spot_availability:
-        hours_object[hours.day].append([hours.start_time, hours.end_time])
+        hours_object[hours.day].append((hours.start_time, hours.end_time))
     spot.hours = hours_object
     return spot
+
+
+def get_is_spot_open(spot):
+    now = datetime.datetime.now(pytz.timezone('America/Los_Angeles'))
+    hours = spot.hours[now.strftime("%A").lower()]
+
+    if len(hours) == 0:
+        return False
+    for period in hours:
+        if period[0] < now.time() and period[1] > now.time():
+            return True
 
 
 def add_additional_info(spot):
