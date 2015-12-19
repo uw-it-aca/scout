@@ -61,10 +61,11 @@ def process_extended_info(spot):
     spot = add_foodtype_names_to_spot(spot)
     spot = add_cuisine_names(spot)
     spot = add_payment_names(spot)
-    spot = add_open_periods(spot)
     spot = add_additional_info(spot)
     spot = organize_hours(spot)
-    spot.is_open = get_is_spot_open(spot)
+
+    now = datetime.datetime.now(pytz.timezone('America/Los_Angeles'))
+    spot.is_open = get_is_spot_open(spot, now)
     return spot
 
 
@@ -84,15 +85,15 @@ def organize_hours(spot):
     return spot
 
 
-def get_is_spot_open(spot):
-    now = datetime.datetime.now(pytz.timezone('America/Los_Angeles'))
+def get_is_spot_open(spot, now):
     hours = spot.hours[now.strftime("%A").lower()]
 
     if len(hours) == 0:
         return False
     for period in hours:
-        if period[0] < now.time() and period[1] > now.time():
+        if period[0] <= now.time() and period[1] > now.time():
             return True
+    return False
 
 
 def add_additional_info(spot):
@@ -138,20 +139,6 @@ def _get_names_for_extended_info(prefix, mapping, info):
             except KeyError:
                 pass
     return names
-
-
-def add_open_periods(spot):
-    OPEN_PREFIX = "s_open"
-    OPEN_MAPPING = {
-        "s_open_breakfast": "Breakfast",
-        "s_open_lunch": "Lunch",
-        "s_open_dinner": "Dinner",
-        "s_open_late_night": "Late Night"
-    }
-    spot.open_periods = _get_names_for_extended_info(OPEN_PREFIX,
-                                                     OPEN_MAPPING,
-                                                     spot.extended_info)
-    return spot
 
 
 def add_payment_names(spot):
