@@ -6,40 +6,54 @@
 
 {% block web_content %}
 
-<h2>Discover Food Places</h2>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non urna et lorem venenatis varius quis sit amet dui. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur a nisi odio.</p>
+<div style="padding:1em;">
+    <h2>Discover Food Places</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non urna et lorem venenatis varius quis sit amet dui. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur a nisi odio.</p>
 
-<p>Donec et nulla auctor massa pharetra adipiscing ut sit amet sem. Suspendisse molestie velit vitae mattis tincidunt. Ut sit amet quam mollis, vulputate turpis vel, sagittis felis. </p>
+    <p>Donec et nulla auctor massa pharetra adipiscing ut sit amet sem. Suspendisse molestie velit vitae mattis tincidunt. Ut sit amet quam mollis, vulputate turpis vel, sagittis felis. </p>
+</div>
 
 {% if open %}
-<h3>Open Now...</h3>
-<ul>
-    {% for spot in open %}
-    <li><a href="/detail/{{ spot.spot_id }}">{{spot.name}}</a></li>
-    {% endfor %}
-    <li><a href="/">More...</a></li>
-</ul>
+<div style="background:url('{% static "scout/img/starbucks.jpg" %}') no-repeat center center; background-size:cover;">
+<div style="padding:1em;">
+    <h3>Open Now...</h3>
+    <ul>
+        {% for spot in open %}
+        <li><a href="/detail/{{ spot.spot_id }}">{{spot.name}}</a></li>
+        {% endfor %}
+        <li><a href="/">More...</a></li>
+    </ul>
+</div>
+</div>
 {% endif %}
 
 {% if coffee %}
-<h3>Serving Coffee...</h3>
-<ul>
-    {% for spot in coffee %}
-    <li><a href="/detail/{{ spot.spot_id }}">{{spot.name}}</a></li>
-    {% endfor %}
-    <li><a href="/">More...</a></li>
-</ul>
+<div style="background:url('{% static "scout/img/coffee-shop-1200.jpg" %}') no-repeat center center; background-size:cover;">
+<div style="padding:1em;">
+    <h3>Serving Coffee...</h3>
+    <ul>
+        {% for spot in coffee %}
+        <li><a href="/detail/{{ spot.spot_id }}">{{spot.name}}</a></li>
+        {% endfor %}
+        <li><a href="/">More...</a></li>
+    </ul>
+</div>
+</div>
 {% endif %}
 
-<h3>Breakfast before class [[extended_info:s_open_breakfast ]]</h3>
-<ul>
-    <li><a href="/detail/56874">Cultivate</a></li>
-    <li><a href="/detail/56874">The 8</a></li>
-    <li><a href="/detail/56874">By George</a></li>
-    <li><a href="/detail/56874">The Rotunda</a></li>
-    <li><a href="/detail/56874">Bob's Burgers</a></li>
-    <li><a href="/">More...</a></li>
-</ul>
+<div style="background:url('{% static "scout/img/huskygrind.jpg" %}') no-repeat center center; background-size:cover;">
+<div style="padding:1em;">
+    <h3>Breakfast before class [[extended_info:s_open_breakfast ]]</h3>
+    <ul>
+        <li><a href="/detail/56874">Cultivate</a></li>
+        <li><a href="/detail/56874">The 8</a></li>
+        <li><a href="/detail/56874">By George</a></li>
+        <li><a href="/detail/56874">The Rotunda</a></li>
+        <li><a href="/detail/56874">Bob's Burgers</a></li>
+        <li><a href="/">More...</a></li>
+    </ul>
+</div>
+</div>
 
 <h3>Evening class muchies [[extended_info:s_open_late_night]]</h3>
 <ul>
