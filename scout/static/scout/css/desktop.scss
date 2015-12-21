@@ -11,8 +11,18 @@ box-shadow: 5px 0 20px 0 rgba(0,0,0,0.3); }
 
 .scout-header { width: $view-panel-width; }
 
-.scout-scroll { position: absolute; top:92px; bottom: 38px; width: $view-panel-width; left:0; overflow: scroll; margin-top: 0; }
+// scrolling body
+.scout-scroll { position: absolute; top:140px; bottom: 38px; width: $view-panel-width; left:0; overflow: scroll; margin-top: 0;
 
-.scout-map { position: fixed; top:0; left: $view-panel-width; bottom: 0; right: 0; overflow: scroll; background: #ddd; z-index: -1 !important; }
+    // content
+    .scout-content {
 
+        // google map
+        .scout-map { position: fixed; top:0; left: $view-panel-width; bottom: 0; right: 0; overflow: scroll; background: #ddd; z-index: -1 !important; }
+
+    }
+
+}
+
+// footer
 .scout-footer { width: $view-panel-width; position: absolute; bottom: 0; }

@@ -14,12 +14,10 @@
 
             <div id="header" class="scout-header">
 
-                <h1 style="background: transparent url('{% static "brand/img/w-mini_wht.png" %}') no-repeat;">{% block header %}{% endblock %}</h1>
+                <h1 style="background: transparent url('{% static "scout/img/scout.png" %}') no-repeat center center; background-size:contain;">{% block header %}{% endblock %}</h1>
 
                 <div class="scout-navigation">
-                    <div style="display:inline-block; line-height:40px; font-size:14px; text-transform:uppercase; margin-left:20px;">
-                        {% block top-nav%}{% endblock %}
-                    </div>
+                    {% block top-nav%}{% endblock %}
                 </div>
 
             </div>

@@ -5,64 +5,68 @@
 
 {% block web_content %}
 
-<div style="border:solid 1px red; padding:5px;">
-Filtering by: <span id="filter_label_text">None</span><br>
-Results: {{ spots|length }}<br>
+<div class="scout-filter-results">
 
-<a href="" id="filter_toggle">MORE FILTERS</a>
+    Filtering by:
+    <span id="filter_label_text">None</span>
+    <br> Results: {{ spots|length }}
+    <br>
 
-<div style="display:none; margin-top:1em;" id="filter_container">
-{% include "scout/include/filter.html" %}
-</div>
+    <a href="" id="filter_toggle" style="display:none;">MORE FILTERS</a>
 
+    <div style="display:none; margin-top:1em;" id="filter_container">
+        {% include "scout/include/filter.html" %}
+    </div>
 </div>
 
 {% if request.is_mobile or request.is_tablet %}
-<div style="text-align: center; line-height:40px; background:#ddd; margin:1em 0;">
+<div style="text-align: center; line-height:40px; background:#ddd; margin:0;">
     <a id="map_link" href="/">List</a> | <a id="map_link" href="/map/">Map</a>
 </div>
 {% endif %}
 
-<div style="padding:0 ">
+<div style="padding:0;">
 
-<h2 style="margin-left:20px;">All spots</h2>
+    <h2 style="margin: 20px;">List of Food Places</h2>
 
-<ul style="padding:0;">
-    {% for spot in spots %}
-        <li id="{{ spot.spot_id }}" style="list-style:none; border-top:solid 1px #ddd;">
-            <a href="detail/{{ spot.spot_id }}" style="display:block;text-decoration:none; padding:20px; color:#000;">
-                <!--<img src="{{spot.images.0.url}}" style="width:80px;">-->
-                <img src="{% static "scout/img/coffee-shop.jpg" %}" style="width:20%;float:left;">
-                <div style="display:inline-block;float:left; width:70%;margin-left:20px;">
+    <ul style="padding:0;">
+        {% for spot in spots %}
+            <li id="{{ spot.spot_id }}" style="list-style:none; border-top:solid 1px #ddd;">
+                <a href="detail/{{ spot.spot_id }}" style="display:block;text-decoration:none; padding:20px; color:#000;">
+                    <!--<img src="{{spot.images.0.url}}" style="width:80px;">-->
 
-                    <div style="text-align:right;">{% if spot.is_open %}<span style="color:green;">OPEN NOW</span>{% else %}<span style="color:#ddd;">CLOSED</span>{% endif %}</strong></div>
+                    <div style="background:url('{% static "scout/img/coffee-shop-300.jpg" %}') no-repeat center center; background-size:cover; width:100px; height:100px; float:left;">&nbsp;</div>
 
-                    <h3>{{ spot.name }} {% for type in spot.spot_types %}({{ type.name }}){% endfor %}</h3>
+                    <div style="display:inline-block;float:left; width:60%;margin-left:20px;">
 
-                    <strong>Location:</strong>
-                    <ul>
-                        <li>building: {% if spot.building_name %}{{ spot.building_name }}{% else %} <span style="color:red;">xxxxx</span> {% endif %}</li>
-                        <li>floor: {% if spot.floor %}{{ spot.floor }}{% else %} <span style="color:red;">xxxxx</span> {% endif %}</li>
-                        <li>room: {% if spot.room_number %}{{ spot.room_number }}{% else %} <span style="color:red;">xxxxx</span> {% endif %}</li>
-                    </ul>
-                    <br/>
-                    <strong>Food served:</strong>
-                    {% if foodtype %}
-                        {% for foodtype in spot.foodtype_names %}
-                            {{ foodtype }}
+                        <h3>{{ spot.name }} {% for type in spot.spot_types %}({{ type.name }}){% endfor %}</h3>
+
+                        <div style="text-align:right;">{% if spot.is_open %}<span style="color:green;">OPEN NOW</span>{% else %}<span style="color:#ddd;">CLOSED</span>{% endif %}</strong></div>
+
+                        <strong>Location:</strong>
+                        <ul>
+                            <li>building: {% if spot.building_name %}{{ spot.building_name }}{% else %} <span style="color:red;">xxxxx</span> {% endif %}</li>
+                            <li>floor: {% if spot.floor %}{{ spot.floor }}{% else %} <span style="color:red;">xxxxx</span> {% endif %}</li>
+                            <li>room: {% if spot.room_number %}{{ spot.room_number }}{% else %} <span style="color:red;">xxxxx</span> {% endif %}</li>
+                        </ul>
+                        <br/>
+                        <strong>Food served:</strong>
+                        {% if foodtype %}
+                            {% for foodtype in spot.foodtype_names %}
+                                {{ foodtype }}
+                            {% endfor %}
+                        {% else %} <span style="color:red;">xxxxx</span> {% endif %}
+                        <br/>
+                        <strong>Open periods:</strong>
+                        {% for period in spot.open_periods %}
+                            {{ period }},
                         {% endfor %}
-                    {% else %} <span style="color:red;">xxxxx</span> {% endif %}
-                    <br/>
-                    <strong>Open periods:</strong>
-                    {% for period in spot.open_periods %}
-                        {{ period }},
-                    {% endfor %}
-                </div>
-                <div style="clear:both;height:0;">&nbsp;</div>
-            </a>
-        </li>
-    {% endfor %}
-</ul>
+                    </div>
+                    <div style="clear:both;height:0;">&nbsp;</div>
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
 
 </div>
 

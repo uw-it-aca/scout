@@ -1,1 +1,42 @@
 // critical styles needed for first load
+
+// header
+
+.scout-header { background: #252525; position: fixed; top:0; left:0; right: 0; z-index: 999;
+
+    h1 { margin: 0; line-height: 100px; height:100px; color: #fff; text-transform: uppercase; font-family: 'Oswald', sans-serif; font-weight: 300; font-size: 30px;
+
+        a { color: #fff; text-decoration: none; display: none;}
+    }
+
+
+    .scout-navigation { position: relative; background: #252525; line-height: 40px; color: #fff; display: -webkit-flex; display: flex; margin: 0; padding: 0;
+
+        .scout-navigation-items {
+            line-height:40px;
+            font-size:14px;
+            text-transform:uppercase;
+            margin: 0 auto;
+            list-style: none;
+            padding: 0;
+
+            li { display: inline; margin-right: 20px; padding: 5px 10px;
+                a { padding: 0; display: inline-block;  color: #6564A8;text-decoration: none; }
+            }
+        }
+    }
+
+}
+
+// scrolling body
+
+.scout-scroll { margin-top: 140px;
+
+    // content
+    .scout-content {
+
+        .scout-filter-results { background: #6E729F; padding: 10px; color: #fff; }
+
+    }
+
+}

@@ -88,7 +88,7 @@ var Filter = {
 
         $("#run_search").click(function(){
             var filtered_url = Filter.get_filter_url();
-            window.location.replace("?"+filtered_url);
+            window.location.replace("/?"+filtered_url);
         });
 
         $("#filter_toggle").click(function(e) {

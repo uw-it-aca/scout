@@ -15,25 +15,30 @@ html.turbolinks-progress-bar::before {
 }
 
 
+// scroll body
 
-// scout mobile
+.scout-scroll {
 
-.scout-scroll { margin-top: 92px; }
+    .scout-content {
 
-.scout-content {
+        //.scout-pjax-loading { line-height: 300px; text-align: center; color: #ccc; }
 
-    //.scout-pjax-loading { line-height: 300px; text-align: center; color: #ccc; }
+        //h3 { font-family: 'Oswald', sans-serif; font-weight: 300; }
 
-    h3 { font-family: 'Oswald', sans-serif; font-weight: 300; }
-
-    .scout-list {
-        h4 { color: #aaa; }
-        p { color: #333; }
-        a { text-decoration: none; }
+        .scout-list {
+            h4 { color: #aaa; }
+            p { color: #333; }
+            a { text-decoration: none; }
+        }
     }
+
 }
 
-.scout-map-canvas { height: 100%; margin: 0px; padding: 0px; }
+// footer
+.scout-footer { background: #555; color:white; width: 100%; font-size: 75%; text-align:center; }
+
+
+//.scout-map-canvas { height: 100%; margin: 0px; padding: 0px; }
 
 .overlay {
   position:absolute;
