@@ -12,7 +12,7 @@
 <div style="background:url('{% static "scout/img/coffee-shop.jpg" %}') no-repeat center center; background-size:cover; height:300px;">&nbsp;</div>
 
 <div style="padding:20px;">
-    <strong>{% if spot.is_open %}OPEN NOW{% else %}CLOSED{% endif %}</strong>
+    <div style="text-align:right;">{% if spot.is_open %}<span style="color:green;">OPEN NOW</span>{% else %}<span style="color:#ddd;">CLOSED</span>{% endif %}</strong></div>
 
     <h2>{{spot.name}}</h2>
 
