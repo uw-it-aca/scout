@@ -66,6 +66,7 @@ def process_extended_info(spot):
 
     now = datetime.datetime.now(pytz.timezone('America/Los_Angeles'))
     spot.is_open = get_is_spot_open(spot, now)
+    spot.open_periods = get_open_periods_by_day(spot, now)
     return spot
 
 
@@ -83,6 +84,50 @@ def organize_hours(spot):
         hours_object[hours.day].append((hours.start_time, hours.end_time))
     spot.hours = hours_object
     return spot
+
+
+def get_open_periods_by_day(spot, now):
+    # defining 'late night' as any time not covered by another period
+    open_periods = {'breakfast': False,
+                    'lunch': False,
+                    'dinner': False,
+                    'late_night': False}
+    period_definitions = {
+        'breakfast': {
+            'start': datetime.time(5, 0, 0, 0),
+            'end':  datetime.time(11, 0, 0, 0)
+        },
+        'lunch': {
+            'start': datetime.time(11, 0, 0, 0),
+            'end':  datetime.time(15, 0, 0, 0)
+        },
+        'dinner': {
+            'start': datetime.time(15, 0, 0, 0),
+            'end':  datetime.time(22, 0, 0, 0)
+        }
+    }
+    hours = spot.hours[now.strftime("%A").lower()]
+    for opening in hours:
+        start = opening[0]
+        end = opening[1]
+        #open for breakfast
+        breakfast = period_definitions['breakfast']
+        if breakfast['start'] <= end and breakfast['end'] >= start:
+            open_periods['breakfast'] = True
+        #open for lunch
+        lunch = period_definitions['lunch']
+        if lunch['start'] <= end and lunch['end'] >= start:
+            open_periods['lunch'] = True
+        #open for dinner
+        dinner = period_definitions['dinner']
+        if dinner['start'] <= end and dinner['end'] >= start:
+            open_periods['dinner'] = True
+        #open late night
+        if start <= breakfast['start'] or end >= dinner['end']:
+            open_periods['late_night'] = True
+    return open_periods
+
+
 
 
 def get_is_spot_open(spot, now):

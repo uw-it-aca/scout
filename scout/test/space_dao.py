@@ -4,7 +4,8 @@ import pytz
 import datetime
 from spotseeker_restclient.spotseeker import Spotseeker
 from scout.space_dao import add_foodtype_names_to_spot, add_cuisine_names, \
-    add_payment_names, add_additional_info, get_is_spot_open, organize_hours
+    add_payment_names, add_additional_info, get_is_spot_open, organize_hours, \
+    get_open_periods_by_day
 
 
 DAO = "spotseeker_restclient.dao_implementation.spotseeker.File"
@@ -67,3 +68,37 @@ class SpaceDAOTest(TestCase):
         # sunday
         current_time = local_tz.localize(datetime.datetime(2015, 12, 20, 11, 0, 0, 0))
         self.assertFalse(get_is_spot_open(spot, current_time))
+
+    def test_open_periods(self):
+        sc = Spotseeker()
+        spot = sc.get_spot_by_id(1)
+        spot = organize_hours(spot)
+
+        current_time = datetime.datetime(2015, 12, 21, 0, 0, 0)
+        periods = get_open_periods_by_day(spot, current_time)
+        self.assertTrue(periods['breakfast'])
+        self.assertTrue(periods['lunch'])
+        self.assertTrue(periods['dinner'])
+        self.assertFalse(periods['late_night'])
+
+        current_time = datetime.datetime(2015, 12, 20, 0, 0, 0)
+        periods = get_open_periods_by_day(spot, current_time)
+        self.assertFalse(periods['breakfast'])
+        self.assertFalse(periods['lunch'])
+        self.assertFalse(periods['dinner'])
+        self.assertFalse(periods['late_night'])
+
+        current_time = datetime.datetime(2015, 12, 25, 0, 0, 0)
+        periods = get_open_periods_by_day(spot, current_time)
+        self.assertTrue(periods['breakfast'])
+        self.assertTrue(periods['lunch'])
+        self.assertTrue(periods['dinner'])
+        self.assertTrue(periods['late_night'])
+
+        current_time = datetime.datetime(2015, 12, 24, 0, 0, 0)
+        periods = get_open_periods_by_day(spot, current_time)
+        self.assertTrue(periods['breakfast'])
+        self.assertTrue(periods['lunch'])
+        self.assertFalse(periods['dinner'])
+        self.assertFalse(periods['late_night'])
+
