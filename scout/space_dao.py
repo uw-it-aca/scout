@@ -110,24 +110,22 @@ def get_open_periods_by_day(spot, now):
     for opening in hours:
         start = opening[0]
         end = opening[1]
-        #open for breakfast
+        # open for breakfast
         breakfast = period_definitions['breakfast']
         if breakfast['start'] <= end and breakfast['end'] >= start:
             open_periods['breakfast'] = True
-        #open for lunch
+        # open for lunch
         lunch = period_definitions['lunch']
         if lunch['start'] <= end and lunch['end'] >= start:
             open_periods['lunch'] = True
-        #open for dinner
+        # open for dinner
         dinner = period_definitions['dinner']
         if dinner['start'] <= end and dinner['end'] >= start:
             open_periods['dinner'] = True
-        #open late night
+        # open late night
         if start <= breakfast['start'] or end >= dinner['end']:
             open_periods['late_night'] = True
     return open_periods
-
-
 
 
 def get_is_spot_open(spot, now):
