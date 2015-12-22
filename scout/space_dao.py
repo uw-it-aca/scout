@@ -219,6 +219,7 @@ def add_cuisine_names(spot):
     spot.cuisinetype_names = _get_names_for_extended_info(CUISINE_TYPE_PREFIX,
                                                           CUISINE_TYPE_MAPPING,
                                                           spot.extended_info)
+    print spot.cuisinetype_names
     return spot
 
 

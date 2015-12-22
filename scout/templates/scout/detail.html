@@ -45,7 +45,7 @@
 
     <p>Cuisine:</p>
     <ul>
-        {% if cuisinetype %}
+        {% if spot.cuisinetype_names %}
             {% for cuisinetype in spot.cuisinetype_names %}
             <li>{{ cuisinetype }}</li>
             {% endfor %}
