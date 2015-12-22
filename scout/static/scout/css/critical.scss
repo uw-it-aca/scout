@@ -2,7 +2,7 @@
 
 // header
 
-.scout-header { background: #252525; position: fixed; top:0; left:0; right: 0; z-index: 999;
+.scout-header { background: #e2e2e2; position: fixed; top:0; left:0; right: 0; z-index: 999;
 
     h1 { margin: 0; line-height: 100px; height:100px; color: #fff; text-transform: uppercase; font-family: 'Oswald', sans-serif; font-weight: 300; font-size: 30px;
 
@@ -10,19 +10,21 @@
     }
 
 
-    .scout-navigation { position: relative; background: #252525; line-height: 40px; color: #fff; display: -webkit-flex; display: flex; margin: 0; padding: 0;
+    .scout-navigation { position: relative; background: #e2e2e2; line-height: 35px; color: #fff; display: -webkit-flex; display: flex; margin: 0 0 10px 0; padding: 0;
 
         .scout-navigation-items {
-            line-height:40px;
+            line-height:35px;
             font-size:14px;
             text-transform:uppercase;
             margin: 0 auto;
             list-style: none;
             padding: 0;
 
-            li { display: inline; margin-right: 20px; padding: 5px 10px;
-                a { padding: 0; display: inline-block;  color: #6564A8;text-decoration: none; }
+            li { display: inline-block; margin: 0; padding: 0; width: 105px;
+                a { padding: 0 15px; display: block;  color: #fff;text-decoration: none; background: #6564A8; text-align: center; border-radius: 20px; }
             }
+
+            li:nth-child(2) { margin: 0 10px; }
         }
     }
 
@@ -30,12 +32,59 @@
 
 // scrolling body
 
-.scout-scroll { margin-top: 140px;
+.scout-scroll { margin-top: 145px;
 
     // content
     .scout-content {
 
-        .scout-filter-results { background: #6E729F; padding: 10px; color: #fff; }
+        .scout-filter-container { background: #6E729F; padding: 10px; color: #fff;
+            .scout-filter-results { display: inline-block; width: 80%; }
+            .scout-filter-display { display: inline-block; width: 20%;
+                a { display: block; line-height: 35px; text-decoration: none; color: #fff; }
+            }
+        }
+
+        // main list
+        .scout-list-container {  padding:0;
+
+            .scout-list-header { }
+            .scout-list { padding:0; margin: 0;
+
+                .scout-list-item { list-style:none; border-top:solid 1px #ddd; position: relative;
+
+                    &:first-child{ border-top: none; }
+
+                    a { display:block; text-decoration:none; padding:20px; color:#000;
+
+                        .spot-image { background-size:cover; width:100px; height:100px; float:left; }
+                        .spot-content { display:inline-block;float:left; width:60%;margin-left:20px;
+
+                            // spot details
+                            .spot-name { margin-top: 0; }
+
+                            .spot-status { position: absolute; top: 10px;; right: 10px; font-size: 11px;
+                                .open { color: green; }
+                                .closed { color: red; }
+                            }
+
+                            .spot-type { font-size: 12px; text-transform: uppercase; font-weight: normal; color: #aaa; margin-right: 10px; margin-bottom: 10px;
+                                span { margin-right: 10px; }
+                            }
+
+                            .spot-location { margin-bottom: 10px;}
+
+                            .spot-food-served { margin-bottom: 10px; color: #333; text-transform: uppercase; font-size: 11px;
+                                span { margin-right: 10px; }
+                            }
+
+                            .spot-open-period { margin-bottom: 10px; color: #666; text-transform: uppercase; font-size: 11px;
+                                span { margin-right: 10px; }
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
     }
 

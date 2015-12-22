@@ -5,76 +5,75 @@
 
 {% block web_content %}
 
-<div class="scout-filter-results">
+<div class="scout-filter-container">
 
-    Filtering by:
-    <span id="filter_label_text">None</span>
-    <br> Results: {{ spots|length }}
-    <br>
-
-    <a href="" id="filter_toggle" style="display:none;">MORE FILTERS</a>
-
-    <div style="display:none; margin-top:1em;" id="filter_container">
-        {% include "scout/include/filter.html" %}
+    <div class="scout-filter-results">
+    Filtering by: <span id="filter_label_text">None</span>
+    <br>Results: {{ spots|length }}
     </div>
+
+    {% if request.is_mobile or request.is_tablet %}
+    <div class="scout-filter-display">
+        <a id="map_link" href="/map/"><i class="fa fa-map"></i> Map</a>
+    </div>
+    {% endif %}
+
 </div>
 
-{% if request.is_mobile or request.is_tablet %}
-<div style="text-align: center; line-height:40px; background:#ddd; margin:0;">
-    <a id="map_link" href="/map/">Map</a>
-</div>
-{% endif %}
+<div class="scout-list-container">
 
-<div style="padding:0;">
+    <h2 class="scout-list-header visually-hidden">List of Food Places</h2>
 
-    <h2 style="margin: 20px;">List of Food Places</h2>
+    <ul class="scout-list">
 
-    <ul style="padding:0;">
         {% for spot in spots %}
-            <li id="{{ spot.spot_id }}" style="list-style:none; border-top:solid 1px #ddd;">
-                <a href="detail/{{ spot.spot_id }}" style="display:block;text-decoration:none; padding:20px; color:#000;">
-                    <!--<img src="{{spot.images.0.url}}" style="width:80px;">-->
+            <li class="scout-list-item" id="{{ spot.spot_id }}">
+                <a class="clearfix" href="detail/{{ spot.spot_id }}">
 
-                    <div style="background:url('{% static "scout/img/coffee-shop-300.jpg" %}') no-repeat center center; background-size:cover; width:100px; height:100px; float:left;">&nbsp;</div>
+                    <div class="spot-image" style="background:url('{% static "scout/img/coffee-shop-300.jpg" %}') no-repeat center center;">&nbsp;</div>
 
-                    <div style="display:inline-block;float:left; width:60%;margin-left:20px;">
+                    <div class="spot-content">
 
-                        <h3>{{ spot.name }} {% for type in spot.spot_types %}({{ type.name }}){% endfor %}</h3>
+                        <h3 class="spot-name">{{ spot.name }}</h3>
 
-                        <div style="text-align:right;">{% if spot.is_open %}<span style="color:green;">OPEN NOW</span>{% else %}<span style="color:#ddd;">CLOSED</span>{% endif %}</strong></div>
+                        <div class="spot-type">{% for type in spot.spot_types %}<span>{{ type.name }}</span>{% endfor %}</div>
 
-                        <strong>Location:</strong>
-                        <ul>
-                            <li>building: {% if spot.building_name %}{{ spot.building_name }}{% else %} <span style="color:red;">xxxxx</span> {% endif %}</li>
-                            <li>floor: {% if spot.floor %}{{ spot.floor }}{% else %} <span style="color:red;">xxxxx</span> {% endif %}</li>
-                            <li>room: {% if spot.room_number %}{{ spot.room_number }}{% else %} <span style="color:red;">xxxxx</span> {% endif %}</li>
-                        </ul>
-                        <br/>
-                        <strong>Food served:</strong>
+                        <div class="spot-status">{% if spot.is_open %}<span class="open">OPEN NOW</span>{% else %}<span class="closed">CLOSED</span>{% endif %}</div>
+
+                        <div class="spot-location">
+                            <div>{% if spot.building_name %}{{ spot.building_name }}{% else %} <span style="color:red;">xxxxx</span> {% endif %}</div>
+                            <div>{% if spot.floor %}{{ spot.floor }}{% else %} <span style="color:red;">xxxxx</span> {% endif %}</div>
+                            <div>{% if spot.room_number %}{{ spot.room_number }}{% else %} <span style="color:red;">xxxxx</span> {% endif %}</div>
+                        </div>
+
+                        <div class="spot-food-served">
                         {% if spot.foodtype_names %}
                             {% for foodtype in spot.foodtype_names %}
-                                {{ foodtype }}
+                                <span>{{ foodtype }}</span>
                             {% endfor %}
                         {% else %} <span style="color:red;">xxxxx</span> {% endif %}
-                        <br/>
-                        <strong>Open periods:</strong>
-                        {% if spot.open_periods.breakfast %}
-                            Breakfast{% if spot.open_periods.lunch or spot.open_periods.dinner or spot.open_periods.late_night %}, {% endif %}
-                        {% endif %}
-                        {% if spot.open_periods.lunch %}
-                            Lunch{% if spot.open_periods.dinner or spot.open_periods.late_night %}, {% endif %}
-                        {% endif %}
-                        {% if spot.open_periods.dinner %}
-                            Dinner{% if spot.open_periods.late_night %}, {% endif %}
-                        {% endif %}
-                        {% if spot.open_periods.late_night %}
-                            Late Night
-                        {% endif %}
+                        </div>
+
+                        <div class="spot-open-period">
+                            {% if spot.open_periods.breakfast %}
+                                <span>Breakfast</span>
+                            {% endif %}
+                            {% if spot.open_periods.lunch %}
+                                <span>Lunch</span>
+                            {% endif %}
+                            {% if spot.open_periods.dinner %}
+                                <span>Dinner</span>
+                            {% endif %}
+                            {% if spot.open_periods.late_night %}
+                                <span>Late Night</span>
+                            {% endif %}
+                        </div>
+
                     </div>
-                    <div style="clear:both;height:0;">&nbsp;</div>
                 </a>
             </li>
         {% endfor %}
+
     </ul>
 
 </div>

@@ -6,27 +6,22 @@
 
 {% block web_content %}
 
-<div class="scout-filter-results">
+<div class="scout-filter-container">
 
-    Filtering by:
-    <span id="filter_label_text">None</span>
+    <div class="scout-filter-results">
+    Filtering by: <span id="filter_label_text">None</span>
     <br> Results: {{ spots|length }}
-    <br>
-
-    <a href="" id="filter_toggle" style="display:none;">MORE FILTERS</a>
-
-    <div style="display:none; margin-top:1em;" id="filter_container">
-        {% include "scout/include/filter.html" %}
     </div>
+
+    {% if request.is_mobile or request.is_tablet %}
+    <div class="scout-filter-display">
+        <a id="map_link" href="/"><i class="fa fa-list"></i> List</a>
+    </div>
+    {% endif %}
+
 </div>
 
-{% if request.is_mobile or request.is_tablet %}
-<div style="text-align: center; line-height:40px; background:#ddd;margin: 0;">
-    <a id="map_link" href="/">List</a>
-</div>
-{% endif %}
-
-<h2 style="margin-left:20px;">Map of Food Places</h2>
+<h2 class="scout-list-header visually-hidden">Map of Food Places</h2>
 
 <!-- show a map on the list page -->
 <div class="scout-map" style="margin:0;">

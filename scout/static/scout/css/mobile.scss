@@ -21,15 +21,8 @@ html.turbolinks-progress-bar::before {
 
     .scout-content {
 
-        //.scout-pjax-loading { line-height: 300px; text-align: center; color: #ccc; }
 
-        //h3 { font-family: 'Oswald', sans-serif; font-weight: 300; }
 
-        .scout-list {
-            h4 { color: #aaa; }
-            p { color: #333; }
-            a { text-decoration: none; }
-        }
     }
 
 }
@@ -47,4 +40,30 @@ html.turbolinks-progress-bar::before {
   width:100%;
   height:100%;
   background:rgba(0,0,0,.5);
+}
+
+
+
+// accessibility & helper classes
+
+.clearfix:after { // aka clearfix hack
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.hidden {
+    display:none;
+    visibility:hidden;
+}
+
+.visually-hidden { /*https://developer.yahoo.com/blogs/ydn/clip-hidden-content-better-accessibility-53456.html*/
+    position: absolute !important;
+    clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+    clip: rect(1px, 1px, 1px, 1px);
+    padding:0 !important;
+    border:0 !important;
+    height: 1px !important;
+    width: 1px !important;
+    overflow: hidden;
 }
