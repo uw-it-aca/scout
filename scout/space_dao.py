@@ -164,6 +164,9 @@ def add_additional_info(spot):
                                            spot.extended_info)
     spot.website_url = _get_extended_info_by_key("s_website_url",
                                                  spot.extended_info)
+    spot.location_description = \
+        _get_extended_info_by_key("location_description",
+                                  spot.extended_info)
     return spot
 
 
