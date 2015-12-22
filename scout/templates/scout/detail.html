@@ -54,7 +54,7 @@
 
     <p>Food served:</p>
     <ul>
-        {% if foodtype %}
+        {% if spot.foodtype_names %}
             {% for foodtype in spot.foodtype_names %}
                 <li>{{ foodtype }}</li>
             {% endfor %}
