@@ -58,9 +58,18 @@
                         {% else %} <span style="color:red;">xxxxx</span> {% endif %}
                         <br/>
                         <strong>Open periods:</strong>
-                        {% for period in spot.open_periods %}
-                            {{ period }},
-                        {% endfor %}
+                        {% if spot.open_periods.breakfast %}
+                            Breakfast{% if spot.open_periods.lunch or spot.open_periods.dinner or spot.open_periods.late_night %}, {% endif %}
+                        {% endif %}
+                        {% if spot.open_periods.lunch %}
+                            Lunch{% if spot.open_periods.dinner or spot.open_periods.late_night %}, {% endif %}
+                        {% endif %}
+                        {% if spot.open_periods.dinner %}
+                            Dinner{% if spot.open_periods.late_night %}, {% endif %}
+                        {% endif %}
+                        {% if spot.open_periods.late_night %}
+                            Late Night
+                        {% endif %}
                     </div>
                     <div style="clear:both;height:0;">&nbsp;</div>
                 </a>
