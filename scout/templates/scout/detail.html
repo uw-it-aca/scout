@@ -24,9 +24,19 @@
 
     <p>Open for:</p>
     <ul>
-        {% for period in spot.open_periods %}
-        <li>{{ period }}</li>
-        {% endfor %}
+        {% if spot.open_periods.breakfast %}
+            <li>Breakfast</li>
+        {% endif %}
+        {% if spot.open_periods.lunch %}
+            <li>Lunch</li>
+        {% endif %}
+        {% if spot.open_periods.dinner %}
+            <li>Dinner</li>
+        {% endif %}
+        {% if spot.open_periods.late_night %}
+            <li>Late Night</li>
+        {% endif %}
+
     </ul>
 
     <p>Building description: {% if spot.building_description %}{{spot.building_description}}{% else %} <span style="color:red;">xxxxx xxx xx xxxxxxxxx xxx</span> {% endif %}</p>
