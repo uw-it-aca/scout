@@ -5,199 +5,235 @@
 
 {% block web_content %}
 
-{% if spot.has_alert %}
-<p>ALERT<br/> {{ spot.alert_notes }}</p>
-{% endif %}
+<div class="scout-details-container">
 
-<div style="background:url('{% static "scout/img/coffee-shop-1200.jpg" %}') no-repeat center center; background-size:cover; height:300px;">&nbsp;</div>
-
-<div style="padding:20px;">
-
-    <h2>{{spot.name}}</h2>
-
-    <div style="text-align:right;">{% if spot.is_open %}<span style="color:green;">OPEN NOW</span>{% else %}<span style="color:#ddd;">CLOSED</span>{% endif %}</strong></div>
-
-
-
-    <p>Type: {% for type in spot.spot_types %} {{ type.name }} {% endfor %}
-    </p>
-
-    <p>Open for:</p>
-    <ul>
-        {% if spot.open_periods.breakfast %}
-            <li>Breakfast</li>
-        {% endif %}
-        {% if spot.open_periods.lunch %}
-            <li>Lunch</li>
-        {% endif %}
-        {% if spot.open_periods.dinner %}
-            <li>Dinner</li>
-        {% endif %}
-        {% if spot.open_periods.late_night %}
-            <li>Late Night</li>
-        {% endif %}
-
-    </ul>
-
-    <p>Building description: {% if spot.location_description %}{{spot.location_description}}{% else %} <span style="color:red;">xxxxx xxx xx xxxxxxxxx xxx</span> {% endif %}</p>
-
-    <p>Phone: {% if spot.phone %}{{ spot.phone }}{% else %} <span style="color:red;">xxxxx</span> {% endif %}</p>
-
-    <p>Cuisine:</p>
-    <ul>
-        {% if spot.cuisinetype_names %}
-            {% for cuisinetype in spot.cuisinetype_names %}
-            <li>{{ cuisinetype }}</li>
-            {% endfor %}
-        {% else %} <span style="color:red;">xxxxx</span> {% endif %}
-    </ul>
-
-    <p>Food served:</p>
-    <ul>
-        {% if spot.foodtype_names %}
-            {% for foodtype in spot.foodtype_names %}
-                <li>{{ foodtype }}</li>
-            {% endfor %}
-        {% else %} <span style="color:red;">xxxxx</span> {% endif %}
-    </ul>
-
-    {% if spot.has_reservation %}
-    <p>Reservations:
-        <br/> {{spot.reservation_notes}}
-    </p>
-
+    {% if spot.has_alert %}
+    <div class="scout-spot-alert">
+        <span>ALERT! {{ spot.alert_notes }}</span>
+    </div>
+    {% else %}
+    <div class="scout-spot-alert">
+        <span>ALERT! Delete this 'else' after design...</span>
+    </div>
     {% endif %}
 
-    <p>Payment accepted:</p>
-    <ul>
-        {% for payment in spot.payment_names %}
-        <li>{{ payment }}</li>
-        {% endfor %}
-    </ul>
+    <div class="scout-spot-image" style="background-image:linear-gradient(rgba(0, 0, 0, 0.05),rgba(0, 0, 0, 0.05)), url('{% static "scout/img/coffee-shop-1200.jpg" %}');">
 
-    <p style="overflow:hidden; text-overflow:ellipsis;">Menu URL: {% if spot.menu_url %}{{spot.menu_url}}{% else %} <span style="color:red;">xxxxx</span> {% endif %}</p>
+        <h2 class="scout-spot-name">{{spot.name}}</h2>
 
-    <h4>Hours</h4>
-        <ul>
-            <li>Monday: {% for hours in spot.hours.monday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
-            <li>Tuesday: {% for hours in spot.hours.tuesday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
-            <li>Wednesday: {% for hours in spot.hours.wednesday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
-            <li>Thursday: {% for hours in spot.hours.thursday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
-            <li>Friday: {% for hours in spot.hours.friday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
-            <li>Saturday: {% for hours in spot.hours.saturday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
-            <li>Sunday: {% for hours in spot.hours.sunday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
-        </ul>
+        <div class="scout-spot-status">{% if spot.is_open %}<span class="open">OPEN NOW</span>{% else %}<span class="closed">CLOSED</span>{% endif %}</div>
 
-    {% if spot.hours_notes %}
-    <p>Hours Notes:</p>
-    <ul>
-        <li>{{spot.hours_notes}}</li>
-    </ul>
-    {% endif %}
+        <div class="scout-spot-open-period">
+            <span>TODAY:</span>
+            {% if spot.open_periods.breakfast %}
+                <span>Breakfast</span>
+            {% endif %}
+            {% if spot.open_periods.lunch %}
+                <span>Lunch</span>
+            {% endif %}
+            {% if spot.open_periods.dinner %}
+                <span>Dinner</span>
+            {% endif %}
+            {% if spot.open_periods.late_night %}
+                <span>Late Night</span>
+            {% endif %}
+        </div>
 
-    {% if request.is_mobile %}
-    <div style="height:200px;">
-        <div id="detail_map" style="height:100%;"></div>
     </div>
 
-    <!-- since turbolinks loads the full body... initialize map stuff locally in the template. then, call the function in the map.js file -->
-    <script>
-        function initializeDetailMap() {
+    <div class="scout-spot-content">
 
-            var mapExists = document.getElementById("detail_map");
-            var myLatlng, mapOptions;
 
-            if (mapExists) {
 
-                // center map direction on spot location
-                myLatlng = new google.maps.LatLng({{ spot.latitude }}, {{ spot.longitude }});
-                mapOptions = {
-                    center: myLatlng,
-                    zoom: 17,
-                    scrollwheel: false,
-                    draggable: false,
-                    disableDefaultUI: true
-                };
+        <div class="scout-spot-type">
+            {% for type in spot.spot_types %}<span>{{ type.name }}</span>{% endfor %}
+        </div>
 
-                var styles = [
-                    {
-                        "featureType": "poi.place_of_worship",
-                        "elementType": "all",
-                        "stylers": [
-                            {
-                                "visibility": "off"
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "poi.business",
-                        "elementType": "labels.icon",
-                        "stylers": [
-                            {
-                                "visibility": "off"
-                            }
-                        ]
-                    }
-                ]
+        <div class="scout-spot-food-served">
+            <span class="visually-hidden">SERVES:</span>
+            {% if spot.foodtype_names %}
+                {% for foodtype in spot.foodtype_names %}
+                    <span>{{ foodtype }}</span>
+                {% endfor %}
+            {% else %} <span style="color:red;">missing food served</span> {% endif %}
+        </div>
 
-                var map = new google.maps.Map(document.getElementById('detail_map'), mapOptions);
-                map.setOptions({styles: styles});
+        <div class="scout-spot-phone">
+            {% if spot.phone %}
+            <i class="fa fa-phone"></i> <a href="tel:+12065551234">{{ spot.phone }}</a>
+            {% else %}
+            <i class="fa fa-phone"></i> <span style="color:red;">missing phone</span>
+            {% endif %}
+        </div>
+        <div class="scout-spot-menu">
+            {% if spot.menu_url %}
+            <i class="fa fa-book"></i> <a href="{{spot.menu_url}}" target="_blank">MENU</a>
+            {% else %}
+            <i class="fa fa-book"></i> <span style="color:red;">missing menu</span>
+            {% endif %}
+        </div>
+        <div class="scout-spot-website">
+            {% if spot.website_url %}
+            <i class="fa fa-laptop"></i> <a href="{{spot.website_url}}" target="_blank">WEBSITE</a>
+            {% else %}
+            <i class="fa fa-laptop"></i> <span style="color:red;">xxxxx</span>
+            {% endif %}
+        </div>
 
-                var marker = new MarkerWithLabel({
-                    position: myLatlng,
-                    map: map,
-                    title: '{{ spot.name }}!',
-                    animation: google.maps.Animation.DROP,
-                    labelContent: "<i class='fa fa-cutlery'></i><span class='marker-text' style='margin-left:15px;font-size:12px;'>{{ spot.name }}</span>",
-                    labelAnchor: new google.maps.Point(6, 6),
-                    labelClass: "map-label", // the CSS class for the label
-                    icon: {
-                		path: google.maps.SymbolPath.CIRCLE,
-                		fillColor: '#53518e',
-                		fillOpacity: 1,
-                		strokeColor: '#6562aa',
-                        strokeWeight: 5,
-                        scale: 13,
-                	},
-                });
+        <div class="scout-spot-location">
+            <div>{% if spot.building_name %}{{ spot.building_name }}{% else %} <span style="color:red;">xxxxx</span> {% endif %}</div>
+            <div>{% if spot.floor %}{{ spot.floor }}{% else %} <span style="color:red;">xxxxx</span> {% endif %}</div>
+            <div>{% if spot.room_number %}{{ spot.room_number }}{% else %} <span style="color:red;">xxxxx</span> {% endif %}</div>
+        </div>
+
+        {% if request.is_mobile %}
+
+        <div class="scout-spot-map">
+            <div id="detail_map" style="height:100%;"></div>
+        </div>
+        <div class="scout-spot-map-link"><i class="fa fa-map"></i> <a href="maps://maps.apple.com/maps?q={{ spot.latitude }},{{ spot.longitude }}">OPEN IN MAPS</a></div>
+
+        <!-- since turbolinks loads the full body... initialize map stuff locally in the template. then, call the function in the map.js file -->
+        <script>
+            function initializeDetailMap() {
+
+                var mapExists = document.getElementById("detail_map");
+                var myLatlng, mapOptions;
+
+                if (mapExists) {
+
+                    // center map direction on spot location
+                    myLatlng = new google.maps.LatLng({{ spot.latitude }}, {{ spot.longitude }});
+                    mapOptions = {
+                        center: myLatlng,
+                        zoom: 17,
+                        scrollwheel: false,
+                        draggable: false,
+                        disableDefaultUI: true
+                    };
+
+                    var styles = [
+                        {
+                            "featureType": "poi.place_of_worship",
+                            "elementType": "all",
+                            "stylers": [
+                                {
+                                    "visibility": "off"
+                                }
+                            ]
+                        },
+                        {
+                            "featureType": "poi.business",
+                            "elementType": "labels.icon",
+                            "stylers": [
+                                {
+                                    "visibility": "off"
+                                }
+                            ]
+                        },
+                        {
+                            "featureType": "poi.school",
+                            "elementType": "labels",
+                            "stylers": [
+                                {
+                                    "visibility": "off"
+                                }
+                            ]
+                        }
+                    ]
+
+                    var map = new google.maps.Map(document.getElementById('detail_map'), mapOptions);
+                    map.setOptions({styles: styles});
+
+                    var marker = new MarkerWithLabel({
+                        position: myLatlng,
+                        map: map,
+                        title: '{{ spot.name }}!',
+                        labelContent: "<span class='marker-text' style='margin-left:15px;font-size:12px;'>{{ spot.name }}</span>",
+                        labelAnchor: new google.maps.Point(6, 6),
+                        labelClass: "map-label", // the CSS class for the label
+                        icon: {
+                    		path: google.maps.SymbolPath.CIRCLE,
+                    		fillColor: '#53518e',
+                    		fillOpacity: 1,
+                    		strokeColor: '#6562aa',
+                            strokeWeight: 2,
+                            scale: 4,
+                    	},
+                    });
+                }
+
             }
+        </script>
+        {% endif %}
 
-        }
-    </script>
-    <p><a href="/">OPEN IN GOOGLE MAPS</a></p>
-    {% endif %}
+        <div class="scout-spot-description">{% if spot.location_description %}{{spot.location_description}}{% else %} <span style="color:red;">xxxxx xxx xx xxxxxxxxx xxx</span> {% endif %}</div>
 
-    <h4>Location information</h4>
-    <ul>
-        <li>Latitude: {{ spot.latitude }}</li>
-        <li>Longitude: {{ spot.longitude }}</li>
-        <li>Building: {% if spot.building_name %}{{ spot.building_name }}{% else %} <span style="color:red;">xxxxx</span> {% endif %}</li>
-        <li>Floor: {% if spot.floor %}{{ spot.floor }}{% else %} <span style="color:red;">xxxxx</span> {% endif %}</li>
-        <li>Room: {% if spot.room_number %}{{ spot.room_number }}{% else %} <span style="color:red;">xxxxx</span> {% endif %}</li>
-    </ul>
+        <div class="scout-spot-cuisine">
+            {% if spot.cuisinetype_names %}
+            <span class="visually-hidden">Cuisine:</span>
+            <ul>
+                {% for cuisinetype in spot.cuisinetype_names %}
+                <li>{{ cuisinetype }}</li>
+                {% endfor %}
+            </ul>
+            {% else %}<span style="color:red;">missing cuisine</span> {% endif %}
+        </div>
 
-    {% if spot.access_notes %}
-    <p>Access Notes</p>
-    <ul>
-        <li>{{spot.access_notes}}</li>
-    </ul>
-    {% endif %}
+        {% if spot.has_reservation %}
+        <div>{{spot.reservation_notes}}</div>
+        {% endif %}
 
-    <h4>Misc. information</h4>
-    <ul>
-        <li>Has coupon: {% if spot.has_coupon %} {{ spot.has_coupon }}{% else %}false{% endif %}</li>
-        <li>Coupon expire: {% if spot.coupon_expiration %}{{ spot.coupon_expiration }}{% endif %}</li>
-        <li>Coupon URL: {% if spot.coupon_url %}{{ spot.coupon_url }}{% endif %}</li>
-        <li style="overflow:hidden; text-overflow:ellipsis;">{% if spot.website_url %}Website URL: {{ spot.website_url }}{% endif %}</li>
-    </ul>
+        <div class="scout-spot-payment">
+            {% if spot.payment_names %}
+                <span class="visually-hidden">Payment accepted:</span>
+                <ul>
+                    {% for payment in spot.payment_names %}
+                    <li>{{ payment }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
 
-    <h4>Owner</h4>
-    <ul>
-        <li>Organization: {% if spot.organization %}{{ spot.organization }}{% else %} <span style="color:red;">xxxxx</span> {% endif %}</li>
-        <li>Manager: {% if spot.manager %}{{ spot.manager }}{% else %} <span style="color:red;">xxxxx</span> {% endif %}</li>
-    </ul>
+        {% if spot.access_notes %}
+        <div>{{spot.access_notes}}</div>
+        {% endif %}
+
+        <div class="scout-spot-hours">
+            <ul>
+                <li><span class="day">Monday:</span> {% for hours in spot.hours.monday %} {{ hours.0 }} - {{ hours.1 }} {% empty %}<span class="closed">Closed</span>{% endfor %}</li>
+                <li><span class="day">Tuesday:</span> {% for hours in spot.hours.tuesday %} {{ hours.0 }} - {{ hours.1 }} {% empty %}<span class="closed">Closed</span>{% endfor %}</li>
+                <li><span class="day">Wednesday:</span> {% for hours in spot.hours.wednesday %} {{ hours.0 }} - {{ hours.1 }} {% empty %}<span class="closed">Closed</span>{% endfor %}</li>
+                <li><span class="day">Thursday:</span> {% for hours in spot.hours.thursday %} {{ hours.0 }} - {{ hours.1 }} {% empty %}<span class="closed">Closed</span>{% endfor %}</li>
+                <li><span class="day">Friday:</span> {% for hours in spot.hours.friday %} {{ hours.0 }} - {{ hours.1 }} {% empty %}<span class="closed">Closed</span>{% endfor %}</li>
+                <li><span class="day">Saturday:</span> {% for hours in spot.hours.saturday %} {{ hours.0 }} - {{ hours.1 }} {% empty %}<span class="closed">Closed</span>{% endfor %}</li>
+                <li><span class="day">Sunday:</span> {% for hours in spot.hours.sunday %} {{ hours.0 }} - {{ hours.1 }} {% empty %}<span class="closed">Closed</span>{% endfor %}</li>
+            </ul>
+
+            {% if spot.hours_notes %}
+            <span>{{spot.hours_notes}}</span>
+            {% else %}
+            <span>Note: Delete this 'else' after design...</span>
+            {% endif %}
+        </div>
+
+        <h4>Coupons</h4>
+        <ul>
+            <li>Has coupon: {% if spot.has_coupon %} {{ spot.has_coupon }}{% else %}false{% endif %}</li>
+            <li>Coupon expire: {% if spot.coupon_expiration %}{{ spot.coupon_expiration }}{% endif %}</li>
+            <li>Coupon URL: {% if spot.coupon_url %}{{ spot.coupon_url }}{% endif %}</li>
+        </ul>
+
+        <h4>Owner</h4>
+        <ul>
+            <li>Organization: {% if spot.organization %}{{ spot.organization }}{% else %} <span style="color:red;">xxxxx</span> {% endif %}</li>
+            <li>Manager: {% if spot.manager %}{{ spot.manager }}{% else %} <span style="color:red;">xxxxx</span> {% endif %}</li>
+        </ul>
+
+    </div>
 
 </div>
+
 {% endblock %}
 
 {% block sidebar %}

@@ -8,8 +8,8 @@
 <div class="scout-filter-container">
 
     <div class="scout-filter-results">
-    Filtering by: <span id="filter_label_text">None</span>
-    <br>Results: {{ spots|length }}
+        <div>Filtering by: <span id="filter_label_text">None</span></div>
+        <div>Results: {{ spots|length }}</div>
     </div>
 
     {% if request.is_mobile or request.is_tablet %}
@@ -30,31 +30,18 @@
             <li class="scout-list-item" id="{{ spot.spot_id }}">
                 <a class="clearfix" href="detail/{{ spot.spot_id }}">
 
-                    <div class="spot-image" style="background:url('{% static "scout/img/coffee-shop-300.jpg" %}') no-repeat center center;">&nbsp;</div>
+                    <div class="scout-spot-image" style="background:url('{% static "scout/img/coffee-shop-300.jpg" %}') no-repeat center center;">&nbsp;</div>
 
-                    <div class="spot-content">
+                    <div class="scout-spot-content">
 
-                        <h3 class="spot-name">{{ spot.name }}</h3>
+                        <h3 class="scout-spot-name">{{ spot.name }}</h3>
 
-                        <div class="spot-type">{% for type in spot.spot_types %}<span>{{ type.name }}</span>{% endfor %}</div>
+                        <div class="scout-spot-type">{% for type in spot.spot_types %}<span>{{ type.name }}</span>{% endfor %}</div>
 
-                        <div class="spot-status">{% if spot.is_open %}<span class="open">OPEN NOW</span>{% else %}<span class="closed">CLOSED</span>{% endif %}</div>
+                        <div class="scout-spot-status">{% if spot.is_open %}<span class="open">OPEN NOW</span>{% else %}<span class="closed">CLOSED</span>{% endif %}</div>
 
-                        <div class="spot-location">
-                            <div>{% if spot.building_name %}{{ spot.building_name }}{% else %} <span style="color:red;">xxxxx</span> {% endif %}</div>
-                            <div>{% if spot.floor %}{{ spot.floor }}{% else %} <span style="color:red;">xxxxx</span> {% endif %}</div>
-                            <div>{% if spot.room_number %}{{ spot.room_number }}{% else %} <span style="color:red;">xxxxx</span> {% endif %}</div>
-                        </div>
-
-                        <div class="spot-food-served">
-                        {% if spot.foodtype_names %}
-                            {% for foodtype in spot.foodtype_names %}
-                                <span>{{ foodtype }}</span>
-                            {% endfor %}
-                        {% else %} <span style="color:red;">xxxxx</span> {% endif %}
-                        </div>
-
-                        <div class="spot-open-period">
+                        <div class="scout-spot-open-period">
+                            <span>TODAY'S HOURS:</span>
                             {% if spot.open_periods.breakfast %}
                                 <span>Breakfast</span>
                             {% endif %}
@@ -67,6 +54,21 @@
                             {% if spot.open_periods.late_night %}
                                 <span>Late Night</span>
                             {% endif %}
+                        </div>
+
+                        <div class="scout-spot-food-served">
+                        <span>SERVES:</span>
+                        {% if spot.foodtype_names %}
+                            {% for foodtype in spot.foodtype_names %}
+                                <span>{{ foodtype }}</span>
+                            {% endfor %}
+                        {% else %} <span style="color:red;">xxxxx</span> {% endif %}
+                        </div>
+
+                        <div class="scout-spot-location">
+                            <div>{% if spot.building_name %}{{ spot.building_name }}{% else %} <span style="color:red;">xxxxx</span> {% endif %}</div>
+                            <div>{% if spot.floor %}{{ spot.floor }}{% else %} <span style="color:red;">xxxxx</span> {% endif %}</div>
+                            <div>{% if spot.room_number %}{{ spot.room_number }}{% else %} <span style="color:red;">xxxxx</span> {% endif %}</div>
                         </div>
 
                     </div>
