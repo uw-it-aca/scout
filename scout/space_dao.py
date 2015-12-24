@@ -69,11 +69,11 @@ def _get_spot_filters(request):
         if "payment" in param:
             params.append(("extended_info:" + request.GET[param], "true"))
         if "period" in param:
-            params += _get_period_filter(request.GET[param])
+            params += get_period_filter(request.GET[param])
     return params
 
 
-def _get_period_filter(param):
+def get_period_filter(param):
     today = datetime.datetime.now().strftime("%A")
     start_time = OPEN_PERIODS[param]["start"].strftime("%H:%M")
     start_string = "%s,%s" % (today, start_time)

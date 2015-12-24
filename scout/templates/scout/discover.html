@@ -41,30 +41,28 @@
 </div>
 {% endif %}
 
+{% if breakfast %}
 <div style="background:url('{% static "scout/img/huskygrind.jpg" %}') no-repeat center center; background-size:cover;">
 <div style="padding:1em;">
-    <h3>Breakfast before class [[extended_info:s_open_breakfast ]]</h3>
+    <h3>Breakfast before class</h3>
     <ul>
-        <li><a href="/detail/56874">Cultivate</a></li>
-        <li><a href="/detail/56874">The 8</a></li>
-        <li><a href="/detail/56874">By George</a></li>
-        <li><a href="/detail/56874">The Rotunda</a></li>
-        <li><a href="/detail/56874">Bob's Burgers</a></li>
+        {% for spot in breakfast %}
+        <li><a href="/detail/{{ spot.spot_id }}">{{spot.name}}</a></li>
+        {% endfor %}
         <li><a href="/">More...</a></li>
     </ul>
 </div>
 </div>
-
-<h3>Evening class muchies [[extended_info:s_open_late_night]]</h3>
+{% endif %}
+{% if late_night %}
+<h3>Evening class muchies<0/h3>
 <ul>
-    <li><a href="/detail/56874">Cultivate</a></li>
-    <li><a href="/detail/56874">The 8</a></li>
-    <li><a href="/detail/56874">By George</a></li>
-    <li><a href="/detail/56874">The Rotunda</a></li>
-    <li><a href="/detail/56874">Bob's Burgers</a></li>
+        {% for spot in late_night %}
+        <li><a href="/detail/{{ spot.spot_id }}">{{spot.name}}</a></li>
+        {% endfor %}
     <li><a href="/">More...</a></li>
 </ul>
-
+{% endif %}
 
 {% if coupon %}
 <h3>Dine w/ discounts</h3>
