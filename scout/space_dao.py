@@ -22,6 +22,7 @@ OPEN_PERIODS = {
         },
     }
 
+
 def get_spot_list():
     spot_client = Spotseeker()
     res = spot_client.search_spots([('limit', 200),
@@ -81,8 +82,11 @@ def _get_period_filter(param):
 
     # reverse terms for "late_night" period
     if param == "late_night":
-        return [("fuzzy_hours_start", end_string), ("fuzzy_hours_end", start_string)]
-    return [("fuzzy_hours_start", start_string), ("fuzzy_hours_end", end_string)]
+        return [("fuzzy_hours_start", end_string),
+                ("fuzzy_hours_end", start_string)]
+    return [("fuzzy_hours_start", start_string),
+            ("fuzzy_hours_end", end_string)]
+
 
 def get_spot_by_id(spot_id):
     spot_client = Spotseeker()
