@@ -21,6 +21,10 @@ var Filter = {
             return $(this).val();
         }).get();
 
+        var periods = $("#period_select input:checkbox:checked").map(function() {
+            return $(this).val();
+        }).get();
+
         var params = {};
 
         params = $.extend(params, Filter._get_params_for_select(campuses,
@@ -33,6 +37,8 @@ var Filter = {
                                                                 "food"));
         params = $.extend(params, Filter._get_params_for_select(cuisines,
                                                                 "cuisine"));
+        params = $.extend(params, Filter._get_params_for_select(periods,
+                                                                "period"));
         return $.param(params);
     },
 
