@@ -1,10 +1,31 @@
 from spotseeker_restclient.spotseeker import Spotseeker
+import datetime
+import pytz
 
 
-def get_open_spots():
+OPEN_PERIODS = {
+        'breakfast': {
+            'start': datetime.time(5, 0, 0, 0),
+            'end':  datetime.time(11, 0, 0, 0)
+        },
+        'lunch': {
+            'start': datetime.time(11, 0, 0, 0),
+            'end':  datetime.time(15, 0, 0, 0)
+        },
+        'dinner': {
+            'start': datetime.time(15, 0, 0, 0),
+            'end':  datetime.time(22, 0, 0, 0)
+        },
+        'late_night': {
+            'start': datetime.time(15, 0, 0, 0),
+            'end':  datetime.time(22, 0, 0, 0)
+        },
+    }
+
+
+def get_spot_list():
     spot_client = Spotseeker()
-    res = spot_client.search_spots([('open', True),
-                                    ('limit', 200),
+    res = spot_client.search_spots([('limit', 200),
                                     ('extended_info:app_type', 'food')])
     for spot in res:
         spot = process_extended_info(spot)
@@ -23,7 +44,7 @@ def get_spots_by_filter(filters):
 def get_filtered_spots(request):
     filters = _get_spot_filters(request)
     # adding 'default' filter params
-    filters.append(('limit', 200))
+    filters.append(('limit', 999))
     filters.append(('extended_info:app_type', 'food'))
 
     spot_client = Spotseeker()
@@ -47,7 +68,24 @@ def _get_spot_filters(request):
             params.append(("extended_info:" + request.GET[param], "true"))
         if "payment" in param:
             params.append(("extended_info:" + request.GET[param], "true"))
+        if "period" in param:
+            params += get_period_filter(request.GET[param])
     return params
+
+
+def get_period_filter(param):
+    today = datetime.datetime.now().strftime("%A")
+    start_time = OPEN_PERIODS[param]["start"].strftime("%H:%M")
+    start_string = "%s,%s" % (today, start_time)
+    end_time = OPEN_PERIODS[param]["end"].strftime("%H:%M")
+    end_string = "%s,%s" % (today, end_time)
+
+    # reverse terms for "late_night" period
+    if param == "late_night":
+        return [("fuzzy_hours_start", end_string),
+                ("fuzzy_hours_end", start_string)]
+    return [("fuzzy_hours_start", start_string),
+            ("fuzzy_hours_end", end_string)]
 
 
 def get_spot_by_id(spot_id):
@@ -60,9 +98,12 @@ def process_extended_info(spot):
     spot = add_foodtype_names_to_spot(spot)
     spot = add_cuisine_names(spot)
     spot = add_payment_names(spot)
-    spot = add_open_periods(spot)
     spot = add_additional_info(spot)
     spot = organize_hours(spot)
+
+    now = datetime.datetime.now(pytz.timezone('America/Los_Angeles'))
+    spot.is_open = get_is_spot_open(spot, now)
+    spot.open_periods = get_open_periods_by_day(spot, now)
     return spot
 
 
@@ -77,9 +118,48 @@ def organize_hours(spot):
         'sunday': [],
     }
     for hours in spot.spot_availability:
-        hours_object[hours.day].append([hours.start_time, hours.end_time])
+        hours_object[hours.day].append((hours.start_time, hours.end_time))
     spot.hours = hours_object
     return spot
+
+
+def get_open_periods_by_day(spot, now):
+    # defining 'late night' as any time not covered by another period
+    open_periods = {'breakfast': False,
+                    'lunch': False,
+                    'dinner': False,
+                    'late_night': False}
+    hours = spot.hours[now.strftime("%A").lower()]
+    for opening in hours:
+        start = opening[0]
+        end = opening[1]
+        # open for breakfast
+        breakfast = OPEN_PERIODS['breakfast']
+        if breakfast['start'] <= end and breakfast['end'] >= start:
+            open_periods['breakfast'] = True
+        # open for lunch
+        lunch = OPEN_PERIODS['lunch']
+        if lunch['start'] <= end and lunch['end'] >= start:
+            open_periods['lunch'] = True
+        # open for dinner
+        dinner = OPEN_PERIODS['dinner']
+        if dinner['start'] <= end and dinner['end'] >= start:
+            open_periods['dinner'] = True
+        # open late night
+        if start <= breakfast['start'] or end >= dinner['end']:
+            open_periods['late_night'] = True
+    return open_periods
+
+
+def get_is_spot_open(spot, now):
+    hours = spot.hours[now.strftime("%A").lower()]
+
+    if len(hours) == 0:
+        return False
+    for period in hours:
+        if period[0] <= now.time() and period[1] > now.time():
+            return True
+    return False
 
 
 def add_additional_info(spot):
@@ -107,6 +187,9 @@ def add_additional_info(spot):
                                            spot.extended_info)
     spot.website_url = _get_extended_info_by_key("s_website_url",
                                                  spot.extended_info)
+    spot.location_description = \
+        _get_extended_info_by_key("location_description",
+                                  spot.extended_info)
     return spot
 
 
@@ -125,20 +208,6 @@ def _get_names_for_extended_info(prefix, mapping, info):
             except KeyError:
                 pass
     return names
-
-
-def add_open_periods(spot):
-    OPEN_PREFIX = "s_open"
-    OPEN_MAPPING = {
-        "s_open_breakfast": "Breakfast",
-        "s_open_lunch": "Lunch",
-        "s_open_dinner": "Dinner",
-        "s_open_late_night": "Late Night"
-    }
-    spot.open_periods = _get_names_for_extended_info(OPEN_PREFIX,
-                                                     OPEN_MAPPING,
-                                                     spot.extended_info)
-    return spot
 
 
 def add_payment_names(spot):

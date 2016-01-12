@@ -1,1 +1,158 @@
-// critical styles needed for first load
+/***
+Critical styles needed for first load. Check the app on a mobile device.
+Anything that visually appears above the fold should be taken care of in this
+file.
+***/
+
+// header
+
+.scout-header { background: #e2e2e2; position: fixed; top:0; left:0; right: 0; z-index: 999;
+
+h1 {
+    margin: 0;
+    line-height: 100px;
+    height: 100px;
+    color: #fff;
+    text-transform: uppercase;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 300;
+    font-size: 30px;
+    text-align: center;
+    a {
+        color: #fff;
+        text-decoration: none;
+        line-height: 100px;
+        width: 100px;
+        display: inline-block;
+        text-indent: -2000px;
+    }
+}
+
+    // navigation menu
+    .scout-navigation { position: relative; background: #e2e2e2; line-height: 35px; color: #fff; display: -webkit-flex; display: flex; margin: 0 0 10px 0; padding: 0;
+
+        .scout-navigation-items {
+            line-height:35px;
+            font-size:14px;
+            text-transform:uppercase;
+            margin: 0 auto;
+            list-style: none;
+            padding: 0;
+
+            li { display: inline-block; margin: 0; padding: 0; width: 105px;
+                a { padding: 0 15px; display: block;  color: #fff;text-decoration: none; background: #6564A8; text-align: center; border-radius: 20px; }
+            }
+
+            li:nth-child(2) { margin: 0 10px; }
+        }
+    }
+
+}
+
+// scrolling body
+
+.scout-scroll { margin-top: 145px;
+
+    // content
+    .scout-content {
+
+        /*** list page ***/
+
+        // filter
+        .scout-filter-container { background: #6E729F; padding: 10px; color: #fff;
+            .scout-filter-results { display: inline-block; width: 80%; }
+            .scout-filter-display { display: inline-block; width: 20%;
+                a { display: block; line-height: 35px; text-decoration: none; color: #fff; }
+            }
+        }
+
+        // list
+        .scout-list-container {  padding:0;
+
+            .scout-list-header { }
+            .scout-list { padding:0; margin: 0;
+
+                .scout-list-item { list-style:none; border-top:solid 1px #ddd; position: relative;
+
+                    &:first-child{ border-top: none; }
+
+                    a { display:block; text-decoration:none; padding:20px; color:#000;
+
+                        .scout-spot-image { background-size:cover; width:100px; height:100px; float:left; }
+                        .scout-spot-content { display:inline-block;float:left; width:60%;margin-left:20px;
+
+                            // spot details
+                            .scout-spot-name { margin-top: 0; }
+
+                            .scout-spot-status { position: absolute; top: 10px;; right: 10px; font-size: 14px;
+                                .open { color: green; }
+                                .closed { color: red; }
+                            }
+
+                            .scout-spot-type { font-size: 14px; text-transform: uppercase; font-weight: normal; color: #aaa; margin-right: 10px; margin-bottom: 10px;
+                                span { margin-right: 10px; }
+                            }
+
+                            .scout-spot-location { margin-bottom: 10px;}
+
+                            .scout-spot-food-served { margin-bottom: 10px; color: #333; text-transform: uppercase; font-size: 14px;
+                                span { margin-right: 10px; }
+                            }
+
+                            .scout-spot-open-period { margin-bottom: 10px; color: #666; text-transform: uppercase; font-size: 14px;
+                                span { margin-right: 10px; }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        /*** details page ***/
+
+        // details
+        .scout-details-container {
+
+            .scout-spot-alert { background: #e8eaf7; margin: 0; padding-left: 20px;
+                span { display:inline-block; line-height: 35px; font-size: 12px; color: red; }
+            }
+
+            .scout-spot-image { background-size: cover; background-repeat: no-repeat; background-position: center center; height: 200px; position: relative;
+                .scout-spot-name {
+                    position: absolute;
+                    bottom: 0;
+                    margin: 0;
+                    color: #fff;
+                    padding: 10px 20px;
+                }
+                .scout-spot-status { position: absolute; top: 10px; right: 20px;
+                    .open { color: lime; }
+                    .closed { color: red; }
+                }
+                .scout-spot-open-period {
+                    position: absolute;
+                    top: 10px;
+                    left: 20px;
+                    color: #fff;
+                    text-transform: uppercase;
+                    font-size: 14px;
+                    span {
+                        margin-right: 6px;
+                    }
+                }
+            }
+
+            .scout-spot-content { padding:20px;
+
+                .scout-spot-type { text-transform: uppercase; font-weight: normal; color: #666; margin-right: 10px; margin-bottom: 10px;
+                    span { margin-right: 10px; }
+                }
+
+
+
+            }
+        }
+
+    }
+
+}

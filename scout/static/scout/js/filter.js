@@ -21,6 +21,10 @@ var Filter = {
             return $(this).val();
         }).get();
 
+        var periods = $("#period_select input:checkbox:checked").map(function() {
+            return $(this).val();
+        }).get();
+
         var params = {};
 
         params = $.extend(params, Filter._get_params_for_select(campuses,
@@ -33,6 +37,8 @@ var Filter = {
                                                                 "food"));
         params = $.extend(params, Filter._get_params_for_select(cuisines,
                                                                 "cuisine"));
+        params = $.extend(params, Filter._get_params_for_select(periods,
+                                                                "period"));
         return $.param(params);
     },
 
@@ -88,7 +94,7 @@ var Filter = {
 
         $("#run_search").click(function(){
             var filtered_url = Filter.get_filter_url();
-            window.location.replace("?"+filtered_url);
+            window.location.replace("/?"+filtered_url);
         });
 
         $("#filter_toggle").click(function(e) {
