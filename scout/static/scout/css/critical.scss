@@ -6,7 +6,7 @@ file.
 
 // header
 
-.scout-header { background: #e2e2e2; position: fixed; top:0; left:0; right: 0; z-index: 999;
+.scout-header { background: #333; position: fixed; top:0; left:0; right: 0; z-index: 999;
 
 h1 {
     margin: 0;
@@ -29,7 +29,7 @@ h1 {
 }
 
     // navigation menu
-    .scout-navigation { position: relative; background: #e2e2e2; line-height: 35px; color: #fff; display: -webkit-flex; display: flex; margin: 0 0 10px 0; padding: 0;
+    .scout-navigation { position: relative; background: transparent; line-height: 35px; color: #fff; display: -webkit-flex; display: flex; margin: 0 0 10px 0; padding: 0;
 
         .scout-navigation-items {
             line-height:35px;
@@ -40,7 +40,7 @@ h1 {
             padding: 0;
 
             li { display: inline-block; margin: 0; padding: 0; width: 105px;
-                a { padding: 0 15px; display: block;  color: #fff;text-decoration: none; background: #6564A8; text-align: center; border-radius: 20px; }
+                a { padding: 0 15px; display: block;  color: #6564A8; text-decoration: none; /*background: #6564A8; border-radius: 20px;*/ text-align: center; }
             }
 
             li:nth-child(2) { margin: 0 10px; }
@@ -76,10 +76,10 @@ h1 {
 
                     &:first-child{ border-top: none; }
 
-                    a { display:block; text-decoration:none; padding:20px; color:#000;
+                    a { display:block; text-decoration:none; padding:0; color:#000;
 
                         .scout-spot-image { background-size:cover; width:100px; height:100px; float:left; }
-                        .scout-spot-content { display:inline-block;float:left; width:60%;margin-left:20px;
+                        .scout-spot-content { display:inline-block; float:left; width:60%; margin:10px;
 
                             // spot details
                             .scout-spot-name { margin-top: 0; }
