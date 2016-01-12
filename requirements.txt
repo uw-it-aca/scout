@@ -1,8 +1,2 @@
-django
-django-compressor
-django_mobileesp
-django-turbolinks
-django-htmlmin
-libsass
 -e git+https://github.com/uw-it-aca/spotseeker_client.git#egg=spotseeker-restclient
 -e .
