@@ -78,12 +78,4 @@ Scout specific extended info...
 		"s_pay_mastercard" : true,
 		"s_pay_husky" : true,
 		"s_pay_dining" : true,
-
-		"s_open_breakfast" : true,
-		"s_open_lunch" : true,
-		"s_open_dinner" : true,
-		"s_open_late_night" : false,
-
-        // font awesome icon
-        "s_marker_icon" : "fa-coffee",
 	},
