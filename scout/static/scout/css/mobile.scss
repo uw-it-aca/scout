@@ -3,7 +3,12 @@ Mobile styles not needed in the critical loading. These are mostly the below the
 fold styles and general helpers.
 ***/
 
+// sass variables
+
+$footer-height: 30px;
+
 // turbolinks
+
 html.turbolinks-progress-bar::before {
   background-color: red !important;
   height: 3px !important;
@@ -83,7 +88,7 @@ html.turbolinks-progress-bar::before {
 }
 
 // footer
-.scout-footer { background: #555; color:white; width: 100%; font-size: 75%; text-align:center; }
+.scout-footer { background: #f1f1f1; color:#555; width: 100%; font-size: 75%; text-align:center; line-height: $footer-height; }
 
 
 //.scout-map-canvas { height: 100%; margin: 0px; padding: 0px; }

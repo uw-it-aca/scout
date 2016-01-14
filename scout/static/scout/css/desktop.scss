@@ -2,6 +2,7 @@
 
 $view-panel-width: 450px;
 $header-height: 100px;
+$footer-height: 30px;
 
 // desktop styles
 
@@ -14,7 +15,7 @@ body { overflow: hidden; }
     .scout-header { width: $view-panel-width; }
 
     // scrolling body
-    .scout-scroll { position: fixed; top: $header-height; bottom: 38px; width: $view-panel-width; left:0; overflow: scroll; margin-top: 0;
+    .scout-scroll { position: fixed; top: $header-height; bottom: $footer-height; width: $view-panel-width; left:0; overflow: scroll; margin-top: 0;
 
         // content
         .scout-content {
@@ -24,7 +25,7 @@ body { overflow: hidden; }
     }
 
     // footer
-    .scout-footer { width: $view-panel-width; position: absolute; bottom: 0; }
+    .scout-footer { width: $view-panel-width; position: absolute; bottom: 0; text-align: left; }
 
 }
 
