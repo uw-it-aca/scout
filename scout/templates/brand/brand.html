@@ -10,7 +10,7 @@
     </head>
     <body>
 
-        <div class="scout-wrapper">
+        <div class="scout-primary">
 
             <div id="header" class="scout-header">
 
@@ -32,8 +32,8 @@
 
         {% if not request.is_mobile and not request.is_tablet %}
         <!-- desktop only extra container -->
-        <div class="scout-map" style="position: fixed; top:0; right:0; bottom:0; left:450px; z-index:0;">
-            {% block map %}{% endblock %}
+        <div class="scout-secondary">
+            {% block secondary_content %}{% endblock %}
         </div>
         {% endif %}
 

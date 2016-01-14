@@ -6,23 +6,26 @@ $view-panel-width: 450px;
 
 body { overflow: hidden; }
 
-.scout-wrapper { position:absolute; width: $view-panel-width; top:0; bottom:0; -webkit-box-shadow: 5px 0 20px 0 rgba(0,0,0,0.3);
-box-shadow: 5px 0 20px 0 rgba(0,0,0,0.3); z-index: 1;}
+// main container
+.scout-primary { position:absolute; width: $view-panel-width; top:0; bottom:0; -webkit-box-shadow: 5px 0 20px 0 rgba(0,0,0,0.3); box-shadow: 5px 0 20px 0 rgba(0,0,0,0.3); z-index: 1;
 
-.scout-header { width: $view-panel-width; }
+    // header
+    .scout-header { width: $view-panel-width; }
 
-// scrolling body
-.scout-scroll { position: fixed; top:145px; bottom: 38px; width: $view-panel-width; left:0; overflow: scroll; margin-top: 0;
+    // scrolling body
+    .scout-scroll { position: fixed; top:145px; bottom: 38px; width: $view-panel-width; left:0; overflow: scroll; margin-top: 0;
 
-    // content
-    .scout-content {
+        // content
+        .scout-content {
 
-        // google map
-        //.scout-map { position: fixed; top:0; left: $view-panel-width; bottom: 0; right: 0; overflow: scroll; background: #ddd; z-index: -1 !important; }
+        }
 
     }
 
+    // footer
+    .scout-footer { width: $view-panel-width; position: absolute; bottom: 0; }
+
 }
 
-// footer
-.scout-footer { width: $view-panel-width; position: absolute; bottom: 0; }
+// map sidebar container
+.scout-secondary { position: fixed; top:0; right:0; bottom:0; left:450px; z-index:0; }
