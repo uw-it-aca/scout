@@ -34,13 +34,11 @@
 
                     <div class="scout-spot-content">
 
-                        <h3 class="scout-spot-name">{{ spot.name }}</h3>
-
-                        <div class="scout-spot-type">{% for type in spot.spot_types %}<span>{{ type.name }}</span>{% endfor %}</div>
+                        <h3 class="scout-spot-name">{{ spot.name }} <span class="scout-spot-type">{% for type in spot.spot_types %}<span>{{ type.name }}</span>{% endfor %}</span></h3>
 
                         <div class="scout-spot-status">{% if spot.is_open %}<span class="open">OPEN NOW</span>{% else %}<span class="closed">CLOSED</span>{% endif %}</div>
 
-                        <div class="scout-spot-open-period">
+                        <div class="scout-spot-open-period" style="display:none;">
                             <span>TODAY'S HOURS:</span>
                             {% if spot.open_periods.breakfast %}
                                 <span>Breakfast</span>
@@ -65,7 +63,7 @@
                         {% else %} <span style="color:red;">xxxxx</span> {% endif %}
                         </div>
 
-                        <div class="scout-spot-location">
+                        <div class="scout-spot-location" style="display:none;">
                             <div>{% if spot.building_name %}{{ spot.building_name }}{% else %} <span style="color:red;">xxxxx</span> {% endif %}</div>
                             <div>{% if spot.floor %}{{ spot.floor }}{% else %} <span style="color:red;">xxxxx</span> {% endif %}</div>
                             <div>{% if spot.room_number %}{{ spot.room_number }}{% else %} <span style="color:red;">xxxxx</span> {% endif %}</div>

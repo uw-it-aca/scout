@@ -76,13 +76,15 @@ h1 {
 
                     &:first-child{ border-top: none; }
 
-                    a { display:block; text-decoration:none; padding:0; color:#000;
+                    a { display:block; text-decoration:none; padding:10px; color:#000; height: 100px; overflow: hidden;
 
                         .scout-spot-image { background-size:cover; width:100px; height:100px; float:left; }
-                        .scout-spot-content { display:inline-block; float:left; width:60%; margin:10px;
+                        .scout-spot-content { display:inline-block; float:left; width:65%; margin:10px;
 
                             // spot details
-                            .scout-spot-name { margin-top: 0; }
+                            .scout-spot-name { margin-top: 0;  font-family: 'Raleway', sans-serif;
+                            font-weight: 700;
+                            font-size: 16px; }
 
                             .scout-spot-status { position: absolute; top: 10px;; right: 10px; font-size: 14px;
                                 .open { color: green; }
