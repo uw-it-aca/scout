@@ -6,7 +6,7 @@ fold styles and general helpers.
 // turbolinks
 html.turbolinks-progress-bar::before {
   background-color: red !important;
-  height: 5px !important;
+  height: 3px !important;
 }
 
 // google map & font awesome icons
@@ -39,7 +39,7 @@ html.turbolinks-progress-bar::before {
 
                 .scout-spot-description { margin-bottom: 20px; color: #666; }
 
-                .scout-spot-food-served { margin-bottom: 10px; color: #666; text-transform: uppercase; 
+                .scout-spot-food-served { margin-bottom: 10px; color: #666; text-transform: uppercase;
                     span { margin-right: 10px; }
                 }
 

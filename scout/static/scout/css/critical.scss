@@ -6,33 +6,33 @@ file.
 
 // header
 
-.scout-header { background: #333; position: absolute; top:0; left:0; right: 0; z-index: 999;
+.scout-header { background: #fff;
 
 h1 {
     margin: 0;
-    line-height: 100px;
-    height: 100px;
+    line-height: 60px;
+    height: 60px;
     color: #fff;
     text-transform: uppercase;
-    font-family: 'Oswald', sans-serif;
-    font-weight: 300;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 900;
     font-size: 30px;
-    text-align: center;
+    margin-left: 10px;
+    text-align: left;
     a {
-        color: #fff;
+        color: #222;
         text-decoration: none;
-        line-height: 100px;
-        width: 100px;
+        line-height: 60px;
         display: inline-block;
-        text-indent: -2000px;
+        padding-left: 41px;
     }
 }
 
     // navigation menu
-    .scout-navigation { position: relative; background: transparent; line-height: 35px; color: #fff; display: -webkit-flex; display: flex; margin: 0 0 10px 0; padding: 0;
+    .scout-navigation { position: relative; background: #6564A8; line-height: 40px; color: #fff; display: -webkit-flex; display: flex; margin: 0; padding: 0;
 
         .scout-navigation-items {
-            line-height:35px;
+            line-height:40px;
             font-size:14px;
             text-transform:uppercase;
             margin: 0 auto;
@@ -40,7 +40,7 @@ h1 {
             padding: 0;
 
             li { display: inline-block; margin: 0; padding: 0; width: 105px;
-                a { padding: 0 15px; display: block;  color: #6564A8; text-decoration: none; /*background: #6564A8; border-radius: 20px;*/ text-align: center; }
+                a { padding: 0 15px; display: block;  color: #fff; text-decoration: none; /*background: #6564A8; border-radius: 20px;*/ text-align: center; }
             }
 
             li:nth-child(2) { margin: 0 10px; }
@@ -51,7 +51,7 @@ h1 {
 
 // scrolling body
 
-.scout-scroll { margin-top: 145px;
+.scout-scroll {
 
     // content
     .scout-content {
@@ -59,10 +59,10 @@ h1 {
         /*** list page ***/
 
         // filter
-        .scout-filter-container { background: #6E729F; padding: 10px; color: #fff;
+        .scout-filter-container { background: #eee; padding: 10px; color: #444;
             .scout-filter-results { display: inline-block; width: 80%; }
             .scout-filter-display { display: inline-block; width: 20%;
-                a { display: block; line-height: 35px; text-decoration: none; color: #fff; }
+                a { display: block; line-height: 35px; text-decoration: none; color: #444; }
             }
         }
 
