@@ -22,14 +22,20 @@
 
             </div>
 
-            {% block content %}
-            {% endblock %}
+            {% block content %}{% endblock %}
 
             <div id="footer" class="scout-footer">
                 <p class="text-muted credit">Courtesy of UW-IT ACA and HFS</p>
             </div>
 
         </div>
+
+        {% if not request.is_mobile and not request.is_tablet %}
+        <!-- desktop only extra container -->
+        <div class="scout-map" style="position: fixed; top:0; right:0; bottom:0; left:450px; z-index:0;">
+            {% block map %}{% endblock %}
+        </div>
+        {% endif %}
 
     </body>
 </html>
