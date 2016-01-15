@@ -33,6 +33,11 @@ html.turbolinks-progress-bar::before {
         // details
         .scout-details-container {
 
+            .scout-spot-meta {
+
+
+            }
+
             .scout-spot-content {
 
                 // spot details
@@ -44,9 +49,7 @@ html.turbolinks-progress-bar::before {
 
                 .scout-spot-description { margin-bottom: 20px; color: #666; }
 
-                .scout-spot-food-served { margin-bottom: 10px; color: #666; text-transform: uppercase;
-                    span { margin-right: 10px; }
-                }
+                
 
                 .scout-spot-hours { margin-bottom: 20px; color: #666;
 
@@ -105,6 +108,8 @@ html.turbolinks-progress-bar::before {
 
 
 // accessibility & helper classes
+
+hr { border: 0; height: 0; border-bottom: 1px solid #ddd; margin: 0 -20px 20px -20px; }
 
 .clearfix:after { // aka clearfix hack
   content: "";
