@@ -43,7 +43,7 @@ h1 {
             flex-flow: row wrap;
 
             li { margin: 0; padding: 0; /*width: 105px;*/ flex: 1 auto;
-                a { padding: 0 15px; display: block;  color: #fff; text-decoration: none; /*background: #6564A8; border-radius: 20px;*/ text-align: center; }
+                a { display: block;  color: #fff; text-decoration: none; /*background: #6564A8; border-radius: 20px;*/ text-align: center; }
             }
 
             //li:nth-child(2) { margin: 0 10px; }
