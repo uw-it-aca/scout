@@ -88,7 +88,7 @@ html.turbolinks-progress-bar::before {
 }
 
 // footer
-.scout-footer { background: #f1f1f1; color:#555; width: 100%; font-size: 75%; text-align:center; line-height: $footer-height; }
+.scout-footer { background: #fff; color:#555; width: 100%; font-size: 75%; text-align:center; line-height: $footer-height; border-top: solid 1px #ddd; }
 
 
 //.scout-map-canvas { height: 100%; margin: 0px; padding: 0px; }

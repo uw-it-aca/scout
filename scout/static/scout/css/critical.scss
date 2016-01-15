@@ -6,7 +6,7 @@ file.
 
 // header
 
-.scout-header { background: #fff;
+.scout-header { background: #fff; border-bottom: solid 1px #ddd;
 
 h1 {
     margin: 0;
@@ -17,19 +17,20 @@ h1 {
     font-family: 'Raleway', sans-serif;
     font-weight: 900;
     font-size: 30px;
-    margin-left: 10px;
     text-align: left;
     a {
-        color: #222;
+        color: #111;
         text-decoration: none;
         line-height: 60px;
         display: inline-block;
-        padding-left: 44px;
+        padding-left: 65px;
     }
 }
 
+// #6564A8;
+
     // navigation menu
-    .scout-navigation { position: relative; background: #6564A8; line-height: 40px; color: #fff;  margin: 0; padding: 0;
+    .scout-navigation { position: relative; background: #fff; line-height: 40px; color: #fff;  margin: 0; padding: 0;
 
         .scout-navigation-items {
             line-height:37px;
@@ -43,7 +44,7 @@ h1 {
             flex-flow: row wrap;
 
             li { margin: 0; padding: 0; /*width: 105px;*/ flex: 1 auto;
-                a { display: block;  color: darken(#e8eaf7, 10%); text-decoration: none; text-align: center; border-bottom:solid 3px #6564A8;}
+                a { display: block;  color: #666; text-decoration: none; text-align: center; border-bottom:solid 3px #fff;}
             }
 
             //li:nth-child(2) { margin: 0 10px; }
@@ -62,7 +63,7 @@ h1 {
         /*** list page ***/
 
         // filter
-        .scout-filter-container { background: #eee; padding: 10px; color: #444;
+        .scout-filter-container { background: #eee; padding: 10px 20px; color: #444;
             .scout-filter-results { display: inline-block; width: 80%; }
             .scout-filter-display { display: inline-block; width: 20%;
                 a { display: block; line-height: 35px; text-decoration: none; color: #444; }
@@ -79,17 +80,17 @@ h1 {
 
                     &:first-child{ border-top: none; }
 
-                    a { display:block; text-decoration:none; padding:10px; color:#000; height: 100px; overflow: hidden;
+                    a { display:block; text-decoration:none; padding:10px 20px; color:#000; height: 100px; overflow: hidden;
 
-                        .scout-spot-image { background-size:cover; width:100px; height:100px; float:left; }
-                        .scout-spot-content { display:inline-block; float:left; width:65%; margin:10px;
+                        .scout-spot-image { background-size:cover; width:25%; height:100px; float:left; }
+                        .scout-spot-content { display:inline-block; float:left; width:75%; margin:0;
 
                             // spot details
                             .scout-spot-name { margin-top: 0;  font-family: 'Raleway', sans-serif;
                             font-weight: 700;
                             font-size: 16px; }
 
-                            .scout-spot-status { position: absolute; top: 10px;; right: 10px; font-size: 14px;
+                            .scout-spot-status { position: absolute; top: 10px;; right: 20px; font-size: 14px;
                                 .open { color: green; }
                                 .closed { color: red; }
                             }
