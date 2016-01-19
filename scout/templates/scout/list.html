@@ -35,11 +35,13 @@
                     <div class="scout-spot-content">
 
                         <div style="padding:0 10px;">
-                            <h3 class="scout-spot-name">{{ spot.name }} <span class="scout-spot-type">{% for type in spot.spot_types %}<span>{{ type.name }}</span>{% endfor %}</span></h3>
+                            <h3 class="scout-spot-name">{{ spot.name }}
+                                <span class="scout-spot-type">{% if spot.spot_types %}{% for type in spot.spot_types %}<span>{{ type.name }}</span>{% endfor %}{% else %} <span style="color:red;">SPOT_TYPE</span> {% endif %}</span>
+                            </h3>
 
                             <div class="scout-spot-status">{% if spot.is_open %}<span class="open">OPEN NOW</span>{% else %}<span class="closed">CLOSED</span>{% endif %}</div>
 
-                            <div class="scout-spot-open-period" style="display:none;">
+                            <!--<div class="scout-spot-open-period">
                                 <span>TODAY'S HOURS:</span>
                                 {% if spot.open_periods.breakfast %}
                                     <span>Breakfast</span>
@@ -53,7 +55,7 @@
                                 {% if spot.open_periods.late_night %}
                                     <span>Late Night</span>
                                 {% endif %}
-                            </div>
+                            </div>-->
 
                             <div class="scout-spot-food-served">
                             {% if spot.foodtype_names %}
@@ -64,7 +66,7 @@
                             </div>
 
                             <div class="scout-spot-location">
-                                <i class="fa fa-map-marker"></i> {% if spot.building_name %}{{ spot.building_name }}{% else %} <span style="color:red;">missing building_name</span> {% endif %}
+                                <i class="fa fa-building-o"></i> {% if spot.building_name %}{{ spot.building_name }}{% else %} <span style="color:red;">missing building_name</span> {% endif %}
                             </div>
                         </div>
 
