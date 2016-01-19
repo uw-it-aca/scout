@@ -56,18 +56,15 @@
                             </div>
 
                             <div class="scout-spot-food-served">
-                            <span>SERVES:</span>
                             {% if spot.foodtype_names %}
                                 {% for foodtype in spot.foodtype_names %}
                                     <span>{{ foodtype }}</span>
                                 {% endfor %}
-                            {% else %} <span style="color:red;">xxxxx</span> {% endif %}
+                            {% else %} <span style="color:red;">foodtype</span> {% endif %}
                             </div>
 
                             <div class="scout-spot-location">
-                                <div>{% if spot.building_name %}{{ spot.building_name }}{% else %} <span style="color:red;">xxxxx</span> {% endif %}</div>
-                                <div style="display:none;">{% if spot.floor %}{{ spot.floor }}{% else %} <span style="color:red;">xxxxx</span> {% endif %}</div>
-                                <div style="display:none;">{% if spot.room_number %}{{ spot.room_number }}{% else %} <span style="color:red;">xxxxx</span> {% endif %}</div>
+                                <i class="fa fa-map-marker"></i> {% if spot.building_name %}{{ spot.building_name }}{% else %} <span style="color:red;">missing building_name</span> {% endif %}
                             </div>
                         </div>
 
@@ -204,7 +201,7 @@ function initializeListMap() {
         map.fitBounds(bounds);
 
         // cluster the markers using marker clusterer
-        var markerCluster = new MarkerClusterer(map, markers);
+        //var markerCluster = new MarkerClusterer(map, markers);
 
 	}
 

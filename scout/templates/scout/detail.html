@@ -51,7 +51,7 @@
                 {% for foodtype in spot.foodtype_names %}
                     <span>{{ foodtype }}</span>
                 {% endfor %}
-            {% else %} <span style="color:red;">missing food served</span> {% endif %}
+            {% else %} <span style="color:red;">missing foodtype</span> {% endif %}
         </div>
     </div>
 
@@ -68,24 +68,24 @@
             {% if spot.menu_url %}
             <a href="{{spot.menu_url}}" target="_blank"><i class="fa fa-book"></i> {{spot.menu_url}}</a>
             {% else %}
-            <a href="/" target="_blank" style="color:red;"><i class="fa fa-book"></i> missing menu</a>
+            <a href="/" target="_blank" style="color:red;"><i class="fa fa-book"></i> missing menu_url</a>
             {% endif %}
         </div>
         <div class="scout-spot-website">
             {% if spot.website_url %}
             <a href="{{spot.website_url}}" target="_blank"><i class="fa fa-laptop"></i> {{spot.website_url}}</a>
             {% else %}
-            <a href="/" target="_blank" style="color:red;"><i class="fa fa-laptop"></i> missing website</a>
+            <a href="/" target="_blank" style="color:red;"><i class="fa fa-laptop"></i> missing website_url</a>
             {% endif %}
         </div>
 
         <hr />
 
         <div class="scout-spot-location">
-            <div>{% if spot.building_name %}{{ spot.building_name }}{% else %} <span style="color:red;">xxxxx</span> {% endif %}</div>
-            <div>{% if spot.floor %}{{ spot.floor }}{% else %} <span style="color:red;">xxxxx</span> {% endif %}</div>
-            <div>{% if spot.room_number %}{{ spot.room_number }}{% else %} <span style="color:red;">xxxxx</span> {% endif %}</div>
-            <div>{% if spot.access_notes %}{{spot.access_notes}}{% else %}<span style="color:red;">missing access notes</span>{% endif %}</div>
+            <div>{% if spot.building_name %}{{ spot.building_name }}{% else %} <span style="color:red;">missing building_name</span> {% endif %}</div>
+            <div>{% if spot.floor %}{{ spot.floor }}{% else %} <span style="color:red;">missing floor</span> {% endif %}</div>
+            <div>{% if spot.room_number %}{{ spot.room_number }}{% else %} <span style="color:red;">missing room_number</span> {% endif %}</div>
+            <div>{% if spot.access_notes %}{{spot.access_notes}}{% else %}<span style="color:red;">missing access_notes</span>{% endif %}</div>
         </div>
 
 
@@ -183,7 +183,7 @@
                 <li>{{ cuisinetype }}</li>
                 {% endfor %}
             </ul>
-            {% else %}<span style="color:red;">missing cuisine</span> {% endif %}
+            {% else %}<span style="color:red;">missing cuisinetype</span> {% endif %}
         </div>
 
         {% if spot.has_reservation %}
@@ -236,8 +236,8 @@
 
         <h4>Owner</h4>
         <ul>
-            <li>Organization: {% if spot.organization %}{{ spot.organization }}{% else %} <span style="color:red;">xxxxx</span> {% endif %}</li>
-            <li>Manager: {% if spot.manager %}{{ spot.manager }}{% else %} <span style="color:red;">xxxxx</span> {% endif %}</li>
+            <li>Organization: {% if spot.organization %}{{ spot.organization }}{% else %} <span style="color:red;">missing organization</span> {% endif %}</li>
+            <li>Manager: {% if spot.manager %}{{ spot.manager }}{% else %} <span style="color:red;">missing manager</span> {% endif %}</li>
         </ul>
 
     </div>

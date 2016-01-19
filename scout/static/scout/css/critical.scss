@@ -93,14 +93,14 @@ h1 {
                                 .closed { color: red; }
                             }
 
-                            .scout-spot-type { font-size: 14px; text-transform: uppercase; font-weight: normal; color: #aaa; margin-right: 10px; margin-bottom: 10px;
+                            .scout-spot-type { font-size: 12px; text-transform: uppercase; font-weight: normal; color: #aaa; display: block; margin-top: 5px;
                                 span { margin-right: 10px; }
                             }
 
-                            .scout-spot-location { margin-bottom: 10px;}
+                            .scout-spot-location { font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-                            .scout-spot-food-served { margin-bottom: 10px; color: #333; text-transform: uppercase; font-size: 14px;
-                                span { margin-right: 10px; }
+                            .scout-spot-food-served { margin-bottom: 10px; color: #333; text-transform: uppercase; font-size: 12px;
+                                span { margin-right: 5px; }
                             }
 
                             .scout-spot-open-period { margin-bottom: 10px; color: #666; text-transform: uppercase; font-size: 14px;
