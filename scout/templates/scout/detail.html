@@ -85,7 +85,10 @@
             <div>{% if spot.building_name %}{{ spot.building_name }}{% else %} <span style="color:red;">xxxxx</span> {% endif %}</div>
             <div>{% if spot.floor %}{{ spot.floor }}{% else %} <span style="color:red;">xxxxx</span> {% endif %}</div>
             <div>{% if spot.room_number %}{{ spot.room_number }}{% else %} <span style="color:red;">xxxxx</span> {% endif %}</div>
+            <div>{% if spot.access_notes %}{{spot.access_notes}}{% else %}<span style="color:red;">missing access notes</span>{% endif %}</div>
         </div>
+
+
 
         {% if request.is_mobile %}
 
@@ -198,9 +201,9 @@
             {% endif %}
         </div>
 
-        {% if spot.access_notes %}
-        <div>{{spot.access_notes}}</div>
-        {% endif %}
+        <hr />
+
+
 
         <div class="scout-spot-hours">
             <ul>
@@ -220,12 +223,16 @@
             {% endif %}
         </div>
 
+        <hr />
+
         <h4>Coupons</h4>
         <ul>
             <li>Has coupon: {% if spot.has_coupon %} {{ spot.has_coupon }}{% else %}false{% endif %}</li>
             <li>Coupon expire: {% if spot.coupon_expiration %}{{ spot.coupon_expiration }}{% endif %}</li>
             <li>Coupon URL: {% if spot.coupon_url %}{{ spot.coupon_url }}{% endif %}</li>
         </ul>
+
+        <hr />
 
         <h4>Owner</h4>
         <ul>
