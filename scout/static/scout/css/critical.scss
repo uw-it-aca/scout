@@ -67,7 +67,7 @@ h1 {
         /*** list page ***/
 
         // filter
-        .scout-filter-container { background: #eee; padding: 10px 20px; color: #444;
+        .scout-filter-results-container { background: #eee; padding: 10px 20px; color: #444;
             .scout-filter-results { display: inline-block; width: 80%; }
             .scout-filter-display { display: inline-block; width: 20%;
                 a { display: block; line-height: 35px; text-decoration: none; color: #444; }
@@ -179,6 +179,19 @@ h1 {
                     .fa { color: $scout-purple; margin-right: 3px; }
                 }
             }
+        }
+
+        /*** filter page ***/
+
+        // filter
+
+        .scout-filter-container { padding: 10px 20px;
+
+            fieldset { border: none; }
+            label { display: block;
+                input { margin-right: 5px; }
+            }
+        
         }
 
     }

@@ -6,7 +6,7 @@
 
 {% block web_content %}
 
-<div style="padding:1em;">
+<div style="padding:10px 20px;">
     <h2 class="visually-hidden">Discover</h2>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non urna et lorem venenatis varius quis sit amet dui. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur a nisi odio.</p>
 </div>
@@ -15,7 +15,7 @@
 <div class="scout-discover-card">
     <h3>Open now</h3>
     <div style="background:url('{% static "scout/img/starbucks.jpg" %}') no-repeat center center; background-size:cover;height:150px;">&nbsp</div>
-    <div style="padding:1em;">
+    <div style="padding:20px;">
         <ul>
             {% for spot in open %}
             <li><a href="/detail/{{ spot.spot_id }}"><i class="fa fa-map-marker"></i> {{spot.name}}</a></li>
@@ -30,7 +30,7 @@
 <div class="scout-discover-card">
     <h3>Serves Coffee and Espresso</h3>
     <div style="background:url('{% static "scout/img/coffee-shop-1200.jpg" %}') no-repeat center center; background-size:cover; height:150px;">&nbsp</div>
-    <div style="padding:1em;">
+    <div style="padding:20px;">
 
         <ul>
             {% for spot in coffee %}
@@ -46,7 +46,7 @@
 <div class="scout-discover-card">
     <h3>Open for breakfast</h3>
     <div style="background:url('{% static "scout/img/huskygrind.jpg" %}') no-repeat center center; background-size:cover; height:150px;">&nbsp</div>
-    <div style="padding:1em;">
+    <div style="padding:20px;">
         <ul>
             {% for spot in breakfast %}
             <li><a href="/detail/{{ spot.spot_id }}"><i class="fa fa-map-marker"></i> {{spot.name}}</a></li>
@@ -61,7 +61,7 @@
 <div class="scout-discover-card">
     <h3>Open late night</h3>
     <div style="background:url('{% static "scout/img/coffee-shop-1200.jpg" %}') no-repeat center center; background-size:cover; height:150px;">&nbsp</div>
-    <div style="padding:1em;">
+    <div style="padding:20px;">
         <ul>
                 {% for spot in late_night %}
                 <li><a href="/detail/{{ spot.spot_id }}"><i class="fa fa-map-marker"></i> {{spot.name}}</a></li>
@@ -76,7 +76,7 @@
 <div class="scout-discover-card">
     <h3>Dine with discounts</h3>
     <div style="background:url('{% static "scout/img/starbucks.jpg" %}') no-repeat center center; background-size:cover;height:150px;">&nbsp</div>
-    <div style="padding:1em;">
+    <div style="padding:20px;">
         <ul>
             {% for spot in coupon %}
             <li><a href="/detail/{{ spot.spot_id }}"><i class="fa fa-map-marker"></i> {{spot.name}}</a></li>

@@ -4,9 +4,11 @@
 {% block title %}Filter{% endblock %}
 
 {% block web_content %}
-<h2>Filter</h2>
 
-{% include "scout/include/filter.html" %}
+<div class="scout-filter-container">
+    <h2 class="visually-hidden">Filter</h2>
+    {% include "scout/include/filter.html" %}
+</div>
 
 {% endblock %}
 
