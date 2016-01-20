@@ -9,69 +9,82 @@
 <div style="padding:1em;">
     <h2 class="visually-hidden">Discover</h2>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non urna et lorem venenatis varius quis sit amet dui. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur a nisi odio.</p>
-    <p>Donec et nulla auctor massa pharetra adipiscing ut sit amet sem. Suspendisse molestie velit vitae mattis tincidunt. Ut sit amet quam mollis, vulputate turpis vel, sagittis felis. </p>
 </div>
 
 {% if open %}
-<div style="background:url('{% static "scout/img/starbucks.jpg" %}') no-repeat center center; background-size:cover;">
-<div style="padding:1em;">
+<div class="scout-discover-card">
     <h3>Open Now...</h3>
-    <ul>
-        {% for spot in open %}
-        <li><a href="/detail/{{ spot.spot_id }}">{{spot.name}}</a></li>
-        {% endfor %}
-        <li><a href="/">More...</a></li>
-    </ul>
-</div>
+    <div style="background:url('{% static "scout/img/starbucks.jpg" %}') no-repeat center center; background-size:cover;height:150px;">&nbsp</div>
+    <div style="padding:1em;">
+        <ul>
+            {% for spot in open %}
+            <li><a href="/detail/{{ spot.spot_id }}">{{spot.name}}</a></li>
+            {% endfor %}
+            <li><a href="/">More...</a></li>
+        </ul>
+    </div>
 </div>
 {% endif %}
 
 {% if coffee %}
-<div style="background:url('{% static "scout/img/coffee-shop-1200.jpg" %}') no-repeat center center; background-size:cover;">
-<div style="padding:1em;">
+<div class="scout-discover-card">
     <h3>Serving Coffee...</h3>
-    <ul>
-        {% for spot in coffee %}
-        <li><a href="/detail/{{ spot.spot_id }}">{{spot.name}}</a></li>
-        {% endfor %}
-        <li><a href="/">More...</a></li>
-    </ul>
-</div>
+    <div style="background:url('{% static "scout/img/coffee-shop-1200.jpg" %}') no-repeat center center; background-size:cover; height:150px;">&nbsp</div>
+    <div style="padding:1em;">
+
+        <ul>
+            {% for spot in coffee %}
+            <li><a href="/detail/{{ spot.spot_id }}">{{spot.name}}</a></li>
+            {% endfor %}
+            <li><a href="/">More...</a></li>
+        </ul>
+    </div>
 </div>
 {% endif %}
 
 {% if breakfast %}
-<div style="background:url('{% static "scout/img/huskygrind.jpg" %}') no-repeat center center; background-size:cover;">
-<div style="padding:1em;">
+<div class="scout-discover-card">
     <h3>Breakfast before class</h3>
-    <ul>
-        {% for spot in breakfast %}
-        <li><a href="/detail/{{ spot.spot_id }}">{{spot.name}}</a></li>
-        {% endfor %}
-        <li><a href="/">More...</a></li>
-    </ul>
-</div>
+    <div style="background:url('{% static "scout/img/huskygrind.jpg" %}') no-repeat center center; background-size:cover; height:150px;">&nbsp</div>
+    <div style="padding:1em;">
+        <ul>
+            {% for spot in breakfast %}
+            <li><a href="/detail/{{ spot.spot_id }}">{{spot.name}}</a></li>
+            {% endfor %}
+            <li><a href="/">More...</a></li>
+        </ul>
+    </div>
 </div>
 {% endif %}
 
 {% if late_night %}
-<h3>Evening class muchies</h3>
-<ul>
-        {% for spot in late_night %}
-        <li><a href="/detail/{{ spot.spot_id }}">{{spot.name}}</a></li>
-        {% endfor %}
-    <li><a href="/">More...</a></li>
-</ul>
+<div class="scout-discover-card">
+    <h3>Evening class muchies</h3>
+    <div style="background:url('{% static "scout/img/coffee-shop-1200.jpg" %}') no-repeat center center; background-size:cover; height:150px;">&nbsp</div>
+    <div style="padding:1em;">
+        <ul>
+                {% for spot in late_night %}
+                <li><a href="/detail/{{ spot.spot_id }}">{{spot.name}}</a></li>
+                {% endfor %}
+            <li><a href="/">More...</a></li>
+        </ul>
+    </div>
+</div>
 {% endif %}
 
 {% if coupon %}
-<h3>Dine w/ discounts</h3>
-<ul>
-    {% for spot in coupon %}
-    <li><a href="/detail/{{ spot.spot_id }}">{{spot.name}}</a></li>
-    {% endfor %}
-    <li><a href="/">More...</a></li>
-</ul>
+<div class="scout-discover-card">
+    <h3>Dine with discounts</h3>
+    <div style="background:url('{% static "scout/img/starbucks.jpg" %}') no-repeat center center; background-size:cover;height:150px;">&nbsp</div>
+    <div style="padding:1em;">
+        <ul>
+            {% for spot in coupon %}
+            <li><a href="/detail/{{ spot.spot_id }}">{{spot.name}}</a></li>
+            {% endfor %}
+            <li><a href="/">More...</a></li>
+        </ul>
+    </div>
+</div>
 {% endif %}
 
 {% endblock %}
