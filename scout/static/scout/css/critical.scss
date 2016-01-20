@@ -92,12 +92,12 @@ h1 {
                             // spot details
                             .scout-spot-name { margin-top: 0; font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 16px; }
 
-                            .scout-spot-status { position: absolute; top: 10px;; right: 20px; font-size: 14px;
+                            .scout-spot-status { position: absolute; top: 10px;; right: 20px; font-size: 12px;
                                 .open { color: green; }
                                 .closed { color: red; }
                             }
 
-                            .scout-spot-type { font-size: 12px; text-transform: uppercase; font-weight: normal; color: #aaa; display: block; margin-top: 5px;
+                            .scout-spot-type { font-size: 12px; text-transform: uppercase; font-weight: normal; color: #bbb; display: block; margin-top: 5px;
                                 span { margin-right: 10px; }
                             }
 
@@ -127,7 +127,7 @@ h1 {
 
             .scout-spot-image { background-size: cover; background-repeat: no-repeat; background-position: center center; height: 200px; position: relative;
 
-                .scout-spot-status { position: absolute; top: 10px; right: 20px;
+                .scout-spot-status { position: absolute; top: 10px; right: 20px; font-size: 12px;
                     .open { color: lime; }
                     .closed { color: red; }
                 }
@@ -157,7 +157,7 @@ h1 {
 
             .scout-spot-content { padding:20px;
 
-                h3 { font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 12px; color: $scout-purple; text-transform: uppercase; letter-spacing: 1px; margin: 0; line-height: 35px; }
+                h3 { font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 12px; color: #bbb; text-transform: uppercase; letter-spacing: 1px; margin: 0; line-height: 35px; }
 
                 a { text-decoration: none; color: #666; font-size: 14px; display: inline-block; width: 100%; text-overflow: ellipsis; overflow: hidden; line-height: 30px; white-space: nowrap;
                     .fa { color: #6564A8; margin-right: 10px; font-size: 20px; }
@@ -173,7 +173,7 @@ h1 {
 
             /*box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);*/
 
-            h3 { font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 12px; color: $scout-purple; text-transform: uppercase; letter-spacing: 1px; margin: 0; line-height: 35px; }
+            h3 { font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 12px; color: #bbb; text-transform: uppercase; letter-spacing: 1px; margin: 0; line-height: 35px; }
 
             ul { list-style: none; margin: 0; padding: 0;
                 a { color: #666; text-decoration: none; line-height: 30px; display: block; font-size: 14px;
@@ -190,7 +190,7 @@ h1 {
         .scout-filter-container { padding: 20px;
 
             fieldset { border: none; padding: 0; margin:0;  margin-bottom: 20px; color: #666; float: left; width: 50%;
-                legend { font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 12px; text-transform: uppercase; margin-bottom: 8px; color: $scout-purple; padding: 5px 0; letter-spacing: 1px; }
+                legend { font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 12px; text-transform: uppercase; margin-bottom: 8px; color: #bbb; padding: 5px 0; letter-spacing: 1px; }
             }
             label { display: block; line-height: 20px; font-size: 14px;
                 input[type="checkbox"]  { margin-right: 5px; }
