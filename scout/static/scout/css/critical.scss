@@ -171,7 +171,7 @@ h1 {
 
             /*box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);*/
 
-            h3 { font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 14px; position: absolute; left:10px; background: $scout-purple; text-transform: uppercase; color: #fff; padding: 5px; letter-spacing: 1px;}
+            h3 { font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 14px; position: absolute; left:10px; background: $scout-purple; text-transform: uppercase; color: #fff; padding: 5px 10px; letter-spacing: 1px;}
 
             ul { list-style: none; margin: 0; padding: 0;
                 a { color: #666; text-decoration: none; line-height: 30px; display: block; font-size: 14px;
@@ -187,11 +187,13 @@ h1 {
 
         .scout-filter-container { padding: 10px 20px;
 
-            fieldset { border: none; }
-            label { display: block;
+            fieldset { border: none; padding: 0; margin:0;  margin-bottom: 20px; color: #666; float: left; width: 50%;
+                legend { font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 11px; color: #fff; text-transform: uppercase; margin-bottom: 8px; background: $scout-purple; padding: 5px 10px; letter-spacing: 1px; }
+            }
+            label { display: block; line-height: 20px; font-size: 14px;
                 input { margin-right: 5px; }
             }
-        
+
         }
 
     }
