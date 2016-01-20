@@ -41,17 +41,17 @@ html.turbolinks-progress-bar::before {
             .scout-spot-content {
 
                 // spot details
-                .scout-spot-location { margin-bottom: 20px; color: #666; }
+                .scout-spot-location { margin-bottom: 20px; }
 
                 .scout-spot-phone { margin-bottom: 10px; font-size: 18px; }
                 .scout-spot-menu { margin-bottom: 10px; font-size: 18px; }
                 .scout-spot-website { margin-bottom: 20px; font-size: 18px; }
 
-                .scout-spot-description { margin-bottom: 20px; color: #666; }
+                .scout-spot-description { margin-bottom: 20px;}
 
-                
 
-                .scout-spot-hours { margin-bottom: 20px; color: #666;
+
+                .scout-spot-hours { margin-bottom: 20px;
 
                     ul { margin: 0; padding: 0;
                         li { list-style: none;
@@ -67,7 +67,7 @@ html.turbolinks-progress-bar::before {
                 .scout-spot-map { height:140px; margin: 0 -20px 10px -20px; }
                 .scout-spot-map-link { margin-bottom: 20px; }
 
-                .scout-spot-cuisine { margin-bottom: 20px; color: #666; text-transform: uppercase;
+                .scout-spot-cuisine { margin-bottom: 20px; text-transform: uppercase;
 
                     ul { margin: 0; padding: 0;
                         li { list-style: none; display: inline-block; margin-right: 10px; }
@@ -75,7 +75,7 @@ html.turbolinks-progress-bar::before {
                     span { margin-right: 10px; }
                 }
 
-                .scout-spot-payment { margin-bottom: 20px; color: #666; text-transform: uppercase;
+                .scout-spot-payment { margin-bottom: 20px; text-transform: uppercase;
 
                     ul { margin: 0; padding: 0;
                         li { list-style: none; display: inline-block; margin-right: 10px; }
