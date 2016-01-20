@@ -18,7 +18,7 @@
     <div style="padding:1em;">
         <ul>
             {% for spot in open %}
-            <li><a href="/detail/{{ spot.spot_id }}">{{spot.name}}</a></li>
+            <li><a href="/detail/{{ spot.spot_id }}"><i class="fa fa-map-marker"></i> {{spot.name}}</a></li>
             {% endfor %}
             <li><a href="/">More...</a></li>
         </ul>
@@ -34,7 +34,7 @@
 
         <ul>
             {% for spot in coffee %}
-            <li><a href="/detail/{{ spot.spot_id }}">{{spot.name}}</a></li>
+            <li><a href="/detail/{{ spot.spot_id }}"><i class="fa fa-map-marker"></i> {{spot.name}}</a></li>
             {% endfor %}
             <li><a href="/">More...</a></li>
         </ul>
@@ -49,7 +49,7 @@
     <div style="padding:1em;">
         <ul>
             {% for spot in breakfast %}
-            <li><a href="/detail/{{ spot.spot_id }}">{{spot.name}}</a></li>
+            <li><a href="/detail/{{ spot.spot_id }}"><i class="fa fa-map-marker"></i> {{spot.name}}</a></li>
             {% endfor %}
             <li><a href="/">More...</a></li>
         </ul>
@@ -64,7 +64,7 @@
     <div style="padding:1em;">
         <ul>
                 {% for spot in late_night %}
-                <li><a href="/detail/{{ spot.spot_id }}">{{spot.name}}</a></li>
+                <li><a href="/detail/{{ spot.spot_id }}"><i class="fa fa-map-marker"></i> {{spot.name}}</a></li>
                 {% endfor %}
             <li><a href="/">More...</a></li>
         </ul>
@@ -79,7 +79,7 @@
     <div style="padding:1em;">
         <ul>
             {% for spot in coupon %}
-            <li><a href="/detail/{{ spot.spot_id }}">{{spot.name}}</a></li>
+            <li><a href="/detail/{{ spot.spot_id }}"><i class="fa fa-map-marker"></i> {{spot.name}}</a></li>
             {% endfor %}
             <li><a href="/">More...</a></li>
         </ul>
