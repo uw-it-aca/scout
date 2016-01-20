@@ -157,6 +157,8 @@ h1 {
 
             .scout-spot-content { padding:20px;
 
+                h3 { font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 12px; color: $scout-purple; text-transform: uppercase; letter-spacing: 1px; margin: 0; line-height: 35px; }
+
                 a { text-decoration: none; color: #666; font-size: 14px; display: inline-block; width: 100%; text-overflow: ellipsis; overflow: hidden; line-height: 30px; white-space: nowrap;
                     .fa { color: #6564A8; margin-right: 10px; font-size: 20px; }
                 }
@@ -167,11 +169,11 @@ h1 {
         /*** discover page ***/
 
         // card
-        .scout-discover-card { /*border-bottom: solid 1px #ddd;*/ position: relative; margin-bottom: 2em;
+        .scout-discover-content { border-top: solid 1px #ddd;
 
             /*box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);*/
 
-            h3 { font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 14px; position: absolute; left:10px; background: $scout-purple; text-transform: uppercase; color: #fff; padding: 5px 10px; letter-spacing: 1px;}
+            h3 { font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 12px; color: $scout-purple; text-transform: uppercase; letter-spacing: 1px; margin: 0; line-height: 35px; }
 
             ul { list-style: none; margin: 0; padding: 0;
                 a { color: #666; text-decoration: none; line-height: 30px; display: block; font-size: 14px;
@@ -185,13 +187,22 @@ h1 {
 
         // filter
 
-        .scout-filter-container { padding: 10px 20px;
+        .scout-filter-container { padding: 20px;
 
             fieldset { border: none; padding: 0; margin:0;  margin-bottom: 20px; color: #666; float: left; width: 50%;
-                legend { font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 11px; color: #fff; text-transform: uppercase; margin-bottom: 8px; background: $scout-purple; padding: 5px 10px; letter-spacing: 1px; }
+                legend { font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 12px; text-transform: uppercase; margin-bottom: 8px; color: $scout-purple; padding: 5px 0; letter-spacing: 1px; }
             }
             label { display: block; line-height: 20px; font-size: 14px;
-                input { margin-right: 5px; }
+                input[type="checkbox"]  { margin-right: 5px; }
+
+            }
+
+            input[type="button"] { background: $scout-purple; color: #fff; border: none; text-transform: uppercase; padding: 10px 20px; font-size: 13px; border-radius: 2px; }
+
+            .scout-filter-split { width: 100%;
+
+                label { display: inline-block; width: 50%; }
+
             }
 
         }

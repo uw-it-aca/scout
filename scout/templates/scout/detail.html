@@ -82,6 +82,7 @@
         <hr />
 
         <div class="scout-spot-location">
+            <h3>Location</h3>
             <div>{% if spot.building_name %}{{ spot.building_name }}{% else %} <span style="color:red;">missing building_name</span> {% endif %}</div>
             <div>{% if spot.floor %}{{ spot.floor }}{% else %} <span style="color:red;">missing floor</span> {% endif %}</div>
             <div>{% if spot.room_number %}{{ spot.room_number }}{% else %} <span style="color:red;">missing room_number</span> {% endif %}</div>
@@ -173,6 +174,8 @@
 
         <hr />
 
+        <h3>General Information</h3>
+
         <div class="scout-spot-description">{% if spot.location_description %}{{spot.location_description}}{% else %} <span style="color:red;">xxxxx xxx xx xxxxxxxxx xxx</span> {% endif %}</div>
 
         <div class="scout-spot-cuisine">
@@ -203,9 +206,8 @@
 
         <hr />
 
-
-
         <div class="scout-spot-hours">
+            <h3>Hours</h3>
             <ul>
                 <li><span class="day">Monday:</span> {% for hours in spot.hours.monday %} {{ hours.0 }} - {{ hours.1 }} {% empty %}<span class="closed">Closed</span>{% endfor %}</li>
                 <li><span class="day">Tuesday:</span> {% for hours in spot.hours.tuesday %} {{ hours.0 }} - {{ hours.1 }} {% empty %}<span class="closed">Closed</span>{% endfor %}</li>
@@ -225,7 +227,7 @@
 
         <hr />
 
-        <h4>Coupons</h4>
+        <h3>Coupons</h3>
         <ul>
             <li>Has coupon: {% if spot.has_coupon %} {{ spot.has_coupon }}{% else %}false{% endif %}</li>
             <li>Coupon expire: {% if spot.coupon_expiration %}{{ spot.coupon_expiration }}{% endif %}</li>
@@ -234,7 +236,7 @@
 
         <hr />
 
-        <h4>Owner</h4>
+        <h3>Owner</h3>
         <ul>
             <li>Organization: {% if spot.organization %}{{ spot.organization }}{% else %} <span style="color:red;">missing organization</span> {% endif %}</li>
             <li>Manager: {% if spot.manager %}{{ spot.manager }}{% else %} <span style="color:red;">missing manager</span> {% endif %}</li>

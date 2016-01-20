@@ -12,7 +12,7 @@
     </fieldset>
 
     <fieldset>
-        <legend>Open during</legend>
+        <legend>Open period</legend>
         <div id="period_select">
             <label><input type="checkbox" name="breakfast" value="breakfast" />Breakfast</label>
             <label><input type="checkbox" name="lunch" value="lunch" />Lunch</label>
@@ -44,7 +44,7 @@
         </div>
     </fieldset>
 
-    <fieldset>
+    <fieldset class="scout-filter-split">
         <legend>Food served</legend>
         <div id="food_select">
             <label><input type="checkbox" value="s_food_appetizers">Appetizers</label>
@@ -61,7 +61,7 @@
         </div>
     </fieldset>
 
-    <fieldset>
+    <fieldset class="scout-filter-split">
         <legend>Cuisine</legend>
         <div id="cuisine_select">
             <label><input type="checkbox" value="s_cuisine_american">American</label>
@@ -77,9 +77,11 @@
         </div>
     </fieldset>
 
+    <hr />
+    
     <div style="margin-top:1em; clear: both; ">
-        <label><input id="run_search" type="button" value="View Results"></label>&nbsp;&nbsp;
-        <label><input onclick="location.href='/';" type="button" value="Reset"></label>
+        <input id="run_search" type="button" value="View Results">&nbsp;&nbsp;
+        <input onclick="location.href='/';" type="button" value="Reset" style="background: #ddd; color:#333;">
     </div>
 
 </form>
