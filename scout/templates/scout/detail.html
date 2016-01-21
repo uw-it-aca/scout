@@ -55,36 +55,35 @@
                 {% else %} <span style="color:red;">missing foodtype</span> {% endif %}
             </div>
         </div>
+
+        <div class="scout-spot-phone">
+            {% if spot.phone %}
+            <a href="tel:+12065551234"><i class="fa fa-phone"></i> {{ spot.phone }}</a>
+            {% else %}
+            <a href="/" target="_blank" style="color:red;"><i class="fa fa-phone"></i> missing phone</a>
+            {% endif %}
+        </div>
+        <div class="scout-spot-menu">
+            {% if spot.menu_url %}
+            <a href="{{spot.menu_url}}" target="_blank"><i class="fa fa-book"></i> {{spot.menu_url}}</a>
+            {% else %}
+            <a href="/" target="_blank" style="color:red;"><i class="fa fa-book"></i> missing menu_url</a>
+            {% endif %}
+        </div>
+        <div class="scout-spot-website">
+            {% if spot.website_url %}
+            <a href="{{spot.website_url}}" target="_blank"><i class="fa fa-laptop"></i> {{spot.website_url}}</a>
+            {% else %}
+            <a href="/" target="_blank" style="color:red;"><i class="fa fa-laptop"></i> missing website_url</a>
+            {% endif %}
+        </div>
+
     </div>
 
     <div class="scout-spot-content">
 
         <div class="scout-card">
-
-            <div class="scout-spot-phone">
-                {% if spot.phone %}
-                <a href="tel:+12065551234"><i class="fa fa-phone"></i> {{ spot.phone }}</a>
-                {% else %}
-                <a href="/" target="_blank" style="color:red;"><i class="fa fa-phone"></i> missing phone</a>
-                {% endif %}
-            </div>
-            <div class="scout-spot-menu">
-                {% if spot.menu_url %}
-                <a href="{{spot.menu_url}}" target="_blank"><i class="fa fa-book"></i> {{spot.menu_url}}</a>
-                {% else %}
-                <a href="/" target="_blank" style="color:red;"><i class="fa fa-book"></i> missing menu_url</a>
-                {% endif %}
-            </div>
-            <div class="scout-spot-website">
-                {% if spot.website_url %}
-                <a href="{{spot.website_url}}" target="_blank"><i class="fa fa-laptop"></i> {{spot.website_url}}</a>
-                {% else %}
-                <a href="/" target="_blank" style="color:red;"><i class="fa fa-laptop"></i> missing website_url</a>
-                {% endif %}
-            </div>
-
-            <hr>
-
+            
             <div class="scout-spot-location">
                 <h3>Location</h3>
                 <div>{% if spot.building_name %}{{ spot.building_name }}{% else %} <span style="color:red;">missing building_name</span> {% endif %}</div>
@@ -94,12 +93,9 @@
             </div>
 
             {% if request.is_mobile %}
-
             <div class="scout-spot-map">
                 <div id="detail_map" style="height:100%;"></div>
             </div>
-            <div class="scout-spot-map-link"><a href="maps://maps.apple.com/maps?q={{ spot.latitude }},{{ spot.longitude }}"><i class="fa fa-map"></i>  OPEN IN MAPS</a></div>
-
             <!-- since turbolinks loads the full body... initialize map stuff locally in the template. then, call the function in the map.js file -->
             <script>
                 function initializeDetailMap() {
@@ -173,6 +169,8 @@
                 }
             </script>
             {% endif %}
+
+            <div class="scout-spot-map-link"><a href="maps://maps.apple.com/maps?q={{ spot.latitude }},{{ spot.longitude }}"><i class="fa fa-map"></i>  OPEN IN MAPS</a></div>
 
         </div>
 

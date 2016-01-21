@@ -33,23 +33,17 @@ html.turbolinks-progress-bar::before {
         // details
         .scout-details-container {
 
-            .scout-spot-meta {
-
-
-            }
+            .scout-spot-meta { margin-bottom: 15px; }
+            .scout-spot-phone { padding: 0 20px; font-size: 18px; }
+            .scout-spot-menu { padding: 0 20px; font-size: 18px; }
+            .scout-spot-website { padding: 0 20px; padding-bottom: 20px; font-size: 18px;  }
 
             .scout-spot-content {
 
                 // spot details
                 .scout-spot-location { margin-bottom: 20px; }
 
-                .scout-spot-phone { margin-bottom: 10px; font-size: 18px; }
-                .scout-spot-menu { margin-bottom: 10px; font-size: 18px; }
-                .scout-spot-website { margin-bottom: 20px; font-size: 18px; }
-
                 .scout-spot-description { margin-bottom: 20px;}
-
-
 
                 .scout-spot-hours { margin-bottom: 20px;
 
@@ -64,8 +58,8 @@ html.turbolinks-progress-bar::before {
                     span { display: inline-block; margin-top: 15px; }
                 }
 
-                .scout-spot-map { height:140px; margin: 0 -20px 10px -20px; }
-                .scout-spot-map-link { margin-bottom: 20px; }
+                .scout-spot-map { height:140px; margin-bottom: 15px; }
+                .scout-spot-map-link {  }
 
                 .scout-spot-cuisine { margin-bottom: 20px; text-transform: uppercase;
 
