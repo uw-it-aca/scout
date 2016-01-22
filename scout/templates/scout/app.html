@@ -90,6 +90,8 @@
     <script async="async" src="{% static "turbolinks/turbolinks.js" %}"></script>
     {% endcompress %}
 
+    <link href='https://fonts.googleapis.com/css?family=Raleway:700,900' rel='stylesheet' type='text/css'>
+
     <!-- this script is penalized for being a render blocker... but the trade-off is better since it works best w/ turbolinks -->
     <script src="//maps.googleapis.com/maps/api/js"></script>
     <script src="//google-maps-utility-library-v3.googlecode.com/svn/trunk/markerwithlabel/src/markerwithlabel.js"></script>
@@ -114,11 +116,11 @@
 <a href="/">Scout</a>
 {% endblock %}
 
-{% block top-nav%}
+{% block top-nav %}
 <ul class="scout-navigation-items">
-    <li><a  href="/discover/">Discover</a></li>
-    <li><a  href="/">All Food</a></li>
-    <li><a  href="/filter/">Filter</a></li>
+    <li><a id="link_discover" href="/discover/">Discover</a></li>
+    <li><a id="link_all" href="/">All Food</a></li>
+    <li><a id="link_filter" href="/filter/">Filter</a></li>
 </ul>
 {% endblock %}
 
@@ -128,13 +130,6 @@
         <div id="content" class="scout-content">
 
             {% block web_content %}{% endblock %}
-
-            {% if not request.is_mobile and not request.is_tablet %}
-            <!-- desktop only extra container -->
-            <div class="scout-map">
-                {% block sidebar %}{% endblock %}
-            </div>
-            {% endif %}
 
         </div>
     </div>

@@ -47,7 +47,9 @@ Scout specific extended info...
 		"s_has_coupon" : "true",
 		"s_coupon_expiration" : "datetime",
 		"s_coupon_url" : "",
-
+		
+		// cuisine extended info
+		
 	    "s_cuisine_american" : true,
         "s_cuisine_bbq" : false,
 		"s_cuisine_chinese" : false,
@@ -58,9 +60,10 @@ Scout specific extended info...
 		"s_cuisine_korean" : false,
         "s_cuisine_mexican" : false,
 		"s_cuisine_vietnamese" : false,
-
 		"s_cuisine_light_lunch" : false,
-
+		
+		// food served extended info
+		
         "s_food_appetizers" : true,
 		"s_food_burgers" : true,
 		"s_food_entrees" : true,
@@ -72,18 +75,12 @@ Scout specific extended info...
         "s_food_smoothies" : true,
 		"s_food_sushi" : true,
 		"s_food_tacos" : true,
-
+		
+		// payment extended info
+		
 		"s_pay_cash" : true,
 		"s_pay_visa" : true,
 		"s_pay_mastercard" : true,
 		"s_pay_husky" : true,
 		"s_pay_dining" : true,
-
-		"s_open_breakfast" : true,
-		"s_open_lunch" : true,
-		"s_open_dinner" : true,
-		"s_open_late_night" : false,
-
-        // font awesome icon
-        "s_marker_icon" : "fa-coffee",
 	},

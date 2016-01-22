@@ -7,9 +7,8 @@
 {% block web_content %}
 
 <div style="padding:1em;">
-    <h2>Discover Food Places</h2>
+    <h2 class="visually-hidden">Discover</h2>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non urna et lorem venenatis varius quis sit amet dui. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur a nisi odio.</p>
-
     <p>Donec et nulla auctor massa pharetra adipiscing ut sit amet sem. Suspendisse molestie velit vitae mattis tincidunt. Ut sit amet quam mollis, vulputate turpis vel, sagittis felis. </p>
 </div>
 
@@ -54,8 +53,9 @@
 </div>
 </div>
 {% endif %}
+
 {% if late_night %}
-<h3>Evening class muchies<0/h3>
+<h3>Evening class muchies</h3>
 <ul>
         {% for spot in late_night %}
         <li><a href="/detail/{{ spot.spot_id }}">{{spot.name}}</a></li>
@@ -76,7 +76,7 @@
 
 {% endblock %}
 
-{% block sidebar %}
+{% block secondary_content %}
 <div style="background:url('{% static "scout/img/huskygrind.jpg" %}') no-repeat; background-size:cover; background-position:center center; position:absolute; top:0; bottom:0; width: 100%;">&nbsp;</div>
 {% endblock %}
 

@@ -6,44 +6,48 @@ file.
 
 // header
 
-.scout-header { background: #e2e2e2; position: fixed; top:0; left:0; right: 0; z-index: 999;
+.scout-header { background: #fff; border-bottom: solid 1px #ddd;
 
 h1 {
     margin: 0;
-    line-height: 100px;
-    height: 100px;
+    line-height: 60px;
+    height: 60px;
     color: #fff;
     text-transform: uppercase;
-    font-family: 'Oswald', sans-serif;
-    font-weight: 300;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 900;
     font-size: 30px;
-    text-align: center;
+    text-align: left;
     a {
-        color: #fff;
+        color: #111;
         text-decoration: none;
-        line-height: 100px;
-        width: 100px;
+        line-height: 60px;
         display: inline-block;
-        text-indent: -2000px;
+        padding-left: 65px;
     }
 }
 
+// #6564A8;
+
     // navigation menu
-    .scout-navigation { position: relative; background: #e2e2e2; line-height: 35px; color: #fff; display: -webkit-flex; display: flex; margin: 0 0 10px 0; padding: 0;
+    .scout-navigation { position: relative; background: #fff; line-height: 40px; color: #fff;  margin: 0; padding: 0;
 
         .scout-navigation-items {
-            line-height:35px;
+            line-height:37px;
             font-size:14px;
             text-transform:uppercase;
-            margin: 0 auto;
+            margin: 0;
             list-style: none;
             padding: 0;
 
-            li { display: inline-block; margin: 0; padding: 0; width: 105px;
-                a { padding: 0 15px; display: block;  color: #fff;text-decoration: none; background: #6564A8; text-align: center; border-radius: 20px; }
+            display: flex;
+            flex-flow: row wrap;
+
+            li { margin: 0; padding: 0; /*width: 105px;*/ flex: 1 auto;
+                a { display: block;  color: #666; text-decoration: none; text-align: center; border-bottom:solid 3px #fff;}
             }
 
-            li:nth-child(2) { margin: 0 10px; }
+            //li:nth-child(2) { margin: 0 10px; }
         }
     }
 
@@ -51,7 +55,7 @@ h1 {
 
 // scrolling body
 
-.scout-scroll { margin-top: 145px;
+.scout-scroll {
 
     // content
     .scout-content {
@@ -59,10 +63,10 @@ h1 {
         /*** list page ***/
 
         // filter
-        .scout-filter-container { background: #6E729F; padding: 10px; color: #fff;
+        .scout-filter-container { background: #eee; padding: 10px 20px; color: #444;
             .scout-filter-results { display: inline-block; width: 80%; }
             .scout-filter-display { display: inline-block; width: 20%;
-                a { display: block; line-height: 35px; text-decoration: none; color: #fff; }
+                a { display: block; line-height: 35px; text-decoration: none; color: #444; }
             }
         }
 
@@ -76,15 +80,15 @@ h1 {
 
                     &:first-child{ border-top: none; }
 
-                    a { display:block; text-decoration:none; padding:20px; color:#000;
+                    a { display:block; text-decoration:none; padding:10px 20px; color:#000; height: 100px; overflow: hidden;
 
-                        .scout-spot-image { background-size:cover; width:100px; height:100px; float:left; }
-                        .scout-spot-content { display:inline-block;float:left; width:60%;margin-left:20px;
+                        .scout-spot-image { background-size:cover; width:25%; height:100px; float:left; }
+                        .scout-spot-content { display:inline-block; float:left; width:75%; margin:0;
 
                             // spot details
-                            .scout-spot-name { margin-top: 0; }
+                            .scout-spot-name { margin-top: 0; font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 16px; }
 
-                            .scout-spot-status { position: absolute; top: 10px;; right: 10px; font-size: 14px;
+                            .scout-spot-status { position: absolute; top: 10px;; right: 20px; font-size: 14px;
                                 .open { color: green; }
                                 .closed { color: red; }
                             }
@@ -113,18 +117,12 @@ h1 {
         // details
         .scout-details-container {
 
-            .scout-spot-alert { background: #e8eaf7; margin: 0; padding-left: 20px;
+            .scout-spot-alert { background: #eee; margin: 0; padding-left: 20px;
                 span { display:inline-block; line-height: 35px; font-size: 12px; color: red; }
             }
 
             .scout-spot-image { background-size: cover; background-repeat: no-repeat; background-position: center center; height: 200px; position: relative;
-                .scout-spot-name {
-                    position: absolute;
-                    bottom: 0;
-                    margin: 0;
-                    color: #fff;
-                    padding: 10px 20px;
-                }
+
                 .scout-spot-status { position: absolute; top: 10px; right: 20px;
                     .open { color: lime; }
                     .closed { color: red; }
@@ -142,13 +140,22 @@ h1 {
                 }
             }
 
-            .scout-spot-content { padding:20px;
+            .scout-spot-meta { background: #6564A8; color: #fff; padding: 10px 20px;
 
-                .scout-spot-type { text-transform: uppercase; font-weight: normal; color: #666; margin-right: 10px; margin-bottom: 10px;
+                .scout-spot-name { font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 18px; margin: 0 0 10px 0; }
+                .scout-spot-type { text-transform: uppercase; font-weight: normal; font-size: 12px; margin: 0;
                     span { margin-right: 10px; }
                 }
+                .scout-spot-food-served { margin: 0; text-transform: uppercase; font-size: 12px;
+                    span { margin-right: 10px; }
+                }
+            }
 
+            .scout-spot-content { padding:20px;
 
+                a { text-decoration: none; color: #666; font-size: 14px; display: inline-block; width: 100%; text-overflow: ellipsis; overflow: hidden; line-height: 30px; white-space: nowrap;
+                    .fa { color: #6564A8; margin-right: 10px; font-size: 20px; }
+                }
 
             }
         }

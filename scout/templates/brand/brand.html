@@ -10,11 +10,11 @@
     </head>
     <body>
 
-        <div class="scout-wrapper">
+        <div class="scout-primary">
 
             <div id="header" class="scout-header">
 
-                <h1 style="background: transparent url('{% static "scout/img/scout.png" %}') no-repeat center center; background-size:contain;">{% block header %}{% endblock %}</h1>
+                <h1 style="background: #fff url('{% static "scout/img/scout.png" %}') no-repeat 20px; background-size:8%;">{% block header %}{% endblock %}</h1>
 
                 <div class="scout-navigation">
                     {% block top-nav%}{% endblock %}
@@ -22,14 +22,20 @@
 
             </div>
 
-            {% block content %}
-            {% endblock %}
+            {% block content %}{% endblock %}
 
             <div id="footer" class="scout-footer">
-                <p class="text-muted credit">Courtesy of UW-IT ACA and HFS</p>
+                <div style="padding-left:20px;">Courtesy of UW-IT ACA and HFS</div>
             </div>
 
         </div>
+
+        {% if not request.is_mobile and not request.is_tablet %}
+        <!-- desktop only extra container -->
+        <div class="scout-secondary">
+            {% block secondary_content %}{% endblock %}
+        </div>
+        {% endif %}
 
     </body>
 </html>
