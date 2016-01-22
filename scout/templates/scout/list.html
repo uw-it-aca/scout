@@ -166,6 +166,8 @@ function initializeListMap() {
                     scale: 4,
             		strokeWeight: 1
             	},
+                id: data.id,
+                //label: data.id,
 		    });
 
             markers.push(marker);
@@ -175,7 +177,7 @@ function initializeListMap() {
 
                 google.maps.event.addListener(marker, "click", function (e) {
 
-                    //map.setCenter(marker.getPosition());
+                    map.setCenter(marker.getPosition());
                     //map.setZoom(18);
 
                     //Wrap the content inside an HTML DIV in order to set height and width of InfoWindow.
@@ -192,18 +194,25 @@ function initializeListMap() {
                     $('#' + data.id).css('background', 'none');
                 });
 
+                // handle hover event for main list view
+                $('#' + data.id).hover(
+                    function () {
+                        map.setCenter(marker.getPosition());
+                        $(this).css({"background":"#e8eaf7"});
+                        infoWindow.setContent("<div style = 'width:200px;'>" + data.spot_name + "</div>");
+                        infoWindow.open(map, marker);
+
+                    },
+                    function () {
+                        $(this).css({"background":"white"});
+                        infoWindow.close(map, marker);
+                    }
+                );
+
+
             })(marker, data);
 
-            $('#' + data.id).hover(
 
-                function () {
-                    $(this).css({"background":"#e8eaf7"});
-
-                },
-                function () {
-                    $(this).css({"background":"white"});
-                }
-            );
 
             // add the marker position to boundary
             bounds.extend(marker.position);
@@ -215,22 +224,6 @@ function initializeListMap() {
 
         // cluster the markers using marker clusterer
         //var markerCluster = new MarkerClusterer(map, markers);
-
-        /*$(document).ready(function() {
-
-            $('#' + data.id).hover(
-
-                function () {
-                    $(this).css({"background":"#e8eaf7"});
-                    infoWindow.setContent("<div style = 'width:200px;'>" + data.spot_name + "</div>");
-                    infoWindow.open(map, marker);
-                },
-                function () {
-                    $(this).css({"background":"white"});
-                }
-            );
-
-        });*/
 
 	}
 
