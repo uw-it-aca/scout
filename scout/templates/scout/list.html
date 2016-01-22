@@ -154,7 +154,7 @@ function initializeListMap() {
 		        position: new google.maps.LatLng(data.lat, data.lng),
 		        map: map,
                 //animation: google.maps.Animation.DROP,
-                labelContent: "<i class='fa " + data.icon +"'></i>",
+                //labelContent: "<i class='fa " + data.icon +"'></i>",
                 //labelContent: "<i class='fa " + data.icon +"'></i><span class='marker-text'>" + data.spot_name + "</span>",
                 labelAnchor: new google.maps.Point(6, 6),
                 labelClass: "map-label", // the CSS class for the label
@@ -163,8 +163,8 @@ function initializeListMap() {
             		fillColor: '#6562aa',
             		fillOpacity: 1,
             		strokeColor: '#53518e',
-                    scale: 10,
-            		strokeWeight: 3
+                    scale: 4,
+            		strokeWeight: 1
             	},
 		    });
 
@@ -175,15 +175,15 @@ function initializeListMap() {
 
                 google.maps.event.addListener(marker, "click", function (e) {
 
-                    map.setCenter(marker.getPosition());
-                    map.setZoom(18);
+                    //map.setCenter(marker.getPosition());
+                    //map.setZoom(18);
 
                     //Wrap the content inside an HTML DIV in order to set height and width of InfoWindow.
                     infoWindow.setContent("<div style = 'width:200px;'>" + data.spot_name + "</div>");
                     infoWindow.open(map, marker);
                     $('li').css('background', 'none'); // clear any highlighted spots first
-                    $('#' + data.id).css('background', '#6564A8');
 
+                    $('#' + data.id).css('background', '#6564A8');
                     $('.scout-scroll').scrollTo('#' + data.id);
 
                 });
@@ -194,20 +194,49 @@ function initializeListMap() {
 
             })(marker, data);
 
+            $('#' + data.id).hover(
+
+                function () {
+                    $(this).css({"background":"#e8eaf7"});
+
+                },
+                function () {
+                    $(this).css({"background":"white"});
+                }
+            );
+
             // add the marker position to boundary
             bounds.extend(marker.position);
 
 		}
 
         // zoom the map automatically using the bounds of all markers
-        map.fitBounds(bounds);
+        //map.fitBounds(bounds);
 
         // cluster the markers using marker clusterer
         //var markerCluster = new MarkerClusterer(map, markers);
 
+        /*$(document).ready(function() {
+
+            $('#' + data.id).hover(
+
+                function () {
+                    $(this).css({"background":"#e8eaf7"});
+                    infoWindow.setContent("<div style = 'width:200px;'>" + data.spot_name + "</div>");
+                    infoWindow.open(map, marker);
+                },
+                function () {
+                    $(this).css({"background":"white"});
+                }
+            );
+
+        });*/
+
 	}
 
 }
+
+
 </script>
 
 {% endblock %}
