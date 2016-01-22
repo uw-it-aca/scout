@@ -20,6 +20,22 @@ body { overflow: hidden; }
         // content
         .scout-content {
 
+            .scout-list-container {
+
+                .scout-list {
+
+                    .scout-list-item {
+
+                        a {
+
+                            .scout-spot-image { width:25%; }
+                            .scout-spot-content { width:75%; }
+                        }
+
+                    }
+
+                }
+            }
         }
 
     }
