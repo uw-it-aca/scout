@@ -30,16 +30,16 @@
             <li class="scout-list-item" id="{{ spot.spot_id }}">
                 <a class="clearfix" href="detail/{{ spot.spot_id }}">
 
-                    <div class="scout-spot-image" style="background:url('{% static "scout/img/coffee-shop-300.jpg" %}') no-repeat center center;">
-                        <div class="scout-spot-status">{% if spot.is_open %}<span class="open"><i class="fa fa-thumbs-o-up"></i> OPEN NOW</span>{% else %}<span class="closed"> <i class="fa fa-hand-paper-o"></i>CLOSED</span>{% endif %}</div>
-                    </div>
+                    <div class="scout-spot-image" style="background:url('{% static "scout/img/coffee-shop-300.jpg" %}') no-repeat center center;">&nbsp;</div>
 
                     <div class="scout-spot-content">
 
                         <div style="padding:0 10px;">
-                            <h3 class="scout-spot-name">{{ spot.name }}
-                                <span class="scout-spot-type">{% if spot.spot_types %}{% for type in spot.spot_types %}<span>{{ type.name }}</span>{% endfor %}{% else %} <span style="color:red;">SPOT_TYPE</span> {% endif %}</span>
-                            </h3>
+                            <h3 class="scout-spot-name">{{ spot.name }}</h3>
+
+                            <span class="scout-spot-type">{% if spot.spot_types %}{% for type in spot.spot_types %}<span>{{ type.name }}</span>{% endfor %}{% else %} <span style="color:red;">SPOT_TYPE</span> {% endif %}</span>
+                            <span class="scout-spot-status">{% if spot.is_open %}<span class="open">OPEN NOW</span>{% else %}<span class="closed">CLOSED</span>{% endif %}</span>
+
 
 
 
@@ -65,6 +65,8 @@
                                     <span>{{ foodtype }}</span>
                                 {% endfor %}
                             {% else %} <span style="color:red;">foodtype</span> {% endif %}
+
+
                             </div>
 
                             <div class="scout-spot-location">

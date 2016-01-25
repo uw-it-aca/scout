@@ -9,11 +9,11 @@
 
     {% if spot.has_alert %}
     <div class="scout-spot-alert">
-        <span>ALERT! {{ spot.alert_notes }}</span>
+        <i class="fa fa-exclamation-triangle"></i> {{ spot.alert_notes }}
     </div>
     {% else %}
     <div class="scout-spot-alert">
-        <span>ALERT! Delete this 'else' after design...</span>
+        <i class="fa fa-exclamation-triangle"></i> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla in consequat purus.
     </div>
     {% endif %}
 
@@ -86,10 +86,11 @@
 
             <div class="scout-spot-location">
                 <h3>Location</h3>
-                <div>{% if spot.building_name %}{{ spot.building_name }}{% else %} <span style="color:red;">missing building_name</span> {% endif %}</div>
-                <div>{% if spot.floor %}{{ spot.floor }}{% else %} <span style="color:red;">missing floor</span> {% endif %}</div>
-                <div>{% if spot.room_number %}{{ spot.room_number }}{% else %} <span style="color:red;">missing room_number</span> {% endif %}</div>
-                <div>{% if spot.access_notes %}{{spot.access_notes}}{% else %}<span style="color:red;">missing access_notes</span>{% endif %}</div>
+                <ul>
+                    <li>{% if spot.building_name %}{{ spot.building_name }}{% else %} <span style="color:red;">missing building_name</span> {% endif %}</li>
+                    <li>{% if spot.floor %}{{ spot.floor }}{% else %} <span style="color:red;">missing floor</span> {% endif %}</li>
+                    <li>{% if spot.room_number %}{{ spot.room_number }}{% else %} <span style="color:red;">missing room_number</span> {% endif %}</li>
+                </ul>
             </div>
 
             {% if request.is_mobile %}
@@ -168,9 +169,13 @@
 
                 }
             </script>
+            <div class="scout-spot-map-link"><a href="maps://maps.apple.com/maps?q={{ spot.latitude }},{{ spot.longitude }}"><i class="fa fa-map-marker"></i>  OPEN IN MAPS</a></div>
             {% endif %}
 
-            <div class="scout-spot-map-link"><a href="maps://maps.apple.com/maps?q={{ spot.latitude }},{{ spot.longitude }}"><i class="fa fa-map"></i>  OPEN IN MAPS</a></div>
+            <div>
+                <h4><i class="fa fa-file-text"></i> Notes</h4>
+                {% if spot.access_notes %}{{spot.access_notes}}{% else %}<span style="color:red;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla in consequat purus. Suspendisse euismod scelerisque malesuada.</span>{% endif %}
+            </div>
 
         </div>
 
@@ -181,7 +186,7 @@
 
             <div class="scout-spot-cuisine">
                 {% if spot.cuisinetype_names %}
-                <span class="visually-hidden">Cuisine:</span>
+                <h4><i class="fa fa-cutlery"></i> Cuisine</h4>
                 <ul>
                     {% for cuisinetype in spot.cuisinetype_names %}
                     <li>{{ cuisinetype }}</li>
@@ -196,7 +201,7 @@
 
             <div class="scout-spot-payment">
                 {% if spot.payment_names %}
-                    <span class="visually-hidden">Payment accepted:</span>
+                    <h4><i class="fa fa-money"></i> Payment accepted</h4>
                     <ul>
                         {% for payment in spot.payment_names %}
                         <li>{{ payment }}</li>
@@ -210,7 +215,7 @@
         <div class="scout-card">
             <div class="scout-spot-hours">
                 <h3>Hours</h3>
-                <ul>
+                <ul style="margin-bottom: 15px;">
                     <li><span class="day">Monday:</span> {% for hours in spot.hours.monday %} {{ hours.0 }} - {{ hours.1 }} {% empty %}<span class="closed">Closed</span>{% endfor %}</li>
                     <li><span class="day">Tuesday:</span> {% for hours in spot.hours.tuesday %} {{ hours.0 }} - {{ hours.1 }} {% empty %}<span class="closed">Closed</span>{% endfor %}</li>
                     <li><span class="day">Wednesday:</span> {% for hours in spot.hours.wednesday %} {{ hours.0 }} - {{ hours.1 }} {% empty %}<span class="closed">Closed</span>{% endfor %}</li>
@@ -220,10 +225,11 @@
                     <li><span class="day">Sunday:</span> {% for hours in spot.hours.sunday %} {{ hours.0 }} - {{ hours.1 }} {% empty %}<span class="closed">Closed</span>{% endfor %}</li>
                 </ul>
 
+                <h4><i class="fa fa-file-text"></i> Notes</h4>
                 {% if spot.hours_notes %}
-                <span>{{spot.hours_notes}}</span>
+                <div>{{spot.hours_notes}}</span>
                 {% else %}
-                <span>Note: Delete this 'else' after design...</span>
+                <div style="color:red;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla in consequat purus. Suspendisse euismod scelerisque malesuada.</div>
                 {% endif %}
             </div>
 
