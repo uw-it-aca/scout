@@ -76,7 +76,7 @@ h1 {
         // filter
         .scout-filter-results-container { padding: 10px 20px; color: #444;
             .scout-filter-results { display: inline-block; width: 80%; }
-            .scout-filter-display { display: inline-block; width: 20%;
+            .scout-filter-display { display: inline-block; width: 20%; vertical-align: top;
                 a { display: block; line-height: 35px; text-decoration: none; color: #444; }
             }
         }
@@ -104,7 +104,7 @@ h1 {
                                 // border-radius: 10px;
 
 
-                                .open { color: lime; }
+                                .open { color: transparent; }
                                 .closed { color: red; }
                             }
                         }
