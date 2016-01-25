@@ -10,7 +10,7 @@ $scout-purple: #6564A8;
 
 // header
 
-.scout-header { background: #fff; border-bottom: solid 1px #ddd;
+.scout-header { background: #fff; border-bottom: solid 1px #d0d1d5;
 
 h1 {
     margin: 0;
@@ -59,11 +59,13 @@ h1 {
 
 // scrolling body
 
-.scout-scroll { background: #f1f1f1;
+.scout-scroll { background: #f1f1f1; padding-bottom: 1px;
 
     // generic card
     .scout-card { margin: 0 0 10px 0; background: #fff; padding: 20px;
-        box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+        /*box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);*/
+        border-top: solid 1px #e5e6e9;
+        border-bottom: solid 1px #d0d1d5;
     }
 
     // content
@@ -89,13 +91,13 @@ h1 {
 
                     &:first-child{ border-top: none; }
 
-                    a { display:block; text-decoration:none; padding:12px; color:#000; height: 100px; overflow: hidden;
+                    a { display:block; text-decoration:none; padding:10px 20px; color:#000; height: 100px; overflow: hidden;
 
                         .scout-spot-image { background-size:cover; width:33%; height:100px; float:left; }
                         .scout-spot-content { display:inline-block; float:left; width:67%; margin:0;
 
                             // spot details
-                            .scout-spot-name { margin-top: 0; font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 16px; }
+                            .scout-spot-name { margin-top: 0; font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
                             .scout-spot-status { position: absolute; top: 10px;; right: 20px; font-size: 12px;
                                 .open { color: green; }
@@ -106,7 +108,9 @@ h1 {
                                 span { margin-right: 10px; }
                             }
 
-                            .scout-spot-location { font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+                            .scout-spot-location { font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #666;
+                                .fa { color: $scout-purple; }
+                            }
 
                             .scout-spot-food-served { margin-bottom: 15px; color: #333; text-transform: uppercase; font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
                                 span { margin-right: 5px; }
