@@ -30,8 +30,8 @@
             <li class="scout-list-item" id="{{ spot.spot_id }}">
                 <a class="clearfix" href="detail/{{ spot.spot_id }}">
 
-                    <div class="scout-spot-image" style="background:url('{% static "scout/img/coffee-shop-300.jpg" %}') no-repeat center center;">&nbsp;
-                        <div class="scout-spot-status">{% if spot.is_open %}<span class="open">OPEN NOW</span>{% else %}<span class="closed">CLOSED</span>{% endif %}</div>
+                    <div class="scout-spot-image" style="background:url('{% static "scout/img/coffee-shop-300.jpg" %}') no-repeat center center;">
+                        <div class="scout-spot-status">{% if spot.is_open %}<span class="open"><i class="fa fa-thumbs-o-up"></i> OPEN NOW</span>{% else %}<span class="closed"> <i class="fa fa-hand-paper-o"></i>CLOSED</span>{% endif %}</div>
                     </div>
 
                     <div class="scout-spot-content">

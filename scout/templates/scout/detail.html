@@ -58,7 +58,7 @@
 
         <div class="scout-spot-phone">
             {% if spot.phone %}
-            <a href="tel:+12065551234"><i class="fa fa-phone"></i> {{ spot.phone }}</a>
+            <a href="tel:+{{ spot.phone }}"><i class="fa fa-phone"></i> {{ spot.phone }}</a>
             {% else %}
             <a href="/" target="_blank" style="color:red;"><i class="fa fa-phone"></i> missing phone</a>
             {% endif %}

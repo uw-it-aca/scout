@@ -95,17 +95,17 @@ h1 {
 
                         .scout-spot-image { background-size:cover; width:33%; height:100px; float:left; position: relative;
 
-                            .scout-spot-status { position: absolute; top: 5px; left: 5px; font-size: 12px;
+                            .scout-spot-status { position: absolute; top: 0; left: 5px; font-size: 14px;
 
-                                width: 10px;
-                                 height: 10px;
+                                width: 20px;
+                                 height: 15px;
                                  overflow: hidden;
                                  //border: solid 2px #666;
-                                 border-radius: 10px;
+                                // border-radius: 10px;
 
 
-                                .open { background: #2ecc71; width: 10px; height: 10px; text-indent: -2000px; display: inline-block; }
-                                .closed { background: #c0392b; }
+                                .open { color: lime; }
+                                .closed { color: red; }
                             }
                         }
                         .scout-spot-content { display:inline-block; float:left; width:67%; margin:0;
