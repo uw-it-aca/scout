@@ -12,7 +12,11 @@ body { overflow: hidden; }
 .scout-primary { position:absolute; width: $view-panel-width; top:0; bottom:0; -webkit-box-shadow: 5px 0 20px 0 rgba(0,0,0,0.3); box-shadow: 5px 0 20px 0 rgba(0,0,0,0.3); z-index: 1;
 
     // header
-    .scout-header { width: $view-panel-width; }
+    .scout-header { width: $view-panel-width;
+        h1 {
+            a { padding-left: 68px;}
+        }
+    }
 
     // scrolling body
     .scout-scroll { position: fixed; top: $header-height; bottom: $footer-height; width: $view-panel-width; left:0; overflow: scroll; margin-top: 0;

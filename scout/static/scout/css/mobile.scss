@@ -7,6 +7,7 @@ fold styles and general helpers.
 
 $footer-height: 30px;
 
+
 // turbolinks
 
 html.turbolinks-progress-bar::before {
@@ -45,6 +46,12 @@ html.turbolinks-progress-bar::before {
 
                 .scout-spot-description { margin-bottom: 20px;}
 
+                .scout-spot-gallery { overflow-x: scroll; -webkit-overflow-scrolling: touch; overflow-y: hidden; white-space: nowrap; height: 100px; margin-bottom: 15px;
+                    ul {
+                        li { display: inline-block; margin-right: 8px; }
+                    }
+                }
+
                 .scout-spot-hours { margin-bottom: 20px;
 
                     ul { margin: 0; padding: 0;
@@ -61,7 +68,7 @@ html.turbolinks-progress-bar::before {
                 .scout-spot-map { height:140px; margin-bottom: 15px; }
                 .scout-spot-map-link { margin-bottom: 15px; }
 
-                .scout-spot-cuisine { margin-bottom: 20px; text-transform: uppercase;
+                .scout-spot-cuisine { margin-bottom: 20px;
 
                     ul { margin: 0; padding: 0;
                         li { list-style: none; display: inline-block; margin-right: 10px; }
@@ -69,7 +76,7 @@ html.turbolinks-progress-bar::before {
                     span { margin-right: 10px; }
                 }
 
-                .scout-spot-payment { margin-bottom: 20px; text-transform: uppercase;
+                .scout-spot-payment { margin-bottom: 20px;
 
                     ul { margin: 0; padding: 0;
                         li { list-style: none; display: inline-block; margin-right: 10px; }

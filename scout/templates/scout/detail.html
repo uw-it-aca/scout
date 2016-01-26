@@ -23,7 +23,7 @@
             <div class="scout-spot-status">{% if spot.is_open %}<span class="open">OPEN NOW</span>{% else %}<span class="closed">CLOSED</span>{% endif %}</div>
 
             <div class="scout-spot-open-period">
-                <span>TODAY:</span>
+                <span class="visually-hidden">Today's open periods:</span>
                 {% if spot.open_periods.breakfast %}
                     <span>Breakfast</span>
                 {% endif %}
@@ -47,7 +47,7 @@
             </div>
 
             <div class="scout-spot-food-served">
-                <span class="visually-hidden">SERVES:</span>
+                <span class="visually-hidden">Food served:</span>
                 {% if spot.foodtype_names %}
                     {% for foodtype in spot.foodtype_names %}
                         <span>{{ foodtype }}</span>
@@ -181,8 +181,18 @@
 
         <div class="scout-card">
             <h3>General Information</h3>
-
             <div class="scout-spot-description">{% if spot.location_description %}{{spot.location_description}}{% else %} <span style="color:red;">xxxxx xxx xx xxxxxxxxx xxx</span> {% endif %}</div>
+
+            <h4><i class="fa fa-camera"></i> Gallery</h4>
+            <div class="scout-spot-gallery">
+                <ul class="clearfix">
+                    <li><img src="{% static "scout/img/placeholder.png" %}" style="height:100px;"></li>
+                    <li><img src="{% static "scout/img/placeholder.png" %}" style="height:100px;"></li>
+                    <li><img src="{% static "scout/img/placeholder.png" %}" style="height:100px;"></li>
+                    <li><img src="{% static "scout/img/placeholder.png" %}" style="height:100px;"></li>
+                    <li><img src="{% static "scout/img/placeholder.png" %}" style="height:100px;"></li>
+                </ul>
+            </div>
 
             <div class="scout-spot-cuisine">
                 {% if spot.cuisinetype_names %}
@@ -201,7 +211,7 @@
 
             <div class="scout-spot-payment">
                 {% if spot.payment_names %}
-                    <h4><i class="fa fa-money"></i> Payment accepted</h4>
+                    <h4><i class="fa fa-credit-card"></i> Payment accepted</h4>
                     <ul>
                         {% for payment in spot.payment_names %}
                         <li>{{ payment }}</li>

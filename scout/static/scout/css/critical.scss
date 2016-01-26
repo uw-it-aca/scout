@@ -27,7 +27,7 @@ h1 {
         text-decoration: none;
         line-height: 60px;
         display: inline-block;
-        padding-left: 65px;
+        padding-left: 55px;
     }
 }
 
@@ -66,6 +66,12 @@ h1 {
         /*box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);*/
         //border-top: solid 1px #e5e6e9;
         border-bottom: solid 1px #d0d1d5;
+
+        // general list styles
+
+        ul { list-style: none; margin: 0; padding: 0;
+            li { }
+        }
     }
 
     // content
@@ -131,16 +137,17 @@ h1 {
         // details
         .scout-details-container {
 
-            .scout-spot-alert { margin: 0; padding: 10px 20px; background: #f2dede; color: #A94441; font-size: 14px; }
+            .scout-spot-alert { margin: 0; padding: 10px 20px; background: #d9edf7; color: #31708f; font-size: 14px; }
 
             .scout-spot-image { background-size: cover; background-repeat: no-repeat; background-position: center center; height: 200px; position: relative;
 
                 //border-top-left-radius: 2px;
                 //border-top-right-radius: 2px;
 
-                .scout-spot-status { position: absolute; top: 10px; right: 20px; font-size: 12px;
-                    .open { color: lime; }
-                    .closed { color: red; }
+                .scout-spot-status { position: absolute; top: 10px; right: 20px; font-size: 10px;
+                    span {  padding: 0 5px; line-height: 20px; display: inline-block; border-radius: 2px; }
+                    .open { background: #D6E9C5; color: #3c763d; }
+                    .closed { background: #ebccd1; color: #a94442; }
                 }
                 .scout-spot-open-period {
                     position: absolute;
@@ -148,17 +155,15 @@ h1 {
                     left: 20px;
                     color: #fff;
                     text-transform: uppercase;
-                    font-size: 14px;
-                    span {
-                        margin-right: 6px;
-                    }
+                    font-size: 10px;
+                    span { padding: 0 5px; line-height: 20px; display: inline-block; border-radius: 2px; margin-right: 4px; background: #444; }
                 }
             }
 
             .scout-spot-meta { background: #6564A8; color: #fff; padding: 10px 20px;
 
-                .scout-spot-name { font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 18px; margin: 0 0 10px 0; }
-                .scout-spot-type { text-transform: uppercase; font-weight: normal; font-size: 12px; margin: 0;
+                .scout-spot-name { font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 18px; margin: 0; }
+                .scout-spot-type { text-transform: uppercase; font-weight: normal; font-size: 12px; margin: 0; margin-bottom: 15px;
                     span { margin-right: 10px; }
                 }
                 .scout-spot-food-served { margin: 0; text-transform: uppercase; font-size: 12px;
@@ -174,7 +179,9 @@ h1 {
 
                 h3 { font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 13px; color: #bbb; text-transform: uppercase; letter-spacing: 1px; margin: 0; line-height: 35px; }
 
-                h4 { font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 10px; color: #bbb; text-transform: uppercase; letter-spacing: 1px; margin: 0; line-height: 35px; }
+                h4 { font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 10px; color: #666; text-transform: uppercase; letter-spacing: 1px; margin: 0; line-height: 35px;
+                    .fa { color: $scout-purple; }
+                }
 
             }
         }
