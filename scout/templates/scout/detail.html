@@ -1,5 +1,6 @@
 {% extends is_hybrid|yesno:"hybridize/base.html,scout/app.html" %}
 {% load staticfiles %}
+{% load scout_filters %}
 
 {% block title %}Details{% endblock %}
 
@@ -43,7 +44,7 @@
         <div class="scout-spot-meta">
             <h2 class="scout-spot-name">{{spot.name}}</h2>
             <div class="scout-spot-type">
-                {% for type in spot.spot_types %}<span>{{ type.name }}</span>{% endfor %}
+                {% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}</span>{% endfor %}
             </div>
 
             <div class="scout-spot-food-served">
