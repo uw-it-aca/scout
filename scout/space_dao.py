@@ -1,4 +1,5 @@
 from spotseeker_restclient.spotseeker import Spotseeker
+from spotseeker_restclient.exceptions import DataFailureException
 import datetime
 import pytz
 
@@ -25,19 +26,28 @@ OPEN_PERIODS = {
 
 def get_spot_list():
     spot_client = Spotseeker()
-    res = spot_client.search_spots([('limit', 200),
-                                    ('extended_info:app_type', 'food')])
-    for spot in res:
-        spot = process_extended_info(spot)
+    try:
+        res = spot_client.search_spots([('limit', 200),
+                                        ('extended_info:app_type', 'food')])
+        for spot in res:
+            spot = process_extended_info(spot)
+    except DataFailureException:
+        # TODO: consider logging on failure
+        res = []
+
     return res
 
 
 def get_spots_by_filter(filters):
     filters.append(('extended_info:app_type', 'food'))
     spot_client = Spotseeker()
-    res = spot_client.search_spots(filters)
-    for spot in res:
-        spot = process_extended_info(spot)
+    try:
+        res = spot_client.search_spots(filters)
+        for spot in res:
+            spot = process_extended_info(spot)
+    except DataFailureException:
+        # TODO: consider logging on failure
+        res = []
     return res
 
 
@@ -48,10 +58,14 @@ def get_filtered_spots(request):
     filters.append(('extended_info:app_type', 'food'))
 
     spot_client = Spotseeker()
-    res = spot_client.search_spots(filters)
+    try:
+        res = spot_client.search_spots(filters)
 
-    for spot in res:
-        spot = process_extended_info(spot)
+        for spot in res:
+            spot = process_extended_info(spot)
+    except DataFailureException:
+        # TODO: consider logging on failure
+        res = []
     return res
 
 
