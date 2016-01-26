@@ -50,13 +50,37 @@ Scout specific extended info...
 		
 		// cuisine extended info
 		
-		"s_cuisine" : ["american", "bbq", "chinese", "hawaiian", "indian", "italian", "japanese", "korean", "mexican", "vietnamese", "light_lunch"]
+	    "s_cuisine_american" : true,
+        "s_cuisine_bbq" : false,
+		"s_cuisine_chinese" : false,
+		"s_cuisine_hawaiian" : false,
+        "s_cuisine_indian" : false,
+		"s_cuisine_italian" : false,
+        "s_cuisine_japanese" : false,
+		"s_cuisine_korean" : false,
+        "s_cuisine_mexican" : false,
+		"s_cuisine_vietnamese" : false,
+		"s_cuisine_light_lunch" : false,
 		
 		// food served extended info
 		
-		"s_food_served" : ["appetizers", "burgers", "entrees", "espresso", "pasta", "pizza", "salads", "sandwiches", "smoothies", "sushi", "tacos"]
+        "s_food_appetizers" : true,
+		"s_food_burgers" : true,
+		"s_food_entrees" : true,
+        "s_food_espresso" : true,
+        "s_food_pasta" : true,
+        "s_food_pizza" : true,
+		"s_food_salads" : false,
+		"s_food_sandwiches" : true,
+        "s_food_smoothies" : true,
+		"s_food_sushi" : true,
+		"s_food_tacos" : true,
 		
 		// payment extended info
 		
-		"s_payment" : ["cash", "visa", "mastercard", "husky", "dining"]
+		"s_pay_cash" : true,
+		"s_pay_visa" : true,
+		"s_pay_mastercard" : true,
+		"s_pay_husky" : true,
+		"s_pay_dining" : true,
 	},
