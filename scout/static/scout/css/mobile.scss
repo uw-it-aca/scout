@@ -55,9 +55,9 @@ html.turbolinks-progress-bar::before {
                 .scout-spot-hours { margin-bottom: 20px;
 
                     ul { margin: 0; padding: 0;
-                        li { list-style: none;
+                        li { list-style: none; white-space: nowrap;
                             span { display: inline-block; text-transform: uppercase;
-                                &.day { width: 120px; }
+                                &.day { width: 110px; }
                                 &.closed { color: #444; }
                             }
                         }
@@ -75,6 +75,8 @@ html.turbolinks-progress-bar::before {
                     }
                     span { margin-right: 10px; }
                 }
+
+                .scout-spot-reservation { margin-bottom: 20px; }
 
                 .scout-spot-payment { margin-bottom: 20px;
 

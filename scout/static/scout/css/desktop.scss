@@ -33,7 +33,10 @@ body { overflow: hidden; }
                         a {
 
                             .scout-spot-image { width:25%; }
-                            .scout-spot-content { width:75%; }
+                            .scout-spot-content { width:75%; position: relative;
+
+                                .scout-spot-status { position: absolute; top: 0; right: 0;}
+                            }
                         }
 
                     }

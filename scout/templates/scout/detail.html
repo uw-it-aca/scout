@@ -175,7 +175,7 @@
 
             <div>
                 <h4><i class="fa fa-file-text"></i> Notes</h4>
-                {% if spot.access_notes %}{{spot.access_notes}}{% else %}<span style="color:red;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla in consequat purus. Suspendisse euismod scelerisque malesuada.</span>{% endif %}
+                {% if spot.access_notes %}{{spot.access_notes}}{% else %}<span style="color:red;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla in consequat purus... remove during visual design fidelity.</span>{% endif %}
             </div>
 
         </div>
@@ -206,9 +206,16 @@
                 {% else %}<span style="color:red;">missing cuisinetype</span> {% endif %}
             </div>
 
-            {% if spot.has_reservation %}
-            <div>{{spot.reservation_notes}}</div>
-            {% endif %}
+
+            <div class="scout-spot-reservation">
+                <h4><i class="fa fa-bookmark"></i> Reservations</h4>
+                {% if spot.has_reservation %}
+                <div>{{spot.reservation_notes}}</div>
+                {% else %}
+                <div style="color:red;">This space does not take reservations... remove during visual design fidelity.</div>
+                {% endif %}
+
+            </div>
 
             <div class="scout-spot-payment">
                 {% if spot.payment_names %}
@@ -240,7 +247,7 @@
                 {% if spot.hours_notes %}
                 <div>{{spot.hours_notes}}</span>
                 {% else %}
-                <div style="color:red;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla in consequat purus. Suspendisse euismod scelerisque malesuada.</div>
+                <div style="color:red;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla in consequat purus... remove during visual design fidelity.</div>
                 {% endif %}
             </div>
 

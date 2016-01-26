@@ -80,7 +80,7 @@ h1 {
         /*** list page ***/
 
         // filter
-        .scout-filter-results-container { padding: 10px 20px; color: #444;
+        .scout-filter-results-container { padding: 10px 20px; color: #444; font-size: 14px;
             .scout-filter-results { display: inline-block; width: 80%; }
             .scout-filter-display { display: inline-block; width: 20%; vertical-align: top;
                 a { display: block; line-height: 35px; text-decoration: none; color: #444; }
@@ -110,7 +110,7 @@ h1 {
 
                             }
 
-                            .scout-spot-status { font-size: 12px; text-transform: uppercase;
+                            .scout-spot-status { font-size: 12px; text-transform: uppercase; white-space: nowrap;
                                 .open { color: #3c763d}
                                 .closed { color: #A94441; }
                             }
@@ -119,7 +119,7 @@ h1 {
                                 .fa { color: $scout-purple; }
                             }
 
-                            .scout-spot-food-served { margin: 15px 0; color: #333; text-transform: uppercase; font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+                            .scout-spot-food-served { margin: 13px 0; color: #333; text-transform: uppercase; font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
                                 span { margin-right: 5px; }
                             }
 
