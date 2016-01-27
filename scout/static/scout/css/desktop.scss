@@ -35,7 +35,12 @@ body { overflow: hidden; }
                             .scout-spot-image { width:25%; }
                             .scout-spot-content { width:75%; position: relative;
 
-                                .scout-spot-status { position: absolute; top: 0; right: 0;}
+                                .scout-spot-type { font-size: 10px; font-weight: normal; color: #bbb; margin-top: 5px;
+                                    position: absolute; top: 0; right: 0;
+                                    span { text-transform: uppercase; margin-left: 5px; }
+                                }
+
+                                .scout-spot-status { }
                             }
                         }
 

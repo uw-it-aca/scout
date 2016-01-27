@@ -59,7 +59,7 @@
 
         <div class="scout-spot-phone">
             {% if spot.phone %}
-            <a href="tel:+{{ spot.phone }}"><i class="fa fa-phone"></i> {{ spot.phone }}</a>
+            <a href="tel:+1{{ spot.phone }}"><i class="fa fa-phone"></i> {{ spot.phone }}</a>
             {% else %}
             <a href="/" target="_blank" style="color:red;"><i class="fa fa-phone"></i> missing phone</a>
             {% endif %}
@@ -257,9 +257,9 @@
 
             <h3>Coupons</h3>
             <ul>
-                <li>Has coupon: {% if spot.has_coupon %} {{ spot.has_coupon }}{% else %}false{% endif %}</li>
-                <li>Coupon expire: {% if spot.coupon_expiration %}{{ spot.coupon_expiration }}{% endif %}</li>
-                <li>Coupon URL: {% if spot.coupon_url %}{{ spot.coupon_url }}{% endif %}</li>
+                <li>Has coupon: {% if spot.has_coupon %} {{ spot.has_coupon }}{% else %}<span style="color:red">this spot has no coupon... remove during visual design fidelity.</span>{% endif %}</li>
+                <li>Coupon expire: {% if spot.coupon_expiration %}{{ spot.coupon_expiration }}{% else %}<span style="color:red">missing coupon_expiration</span>{% endif %}</li>
+                <li>Coupon URL: {% if spot.coupon_url %}{{ spot.coupon_url }}{% else %}<span style="color:red">missing coupon_url</span>{% endif %}</li>
             </ul>
 
         </div>
