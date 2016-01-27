@@ -23,7 +23,7 @@
             {% for spot in open %}
             <li><a href="/detail/{{ spot.spot_id }}"><i class="fa fa-map-marker"></i> {{spot.name}}</a></li>
             {% endfor %}
-            <li><a href="/" style="color:red;">This needs a search url...</a></li>
+            <li><a href="/" style="color:red;">More...</a></li>
         </ul>
     </div>
     {% endif %}
@@ -62,15 +62,15 @@
         <!--<div style="background:url('{% static "scout/img/coffee-shop-1200.jpg" %}') no-repeat center center; background-size:cover; height:150px;">&nbsp</div>-->
         <h3>Open late night</h3>
         <ul>
-                {% for spot in late_night %}
-                <li><a href="/detail/{{ spot.spot_id }}"><i class="fa fa-map-marker"></i> {{spot.name}}</a></li>
-                {% endfor %}
+            {% for spot in late_night %}
+            <li><a href="/detail/{{ spot.spot_id }}"><i class="fa fa-map-marker"></i> {{spot.name}}</a></li>
+            {% endfor %}
             <li><a href="/?period0=late_night">More...</a></li>
         </ul>
     </div>
     {% endif %}
 
-    {% if coupon %}
+    {# if coupon #}
     <div class="scout-card scout-discover-content">
 
         <!--<div style="background:url('{% static "scout/img/starbucks.jpg" %}') no-repeat center center; background-size:cover;height:150px;">&nbsp</div>-->
@@ -78,11 +78,13 @@
         <ul>
             {% for spot in coupon %}
             <li><a href="/detail/{{ spot.spot_id }}"><i class="fa fa-map-marker"></i> {{spot.name}}</a></li>
+            {% empty %}
+            <li style="color:red;">there are currently no spots with coupons... remove for visual design</li>
             {% endfor %}
-            <li><a href="/" style="color:red;">This needs a search url...</a></li>
+            <li><a href="/" style="color:red;">More...</a></li>
         </ul>
     </div>
-    {% endif %}
+    {# endif #}
 
 </div>
 
@@ -216,7 +218,7 @@
 </div>
 {% endif %}
 
-{% if coupon %}
+{# if coupon #}
 <div class="content-block-title">Dine with discounts</div>
 <div class="list-block">
     <ul>
@@ -240,7 +242,7 @@
         </li>
     </ul>
 </div>
-{% endif %}
+{# endif #}
 
 <div class="content-block-title">Hybrid Testing Stuff</div>
 <div class="list-block">

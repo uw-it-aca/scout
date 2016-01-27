@@ -9,5 +9,5 @@ def remove_underscores(value):
 
 @register.filter
 def format_phone(value):
-    phone = '(%s) %s - %s' % (value[0:3], value[3:6], value[6:10])
+    phone = '(%s) %s-%s' % (value[0:3], value[3:6], value[6:10])
     return phone
