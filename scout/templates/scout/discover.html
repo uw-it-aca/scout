@@ -23,7 +23,7 @@
             {% for spot in open %}
             <li><a href="/detail/{{ spot.spot_id }}"><i class="fa fa-map-marker"></i> {{spot.name}}</a></li>
             {% endfor %}
-            <li><a href="/">More...</a></li>
+            <li><a href="/" style="color:red;">This needs a search url...</a></li>
         </ul>
     </div>
     {% endif %}
@@ -37,7 +37,7 @@
             {% for spot in coffee %}
             <li><a href="/detail/{{ spot.spot_id }}"><i class="fa fa-map-marker"></i> {{spot.name}}</a></li>
             {% endfor %}
-            <li><a href="/">More...</a></li>
+            <li><a href="/?food0=s_food_espresso">More...</a></li>
         </ul>
     </div>
     {% endif %}
@@ -51,7 +51,7 @@
             {% for spot in breakfast %}
             <li><a href="/detail/{{ spot.spot_id }}"><i class="fa fa-map-marker"></i> {{spot.name}}</a></li>
             {% endfor %}
-            <li><a href="/">More...</a></li>
+            <li><a href="/?period0=breakfast">More...</a></li>
         </ul>
     </div>
     {% endif %}
@@ -65,7 +65,7 @@
                 {% for spot in late_night %}
                 <li><a href="/detail/{{ spot.spot_id }}"><i class="fa fa-map-marker"></i> {{spot.name}}</a></li>
                 {% endfor %}
-            <li><a href="/">More...</a></li>
+            <li><a href="/?period0=late_night">More...</a></li>
         </ul>
     </div>
     {% endif %}
@@ -79,7 +79,7 @@
             {% for spot in coupon %}
             <li><a href="/detail/{{ spot.spot_id }}"><i class="fa fa-map-marker"></i> {{spot.name}}</a></li>
             {% endfor %}
-            <li><a href="/">More...</a></li>
+            <li><a href="/" style="color:red;">This needs a search url...</a></li>
         </ul>
     </div>
     {% endif %}
@@ -97,271 +97,152 @@
 <div class="content">
     <div style="background:url('{% static "scout/img/huskygrind.jpg" %}') no-repeat; background-size:cover; height:150px;" valign="bottom" class="content-header">Discover</div>
     <div class="content-content">
-        <div class="content-content-inner">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non urna et lorem venenatis varius quis sit amet dui. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur a nisi odio.</p>
-            <p>Donec et nulla auctor massa pharetra adipiscing ut sit amet sem. Suspendisse molestie velit vitae mattis tincidunt. Ut sit amet quam mollis, vulputate turpis vel, sagittis felis. </p>
+        <div class="content-content-inner" style="padding:20px;">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non urna et lorem venenatis varius quis sit amet dui. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur a nisi odio.
         </div>
     </div>
 </div>
 
-<div class="content-block-title">Most popular:</div>
+{% if open %}
+<div class="content-block-title">Open Now</div>
 <div class="list-block">
     <ul>
+        {% for spot in open %}
         <li>
-            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=Cultivate" class="item-link">
+            <a href="/detail/{{ spot.spot_id }}?hybrid=true&x_push_page=true&x_page_title={{spot.name}}" class="item-link">
                 <div class="item-content">
                     <div class="item-inner">
-                        <div class="item-title">Cultivate</div>
+                        <div class="item-title">{{spot.name}}</div>
                     </div>
                 </div>
             </a>
         </li>
+        {% endfor %}
         <li>
-            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=The+8" class="item-link">
+            <a href="/?hybrid=true&x_push_page=true&x_page_title=Open+Now" class="item-link">
                 <div class="item-content">
                     <div class="item-inner">
-                        <div class="item-title">The 8</div>
-                    </div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=By+George" class="item-link">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">By George</div>
-                    </div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=The+Rotunda" class="item-link">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">The Rotunda</div>
-                    </div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=Red+Square+BBQ" class="item-link">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">Red Square BBQ</div>
+                        <div class="item-title">More...</div>
                     </div>
                 </div>
             </a>
         </li>
     </ul>
 </div>
+{% endif %}
 
-<div class="content-block-title">Coffee near you:</div>
+{% if coffee %}
+<div class="content-block-title">Serves Coffee and Espresso</div>
 <div class="list-block">
     <ul>
+        {% for spot in coffee %}
         <li>
-            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=Burke+Cafe" class="item-link">
+            <a href="/detail/{{ spot.spot_id }}?hybrid=true&x_push_page=true&x_page_title={{spot.name}}" class="item-link">
                 <div class="item-content">
                     <div class="item-inner">
-                        <div class="item-title">Burke Cafe</div>
+                        <div class="item-title">{{spot.name}}</div>
                     </div>
                 </div>
             </a>
         </li>
+        {% endfor %}
         <li>
-            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=Husky+Grind" class="item-link">
+            <a href="/?food0=s_food_espresso&hybrid=true&x_push_page=true&x_page_title=Coffee+and+Espresso" class="item-link">
                 <div class="item-content">
                     <div class="item-inner">
-                        <div class="item-title">Husky Grind</div>
-                    </div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=Parnasus" class="item-link">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">Parnassus</div>
-                    </div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=Public+Grounds" class="item-link">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">Public Grounds</div>
-                    </div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=Overpass+Espresso" class="item-link">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">Overpass Espresso</div>
+                        <div class="item-title">More...</div>
                     </div>
                 </div>
             </a>
         </li>
     </ul>
 </div>
+{% endif %}
 
-<div class="content-block-title">Breakfast before class:</div>
+
+{% if breakfast %}
+<div class="content-block-title">Open for breakfast</div>
 <div class="list-block">
     <ul>
+        {% for spot in breakfast %}
         <li>
-            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=Cultivate" class="item-link">
+            <a href="/detail/{{ spot.spot_id }}?hybrid=true&x_push_page=true&x_page_title={{spot.name}}" class="item-link">
                 <div class="item-content">
                     <div class="item-inner">
-                        <div class="item-title">Cultivate</div>
+                        <div class="item-title">{{spot.name}}</div>
                     </div>
                 </div>
             </a>
         </li>
+        {% endfor %}
         <li>
-            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=The+8" class="item-link">
+            <a href="/?period0=breakfast&hybrid=true&x_push_page=true&x_page_title=Open+for+Breakfast" class="item-link">
                 <div class="item-content">
                     <div class="item-inner">
-                        <div class="item-title">The 8</div>
-                    </div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=By+George" class="item-link">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">By George</div>
-                    </div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=The+Rotunda" class="item-link">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">The Rotunda</div>
-                    </div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=Red+Square+BBQ" class="item-link">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">Red Square BBQ</div>
+                        <div class="item-title">More...</div>
                     </div>
                 </div>
             </a>
         </li>
     </ul>
 </div>
+{% endif %}
 
-<div class="content-block-title">Evening class munchies:</div>
+{% if late_night %}
+<div class="content-block-title">Open late night</div>
 <div class="list-block">
     <ul>
+        {% for spot in late_night %}
         <li>
-            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=Cultivate" class="item-link">
+            <a href="/detail/{{ spot.spot_id }}?hybrid=true&x_push_page=true&x_page_title={{spot.name}}" class="item-link">
                 <div class="item-content">
                     <div class="item-inner">
-                        <div class="item-title">Cultivate</div>
+                        <div class="item-title">{{spot.name}}</div>
                     </div>
                 </div>
             </a>
         </li>
+        {% endfor %}
         <li>
-            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=The+8" class="item-link">
+            <a href="/?period0=late_night&hybrid=true&x_push_page=true&x_page_title=Open+late+night" class="item-link">
                 <div class="item-content">
                     <div class="item-inner">
-                        <div class="item-title">The 8</div>
-                    </div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=By+George" class="item-link">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">By George</div>
-                    </div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=The+Rotunda" class="item-link">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">The Rotunda</div>
-                    </div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=Red+Square+BBQ" class="item-link">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">Red Square BBQ</div>
+                        <div class="item-title">More...</div>
                     </div>
                 </div>
             </a>
         </li>
     </ul>
 </div>
+{% endif %}
 
-<div class="content-block-title">Dine with discounts:</div>
+{% if coupon %}
+<div class="content-block-title">Dine with discounts</div>
 <div class="list-block">
     <ul>
         <li>
-            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=Cultivate" class="item-link">
+            <a href="/detail/{{ spot.spot_id }}?hybrid=true&x_push_page=true&x_page_title={{spot.name}}" class="item-link">
                 <div class="item-content">
                     <div class="item-inner">
-                        <div class="item-title">Cultivate</div>
+                        <div class="item-title">{{spot.name}}</div>
                     </div>
                 </div>
             </a>
         </li>
         <li>
-            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=The+8" class="item-link">
+            <a href="/?hybrid=true&x_push_page=true&x_page_title=Dine+with+discounts" class="item-link">
                 <div class="item-content">
                     <div class="item-inner">
-                        <div class="item-title">The 8</div>
-                    </div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=By+George" class="item-link">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">By George</div>
-                    </div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=The+Rotunda" class="item-link">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">The Rotunda</div>
-                    </div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=Red+Square+BBQ" class="item-link">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">Red Square BBQ</div>
+                        <div class="item-title">More...</div>
                     </div>
                 </div>
             </a>
         </li>
     </ul>
 </div>
+{% endif %}
 
-
-
-<div class="content-block-title">Hybrid stuff</div>
+<div class="content-block-title">Hybrid Testing Stuff</div>
 <div class="list-block">
     <ul>
         <li>
