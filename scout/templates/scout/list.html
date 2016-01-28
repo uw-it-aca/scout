@@ -139,6 +139,7 @@ function initializeListMap() {
             {
                 "spot_name" : '{{ spot.name }}',
                 "id" : '{{ spot.spot_id }}',
+                "building" : '{{ spot.building_name }}',
                 "lat" : '{{ spot.latitude }}',
                 "lng" : '{{ spot.longitude }}',
                 "icon": 'fa-cutlery',
@@ -186,10 +187,10 @@ function initializeListMap() {
                     //map.setZoom(18);
 
                     //Wrap the content inside an HTML DIV in order to set height and width of InfoWindow.
-                    infoWindow.setContent("<div style = 'width:200px;font-weight:bold;'>" + data.spot_name + "</div>");
+                    infoWindow.setContent("<div>"+data.spot_name+"<br>"+data.building+"<br><a href='/detail/"+data.id+"'>View details</a></div>");
                     infoWindow.open(map, marker);
+                    
                     $('li').css('background', 'none'); // clear any highlighted spots first
-
                     $('#' + data.id).css('background', '#e8eaf7');
                     $('.scout-scroll').scrollTo('#' + data.id);
 

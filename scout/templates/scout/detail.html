@@ -170,7 +170,7 @@
 
                 }
             </script>
-            <div class="scout-spot-map-link"><a href="maps://maps.apple.com/maps?q={{ spot.latitude }},{{ spot.longitude }}"><i class="fa fa-map-marker"></i>  OPEN IN MAPS</a></div>
+            <div class="scout-spot-map-link"><a href="maps://maps.apple.com/maps?q={{ spot.latitude }},{{ spot.longitude }}"><i class="fa fa-map-marker"></i>  LAUNCH APPLE MAPS</a></div>
             {% endif %}
 
             <div>
@@ -309,15 +309,19 @@
                     ]
                 },
                 {
-                "featureType": "poi.business",
-                "elementType": "labels",
-                "stylers": [
-                    {
-                        "visibility": "off"
-                    }
-                ]
-            }
+                    "featureType": "poi.business",
+                    "elementType": "labels.icon",
+                    "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                    ]
+                }
             ]
+
+            // create and open InfoWindow.
+            var infoWindow = new google.maps.InfoWindow();
+
 
             var map = new google.maps.Map(document.getElementById('detail_map'), mapOptions);
             map.setOptions({styles: styles});
@@ -339,6 +343,17 @@
                     scale: 13,
             	},
             });
+
+            google.maps.event.addListener(marker, "click", function (e) {
+                //Wrap the content inside an HTML DIV in order to set height and width of InfoWindow.
+                infoWindow.setContent("<div>{{ spot.name }}<br>{{ spot.building_name }}<br><a href='https://maps.google.com/maps?q={{ spot.latitude }},{{ spot.longitude }}' target='_blank'>View on Google Maps</a></div>");
+                infoWindow.open(map, marker);
+            });
+
+            google.maps.event.addListener(infoWindow,'closeclick',function(){
+                infoWindow.close(map, marker);
+            });
+
         }
 
     }
