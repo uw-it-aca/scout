@@ -18,7 +18,7 @@ setup(
         'django_mobileesp',
         'django-turbolinks',
         'django-htmlmin',
-        'pyscss',
+        'django-pyscss',
         'pytz',
     ],
     license='Apache License, Version 2.0',  # example license
