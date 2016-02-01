@@ -255,8 +255,17 @@ function initializeListMap() {
                     <div class="item-title-row">
                         <div class="item-title">{{ spot.name }}</div>
                     </div>
-                    <div class="item-subtitle">{% for foodtype in spot.foodtype_names %} {{ foodtype }}, {% endfor %}</div>
-                    <div class="item-text">{{ spot.building_description }}</div>
+                    <div class="item-subtitle">
+                        {% if spot.foodtype_names %}
+                            {% for foodtype in spot.foodtype_names %}
+                                <span>{{ foodtype }}</span>
+                            {% endfor %}
+                        {% else %} <span style="color:red;">foodtype</span> {% endif %}
+                    </div>
+                    <div class="item-text">
+                        <div>{% if spot.building_name %}{{ spot.building_name }}{% else %} <span style="color:red;">missing building_name</span> {% endif %}</div>
+                        <div>{% if spot.is_open %}<span class="open">Open now</span>{% else %}<span class="closed" style="color:red;">Currently closed</span>{% endif %}</span></div>
+                    </div>
                 </div>
             </a>
         </li>
