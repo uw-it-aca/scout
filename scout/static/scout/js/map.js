@@ -6,9 +6,8 @@ $(document).on('ready page:load page:restore', function(event) {
 
 	if( $("#list_map").length > 0 ) {
 
-        var pos;
-
 		console.log("loading list map");
+
         // HTML5 geolocation
         if (navigator.geolocation) {
 
@@ -17,24 +16,21 @@ $(document).on('ready page:load page:restore', function(event) {
                 console.log("User shared their location!")
 
                 // user's current location
-                pos = {
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude
-                };
+                var pos = { lat: position.coords.latitude, lng: position.coords.longitude };
 
-            console.log(pos);
-            initializeListMap(pos);
+                console.log(pos);
+                initializeListMap(pos);
 
-        }, function() {
-            console.log("User did not share their location!")
+            }, function() {
+                console.log("User did not share their location!")
 
-            // seattle fountain
-            pos = { lat: 47.653811, lng: -122.307815 };
+                // seattle fountain
+                pos = { lat: 47.653811, lng: -122.307815 };
 
-            // center map on seattle fountain
-            initializeListMap(pos);
+                // center map on seattle fountain
+                initializeListMap(pos);
 
-        });
+            });
         } else {
 
             console.log("Browser doens't support geolocation!")
@@ -55,7 +51,7 @@ $(document).on('ready page:load page:restore', function(event) {
 		initializeDetailMap();
 	}
 
-    // map on map page (mobile only)
+    // size the map on map.html (mobile only)
 
     if($(".scout-map #list_map").length > 0) {
 

@@ -79,7 +79,7 @@ function initializeListMap(pos) {
             map: map,
             icon: {
                 path: google.maps.SymbolPath.CIRCLE,
-                fillColor: '#A94441',
+                fillColor: '#A94441', // red
                 fillOpacity: 1,
                 strokeColor: '#ffffff',
                 scale: 8,
@@ -117,16 +117,16 @@ function initializeListMap(pos) {
 		        position: new google.maps.LatLng(data.lat, data.lng),
 		        map: map,
                 animation: google.maps.Animation.DROP,
-                labelContent: "<i class='fa " + data.icon +"'></i>",
+                //labelContent: "<i class='fa " + data.icon +"'></i>",
                 //labelContent: "<i class='fa " + data.icon +"'></i><span class='marker-text'>" + data.spot_name + "</span>",
                 labelAnchor: new google.maps.Point(6, 6),
                 labelClass: "map-label", // the CSS class for the label
                 icon: {
-            		path: google.maps.SymbolPath.CIRCLE,
-            		fillColor: '#6562aa',
+                    path: google.maps.SymbolPath.CIRCLE,
+            		fillColor: '#6564A8',
             		fillOpacity: 1,
-            		strokeColor: '#53518e',
-                    scale: 10,
+            		strokeColor: '#ffffff',
+                    scale: 8,
             		strokeWeight: 3
             	},
 
