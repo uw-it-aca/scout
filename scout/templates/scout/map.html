@@ -9,6 +9,7 @@
 <div class="scout-filter-results-container">
 
     <div class="scout-filter-results">
+        <div><a href="/map/">All</a> | <a href="/map/?campus0=seattle">Seattle</a> | <a href="/map/?campus0=bothell">Bothell</a> | <a href="/map/?campus0=tacoma">Tacoma</a> | <a href="/map/?campus0=south_lake_union">South Lake Union</a></div>
         <div>Filtering by: <span id="filter_label_text">None</span></div>
         <div>Results: {{ spots|length }}</div>
     </div>
@@ -74,7 +75,7 @@ function initializeListMap(pos) {
 		var map = new google.maps.Map(document.getElementById('list_map'), mapOptions);
 
         // current location marker
-        var marker = new google.maps.Marker({
+        var locationMarker = new google.maps.Marker({
             position: mapCenter,
             map: map,
             icon: {
@@ -103,11 +104,14 @@ function initializeListMap(pos) {
             {% endfor %}
 		]
 
+        var bounds = new google.maps.LatLngBounds();
+
+        // add the marker position to boundary
+        bounds.extend(locationMarker.position);
+
         // create and open InfoWindow.
         var infoWindow = new google.maps.InfoWindow();
         var markers = [];
-
-        var bounds = new google.maps.LatLngBounds();
 
 		for (var i = 0; i < locations.length; i++) {
 
@@ -153,7 +157,7 @@ function initializeListMap(pos) {
 		}
 
         // zoom the map automatically using the bounds of all markers
-        //map.fitBounds(bounds);
+        map.fitBounds(bounds);
 
         // cluster the markers using marker clusterer
         //var markerCluster = new MarkerClusterer(map, markers);
