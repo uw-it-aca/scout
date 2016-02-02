@@ -154,16 +154,16 @@
                             position: myLatlng,
                             map: map,
                             title: '{{ spot.name }}!',
-                            labelContent: "<span class='marker-text' style='margin-left:15px;font-size:12px;'>{{ spot.name }}</span>",
+                            labelContent: "<span class='marker-text' style='margin-left:18px;font-size:12px;'>{{ spot.name }}</span>",
                             labelAnchor: new google.maps.Point(6, 6),
                             labelClass: "map-label", // the CSS class for the label
                             icon: {
                         		path: google.maps.SymbolPath.CIRCLE,
                         		fillColor: '#53518e',
                         		fillOpacity: 1,
-                        		strokeColor: '#6562aa',
-                                strokeWeight: 2,
-                                scale: 4,
+                        		strokeColor: '#ffffff',
+                                strokeWeight: 3,
+                                scale: 8,
                         	},
                         });
                     }
@@ -338,9 +338,9 @@
             		path: google.maps.SymbolPath.CIRCLE,
             		fillColor: '#53518e',
             		fillOpacity: 1,
-            		strokeColor: '#6562aa',
+            		strokeColor: '#ffffff',
                     strokeWeight: 5,
-                    scale: 13,
+                    scale: 15,
             	},
             });
 

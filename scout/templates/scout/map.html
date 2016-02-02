@@ -26,21 +26,22 @@
 
 <!-- show a map on the list page -->
 <div class="scout-map" style="margin:0;">
-    <div id="list_map" style="height:260px;"></div>
+    <div id="list_map" style="height:200px"></div>
 </div>
 
 <!-- since turbolinks loads the full body... generate this function in the template. then, call the function in the map.js file -->
 <script type="text/javascript">
 
-function initializeListMap() {
+function initializeListMap(pos) {
 
 	var mapExists = document.getElementById("list_map");
-	var myLatlng, mapOptions;
+	var mapOptions;
 
 	if(mapExists) {
 
-		// center map on uw fountain
-		mapCenter = new google.maps.LatLng(47.653811, -122.307815);
+        // center map on center location received from user
+		mapCenter = new google.maps.LatLng(pos.lat, pos.lng);
+
         mapOptions = {
 	        center: mapCenter,
 	        zoom: 15,
@@ -71,6 +72,21 @@ function initializeListMap() {
         ]
 
 		var map = new google.maps.Map(document.getElementById('list_map'), mapOptions);
+
+        // current location marker
+        var marker = new google.maps.Marker({
+            position: mapCenter,
+            map: map,
+            icon: {
+                path: google.maps.SymbolPath.CIRCLE,
+                fillColor: '#A94441', // red
+                fillOpacity: 1,
+                strokeColor: '#ffffff',
+                scale: 8,
+                strokeWeight: 3
+            },
+        });
+
         map.setOptions({styles: styles});
 
         // multiple pins on a single map
@@ -81,6 +97,7 @@ function initializeListMap() {
                 "id" : '{{ spot.spot_id }}',
                 "lat" : '{{ spot.latitude }}',
                 "lng" : '{{ spot.longitude }}',
+                "building" : '{{ spot.building_name }}',
                 "icon": 'fa-cutlery',
             },
             {% endfor %}
@@ -100,16 +117,16 @@ function initializeListMap() {
 		        position: new google.maps.LatLng(data.lat, data.lng),
 		        map: map,
                 animation: google.maps.Animation.DROP,
-                labelContent: "<i class='fa " + data.icon +"'></i>",
+                //labelContent: "<i class='fa " + data.icon +"'></i>",
                 //labelContent: "<i class='fa " + data.icon +"'></i><span class='marker-text'>" + data.spot_name + "</span>",
                 labelAnchor: new google.maps.Point(6, 6),
                 labelClass: "map-label", // the CSS class for the label
                 icon: {
-            		path: google.maps.SymbolPath.CIRCLE,
-            		fillColor: '#6562aa',
+                    path: google.maps.SymbolPath.CIRCLE,
+            		fillColor: '#6564A8',
             		fillOpacity: 1,
-            		strokeColor: '#53518e',
-                    scale: 10,
+            		strokeColor: '#ffffff',
+                    scale: 8,
             		strokeWeight: 3
             	},
 
@@ -123,7 +140,8 @@ function initializeListMap() {
                 google.maps.event.addListener(marker, "click", function (e) {
 
                     //Wrap the content inside an HTML DIV in order to set height and width of InfoWindow.
-                    infoWindow.setContent("<div style = 'width:200px;'><a href='/detail/" + data.id + "' style='text-decoration:none;color:#222;'>" + data.spot_name + "</a></div>");
+                    //infoWindow.setContent("<div style = 'width:200px;'><a href='/detail/" + data.id + "' style='text-decoration:none;color:#222;'>" + data.spot_name + "</a></div>");
+                    infoWindow.setContent("<div>"+data.spot_name+"<br>"+data.building+"<br><a href='/detail/"+data.id+"'>View details</a></div>");
                     infoWindow.open(map, marker);
                 });
 

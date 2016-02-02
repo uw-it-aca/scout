@@ -42,29 +42,12 @@
                             <span class="scout-spot-type">{% if spot.spot_types %}{% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}</span>{% endfor %}{% else %} <span style="color:red;">SPOT_TYPE</span> {% endif %}</span>
                             {% endif %}
 
-                            <!--<div class="scout-spot-open-period">
-                                <span>TODAY'S HOURS:</span>
-                                {% if spot.open_periods.breakfast %}
-                                    <span>Breakfast</span>
-                                {% endif %}
-                                {% if spot.open_periods.lunch %}
-                                    <span>Lunch</span>
-                                {% endif %}
-                                {% if spot.open_periods.dinner %}
-                                    <span>Dinner</span>
-                                {% endif %}
-                                {% if spot.open_periods.late_night %}
-                                    <span>Late Night</span>
-                                {% endif %}
-                            </div>-->
-
                             <div class="scout-spot-food-served">
                             {% if spot.foodtype_names %}
                                 {% for foodtype in spot.foodtype_names %}
                                     <span>{{ foodtype }}</span>
                                 {% endfor %}
                             {% else %} <span style="color:red;">foodtype</span> {% endif %}
-
 
                             </div>
 
@@ -90,20 +73,21 @@
 {% block secondary_content %}
 
 <!-- show a map on the list page -->
-<div id="list_map" style="height:100%;"></div>
+<div id="list_map" style="height:100%; background: #ddd; "></div>
 
 <!-- since turbolinks loads the full body... generate this function in the template. then, call the function in the map.js file -->
 <script type="text/javascript">
 
-function initializeListMap() {
+function initializeListMap(pos) {
 
 	var mapExists = document.getElementById("list_map");
-	var myLatlng, mapOptions;
+	var mapOptions;
 
 	if(mapExists) {
 
-		// center map on uw fountain
-		mapCenter = new google.maps.LatLng(47.653811, -122.307815);
+		// center map on center location received from user
+		mapCenter = new google.maps.LatLng(pos.lat, pos.lng);
+
         mapOptions = {
 	        center: mapCenter,
 	        zoom: 16,
@@ -131,6 +115,22 @@ function initializeListMap() {
         ]
 
 		var map = new google.maps.Map(document.getElementById('list_map'), mapOptions);
+
+
+        // current location marker
+        var marker = new google.maps.Marker({
+            position: mapCenter,
+            map: map,
+            icon: {
+                path: google.maps.SymbolPath.CIRCLE,
+                fillColor: '#A94441', // red
+                fillOpacity: 1,
+                strokeColor: '#ffffff',
+                scale: 8,
+                strokeWeight: 3
+            },
+        });
+
         map.setOptions({styles: styles});
 
         // multiple pins on a single map
@@ -142,7 +142,7 @@ function initializeListMap() {
                 "building" : '{{ spot.building_name }}',
                 "lat" : '{{ spot.latitude }}',
                 "lng" : '{{ spot.longitude }}',
-                "icon": 'fa-cutlery',
+                //"icon": 'fa-cutlery',
             },
             {% endfor %}
 		]
@@ -167,10 +167,10 @@ function initializeListMap() {
                 labelClass: "map-label", // the CSS class for the label
                 icon: {
             		path: google.maps.SymbolPath.CIRCLE,
-            		fillColor: '#6562aa',
+            		fillColor: '#6564A8',
             		fillOpacity: 1,
-            		strokeColor: '#53518e',
-                    scale: 4,
+            		strokeColor: '#ffffff',
+                    scale: 8,
             		strokeWeight: 3
             	},
                 //id: data.id,
@@ -233,7 +233,6 @@ function initializeListMap() {
 	}
 
 }
-
 
 </script>
 
