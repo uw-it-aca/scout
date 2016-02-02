@@ -85,7 +85,7 @@ function initializeListMap(pos) {
 
 	if(mapExists) {
 
-		// center map on uw fountain
+		// center map on center location received from user
 		mapCenter = new google.maps.LatLng(pos.lat, pos.lng);
 
         mapOptions = {
@@ -123,10 +123,10 @@ function initializeListMap(pos) {
             map: map,
             icon: {
                 path: google.maps.SymbolPath.CIRCLE,
-                fillColor: '#ebccd1',
+                fillColor: '#A94441',
                 fillOpacity: 1,
-                strokeColor: '#A94441',
-                scale: 6,
+                strokeColor: '#ffffff',
+                scale: 8,
                 strokeWeight: 3
             },
         });
@@ -142,7 +142,7 @@ function initializeListMap(pos) {
                 "building" : '{{ spot.building_name }}',
                 "lat" : '{{ spot.latitude }}',
                 "lng" : '{{ spot.longitude }}',
-                "icon": 'fa-cutlery',
+                //"icon": 'fa-cutlery',
             },
             {% endfor %}
 		]
@@ -167,10 +167,10 @@ function initializeListMap(pos) {
                 labelClass: "map-label", // the CSS class for the label
                 icon: {
             		path: google.maps.SymbolPath.CIRCLE,
-            		fillColor: '#6562aa',
+            		fillColor: '#6564A8',
             		fillOpacity: 1,
-            		strokeColor: '#53518e',
-                    scale: 4,
+            		strokeColor: '#ffffff',
+                    scale: 6,
             		strokeWeight: 3
             	},
                 //id: data.id,

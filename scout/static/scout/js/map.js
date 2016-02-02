@@ -2,9 +2,9 @@
 
 $(document).on('ready page:load page:restore', function(event) {
 
-	// list map
+	// list map... location on list.html and map.html (mobile aned desktop)
 
-	if($("#list_map").length > 0) {
+	if( $("#list_map").length > 0 ) {
 
         var pos;
 
@@ -29,10 +29,7 @@ $(document).on('ready page:load page:restore', function(event) {
             console.log("User did not share their location!")
 
             // seattle fountain
-            pos = {
-                lat: 47.653811,
-                lng: -122.307815
-            };
+            pos = { lat: 47.653811, lng: -122.307815 };
 
             // center map on seattle fountain
             initializeListMap(pos);
@@ -43,10 +40,7 @@ $(document).on('ready page:load page:restore', function(event) {
             console.log("Browser doens't support geolocation!")
 
             // seattle fountain
-            pos = {
-                lat: 47.653811,
-                lng: -122.307815
-            };
+            pos = { lat: 47.653811, lng: -122.307815 };
 
             // center map on seattle fountain
             initializeListMap(pos);
@@ -59,6 +53,15 @@ $(document).on('ready page:load page:restore', function(event) {
 
 		console.log("loading detail map");
 		initializeDetailMap();
+	}
+
+    // map on map page (mobile only)
+
+    if($(".scout-map #list_map").length > 0) {
+
+        var offsetHeight = ($(".scout-header").outerHeight() + $(".scout-filter-results-container").outerHeight() + $(".scout-footer").outerHeight());
+        $("#list_map").height($(window).outerHeight() - offsetHeight);
+
 	}
 
 });
