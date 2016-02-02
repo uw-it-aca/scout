@@ -74,7 +74,9 @@
 {% block secondary_content %}
 
 <!-- show a map on the list page -->
-<div id="list_map" style="height:100%; background: #ddd; "></div>
+<div id="list_map" style="height:100%; background: #ddd !important; ">
+    <i class="fa fa-refresh fa-spin" style="position:absolute; top: 49%; left: 50%; color: #666;"></i>
+</div>
 
 <!-- since turbolinks loads the full body... generate this function in the template. then, call the function in the map.js file -->
 <script type="text/javascript">
