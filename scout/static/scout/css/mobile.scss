@@ -5,13 +5,14 @@ fold styles and general helpers.
 
 // sass variables
 
+$scout-purple: #6564A8;
 $footer-height: 30px;
 
 
 // turbolinks
 
 html.turbolinks-progress-bar::before {
-  background-color: red !important;
+  background-color: $scout-purple !important;
   height: 3px !important;
 }
 
@@ -96,16 +97,56 @@ html.turbolinks-progress-bar::before {
 // footer
 .scout-footer { background: #fff; color:#555; width: 100%; font-size: 75%; text-align:center; line-height: $footer-height; border-top: solid 1px #ddd; }
 
+// loading spinner
+.loader {
+    font-size: 10px;
+    position: relative;
+    text-indent: -9999em;
+    border-top: 3px solid rgba(255, 255, 255, 0.2);
+    border-right: 3px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 3px solid rgba(255, 255, 255, 0.2);
+    border-left: 3px solid $scout-purple;
+    -webkit-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-animation: load8 1.1s infinite linear;
+    animation: load8 1.1s infinite linear;
+}
+.loader,
+.loader:after {
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+}
+@-webkit-keyframes load8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes load8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
 
 //.scout-map-canvas { height: 100%; margin: 0px; padding: 0px; }
-
 .overlay {
-  position:absolute;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,.5);
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.5);
 }
 
 
