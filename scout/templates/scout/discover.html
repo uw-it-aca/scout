@@ -24,7 +24,7 @@
             {% for spot in open %}
             <li><a href="/detail/{{ spot.spot_id }}"><i class="fa fa-map-marker"></i> {{spot.name}}</a></li>
             {% endfor %}
-            <li><a href="/?open_now=true" style="color:red;">More...</a></li>
+            <li style="padding-left: 15px;"><a href="/?open_now=true">More...</a></li>
         </ul>
     </div>
     {% endif %}
@@ -36,9 +36,9 @@
         <h3>Serves Coffee and Espresso</h3>
         <ul>
             {% for spot in coffee %}
-            <li><a href="/detail/{{ spot.spot_id }}"><i class="fa fa-map-marker"></i> {{spot.name}}</a></li>
+            <li><a href="/detail/{{ spot.spot_id }}"><i class="fa fa-map-marker"></i> {{spot.name}} {% if spot.is_open %}<span class="visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</a></li>
             {% endfor %}
-            <li><a href="/?food0=s_food_espresso">More...</a></li>
+            <li style="padding-left: 15px;"><a href="/?food0=s_food_espresso">More...</a></li>
         </ul>
     </div>
     {% endif %}
@@ -50,9 +50,9 @@
         <h3>Open for breakfast</h3>
         <ul>
             {% for spot in breakfast %}
-            <li><a href="/detail/{{ spot.spot_id }}"><i class="fa fa-map-marker"></i> {{spot.name}}</a></li>
+            <li><a href="/detail/{{ spot.spot_id }}"><i class="fa fa-map-marker"></i> {{spot.name}} {% if spot.is_open %}<span class="visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</a></li>
             {% endfor %}
-            <li><a href="/?period0=breakfast">More...</a></li>
+            <li style="padding-left: 15px;"><a href="/?period0=breakfast">More...</a></li>
         </ul>
     </div>
     {% endif %}
@@ -64,9 +64,9 @@
         <h3>Open late night</h3>
         <ul>
             {% for spot in late_night %}
-            <li><a href="/detail/{{ spot.spot_id }}"><i class="fa fa-map-marker"></i> {{spot.name}}</a></li>
+            <li><a href="/detail/{{ spot.spot_id }}"><i class="fa fa-map-marker"></i> {{spot.name}} {% if spot.is_open %}<span class="visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</a></li>
             {% endfor %}
-            <li><a href="/?period0=late_night">More...</a></li>
+            <li style="padding-left: 15px;"><a href="/?period0=late_night">More...</a></li>
         </ul>
     </div>
     {% endif %}
@@ -78,11 +78,11 @@
         <h3>Dine with discounts</h3>
         <ul>
             {% for spot in coupon %}
-            <li><a href="/detail/{{ spot.spot_id }}"><i class="fa fa-map-marker"></i> {{spot.name}}</a></li>
+            <li><a href="/detail/{{ spot.spot_id }}"><i class="fa fa-map-marker"></i> {{spot.name}} {% if spot.is_open %}<span class="visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</a></li>
             {% empty %}
             <li style="color:red;">there are currently no spots with coupons... remove for visual design</li>
             {% endfor %}
-            <li><a href="/" style="color:red;">More...</a></li>
+            <li style="padding-left: 15px;"><a href="/" style="color:red;">More...</a></li>
         </ul>
     </div>
     {# endif #}

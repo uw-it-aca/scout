@@ -22,7 +22,6 @@ def discover_view(request):
         "coffee": get_spots_by_filter([('extended_info:s_food_espresso',
                                         'true'),
                                        ('limit', 5),
-                                       ('open_now', True),
                                        ('center_latitude', DEFAULT_LAT),
                                        ('center_longitude', DEFAULT_LON),
                                        ('distance', 1000), ]),
