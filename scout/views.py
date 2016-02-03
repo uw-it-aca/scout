@@ -15,14 +15,14 @@ DEFAULT_LON = -122.307755
 def discover_view(request):
     context = {
         "open": get_spots_by_filter([('limit', 5),
-                                     ('open', True),
+                                     ('open_now', True),
                                      ('center_latitude', DEFAULT_LAT),
                                      ('center_longitude', DEFAULT_LON),
                                      ('distance', 1000), ]),
         "coffee": get_spots_by_filter([('extended_info:s_food_espresso',
                                         'true'),
                                        ('limit', 5),
-                                       ('open', True),
+                                       ('open_now', True),
                                        ('center_latitude', DEFAULT_LAT),
                                        ('center_longitude', DEFAULT_LON),
                                        ('distance', 1000), ]),
