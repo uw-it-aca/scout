@@ -24,7 +24,7 @@
             {% for spot in open %}
             <li><a href="/detail/{{ spot.spot_id }}"><i class="fa fa-map-marker"></i> {{spot.name}}</a></li>
             {% endfor %}
-            <li><a href="/" style="color:red;">More...</a></li>
+            <li><a href="/?open_now=true" style="color:red;">More...</a></li>
         </ul>
     </div>
     {% endif %}

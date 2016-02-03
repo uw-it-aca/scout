@@ -84,6 +84,8 @@ def _get_spot_filters(request):
             params.append(("extended_info:" + request.GET[param], "true"))
         if "period" in param:
             params += get_period_filter(request.GET[param])
+        if "open_now" in param:
+            params.append(("open_now", "true"))
     return params
 
 
