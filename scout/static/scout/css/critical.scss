@@ -196,8 +196,7 @@ h1 {
                         &:hover { color: $scout-purple; }
                         .fa { color: $scout-purple; margin-right: 3px; }
 
-                        .open { color: green; }
-                        .closed { color: red; }
+                        .closed { color: #A94441; font-size: 11px; margin-left: 10px; }
                     }
                 }
             }

@@ -8,6 +8,39 @@ $(document).on('ready page:load page:restore', function(event) {
 
     Navigation.set_page_tab();
 
+    // handle gallery images
+    $('#imageContainer img').each(function (index) {
+        if ($(this).attr('onclick') != null) {
+            if ($(this).attr('onclick').indexOf("runThis()") == -1) {
+                $(this).click(function () {
+                    $(this).attr('onclick');
+                    var src = $(this).attr("src");
+                    ShowLargeImage(src);
+                    console.log("asdkfljlask;djflkasjdf");
+                });
+            }
+        }
+        else {
+            $(this).click(function () {
+                var src = $(this).attr("src");
+                ShowLargeImage(src);
+            });
+        }
+    });
+
+    $('body').on('click', '.modal-overlay', function () {
+        $('.modal-overlay, .modal-img').remove();
+        $('body').removeClass("freeze");
+    });
+
+    function ShowLargeImage(imagePath) {
+        $('body').addClass("freeze");
+
+        $('body').append('<div class="modal-overlay"><div class="modal-img"><img src="' + imagePath.replace("small","large") + '" /></div></div>');
+    }
+
+
+
 });
 
 // scrollTo function
