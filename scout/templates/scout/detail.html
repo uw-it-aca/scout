@@ -193,11 +193,13 @@
             <h4><i class="fa fa-camera"></i> Gallery</h4>
             <div class="scout-spot-gallery">
                 <ul class="clearfix">
+
+                    {% if spot.images %}
+                    <li><img src="//spotseeker-test.cac.washington.edu{{spot.images.0.url}}" style="height:100px;"></li>
+                    {% else %}
                     <li><img src="{% static "scout/img/placeholder.png" %}" style="height:100px;"></li>
-                    <li><img src="{% static "scout/img/placeholder.png" %}" style="height:100px;"></li>
-                    <li><img src="{% static "scout/img/placeholder.png" %}" style="height:100px;"></li>
-                    <li><img src="{% static "scout/img/placeholder.png" %}" style="height:100px;"></li>
-                    <li><img src="{% static "scout/img/placeholder.png" %}" style="height:100px;"></li>
+                    {% endif %}
+                    
                 </ul>
             </div>
 
