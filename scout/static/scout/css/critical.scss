@@ -160,7 +160,9 @@ h1 {
             .scout-spot-meta { background: #6564A8; color: #fff; padding: 10px 20px; position: relative;
 
                 .scout-spot-name { font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 18px; margin: 0; }
-                .scout-spot-type { text-transform: uppercase; font-weight: normal; font-size: 12px; margin: 0; position: absolute; top: 15px; right:20px; color: #ccc; }
+                .scout-spot-type { text-transform: uppercase; font-weight: normal; font-size: 12px; margin: 0; position: absolute; top: 15px; right:20px; color: #ccc;
+                    span { margin-left: 10px; }
+                }
                 .scout-spot-food-served { margin: 15px 0; text-transform: uppercase; font-size: 12px;
                     span { margin-right: 10px; }
                 }
