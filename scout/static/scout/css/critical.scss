@@ -136,7 +136,7 @@ h1 {
 
             .scout-spot-alert { margin: 0; padding: 10px 20px; background: #d9edf7; color: #31708f; font-size: 14px; }
 
-            .scout-spot-image { background-size: cover; background-repeat: no-repeat; background-position: center center; height: 200px; position: relative;
+            .scout-spot-image { background-size: cover; background-repeat: no-repeat; background-position: center center; min-height: 100px; position: relative;
 
                 //border-top-left-radius: 2px;
                 //border-top-right-radius: 2px;

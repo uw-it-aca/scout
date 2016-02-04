@@ -39,6 +39,11 @@ $(document).on('ready page:load page:restore', function(event) {
         $('body').append('<div class="modal-overlay"><div class="modal-img"><img src="' + imagePath.replace("small","large") + '" /></div></div>');
     }
 
+    // details spot image aspect ratio 16:9
+	if($(".scout-details-container .scout-spot-image").length > 0) {
+        var aspectHeight = Math.round(( $(".scout-spot-image").width() /16)*9);
+        $(".scout-spot-image").height(aspectHeight);
+	}
 
 
 });
