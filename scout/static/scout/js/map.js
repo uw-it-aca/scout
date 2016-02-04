@@ -18,6 +18,11 @@ $(document).on('ready page:load page:restore', function(event) {
                 // user's current location
                 var pos = { lat: position.coords.latitude, lng: position.coords.longitude };
 
+                // if subnet is aca's... place inside of UDB
+                $.get('http://jsonip.com/', function(r){ console.log(r.ip); });
+                
+                // else..
+
                 console.log(pos);
                 initializeListMap(pos);
 
