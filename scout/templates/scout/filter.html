@@ -8,8 +8,15 @@
 <div class="scout-filter-container">
     <h2 class="visually-hidden">Filter</h2>
 
-    <div style="padding: 10px 20px; color: #444; font-size: 14px; ">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet libero rhoncus, porta nisi id, volutpat lorem. Nullam nec elementum tortor.
+    <div class="scout-filter-results-container">
+
+        <div class="scout-filter-results">
+            <div>Filtering by: <span id="filter_label_text">None</span></div>
+            <div>Results: {{ spots|length }}</div>
+        </div>
+
+
+
     </div>
 
     {% include "scout/include/filter.html" %}

@@ -24,6 +24,14 @@ body { overflow: hidden; }
         // content
         .scout-content {
 
+            // filter
+            .scout-filter-results-container {
+                .scout-filter-results { display: block; width: 100%; }
+                .scout-filter-display {
+                    a {  }
+                }
+            }
+
             .scout-list-container {
 
                 .scout-list {

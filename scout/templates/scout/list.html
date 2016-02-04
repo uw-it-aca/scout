@@ -10,8 +10,9 @@
 
     <div class="scout-filter-results">
         <div><a href="/">All</a> | <a href="/?campus0=seattle">Seattle</a> | <a href="/?campus0=bothell">Bothell</a> | <a href="/?campus0=tacoma">Tacoma</a> | <a href="/?campus0=south_lake_union">South Lake Union</a></div>
+        <div style="text-align:right;"><a href="/filter/">More filters</a></div>
         <div>Filtering by: <span id="filter_label_text">None</span></div>
-        <div>Results: {{ spots|length }}</div>
+        <div>Results: {{ spots|length }} <a href="">clear results</a></div>
     </div>
 
     {% if request.is_mobile or request.is_tablet %}
@@ -31,9 +32,6 @@
         {% for spot in spots %}
             <li class="scout-list-item" id="{{ spot.spot_id }}">
                 <a class="clearfix" href="detail/{{ spot.spot_id }}">
-
-                    <!--spacescout example... /image/space/518/1114/thumb/constrain/width:150 -->
-                    <!-- scout output... /api/v1/spot/4940/image/7329 -->
 
                     {% if spot.images %}
                     <div class="scout-spot-image" style="background:url('//spotseeker-test.cac.washington.edu{{spot.images.0.url}}') no-repeat center center;">&nbsp;</div>
