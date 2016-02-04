@@ -141,6 +141,16 @@ function initializeListMap(pos) {
             },
         });
 
+        // Add radius overlay and bind to location marker
+        var circle = new google.maps.Circle({
+            map: map,
+            radius: 200,    // 10 miles in metres
+            fillColor: '#a94442',
+            fillOpacity: 0.1,
+            strokeWeight: 0
+        });
+        circle.bindTo('center', locationMarker, 'position');
+
         map.setOptions({styles: styles});
 
         // multiple pins on a single map
