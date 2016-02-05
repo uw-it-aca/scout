@@ -13,7 +13,7 @@ var List = {
 
     order_spot_list: function () {
         var spots = $(".scout-list-item");
-        spots.sort(function(a, b) {
+        spots.detach().sort(function(a, b) {
             var a_distance = parseInt($($(a).find(".distance-number")[0]).html(), 10);
             var b_distance = parseInt($($(b).find(".distance-number")[0]).html(), 10);
             if(a_distance < b_distance){
@@ -24,7 +24,7 @@ var List = {
                 return 0;
             }
         });
-        $("#scout-list").html(spots);
+        $("#scout-list").append(spots);
 
     },
     update_spots_with_distance: function () {
