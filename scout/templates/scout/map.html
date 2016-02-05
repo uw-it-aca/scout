@@ -8,12 +8,12 @@
 
 <div class="scout-filter-results-container">
 
-    <div class="scout-filter-results">
-        <div><a href="/map/">All</a> | <a href="/map/?campus0=seattle">Seattle</a> | <a href="/map/?campus0=bothell">Bothell</a> | <a href="/map/?campus0=tacoma">Tacoma</a> | <a href="/map/?campus0=south_lake_union">South Lake Union</a></div>
-        <div>Filtering by: <span id="filter_label_text">None</span></div>
-        <div>Results: {{ spots|length }}</div>
-    </div>
+    <div style="margin-bottom: 5px;"><a href="/map/">All</a> | <a href="/map/?campus0=seattle">Seattle</a> | <a href="/map/?campus0=bothell">Bothell</a> | <a href="/map/?campus0=tacoma">Tacoma</a> | <a href="/map/?campus0=south_lake_union">South Lake Union</a> | <a href="/filter/">...More filters</a></div>
 
+    <div class="scout-filter-results">
+        <div>Filtering by: <span id="filter_label_text">None</span></div>
+        <div>Results: {{ spots|length }} <a href="">reset filter</a></div>
+    </div>
 
     {% if request.is_mobile or request.is_tablet %}
     <div class="scout-filter-display">
@@ -27,154 +27,25 @@
 
 <!-- show a map on the list page -->
 <div class="scout-map" style="margin:0;">
-    <div id="list_map" style="height:200px"></div>
+    <div id="list_map">
+        <div class="loader" style="position:absolute; top: 50%; left: 50%; margin-left:-10px; margin-top: -10px;">Loading...</div>
+    </div>
 </div>
 
-<!-- since turbolinks loads the full body... generate this function in the template. then, call the function in the map.js file -->
 <script type="text/javascript">
+window.spot_locations = {
+    {% for spot in spots %}
+        '{{ spot.spot_id }}': {
+            "spot_name": '{{ spot.name }}',
+                "id": '{{ spot.spot_id }}',
+                "building": '{{ spot.building_name }}',
+                "lat": '{{ spot.latitude }}',
+                "lng": '{{ spot.longitude }}',
+                //"icon": 'fa-cutlery',
+        },
+    {% endfor %}
+};
 
-function initializeListMap(pos) {
-
-	var mapExists = document.getElementById("list_map");
-	var mapOptions;
-
-	if(mapExists) {
-
-        // center map on center location received from user
-		mapCenter = new google.maps.LatLng(pos.lat, pos.lng);
-
-        mapOptions = {
-	        center: mapCenter,
-	        zoom: 15,
-            //disableDefaultUI: true, // a way to quickly hide all controls
-            mapTypeControl: false,
-            streetViewControl: false,
-	    };
-
-        var styles = [
-            {
-                "featureType": "poi.place_of_worship",
-                "elementType": "all",
-                "stylers": [
-                    {
-                        "visibility": "off"
-                    }
-                ]
-            },
-            {
-                "featureType": "poi.business",
-                "elementType": "all",
-                "stylers": [
-                    {
-                        "visibility": "off"
-                    }
-                ]
-            }
-        ]
-
-		var map = new google.maps.Map(document.getElementById('list_map'), mapOptions);
-
-        // current location marker
-        var locationMarker = new google.maps.Marker({
-            position: mapCenter,
-            map: map,
-            icon: {
-                path: google.maps.SymbolPath.CIRCLE,
-                fillColor: '#3498db', // red
-                fillOpacity: 1,
-                strokeColor: '#ffffff',
-                scale: 8,
-                strokeWeight: 3
-            },
-        });
-
-        // Add radius overlay and bind to location marker
-        var circle = new google.maps.Circle({
-            map: map,
-            radius: 200,    // 10 miles in metres
-            fillColor: '#3498db',
-            fillOpacity: 0.1,
-            strokeWeight: 0
-        });
-        circle.bindTo('center', locationMarker, 'position');
-
-        map.setOptions({styles: styles});
-
-        // multiple pins on a single map
-        var locations = [
-            {% for spot in spots %}
-            {
-                "spot_name" : '{{ spot.name }}',
-                "id" : '{{ spot.spot_id }}',
-                "lat" : '{{ spot.latitude }}',
-                "lng" : '{{ spot.longitude }}',
-                "building" : '{{ spot.building_name }}',
-                "icon": 'fa-cutlery',
-            },
-            {% endfor %}
-		]
-
-        var bounds = new google.maps.LatLngBounds();
-
-        // add the marker position to boundary
-        bounds.extend(locationMarker.position);
-
-        // create and open InfoWindow.
-        var infoWindow = new google.maps.InfoWindow();
-        var markers = [];
-
-		for (var i = 0; i < locations.length; i++) {
-
-            var data = locations[i];
-
-			var marker = new MarkerWithLabel({
-		        position: new google.maps.LatLng(data.lat, data.lng),
-		        map: map,
-                animation: google.maps.Animation.DROP,
-                //labelContent: "<i class='fa " + data.icon +"'></i>",
-                //labelContent: "<i class='fa " + data.icon +"'></i><span class='marker-text'>" + data.spot_name + "</span>",
-                labelAnchor: new google.maps.Point(6, 6),
-                labelClass: "map-label", // the CSS class for the label
-                icon: {
-                    path: google.maps.SymbolPath.CIRCLE,
-            		fillColor: '#6564A8',
-            		fillOpacity: 1,
-            		strokeColor: '#ffffff',
-                    scale: 8,
-            		strokeWeight: 3
-            	},
-
-		    });
-
-            markers.push(marker);
-
-            // attach click event to the marker
-            (function (marker, data) {
-
-                google.maps.event.addListener(marker, "click", function (e) {
-
-                    //Wrap the content inside an HTML DIV in order to set height and width of InfoWindow.
-                    //infoWindow.setContent("<div style = 'width:200px;'><a href='/detail/" + data.id + "' style='text-decoration:none;color:#222;'>" + data.spot_name + "</a></div>");
-                    infoWindow.setContent("<div>"+data.spot_name+"<br>"+data.building+"<br><a href='/detail/"+data.id+"'>View details</a></div>");
-                    infoWindow.open(map, marker);
-                });
-
-            })(marker, data);
-
-            // add the marker position to boundary
-            bounds.extend(marker.position);
-
-		}
-
-        // zoom the map automatically using the bounds of all markers
-        map.fitBounds(bounds);
-
-        // cluster the markers using marker clusterer
-        //var markerCluster = new MarkerClusterer(map, markers);
-
-	}
-
-}
 </script>
 
 {% endblock %}

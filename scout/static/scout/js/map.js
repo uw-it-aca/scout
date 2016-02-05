@@ -41,7 +41,6 @@ var Map = {
     },
 
     init_map: function () {
-        //set user position
         // list map... location on list.html and map.html (mobile aned desktop)
         if( $("#list_map").length > 0 ) {
             Map.get_position(Map.update_list_map);
@@ -54,11 +53,6 @@ var Map = {
             initializeDetailMap();
         }
 
-        // size the map on map.html (mobile only)
-        if($(".scout-map #list_map").length > 0) {
-            var offsetHeight = ($(".scout-header").outerHeight() + $(".scout-filter-results-container").outerHeight() + $(".scout-footer").outerHeight());
-            $("#list_map").height($(window).outerHeight() - offsetHeight);
-        }
     },
 
     update_map: function(position) {
@@ -237,16 +231,11 @@ var Map = {
 
 $(window).resize(function() {
 	// list map
-
 	if($("#list_map").length > 0) {
 		Map.update_map(window.user_position);
 	}
-
 	// detail page map
 	if($("#detail_map").length > 0) {
 		initializeDetailMap();
 	}
-
 });
-
-

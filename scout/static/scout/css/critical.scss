@@ -47,8 +47,8 @@ h1 {
             display: flex;
             flex-flow: row wrap;
 
-            li { margin: 0; padding: 0; /*width: 105px;*/ flex: 1 auto;
-                a { display: block;  color: #666; text-decoration: none; text-align: center; border-bottom:solid 3px #fff;}
+            li { margin: 0 20px; padding: 0; flex: 1 0;
+                a { display: block;  color: #666; text-decoration: none; text-align: center; border-bottom:solid 3px #fff; }
             }
 
             //li:nth-child(2) { margin: 0 10px; }
@@ -134,8 +134,6 @@ h1 {
         // details
         .scout-details-container {
 
-            .scout-spot-alert { margin: 0; padding: 10px 20px; background: #d9edf7; color: #31708f; font-size: 14px; }
-
             .scout-spot-image { background-size: cover; background-repeat: no-repeat; background-position: center center; min-height: 100px; position: relative;
 
                 //border-top-left-radius: 2px;
@@ -167,6 +165,8 @@ h1 {
                     span { margin-right: 10px; }
                 }
             }
+
+            .scout-spot-alert { margin: 0; padding: 15px 20px; background: #fcf8e3; color: #8a6d3b; font-size: 14px; }
 
             a { text-decoration: none; color: #666; font-size: 14px; display: inline-block; width: 100%; text-overflow: ellipsis; overflow: hidden; line-height: 30px; white-space: nowrap;
                 .fa { color: #6564A8; margin-right: 10px; font-size: 20px; }

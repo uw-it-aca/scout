@@ -1,7 +1,6 @@
 $(document).on('ready page:load page:restore', function(event) {
 
-	/// async load css by flipping the media attribute to all
-	$('link[rel="stylesheet"]').attr('media', 'all');
+    Layout.init_layout();
 
     Filter.init_events();
 
@@ -39,13 +38,6 @@ $(document).on('ready page:load page:restore', function(event) {
         $('body').append('<div class="modal-overlay"><div class="modal-img"><img src="' + imagePath.replace("small","large") + '" /></div></div>');
     }
 
-    // details spot image aspect ratio 16:9
-	if($(".scout-details-container .scout-spot-image").length > 0) {
-        var aspectHeight = Math.round(( $(".scout-spot-image").width() /16)*9);
-        $(".scout-spot-image").height(aspectHeight);
-	}
-
-
 });
 
 // scrollTo function
@@ -75,4 +67,3 @@ $.fn.scrollTo = function(target, options, callback) {
         });
     });
 };
-

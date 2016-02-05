@@ -35,8 +35,9 @@ html.turbolinks-progress-bar::before {
         // details
         .scout-details-container {
 
-            .scout-spot-meta { margin-bottom: 15px; }
-            .scout-spot-phone { padding: 0 20px; font-size: 18px; }
+            .scout-spot-meta { }
+            .scout-spot-alert { }
+            .scout-spot-phone { padding: 0 20px; font-size: 18px; margin-top: 20px; }
             .scout-spot-menu { padding: 0 20px; font-size: 18px; }
             .scout-spot-website { padding: 0 20px; padding-bottom: 20px; font-size: 18px;  }
 
