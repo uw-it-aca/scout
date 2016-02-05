@@ -40,12 +40,6 @@ $(document).on('ready page:load page:restore', function(event) {
 
 });
 
-function blah() {
-    var aspectHeight = Math.round(( $(".scout-details-container .scout-spot-image").width() /16)*9);
-    $(".scout-details-container .scout-spot-image").height(aspectHeight);
-}
-
-
 // scrollTo function
 
 $.fn.scrollTo = function(target, options, callback) {
