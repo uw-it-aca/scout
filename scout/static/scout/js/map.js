@@ -34,8 +34,10 @@ var Map = {
     },
 
     init_map: function () {
+
         //set user position
         Map.get_position();
+
         // list map... location on list.html and map.html (mobile aned desktop)
         if( $("#list_map").length > 0 ) {
             initializeListMap(window.user_position);
@@ -51,6 +53,7 @@ var Map = {
             var offsetHeight = ($(".scout-header").outerHeight() + $(".scout-filter-results-container").outerHeight() + $(".scout-footer").outerHeight());
             $("#list_map").height($(window).outerHeight() - offsetHeight);
         }
+
     },
 };
 
