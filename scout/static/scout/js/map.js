@@ -30,7 +30,7 @@ var Map = {
     update_user_position: function (position) {
         var coords = new google.maps.LatLng(position.latitude, position.longitude);
         window.user_position = coords;
-        List.add_spot_distances();
+        List.update_spots_with_distance();
     },
 
     init_map: function () {

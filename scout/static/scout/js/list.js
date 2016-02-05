@@ -26,6 +26,10 @@ var List = {
         });
         $("#scout-list").html(spots);
 
+    },
+    update_spots_with_distance: function () {
+        List.add_spot_distances();
+        List.order_spot_list();
     }
 
 };
