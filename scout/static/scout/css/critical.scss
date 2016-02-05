@@ -47,8 +47,8 @@ h1 {
             display: flex;
             flex-flow: row wrap;
 
-            li { margin: 0; padding: 0; /*width: 105px;*/ flex: 1 auto;
-                a { display: block;  color: #666; text-decoration: none; text-align: center; border-bottom:solid 3px #fff;}
+            li { margin: 0 20px; padding: 0; flex: 1 0;
+                a { display: block;  color: #666; text-decoration: none; text-align: center; border-bottom:solid 3px #fff; }
             }
 
             //li:nth-child(2) { margin: 0 10px; }
