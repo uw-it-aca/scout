@@ -10,7 +10,7 @@ $(document).on('ready page:load page:restore', function(event) {
 
     // handle gallery images
     $('#imageContainer img').each(function (index) {
-        if ($(this).attr('onclick') !== null) {
+        if ($(this).attr('onclick') !== undefined) {
             if ($(this).attr('onclick').indexOf("runThis()") == -1) {
                 $(this).click(function () {
                     $(this).attr('onclick');
