@@ -1,8 +1,5 @@
 $(document).on('ready page:load page:restore', function(event) {
 
-	/// async load css by flipping the media attribute to all
-	$('link[rel="stylesheet"]').attr('media', 'all');
-
     Layout.init_layout();
 
     Filter.init_events();
