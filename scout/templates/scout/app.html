@@ -85,6 +85,8 @@
     <script async="async" src="{% static "scout/js/web.js" %}"></script>
     <script async="async" src="{% static "scout/js/map.js" %}"></script>
     <script async="async" src="{% static "scout/js/filter.js" %}"></script>
+    <script async="async" src="{% static "scout/js/navigation.js" %}"></script>
+    <script async="async" src="{% static "scout/js/list.js" %}"></script>
 
     <!-- turbolinks must be last -->
     <script async="async" src="{% static "turbolinks/turbolinks.js" %}"></script>
@@ -93,7 +95,7 @@
     <link href='https://fonts.googleapis.com/css?family=Raleway:700,900' rel='stylesheet' type='text/css'>
 
     <!-- this script is penalized for being a render blocker... but the trade-off is better since it works best w/ turbolinks -->
-    <script src="//maps.googleapis.com/maps/api/js"></script>
+    <script src="//maps.googleapis.com/maps/api/js?libraries=geometry"></script>
     <script src="//google-maps-utility-library-v3.googlecode.com/svn/trunk/markerwithlabel/src/markerwithlabel.js"></script>
     <script src="//google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclustererplus/src/markerclusterer.js"></script>
     <script src="//google-maps-utility-library-v3.googlecode.com/svn/trunk/geolocationmarker/src/geolocationmarker-compiled.js"></script>
