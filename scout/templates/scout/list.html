@@ -42,7 +42,7 @@
                     <div class="scout-spot-content">
 
                         <div style="padding:0 10px;">
-                            <h3 class="scout-spot-name">{{ spot.name }}</h3>
+                            <h3 class="scout-spot-name">{{ spot.name }} <span class="scout-spot-distance"><span class="distance-number">-</span>&nbsp;ft</span></h3>
 
                             {% if is_desktop %}
                             <span class="scout-spot-type">{% if spot.spot_types %}{% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}</span>{% endfor %}{% else %} <span style="color:red;">SPOT_TYPE</span> {% endif %}</span>
@@ -62,7 +62,7 @@
                             </div>
 
                             <span class="scout-spot-status">{% if spot.is_open %}<span class="open">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</span>
-                            <div class="scout-spot-distance"><span class="distance-number">-</span>m</div>
+
                         </div>
 
                     </div>
