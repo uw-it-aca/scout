@@ -1,22 +1,22 @@
 $(document).on('ready page:load page:restore', function(event) {
 
 	/// async load css by flipping the media attribute to all
-    console.log("styles on")
 	$('link[rel="stylesheet"]').attr('media', 'all');
 
     Filter.init_events();
 
     Navigation.set_page_tab();
 
+    Map.init_map();
+
     // handle gallery images
     $('#imageContainer img').each(function (index) {
-        if ($(this).attr('onclick') != null) {
+        if ($(this).attr('onclick') !== null) {
             if ($(this).attr('onclick').indexOf("runThis()") == -1) {
                 $(this).click(function () {
                     $(this).attr('onclick');
                     var src = $(this).attr("src");
                     ShowLargeImage(src);
-                    console.log("asdkfljlask;djflkasjdf");
                 });
             }
         }
@@ -74,31 +74,5 @@ $.fn.scrollTo = function(target, options, callback) {
             }
         });
     });
-}
-
-
-// handle navigation
-var Navigation = {
-
-    set_page_tab: function(){
-
-        // get the current location
-        var pathname = window.location.pathname;
-
-        if (pathname.indexOf("/discover") >= 0) {
-            $("#link_discover").css({"border-bottom":"solid 3px #6564A8", "color":"#6564A8"});
-        }
-        else if (pathname.indexOf("/filter") >= 0) {
-            $("#link_filter").css({"border-bottom":"solid 3px #6564A8", "color":"#6564A8"});
-        }
-        else if (pathname.indexOf("/detail") >= 0) {
-            $("#link_discover").css("border-bottom", "solid 3px #fff");
-            $("#link_all").css("border-bottom", "solid 3px #fff");
-            $("#link_filter").css("border-bottom", "solid 3px #fff");
-        }
-        else {
-            $("#link_all").css({"border-bottom":"solid 3px #6564A8", "color":"#6564A8"});
-        }
-
-    },
 };
+
