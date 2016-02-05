@@ -8,15 +8,7 @@
 
 <div class="scout-details-container">
 
-    {% if spot.has_alert %}
-    <div class="scout-spot-alert">
-        <i class="fa fa-exclamation-triangle"></i> {{ spot.alert_notes }}
-    </div>
-    {% else %}
-    <div class="scout-spot-alert">
-        <i class="fa fa-exclamation-triangle"></i> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla in consequat purus.
-    </div>
-    {% endif %}
+
 
     <div class="scout-card" style="padding: 0;">
 
@@ -62,6 +54,16 @@
                 {% else %} <span style="color:red;">missing foodtype</span> {% endif %}
             </div>
         </div>
+
+        {% if spot.has_alert %}
+        <div class="scout-spot-alert">
+            <i class="fa fa-exclamation-triangle"></i> {{ spot.alert_notes }}
+        </div>
+        {% else %}
+        <div class="scout-spot-alert">
+            <i class="fa fa-exclamation-triangle"></i> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla in consequat purus.
+        </div>
+        {% endif %}
 
         <div class="scout-spot-phone">
             {% if spot.phone %}
