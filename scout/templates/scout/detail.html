@@ -16,7 +16,7 @@
         {% if spot.images %}
         <div class="scout-spot-image" style="background:url('//spotseeker-test.cac.washington.edu{{spot.images.0.url}}') no-repeat center center;">
         {% else %}
-        <div class="scout-spot-image" style="background: #ccc url('{% static "scout/img/placeholder-1000.png" %}') no-repeat center center; background-size: contain;">
+        <div class="scout-spot-image" style="background: #e5e6e9 url('{% static "scout/img/placeholder-1000.png" %}') no-repeat center center; background-size: contain;">
         {% endif %}
 
             <div class="scout-spot-status">{% if spot.is_open %}<span class="open">OPEN NOW</span>{% else %}<span class="closed">CLOSED</span>{% endif %}</div>

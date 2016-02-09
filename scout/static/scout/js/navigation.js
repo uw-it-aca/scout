@@ -12,9 +12,9 @@ var Navigation = {
             $("#link_filter").css({"border-bottom":"solid 3px #6564A8", "color":"#6564A8"});
         }
         else if (pathname.indexOf("/detail") >= 0) {
-            $("#link_discover").css("border-bottom", "solid 3px #fff");
-            $("#link_all").css("border-bottom", "solid 3px #fff");
-            $("#link_filter").css("border-bottom", "solid 3px #fff");
+            $("#link_discover").css("border-bottom", "solid 3px #fafafa");
+            $("#link_all").css("border-bottom", "solid 3px #fafafa");
+            $("#link_filter").css("border-bottom", "solid 3px #fafafa");
         }
         else {
             $("#link_all").css({"border-bottom":"solid 3px #6564A8", "color":"#6564A8"});
