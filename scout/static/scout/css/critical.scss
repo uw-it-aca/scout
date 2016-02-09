@@ -23,7 +23,7 @@ h1 {
     font-size: 30px;
     text-align: left;
     a {
-        color: #111;
+        color: #fff;
         text-decoration: none;
         line-height: 60px;
         display: inline-block;
@@ -57,7 +57,7 @@ h1 {
 
     .scout-filter { position: absolute; top: 0; right:20px; line-height: 60px;
         a { display: inline-block; text-decoration: none; color: #bbb;
-            .fa { color: $scout-purple; }
+            .fa { color: #fff; }
         }
     }
 
