@@ -8,15 +8,15 @@
 
 <div class="scout-filter-results-container">
 
-    <div style="margin-bottom: 5px;"><a href="/">All</a> | <a href="/?campus0=seattle">Seattle</a> | <a href="/?campus0=bothell">Bothell</a> | <a href="/?campus0=tacoma">Tacoma</a> | <a href="/?campus0=south_lake_union">South Lake Union</a> | <a href="/filter/">...More filters</a></div>
-
-    {% include "scout/include/filter_results_bar.html" %}
+    <div style="margin-bottom: 5px;"><a href="/">All</a> | <a href="/?campus0=seattle">Seattle</a> | <a href="/?campus0=bothell">Bothell</a> | <a href="/?campus0=tacoma">Tacoma</a> | <a href="/?campus0=south_lake_union">South Lake Union</a></div>
 
     {% if request.is_mobile or request.is_tablet %}
-    <div class="scout-filter-display">
-        <a id="map_link" href="/map/"><i class="fa fa-map"></i> Map</a>
+    <div style="text-align:right;">
+    <a id="map_link" href="/map/"><i class="fa fa-map"></i> map</a>
     </div>
     {% endif %}
+
+    {% include "scout/include/filter_results_bar.html" %}
 
 </div>
 

@@ -10,7 +10,7 @@ $scout-purple: #6564A8;
 
 // header
 
-.scout-header { background: #fff; border-bottom: solid 1px #d0d1d5;
+.scout-header { background: #fff; border-bottom: solid 1px #d0d1d5; position: relative;
 
 h1 {
     margin: 0;
@@ -55,6 +55,12 @@ h1 {
         }
     }
 
+    .scout-filter { position: absolute; top: 0; right:20px; line-height: 60px;
+        a { display: inline-block; text-decoration: none; color: #bbb;
+            .fa { color: $scout-purple; }
+        }
+    }
+
 }
 
 // scrolling body
@@ -81,10 +87,7 @@ h1 {
 
         // filter
         .scout-filter-results-container { padding: 10px 20px; color: #444; font-size: 14px;
-            .scout-filter-results { display: inline-block; width: 80%; }
-            .scout-filter-display { display: inline-block; width: 20%; vertical-align: top;
-                a { display: block; line-height: 35px; text-decoration: none; color: #444; }
-            }
+            .scout-filter-results { }
         }
 
         // list
