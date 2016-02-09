@@ -16,14 +16,14 @@ h1 {
     margin: 0;
     line-height: 60px;
     height: 60px;
-    color: #fff;
+    color: $scout-purple;
     text-transform: uppercase;
     font-family: 'Raleway', sans-serif;
     font-weight: 900;
     font-size: 30px;
     text-align: left;
     a {
-        color: #fff;
+        color: $scout-purple;
         text-decoration: none;
         line-height: 60px;
         display: inline-block;
@@ -57,7 +57,7 @@ h1 {
 
     .scout-filter { position: absolute; top: 0; right:20px; line-height: 60px;
         a { display: inline-block; text-decoration: none; color: #bbb;
-            .fa { color: #fff; }
+            .fa { color: $scout-purple; }
         }
     }
 
