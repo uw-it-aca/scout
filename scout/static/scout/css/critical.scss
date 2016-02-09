@@ -23,7 +23,7 @@ h1 {
     font-size: 30px;
     text-align: left;
     a {
-        color: $scout-purple;
+        color: #111;
         text-decoration: none;
         line-height: 60px;
         display: inline-block;
@@ -160,7 +160,7 @@ h1 {
                 }
             }
 
-            .scout-spot-meta { background: #7f8c8d; color: #fff; padding: 10px 20px; position: relative;
+            .scout-spot-meta { background: $scout-purple; color: #fff; padding: 10px 20px; position: relative;
 
                 .scout-spot-name { font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 18px; margin: 0; }
                 .scout-spot-type { text-transform: uppercase; font-weight: normal; font-size: 12px; margin: 0; position: absolute; top: 15px; right:20px; color: #ccc;
