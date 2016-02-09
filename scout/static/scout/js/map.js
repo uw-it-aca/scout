@@ -113,11 +113,11 @@ var Map = {
                 map: map,
                 icon: {
                     path: google.maps.SymbolPath.CIRCLE,
-                    fillColor: '#3498db', // red
+                    fillColor: '#3498db',
                     fillOpacity: 1,
                     strokeColor: '#ffffff',
-                    scale: 8,
-                    strokeWeight: 3
+                    scale: 6,
+                    strokeWeight: 2
                 },
             });
 
@@ -125,7 +125,7 @@ var Map = {
             var circle = new google.maps.Circle({
                 map: map,
                 radius: 200,    // 10 miles in metres
-                fillColor: '#3498db',
+                fillColor: '#2980b9',
                 fillOpacity: 0.1,
                 strokeWeight: 0
             });
@@ -160,7 +160,7 @@ var Map = {
                         fillOpacity: 1,
                         strokeColor: '#ffffff',
                         scale: 8,
-                        strokeWeight: 3
+                        strokeWeight: 2
                     },
                     //id: data.id,
                 });
