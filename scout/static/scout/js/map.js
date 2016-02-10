@@ -2,23 +2,27 @@ var Map = {
     get_position: function (update_callback) {
         var default_position = { latitude: 47.653811, longitude: -122.307815 };
 
-        // set position to default so we have something to use before user accepts
-        // sharing of their location (only an issue if they haven't pre-saved an option)
-        Map.update_user_position(default_position, update_callback);
-
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function(position) {
-                // On user accepting location sharing
-                Map.update_user_position(position.coords, update_callback);
-            }, function() {
-                // On error
-               Map.update_user_position(default_position, update_callback);
-            });
+        // Use a session cookie to store user's location, prevent querying for
+        // geolocation permission if cookie is set
+        if (Cookies.get('user_position') === undefined){
+            Map.update_user_position(default_position, update_callback);
+            // set position to default so we have something to use before user accepts
+            // sharing of their location (only an issue if they haven't pre-saved an option)
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    // On user accepting location sharing
+                    Map.update_user_position(position.coords, update_callback);
+                });
+            }
+        } else {
+            if (typeof update_callback === 'function') {
+                update_callback();
+            }
         }
     },
 
     get_distance_from_current_position: function (item_position) {
-        return Map._get_distance_between_positions(window.user_position, item_position);
+        return Map._get_distance_between_positions(Map.get_latlng_from_cookie(), item_position);
     },
 
     _get_distance_between_positions: function (current_position, item_position) {
@@ -26,9 +30,15 @@ var Map = {
         return distance;
     },
 
+    get_latlng_from_cookie: function () {
+        var cookie_data = Cookies.get('user_position');
+        var data = JSON.parse(cookie_data);
+        return new google.maps.LatLng(data['latitude'], data['longitude']);
+    },
+
     update_user_position: function (position, update_callback) {
-        var coords = new google.maps.LatLng(position.latitude, position.longitude);
-        window.user_position = coords;
+        Cookies.set('user_position', {'latitude': position['latitude'],
+                                      'longitude': position['longitude']});
         // Run the update callback of it's passed
         if (typeof update_callback === 'function') {
             update_callback();
@@ -37,17 +47,17 @@ var Map = {
 
     update_list_map: function () {
         List.update_spots_with_distance();
-        Map.update_map(window.user_position);
+        Map.update_map(Map.get_latlng_from_cookie());
     },
 
     init_map: function () {
         // list map... location on list.html and map.html (mobile aned desktop)
         if( $("#list_map").length > 0 ) {
             Map.get_position(Map.update_list_map);
-            Map.initializeListMap(window.user_position);
+            //Map.initializeListMap(Map.get_latlng_from_cookie());
         }
 
-        // detail page map
+         //detail page map
         if($("#detail_map").length > 0) {
             Map.get_position();
             initializeDetailMap();
@@ -103,6 +113,7 @@ var Map = {
                     ]
                 }
             ];
+
 
             var map = new google.maps.Map(document.getElementById('list_map'), mapOptions);
 
@@ -232,7 +243,7 @@ var Map = {
 $(window).resize(function() {
 	// list map
 	if($("#list_map").length > 0) {
-		Map.update_map(window.user_position);
+		Map.update_map(Map.get_latlng_from_cookie());
 	}
 	// detail page map
 	if($("#detail_map").length > 0) {

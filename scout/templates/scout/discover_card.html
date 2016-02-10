@@ -1,0 +1,11 @@
+{% block web_content %}
+<div class="scout-card scout-discover-content">
+    <h3>{{ card_title }}</h3>
+    <ul>
+        {% for spot in open %}
+        <li><a href="/detail/{{ spot.spot_id }}"><i class="fa fa-map-marker"></i> {{spot.name}}</a></li>
+        {% endfor %}
+        <li style="padding-left: 15px;"><a href="/?{{ card_filter_url }}">More...</a></li>
+    </ul>
+</div>
+{% endblock %}
