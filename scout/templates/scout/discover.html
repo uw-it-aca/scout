@@ -12,15 +12,15 @@
     <h2 class="visually-hidden">Discover</h2>
 
     <div style="padding: 10px 20px; color: #444; font-size: 14px; ">
-        <div style="margin-bottom:8px;">You are currently not sharing your location, so we've put you in the middle of the fountation.&nbsp;&nbsp;<a href=""><i class="fa fa-location-arrow"></i> Share location</a></div>
-        <div>You are sharing your location: <span id="user_location">--</span>&nbsp;&nbsp;<a href=""><i class="fa fa-location-arrow"></i> Update location</a></div>
+        <div style="margin-bottom:8px;">DEFAULT location</div>
+        <div>SHARED location: <span id="user_location">--</span>&nbsp;&nbsp;<a href=""><i class="fa fa-location-arrow"></i> Update location</a></div>
     </div>
 
     {% if open %}
     <div class="scout-card scout-discover-content">
 
         <!--<div style="background:url('{% static "scout/img/starbucks.jpg" %}') no-repeat center center; background-size:cover;height:150px;">&nbsp</div>-->
-        <h3>Open near me...</h3>
+        <h3>Open near me (or fountain)...</h3>
         <ul>
             {% for spot in open %}
             <li><a href="/detail/{{ spot.spot_id }}"><i class="fa fa-map-marker"></i> {{spot.name}}</a></li>
