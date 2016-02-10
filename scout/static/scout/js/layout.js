@@ -17,5 +17,12 @@ var Layout = {
             $("#list_map").height($(window).outerHeight() - offsetHeight);
         }
 
+        // show user their location from cookie
+        if($("#user_location").length > 0) {
+            var cookie_data = Cookies.get('user_position');
+            var data = JSON.parse(cookie_data);
+            $("#user_location").html("lat:"+ data.latitude + " lon:" + data.longitude);
+        }
+
     },
 };
