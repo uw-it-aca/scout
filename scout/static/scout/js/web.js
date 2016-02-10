@@ -1,4 +1,4 @@
-$(document).on('ready page:load page:restore', function(event) {
+$(document).on('ready', function(event) {
 
     Layout.init_layout();
 
