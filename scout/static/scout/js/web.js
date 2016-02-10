@@ -1,4 +1,10 @@
 $(document).on('ready', function(event) {
+    // page based JS calls
+    var page_path = window.location.pathname;
+
+    if (page_path.indexOf("discover") !== -1) {
+        Discover.fetch_discover_cards();
+    }
 
     Layout.init_layout();
 

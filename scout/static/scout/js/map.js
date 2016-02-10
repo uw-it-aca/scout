@@ -68,6 +68,7 @@ var Map = {
     update_map: function(position) {
         // Updates the map on resize or re-centers if client position changes
         if(window.map !== undefined) {
+            console.log('has map');
             window.user_location_marker.setPosition(position);
 
             //Add user position to marker bounds and re-fit
@@ -76,6 +77,7 @@ var Map = {
             window.map.fitBounds(bounds);
 
         } else {
+            console.log('no map');
             Map.initializeListMap(position);
         }
     },
