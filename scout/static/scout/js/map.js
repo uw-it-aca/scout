@@ -60,10 +60,9 @@ var Map = {
     },
 
     init_map: function () {
-        // list map... location on list.html and map.html (mobile aned desktop)
+        // list map... location on list.html and map.html (mobile and desktop)
         if( $("#list_map").length > 0 ) {
             Map.get_position(Map.update_list_map);
-            //Map.initializeListMap(Map.get_latlng());
         }
 
          //detail page map

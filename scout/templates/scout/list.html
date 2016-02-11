@@ -76,6 +76,21 @@
 
 </div>
 
+<script type="text/javascript">
+    window.spot_locations = {
+        {% for spot in spots %}
+            '{{ spot.spot_id }}': {
+                "spot_name": '{{ spot.name }}',
+                    "id": '{{ spot.spot_id }}',
+                    "building": '{{ spot.building_name }}',
+                    "lat": '{{ spot.latitude }}',
+                    "lng": '{{ spot.longitude }}',
+                    //"icon": 'fa-cutlery',
+            },
+        {% endfor %}
+    };
+</script>
+
 {% endblock %}
 
 {% block secondary_content %}
@@ -84,22 +99,6 @@
 <div id="list_map" style="height:100%; background: #ddd !important; ">
     <div class="loader" style="position:absolute; top: 50%; left: 50%; margin-left:-10px; margin-top: -10px;">Loading...</div>
 </div>
-
-<script type="text/javascript">
-window.spot_locations = {
-    {% for spot in spots %}
-        '{{ spot.spot_id }}': {
-            "spot_name": '{{ spot.name }}',
-                "id": '{{ spot.spot_id }}',
-                "building": '{{ spot.building_name }}',
-                "lat": '{{ spot.latitude }}',
-                "lng": '{{ spot.longitude }}',
-                //"icon": 'fa-cutlery',
-        },
-    {% endfor %}
-};
-
-</script>
 
 {% endblock %}
 

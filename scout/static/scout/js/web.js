@@ -1,10 +1,14 @@
 $(document).on('ready', function(event) {
     // page based JS calls
     var page_path = window.location.pathname;
-
     if (page_path.indexOf("discover") !== -1) {
         Discover.init_cards();
+    } else if (page_path.indexOf("filter") !== -1) {
+        // filter page
+    } else {
+        List.update_spots_with_distance();
     }
+
 
     Layout.init_layout();
 

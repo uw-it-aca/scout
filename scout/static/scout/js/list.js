@@ -30,6 +30,8 @@ var List = {
 
     },
     update_spots_with_distance: function () {
+        Map.get_position();
+
         List.add_spot_distances();
         List.order_spot_list();
     }
