@@ -24,6 +24,7 @@ var Map = {
     get_latlng: function () {
         var cookie_data = Cookies.get('user_position');
         if(cookie_data === undefined){
+            return new google.maps.LatLng(Map.default_position.latitude, Map.default_position.longitude);
         } else {
             var data = JSON.parse(cookie_data);
             return new google.maps.LatLng(data.latitude, data.longitude);

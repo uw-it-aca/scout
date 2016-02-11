@@ -9,8 +9,8 @@ import urllib
 import json
 
 # using drumheller fountain as the default center
-DEFAULT_LAT = 47.653717
-DEFAULT_LON = -122.307755
+DEFAULT_LAT = 47.653811
+DEFAULT_LON = -122.307815
 
 
 def discover_view(request):
@@ -49,8 +49,8 @@ def discover_view(request):
 
 def discover_card_view(request, discover_category):
     # Will figure this out later
-    lat = None
-    lon = None
+    lat = request.GET.get('latitude', None)
+    lon = request.GET.get('longitude', None)
 
     discover_categories = {
         "open": {
