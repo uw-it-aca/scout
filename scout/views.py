@@ -114,8 +114,11 @@ def discover_card_view(request, discover_category):
     except KeyError:
         raise Http404("Discover card does not exist")
 
+    spots = get_spots_by_filter(discover_data["filter"])
+    if len(spots) == 0:
+        raise Http404("No spots for card")
     context = {
-        "spots": get_spots_by_filter(discover_data["filter"]),
+        "spots": spots,
         "card_title": discover_data["title"],
         "card_filter_url": discover_data["filter_url"]
     }

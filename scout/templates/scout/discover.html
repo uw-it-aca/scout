@@ -15,78 +15,22 @@
         <div style="margin-bottom:8px;">DEFAULT location</div>
         <div>SHARED location: <span id="user_location">--</span>&nbsp;&nbsp;<a href=""><i class="fa fa-location-arrow"></i> Update location</a></div>
     </div>
+    <div id="discover_cards">
+        <div id="open">
+        </div>
 
-    {% if open %}
-    <div class="scout-card scout-discover-content">
+        <div id="coffee">
+        </div>
 
-        <!--<div style="background:url('{% static "scout/img/starbucks.jpg" %}') no-repeat center center; background-size:cover;height:150px;">&nbsp</div>-->
-        <h3>Open near me (or fountain)...</h3>
-        <ul>
-            {% for spot in open %}
-            <li><a href="/detail/{{ spot.spot_id }}"><i class="fa fa-map-marker"></i> {{spot.name}}</a></li>
-            {% endfor %}
-            <li style="padding-left: 15px;"><a href="/?open_now=true">More...</a></li>
-        </ul>
+        <div id="breakfast">
+        </div>
+
+        <div id="late">
+        </div>
+
+        <div id="coupon">
+        </div>
     </div>
-    {% endif %}
-
-    {% if coffee %}
-    <div class="scout-card scout-discover-content">
-
-        <!--<div style="background:url('{% static "scout/img/coffee-shop-1200.jpg" %}') no-repeat center center; background-size:cover; height:150px;">&nbsp</div>-->
-        <h3>Serves Coffee and Espresso</h3>
-        <ul>
-            {% for spot in coffee %}
-            <li><a href="/detail/{{ spot.spot_id }}"><i class="fa fa-map-marker"></i> {{spot.name}} {% if spot.is_open %}<span class="visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</a></li>
-            {% endfor %}
-            <li style="padding-left: 15px;"><a href="/?food0=s_food_espresso">More...</a></li>
-        </ul>
-    </div>
-    {% endif %}
-
-    {% if breakfast %}
-    <div class="scout-card scout-discover-content">
-
-        <!--<div style="background:url('{% static "scout/img/huskygrind.jpg" %}') no-repeat center center; background-size:cover; height:150px;">&nbsp</div>-->
-        <h3>Open for breakfast</h3>
-        <ul>
-            {% for spot in breakfast %}
-            <li><a href="/detail/{{ spot.spot_id }}"><i class="fa fa-map-marker"></i> {{spot.name}} {% if spot.is_open %}<span class="visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</a></li>
-            {% endfor %}
-            <li style="padding-left: 15px;"><a href="/?period0=breakfast">More...</a></li>
-        </ul>
-    </div>
-    {% endif %}
-
-    {% if late_night %}
-    <div class="scout-card scout-discover-content">
-
-        <!--<div style="background:url('{% static "scout/img/coffee-shop-1200.jpg" %}') no-repeat center center; background-size:cover; height:150px;">&nbsp</div>-->
-        <h3>Open late night</h3>
-        <ul>
-            {% for spot in late_night %}
-            <li><a href="/detail/{{ spot.spot_id }}"><i class="fa fa-map-marker"></i> {{spot.name}} {% if spot.is_open %}<span class="visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</a></li>
-            {% endfor %}
-            <li style="padding-left: 15px;"><a href="/?period0=late_night">More...</a></li>
-        </ul>
-    </div>
-    {% endif %}
-
-    {# if coupon #}
-    <div class="scout-card scout-discover-content">
-
-        <!--<div style="background:url('{% static "scout/img/starbucks.jpg" %}') no-repeat center center; background-size:cover;height:150px;">&nbsp</div>-->
-        <h3>Dine with discounts</h3>
-        <ul>
-            {% for spot in coupon %}
-            <li><a href="/detail/{{ spot.spot_id }}"><i class="fa fa-map-marker"></i> {{spot.name}} {% if spot.is_open %}<span class="visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</a></li>
-            {% empty %}
-            <li style="color:red;">there are currently no spots with coupons... remove for visual design</li>
-            {% endfor %}
-            <li style="padding-left: 15px;"><a href="/" style="color:red;">More...</a></li>
-        </ul>
-    </div>
-    {# endif #}
 
 </div>
 

@@ -7,7 +7,7 @@ var List = {
             var spot_data = window.spot_locations[spot_id];
             var coords = new google.maps.LatLng(spot_data.lat, spot_data.lng);
             var distance = Map.get_distance_from_current_position(coords);
-            $($(item).find(".distance-number")[0]).html(Math.round(distance * 3.280839895));
+            $($(item).find(".distance-number")[0]).html(distance);
         });
     },
 

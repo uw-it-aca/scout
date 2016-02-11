@@ -22,7 +22,10 @@ var Map = {
     },
 
     get_distance_from_current_position: function (item_position) {
-        return Map._get_distance_between_positions(Map.get_latlng_from_cookie(), item_position);
+        var distance = Map._get_distance_between_positions(Map.get_latlng_from_cookie(), item_position);
+        // Distance in feet
+        Math.round(distance * 3.280839895);
+        return distance;
     },
 
     _get_distance_between_positions: function (current_position, item_position) {
@@ -33,12 +36,12 @@ var Map = {
     get_latlng_from_cookie: function () {
         var cookie_data = Cookies.get('user_position');
         var data = JSON.parse(cookie_data);
-        return new google.maps.LatLng(data['latitude'], data['longitude']);
+        return new google.maps.LatLng(data.latitude, data.longitude);
     },
 
     update_user_position: function (position, update_callback) {
-        Cookies.set('user_position', {'latitude': position['latitude'],
-                                      'longitude': position['longitude']});
+        Cookies.set('user_position', {'latitude': position.latitude,
+                                      'longitude': position.longitude});
         // Run the update callback of it's passed
         if (typeof update_callback === 'function') {
             update_callback();

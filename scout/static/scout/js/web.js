@@ -3,7 +3,7 @@ $(document).on('ready', function(event) {
     var page_path = window.location.pathname;
 
     if (page_path.indexOf("discover") !== -1) {
-        Discover.fetch_discover_cards();
+        Discover.init_cards();
     }
 
     Layout.init_layout();
