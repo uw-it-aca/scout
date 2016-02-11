@@ -1,17 +1,17 @@
 var Map = {
-    get_position: function (update_callback) {
-        var default_position = { latitude: 47.653811, longitude: -122.307815 };
+    default_position: { latitude: 47.653811, longitude: -122.307815 },
 
+    get_position: function (update_callback) {
         // Use a session cookie to store user's location, prevent querying for
         // geolocation permission if cookie is set
         if (Cookies.get('user_position') === undefined){
-            Map.update_user_position(default_position, update_callback);
+            Map.update_user_position(Map.default_position, update_callback, false);
             // set position to default so we have something to use before user accepts
             // sharing of their location (only an issue if they haven't pre-saved an option)
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function(position) {
                     // On user accepting location sharing
-                    Map.update_user_position(position.coords, update_callback);
+                    Map.update_user_position(position.coords, update_callback, true);
                 });
             }
         } else {
@@ -21,8 +21,17 @@ var Map = {
         }
     },
 
+    get_latlng: function () {
+        var cookie_data = Cookies.get('user_position');
+        if(cookie_data === undefined){
+        } else {
+            var data = JSON.parse(cookie_data);
+            return new google.maps.LatLng(data.latitude, data.longitude);
+        }
+    },
+
     get_distance_from_current_position: function (item_position) {
-        var distance = Map._get_distance_between_positions(Map.get_latlng_from_cookie(), item_position);
+        var distance = Map._get_distance_between_positions(Map.get_latlng(), item_position);
         // Distance in feet
         Math.round(distance * 3.280839895);
         return distance;
@@ -33,15 +42,11 @@ var Map = {
         return distance;
     },
 
-    get_latlng_from_cookie: function () {
-        var cookie_data = Cookies.get('user_position');
-        var data = JSON.parse(cookie_data);
-        return new google.maps.LatLng(data.latitude, data.longitude);
-    },
-
-    update_user_position: function (position, update_callback) {
-        Cookies.set('user_position', {'latitude': position.latitude,
+    update_user_position: function (position, update_callback, is_real_position) {
+        if(is_real_position){
+            Cookies.set('user_position', {'latitude': position.latitude,
                                       'longitude': position.longitude});
+        }
         // Run the update callback of it's passed
         if (typeof update_callback === 'function') {
             update_callback();
@@ -50,14 +55,14 @@ var Map = {
 
     update_list_map: function () {
         List.update_spots_with_distance();
-        Map.update_map(Map.get_latlng_from_cookie());
+        Map.update_map(Map.get_latlng());
     },
 
     init_map: function () {
         // list map... location on list.html and map.html (mobile aned desktop)
         if( $("#list_map").length > 0 ) {
             Map.get_position(Map.update_list_map);
-            //Map.initializeListMap(Map.get_latlng_from_cookie());
+            //Map.initializeListMap(Map.get_latlng());
         }
 
          //detail page map
@@ -71,7 +76,6 @@ var Map = {
     update_map: function(position) {
         // Updates the map on resize or re-centers if client position changes
         if(window.map !== undefined) {
-            console.log('has map');
             window.user_location_marker.setPosition(position);
 
             //Add user position to marker bounds and re-fit
@@ -80,7 +84,6 @@ var Map = {
             window.map.fitBounds(bounds);
 
         } else {
-            console.log('no map');
             Map.initializeListMap(position);
         }
     },
@@ -248,7 +251,7 @@ var Map = {
 $(window).resize(function() {
 	// list map
 	if($("#list_map").length > 0) {
-		Map.update_map(Map.get_latlng_from_cookie());
+		Map.update_map(Map.get_latlng());
 	}
 	// detail page map
 	if($("#detail_map").length > 0) {
