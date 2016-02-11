@@ -34,7 +34,7 @@ var Map = {
     get_distance_from_current_position: function (item_position) {
         var distance = Map._get_distance_between_positions(Map.get_latlng(), item_position);
         // Distance in feet
-        Math.round(distance * 3.280839895);
+        distance = Math.round(distance * 3.280839895);
         return distance;
     },
 
