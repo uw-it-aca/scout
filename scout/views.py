@@ -14,36 +14,7 @@ DEFAULT_LON = -122.307815
 
 
 def discover_view(request):
-    context = {
-        "open": get_spots_by_filter([('limit', 5),
-                                     ('open_now', True),
-                                     ('center_latitude', DEFAULT_LAT),
-                                     ('center_longitude', DEFAULT_LON),
-                                     ('distance', 1000), ]),
-        "coffee": get_spots_by_filter([('extended_info:s_food_espresso', 'true'),
-                                       ('limit', 5),
-                                       ('center_latitude', DEFAULT_LAT),
-                                       ('center_longitude', DEFAULT_LON),
-                                       ('distance', 1000), ]),
-        "coupon": get_spots_by_filter([('extended_info:s_has_coupon',
-                                        'true'),
-                                       ('limit', 5),
-                                       ('center_latitude', DEFAULT_LAT),
-                                       ('center_longitude', DEFAULT_LON),
-                                       ('distance', 1000)]),
-        "breakfast": get_spots_by_filter([('limit', 5),
-                                          ('center_latitude', DEFAULT_LAT),
-                                          ('center_longitude', DEFAULT_LON),
-                                          ('distance', 1000)] +
-                                         get_period_filter('breakfast')),
-        "late_night": get_spots_by_filter([('limit', 5),
-                                           ('center_latitude', DEFAULT_LAT),
-                                           ('center_longitude', DEFAULT_LON),
-                                           ('distance', 1000)] +
-                                          get_period_filter('late_night'))
-    }
     return render_to_response('scout/discover.html',
-                              context,
                               context_instance=RequestContext(request))
 
 
