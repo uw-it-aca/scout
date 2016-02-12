@@ -15,11 +15,12 @@ ACCESS_KEY = getattr(settings, 'SAUCE_ACCESS_KEY', False)
 from sauceclient import SauceClient
 sauce_client = SauceClient(USERNAME, ACCESS_KEY)
 
-class ExampleTestCase(LiveServerTestCase):
+class PageFlowTest(LiveServerTestCase):
 
     def setUp(self):
 
         self.desired_cap = {
+            "name": "Pageflow Tests",
             'platform': "Mac OS X 10.9",
             'browserName': "chrome",
             'version': "31",
@@ -48,12 +49,6 @@ class ExampleTestCase(LiveServerTestCase):
         test = self.driver.find_element_by_id('test')
         self.assertEqual(test.text,"Hello World!")
 
-		# run tests
-		# self.driver.get(
-		# 	'%s%s' % (self.live_server_url, '/')
-		# )
-		# test = self.driver.find_element_by_id('test')
-		# self.assertEqual(test.text,"Hello World!")
 
     # User can browse all spaces on campus for a place to eat without knowing anything about the space - https://jira.cac.washington.edu/browse/SCOUT-1
 

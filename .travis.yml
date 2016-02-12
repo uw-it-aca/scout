@@ -12,7 +12,7 @@ before_script:
   - python manage.py migrate --noinput
 script:
   - pep8 scout/ --exclude=migrations,test
-  - coverage run --source=scout/ --omit=scout/migrations/* manage.py test scout
+  - coverage run --source=scout/ --omit=scout/migrations/* manage.py test scout.tests.SpaceDAOTest
 after_script:
   - coveralls
 notifications:
