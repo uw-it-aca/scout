@@ -7,3 +7,4 @@ ACCESS_KEY = getattr(settings, 'SAUCE_ACCESS_KEY', False)
 
 if USERNAME and ACCESS_KEY:
     from scout.test.fidelity_pageflow import PageFlowTest
+    from scout.test.fidelity_ui import UITest
