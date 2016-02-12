@@ -54,3 +54,16 @@ class UITest(LiveServerTestCase):
         self.driver.get('http://curry.aca.uw.edu:8001/filter/')
         test = self.driver.find_element_by_id('test')
         self.assertEqual(test.text,"Hello World!")
+
+    """
+    Discover page should have user location bar.. Default or shared location
+    should be displayed.
+    """
+
+    """
+    Open card displays 5 open spots ordered by distance.
+    """
+
+    """
+    Coffee card displays 5 spots that serve coffee ordered by distance.
+    """
