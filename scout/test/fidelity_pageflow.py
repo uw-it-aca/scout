@@ -20,7 +20,6 @@ class PageFlowTest(LiveServerTestCase):
     def setUp(self):
 
         self.desired_cap = {
-            "name": "Pageflow Tests",
             'platform': "Mac OS X 10.9",
             'browserName': "chrome",
             'version': "31",
@@ -34,11 +33,15 @@ class PageFlowTest(LiveServerTestCase):
 
     def test_sauce(self):
 
+        sauce_client.jobs.update_job(self.driver.session_id, name="Pageflow: Test Sauce")
+
         self.driver.get('http://localhost:8001/filter/')
         test = self.driver.find_element_by_id('test')
         self.assertEqual(test.text,"Hello World!")
 
     def test_main_navigation(self):
+
+        sauce_client.jobs.update_job(self.driver.session_id, name="Pageflow: Test Navigation")
 
         self.driver.get('http://localhost:8001/')
         self.driver.find_element_by_id('link_discover').click()
