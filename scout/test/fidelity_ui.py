@@ -51,7 +51,7 @@ class UITest(LiveServerTestCase):
     def test_user_location(self):
 
         print("hello")
-        self.driver.get('http://curry.aca.uw.edu:8001/filter/')
+        self.driver.get('http://localhost:8001/filter/')
         test = self.driver.find_element_by_id('test')
         self.assertEqual(test.text,"Hello World!")
 
