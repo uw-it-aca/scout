@@ -11,8 +11,8 @@
     <p id="test">Hello, It's me!</p>
 
     <div>
-        <div style="margin-bottom:8px;">DEFAULT location</div>
-        <div>SHARED location: <span id="user_location">--</span>&nbsp;&nbsp;<a href=""><i class="fa fa-location-arrow"></i> Update location</a></div>
+        <div id="default_position" style="margin-bottom:8px;">DEFAULT location</div>
+        <div id="shared_position">SHARED location: <span id="user_location">--</span>&nbsp;&nbsp;<a id="q" href="#"><i class="fa fa-location-arrow"></i> Update location</a></div>
     </div>
 
     <div style="margin: 8px 0;"><a href="/">All</a> | <a href="/?campus0=seattle">Seattle</a> | <a href="/?campus0=bothell">Bothell</a> | <a href="/?campus0=tacoma">Tacoma</a> | <a href="/?campus0=south_lake_union">South Lake Union</a></div>
@@ -78,6 +78,21 @@
 
 </div>
 
+<script type="text/javascript">
+    window.spot_locations = {
+        {% for spot in spots %}
+            '{{ spot.spot_id }}': {
+                "spot_name": '{{ spot.name }}',
+                    "id": '{{ spot.spot_id }}',
+                    "building": '{{ spot.building_name }}',
+                    "lat": '{{ spot.latitude }}',
+                    "lng": '{{ spot.longitude }}',
+                    //"icon": 'fa-cutlery',
+            },
+        {% endfor %}
+    };
+</script>
+
 {% endblock %}
 
 {% block secondary_content %}
@@ -86,22 +101,6 @@
 <div id="list_map" style="height:100%; background: #ddd !important; ">
     <div class="loader" style="position:absolute; top: 50%; left: 50%; margin-left:-10px; margin-top: -10px;">Loading...</div>
 </div>
-
-<script type="text/javascript">
-window.spot_locations = {
-    {% for spot in spots %}
-        '{{ spot.spot_id }}': {
-            "spot_name": '{{ spot.name }}',
-                "id": '{{ spot.spot_id }}',
-                "building": '{{ spot.building_name }}',
-                "lat": '{{ spot.latitude }}',
-                "lng": '{{ spot.longitude }}',
-                //"icon": 'fa-cutlery',
-        },
-    {% endfor %}
-};
-
-</script>
 
 {% endblock %}
 
