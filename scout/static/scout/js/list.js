@@ -1,6 +1,6 @@
 var List = {
     add_spot_distances: function () {
-    var spots = $(".scout-list-item");
+        var spots = $(".scout-list-item");
 
         $.each(spots, function(idx, item){
             var spot_id = $(item).attr('id');
@@ -30,10 +30,21 @@ var List = {
 
     },
     update_spots_with_distance: function () {
-        Map.get_position();
-
         List.add_spot_distances();
         List.order_spot_list();
+        List.display_location_status();
+    },
+
+    display_location_status: function () {
+        if (Map.get_is_default_position()) {
+            $("#default_position").show();
+            $("#shared_position").hide();
+        } else {
+            $("#shared_position").show();
+            $("#default_position").hide();
+            $("#user_location").html(Map.get_position_string());
+        }
     }
+
 
 };

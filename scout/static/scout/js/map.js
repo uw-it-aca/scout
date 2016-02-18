@@ -2,6 +2,7 @@ var Map = {
     default_position: { latitude: 47.653811, longitude: -122.307815 },
 
     get_position: function (update_callback) {
+        console.log("fucklit");
         // Use a session cookie to store user's location, prevent querying for
         // geolocation permission if cookie is set
         if (Cookies.get('user_position') === undefined){
@@ -36,6 +37,16 @@ var Map = {
         // Distance in feet
         distance = Math.round(distance * 3.280839895);
         return distance;
+    },
+
+    get_is_default_position: function () {
+        return Cookies.get('user_position') === undefined;
+    },
+
+    get_position_string: function () {
+        var latlng = Map.get_latlng();
+        return latlng.lat() +", " + latlng.lng();
+
     },
 
     _get_distance_between_positions: function (current_position, item_position) {

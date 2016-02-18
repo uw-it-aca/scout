@@ -28,5 +28,16 @@ Discover = {
 
     _attach_card: function (card_id, card_html) {
         $("#" + card_id).html(card_html);
+    },
+
+    display_location_status: function () {
+        if (Map.get_is_default_position()) {
+            $("#default_position").show();
+            $("#shared_position").hide();
+        } else {
+            $("#shared_position").show();
+            $("#default_position").hide();
+            $("#user_location").html(Map.get_position_string());
+        }
     }
 };
