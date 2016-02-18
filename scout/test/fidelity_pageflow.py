@@ -30,7 +30,21 @@ class PageFlowTest(LiveServerTestCase):
             command_executor='http://'+USERNAME+':'+ACCESS_KEY+'@ondemand.saucelabs.com:80/wd/hub',
             desired_capabilities=self.desired_cap)
 
-        # self.driver.implicitly_wait(5)
+        self.driver.implicitly_wait(20)
+
+    def test_sauce(self):
+
+        self.driver.get('http://localhost:8001/filter/')
+        test = self.driver.find_element_by_id('test')
+        self.assertEqual(test.text,"Hello World!")
+
+    def test_main_navigation(self):
+
+        self.driver.get('http://localhost:8001/')
+        self.driver.find_element_by_id('link_discover').click()
+        self.driver.find_element_by_id('link_food').click()
+        self.driver.find_element_by_id('link_home').click()
+        self.driver.find_element_by_id('link_filter').click()
 
     def tearDown(self):
         print("https://saucelabs.com/jobs/%s \n" % self.driver.session_id)
@@ -41,14 +55,6 @@ class PageFlowTest(LiveServerTestCase):
                 sauce_client.jobs.update_job(self.driver.session_id, passed=False)
         finally:
             self.driver.quit()
-
-    def test_sauce(self):
-
-        print("hello")
-        self.driver.get('http://localhost:8001/filter/')
-        test = self.driver.find_element_by_id('test')
-        self.assertEqual(test.text,"Hello World!")
-
 
     # User can browse all spaces on campus for a place to eat without knowing anything about the space - https://jira.cac.washington.edu/browse/SCOUT-1
 
