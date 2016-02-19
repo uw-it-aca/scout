@@ -2,7 +2,6 @@ var Map = {
     default_position: { latitude: 47.653811, longitude: -122.307815 },
 
     get_position: function (update_callback) {
-        console.log("fucklit");
         // Use a session cookie to store user's location, prevent querying for
         // geolocation permission if cookie is set
         if (Cookies.get('user_position') === undefined){
