@@ -65,7 +65,7 @@ var Map = {
     },
 
     update_list_map: function () {
-        List.update_spots_with_distance();
+        //List.update_spots_with_distance();
         Map.update_map(Map.get_latlng());
     },
 

@@ -29,31 +29,13 @@ var List = {
         $("#scout-list").append(spots);
 
     },
-    update_spots_with_distance: function () {
-        List.add_spot_distances();
-        List.order_spot_list();
-        List.display_location_status();
-    },
-
-    display_location_status: function () {
-        if (Geolocation.get_location_type() === "default") {
-            $("#default_position").show();
-            $("#shared_position").hide();
-        } else {
-            $("#shared_position").show();
-            $("#default_position").hide();
-            $("#user_location").html(Geolocation.get_position_string());
-        }
-    },
 
     init_geolocation: function () {
         window.addEventListener('location_changed', function() {
             List.add_spot_distances();
             List.order_spot_list();
-            List.display_location_status();
+            Geolocation.display_location_status();
         });
         Geolocation.init_location();
     }
-
-
 };
