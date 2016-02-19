@@ -6,7 +6,7 @@ $(document).on('ready', function(event) {
     } else if (page_path.indexOf("filter") !== -1) {
         // filter page
     } else {
-        Map.get_position(List.update_spots_with_distance());
+        List.init_geolocation();
     }
 
 

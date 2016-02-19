@@ -8,12 +8,12 @@ var Map = {
             Map.update_user_position(Map.default_position, update_callback, false);
             // set position to default so we have something to use before user accepts
             // sharing of their location (only an issue if they haven't pre-saved an option)
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function(position) {
-                    // On user accepting location sharing
-                    Map.update_user_position(position.coords, update_callback, true);
-                });
-            }
+            //if (navigator.geolocation) {
+            //    navigator.geolocation.getCurrentPosition(function(position) {
+            //        // On user accepting location sharing
+            //        Map.update_user_position(position.coords, update_callback, true);
+            //    });
+            //}
         } else {
             if (typeof update_callback === 'function') {
                 update_callback();
@@ -71,15 +71,15 @@ var Map = {
 
     init_map: function () {
         // list map... location on list.html and map.html (mobile and desktop)
-        if( $("#list_map").length > 0 ) {
-            Map.get_position(Map.update_list_map);
-        }
-
-         //detail page map
-        if($("#detail_map").length > 0) {
-            Map.get_position();
-            initializeDetailMap();
-        }
+        //if( $("#list_map").length > 0 ) {
+        //    Map.get_position(Map.update_list_map);
+        //}
+        //
+        // //detail page map
+        //if($("#detail_map").length > 0) {
+        //    Map.get_position();
+        //    initializeDetailMap();
+        //}
 
     },
 
