@@ -11,6 +11,11 @@
 
 
     <div class="scout-card" style="padding: 0;">
+    <script>
+        var spot_lat = "{{ spot.latitude }}";
+        var spot_lng = "{{ spot.longitude }}";
+        var spot_name = "{{ spot.name }}"
+    </script>
 
 
         {% if spot.images %}
@@ -106,78 +111,6 @@
             <div class="scout-spot-map">
                 <div id="detail_map" style="height:100%;"></div>
             </div>
-            <!-- since turbolinks loads the full body... initialize map stuff locally in the template. then, call the function in the map.js file -->
-            <script>
-                function initializeDetailMap() {
-
-                    var mapExists = document.getElementById("detail_map");
-                    var myLatlng, mapOptions;
-
-                    if (mapExists) {
-
-                        // center map direction on spot location
-                        myLatlng = new google.maps.LatLng({{ spot.latitude }}, {{ spot.longitude }});
-                        mapOptions = {
-                            center: myLatlng,
-                            zoom: 17,
-                            scrollwheel: false,
-                            draggable: false,
-                            disableDefaultUI: true
-                        };
-
-                        var styles = [
-                            {
-                                "featureType": "poi.place_of_worship",
-                                "elementType": "all",
-                                "stylers": [
-                                    {
-                                        "visibility": "off"
-                                    }
-                                ]
-                            },
-                            {
-                                "featureType": "poi.business",
-                                "elementType": "labels.icon",
-                                "stylers": [
-                                    {
-                                        "visibility": "off"
-                                    }
-                                ]
-                            },
-                            {
-                                "featureType": "poi.school",
-                                "elementType": "labels",
-                                "stylers": [
-                                    {
-                                        "visibility": "off"
-                                    }
-                                ]
-                            }
-                        ]
-
-                        var map = new google.maps.Map(document.getElementById('detail_map'), mapOptions);
-                        map.setOptions({styles: styles});
-
-                        var marker = new MarkerWithLabel({
-                            position: myLatlng,
-                            map: map,
-                            title: '{{ spot.name }}!',
-                            labelContent: "<span class='marker-text' style='margin-left:18px;font-size:12px;'>{{ spot.name }}</span>",
-                            labelAnchor: new google.maps.Point(6, 6),
-                            labelClass: "map-label", // the CSS class for the label
-                            icon: {
-                        		path: google.maps.SymbolPath.CIRCLE,
-                        		fillColor: '#53518e',
-                        		fillOpacity: 1,
-                        		strokeColor: '#ffffff',
-                                strokeWeight: 2,
-                                scale: 6,
-                        	},
-                        });
-                    }
-
-                }
-            </script>
             <div class="scout-spot-map-link"><a href="maps://maps.apple.com/maps?q={{ spot.latitude }},{{ spot.longitude }}"><i class="fa fa-map-marker"></i>  LAUNCH APPLE MAPS</a></div>
             {% endif %}
 

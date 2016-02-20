@@ -25,17 +25,15 @@ var List = {
                 return 0;
             }
         });
-
         $("#scout-list").append(spots);
 
     },
 
-    init_geolocation: function () {
+    init: function () {
         window.addEventListener('location_changed', function() {
             List.add_spot_distances();
             List.order_spot_list();
             Geolocation.display_location_status();
         });
-        Geolocation.init_location();
     }
 };

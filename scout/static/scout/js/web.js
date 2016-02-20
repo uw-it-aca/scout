@@ -6,9 +6,11 @@ $(document).on('ready', function(event) {
     } else if (page_path.indexOf("filter") !== -1) {
         // filter page
     } else {
-        List.init_geolocation();
+        List.init();
+        Map.init_map();
     }
-
+    // call this last so all page level location event listiners have been declared
+    Geolocation.init_location();
 
     Layout.init_layout();
 

@@ -42,7 +42,7 @@ var Filter = {
         params = $.extend(params, Filter._get_params_for_select(periods,
                                                                 "open_now"));
         if($("#open_now input").is(":checked")){
-            params = $.extend(params, {"open_now": true})
+            params = $.extend(params, {"open_now": true});
         }
         return $.param(params);
     },

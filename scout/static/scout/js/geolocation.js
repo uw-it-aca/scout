@@ -4,9 +4,16 @@ var Geolocation = {
 
     // Must be called first, sets default or real client location
     init_location: function () {
-        Geolocation.set_default_location();
-        if(Geolocation.get_is_using_location()){
-            Geolocation.query_client_location();
+        // Prevent duplicate calls to init from changing location
+        if (sessionStorage.getItem("lat") === undefined){
+            if (!Geolocation.get_is_using_location()) {
+                Geolocation.set_default_location();
+            } else  {
+                Geolocation.query_client_location();
+            }
+        } else {
+            // Fire this event so pages can handle location on page load
+            window.dispatchEvent(Geolocation.location_changed);
         }
     },
 
@@ -55,9 +62,8 @@ var Geolocation = {
 
     query_client_location: function() {
         // deal w/ error state
-        var err_callback = undefined;
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(Geolocation.set_client_location, err_callback);
+            navigator.geolocation.getCurrentPosition(Geolocation.set_client_location);
         }
     },
 
