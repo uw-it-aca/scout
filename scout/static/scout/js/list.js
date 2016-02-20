@@ -5,8 +5,8 @@ var List = {
         $.each(spots, function(idx, item){
             var spot_id = $(item).attr('id');
             var spot_data = window.spot_locations[spot_id];
-            var coords = new google.maps.LatLng(spot_data.lat, spot_data.lng);
-            var distance = Map.get_distance_from_current_position(coords);
+            var spot_latlng = Geolocation.get_latlng_from_coords(spot_data.lat, spot_data.lng);
+            var distance = Geolocation.get_distance_from_position(spot_latlng);
             $($(item).find(".distance-number")[0]).html(distance);
         });
     },
@@ -25,26 +25,15 @@ var List = {
                 return 0;
             }
         });
-
         $("#scout-list").append(spots);
 
     },
-    update_spots_with_distance: function () {
-        List.add_spot_distances();
-        List.order_spot_list();
-        List.display_location_status();
-    },
 
-    display_location_status: function () {
-        if (Map.get_is_default_position()) {
-            $("#default_position").show();
-            $("#shared_position").hide();
-        } else {
-            $("#shared_position").show();
-            $("#default_position").hide();
-            $("#user_location").html(Map.get_position_string());
-        }
+    init: function () {
+        window.addEventListener('location_changed', function() {
+            List.add_spot_distances();
+            List.order_spot_list();
+            Geolocation.display_location_status();
+        });
     }
-
-
 };
