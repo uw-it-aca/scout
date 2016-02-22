@@ -1,6 +1,4 @@
 var Map = {
-    default_position: { latitude: 47.653811, longitude: -122.307815 },
-
     init_map: function () {
         window.addEventListener('location_changed', function() {
             // list map... location on list.html and map.html (mobile and desktop)
@@ -9,7 +7,6 @@ var Map = {
             }
             //detail page map
             if($("#detail_map").length > 0) {
-                //Map.get_position();
                 Map.initializeDetailMap();
             }
         });
