@@ -5,7 +5,7 @@ var Geolocation = {
     // Must be called first, sets default or real client location
     init_location: function () {
         // Prevent duplicate calls to init from changing location
-        if (sessionStorage.getItem("lat") === undefined){
+        if (sessionStorage.getItem("lat") === null){
             if (!Geolocation.get_is_using_location()) {
                 Geolocation.set_default_location();
             } else  {
