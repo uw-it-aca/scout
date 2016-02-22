@@ -35,5 +35,6 @@ var List = {
             List.order_spot_list();
             Geolocation.display_location_status();
         });
+        Geolocation.init_location_toggles();
     }
 };

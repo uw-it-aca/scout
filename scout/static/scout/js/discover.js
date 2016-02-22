@@ -9,7 +9,7 @@ Discover = {
                 Discover.fetch_cards(card_id, latlng);
             });
         });
-        Geolocation.init_location();
+        Geolocation.init_location_toggles();
     },
 
     fetch_cards: function (card_id, latlng) {

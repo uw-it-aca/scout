@@ -17,14 +17,23 @@ var Geolocation = {
         }
     },
 
-    get_is_using_location: function () {
-        return localStorage.getItem("using_location") || false;
+    update_location: function () {
+        if (!Geolocation.get_is_using_location()) {
+            Geolocation.set_default_location();
+        } else {
+            Geolocation.query_client_location();
+        }
     },
 
-    set_is_using_location: function (setting) {
+    get_is_using_location: function () {
+        return (localStorage.getItem("using_location") === 'true');
+    },
+
+    set_is_using_location: function (is_using_location) {
         // Setting should be bool
         // Persists between sessions
-        localStorage.setItem("using_location", setting);
+        localStorage.setItem("using_location", is_using_location);
+        Geolocation.update_location();
     },
 
     set_location_type: function (type) {
@@ -93,6 +102,20 @@ var Geolocation = {
             $("#user_location").html(Geolocation.get_position_string());
         }
     },
+
+    init_location_toggles: function ( ){
+        $("#use_location").click(function() {
+            Geolocation.set_is_using_location(true);
+            $("#shared_position").show();
+            $("#default_position").hide();
+        });
+
+        $("#forget_location").click(function() {
+            Geolocation.set_is_using_location(false);
+            $("#shared_position").hide();
+            $("#default_position").show();
+        });
+    }
 
 
 };
