@@ -60,9 +60,7 @@ var Geolocation = {
     },
 
     handle_watch_position: function (updated_location) {
-       if(Geolocation.get_location_type() === "default"){
-           Geolocation.set_client_location(updated_location);
-       }  else {
+       if(Geolocation.get_location_type() === "user"){
            var new_position = Geolocation.get_latlng_from_coords(updated_location.coords.latitude, updated_location.coords.longitude);
            var distance = Geolocation.get_distance_from_position(new_position);
            if(distance > 100){
