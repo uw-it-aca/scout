@@ -69,8 +69,6 @@ var Geolocation = {
                Geolocation.set_client_location(updated_location);
            }
        }
-
-
     },
 
     query_client_location: function() {

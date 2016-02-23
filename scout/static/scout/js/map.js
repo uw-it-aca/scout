@@ -23,6 +23,10 @@ var Map = {
         });
     },
 
+    init_map_page: function () {
+        //Geolocation.init_location_toggles();
+    },
+
     initializeListMap: function () {
         var mapExists = document.getElementById("list_map");
         var pos = Geolocation.get_client_latlng();

@@ -120,6 +120,19 @@ var Filter = {
         $("#reset_filter").click(function() {
             Filter.reset_filter();
         });
+    },
 
+    init: function() {
+        Filter.populate_filters_from_saved();
+    },
+
+    populate_filters_from_saved: function() {
+        console.log(sessionStorage.getItem("filter_params"));
+        var params = JSON.parse(sessionStorage.getItem("filter_params"));
+        console.log(params);
+        $.each(params, function(idx, val){
+            console.log(idx);
+            console.log(val);
+        });
     }
 };

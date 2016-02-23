@@ -4,7 +4,12 @@ $(document).on('ready', function(event) {
     if (page_path.indexOf("discover") !== -1) {
         Discover.init_cards();
     } else if (page_path.indexOf("filter") !== -1) {
-        // filter page
+        Filter.init();
+    } else if (page_path.indexOf("map") !== -1){
+        // Mobile map page
+        Map.init_map_page();
+        List.init();
+        Map.init_map();
     } else {
         List.init();
         Map.init_map();
@@ -18,7 +23,7 @@ $(document).on('ready', function(event) {
 
     Navigation.set_page_tab();
 
-    Map.init_map();
+
 
     // handle gallery images
     $('#imageContainer img').each(function (index) {
