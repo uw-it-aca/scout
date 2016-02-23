@@ -44,6 +44,9 @@ var Filter = {
         if($("#open_now input").is(":checked")){
             params = $.extend(params, {"open_now": true});
         }
+        // Store these
+        sessionStorage.setItem("filter_params", JSON.stringify(params));
+
         return $.param(params);
     },
 
@@ -94,6 +97,11 @@ var Filter = {
 
     },
 
+    reset_filter: function() {
+        sessionStorage.removeItem("filter_params");
+        window.location.replace("/");
+    },
+
     init_events: function() {
         Filter.set_filter_text();
 
@@ -107,6 +115,10 @@ var Filter = {
             $("#filter_container").toggle("slow", function() {
                 // Animation complete.
             });
+        });
+
+        $("#reset_filter").click(function() {
+            Filter.reset_filter();
         });
 
     }
