@@ -97,11 +97,11 @@ var Geolocation = {
 
     display_location_status: function () {
         if (Geolocation.get_location_type() === "default") {
-            //$("#default_position").show();
-            //$("#shared_position").hide();
+            $("#default_position").show();
+            $("#shared_position").hide();
         } else {
-            //$("#shared_position").show();
-            //$("#default_position").hide();
+            $("#shared_position").show();
+            $("#default_position").hide();
             $("#user_location").html(Geolocation.get_position_string());
         }
     },
