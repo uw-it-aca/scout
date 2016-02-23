@@ -11,10 +11,10 @@
 
     <h2 class="visually-hidden">Discover</h2>
 
-    <div style="padding: 10px 20px; color: #444; font-size: 14px; ">
-        <div id="default_position" style="margin-bottom:8px;">DEFAULT location <a id="use_location" href="#"><i class="fa fa-location-arrow"></i>Use my location</a></div>
-        <div id="shared_position">SHARED location: <span id="user_location">*you need to accept the loc sharing request*</span>&nbsp;&nbsp;<a id="forget_location" href="#"><i class="fa fa-location-arrow"></i>Stop using my location</a></div>
+    <div class="scout-filter-results-container">
+        {% include "scout/include/user_geolocation.html" %}
     </div>
+
     <div id="discover_cards">
         <div id="open">
         </div>

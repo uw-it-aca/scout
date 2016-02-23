@@ -8,10 +8,7 @@
 
 <div class="scout-filter-results-container">
 
-    <div>
-       <div id="default_position" style="margin-bottom:8px;">DEFAULT location <a id="use_location" href="#"><i class="fa fa-location-arrow"></i>Use my location</a></div>
-        <div id="shared_position">SHARED location: <span id="user_location">*you need to accept the loc sharing request*</span>&nbsp;&nbsp;<a id="forget_location" href="#"><i class="fa fa-location-arrow"></i>Stop using my location</a></div>
-    </div>
+    {% include "scout/include/user_geolocation.html" %}
 
     <div style="margin: 8px 0;"><a href="/">All</a> | <a href="/?campus0=seattle">Seattle</a> | <a href="/?campus0=bothell">Bothell</a> | <a href="/?campus0=tacoma">Tacoma</a> | <a href="/?campus0=south_lake_union">South Lake Union</a></div>
 
