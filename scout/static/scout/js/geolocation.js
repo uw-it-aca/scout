@@ -2,27 +2,17 @@ var Geolocation = {
     default_location: { latitude: 47.653811, longitude: -122.307815 },
     location_changed:  new CustomEvent("location_changed"),
 
-    // Must be called first, sets default or real client location
-    init_location: function () {
-        // Prevent duplicate calls to init from changing location
-        if (sessionStorage.getItem("lat") === null){
-            if (!Geolocation.get_is_using_location()) {
-                Geolocation.set_default_location();
-            } else  {
-                Geolocation.query_client_location();
-            }
-        } else {
-            // Fire this event so pages can handle location on page load
-            window.dispatchEvent(Geolocation.location_changed);
-        }
-    },
-
     update_location: function () {
         if (!Geolocation.get_is_using_location()) {
             Geolocation.set_default_location();
         } else {
             Geolocation.query_client_location();
         }
+        if(!window.has_set_loc){
+            // Fire this event so pages can handle location on page load
+            window.dispatchEvent(Geolocation.location_changed);
+        }
+        window.has_set_loc = true;
     },
 
     get_is_using_location: function () {
