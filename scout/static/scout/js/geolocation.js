@@ -69,10 +69,24 @@ var Geolocation = {
         return lat + ", " + lng;
     },
 
+    handle_watch_position: function (updated_location) {
+       if(Geolocation.get_location_type() === "default"){
+           Geolocation.set_client_location(updated_location);
+       }  else {
+           var new_position = Geolocation.get_latlng_from_coords(updated_location.coords.latitude, updated_location.coords.longitude);
+           var distance = Geolocation.get_distance_from_position(new_position);
+           if(distance > 100){
+               Geolocation.set_client_location(updated_location);
+           }
+       }
+
+
+    },
+
     query_client_location: function() {
         // deal w/ error state
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(Geolocation.set_client_location);
+            navigator.geolocation.watchPosition(Geolocation.handle_watch_position);
         }
     },
 

@@ -10,7 +10,7 @@ $(document).on('ready', function(event) {
         Map.init_map();
     }
     // call this last so all page level location event listiners have been declared
-    Geolocation.init_location();
+    Geolocation.update_location();
 
     Layout.init_layout();
 
