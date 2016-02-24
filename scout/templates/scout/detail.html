@@ -159,8 +159,8 @@
             <h3>Details</h3>
             <div class="scout-spot-description">{% if spot.location_description %}{{spot.location_description}}{% else %} <span style="color:red;">xxxxx xxx xx xxxxxxxxx xxx</span> {% endif %}</div>
 
-            <h4><i class="fa fa-camera"></i> Gallery</h4>
-            <div class="scout-spot-gallery">
+            <h4 aria-hidden="true"><i class="fa fa-camera"></i> Gallery</h4>
+            <div class="scout-spot-gallery" aria-hidden="true">
                 <ul class="clearfix" id="imageContainer">
 
                     {% if spot.images %}
