@@ -1,7 +1,7 @@
 {% block content %}
 <div class="scout-card scout-discover-content">
     <h3>{{ card_title }}</h3>
-    <ul>
+    <ol>
         {% for spot in spots %}
         <li><a href="/detail/{{ spot.spot_id }}"><i class="fa fa-map-marker"></i> {{spot.name}}</a></li>
         {% endfor %}
