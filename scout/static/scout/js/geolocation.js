@@ -104,14 +104,16 @@ var Geolocation = {
         }
     },
 
-    init_location_toggles: function ( ){
-        $("#use_location").click(function() {
+    init_location_toggles: function() {
+        $("#use_location").click(function(e) {
+            e.preventDefault();
             Geolocation.set_is_using_location(true);
             $("#shared_position").show();
             $("#default_position").hide();
         });
 
-        $("#forget_location").click(function() {
+        $("#forget_location").click(function(e) {
+            e.preventDefault();
             Geolocation.set_is_using_location(false);
             $("#shared_position").hide();
             $("#default_position").show();
