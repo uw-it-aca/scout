@@ -44,26 +44,17 @@ class UITest(LiveServerTestCase):
 
 
     """
-    Let's test the shared location functionality of the app. The app should ask
-    for the user's location. If the user says no, or just closes the location
-    dialog, then we'll set their default location to center of the fountain.
+    Let's test the user location functionality of the app. The app should load
+    using the default location (Drumheller fountation). All spots are ordered
+    based on this location - with a disctance in feet displayed. The user can
+    share their location via HTML5 geolocation and override the default. A new
+    marker should be displayed using the shared location and all spots are
+    reordered using this new location.
     """
     def test_user_location(self):
 
-        print("hello")
+        sauce_client.jobs.update_job(self.driver.session_id, name="UI: Test user location")
+
         self.driver.get('http://localhost:8001/filter/')
         test = self.driver.find_element_by_id('test')
         self.assertEqual(test.text,"Hello World!")
-
-    """
-    Discover page should have user location bar.. Default or shared location
-    should be displayed.
-    """
-
-    """
-    Open card displays 5 open spots ordered by distance.
-    """
-
-    """
-    Coffee card displays 5 spots that serve coffee ordered by distance.
-    """
