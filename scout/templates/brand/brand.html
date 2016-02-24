@@ -16,7 +16,7 @@
 
                 <h1 style="background: url('{% static "scout/img/scout.png" %}') no-repeat 10px; background-size:13%;">{% block header %}{% endblock %}</h1>
 
-                <div class="scout-navigation">
+                <div class="scout-navigation" role="navigation" aria-label="main navigation">
                     {% block top-nav%}{% endblock %}
                 </div>
 
@@ -26,7 +26,7 @@
 
             {% block content %}{% endblock %}
 
-            <div id="footer" class="scout-footer">
+            <div id="footer" class="scout-footer" role="contentinfo">
                 <div style="padding-left:20px;">&copy;2016 UW-IT ACA and HFS. <a href="http://www.washington.edu/online/privacy/">Privacy</a> <a href="http://www.washington.edu/online/terms/">Terms</a></div>
             </div>
 
@@ -34,7 +34,7 @@
 
         {% if not request.is_mobile and not request.is_tablet %}
         <!-- desktop only extra container -->
-        <div class="scout-secondary">
+        <div class="scout-secondary" aria-hidden="true">
             {% block secondary_content %}{% endblock %}
         </div>
         {% endif %}

@@ -6,9 +6,9 @@
 
 {% block web_content %}
 
-<div class="scout-details-container">
+<div class="scout-details-container" role="main">
 
-
+    <h2 class="visually-hidden">{{spot.name}}</h2>
 
     <div class="scout-card" style="padding: 0;">
     <script>
@@ -17,12 +17,15 @@
         var spot_name = "{{ spot.name }}"
     </script>
 
+        <h3 class="visually-hidden">Overview</h3>
 
         {% if spot.images %}
         <div class="scout-spot-image" style="background:url('//spotseeker-test.cac.washington.edu{{spot.images.0.url}}') no-repeat center center;">
         {% else %}
         <div class="scout-spot-image" style="background: #e5e6e9 url('{% static "scout/img/placeholder-1000.png" %}') no-repeat center center; background-size: contain;">
         {% endif %}
+
+            <h4 class="visually-hidden">Today status</h4>
 
             <div class="scout-spot-status">{% if spot.is_open %}<span class="open">OPEN NOW</span>{% else %}<span class="closed">CLOSED</span>{% endif %}</div>
 
@@ -44,8 +47,10 @@
 
         </div>
 
+        <h4 class="visually-hidden">Food stuff</h4>
+
         <div class="scout-spot-meta">
-            <h2 class="scout-spot-name">{{spot.name}}</h2>
+            <div class="scout-spot-name">{{spot.name}}</div>
             <div class="scout-spot-type">
                 {% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}</span>{% endfor %}
             </div>
@@ -70,18 +75,13 @@
         </div>
         {% endif %}
 
+
+        <h4 class="visually-hidden">Contact information</h4>
         <div class="scout-spot-phone">
             {% if spot.phone %}
             <a href="tel:+1{{ spot.phone }}"><i class="fa fa-phone"></i> {{ spot.phone | format_phone }}</a>
             {% else %}
             <a href="/" target="_blank" style="color:red;"><i class="fa fa-phone"></i> missing phone</a>
-            {% endif %}
-        </div>
-        <div class="scout-spot-menu">
-            {% if spot.menu_url %}
-            <a href="{{spot.menu_url}}" target="_blank"><i class="fa fa-book"></i> {{spot.menu_url}}</a>
-            {% else %}
-            <a href="/" target="_blank" style="color:red;"><i class="fa fa-book"></i> missing menu_url</a>
             {% endif %}
         </div>
         <div class="scout-spot-website">
@@ -91,15 +91,48 @@
             <a href="/" target="_blank" style="color:red;"><i class="fa fa-laptop"></i> missing website_url</a>
             {% endif %}
         </div>
+        <h4 class="visually-hidden">Menu information</h4>
+        <div class="scout-spot-menu">
+            {% if spot.menu_url %}
+            <a href="{{spot.menu_url}}" target="_blank"><i class="fa fa-book"></i> {{spot.menu_url}}</a>
+            {% else %}
+            <a href="/" target="_blank" style="color:red;"><i class="fa fa-book"></i> missing menu_url</a>
+            {% endif %}
+        </div>
 
     </div>
 
     <div class="scout-spot-content">
 
         <div class="scout-card">
+            <div class="scout-spot-hours">
+                <h3>Hours</h3>
+                <h4 class="visually-hidden">Open hours</h4>
+                <ul style="margin-bottom: 15px;">
+                    <li><span class="day">Monday:</span> {% for hours in spot.hours.monday %} {{ hours.0 }} - {{ hours.1 }} {% empty %}<span class="closed">Closed</span>{% endfor %}</li>
+                    <li><span class="day">Tuesday:</span> {% for hours in spot.hours.tuesday %} {{ hours.0 }} - {{ hours.1 }} {% empty %}<span class="closed">Closed</span>{% endfor %}</li>
+                    <li><span class="day">Wednesday:</span> {% for hours in spot.hours.wednesday %} {{ hours.0 }} - {{ hours.1 }} {% empty %}<span class="closed">Closed</span>{% endfor %}</li>
+                    <li><span class="day">Thursday:</span> {% for hours in spot.hours.thursday %} {{ hours.0 }} - {{ hours.1 }} {% empty %}<span class="closed">Closed</span>{% endfor %}</li>
+                    <li><span class="day">Friday:</span> {% for hours in spot.hours.friday %} {{ hours.0 }} - {{ hours.1 }} {% empty %}<span class="closed">Closed</span>{% endfor %}</li>
+                    <li><span class="day">Saturday:</span> {% for hours in spot.hours.saturday %} {{ hours.0 }} - {{ hours.1 }} {% empty %}<span class="closed">Closed</span>{% endfor %}</li>
+                    <li><span class="day">Sunday:</span> {% for hours in spot.hours.sunday %} {{ hours.0 }} - {{ hours.1 }} {% empty %}<span class="closed">Closed</span>{% endfor %}</li>
+                </ul>
+
+                <h4><i class="fa fa-file-text"></i> Notes</h4>
+                {% if spot.hours_notes %}
+                <div>{{spot.hours_notes}}</div>
+                {% else %}
+                <div style="color:red;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla in consequat purus... remove during visual design fidelity.</div>
+                {% endif %}
+            </div>
+
+        </div>
+
+        <div class="scout-card">
 
             <div class="scout-spot-location">
                 <h3>Location</h3>
+                <h4 class="visually-hidden">Building information</h4>
                 <ul>
                     <li>{% if spot.building_name %}{{ spot.building_name }}{% else %} <span style="color:red;">missing building_name</span> {% endif %}</li>
                     <li>{% if spot.floor %}{{ spot.floor }}{% else %} <span style="color:red;">missing floor</span> {% endif %}</li>
@@ -108,6 +141,7 @@
             </div>
 
             {% if request.is_mobile %}
+            <h4 class="visually-hidden">Map</h4>
             <div class="scout-spot-map">
                 <div id="detail_map" style="height:100%;"></div>
             </div>
@@ -122,7 +156,7 @@
         </div>
 
         <div class="scout-card">
-            <h3>General Information</h3>
+            <h3>Details</h3>
             <div class="scout-spot-description">{% if spot.location_description %}{{spot.location_description}}{% else %} <span style="color:red;">xxxxx xxx xx xxxxxxxxx xxx</span> {% endif %}</div>
 
             <h4><i class="fa fa-camera"></i> Gallery</h4>
@@ -171,44 +205,19 @@
                 {% endif %}
             </div>
 
-        </div>
-
-        <div class="scout-card">
-            <div class="scout-spot-hours">
-                <h3>Hours</h3>
-                <ul style="margin-bottom: 15px;">
-                    <li><span class="day">Monday:</span> {% for hours in spot.hours.monday %} {{ hours.0 }} - {{ hours.1 }} {% empty %}<span class="closed">Closed</span>{% endfor %}</li>
-                    <li><span class="day">Tuesday:</span> {% for hours in spot.hours.tuesday %} {{ hours.0 }} - {{ hours.1 }} {% empty %}<span class="closed">Closed</span>{% endfor %}</li>
-                    <li><span class="day">Wednesday:</span> {% for hours in spot.hours.wednesday %} {{ hours.0 }} - {{ hours.1 }} {% empty %}<span class="closed">Closed</span>{% endfor %}</li>
-                    <li><span class="day">Thursday:</span> {% for hours in spot.hours.thursday %} {{ hours.0 }} - {{ hours.1 }} {% empty %}<span class="closed">Closed</span>{% endfor %}</li>
-                    <li><span class="day">Friday:</span> {% for hours in spot.hours.friday %} {{ hours.0 }} - {{ hours.1 }} {% empty %}<span class="closed">Closed</span>{% endfor %}</li>
-                    <li><span class="day">Saturday:</span> {% for hours in spot.hours.saturday %} {{ hours.0 }} - {{ hours.1 }} {% empty %}<span class="closed">Closed</span>{% endfor %}</li>
-                    <li><span class="day">Sunday:</span> {% for hours in spot.hours.sunday %} {{ hours.0 }} - {{ hours.1 }} {% empty %}<span class="closed">Closed</span>{% endfor %}</li>
+            <div class="scout-spot-coupon">
+                <h4>Coupons</h4>
+                <ul>
+                    <li>Has coupon: {% if spot.has_coupon %} {{ spot.has_coupon }}{% else %}<span style="color:red">this spot has no coupon... remove during visual design fidelity.</span>{% endif %}</li>
+                    <li>Coupon expire: {% if spot.coupon_expiration %}{{ spot.coupon_expiration }}{% else %}<span style="color:red">missing coupon_expiration</span>{% endif %}</li>
+                    <li>Coupon URL: {% if spot.coupon_url %}{{ spot.coupon_url }}{% else %}<span style="color:red">missing coupon_url</span>{% endif %}</li>
                 </ul>
-
-                <h4><i class="fa fa-file-text"></i> Notes</h4>
-                {% if spot.hours_notes %}
-                <div>{{spot.hours_notes}}</div>
-                {% else %}
-                <div style="color:red;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla in consequat purus... remove during visual design fidelity.</div>
-                {% endif %}
             </div>
 
         </div>
 
-        <div class="scout-card">
-
-            <h3>Coupons</h3>
-            <ul>
-                <li>Has coupon: {% if spot.has_coupon %} {{ spot.has_coupon }}{% else %}<span style="color:red">this spot has no coupon... remove during visual design fidelity.</span>{% endif %}</li>
-                <li>Coupon expire: {% if spot.coupon_expiration %}{{ spot.coupon_expiration }}{% else %}<span style="color:red">missing coupon_expiration</span>{% endif %}</li>
-                <li>Coupon URL: {% if spot.coupon_url %}{{ spot.coupon_url }}{% else %}<span style="color:red">missing coupon_url</span>{% endif %}</li>
-            </ul>
-
-        </div>
-
          <div class="scout-card">
-            <h3>Owner</h3>
+            <h3>Management</h3>
             <ul>
                 <li>Organization: {% if spot.organization %}{{ spot.organization }}{% else %} <span style="color:red;">missing organization</span> {% endif %}</li>
                 <li>Manager: {% if spot.manager %}{{ spot.manager }}{% else %} <span style="color:red;">missing manager</span> {% endif %}</li>

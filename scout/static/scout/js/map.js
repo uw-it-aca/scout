@@ -142,6 +142,11 @@ var Map = {
                         $('#' + data.id).css('background', 'none');
                     });
 
+                    // prevent google maps from being tab navigated
+                    google.maps.event.addListener(map, "tilesloaded", function(){
+                        $("#list_map a").attr("tabindex","-1");
+                    });
+
                     // handle hover event for main list view
                     $('#' + data.id).hover(
                         function () {

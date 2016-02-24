@@ -37,9 +37,9 @@ html.turbolinks-progress-bar::before {
 
             .scout-spot-meta { }
             .scout-spot-alert { }
-            .scout-spot-phone { padding: 0 20px; font-size: 18px; margin-top: 20px; }
+            .scout-spot-phone { padding: 0 20px; font-size: 18px; }
             .scout-spot-menu { padding: 0 20px; font-size: 18px; }
-            .scout-spot-website { padding: 0 20px; padding-bottom: 20px; font-size: 18px;  }
+            .scout-spot-website { padding: 0 20px; font-size: 18px;  }
 
             .scout-spot-content {
 
@@ -87,6 +87,8 @@ html.turbolinks-progress-bar::before {
                     }
                     span { margin-right: 10px; }
                 }
+
+                .scout-spot-coupon { }
 
             }
         }

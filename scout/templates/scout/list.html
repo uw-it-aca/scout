@@ -10,6 +10,8 @@
 
     {% include "scout/include/user_geolocation.html" %}
 
+    <h2 class=" visually-hidden">Filtered shortcuts</h2>
+
     <div style="margin: 8px 0;"><a href="/">All</a> | <a href="/?campus0=seattle">Seattle</a> | <a href="/?campus0=bothell">Bothell</a> | <a href="/?campus0=tacoma">Tacoma</a> | <a href="/?campus0=south_lake_union">South Lake Union</a></div>
 
     {% if request.is_mobile or request.is_tablet %}
@@ -22,9 +24,9 @@
 
 </div>
 
-<div class="scout-card scout-list-container" style="padding:0;">
+<div class="scout-card scout-list-container" style="padding:0;" role="main">
 
-    <h2 class="scout-list-header visually-hidden">List of Food Places</h2>
+    <h2 class="scout-list-header visually-hidden">List of food places</h2>
 
     <ul id="scout-list" class="scout-list">
 
@@ -41,7 +43,8 @@
                     <div class="scout-spot-content">
 
                         <div style="padding:0 10px;">
-                            <h3 class="scout-spot-name">{{ spot.name }} <span class="scout-spot-distance"><span class="distance-number">-</span>&nbsp;ft</span></h3>
+                            <h3 class="scout-spot-name">{{ spot.name }}</h3>
+                            <span class="scout-spot-distance"><span class="visually-hidden">Distance from you:</span><span class="distance-number">-</span>&nbsp;ft</span>
 
                             {% if is_desktop %}
                             <span class="scout-spot-type">{% if spot.spot_types %}{% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}</span>{% endfor %}{% else %} <span style="color:red;">SPOT_TYPE</span> {% endif %}</span>
@@ -93,7 +96,7 @@
 {% block secondary_content %}
 
 <!-- show a map on the list page -->
-<div id="list_map" style="height:100%; background: #ddd !important; ">
+<div id="list_map" style="height:100%; background: #ddd !important;">
     <div class="loader" style="position:absolute; top: 50%; left: 50%; margin-left:-10px; margin-top: -10px;">Loading...</div>
 </div>
 
