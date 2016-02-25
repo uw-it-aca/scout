@@ -39,8 +39,6 @@ var Filter = {
                                                                 "cuisine"));
         params = $.extend(params, Filter._get_params_for_select(periods,
                                                                 "period"));
-        params = $.extend(params, Filter._get_params_for_select(periods,
-                                                                "open_now"));
         if($("#open_now input").is(":checked")){
             params = $.extend(params, {"open_now": true});
         }
@@ -117,7 +115,7 @@ var Filter = {
             });
         });
 
-        $("#reset_filter").click(function() {
+        $("#reset_filter, #reset_button").click(function() {
             Filter.reset_filter();
         });
     },
@@ -127,12 +125,47 @@ var Filter = {
     },
 
     populate_filters_from_saved: function() {
-        console.log(sessionStorage.getItem("filter_params"));
+        var filter_item;
+        // do nothing if no filters are saved
+        if(sessionStorage.getItem("filter_params") === null){
+            return;
+        }
+
         var params = JSON.parse(sessionStorage.getItem("filter_params"));
-        console.log(params);
         $.each(params, function(idx, val){
-            console.log(idx);
-            console.log(val);
+            if(idx.indexOf("campus") > -1){
+                filter_item = $("#campus_select").find("input[value='" + val + "']");
+                $(filter_item[0]).prop("checked", true);
+            }
+            if(idx.indexOf("period") > -1){
+                filter_item = $("#period_select").find("input[value='" + val + "']");
+                $(filter_item[0]).prop("checked", true);
+            }
+            if(idx.indexOf("open_now") > -1){
+                filter_item = $("#open_now").find("input[value='open_now']");
+                $(filter_item[0]).prop("checked", true);
+            }
+            if(idx.indexOf("period") > -1){
+                filter_item = $("#period_select").find("input[value='" + val + "']");
+                $(filter_item[0]).prop("checked", true);
+            }
+            if(idx.indexOf("type") > -1){
+                filter_item = $("#type_select").find("input[value='" + val + "']");
+                $(filter_item[0]).prop("checked", true);
+            }
+            if(idx.indexOf("payment") > -1){
+                filter_item = $("#payment_select").find("input[value='" + val + "']");
+                $(filter_item[0]).prop("checked", true);
+            }
+            if(idx.indexOf("cuisine") > -1){
+                filter_item = $("#cuisine_select").find("input[value='" + val + "']");
+                $(filter_item[0]).prop("checked", true);
+            }
+            if(idx.indexOf("food") > -1){
+                filter_item = $("#food_select").find("input[value='" + val + "']");
+                $(filter_item[0]).prop("checked", true);
+            }
+
         });
     }
 };
