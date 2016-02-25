@@ -1,12 +1,8 @@
-from django.conf import settings
-from django.template import RequestContext
-from django.shortcuts import render_to_response
-from scout.space_dao import get_spot_list, get_spot_by_id, get_filtered_spots
-from scout.space_dao import get_spots_by_filter, get_period_filter
 from django.http import Http404
-
-import urllib
-import json
+from django.shortcuts import render_to_response
+from django.template import RequestContext
+from scout.dao.space import get_spot_list, get_spot_by_id, get_filtered_spots
+from scout.dao.space import get_spots_by_filter, get_period_filter
 
 # using drumheller fountain as the default center
 DEFAULT_LAT = 47.653811
@@ -139,3 +135,8 @@ def detail_view(request, spot_id):
 def hybrid_comps_view(request):
     return render_to_response('hybridize/components.html',
                               context_instance=RequestContext(request))
+
+
+def image_view(request):
+
+    raise Http404

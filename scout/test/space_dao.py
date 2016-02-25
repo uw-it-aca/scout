@@ -1,12 +1,12 @@
+import datetime
+
+import pytz
 from django.test import TestCase
 from django.test.utils import override_settings
-import pytz
-import datetime
-from spotseeker_restclient.spotseeker import Spotseeker
-from scout.space_dao import add_foodtype_names_to_spot, add_cuisine_names, \
+from scout.dao.space import add_foodtype_names_to_spot, add_cuisine_names, \
     add_payment_names, add_additional_info, get_is_spot_open, organize_hours, \
     get_open_periods_by_day
-
+from spotseeker_restclient.spotseeker import Spotseeker
 
 DAO = "spotseeker_restclient.dao_implementation.spotseeker.File"
 
