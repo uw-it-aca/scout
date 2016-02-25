@@ -47,7 +47,6 @@ class PageFlowTest(LiveServerTestCase):
         self.driver.find_element_by_id('link_discover').click()
         self.driver.find_element_by_id('link_food').click()
         self.driver.find_element_by_id('link_home').click()
-        self.driver.find_element_by_id('link_filter').click()
 
     def tearDown(self):
         print("https://saucelabs.com/jobs/%s \n" % self.driver.session_id)
