@@ -32,7 +32,7 @@
 
         {% for spot in spots %}
             <li class="scout-list-item" id="{{ spot.spot_id }}">
-                <a class="clearfix" href="detail/{{ spot.spot_id }}">
+                <a class="clearfix" href="/detail/{{ spot.spot_id }}">
 
                     {% if spot.images %}
                     <div class="scout-spot-image" style="background:url('//spotseeker-test.cac.washington.edu{{spot.images.0.url}}') no-repeat center center;">&nbsp;</div>

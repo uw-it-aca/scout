@@ -5,23 +5,23 @@ var Navigation = {
         // get the current location
         var pathname = window.location.pathname;
 
-        if (pathname.indexOf("/discover") >= 0) {
-            $("#link_discover").css({"border-bottom":"solid 3px #6564A8", "color":"#6564A8"});
-            $("#link_discover").attr("aria-selected", "true");
-            $("#link_discover").attr("tabindex", "-1");
+        if (pathname.indexOf("food") !== -1) {
+            $("#link_food").css({"border-bottom":"solid 3px #6564A8", "color":"#6564A8"});
+            $("#link_food").attr("aria-selected", "true");
+            $("#link_food").attr("tabindex", "-1");
         }
-        else if (pathname.indexOf("/filter") >= 0) {
+        else if (pathname.indexOf("filter") !== -1) {
             $("#link_discover").css("border-bottom", "solid 3px #fafafa");
             $("#link_food").css("border-bottom", "solid 3px #fafafa");
         }
-        else if (pathname.indexOf("/detail") >= 0) {
+        else if (pathname.indexOf("detail") !== -1) {
             $("#link_discover").css("border-bottom", "solid 3px #fafafa");
             $("#link_food").css("border-bottom", "solid 3px #fafafa");
         }
         else {
-            $("#link_food").css({"border-bottom":"solid 3px #6564A8", "color":"#6564A8"});
-            $("#link_food").attr("aria-selected", "true");
-            $("#link_food").attr("tabindex", "-1");
+            $("#link_discover").css({"border-bottom":"solid 3px #6564A8", "color":"#6564A8"});
+            $("#link_discover").attr("aria-selected", "true");
+            $("#link_discover").attr("tabindex", "-1");
         }
 
     },
