@@ -36,7 +36,7 @@ var Map = {
             mapCenter = pos;
             mapOptions = {
                 center: mapCenter,
-                zoom: 16
+                zoom: 15
             };
             var styles = [
                 {
@@ -175,7 +175,8 @@ var Map = {
             window.map_bounds = bounds;
             // Don't store user marker in bounds as it can change
             bounds.extend(locationMarker.position);
-            map.fitBounds(bounds);
+
+            //map.fitBounds(bounds);
 
             // cluster the markers using marker clusterer
             //var markerCluster = new MarkerClusterer(map, markers);
