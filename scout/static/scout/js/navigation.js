@@ -7,6 +7,8 @@ var Navigation = {
 
         if (pathname.indexOf("/discover") >= 0) {
             $("#link_discover").css({"border-bottom":"solid 3px #6564A8", "color":"#6564A8"});
+            $("#link_discover").attr("aria-selected", "true");
+            $("#link_discover").attr("tabindex", "-1");
         }
         else if (pathname.indexOf("/filter") >= 0) {
             $("#link_discover").css("border-bottom", "solid 3px #fafafa");
@@ -18,6 +20,8 @@ var Navigation = {
         }
         else {
             $("#link_food").css({"border-bottom":"solid 3px #6564A8", "color":"#6564A8"});
+            $("#link_food").attr("aria-selected", "true");
+            $("#link_food").attr("tabindex", "-1");
         }
 
     },
