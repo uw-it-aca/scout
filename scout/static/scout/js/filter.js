@@ -145,10 +145,6 @@ var Filter = {
                 filter_item = $("#open_now").find("input[value='open_now']");
                 $(filter_item[0]).prop("checked", true);
             }
-            if(idx.indexOf("period") > -1){
-                filter_item = $("#period_select").find("input[value='" + val + "']");
-                $(filter_item[0]).prop("checked", true);
-            }
             if(idx.indexOf("type") > -1){
                 filter_item = $("#type_select").find("input[value='" + val + "']");
                 $(filter_item[0]).prop("checked", true);
