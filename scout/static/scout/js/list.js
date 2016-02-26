@@ -26,7 +26,7 @@ var List = {
             }
         });
 
-        $("#list_loading_indicator").hide("slow", function() {
+        $("#list_loading_indicator").hide(800, function() {
             $("#scout-list").append(spots);
         });
 
