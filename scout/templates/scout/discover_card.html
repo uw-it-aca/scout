@@ -5,7 +5,7 @@
         {% for spot in spots %}
         <li><a href="/detail/{{ spot.spot_id }}"><i class="fa fa-map-marker"></i> {{spot.name}}</a></li>
         {% endfor %}
-        <li style="padding-left: 15px;"><a href="/?{{ card_filter_url }}">More...</a></li>
+        <li style="padding-left: 15px;"><a href="/food/?{{ card_filter_url }}">More...</a></li>
     </ul>
 </div>
 {% endblock %}
