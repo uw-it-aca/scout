@@ -9,6 +9,13 @@ var Navigation = {
             $("#link_food").css({"border-bottom":"solid 3px #6564A8", "color":"#6564A8"});
             $("#link_food").attr("aria-selected", "true");
             $("#link_food").attr("tabindex", "-1");
+            $("#link_discover").css("border-bottom", "solid 3px #fafafa");
+        }
+        else if (pathname.indexOf("map") !== -1) {
+            $("#link_food").css({"border-bottom":"solid 3px #6564A8", "color":"#6564A8"});
+            $("#link_food").attr("aria-selected", "true");
+            $("#link_food").attr("tabindex", "-1");
+            $("#link_discover").css("border-bottom", "solid 3px #fafafa");
         }
         else if (pathname.indexOf("filter") !== -1) {
             $("#link_discover").css("border-bottom", "solid 3px #fafafa");
