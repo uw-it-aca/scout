@@ -25,7 +25,10 @@ var List = {
                 return 0;
             }
         });
-        $("#scout-list").append(spots);
+
+        $("#list_loading_indicator").hide("slow", function() {
+            $("#scout-list").append(spots);
+        });
 
     },
 

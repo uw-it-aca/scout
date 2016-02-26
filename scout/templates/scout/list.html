@@ -24,11 +24,14 @@
 
 </div>
 
-<div class="scout-card scout-list-container" style="padding:0;" role="main">
+<div class="scout-list-container" style="position:relative; min-height:300px;" role="main">
+
+
+    <div id="list_loading_indicator" class="loader" style="position:absolute; top: 50%; left: 50%; margin-left:-13px; margin-top: -13px;">Loading...</div>
 
     <h2 class="scout-list-header visually-hidden">List of food places</h2>
 
-    <ol id="scout-list" class="scout-list">
+    <ol id="scout-list" class="scout-card scout-list">
 
         {% for spot in spots %}
             <li class="scout-list-item" id="{{ spot.spot_id }}">
@@ -72,7 +75,7 @@
             </li>
         {% endfor %}
 
-    </ul>
+    </ol>
 
 </div>
 

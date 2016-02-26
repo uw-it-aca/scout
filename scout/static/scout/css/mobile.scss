@@ -118,8 +118,8 @@ html.turbolinks-progress-bar::before {
 .loader,
 .loader:after {
     border-radius: 50%;
-    width: 20px;
-    height: 20px;
+    width: 20px !important;
+    height: 20px !important;
 }
 @-webkit-keyframes load8 {
   0% {
