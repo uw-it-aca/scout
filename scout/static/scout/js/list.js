@@ -26,8 +26,9 @@ var List = {
             }
         });
 
-        $("#list_loading_indicator").hide(800, function() {
+        $("#list_loading_indicator").fadeTo(500, 0, function() {
             $("#scout-list").append(spots);
+            $("#list_loading_indicator").remove();
         });
 
     },
