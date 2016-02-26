@@ -4,6 +4,9 @@ $(document).on('ready', function(event) {
     if (page_path.indexOf("food") !== -1) {
         List.init();
         Map.init_map();
+    } else if (page_path.indexOf("detail") !== -1) {
+        Map.init_map();
+
     } else if (page_path.indexOf("filter") !== -1) {
         Filter.init();
     } else if (page_path.indexOf("map") !== -1){
@@ -54,7 +57,7 @@ $(document).on('ready', function(event) {
 
         $('body').append('<div class="modal-overlay"><div class="modal-img"><img src="' + imagePath.replace("small","large") + '" /></div></div>');
     }
-    
+
 });
 
 // scrollTo function
