@@ -25,12 +25,12 @@
         <div class="scout-spot-image" style="background: #e5e6e9 url('{% static "scout/img/placeholder-1000.png" %}') no-repeat center center; background-size: contain;">
         {% endif %}
 
-            <h4 class="visually-hidden">Today status</h4>
+            <h4 class="visually-hidden">Today's status</h4>
 
-            <div class="scout-spot-status">{% if spot.is_open %}<span class="open">OPEN NOW</span>{% else %}<span class="closed">CLOSED</span>{% endif %}</div>
+            <div class="scout-spot-status" role="alert">{% if spot.is_open %}<span class="open">Open now</span>{% else %}<span class="closed">Closed</span>{% endif %}</div>
 
             <div class="scout-spot-open-period">
-                <span class="visually-hidden">Today's open periods:</span>
+                <span class="visually-hidden">Open periods:</span>
                 {% if spot.open_periods.breakfast %}
                     <span>Breakfast</span>
                 {% endif %}
@@ -70,34 +70,36 @@
             <i class="fa fa-exclamation-triangle"></i> {{ spot.alert_notes }}
         </div>
         {% else %}
-        <div class="scout-spot-alert">
+        <div class="scout-spot-alert" role="alert">
             <i class="fa fa-exclamation-triangle"></i> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla in consequat purus.
         </div>
         {% endif %}
 
+        <div style="margin:15px 0;">
+            <h4 class="visually-hidden">Contact information</h4>
+            <div class="scout-spot-phone">
+                {% if spot.phone %}
+                <a href="tel:+1{{ spot.phone }}"><span class="visually-hidden">Restaurant phone:</span><i class="fa fa-phone"></i> {{ spot.phone | format_phone }}</a>
+                {% else %}
+                <a href="/" target="_blank" style="color:red;"><i class="fa fa-phone"></i> missing phone</a>
+                {% endif %}
+            </div>
+            <div class="scout-spot-website">
+                {% if spot.website_url %}
+                <a href="{{spot.website_url}}" target="_blank"><span class="visually-hidden">Website URL:</span><i class="fa fa-laptop"></i> {{spot.website_url}}</a>
+                {% else %}
+                <a href="/" target="_blank" style="color:red;"><i class="fa fa-laptop"></i> missing website_url</a>
+                {% endif %}
+            </div>
 
-        <h4 class="visually-hidden">Contact information</h4>
-        <div class="scout-spot-phone">
-            {% if spot.phone %}
-            <a href="tel:+1{{ spot.phone }}"><span class="visually-hidden">Restaurant phone:</span><i class="fa fa-phone"></i> {{ spot.phone | format_phone }}</a>
-            {% else %}
-            <a href="/" target="_blank" style="color:red;"><i class="fa fa-phone"></i> missing phone</a>
-            {% endif %}
-        </div>
-        <div class="scout-spot-website">
-            {% if spot.website_url %}
-            <a href="{{spot.website_url}}" target="_blank"><span class="visually-hidden">Website URL:</span><i class="fa fa-laptop"></i> {{spot.website_url}}</a>
-            {% else %}
-            <a href="/" target="_blank" style="color:red;"><i class="fa fa-laptop"></i> missing website_url</a>
-            {% endif %}
-        </div>
-        <h4 class="visually-hidden">Menu information</h4>
-        <div class="scout-spot-menu">
-            {% if spot.menu_url %}
-            <a href="{{spot.menu_url}}" target="_blank"><span class="visually-hidden">Restaurant menu URL:</span><i class="fa fa-book"></i> {{spot.menu_url}}</a>
-            {% else %}
-            <a href="/" target="_blank" style="color:red;"><i class="fa fa-book"></i> missing menu_url</a>
-            {% endif %}
+            <h4 class="visually-hidden">Menu information</h4>
+            <div class="scout-spot-menu">
+                {% if spot.menu_url %}
+                <a href="{{spot.menu_url}}" target="_blank"><span class="visually-hidden">Restaurant menu URL:</span><i class="fa fa-book"></i> {{spot.menu_url}}</a>
+                {% else %}
+                <a href="/" target="_blank" style="color:red;"><i class="fa fa-book"></i> missing menu_url</a>
+                {% endif %}
+            </div>
         </div>
 
     </div>
