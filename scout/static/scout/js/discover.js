@@ -23,7 +23,11 @@ Discover = {
                    data: pos_data,
                    accepts: {html: "text/html"},
                    success: function(results) {
-                       Discover._attach_card(card_id, results);
+
+                        $("#card_loading_indicator").hide( "slow", function() {
+                            Discover._attach_card(card_id, results);
+                        });
+                        
                    },
                    error: function(xhr, status, error) {
                    }
