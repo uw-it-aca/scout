@@ -9,12 +9,12 @@
 <div class="scout-filter-results-container">
 
     {% include "scout/include/user_geolocation.html" %}
-    
-    <div style="margin-bottom: 5px;"><a href="/map/">All</a> | <a href="/map/?campus0=seattle">Seattle</a> | <a href="/map/?campus0=bothell">Bothell</a> | <a href="/map/?campus0=tacoma">Tacoma</a> | <a href="/map/?campus0=south_lake_union">South Lake Union</a></div>
+
+    <div style="margin-bottom: 5px; display:none;"><a href="/map/">All</a> | <a href="/map/?campus0=seattle">Seattle</a> | <a href="/map/?campus0=bothell">Bothell</a> | <a href="/map/?campus0=tacoma">Tacoma</a> | <a href="/map/?campus0=south_lake_union">South Lake Union</a></div>
 
     {% if request.is_mobile or request.is_tablet %}
     <div style="text-align:right;">
-    <a id="list_link" href="/"><i class="fa fa-list"></i> list</a>
+    <a id="list_link" href="/food/"><i class="fa fa-list"></i> list</a>
     </div>
     {% endif %}
 

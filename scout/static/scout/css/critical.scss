@@ -48,7 +48,10 @@ h1 {
             flex-flow: row wrap;
 
             li { margin: 0; padding: 0; flex: 1 0;
-                a { display: block;  color: #666; text-decoration: none; text-align: center; border-bottom:solid 3px #fafafa; }
+                a { display: block;  color: #666; text-decoration: none; text-align: center; border-bottom:solid 3px #fafafa;
+                    &:hover { color: $scout-purple; }
+                }
+                a[disabled="disabled"] { cursor: default;}
             }
 
             //li:nth-child(2) { margin: 0 10px; }
@@ -102,8 +105,8 @@ h1 {
 
                     a { display:block; text-decoration:none; padding:10px 20px; color:#000; height: 130px; overflow: hidden;
 
-                        .scout-spot-image { background-size:cover; width:33%; height:100px; float:left; position: relative; }
-                        .scout-spot-content { display:inline-block; float:left; width:67%; margin:0;
+                        .scout-spot-image { background-size:cover; width:30%; height:100px; float:left; position: relative; }
+                        .scout-spot-content { display:inline-block; float:left; width:70%; margin:0;
 
                             // spot details
                             .scout-spot-name { margin: 0; font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
@@ -146,7 +149,7 @@ h1 {
                 //border-top-left-radius: 2px;
                 //border-top-right-radius: 2px;
 
-                .scout-spot-status { position: absolute; top: 10px; right: 20px; font-size: 10px;
+                .scout-spot-status { position: absolute; top: 10px; right: 20px; font-size: 10px; text-transform: uppercase;
                     span {  padding: 0 5px; line-height: 20px; display: inline-block; border-radius: 2px; }
                     .open { background: #D6E9C5; color: #3c763d; }
                     .closed { background: #ebccd1; color: #a94442; }

@@ -1,8 +1,12 @@
 $(document).on('ready', function(event) {
     // page based JS calls
     var page_path = window.location.pathname;
-    if (page_path.indexOf("discover") !== -1) {
-        Discover.init_cards();
+    if (page_path.indexOf("food") !== -1) {
+        List.init();
+        Map.init_map();
+    } else if (page_path.indexOf("detail") !== -1) {
+        Map.init_map();
+
     } else if (page_path.indexOf("filter") !== -1) {
         Filter.init();
     } else if (page_path.indexOf("map") !== -1){
@@ -11,8 +15,7 @@ $(document).on('ready', function(event) {
         List.init();
         Map.init_map();
     } else {
-        List.init();
-        Map.init_map();
+        Discover.init_cards();
     }
     // call this last so all page level location event listiners have been declared
     Geolocation.update_location();

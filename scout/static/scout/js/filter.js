@@ -92,7 +92,6 @@ var Filter = {
         if(filter_text.length > 0){
             $("#filter_label_text").html(filter_text);
         }
-
     },
 
     reset_filter: function() {
@@ -105,7 +104,7 @@ var Filter = {
 
         $("#run_search").click(function(){
             var filtered_url = Filter.get_filter_url();
-            window.location.replace("/?"+filtered_url);
+            window.location.replace("/food/?"+filtered_url);
         });
 
         $("#filter_toggle").click(function(e) {
