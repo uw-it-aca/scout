@@ -28,7 +28,7 @@ var List = {
 
         $("#list_loading_indicator").fadeTo(500, 0, function() {
             $("#scout-list").append(spots);
-            $("#list_loading_indicator").remove();
+            //$("#list_loading_indicator").remove();
         });
 
     },
