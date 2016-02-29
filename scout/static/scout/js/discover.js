@@ -24,7 +24,8 @@ Discover = {
                    accepts: {html: "text/html"},
                    success: function(results) {
                         Discover._attach_card(card_id, results);
-                        $("#card_loading_indicator").remove();
+                        $("#card_loading_indicator").hide();
+                        $("#card_loading_indicator").attr("aria-hidden", "true");
                    },
                    error: function(xhr, status, error) {
                    }
