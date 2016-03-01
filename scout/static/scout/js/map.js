@@ -195,10 +195,10 @@ var Map = {
         myLatlng = new google.maps.LatLng(spot_lat, spot_lng);
         mapOptions = {
             center: myLatlng,
-            zoom: 17,
-            scrollwheel: false,
-            draggable: false,
-            disableDefaultUI: true
+            zoom: 18,
+            //scrollwheel: false,
+            //draggable: false,
+            //disableDefaultUI: true
         };
 
         var styles = [
@@ -238,7 +238,8 @@ var Map = {
             position: myLatlng,
             map: map,
             title: spot_name,
-            labelContent: "<span class='marker-text' style='margin-left:18px;font-size:12px;'>" + spot_name + "</span>",
+            labelContent: "<i class='fa fa-cutlery'></i><span class='marker-text' style='margin-left:15px;font-size:12px;'>" + spot_name + "</span>",
+            //labelContent: "<span class='marker-text' style='margin-left:18px;font-size:12px;'>" + spot_name + "</span>",
             labelAnchor: new google.maps.Point(6, 6),
             labelClass: "map-label", // the CSS class for the label
             icon: {
@@ -247,7 +248,7 @@ var Map = {
                 fillOpacity: 1,
                 strokeColor: '#ffffff',
                 strokeWeight: 2,
-                scale: 6
+                scale: 15
             }
         });
     }

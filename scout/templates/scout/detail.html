@@ -75,7 +75,7 @@
         </div>
         {% endif %}
 
-        <div style="margin:15px 0;">
+        <div style="padding:15px 0;">
             <h4 class="visually-hidden">Contact information</h4>
             <div class="scout-spot-phone">
                 {% if spot.phone %}
@@ -161,6 +161,17 @@
             <h3>Details</h3>
             <div class="scout-spot-description">{% if spot.location_description %}{{spot.location_description}}{% else %} <span style="color:red;">xxxxx xxx xx xxxxxxxxx xxx</span> {% endif %}</div>
 
+            <h4><i class="fa fa-cutlery"></i> Cuisine</h4>
+            <div class="scout-spot-cuisine">
+                {% if spot.cuisinetype_names %}
+                <ul>
+                    {% for cuisinetype in spot.cuisinetype_names %}
+                    <li>{{ cuisinetype }}</li>
+                    {% endfor %}
+                </ul>
+                {% else %}<span style="color:red;">missing cuisinetype</span> {% endif %}
+            </div>
+
             <h4 aria-hidden="true"><i class="fa fa-camera"></i> Gallery</h4>
             <div class="scout-spot-gallery" aria-hidden="true">
                 <ul class="clearfix" id="imageContainer">
@@ -173,18 +184,6 @@
 
                 </ul>
             </div>
-
-            <div class="scout-spot-cuisine">
-                {% if spot.cuisinetype_names %}
-                <h4><i class="fa fa-cutlery"></i> Cuisine</h4>
-                <ul>
-                    {% for cuisinetype in spot.cuisinetype_names %}
-                    <li>{{ cuisinetype }}</li>
-                    {% endfor %}
-                </ul>
-                {% else %}<span style="color:red;">missing cuisinetype</span> {% endif %}
-            </div>
-
 
             <div class="scout-spot-reservation">
                 <h4><i class="fa fa-bookmark"></i> Reservations</h4>
@@ -235,83 +234,6 @@
 {% block secondary_content %}
 <!-- show a map on the list page -->
 <div id="detail_map" style="height:100%;"></div>
-
-<!-- since turbolinks loads the full body... initialize map stuff locally in the template. then, call the function in the map.js file -->
-<script>
-    function initializeDetailMap() {
-
-        var mapExists = document.getElementById("detail_map");
-        var myLatlng, mapOptions;
-
-        if (mapExists) {
-
-            // center map direction on spot location
-            myLatlng = new google.maps.LatLng({{ spot.latitude }}, {{ spot.longitude }});
-            mapOptions = {
-                center: myLatlng,
-                zoom: 20,
-            };
-
-            var styles = [
-                {
-                    "featureType": "poi.place_of_worship",
-                    "elementType": "all",
-                    "stylers": [
-                        {
-                            "visibility": "off"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "poi.business",
-                    "elementType": "labels.icon",
-                    "stylers": [
-                        {
-                            "visibility": "off"
-                        }
-                    ]
-                }
-            ]
-
-            // create and open InfoWindow.
-            var infoWindow = new google.maps.InfoWindow();
-
-
-            var map = new google.maps.Map(document.getElementById('detail_map'), mapOptions);
-            map.setOptions({styles: styles});
-
-            var marker = new MarkerWithLabel({
-                position: myLatlng,
-                map: map,
-                title: '{{ spot.name }}',
-                //animation: google.maps.Animation.DROP,
-                labelContent: "<i class='fa fa-cutlery'></i><span class='marker-text' style='margin-left:15px;font-size:12px;'>{{ spot.name }}</span>",
-                labelAnchor: new google.maps.Point(6, 6),
-                labelClass: "map-label", // the CSS class for the label
-                icon: {
-            		path: google.maps.SymbolPath.CIRCLE,
-            		fillColor: '#53518e',
-            		fillOpacity: 1,
-            		strokeColor: '#ffffff',
-                    strokeWeight: 3,
-                    scale: 15,
-            	},
-            });
-
-            google.maps.event.addListener(marker, "click", function (e) {
-                //Wrap the content inside an HTML DIV in order to set height and width of InfoWindow.
-                infoWindow.setContent("<div>{{ spot.name }}<br>{{ spot.building_name }}<br><a href='https://maps.google.com/maps?q={{ spot.latitude }},{{ spot.longitude }}' target='_blank'>View on Google Maps</a></div>");
-                infoWindow.open(map, marker);
-            });
-
-            google.maps.event.addListener(infoWindow,'closeclick',function(){
-                infoWindow.close(map, marker);
-            });
-
-        }
-
-    }
-</script>
 
 {% endblock %}
 
