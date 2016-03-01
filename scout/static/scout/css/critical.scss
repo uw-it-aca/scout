@@ -35,8 +35,8 @@ $scout-purple: #6564A8;
     a { text-decoration: none; color: $scout-purple; font-size: 14px;}
     label { display: block; font-size: 11px; text-transform: uppercase; color: #aaa; }
 
-    .scout-filter-results-by { padding: 5px 20px; font-size: 14px; }
-    .scout-filter-results-count { padding: 5px 20px; font-size: 18px; margin-top: 5px;
+    .scout-filter-results-by { padding: 15px 20px 5px 20px; font-size: 14px; }
+    .scout-filter-results-count { padding: 10px 20px; font-size: 18px;
         a { display: inline-block; }
     }
 }
