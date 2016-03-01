@@ -10,14 +10,6 @@ Discover = {
             });
         });
         Geolocation.init_location_toggles();
-
-        $('#discover_cards').children().each(function(){
-          if ($(this).length === 1) {
-            console.log("all here");
-            $('#discover_none').hide();
-          }
-        })
-
     },
 
     fetch_cards: function (card_id, latlng) {
