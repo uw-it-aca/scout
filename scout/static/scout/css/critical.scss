@@ -228,8 +228,8 @@ h1 {
                 legend { font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 12px; text-transform: uppercase; margin-bottom: 8px; color: #bbb; padding: 5px 0; letter-spacing: 1px; }
             }
             label { display: block; line-height: 25px; font-size: 14px; white-space: nowrap;
+                span { color: #aaa; }
                 input[type="checkbox"]  { margin-right: 5px; }
-
             }
 
             input[type="button"] { background: $scout-purple; color: #fff; border: none; text-transform: uppercase; padding: 10px 20px; font-size: 13px; border-radius: 2px; }

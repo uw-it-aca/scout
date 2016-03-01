@@ -3,10 +3,10 @@
     <h3>{{ card_title }}</h3>
     <ol>
         {% for spot in spots %}
-        <li><a href="/detail/{{ spot.spot_id }}"><i class="fa fa-map-marker"></i> {{spot.name}} {% if not spot.is_open %}<span style="color:red;">closed</span>{% endif %}</a>
+        <li><a href="/detail/{{ spot.spot_id }}"><i class="fa fa-map-marker"></i> {{spot.name}} {% if not spot.is_open %}<span class="closed">Currently closed</span>{% endif %}</a>
         </li>
         {% endfor %}
-        <li style="padding-left: 15px;"><a href="/food/?{{ card_filter_url }}">View all results...</a></li>
+        <li style="padding-left: 15px; margin-top: 15px;"><a href="/food/?{{ card_filter_url }}">View all results...</a></li>
     </ul>
 </div>
 {% endblock %}
