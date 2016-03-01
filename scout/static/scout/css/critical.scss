@@ -8,30 +8,50 @@ file.
 
 $scout-purple: #6564A8;
 
+
+// geolocation
+
+.scout-geolocation { padding: 5 20px; background: #ddd;
+
+    a { text-decoration: none; color: $scout-purple; }
+    
+    .scout-geolocation-default { }
+    .scout-geolocation-shared {  }
+
+    .scout-geolocation-user { font-size: 10px; line-height: 45px; float:left; margin-left: 10px; margin-right: 5px;
+        .fa-circle { color: #aaa; }
+    }
+    .scout-geolocation-position { float:left; font-size:16px; line-height: 45px; width: 50%; overflow: hidden; white-space:nowrap; text-overflow: ellipsis; }
+    .scout-geolocation-action { float:right; font-size: 14px; line-height: 45px; width: auto; text-align: right; margin-right: 20px;
+        a { display: block; }
+    }
+
+}
+
+
 // header
 
 .scout-header { background: #fafafa; border-bottom: solid 1px #d0d1d5; position: relative;
 
-h1 {
-    margin: 0;
-    line-height: 60px;
-    height: 60px;
-    color: $scout-purple;
-    text-transform: uppercase;
-    font-family: 'Raleway', sans-serif;
-    font-weight: 900;
-    font-size: 30px;
-    text-align: left;
-    a {
-        color: #111;
-        text-decoration: none;
+    h1 {
+        margin: 0;
         line-height: 60px;
-        display: inline-block;
-        padding-left: 53px;
+        height: 60px;
+        color: $scout-purple;
+        text-transform: uppercase;
+        font-family: 'Raleway', sans-serif;
+        font-weight: 900;
+        font-size: 30px;
+        text-align: left;
+        a {
+            color: #111;
+            text-decoration: none;
+            line-height: 60px;
+            display: inline-block;
+            padding-left: 53px;
+        }
     }
-}
 
-// spacescout purple #6564A8;
 
     // navigation menu
     .scout-navigation { position: relative; background: #fafafa; line-height: 40px; color: #fff;  margin: 0; padding: 0;
@@ -87,11 +107,6 @@ h1 {
     .scout-content {
 
         /*** list page ***/
-
-        // filter
-        .scout-filter-results-container { padding: 10px 20px; color: #444; font-size: 14px;
-            .scout-filter-results { }
-        }
 
         // list
         .scout-list-container {
@@ -198,8 +213,6 @@ h1 {
         // discover
 
         .scout-discover-container {
-
-            .scout-filter-results-container { padding: 10px 20px; color: #444; font-size: 14px;}
 
             .scout-discover-content {
 

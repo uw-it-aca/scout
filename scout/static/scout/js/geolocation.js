@@ -96,10 +96,14 @@ var Geolocation = {
     display_location_status: function () {
         if (Geolocation.get_location_type() === "default") {
             $("#default_position").show();
+            $("#default_position").attr("aria-hidden", "false");
             $("#shared_position").hide();
+            $("#shared_position").attr("aria-hidden", "true");
         } else {
-            $("#shared_position").show();
             $("#default_position").hide();
+            $("#default_position").attr("aria-hidden", "true");
+            $("#shared_position").show();
+            $("#shared_position").attr("aria-hidden", "false");
             $("#user_location").html(Geolocation.get_position_string());
         }
     },
