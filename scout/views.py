@@ -58,7 +58,7 @@ def discover_card_view(request, discover_category):
             ]
         },
         "breakfast": {
-            "title": "Open for Breakfast",
+            "title": "Open for Breakfast (5am - 10am)",
             "filter_url": "period0=breakfast",
             "filter": [
                 ('limit', 5),
@@ -69,7 +69,7 @@ def discover_card_view(request, discover_category):
 
         },
         "late": {
-            "title": "Open Late Night",
+            "title": "Open Late Night (11pm - 4am)",
             "filter_url": "period0=late_night",
             "filter": [
                 ('limit', 5),
