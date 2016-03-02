@@ -55,6 +55,15 @@
                 {% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}</span>{% endfor %}
             </div>
 
+            <div class="scout-spot-cuisine">
+                <span class="visually-hidden">Cuisine:</span>
+                {% if spot.cuisinetype_names %}
+                    {% for cuisinetype in spot.cuisinetype_names %}
+                    <span>{{ cuisinetype }}</span>
+                    {% endfor %}
+                {% else %}<span style="color:red;">missing cuisinetype</span> {% endif %}
+            </div>
+
             <div class="scout-spot-food-served">
                 <span class="visually-hidden">Food served:</span>
                 {% if spot.foodtype_names %}
@@ -63,6 +72,7 @@
                     {% endfor %}
                 {% else %} <span style="color:red;">missing foodtype</span> {% endif %}
             </div>
+
         </div>
 
         {% if spot.has_alert %}
@@ -160,17 +170,6 @@
         <div class="scout-card">
             <h3>Details</h3>
             <div class="scout-spot-description">{% if spot.location_description %}{{spot.location_description}}{% else %} <span style="color:red;">xxxxx xxx xx xxxxxxxxx xxx</span> {% endif %}</div>
-
-            <h4><i class="fa fa-cutlery"></i> Cuisine</h4>
-            <div class="scout-spot-cuisine">
-                {% if spot.cuisinetype_names %}
-                <ul>
-                    {% for cuisinetype in spot.cuisinetype_names %}
-                    <li>{{ cuisinetype }}</li>
-                    {% endfor %}
-                </ul>
-                {% else %}<span style="color:red;">missing cuisinetype</span> {% endif %}
-            </div>
 
             <h4 aria-hidden="true"><i class="fa fa-camera"></i> Gallery</h4>
             <div class="scout-spot-gallery" aria-hidden="true">

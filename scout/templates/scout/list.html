@@ -48,13 +48,20 @@
                             <span class="scout-spot-type">{% if spot.spot_types %}{% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}</span>{% endfor %}{% else %} <span style="color:red;">SPOT_TYPE</span> {% endif %}</span>
                             {% endif %}
 
+                            <div class="scout-spot-cuisine">
+                                {% if spot.cuisinetype_names %}
+                                    {% for cuisinetype in spot.cuisinetype_names %}
+                                    <span>{{ cuisinetype }}</span>
+                                    {% endfor %}
+                                {% else %}<span style="color:red;">missing cuisinetype</span> {% endif %}
+                            </div>
+
                             <div class="scout-spot-food-served">
                             {% if spot.foodtype_names %}
                                 {% for foodtype in spot.foodtype_names %}
                                     <span>{{ foodtype }}</span>
                                 {% endfor %}
-                            {% else %} <span style="color:red;">foodtype</span> {% endif %}
-
+                            {% else %} <span style="color:red;">missing foodserved</span> {% endif %}
                             </div>
 
                             <div class="scout-spot-location">

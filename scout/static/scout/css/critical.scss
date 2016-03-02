@@ -130,7 +130,7 @@ $scout-purple: #6564A8;
 
                     &:first-child{ border-top: none; }
 
-                    a { display:block; text-decoration:none; padding:10px 20px; color:#000; height: 130px; overflow: hidden;
+                    a { display:block; text-decoration:none; padding:10px 20px; color:#000; height: 150px; overflow: hidden;
 
                         .scout-spot-image { background-size:cover; background-position: center center; background-repeat: no-repeat; width:30%; height:100px; float:left; position: relative; }
                         .scout-spot-content { display:inline-block; float:left; width:70%; margin:0;
@@ -151,6 +151,10 @@ $scout-purple: #6564A8;
 
                             .scout-spot-location { font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #666;
                                 .fa { color: $scout-purple; }
+                            }
+
+                            .scout-spot-cuisine { color: blue; margin: 10px 0 5px 0; text-transform: uppercase; font-size: 11px;
+                                span { margin-right: 10px; }
                             }
 
                             .scout-spot-food-served { margin: 15px 0; color: #333; text-transform: uppercase; font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
@@ -198,6 +202,11 @@ $scout-purple: #6564A8;
                 .scout-spot-type { text-transform: uppercase; font-weight: normal; font-size: 12px; margin: 0; position: absolute; top: 15px; right:20px; color: #ccc;
                     span { margin-left: 10px; }
                 }
+
+                .scout-spot-cuisine { color: blue; margin: 10px 0 5px 0; text-transform: uppercase; font-size: 12px;
+                    span { margin-right: 10px; }
+                }
+
                 .scout-spot-food-served { margin: 10px 0 5px 0; text-transform: uppercase; font-size: 12px;
                     span { margin-right: 10px; }
                 }
