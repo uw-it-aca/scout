@@ -63,19 +63,22 @@ var Filter = {
         var filter_categories = [];
         var url = window.location.href;
         var filter_string = "";
-        if(url.indexOf("campus") > -1){
+        if(url.indexOf("&campus") > -1 || url.indexOf("?campus") > -1){
             filter_categories.push("Campus");
         }
-        if(url.indexOf("payment") > -1){
+        if(url.indexOf("&payment") > -1 || url.indexOf("?payment") > -1){
             filter_categories.push("Payment Accepted");
         }
-        if(url.indexOf("type") > -1){
+        if(url.indexOf("&type") > -1 || url.indexOf("?type") > -1){
             filter_categories.push("Restaurant Type");
         }
-        if(url.indexOf("food") > -1){
+        if(url.indexOf("&food") > -1 || url.indexOf("?food") > -1){
             filter_categories.push("Food Served");
         }
-        if(url.indexOf("cuisine") > -1){
+        if(url.indexOf("&period") > -1 || url.indexOf("?period") > -1){
+            filter_categories.push("Open Period");
+        }
+        if(url.indexOf("&cuisine") > -1 || url.indexOf("?cuisine") > -1){
             filter_categories.push("Cuisine");
         }
         for(var i = 0; i < filter_categories.length; i++){
