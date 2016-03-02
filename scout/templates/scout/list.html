@@ -56,7 +56,7 @@
                                 {% for foodtype in spot.foodtype_names %}
                                     <span>{{ foodtype }}</span>
                                 {% endfor %}
-                            {% else %} <span style="color:red;">missing foodserved</span> {% endif %}
+                            {% else %}<span style="color:red;">missing foodserved</span> {% endif %}
                             </div>
 
                             <span class="scout-spot-status">{% if spot.is_open %}<span class="open visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</span>
