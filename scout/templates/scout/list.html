@@ -11,8 +11,6 @@
 
     <h2 class=" visually-hidden">Filtered shortcuts</h2>
 
-    <div style="margin: 8px 0; display:none;"><a href="/">All</a> | <a href="/?campus0=seattle">Seattle</a> | <a href="/?campus0=bothell">Bothell</a> | <a href="/?campus0=tacoma">Tacoma</a> | <a href="/?campus0=south_lake_union">South Lake Union</a></div>
-
     {% if request.is_mobile or request.is_tablet %}
     <div style="text-align:right; display:none;">
     <a id="map_link" href="/map/"><i class="fa fa-map"></i> map</a>
@@ -40,21 +38,18 @@
 
                     <div class="scout-spot-content">
 
-                        <div style="padding:0 10px;">
+                        <div style="padding-left: 10px;">
                             <h3 class="scout-spot-name">{{ spot.name }}</h3>
-                            <span class="scout-spot-distance"><span class="visually-hidden">Distance from you:</span><span class="distance-number">-</span>&nbsp;ft</span>
+                            <div class="scout-spot-location">
+                                <span class="scout-spot-distance"><span class="visually-hidden">Distance from you:</span><span class="distance-number">-</span>&nbsp;ft.</span>&nbsp;&nbsp;
+                                {% if spot.building_name %}{{ spot.building_name }}{% else %}<span style="color:red;">missing building_name</span>{% endif %}
+                            </div>
+
+
 
                             {% if is_desktop %}
                             <span class="scout-spot-type">{% if spot.spot_types %}{% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}</span>{% endfor %}{% else %} <span style="color:red;">SPOT_TYPE</span> {% endif %}</span>
                             {% endif %}
-
-                            <div class="scout-spot-cuisine">
-                                {% if spot.cuisinetype_names %}
-                                    {% for cuisinetype in spot.cuisinetype_names %}
-                                    <span>{{ cuisinetype }}</span>
-                                    {% endfor %}
-                                {% else %}<span style="color:red;">missing cuisinetype</span> {% endif %}
-                            </div>
 
                             <div class="scout-spot-food-served">
                             {% if spot.foodtype_names %}
@@ -64,11 +59,7 @@
                             {% else %} <span style="color:red;">missing foodserved</span> {% endif %}
                             </div>
 
-                            <div class="scout-spot-location">
-                                {% if spot.building_name %}{{ spot.building_name }}{% else %} <span style="color:red;">missing building_name</span> {% endif %}
-                            </div>
-
-                            <span class="scout-spot-status">{% if spot.is_open %}<span class="open">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</span>
+                            <span class="scout-spot-status">{% if spot.is_open %}<span class="open visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</span>
 
                         </div>
 
