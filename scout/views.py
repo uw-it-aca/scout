@@ -1,9 +1,10 @@
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django.conf import settings
 from scout.dao.space import get_spot_list, get_spot_by_id, get_filtered_spots
 from scout.dao.space import get_spots_by_filter, get_period_filter
-
+import oauth2
 # using drumheller fountain as the default center
 DEFAULT_LAT = 47.653811
 DEFAULT_LON = -122.307815
@@ -137,6 +138,29 @@ def hybrid_comps_view(request):
                               context_instance=RequestContext(request))
 
 
-def image_view(request):
+def image_view(request, image_id, spot_id):
+    client = get_client()
+    url = "%s/api/v1/spot/%s/image/%s" % (settings.SPOTSEEKER_HOST,
+                                          spot_id,
+                                          image_id)
+    try:
+        resp, content = client.request(url, 'GET')
+        return HttpResponse(content, content_type=resp['content-type'])
+    except Exception:
+        raise Http404()
 
-    raise Http404
+
+def get_client():
+    # Required settings for the client
+    if not hasattr(settings, 'SPOTSEEKER_HOST'):
+        raise(Exception("Required setting missing: SPOTSEEKER_HOST"))
+    if not hasattr(settings, 'SPOTSEEKER_OAUTH_KEY'):
+        raise(Exception("Required setting missing: SPOTSEEKER_OAUTH_KEY"))
+    if not hasattr(settings, 'SPOTSEEKER_OAUTH_SECRET'):
+        raise(Exception("Required setting missing: SPOTSEEKER_OAUTH_SECRET"))
+
+    consumer = oauth2.Consumer(key=settings.SPOTSEEKER_OAUTH_KEY,
+                               secret=settings.SPOTSEEKER_OAUTH_SECRET)
+    client = oauth2.Client(consumer)
+
+    return client

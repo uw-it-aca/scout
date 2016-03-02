@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, include, url
-
+from scout import views
 
 urlpatterns = patterns(
     '',
@@ -14,6 +14,7 @@ urlpatterns = patterns(
     url(r'^detail/(?P<spot_id>[0-9]{1,5})',
         'scout.views.detail_view', name='detail_view'),
     url(r'^filter/', 'scout.views.filter_view', name='filter_view'),
+    url(r'^images/(?P<spot_id>\d+)/image/(?P<image_id>\d+)', views.image_view),
 
     # example hybrid components
     url(r'^components/', 'scout.views.hybrid_comps_view',
