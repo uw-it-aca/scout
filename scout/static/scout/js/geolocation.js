@@ -53,12 +53,6 @@ var Geolocation = {
         return Geolocation.get_latlng_from_coords(lat, lng);
     },
 
-    get_position_string: function () {
-        var lat = sessionStorage.getItem("lat");
-        var lng = sessionStorage.getItem("lng");
-        return lat + ", " + lng;
-    },
-
     handle_watch_position: function (updated_location) {
        if(Geolocation.get_is_using_location()){
            var new_position = Geolocation.get_latlng_from_coords(updated_location.coords.latitude, updated_location.coords.longitude);
@@ -104,7 +98,6 @@ var Geolocation = {
             $("#default_position").attr("aria-hidden", "true");
             $("#shared_position").show();
             $("#shared_position").attr("aria-hidden", "false");
-            $("#user_location").html(Geolocation.get_position_string());
         }
     },
 
