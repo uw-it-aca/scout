@@ -8,30 +8,62 @@ file.
 
 $scout-purple: #6564A8;
 
+
+// geolocation
+
+.scout-geolocation { background: #ddd;
+
+    a { text-decoration: none; color: $scout-purple; }
+
+    .scout-geolocation-default { }
+    .scout-geolocation-shared {  }
+
+    .scout-geolocation-user { font-size: 10px; line-height: 45px; float:left; margin-left: 10px; margin-right: 5px;
+        .fa-circle { color: #aaa; }
+    }
+    .scout-geolocation-position { float:left; font-size:16px; line-height: 45px; width: 50%; overflow: hidden; white-space:nowrap; text-overflow: ellipsis; }
+    .scout-geolocation-action { float:right; font-size: 14px; line-height: 45px; width: auto; text-align: right; margin-right: 20px;
+        a { display: block; }
+    }
+
+}
+
+// filter results
+
+.scout-filter-results {
+
+    a { text-decoration: none; color: $scout-purple; font-size: 14px;}
+    label { display: block; font-size: 11px; text-transform: uppercase; color: #aaa; }
+
+    .scout-filter-results-by { padding: 15px 20px 5px 20px; font-size: 14px; }
+    .scout-filter-results-count { padding: 10px 20px; font-size: 18px;
+        a { display: inline-block; }
+    }
+}
+
 // header
 
 .scout-header { background: #fafafa; border-bottom: solid 1px #d0d1d5; position: relative;
 
-h1 {
-    margin: 0;
-    line-height: 60px;
-    height: 60px;
-    color: $scout-purple;
-    text-transform: uppercase;
-    font-family: 'Raleway', sans-serif;
-    font-weight: 900;
-    font-size: 30px;
-    text-align: left;
-    a {
-        color: #111;
-        text-decoration: none;
+    h1 {
+        margin: 0;
         line-height: 60px;
-        display: inline-block;
-        padding-left: 53px;
+        height: 60px;
+        color: $scout-purple;
+        text-transform: uppercase;
+        font-family: 'Raleway', sans-serif;
+        font-weight: 900;
+        font-size: 30px;
+        text-align: left;
+        a {
+            color: #111;
+            text-decoration: none;
+            line-height: 60px;
+            display: inline-block;
+            padding-left: 43px;
+        }
     }
-}
 
-// spacescout purple #6564A8;
 
     // navigation menu
     .scout-navigation { position: relative; background: #fafafa; line-height: 40px; color: #fff;  margin: 0; padding: 0;
@@ -74,7 +106,7 @@ h1 {
     .scout-card { margin: 0 0 10px 0; background: #fff; padding: 20px;
         /*box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);*/
         //border-top: solid 1px #e5e6e9;
-        border-bottom: solid 1px #d0d1d5;
+        //border-bottom: solid 1px #d0d1d5;
 
         // general list styles
 
@@ -87,11 +119,6 @@ h1 {
     .scout-content {
 
         /*** list page ***/
-
-        // filter
-        .scout-filter-results-container { padding: 10px 20px; color: #444; font-size: 14px;
-            .scout-filter-results { }
-        }
 
         // list
         .scout-list-container {
@@ -199,8 +226,6 @@ h1 {
 
         .scout-discover-container {
 
-            .scout-filter-results-container { padding: 10px 20px; color: #444; font-size: 14px;}
-
             .scout-discover-content {
 
                 h3 { font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 12px; color: #bbb; text-transform: uppercase; letter-spacing: 1px; margin: 0; line-height: 35px; }
@@ -227,9 +252,9 @@ h1 {
             fieldset { border: none; padding: 0; margin:0;  margin-bottom: 20px; float: left; width: 50%;
                 legend { font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 12px; text-transform: uppercase; margin-bottom: 8px; color: #bbb; padding: 5px 0; letter-spacing: 1px; }
             }
-            label { display: block; line-height: 25px; font-size: 14px;
+            label { display: block; line-height: 25px; font-size: 14px; white-space: nowrap;
+                span { color: #aaa; }
                 input[type="checkbox"]  { margin-right: 5px; }
-
             }
 
             input[type="button"] { background: $scout-purple; color: #fff; border: none; text-transform: uppercase; padding: 10px 20px; font-size: 13px; border-radius: 2px; }

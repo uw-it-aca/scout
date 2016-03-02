@@ -6,7 +6,6 @@
 
 {% block web_content %}
 
-<div class="scout-filter-results-container">
 
     {% include "scout/include/user_geolocation.html" %}
 
@@ -15,20 +14,19 @@
     <div style="margin: 8px 0; display:none;"><a href="/">All</a> | <a href="/?campus0=seattle">Seattle</a> | <a href="/?campus0=bothell">Bothell</a> | <a href="/?campus0=tacoma">Tacoma</a> | <a href="/?campus0=south_lake_union">South Lake Union</a></div>
 
     {% if request.is_mobile or request.is_tablet %}
-    <div style="text-align:right;">
+    <div style="text-align:right; display:none;">
     <a id="map_link" href="/map/"><i class="fa fa-map"></i> map</a>
     </div>
     {% endif %}
 
     {% include "scout/include/filter_results_bar.html" %}
 
-</div>
 
-<div class="scout-card scout-list-container" style="padding:0;" role="main">
+<div class="scout-list-container" style="" role="main">
 
-    <h2 class="scout-list-header visually-hidden">List of food places</h2>
+    <h2 class="scout-list-header visually-hidden">List of food places (by distance)</h2>
 
-    <ol id="scout-list" class="scout-list">
+    <ol id="scout_list" class="scout-card scout-list">
 
         {% for spot in spots %}
             <li class="scout-list-item" id="{{ spot.spot_id }}">
@@ -70,9 +68,19 @@
                     </div>
                 </a>
             </li>
+        {% empty %}
+            <li class="scout-list-item" style="padding:20px;">
+                <p style="color:red; font-weight:bold;">No Results? Try unchecking some of the boxes above.</p>
+                <p>Suggestions for improving the results:
+Try a larger search area.
+Try a different location.
+Check the spelling or try alternate spellings.
+Try a more general search. e.g. "pizza" instead of "pepperoni"</p>
+                <p>Update your filters</p>
+            </li>
         {% endfor %}
 
-    </ul>
+    </ol>
 
 </div>
 

@@ -96,7 +96,7 @@ var Filter = {
 
     reset_filter: function() {
         sessionStorage.removeItem("filter_params");
-        window.location.replace("/");
+        window.location.replace("/food/");
     },
 
     init_events: function() {

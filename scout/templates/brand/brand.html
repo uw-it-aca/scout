@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load scout_filters %}
 
 <!DOCTYPE html>
 <html class="no-js" lang="en">
@@ -14,13 +15,19 @@
 
             <div id="header" class="scout-header">
 
-                <h1 style="background: url('{% static "scout/img/scout.png" %}') no-repeat 10px; background-size:13%;">{% block header %}{% endblock %}</h1>
+                {% if request.is_mobile or request.is_tablet %}
+                <h1 style="background: url('{% static "scout/img/scout.png" %}') no-repeat 2px; background-size:13%;">
+                {% else %}
+                <h1 style="background: url('{% static "scout/img/scout.png" %}') no-repeat 0px; background-size:13%;">
+                {% endif %}
+                {% block header %}{% endblock %}</h1>
+
 
                 <div class="scout-navigation" role="navigation" aria-label="main navigation">
                     {% block top-nav%}{% endblock %}
                 </div>
 
-                
+
 
             </div>
 

@@ -23,7 +23,9 @@ Discover = {
                    data: pos_data,
                    accepts: {html: "text/html"},
                    success: function(results) {
-                       Discover._attach_card(card_id, results);
+                        Discover._attach_card(card_id, results);
+                        $("#card_loading_indicator").hide();
+                        $("#card_loading_indicator").attr("aria-hidden", "true");
                    },
                    error: function(xhr, status, error) {
                    }

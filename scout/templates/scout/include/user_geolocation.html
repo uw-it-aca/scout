@@ -1,12 +1,30 @@
-<h2 class=" visually-hidden">User location information</h2>
+<h2 class=" visually-hidden">Your location information</h2>
 
-<div style="border:solid 1px red; height:50px;">
-   <div id="default_position" style="margin-bottom:8px;">
-       DEFAULT location
-       <div><a id="use_location" href="javascript:void(0)"><i class="fa fa-compass"></i>Use my location</a></div>
-      </div>
-   <div id="shared_position" style="display:none;">
-       SHARED location: <span id="user_location"><i class="fa fa-circle-o-notch fa-spin"></i> finding location</span>
-       <div><a id="forget_location" href="javascript:void(0)"><i class="fa fa-compass"></i>Stop using my location</a></div>
-   </div>
+<div class="scout-geolocation">
+
+    <div id="default_position" class="scout-geolocation-default clearfix">
+        <div class="scout-geolocation-user">
+            <span class="fa-stack fa-lg">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-street-view fa-stack-1x fa-inverse"></i>
+            </span>
+        </div>
+
+       <div class="scout-geolocation-position" style="">Drumheller Fountain</div>
+       <div class="scout-geolocation-action"><a id="use_location" href="javascript:void(0)"><i class="fa fa-compass"></i>&nbsp;Find me</a></div>
+    </div>
+
+    <div id="shared_position" class="scout-geolocation-shared clearfix" style="display:none;">
+
+        <div class="scout-geolocation-user">
+            <span class="fa-stack fa-lg">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-street-view fa-stack-1x fa-inverse"></i>
+            </span>
+        </div>
+
+       <div class="scout-geolocation-position"><span id="user_location">finding location...</span></div>
+       <div class="scout-geolocation-action"><a id="forget_location" href="javascript:void(0)"><i class="fa fa-ban"></i>&nbsp;Stop sharing</a></div>
+    </div>
+
 </div>

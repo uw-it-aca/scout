@@ -25,8 +25,8 @@ var List = {
                 return 0;
             }
         });
-        $("#scout-list").append(spots);
 
+        $("#scout_list").append(spots);
     },
 
     init: function () {
