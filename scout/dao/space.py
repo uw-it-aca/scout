@@ -18,8 +18,8 @@ OPEN_PERIODS = {
             'end':  datetime.time(22, 0, 0, 0)
         },
         'late_night': {
-            'start': datetime.time(15, 0, 0, 0),
-            'end':  datetime.time(22, 0, 0, 0)
+            'start': datetime.time(22, 0, 0, 0),
+            'end':  datetime.time(5, 0, 0, 0)
         },
     }
 
@@ -90,16 +90,17 @@ def _get_spot_filters(request):
 
 
 def get_period_filter(param):
-    today = datetime.datetime.now().strftime("%A")
+    today = datetime.datetime.today().strftime("%A")
+    tomorrow = (datetime.datetime.today() +
+                datetime.timedelta(days=1)).strftime("%A")
     start_time = OPEN_PERIODS[param]["start"].strftime("%H:%M")
     start_string = "%s,%s" % (today, start_time)
     end_time = OPEN_PERIODS[param]["end"].strftime("%H:%M")
-    end_string = "%s,%s" % (today, end_time)
-
-    # reverse terms for "late_night" period
     if param == "late_night":
-        return [("fuzzy_hours_start", end_string),
-                ("fuzzy_hours_end", start_string)]
+        end_string = "%s,%s" % (tomorrow, end_time)
+    else:
+        end_string = "%s,%s" % (today, end_time)
+
     return [("fuzzy_hours_start", start_string),
             ("fuzzy_hours_end", end_string)]
 
