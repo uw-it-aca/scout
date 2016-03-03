@@ -12,6 +12,7 @@ document.addEventListener('WebViewJavascriptBridgeReady', function(event) {
 		//alert(data + ":fire button clicked from native bridge");
 
 		// handle the filter options on the page and go to the filtered url
+		Filter.set_filter_params();
 		window.location.href=Filter.get_filter_url();
 
 	})

@@ -1,5 +1,5 @@
 var Filter = {
-    get_filter_url: function() {
+    set_filter_params: function() {
 
         var campuses = $("#campus_select input:checkbox:checked").map(function() {
             return $(this).val();
@@ -45,7 +45,14 @@ var Filter = {
         // Store these
         sessionStorage.setItem("filter_params", JSON.stringify(params));
 
-        return $.param(params);
+    },
+
+    get_filter_url: function() {
+        if(sessionStorage.getItem("filter_params") !== null){
+            var params = JSON.parse(sessionStorage.getItem("filter_params"));
+            return $.param(params);
+        }
+        return undefined;
     },
 
     _get_params_for_select: function(select_results, prefix) {
@@ -99,15 +106,21 @@ var Filter = {
 
     reset_filter: function() {
         sessionStorage.removeItem("filter_params");
-        window.location.replace("/food/");
+        Filter.replace_food_href();
+        if(window.location.pathname.indexOf("food") !== -1){
+            window.location.replace("/food/");
+        }
     },
 
     init_events: function() {
         Filter.set_filter_text();
 
         $("#run_search").click(function(){
+            Filter.set_filter_params();
             var filtered_url = Filter.get_filter_url();
-            window.location.replace("/food/?"+filtered_url);
+            if (filtered_url !== undefined){
+                window.location.replace("/food/?"+filtered_url);
+            }
         });
 
         $("#filter_toggle").click(function(e) {
@@ -165,5 +178,19 @@ var Filter = {
             }
 
         });
+    },
+
+    replace_food_href: function(){
+        var filter_url = Filter.get_filter_url();
+        var food_anchor = $("#link_food");
+        var food_url;
+        if (filter_url !== undefined){
+            food_url = "/food/?" + filter_url;
+        } else {
+            food_url = "/food/";
+        }
+        if(food_anchor !== undefined){
+                $(food_anchor).attr('href', food_url);
+        }
     }
 };

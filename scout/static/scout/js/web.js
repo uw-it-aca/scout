@@ -17,7 +17,9 @@ $(document).on('ready', function(event) {
     } else {
         Discover.init_cards();
     }
-    // call this last so all page level location event listiners have been declared
+    Filter.replace_food_href();
+
+    // call this last so all page level location event listeners have been declared
     Geolocation.update_location();
 
     Layout.init_layout();
