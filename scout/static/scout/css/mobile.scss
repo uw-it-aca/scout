@@ -41,21 +41,7 @@ html.turbolinks-progress-bar::before {
             .scout-spot-meta { }
             .scout-spot-alert { }
 
-            // details actions
-            .scout-spot-phone { padding: 0 20px; }
-            .scout-spot-menu { padding: 0 20px; }
-            .scout-spot-website { padding: 0 20px; }
-
-            a { text-decoration: none; color:$scout-link; font-size: 14px; display: inline-block; width: 100%; text-overflow: ellipsis; overflow: hidden; line-height: 30px; white-space: nowrap;
-
-                .fa { margin-right: 10px; }
-
-                .fa-stack { font-size: 12px; }
-                .fa-circle { color: $scout-blue; }
-
-                .scout-spot-action-text { text-decoration: underline; }
-            }
-
+            .scout-spot-contact-info { }
 
             .scout-spot-content {
 
