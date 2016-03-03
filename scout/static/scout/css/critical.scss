@@ -194,7 +194,7 @@ $scout-link: #3498db;
         // details
         .scout-details-container {
 
-            .scout-spot-image { background-size: cover; background-repeat: no-repeat; background-position: center center; min-height: 100px; position: relative;
+            .scout-spot-image { background-size: cover; background-repeat: no-repeat; background-position: center center; min-height: 150px; position: relative;
 
                 //border-top-left-radius: 2px;
                 //border-top-right-radius: 2px;
@@ -205,13 +205,15 @@ $scout-link: #3498db;
                     .closed { background: #ebccd1; color: #a94442; }
                 }
                 .scout-spot-open-period {
+                    width: 100px;
                     position: absolute;
                     top: 10px;
                     left: 20px;
                     color: #fff;
                     text-transform: uppercase;
                     font-size: 10px;
-                    span { padding: 0 5px; line-height: 20px; display: inline-block; border-radius: 2px; margin-right: 4px; background: #444; }
+
+                    span { padding: 0 5px; line-height: 20px; display: inline-block; border-radius: 2px; margin-right: 4px; margin-bottom: 4px; background: #444; }
                 }
             }
 

@@ -32,6 +32,10 @@ body { overflow: hidden; }
                 }
             }
 
+            /*** list page ***/
+
+            // list
+
             .scout-list-container {
 
                 .scout-list {
@@ -56,6 +60,22 @@ body { overflow: hidden; }
 
                 }
             }
+
+            /*** details page ***/
+
+            // details
+            .scout-details-container {
+
+                .scout-spot-image { min-height: 253px;
+
+                    .scout-spot-status {  }
+                    .scout-spot-open-period {
+                        width: 350px;
+                        span { margin-bottom: 0; }
+                    }
+                }
+            }
+
         }
 
     }
