@@ -91,7 +91,8 @@ def _get_spot_filters(request):
 
 def get_period_filter(param):
     today = datetime.datetime.today().strftime("%A")
-    tomorrow = (datetime.datetime.today() + datetime.timedelta(days=1)).strftime("%A")
+    tomorrow = (datetime.datetime.today() +
+                datetime.timedelta(days=1)).strftime("%A")
     start_time = OPEN_PERIODS[param]["start"].strftime("%H:%M")
     start_string = "%s,%s" % (today, start_time)
     end_time = OPEN_PERIODS[param]["end"].strftime("%H:%M")
