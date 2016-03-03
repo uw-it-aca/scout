@@ -2,29 +2,34 @@
 
 <div class="scout-geolocation">
 
-    <div id="default_position" class="scout-geolocation-default clearfix">
-        <div class="scout-geolocation-user">
-            <span class="fa-stack fa-lg">
-              <i class="fa fa-circle fa-stack-2x"></i>
-              <i class="fa fa-street-view fa-stack-1x fa-inverse"></i>
-            </span>
-        </div>
+    <div id="default_position" class="scout-geolocation-default">
 
-       <div class="scout-geolocation-position" style="">Food near Drumheller Fountain</div>
-       <div class="scout-geolocation-action"><a id="use_location" href="javascript:void(0)"><i class="fa fa-compass"></i>&nbsp;Find me</a></div>
+       <div class="scout-geolocation-position" style="">
+           <a id="use_location" href="javascript:void(0)">
+               <span class="fa-stack fa-lg">
+                 <i class="fa fa-circle fa-stack-2x"></i>
+                 <i class="fa fa-map-marker fa-stack-1x fa-inverse"></i>
+               </span>
+               <span>Near Drumheller Fountain</span>
+               <span>Find me</span>
+           </a>
+       </div>
+
     </div>
 
-    <div id="shared_position" class="scout-geolocation-shared clearfix" style="display:none;">
+    <div id="shared_position" class="scout-geolocation-shared" style="display:none;">
 
-        <div class="scout-geolocation-user">
-            <span class="fa-stack fa-lg">
-              <i class="fa fa-circle fa-stack-2x"></i>
-              <i class="fa fa-street-view fa-stack-1x fa-inverse"></i>
-            </span>
+        <div class="scout-geolocation-position" style="">
+            <a id="forget_location" href="javascript:void(0)">
+                <span class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-map-marker fa-stack-1x fa-inverse"></i>
+                </span>
+                <span>Near Drumheller Fountain</span>
+                <span>stop sharing</span>
+            </a>
         </div>
 
-       <div class="scout-geolocation-position">Food near you</div>
-       <div class="scout-geolocation-action"><a id="forget_location" href="javascript:void(0)"><i class="fa fa-ban"></i>&nbsp;Stop sharing</a></div>
     </div>
 
 </div>

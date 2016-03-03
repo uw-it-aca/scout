@@ -11,26 +11,25 @@ $scout-purple: #6564A8;
 
 // geolocation
 
-.scout-geolocation { background: #ddd;
+.scout-geolocation {
 
-    a { text-decoration: none; color: $scout-purple; }
+    a { text-decoration: none; display: block;
+
+        .fa-stack { font-size: 12px; }
+        .fa-circle { color: $scout-purple; }
+
+    }
 
     .scout-geolocation-default { }
     .scout-geolocation-shared {  }
 
-    .scout-geolocation-user { font-size: 10px; line-height: 45px; float:left; margin-left: 10px; margin-right: 5px;
-        .fa-circle { color: #aaa; }
-    }
-    .scout-geolocation-position { float:left; font-size:16px; line-height: 45px; width: 50%; overflow: hidden; white-space:nowrap; text-overflow: ellipsis; }
-    .scout-geolocation-action { float:right; font-size: 14px; line-height: 45px; width: auto; text-align: right; margin-right: 20px;
-        a { display: block; }
-    }
+    .scout-geolocation-position { font-size:14px; line-height: 45px; overflow: hidden; white-space:nowrap; text-overflow: ellipsis; }
 
 }
 
 // filter results
 
-.scout-filter-results {
+.scout-filter-results { border-top: solid 1px #ddd;
 
     a { text-decoration: none; color: $scout-purple; font-size: 14px;}
     label { display: block; font-size: 11px; text-transform: uppercase; color: #aaa; }
