@@ -1,11 +1,32 @@
 <div class="scout-filter-results">
     <div class="scout-filter-results-by">
-        <label style="margin-bottom: 5px;">Filtering by:</label><span id="filter_label_text">--</span>
+        <label style="margin-bottom: 5px;">Filtering by:</label>
+        <div id="filter_label_text" class="scout-filter-results-text">--</div>
     </div>
-    <div class="scout-filter-results-count clearfix">
+    <div class="scout-filter-results-results clearfix">
+
         <label>Results:</label>
-        <span style="display:inline-block; line-height: 30px;">{{ spots|length }}</span>
-        <span style="float:right; display:inline-block; line-height: 30px;"><a href="/filter/" id="link_filter" title="Filter list of food places on campus"><i class="fa fa-filter"></i> Filter results</a>&nbsp;&nbsp;&nbsp;
-        <a id="reset_filter" href="javascript:void(0)"><i class="fa fa-refresh"></i> Reset filter</a></span>
+        <div class="scout-filter-results-count">{{ spots|length }}</div>
+
+        <div class="scout-filter-results-actions">
+
+            <a href="/filter/" id="link_filter" title="Filter list of food places on campus">
+
+                <span class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-filter fa-stack-1x fa-inverse"></i>
+                </span>
+                <span class="scout-filter-results-action">Filter results</span>
+            </a>
+
+            <a id="reset_filter" href="javascript:void(0)">
+                <span class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-refresh fa-stack-1x fa-inverse"></i>
+                </span>
+                <span class="scout-filter-results-action">Reset filter</span>
+            </a>
+
+        </div>
     </div>
 </div>

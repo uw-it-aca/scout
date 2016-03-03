@@ -11,14 +11,6 @@ body { overflow: hidden; }
 // main container
 .scout-primary { position:absolute; width: $view-panel-width; top:0; bottom:0; -webkit-box-shadow: 5px 0 20px 0 rgba(0,0,0,0.3); box-shadow: 5px 0 20px 0 rgba(0,0,0,0.3); z-index: 1;
 
-    .scout-geolocation-default { }
-    .scout-geolocation-shared {  }
-
-    .scout-geolocation-user { font-size: 11px; }
-    .scout-geolocation-position { width: 63%; }
-    .scout-geolocation-action { }
-
-
     // header
     .scout-header { width: $view-panel-width;
         h1 {

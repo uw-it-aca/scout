@@ -8,35 +8,60 @@ file.
 
 $scout-purple: #6564A8;
 
+$scout-blue: #2980b9;
+$scout-link: #3498db;
 
-// geolocation
+// geolocation bar
 
 .scout-geolocation {
 
-    a { text-decoration: none; display: block;
 
-        .fa-stack { font-size: 12px; }
-        .fa-circle { color: $scout-purple; }
+    .scout-geolocation-position { font-size:14px; line-height: 45px; overflow: hidden; white-space:nowrap; text-overflow: ellipsis;
+
+        a { text-decoration: none; display: block; padding: 0 20px;
+
+            .fa-stack { font-size: 12px; }
+            .fa-circle { color: $scout-blue; }
+
+            .scout-geolocation-location { color: $scout-link; text-decoration: underline; }
+            .scout-geolocation-action { color:#aaa; display: inline-block; margin-left: 5px; }
+
+            &:hover {
+                .scout-geolocation-action {  }
+            }
+
+        }
+
 
     }
 
-    .scout-geolocation-default { }
-    .scout-geolocation-shared {  }
-
-    .scout-geolocation-position { font-size:14px; line-height: 45px; overflow: hidden; white-space:nowrap; text-overflow: ellipsis; }
-
 }
 
-// filter results
+// filter results bar
 
 .scout-filter-results { border-top: solid 1px #ddd;
 
     a { text-decoration: none; color: $scout-purple; font-size: 14px;}
-    label { display: block; font-size: 11px; text-transform: uppercase; color: #aaa; }
+    label { display: block; font-size: 10px; text-transform: uppercase; color: #aaa; }
 
-    .scout-filter-results-by { padding: 15px 20px 5px 20px; font-size: 14px; }
-    .scout-filter-results-count { padding: 10px 20px; font-size: 18px;
-        a { display: inline-block; }
+    .scout-filter-results-by { padding: 15px 20px 5px 20px; font-size: 14px;
+        .scout-filter-results-text { color: #333; }
+    }
+    .scout-filter-results-results { padding: 10px 20px;
+
+        .scout-filter-results-count { color: #000; font-size: 25px; font-weight: bold; display:inline-block; line-height: 30px; }
+
+        .scout-filter-results-actions { float:right; display:inline-block; line-height: 30px;
+
+            a { display: inline-block; margin-left: 10px;
+
+                .fa-stack { font-size: 12px; }
+                .fa-circle { color: $scout-blue; }
+
+                .scout-filter-results-action { color: $scout-link; text-decoration: underline; }
+
+            }
+        }
     }
 }
 
