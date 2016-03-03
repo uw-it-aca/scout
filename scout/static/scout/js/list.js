@@ -4,10 +4,12 @@ var List = {
 
         $.each(spots, function(idx, item){
             var spot_id = $(item).attr('id');
-            var spot_data = window.spot_locations[spot_id];
-            var spot_latlng = Geolocation.get_latlng_from_coords(spot_data.lat, spot_data.lng);
-            var distance = Geolocation.get_distance_from_position(spot_latlng);
-            $($(item).find(".distance-number")[0]).html(distance);
+            if(spot_id !== undefined){
+                var spot_data = window.spot_locations[spot_id];
+                var spot_latlng = Geolocation.get_latlng_from_coords(spot_data.lat, spot_data.lng);
+                var distance = Geolocation.get_distance_from_position(spot_latlng);
+                $($(item).find(".distance-number")[0]).html(distance);
+            }
         });
     },
 
