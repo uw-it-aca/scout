@@ -38,7 +38,8 @@ html.turbolinks-progress-bar::before {
         .scout-details-container {
 
             .scout-spot-meta { }
-            .scout-spot-alert { }
+            .scout-spot-alert { margin: 0; padding: 15px 20px; background: #fcf8e3; color: #8a6d3b; font-size: 14px; line-height: 16px;}
+            .scout-spot-notes { color: #aaa; font-size: 14px; line-height: 16px; }
 
             .scout-spot-contact-info { }
 
@@ -47,7 +48,7 @@ html.turbolinks-progress-bar::before {
                 // spot details
                 .scout-spot-location { margin-bottom: 20px; }
 
-                .scout-spot-description { margin-bottom: 20px;}
+                .scout-spot-description { margin-bottom: 20px; color: #333; font-size: 14px; line-height: 16px; }
 
                 .scout-spot-gallery { overflow-x: scroll; -webkit-overflow-scrolling: touch; overflow-y: hidden; white-space: nowrap; height: 100px; margin-bottom: 15px;
                     ul {
@@ -82,27 +83,31 @@ html.turbolinks-progress-bar::before {
 
                 }
 
-                /**
-                .scout-spot-cuisine { margin-bottom: 20px;
+                .scout-spot-reservation { margin-bottom: 20px; color: #333; font-size: 14px; line-height: 16px; }
+
+                .scout-spot-payment { margin-bottom: 20px; color: #333; font-size: 14px; line-height: 16px;
 
                     ul { margin: 0; padding: 0;
-                        li { list-style: none; display: inline-block; margin-right: 10px; }
-                    }
-                    span { margin-right: 10px; }
-                }
-                ***/
-
-                .scout-spot-reservation { margin-bottom: 20px; }
-
-                .scout-spot-payment { margin-bottom: 20px;
-
-                    ul { margin: 0; padding: 0;
-                        li { list-style: none; display: inline-block; margin-right: 10px; }
+                        li { list-style: none; }
                     }
                     span { margin-right: 10px; }
                 }
 
-                .scout-spot-coupon { }
+                .scout-spot-coupon { color: #333; font-size: 14px; line-height: 16px;
+
+                    .scout-spot-coupon-expire { margin: 10px 0;
+                        span { color: #bbb; }
+                    }
+                    a { display: block; text-decoration: none;
+
+                        .fa-stack { font-size: 12px; }
+                        .fa-circle { color: $scout-button; }
+
+                        .scout-coupon-action-text { color: $scout-link; text-decoration: underline; }
+
+                    }
+
+                }
 
             }
         }
@@ -112,7 +117,9 @@ html.turbolinks-progress-bar::before {
 }
 
 // footer
-.scout-footer { background: #fafafa; color:#555; width: 100%; font-size: 75%; text-align:center; line-height: $footer-height; border-top: solid 1px #ddd; }
+.scout-footer { background: #fafafa; color:#555; width: 100%; font-size: 75%; text-align:center; line-height: $footer-height; border-top: solid 1px #ddd;
+    a { color: $scout-link; display: inline-block; margin-left: 8px; }
+}
 
 // loading spinner
 .loader {
