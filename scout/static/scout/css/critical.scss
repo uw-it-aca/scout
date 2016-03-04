@@ -7,6 +7,7 @@ file.
 // sass variables
 
 $scout-purple: #6564A8;
+$scout-button: #2ecc71;
 $scout-link: #3498db;
 
 // geolocation bar
@@ -16,10 +17,10 @@ $scout-link: #3498db;
 
     .scout-geolocation-position { font-size:14px; line-height: 45px; overflow: hidden; white-space:nowrap; text-overflow: ellipsis;
 
-        a { text-decoration: none; display: block; padding: 0 20px;
+        a { text-decoration: none; display: block; padding: 0 20px 0 13px;
 
             .fa-stack { font-size: 12px; }
-            .fa-circle { color: $scout-purple; }
+            .fa-circle { color: $scout-button; }
 
             .scout-geolocation-location { color:#333; display: inline-block; }
             .scout-geolocation-action { color: $scout-link; text-decoration: underline;  margin-left: 5px; }
@@ -54,7 +55,7 @@ $scout-link: #3498db;
             a { display: inline-block; margin-left: 10px;
 
                 .fa-stack { font-size: 12px; }
-                .fa-circle { color: $scout-purple; }
+                .fa-circle { color: $scout-button; }
 
                 .scout-filter-results-action { color: $scout-link; text-decoration: underline; }
 
@@ -245,7 +246,7 @@ $scout-link: #3498db;
                     .fa { margin-right: 10px; }
 
                     .fa-stack { font-size: 12px; }
-                    .fa-circle { color: $scout-purple; }
+                    .fa-circle { color: $scout-button; }
 
                     .scout-spot-action-text { text-decoration: underline; }
                 }
