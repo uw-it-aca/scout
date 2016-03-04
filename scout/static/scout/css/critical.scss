@@ -214,17 +214,19 @@ $scout-link: #3498db;
 
             .scout-spot-meta { background: $scout-purple; color: #fff; padding: 10px 20px; position: relative;
 
-                .scout-spot-name { font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 18px; margin: 0; }
+                .scout-spot-name { font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 18px; margin: 0; line-height: 30px; }
                 .scout-spot-type { text-transform: uppercase; font-weight: normal; font-size: 12px; margin: 0; position: absolute; top: 15px; right:20px; color: #ccc;
                     span { margin-left: 10px; }
                 }
 
-                .scout-spot-cuisine { color: blue; margin: 10px 0 5px 0; text-transform: uppercase; font-size: 12px;
-                    span { margin-right: 10px; }
+                .scout-spot-cuisine { margin: 10px 0 5px 0; font-size: 12px; float: left; width: 25%;
+                    label { display: block; text-transform: uppercase; font-size: 10px; margin-bottom: 2px; color: #aaa; }
+                    span { margin-right: 5px; }
                 }
 
-                .scout-spot-food-served { margin: 10px 0 5px 0; text-transform: uppercase; font-size: 12px;
-                    span { margin-right: 10px; }
+                .scout-spot-food-served { margin: 10px 0 5px 0; font-size: 12px; float: left; width: 75%;
+                    label {  display: block; text-transform: uppercase; font-size: 10px; margin-bottom: 2px; color: #aaa; }
+                    span { margin-right: 5px; }
                 }
             }
 

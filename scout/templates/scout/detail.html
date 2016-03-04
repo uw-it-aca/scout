@@ -48,14 +48,15 @@
 
         <h4 class="visually-hidden">Food stuff</h4>
 
-        <div class="scout-spot-meta">
+        <div class="scout-spot-meta clearfix">
+
             <div class="scout-spot-name">{{spot.name}}</div>
             <div class="scout-spot-type">
                 {% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}</span>{% endfor %}
             </div>
 
             <div class="scout-spot-cuisine">
-                <span class="visually-hidden">Cuisine:</span>
+                <label>Cuisine</label>
                 {% if spot.cuisinetype_names %}
                     {% for cuisinetype in spot.cuisinetype_names %}
                     <span>{{ cuisinetype }}</span>
@@ -64,7 +65,7 @@
             </div>
 
             <div class="scout-spot-food-served">
-                <span class="visually-hidden">Food served:</span>
+                <label>Food served</label>
                 {% if spot.foodtype_names %}
                     {% for foodtype in spot.foodtype_names %}
                         <span>{{ foodtype }}</span>
