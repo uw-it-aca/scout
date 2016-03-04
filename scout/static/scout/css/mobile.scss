@@ -62,7 +62,7 @@ html.turbolinks-progress-bar::before {
                         li { list-style: none; white-space: nowrap;
                             span { display: inline-block; text-transform: uppercase;
                                 &.day { width: 110px; }
-                                &.closed { color: #444; }
+                                &.closed { color: #a94442; }
                             }
                         }
                     }
