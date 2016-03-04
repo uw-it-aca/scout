@@ -23,8 +23,8 @@ $scout-link: #3498db;
             .fa-stack { font-size: 12px; }
             .fa-circle { color: $scout-blue; }
 
-            .scout-geolocation-location { color: $scout-link; text-decoration: underline; }
-            .scout-geolocation-action { color:#aaa; display: inline-block; margin-left: 5px; }
+            .scout-geolocation-location { color:#333; display: inline-block; }
+            .scout-geolocation-action { color: $scout-link; text-decoration: underline;  margin-left: 5px; }
 
             &:hover {
                 .scout-geolocation-action {  }
@@ -235,8 +235,23 @@ $scout-link: #3498db;
 
             .scout-spot-alert { margin: 0; padding: 15px 20px; background: #fcf8e3; color: #8a6d3b; font-size: 14px; }
 
-            a { text-decoration: none; color: #666; font-size: 14px; display: inline-block; width: 100%; text-overflow: ellipsis; overflow: hidden; line-height: 30px; white-space: nowrap;
-                .fa { color: #6564A8; margin-right: 10px; font-size: 20px; }
+            .scout-spot-contact-info { padding:15px 0;
+
+                // details actions
+                .scout-spot-phone { padding: 0 20px; }
+                .scout-spot-menu { padding: 0 20px; }
+                .scout-spot-website { padding: 0 20px; }
+
+                a { text-decoration: none; color:$scout-link; font-size: 14px; display: inline-block; width: 100%; text-overflow: ellipsis; overflow: hidden; line-height: 30px; white-space: nowrap;
+
+                    .fa { margin-right: 10px; }
+
+                    .fa-stack { font-size: 12px; }
+                    .fa-circle { color: $scout-blue; }
+
+                    .scout-spot-action-text { text-decoration: underline; }
+                }
+
             }
 
             .scout-spot-content {

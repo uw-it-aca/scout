@@ -85,29 +85,71 @@
         </div>
         {% endif %}
 
-        <div style="padding:15px 0;">
+        <div class="scout-spot-contact-info">
             <h4 class="visually-hidden">Contact information</h4>
             <div class="scout-spot-phone">
                 {% if spot.phone %}
-                <a href="tel:+1{{ spot.phone }}"><span class="visually-hidden">Restaurant phone:</span><i class="fa fa-phone"></i> {{ spot.phone | format_phone }}</a>
+                <a href="tel:+1{{ spot.phone }}">
+                    <span class="visually-hidden">Restaurant phone:</span>
+                    <span class="fa-stack fa-lg">
+                      <i class="fa fa-circle fa-stack-2x"></i>
+                      <i class="fa fa-phone fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <span class="scout-spot-action-text">{{ spot.phone | format_phone }}</span>
+                </a>
                 {% else %}
-                <a href="/" target="_blank" style="color:red;"><i class="fa fa-phone"></i> missing phone</a>
+                <a href="/" target="_blank" style="color:red;">
+                    <span class="visually-hidden">Restaurant phone:</span>
+                    <span class="fa-stack fa-lg">
+                      <i class="fa fa-circle fa-stack-2x"></i>
+                      <i class="fa fa-phone fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <span class="scout-spot-action-text">missing phone</span>
+                </a>
                 {% endif %}
             </div>
             <div class="scout-spot-website">
                 {% if spot.website_url %}
-                <a href="{{spot.website_url}}" target="_blank"><span class="visually-hidden">Website URL:</span><i class="fa fa-laptop"></i> {{spot.website_url}}</a>
+                <a href="{{spot.website_url}}" target="_blank">
+                    <span class="visually-hidden">Website URL:</span>
+                    <span class="fa-stack fa-lg">
+                      <i class="fa fa-circle fa-stack-2x"></i>
+                      <i class="fa fa-laptop fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <span class="scout-spot-action-text">{{spot.website_url}}</span>
+                </a>
                 {% else %}
-                <a href="/" target="_blank" style="color:red;"><i class="fa fa-laptop"></i> missing website_url</a>
+                <a href="/" target="_blank" style="color:red;">
+                    <span class="visually-hidden">Website URL:</span>
+                    <span class="fa-stack fa-lg">
+                      <i class="fa fa-circle fa-stack-2x"></i>
+                      <i class="fa fa-laptop fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <span class="scout-spot-action-text">missing website_url</span>
+                </a>
                 {% endif %}
             </div>
 
             <h4 class="visually-hidden">Menu information</h4>
             <div class="scout-spot-menu">
                 {% if spot.menu_url %}
-                <a href="{{spot.menu_url}}" target="_blank"><span class="visually-hidden">Restaurant menu URL:</span><i class="fa fa-book"></i> {{spot.menu_url}}</a>
+                <a href="{{spot.menu_url}}" target="_blank">
+                    <span class="visually-hidden">Restaurant menu URL:</span>
+                    <span class="fa-stack fa-lg">
+                      <i class="fa fa-circle fa-stack-2x"></i>
+                      <i class="fa fa-book fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <span class="scout-spot-action-text">{{spot.menu_url}}</span>
+                </a>
                 {% else %}
-                <a href="/" target="_blank" style="color:red;"><i class="fa fa-book"></i> missing menu_url</a>
+                <a href="/" target="_blank" style="color:red;">
+                    <span class="visually-hidden">Restaurant menu URL:</span>
+                    <span class="fa-stack fa-lg">
+                      <i class="fa fa-circle fa-stack-2x"></i>
+                      <i class="fa fa-book fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <span class="scout-spot-action-text">missing menu_url</span>
+                </a>
                 {% endif %}
             </div>
         </div>
