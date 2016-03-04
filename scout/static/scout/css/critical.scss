@@ -23,8 +23,8 @@ $scout-link: #3498db;
             .fa-stack { font-size: 12px; }
             .fa-circle { color: $scout-blue; }
 
-            .scout-geolocation-location { color: $scout-link; text-decoration: underline; }
-            .scout-geolocation-action { color:#aaa; display: inline-block; margin-left: 5px; }
+            .scout-geolocation-location { color:#333; display: inline-block; }
+            .scout-geolocation-action { color: $scout-link; text-decoration: underline;  margin-left: 5px; }
 
             &:hover {
                 .scout-geolocation-action {  }
@@ -253,7 +253,7 @@ $scout-link: #3498db;
                 }
 
             }
-            
+
             .scout-spot-content {
 
                 h3 { font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 13px; color: #bbb; text-transform: uppercase; letter-spacing: 1px; margin: 0; line-height: 35px; }
