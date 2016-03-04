@@ -278,15 +278,21 @@
             <h4><i class="fa fa-ticket"></i> Coupon</h4>
             <div class="scout-spot-coupon">
                 <div>{{ spot.has_coupon }}</div>
-                <div>{{ spot.coupon_expiration }}</div>
-                <div>{{ spot.coupon_url }}</div>
+                <div class="scout-spot-coupon-expire"><span>Expiration:</span> {{ spot.coupon_expiration }}</div>
+                <a href="{{ spot.coupon_url }}" target="_blank">
+                    <span class="fa-stack fa-lg">
+                      <i class="fa fa-circle fa-stack-2x"></i>
+                      <i class="fa fa-thumbs-up fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <span class="scout-coupon-action-text">View the coupon</span>
+                </a>
             </div>
             {% else %}
             <h4><i class="fa fa-ticket"></i> Coupon</h4>
             <div class="scout-spot-coupon">
                 <div>(TEMPORARY) Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla in consequat purus.</div>
                 <div class="scout-spot-coupon-expire"><span>Expiration:</span> datetime</div>
-                <a href="//www.google.com/maps/@{{ spot.latitude }},{{ spot.longitude }},18z?hl=en-US">
+                <a href="/" target="_blank">
                     <span class="fa-stack fa-lg">
                       <i class="fa fa-circle fa-stack-2x"></i>
                       <i class="fa fa-thumbs-up fa-stack-1x fa-inverse"></i>
