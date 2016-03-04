@@ -22,12 +22,8 @@ $scout-link: #3498db;
             .fa-stack { font-size: 12px; }
             .fa-circle { color: $scout-button; }
 
-            .scout-geolocation-location { color:#333; display: inline-block; }
-            .scout-geolocation-action { color: $scout-link; text-decoration: underline;  margin-left: 5px; }
-
-            &:hover {
-                .scout-geolocation-action {  }
-            }
+            .scout-geolocation-location { color:$scout-link;; text-decoration: underline; display: inline-block; }
+            .scout-geolocation-action { color:#bbb; margin-left: 5px; font-size: 12px;}
 
         }
 
