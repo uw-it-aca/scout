@@ -27,7 +27,7 @@ OPEN_PERIODS = {
 def get_spot_list():
     spot_client = Spotseeker()
     try:
-        res = spot_client.search_spots([('limit', 200),
+        res = spot_client.search_spots([('limit', 0),
                                         ('extended_info:app_type', 'food')])
         for spot in res:
             spot = process_extended_info(spot)
@@ -54,7 +54,7 @@ def get_spots_by_filter(filters):
 def get_filtered_spots(request):
     filters = _get_spot_filters(request)
     # adding 'default' filter params
-    filters.append(('limit', 999))
+    filters.append(('limit', 0))
     filters.append(('extended_info:app_type', 'food'))
 
     spot_client = Spotseeker()
