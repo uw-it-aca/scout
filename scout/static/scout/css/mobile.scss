@@ -56,7 +56,7 @@ html.turbolinks-progress-bar::before {
                     }
                 }
 
-                .scout-spot-hours { margin-bottom: 20px;
+                .scout-spot-hours { margin-bottom: 20px; color: #333; font-size: 14px; line-height: 16px;
 
                     ul { margin: 0; padding: 0;
                         li { list-style: none; white-space: nowrap;
@@ -66,13 +66,15 @@ html.turbolinks-progress-bar::before {
                             }
                         }
                     }
-                    span { display: inline-block; margin-top: 15px; }
+                    span { display: inline-block; margin-top: 10px; }
                 }
 
-                .scout-spot-map { height:160px; margin-bottom: 15px; }
+                .scout-spot-building-info { color: #333; font-size: 14px; line-height: 16px; }
+
+                .scout-spot-map { height:160px; margin-bottom: 10px; }
                 .scout-spot-map-link { margin-bottom: 15px; font-size: 14px;
 
-                    a { display: block; text-decoration: none;
+                    a { display: block; text-decoration: none; line-height: 30px;
 
                         .fa-stack { font-size: 12px; }
                         .fa-circle { color: $scout-button; }
@@ -98,7 +100,7 @@ html.turbolinks-progress-bar::before {
                     .scout-spot-coupon-expire { margin: 10px 0;
                         span { color: #bbb; }
                     }
-                    a { display: block; text-decoration: none;
+                    a { display: block; text-decoration: none; line-height: 30px;
 
                         .fa-stack { font-size: 12px; }
                         .fa-circle { color: $scout-button; }
@@ -108,6 +110,8 @@ html.turbolinks-progress-bar::before {
                     }
 
                 }
+
+                .scout-spot-manager { color: #333; font-size: 14px; line-height: 16px; }
 
             }
         }
