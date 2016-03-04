@@ -22,7 +22,7 @@ def discover_card_view(request, discover_category):
 
     discover_categories = {
         "open": {
-            "title": "Open Now",
+            "title": "Open Nearby",
             "filter_url": "open_now=true",
             "filter": [
                 ('limit', 5),
