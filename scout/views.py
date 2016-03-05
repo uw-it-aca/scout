@@ -22,7 +22,7 @@ def discover_card_view(request, discover_category):
 
     discover_categories = {
         "open": {
-            "title": "Open Now",
+            "title": "Open Nearby",
             "filter_url": "open_now=true",
             "filter": [
                 ('limit', 5),
@@ -55,7 +55,7 @@ def discover_card_view(request, discover_category):
             ]
         },
         "breakfast": {
-            "title": "Open for Breakfast (5am - 10am)",
+            "title": "Open during Breakfast (5am - 10am)",
             "filter_url": "period0=breakfast",
             "filter": [
                 ('limit', 5),

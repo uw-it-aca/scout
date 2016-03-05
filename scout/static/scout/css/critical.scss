@@ -22,12 +22,8 @@ $scout-link: #3498db;
             .fa-stack { font-size: 12px; }
             .fa-circle { color: $scout-button; }
 
-            .scout-geolocation-location { color:#333; display: inline-block; }
-            .scout-geolocation-action { color: $scout-link; text-decoration: underline;  margin-left: 5px; }
-
-            &:hover {
-                .scout-geolocation-action {  }
-            }
+            .scout-geolocation-location { color:$scout-link;; text-decoration: underline; display: inline-block; }
+            .scout-geolocation-action { color:#bbb; margin-left: 5px; font-size: 12px;}
 
         }
 
@@ -44,7 +40,7 @@ $scout-link: #3498db;
     label { display: block; font-size: 10px; text-transform: uppercase; color: #aaa; }
 
     .scout-filter-results-by { padding: 15px 20px 5px 20px; font-size: 14px;
-        .scout-filter-results-text { color: #333; }
+        .scout-filter-results-text { color: #333; font-size: 13px; }
     }
     .scout-filter-results-results { padding: 10px 20px;
 
@@ -218,21 +214,21 @@ $scout-link: #3498db;
 
             .scout-spot-meta { background: $scout-purple; color: #fff; padding: 10px 20px; position: relative;
 
-                .scout-spot-name { font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 18px; margin: 0; }
+                .scout-spot-name { font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 18px; margin: 0; line-height: 30px; }
                 .scout-spot-type { text-transform: uppercase; font-weight: normal; font-size: 12px; margin: 0; position: absolute; top: 15px; right:20px; color: #ccc;
                     span { margin-left: 10px; }
                 }
 
-                .scout-spot-cuisine { color: blue; margin: 10px 0 5px 0; text-transform: uppercase; font-size: 12px;
-                    span { margin-right: 10px; }
+                .scout-spot-cuisine { margin: 10px 0 5px 0; font-size: 12px; float: left; width: 25%;
+                    label { display: block; text-transform: uppercase; font-size: 10px; margin-bottom: 2px; color: #aaa; }
+                    span { margin-right: 5px; }
                 }
 
-                .scout-spot-food-served { margin: 10px 0 5px 0; text-transform: uppercase; font-size: 12px;
-                    span { margin-right: 10px; }
+                .scout-spot-food-served { margin: 10px 0 5px 0; font-size: 12px; float: left; width: 75%;
+                    label {  display: block; text-transform: uppercase; font-size: 10px; margin-bottom: 2px; color: #aaa; }
+                    span { margin-right: 5px; }
                 }
             }
-
-            .scout-spot-alert { margin: 0; padding: 15px 20px; background: #fcf8e3; color: #8a6d3b; font-size: 14px; }
 
             .scout-spot-contact-info { padding:15px 0;
 
