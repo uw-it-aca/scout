@@ -139,10 +139,9 @@ def hybrid_comps_view(request):
 
 
 def image_view(request, image_id, spot_id):
-    height = request.GET.get('height', None)
     width = request.GET.get('width', None)
     try:
-        resp, content = get_image(spot_id, image_id, height, width)
+        resp, content = get_image(spot_id, image_id, width)
         return HttpResponse(content, content_type=resp['content-type'])
     except Exception:
         raise Http404()
