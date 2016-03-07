@@ -183,18 +183,15 @@ html.turbolinks-progress-bar::before {
    position: fixed;
    width: 100%;
    height: 100%;
-   background:rgba(0,0,0,.8);
+   background:rgba(0,0,0,.85);
    top: 0px;
    left: 0px;
    z-index: 9999;
 }
 .modal-img {
 
-    img { width: 300px; }
-
     position: absolute;
     left: 50%;
-    margin-left: -150px;
     top: 30%;
 }
 

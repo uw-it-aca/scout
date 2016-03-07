@@ -28,8 +28,6 @@ $(document).on('ready', function(event) {
 
     Navigation.set_page_tab();
 
-
-
     // handle gallery images
     $('#imageContainer img').each(function (index) {
         if ($(this).attr('onclick') !== undefined) {
@@ -55,9 +53,12 @@ $(document).on('ready', function(event) {
     });
 
     function ShowLargeImage(imagePath) {
-        $('body').addClass("freeze");
 
-        $('body').append('<div class="modal-overlay"><div class="modal-img"><img src="' + imagePath.replace("small","large") + '" /></div></div>');
+        var imageWidth = $(window).outerWidth();
+        var leftMargin = imageWidth / 2;
+
+        $('body').addClass("freeze");
+        $('body').append('<div class="modal-overlay"><div class="modal-img" style="margin-left:-'+ leftMargin +'px;"><img src="' + imagePath.replace("200",imageWidth) + '" style="width:'+ imageWidth +'px;" /></div></div>');
     }
 
 });

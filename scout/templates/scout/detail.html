@@ -254,7 +254,11 @@
             <h4 aria-hidden="true"><i class="fa fa-camera"></i> Gallery</h4>
             <div class="scout-spot-gallery" aria-hidden="true">
                 <ul class="clearfix" id="imageContainer">
-                    <li><img src="/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}?width=200" style="height:100px;"></li>
+
+                    {% for image in spot.images %}
+                    <li><img src="/images/{{ spot.spot_id }}/image/{{ image.image_id }}?width=200" style="height:100px;"></li>
+                    {% endfor %}
+
                 </ul>
             </div>
             {% else %}
