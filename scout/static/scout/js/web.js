@@ -2,6 +2,9 @@ $(document).on('ready', function(event) {
 
     var isMobile = $("body").data("mobile");
 
+    Layout.init_layout();
+    Navigation.set_page_tab();
+
     // page based JS calls
     var page_path = window.location.pathname;
     if (page_path.indexOf("food") !== -1) {
@@ -25,11 +28,7 @@ $(document).on('ready', function(event) {
     // call this last so all page level location event listeners have been declared
     Geolocation.update_location();
 
-    Layout.init_layout();
-
     Filter.init_events();
-
-    Navigation.set_page_tab();
 
     // handle gallery images
     $('#imageContainer img').each(function (index) {

@@ -174,7 +174,7 @@ $scout-link: #3498db;
                             }
 
                             .scout-spot-status { font-size: 12px; white-space: nowrap;
-                                .open { background: #D6E9C5; color:#3c763d; display: block; }
+                                .open { color:#D6E9C5; display: block; }
                                 .closed { color: #A94441; }
                             }
 
@@ -309,4 +309,30 @@ $scout-link: #3498db;
 
     }
 
+}
+
+// accessibility & helper classes
+
+hr { border: 0; height: 0; border-bottom: 1px solid #ddd; margin: 0 -20px 20px -20px; }
+
+.clearfix:after { // aka clearfix hack
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.hidden {
+    display:none;
+    visibility:hidden;
+}
+
+.visually-hidden { /*https://developer.yahoo.com/blogs/ydn/clip-hidden-content-better-accessibility-53456.html*/
+    position: absolute !important;
+    clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+    clip: rect(1px, 1px, 1px, 1px);
+    padding:0 !important;
+    border:0 !important;
+    height: 1px !important;
+    width: 1px !important;
+    overflow: hidden;
 }
