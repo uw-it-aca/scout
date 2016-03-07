@@ -1,4 +1,7 @@
 $(document).on('ready', function(event) {
+
+    var isMobile = $("body").data("mobile");
+
     // page based JS calls
     var page_path = window.location.pathname;
     if (page_path.indexOf("food") !== -1) {
@@ -54,11 +57,22 @@ $(document).on('ready', function(event) {
 
     function ShowLargeImage(imagePath) {
 
-        var imageWidth = $(window).outerWidth();
+        var imageWidth;
+
+        console.log( $(".scout-secondary"));
+
+        // if mobile... else desktop
+        if (isMobile !== undefined ) {
+             imageWidth = $(window).outerWidth();
+         }
+         else {
+             imageWidth = '900';
+         }
+
         var leftMargin = imageWidth / 2;
 
         $('body').addClass("freeze");
-        $('body').append('<div class="modal-overlay"><div class="modal-img" style="margin-left:-'+ leftMargin +'px;"><img src="' + imagePath.replace("200",imageWidth) + '" style="width:'+ imageWidth +'px;" /></div></div>');
+        $('body').append('<div class="modal-overlay"><div class="loader" style="position:absolute; top: 50%; left: 50%; margin-left:-13px; margin-top: -13px;">Loading...</div><div class="modal-img" style="margin-left:-'+ leftMargin +'px;"><img src="' + imagePath.replace("200",imageWidth) + '" style="width:'+ imageWidth +'px;" /></div></div>');
     }
 
 });

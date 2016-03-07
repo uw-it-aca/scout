@@ -187,6 +187,13 @@ html.turbolinks-progress-bar::before {
    top: 0px;
    left: 0px;
    z-index: 9999;
+
+   .loader {
+       border-top: 3px solid rgba(255, 255, 255, 0.8);
+       border-right: 3px solid rgba(255, 255, 255, 0.8);
+       border-bottom: 3px solid rgba(255, 255, 255, 0.8);
+       border-left: 3px solid $scout-purple;
+   }
 }
 .modal-img {
 

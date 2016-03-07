@@ -9,7 +9,7 @@
         {% endblock %}
 
     </head>
-    <body>
+    <body {% if request.is_mobile or request.is_tablet %}data-mobile="true"{% endif %}>
 
         <div class="scout-primary">
 

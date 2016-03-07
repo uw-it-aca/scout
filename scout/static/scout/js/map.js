@@ -187,7 +187,7 @@ var Map = {
     initializeDetailMap: function() {
 
     var mapExists = document.getElementById("detail_map");
-    var mapMobile = $("#detail_map").attr("data-mobile");
+    var isMobile = $("body").data("mobile");
     var myLatlng, mapOptions;
 
     if (mapExists) {
@@ -196,7 +196,7 @@ var Map = {
         myLatlng = new google.maps.LatLng(spot_lat, spot_lng);
 
         // set map options based on mobile or desktop
-        if (mapMobile === 'true' ) {
+        if (isMobile !== undefined ) {
 
             mapOptions = {
                 center: myLatlng,
