@@ -187,19 +187,34 @@ var Map = {
     initializeDetailMap: function() {
 
     var mapExists = document.getElementById("detail_map");
+    var mapMobile = $("#detail_map").attr("data-mobile");
     var myLatlng, mapOptions;
 
     if (mapExists) {
 
         // center map direction on spot location
         myLatlng = new google.maps.LatLng(spot_lat, spot_lng);
-        mapOptions = {
-            center: myLatlng,
-            zoom: 18,
-            //scrollwheel: false,
-            //draggable: false,
-            //disableDefaultUI: true
-        };
+
+        // set map options based on mobile or desktop
+        if (mapMobile === 'true' ) {
+
+            mapOptions = {
+                center: myLatlng,
+                zoom: 18,
+                scrollwheel: false,
+                draggable: false,
+                disableDefaultUI: true
+            };
+
+        }
+        else {
+
+            mapOptions = {
+                center: myLatlng,
+                zoom: 19,
+            };
+
+        }
 
         var styles = [
             {
