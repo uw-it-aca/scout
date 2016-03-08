@@ -85,7 +85,7 @@ $scout-link: #3498db;
 
 
     // navigation menu
-    .scout-navigation { position: relative; background: #fafafa; line-height: 40px; color: #fff;  margin: 0; padding: 0;
+    .scout-navigation { position: relative; background: #fafafa; line-height: 41px; color: #fff;  margin: 0; padding: 0;
 
         .scout-navigation-items {
             line-height:37px;
@@ -99,7 +99,7 @@ $scout-link: #3498db;
             flex-flow: row wrap;
 
             li { margin: 0; padding: 0; flex: 1 0;
-                a { display: block;  color: #666; text-decoration: none; text-align: center; border-bottom:solid 3px #fafafa;
+                a { display: block;  color: #666; text-decoration: none; text-align: center; border-bottom:solid 4px #fafafa;
                     &:hover { color: $scout-purple; }
                 }
                 a[disabled="disabled"] { cursor: default;}
