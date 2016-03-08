@@ -5,7 +5,7 @@
     <h3>{{ card_title }}</h3>
     <ol>
         {% for spot in spots %}
-        <li style="margin-bottom: 8px;">
+        <li>
 
             <a href="/detail/{{ spot.spot_id }}" class="clearfix">
 
@@ -27,8 +27,14 @@
         </li>
         {% endfor %}
 
-        <li style="margin-top: 15px; text-align: right;">
-            <a href="/food/?{{ card_filter_url }}" class="scout-spot-action-text">View more results...</a>
+        <li style="text-align: right;">
+            <a href="/food/?{{ card_filter_url }}" class="scout-spot-discover-action">
+                <span class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-share fa-stack-1x fa-inverse"></i>
+                </span>
+                <span class="scout-spot-action-text">View more results...</span>
+            </a>
         </li>
     </ul>
 </div>
