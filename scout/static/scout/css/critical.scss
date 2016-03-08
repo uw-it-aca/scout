@@ -17,7 +17,7 @@ $scout-link: #3498db;
 
     .scout-geolocation-position { font-size:14px; line-height: 45px; overflow: hidden; white-space:nowrap; text-overflow: ellipsis;
 
-        a { text-decoration: none; display: block; padding: 0 20px 0 13px;
+        a { text-decoration: none; display: inline-block; padding: 0 20px 0 13px;
 
             .fa-stack { font-size: 12px; }
             .fa-circle { color: $scout-button; }
@@ -285,7 +285,7 @@ $scout-link: #3498db;
 
                     }
 
-                    .scout-spot-discover-action { display: block; line-height: 30px;
+                    .scout-spot-discover-action { display: inline-block; line-height: 30px;
                         .fa-stack { font-size: 12px; }
                         .fa-circle { color: $scout-button; }
                         .scout-spot-action-text {  color: $scout-link; text-decoration: underline; }
