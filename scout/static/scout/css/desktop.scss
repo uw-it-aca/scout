@@ -8,6 +8,15 @@ $footer-height: 30px;
 
 body { overflow: hidden; }
 
+// global overrides for action links
+
+.scout-geolocation-action, .scout-spot-action-text, .scout-coupon-action-text, .scout-filter-results-action, .scout-footer a {
+    text-decoration: none !important;
+
+    &:hover { text-decoration: underline !important; }
+}
+
+
 // main container
 .scout-primary { position:absolute; width: $view-panel-width; top:0; bottom:0; -webkit-box-shadow: 5px 0 20px 0 rgba(0,0,0,0.3); box-shadow: 5px 0 20px 0 rgba(0,0,0,0.3); z-index: 1;
 
