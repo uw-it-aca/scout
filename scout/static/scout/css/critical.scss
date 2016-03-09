@@ -15,17 +15,19 @@ $scout-link: #3498db;
 .scout-geolocation {
 
 
-    .scout-geolocation-position { font-size:14px; line-height: 45px; white-space: nowrap;
+    .scout-geolocation-position { font-size:14px; line-height: 45px; white-space: nowrap; padding: 0 20px 0 13px;
 
-        a { text-decoration: none; display: inline-block; padding: 0 20px 0 13px;
+        .fa-stack { font-size: 12px; }
+        .fa-circle { color: $scout-button; }
 
-            .fa-stack { font-size: 12px; }
-            .fa-circle { color: $scout-button; }
 
             .scout-geolocation-location { color:#111; display: inline-block; }
-            .scout-geolocation-action {  margin-left: 5px;; display: inline-block; color:$scout-link;; text-decoration: underline; }
+            .scout-geolocation-action {  margin-left: 5px;;
 
-        }
+                a { display: inline-block; display: inline-block; color:$scout-link;; text-decoration: underline; }
+
+            }
+
 
 
     }
