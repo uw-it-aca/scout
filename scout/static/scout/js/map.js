@@ -134,7 +134,9 @@ var Map = {
 
                         $('li').css('background', 'none'); // clear any highlighted spots first
                         $('#' + data.id).css('background', '#e8eaf7');
-                        $('.scout-scroll').scrollTo('#' + data.id);
+
+                        //$('.scout-scroll').scrollTo('#' + data.id);
+                        List.scroll_to_spot('#' + data.id);
 
                     });
 
