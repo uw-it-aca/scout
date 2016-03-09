@@ -15,7 +15,7 @@ $scout-link: #3498db;
 .scout-geolocation {
 
 
-    .scout-geolocation-position { font-size:14px; line-height: 45px; overflow: hidden; white-space:nowrap; text-overflow: ellipsis;
+    .scout-geolocation-position { font-size:14px; line-height: 45px; white-space: nowrap;
 
         a { text-decoration: none; display: inline-block; padding: 0 20px 0 13px;
 
@@ -23,7 +23,7 @@ $scout-link: #3498db;
             .fa-circle { color: $scout-button; }
 
             .scout-geolocation-location { color:#111; display: inline-block; }
-            .scout-geolocation-action {  margin-left: 5px;; color:$scout-link;; text-decoration: underline; }
+            .scout-geolocation-action {  margin-left: 5px;; display: inline-block; color:$scout-link;; text-decoration: underline; }
 
         }
 
@@ -36,11 +36,10 @@ $scout-link: #3498db;
 
 .scout-filter-results { border-top: solid 1px #ddd;
 
-    a { text-decoration: none; color: $scout-purple; font-size: 14px;}
     label { display: block; font-size: 10px; text-transform: uppercase; color: #aaa; }
 
     .scout-filter-results-by { padding: 15px 20px 5px 20px; font-size: 14px;
-        .scout-filter-results-text { color: #333; font-size: 13px; }
+        .scout-filter-results-text { color: #333; font-size: 13px; line-height: 15px; }
     }
     .scout-filter-results-results { padding: 10px 20px;
 
@@ -48,7 +47,7 @@ $scout-link: #3498db;
 
         .scout-filter-results-actions { float:right; display:inline-block; line-height: 30px;
 
-            a { display: inline-block; margin-left: 10px;
+            a { display: inline-block; margin-left: 10px; text-decoration: none; font-size: 14px; white-space: nowrap;
 
                 .fa-stack { font-size: 12px; }
                 .fa-circle { color: $scout-button; }

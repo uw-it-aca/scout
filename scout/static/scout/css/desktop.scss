@@ -1,6 +1,6 @@
 // sass variables
 
-$view-panel-width: 450px;
+$view-panel-width: 415px;
 $header-height: 102px;
 $footer-height: 30px;
 
@@ -95,7 +95,7 @@ body { overflow: hidden; }
 }
 
 // map sidebar container
-.scout-secondary { position: fixed; top:0; right:0; bottom:0; left:450px; z-index:0; }
+.scout-secondary { position: fixed; top:0; right:0; bottom:0; left:$view-panel-width; z-index:0; }
 
 // image overlay
 
