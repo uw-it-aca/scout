@@ -11,7 +11,7 @@ from spotseeker_restclient.spotseeker import Spotseeker
 DAO = "spotseeker_restclient.dao_implementation.spotseeker.File"
 
 
-@override_settings(RESTCLIENT_SPOTSEEKER_DAO_CLASS=DAO)
+@override_settings(SPOTSEEKER_DAO_CLASS=DAO)
 class SpaceDAOTest(TestCase):
 
     def test_add_foodtypes(self):
@@ -101,4 +101,3 @@ class SpaceDAOTest(TestCase):
         self.assertTrue(periods['lunch'])
         self.assertFalse(periods['dinner'])
         self.assertFalse(periods['late_night'])
-
