@@ -90,6 +90,7 @@ var Map = {
 
             // multiple pins on a single map
             var locations = window.spot_locations;
+
             var bounds = new google.maps.LatLngBounds();
 
             // create and open InfoWindow.
@@ -193,6 +194,11 @@ var Map = {
     var myLatlng, mapOptions;
 
     if (mapExists) {
+
+        // get spot location from data attributes
+        var spot_lat = $(".scout-card").data("latitude");
+        var spot_lng = $(".scout-card").data("longitude");
+        var spot_name = $(".scout-card").data("spotname");
 
         // center map direction on spot location
         myLatlng = new google.maps.LatLng(spot_lat, spot_lng);
