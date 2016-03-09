@@ -10,7 +10,7 @@ $(document).on('ready', function(event) {
         Map.init_map();
     } else if (page_path.indexOf("detail") !== -1) {
         Map.init_map();
-
+        Gallery.init_gallery();
     } else if (page_path.indexOf("filter") !== -1) {
         Filter.init();
     } else if (page_path.indexOf("map") !== -1){
@@ -21,13 +21,12 @@ $(document).on('ready', function(event) {
     } else {
         Discover.init_cards();
     }
+
     Filter.replace_food_href();
 
     // call this last so all page level location event listeners have been declared
     Geolocation.update_location();
 
     Filter.init_events();
-
-    Gallery.init_gallery();
-
+    
 });
