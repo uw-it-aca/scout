@@ -1,12 +1,21 @@
 // sass variables
 
-$view-panel-width: 450px;
+$view-panel-width: 415px;
 $header-height: 102px;
 $footer-height: 30px;
 
 // desktop styles
 
 body { overflow: hidden; }
+
+// global overrides for action links
+
+.scout-geolocation-action, .scout-spot-action-text, .scout-coupon-action-text, .scout-filter-results-action, .scout-footer a {
+    text-decoration: none !important;
+
+    &:hover { text-decoration: underline !important; }
+}
+
 
 // main container
 .scout-primary { position:absolute; width: $view-panel-width; top:0; bottom:0; -webkit-box-shadow: 5px 0 20px 0 rgba(0,0,0,0.3); box-shadow: 5px 0 20px 0 rgba(0,0,0,0.3); z-index: 1;
@@ -86,7 +95,7 @@ body { overflow: hidden; }
 }
 
 // map sidebar container
-.scout-secondary { position: fixed; top:0; right:0; bottom:0; left:450px; z-index:0; }
+.scout-secondary { position: fixed; top:0; right:0; bottom:0; left:$view-panel-width; z-index:0; }
 
 // image overlay
 
