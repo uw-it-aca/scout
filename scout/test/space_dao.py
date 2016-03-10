@@ -25,11 +25,10 @@ class SpaceDAOTest(TestCase):
                     ('distance', 100000),
                     ('fuzzy_hours_start', 'Tuesday,05:00'),
                     ('fuzzy_hours_end', 'Tuesday,11:00')]
-                    
+
         spots = get_spots_by_filter(filter)
         self.assertEqual(len(spots), 5)
         self.assertEqual(spots[0].extended_info[3].value, 'food')
-
 
     def test_add_foodtypes(self):
         sc = Spotseeker()
@@ -59,14 +58,19 @@ class SpaceDAOTest(TestCase):
         self.assertEqual(spot.alert_notes, None)
         self.assertEqual(spot.has_reservation, None)
         self.assertEqual(spot.reservation_notes, None)
-        self.assertEqual(spot.menu_url, "https://www.hfs.washington.edu/uploadedFiles/Dining/Dining_Locations/Bahnwebmenu%202014.pdf")
-        self.assertEqual(spot.hours_notes,None)
+        self.assertEqual(
+            spot.menu_url,
+            "https://www.hfs.washington.edu/uploadedFiles/Dining/"
+            "Dining_Locations/Bahnwebmenu%202014.pdf")
+        self.assertEqual(spot.hours_notes, None)
         self.assertEqual(spot.access_notes, None)
         self.assertEqual(spot.has_coupon, None)
         self.assertEqual(spot.coupon_expiration, None)
         self.assertEqual(spot.coupon_url, None)
         self.assertEqual(spot.phone, "206-685-4950")
-        self.assertEqual(spot.website_url, "https://www.hfs.washington.edu/dining/Default.aspx?id=3620#gsc.tab=0")
+        self.assertEqual(
+            spot.website_url, "https://www.hfs.washington.edu/dining/"
+            "Default.aspx?id=3620#gsc.tab=0")
 
     def test_spot_open(self):
         local_tz = pytz.timezone('America/Los_Angeles')
@@ -75,15 +79,19 @@ class SpaceDAOTest(TestCase):
         spot = organize_hours(spot)
 
         # monday
-        current_time = local_tz.localize(datetime.datetime(2015, 12, 14, 7, 0, 0, 0))
+        current_time = local_tz.localize(datetime.datetime(
+            2015, 12, 14, 7, 0, 0, 0))
         self.assertFalse(get_is_spot_open(spot, current_time))
-        current_time = local_tz.localize(datetime.datetime(2015, 12, 14, 10, 30, 0, 0))
+        current_time = local_tz.localize(datetime.datetime(
+            2015, 12, 14, 10, 30, 0, 0))
         self.assertTrue(get_is_spot_open(spot, current_time))
-        current_time = local_tz.localize(datetime.datetime(2015, 12, 14, 22, 0, 0, 0))
+        current_time = local_tz.localize(datetime.datetime(
+            2015, 12, 14, 22, 0, 0, 0))
         self.assertFalse(get_is_spot_open(spot, current_time))
 
         # sunday
-        current_time = local_tz.localize(datetime.datetime(2015, 12, 20, 11, 0, 0, 0))
+        current_time = local_tz.localize(datetime.datetime(
+            2015, 12, 20, 11, 0, 0, 0))
         self.assertFalse(get_is_spot_open(spot, current_time))
 
     def test_open_periods(self):
