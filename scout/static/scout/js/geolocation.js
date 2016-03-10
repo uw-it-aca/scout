@@ -89,31 +89,71 @@ var Geolocation = {
 
     display_location_status: function () {
         if (Geolocation.get_location_type() === "default") {
+
             $("#default_position").show();
             $("#default_position").attr("aria-hidden", "false");
+
             $("#shared_position").hide();
             $("#shared_position").attr("aria-hidden", "true");
+
+            $("#forget_location").hide();
+            $("#forget_location").attr("aria-hidden", "true");
+
+            $("#use_location").show();
+            $("#use_location").attr("aria-hidden", "false");
+
         } else {
+
             $("#default_position").hide();
             $("#default_position").attr("aria-hidden", "true");
+
             $("#shared_position").show();
             $("#shared_position").attr("aria-hidden", "false");
+
+            $("#use_location").hide();
+            $("#use_location").attr("aria-hidden", "true");
+
+            $("#forget_location").show();
+            $("#forget_location").attr("aria-hidden", "false");
         }
     },
 
     init_location_toggles: function() {
         $("#use_location").click(function(e) {
+
             e.preventDefault();
             Geolocation.set_is_using_location(true);
+
             $("#shared_position").show();
+            $("#shared_position").attr("aria-hidden", "false");
+
             $("#default_position").hide();
+            $("#default_position").attr("aria-hidden", "true");
+
+            $("#use_location").hide();
+            $("#use_location").attr("aria-hidden", "true");
+
+            $("#forget_location").show();
+            $("#forget_location").attr("aria-hidden", "false");
         });
 
         $("#forget_location").click(function(e) {
+
             e.preventDefault();
             Geolocation.set_is_using_location(false);
+
             $("#shared_position").hide();
+            $("#shared_position").attr("aria-hidden", "true");
+
             $("#default_position").show();
+            $("#default_position").attr("aria-hidden", "false");
+
+            $("#forget_location").hide();
+            $("#forget_location").attr("aria-hidden", "true");
+
+            $("#use_location").show();
+            $("#use_location").attr("aria-hidden", "false");
+
         });
     }
 

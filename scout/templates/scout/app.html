@@ -36,10 +36,10 @@
         {% compress css inline %}
         <link rel="stylesheet" href="{% static "vendor/css/normalize-3.0.1.min.css" %}">
         <link rel="stylesheet" href="{% static "scout/css/critical.scss" %}" type="text/x-scss">
+        <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.5.0.min.css" %}">
         {% endcompress %}
         <!-- async (mobile) -->
         {% compress css %}
-        <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.5.0.min.css" %}">
         <link rel="stylesheet" href="{% static "scout/css/mobile.scss" %}" type="text/x-scss">
         {% endcompress %}
     {% endif %}
@@ -88,6 +88,7 @@
     <script async="async" src="{% static "scout/js/list.js" %}"></script>
     <script async="async" src="{% static "scout/js/discover.js" %}"></script>
     <script async="async" src="{% static "scout/js/geolocation.js" %}"></script>
+    <script async="async" src="{% static "scout/js/gallery.js" %}"></script>
     {% endcompress %}
 
     <link href='https://fonts.googleapis.com/css?family=Raleway:700,900' rel='stylesheet' type='text/css'>
@@ -114,13 +115,13 @@
 {% endblock %}
 
 {% block header %}
-<a id="link_home" href="/" title="List of food places on campus">Scout</a>
+<a id="link_home" href="/" title="List of food places on campus">FoodScout</a>
 {% endblock %}
 
 {% block top-nav %}
 <ul class="scout-navigation-items">
     <li><a id="link_discover" href="/" title="Discover places to eat on campus">Discover</a></li>
-    <li><a id="link_food" href="/food/" title="List of food places on campus">Food</a></li>
+    <li><a id="link_food" href="/food/" title="List of food places on campus">Places</a></li>
 </ul>
 {% endblock %}
 

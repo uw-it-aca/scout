@@ -1,35 +1,18 @@
 <h2 class=" visually-hidden">Your location information</h2>
 
 <div class="scout-geolocation">
-
-    <div id="default_position">
-
-       <div class="scout-geolocation-position" style="">
-           <a id="use_location" href="javascript:void(0)">
-               <span class="fa-stack fa-lg">
-                 <i class="fa fa-circle fa-stack-2x"></i>
-                 <i class="fa fa-map-marker fa-stack-1x fa-inverse"></i>
-               </span>
-               <span class="scout-geolocation-location">Drumheller Fountain</span>
-               <span class="scout-geolocation-action">(find your location)</span>
-           </a>
+       <div class="scout-geolocation-position">
+            <span class="fa-stack fa-lg">
+             <i class="fa fa-circle fa-stack-2x"></i>
+             <i class="fa fa-map-marker fa-stack-1x fa-inverse"></i>
+            </span>
+            <span class="scout-geolocation-location">
+               <span id="default_position">Drumheller Fountain</span>
+               <span id="shared_position" style="display:none;">Your location</span>
+            </span>
+            <span class="scout-geolocation-action">
+               <a id="use_location" href="javascript:void(0)">Find your location</a>
+               <a id="forget_location" href="javascript:void(0)" style="display:none;">Switch to default</a>
+            </span>
        </div>
-
-    </div>
-
-    <div id="shared_position" style="display:none;">
-
-        <div class="scout-geolocation-position" style="">
-            <a id="forget_location" href="javascript:void(0)">
-                <span class="fa-stack fa-lg">
-                  <i class="fa fa-circle fa-stack-2x"></i>
-                  <i class="fa fa-map-marker fa-stack-1x fa-inverse"></i>
-                </span>
-                <span class="scout-geolocation-location">Your location</span>
-                <span class="scout-geolocation-action">(switch to default)</span>
-            </a>
-        </div>
-
-    </div>
-
 </div>
