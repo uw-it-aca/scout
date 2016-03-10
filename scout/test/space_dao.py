@@ -5,7 +5,7 @@ from django.test import TestCase
 from django.test.utils import override_settings
 from scout.dao.space import add_foodtype_names_to_spot, add_cuisine_names, \
     add_payment_names, add_additional_info, get_is_spot_open, organize_hours, \
-    get_open_periods_by_day
+    get_open_periods_by_day, get_spots_by_filter
 from spotseeker_restclient.spotseeker import Spotseeker
 
 DAO = "spotseeker_restclient.dao_implementation.spotseeker.File"
@@ -13,6 +13,23 @@ DAO = "spotseeker_restclient.dao_implementation.spotseeker.File"
 
 @override_settings(SPOTSEEKER_DAO_CLASS=DAO)
 class SpaceDAOTest(TestCase):
+
+    def test_get_spots_by_filer(self):
+        """ tests function used by discover cards to load spaces with
+        selected filters. Uses mock data that matches order of this filter.
+        """
+
+        filter = [
+                    ('limit', 5), ('center_latitude', u'47.653811'),
+                    ('center_longitude', u'-122.307815'),
+                    ('distance', 100000),
+                    ('fuzzy_hours_start', 'Tuesday,05:00'),
+                    ('fuzzy_hours_end', 'Tuesday,11:00')]
+                    
+        spots = get_spots_by_filter(filter)
+        self.assertEqual(len(spots), 5)
+        self.assertEqual(spots[0].extended_info[3].value, 'food')
+
 
     def test_add_foodtypes(self):
         sc = Spotseeker()
