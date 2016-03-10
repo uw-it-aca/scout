@@ -35,6 +35,7 @@ class PageFlowTest(LiveServerTestCase):
 
         self.driver.implicitly_wait(20)
 
+    # tests to see if filter url is navigable
     def test_sauce(self):
 
         sauce_client.jobs.update_job(self.driver.session_id, name="Pageflow: Test Sauce")
@@ -62,6 +63,7 @@ class PageFlowTest(LiveServerTestCase):
     def click_filter(self):
         self.click_id('link_filter')
 
+    # Travels from discover - food - home
     def test_main_navigation(self):
 
         sauce_client.jobs.update_job(self.driver.session_id, name="Pageflow: Navigate Path #1")
