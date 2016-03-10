@@ -10,12 +10,7 @@
 
     <h2 class="visually-hidden">{{spot.name}}</h2>
 
-    <div class="scout-card" style="padding: 0;">
-    <script>
-        var spot_lat = "{{ spot.latitude }}";
-        var spot_lng = "{{ spot.longitude }}";
-        var spot_name = "{{ spot.name }}"
-    </script>
+    <div class="scout-card" style="padding: 0;" data-latitude="{{ spot.latitude }}" data-longitude="{{ spot.longitude }}" data-spotname="{{ spot.name }}">
 
         <h3 class="visually-hidden">Overview</h3>
 
