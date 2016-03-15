@@ -188,8 +188,8 @@
                 <div class="scout-spot-building-info">
                     <ul>
                         <li>{% if spot.building_name %}{{ spot.building_name }}{% else %} <span style="color:red;">missing building_name</span> {% endif %}</li>
-                        <li>Floor:&nbsp;{% if spot.floor %}{{ spot.floor }}{% else %} <span style="color:red;">missing floor</span> {% endif %}</li>
-                        <li>Room:&nbsp;{% if spot.room_number %}{{ spot.room_number }}{% else %} <span style="color:red;">missing room_number</span> {% endif %}</li>
+                        <li><span style="color:#bbb;">Floor:</span>&nbsp;{% if spot.floor %}{{ spot.floor }}{% else %} <span style="color:red;">missing floor</span> {% endif %}</li>
+                        <li><span style="color:#bbb;">Room:</span>&nbsp;{% if spot.room_number %}{{ spot.room_number }}{% else %} <span style="color:red;">missing room_number</span> {% endif %}</li>
                     </ul>
                 </div>
 
