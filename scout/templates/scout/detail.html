@@ -158,13 +158,13 @@
                 <h3>Hours</h3>
                 <h4 class="visually-hidden">Open hours</h4>
                 <ul style="margin-bottom: 15px;">
-                    <li><span class="day">Monday:</span> {% for hours in spot.hours.monday %} {{ hours.0 }} - {{ hours.1 }} {% empty %}<span class="closed">Closed</span>{% endfor %}</li>
-                    <li><span class="day">Tuesday:</span> {% for hours in spot.hours.tuesday %} {{ hours.0 }} - {{ hours.1 }} {% empty %}<span class="closed">Closed</span>{% endfor %}</li>
-                    <li><span class="day">Wednesday:</span> {% for hours in spot.hours.wednesday %} {{ hours.0 }} - {{ hours.1 }} {% empty %}<span class="closed">Closed</span>{% endfor %}</li>
-                    <li><span class="day">Thursday:</span> {% for hours in spot.hours.thursday %} {{ hours.0 }} - {{ hours.1 }} {% empty %}<span class="closed">Closed</span>{% endfor %}</li>
-                    <li><span class="day">Friday:</span> {% for hours in spot.hours.friday %} {{ hours.0 }} - {{ hours.1 }} {% empty %}<span class="closed">Closed</span>{% endfor %}</li>
-                    <li><span class="day">Saturday:</span> {% for hours in spot.hours.saturday %} {{ hours.0 }} - {{ hours.1 }} {% empty %}<span class="closed">Closed</span>{% endfor %}</li>
-                    <li><span class="day">Sunday:</span> {% for hours in spot.hours.sunday %} {{ hours.0 }} - {{ hours.1 }} {% empty %}<span class="closed">Closed</span>{% endfor %}</li>
+                    <li><span class="day">Monday:</span> {% for hours in spot.hours.monday %} {{ hours.0|time:"g:iA"|lower }} - {{ hours.1|time:"g:iA"|lower }} {% empty %}<span class="closed">Closed</span>{% endfor %}</li>
+                    <li><span class="day">Tuesday:</span> {% for hours in spot.hours.tuesday %} {{ hours.0|time:"g:iA"|lower }} - {{ hours.1|time:"g:iA"|lower }} {% empty %}<span class="closed">Closed</span>{% endfor %}</li>
+                    <li><span class="day">Wednesday:</span> {% for hours in spot.hours.wednesday %} {{ hours.0|time:"g:iA"|lower }} - {{ hours.1|time:"g:iA"|lower }} {% empty %}<span class="closed">Closed</span>{% endfor %}</li>
+                    <li><span class="day">Thursday:</span> {% for hours in spot.hours.thursday %} {{ hours.0|time:"g:iA"|lower }} - {{ hours.1|time:"g:iA"|lower }} {% empty %}<span class="closed">Closed</span>{% endfor %}</li>
+                    <li><span class="day">Friday:</span> {% for hours in spot.hours.friday %} {{ hours.0|time:"g:iA"|lower }} - {{ hours.1|time:"g:iA"|lower }} {% empty %}<span class="closed">Closed</span>{% endfor %}</li>
+                    <li><span class="day">Saturday:</span> {% for hours in spot.hours.saturday %} {{ hours.0|time:"g:iA"|lower }} - {{ hours.1|time:"g:iA"|lower }} {% empty %}<span class="closed">Closed</span>{% endfor %}</li>
+                    <li><span class="day">Sunday:</span> {% for hours in spot.hours.sunday %} {{ hours.0|time:"g:iA"|lower }} - {{ hours.1|time:"g:iA"|lower }} {% empty %}<span class="closed">Closed</span>{% endfor %}</li>
                 </ul>
 
                 {% if spot.hours_notes %}
