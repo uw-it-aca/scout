@@ -36,7 +36,7 @@ var Map = {
             mapCenter = pos;
             mapOptions = {
                 center: mapCenter,
-                zoom: 15
+                zoom: 16
             };
             var styles = [
                 {
