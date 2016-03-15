@@ -52,7 +52,9 @@ html.turbolinks-progress-bar::before {
 
                 .scout-spot-gallery { overflow-x: scroll; -webkit-overflow-scrolling: touch; overflow-y: hidden; white-space: nowrap; height: 100px; margin-bottom: 15px;
                     ul {
-                        li { display: inline-block; margin-right: 8px; }
+                        li { display: inline-block; margin-right: 8px;
+                            img { cursor: pointer; }
+                        }
                     }
                 }
 
@@ -188,6 +190,7 @@ html.turbolinks-progress-bar::before {
    top: 0px;
    left: 0px;
    z-index: 9999;
+   cursor: pointer;
 
    .loader {
        border-top: 3px solid rgba(255, 255, 255, 0.8);
@@ -201,4 +204,5 @@ html.turbolinks-progress-bar::before {
     position: absolute;
     left: 50%;
     top: 30%;
+    cursor: pointer;
 }
