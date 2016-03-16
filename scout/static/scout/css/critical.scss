@@ -152,7 +152,7 @@ $scout-link: #3498db;
 
                     a { display:block; text-decoration:none; padding:10px 20px; color:#000; min-height: 100px; overflow: hidden;
 
-                        .scout-spot-image {  background-color: #e5e6e9; background-size:cover; background-position: center center; background-repeat: no-repeat; width:30%; height:100px; float:left; position: relative; }
+                        .scout-spot-image {  background-color: #fff; background-size:contain; background-position: center center; background-repeat: no-repeat; width:30%; height:100px; float:left; position: relative; }
                         .scout-spot-content { display:inline-block; float:left; width:70%; margin:0;
 
                             // spot details
@@ -277,7 +277,7 @@ $scout-link: #3498db;
                         &:hover { color: $scout-purple; }
                         .closed { color: #A94441; font-size: 11px; }
 
-                        .scout-spot-image { background-color: #e5e6e9; background-size:cover; background-repeat: no-repeat; background-position: center center; display: inline-block; width: 50px; height: 55px; float:left; margin-right: 10px; }
+                        .scout-spot-image { background-color: #fff; background-size:contain; background-repeat: no-repeat; background-position: center center; display: inline-block; width: 50px; height: 55px; float:left; margin-right: 10px; }
                         .scout-spot-name { display:block; float:left; width: 75%; line-height: 25px; font-size: 15px;}
                         .scout-spot-location { display:block; float:left; width: 75%; white-space: nowrap; font-size: 12px; color: #666; overflow: hidden; text-overflow: ellipsis; }
 
