@@ -251,7 +251,6 @@ def add_cuisine_names(spot):
         "s_cuisine_hawaiian": "Hawaiian",
         "s_cuisine_indian": "Indian",
         "s_cuisine_italian": "Italian",
-        "s_cuisine_japanese": "Japanese",
         "s_cuisine_korean": "Korean",
         "s_cuisine_mexican": "Mexican",
         "s_cuisine_vietnamese": "Vietnamese",
@@ -265,16 +264,21 @@ def add_cuisine_names(spot):
 def add_foodtype_names_to_spot(spot):
     FOOD_TYPE_PREFIX = "s_food_"
     FOOD_TYPE_MAPPING = {
-        "s_food_appetizers": "Appetizers",
         "s_food_burgers": "Burgers",
+        "s_food_breakfast": "Breakfast",
+        "s_food_curry": "Curry",
+        "s_food_desserts": "Desserts",
         "s_food_entrees": "Entrees",
         "s_food_espresso": "Espresso",
+        "s_food_frozen_yogurt": "Frozen Yogurt",
         "s_food_pasta": "Pasta",
+        "s_food_pastries": "Pastries",
+        "s_food_pho": "Pho",
         "s_food_pizza": "Pizza",
         "s_food_salads": "Salads",
         "s_food_sandwiches": "Sandwiches",
         "s_food_smoothies": "Smoothies",
-        "s_food_sushi": "Sushi",
+        "s_food_sushi_packaged": "Sushi (packaged)",
         "s_food_tacos": "Tacos",
     }
     spot.foodtype_names = _get_names_for_extended_info(FOOD_TYPE_PREFIX,
