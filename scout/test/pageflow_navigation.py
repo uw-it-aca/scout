@@ -3,7 +3,7 @@ A simple functional headless UI test with pyvirtualdisplay and selenium
 Links and URLS
 """
 
-import os
+import os, bs4
 import sys
 
 from selenium import webdriver
@@ -35,16 +35,6 @@ class PageFlowNavigationTest(LiveServerTestCase):
 
         self.driver.implicitly_wait(20)
 
-    # tests to see if filter url is navigable
-    def test_sauce(self):
-
-        sauce_client.jobs.update_job(self.driver.session_id, name="Pageflow: Test Sauce")
-
-        self.go_url('filter/')
-        #self.driver.get(self.baseurl + 'filter/')
-        test = self.driver.find_element_by_id('test')
-        self.assertEqual(test.text,"Hello World!")
-
     def click_id(self, elid):
         self.driver.find_element_by_id(elid).click()
 
@@ -63,15 +53,35 @@ class PageFlowNavigationTest(LiveServerTestCase):
     def click_filter(self):
         self.click_id('link_filter')
 
-    # Travels from discover - food - home
+    # tests to see if filter url is navigable
+    def test_sauce(self):
+
+        sauce_client.jobs.update_job(self.driver.session_id, name="Pageflow: Test Sauce")
+
+        self.go_url('filter/')
+        #self.driver.get(self.baseurl + 'filter/')
+        test = self.driver.find_element_by_id('test')
+        self.assertEqual(test.text, 'Hello World!')
+
     def test_main_navigation(self):
 
+        """Travels from discover - food - filter - home - food
+        SCOUT-1, SCOUT-2, SCOUT-3, SCOUT-4"""
         sauce_client.jobs.update_job(self.driver.session_id, name="Pageflow: Navigate Path #1")
 
-        self.driver.get(self.baseurl)
-        self.click_discover()
+        self.go_url('discover') # SCOUT-1
+        tempSoup = bs4.BeautifulSoup(self.driver.page_source, "html5lib")
         self.click_food()
+        self.click_filter()
+        legends = self.driver.find_elements_by_tag_name('Legend') # SCOUT-2
+        self.assertEqual(legends[0].text, 'CAMPUS')
         self.click_home()
+        self.click_food()
+        labels = self.driver.find_elements_by_tag_name('label') # SCOUT-3 
+        self.assertEqual(labels[0].text, 'FILTERING BY:')
+        self.go_url() # SCOUT-4
+        tempSoup2 = bs4.BeautifulSoup(self.driver.page_source, "html5lib")
+        self.assertEqual(tempSoup.select('div > span'), tempSoup2.select('div > span')) # seeing if disc and home html are same
 
     # Travels through food - filter - home
     def test_food(self):
@@ -98,7 +108,8 @@ class PageFlowNavigationTest(LiveServerTestCase):
         temp = self.driver.current_url
         self.click_discover()
         self.assertEqual(temp, self.driver.current_url)
-
+        
+    '''
     # goes from home - food - filter - reset - filter - search - resetFilters - details1 - localhost/food - filter 
     # localhost/discover - home
     def test_everything(self):
@@ -115,6 +126,7 @@ class PageFlowNavigationTest(LiveServerTestCase):
         self.click_home()
         self.assertEqual(self.baseurl, self.driver.current_url)
         #all pages can be reached by URL
+    '''
 
     # Sees if the following pages are reachable by URL
     def test_URL(self):
@@ -133,7 +145,7 @@ class PageFlowNavigationTest(LiveServerTestCase):
         self.click_filter() # checking to see if on food
         self.driver.get(self.baseurl + 'discover') # hopefully should redirect... missing the last slash
         self.driver.find_element_by_id('1').click() #should be able to find a place with element 1
-
+    
     def tearDown(self):
         print("https://saucelabs.com/jobs/%s \n" % self.driver.session_id)
         try:
