@@ -1,11 +1,12 @@
 import datetime
-
+from django.test.client import RequestFactory
 import pytz
 from django.test import TestCase
 from django.test.utils import override_settings
 from scout.dao.space import add_foodtype_names_to_spot, add_cuisine_names, \
     add_payment_names, add_additional_info, get_is_spot_open, organize_hours, \
-    get_open_periods_by_day, get_spots_by_filter
+    get_open_periods_by_day, get_spots_by_filter, get_spot_list, \
+    get_spots_by_filter, _get_spot_filters
 from spotseeker_restclient.spotseeker import Spotseeker
 
 DAO = "spotseeker_restclient.dao_implementation.spotseeker.File"
@@ -126,3 +127,18 @@ class SpaceDAOTest(TestCase):
         self.assertTrue(periods['lunch'])
         self.assertFalse(periods['dinner'])
         self.assertFalse(periods['late_night'])
+
+    def test_get_spot_list(self):
+        spot_list = get_spot_list()
+        self.assertEqual(len(spot_list), 3)
+
+    def test_get_spots_by_filter(self):
+        filtered_spots = get_spots_by_filter([('extended_info:s_food_pasta', True),
+                                             ('type', 'food_court')])
+        self.assertEqual(len(filtered_spots), 1)
+
+    def test_get_spot_filters(self):
+        request = RequestFactory().get('/?payment0=s_pay_dining&type0=food_court&food0=s_food_entrees&food1=s_food_pasta&cuisine0=s_cuisine_chinese&period0=breakfast&open_now=true&campus=seattle')
+        filters = _get_spot_filters(request)
+        self.assertEqual(len(filters), 9)
+

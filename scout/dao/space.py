@@ -38,7 +38,7 @@ def get_spot_list():
     return res
 
 
-def get_spots_by_filter(filters):
+def get_spots_by_filter(filters=[]):
     filters.append(('extended_info:app_type', 'food'))
     spot_client = Spotseeker()
     try:
