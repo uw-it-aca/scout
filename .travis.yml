@@ -19,3 +19,5 @@ notifications:
   webhooks:
       urls:
         - https://yarn.cac.washington.edu/rest/botalyst/v1/travis-ci
+  slack:
+        secure: QhQcPJdxvdl5GlPdiewvyMMzDAM5fFB0Db2kRwpDphn8KiyNv2cF1SVeiYaJcQ4fObA7eWgsBXGBd/be8OC/1ujGNncz92bJM5xHePzMxs37hjPFaHuDGH0pnqurQIhRTz6OoWDi2+2OzC3xP1VkpOv0/2ApFjhUkO8S6JodH9A=
