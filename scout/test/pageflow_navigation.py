@@ -108,7 +108,25 @@ class PageFlowNavigationTest(LiveServerTestCase):
         temp = self.driver.current_url
         self.click_discover()
         self.assertEqual(temp, self.driver.current_url)
-        
+    
+    # Sees if the following pages are reachable by URL
+    def test_URL(self):
+        sauce_client.jobs.update_job(self.driver.session_id, name="Pageflow: URL")
+        #HomePage
+        self.driver.get(self.baseurl)
+        #FoodPage
+        self.driver.get(self.baseurl + 'food/')
+        #Discover Page
+        self.driver.get(self.baseurl + 'discover/')
+        #Filter Page
+        self.driver.get(self.baseurl + 'filter/')
+
+        #Test some other potential url's that should be able to redirect
+        self.driver.get(self.baseurl + 'food') # hopefully should redirect... missing the last slash
+        self.click_filter() # checking to see if on food
+        self.driver.get(self.baseurl + 'discover') # hopefully should redirect... missing the last slash
+        self.driver.find_element_by_id('1').click() #should be able to find a place with element 1
+     
     '''
     # goes from home - food - filter - reset - filter - search - resetFilters - details1 - localhost/food - filter 
     # localhost/discover - home
@@ -128,24 +146,6 @@ class PageFlowNavigationTest(LiveServerTestCase):
         #all pages can be reached by URL
     '''
 
-    # Sees if the following pages are reachable by URL
-    def test_URL(self):
-        sauce_client.jobs.update_job(self.driver.session_id, name="Pageflow: URL")
-        #HomePage
-        self.driver.get(self.baseurl)
-        #FoodPage
-        self.driver.get(self.baseurl + 'food/')
-        #Discover Page
-        self.driver.get(self.baseurl + 'discover/')
-        #Filter Page
-        self.driver.get(self.baseurl + 'filter/')
-
-        #Test some other potential url's that should be able to redirect
-        self.driver.get(self.baseurl + 'food') # hopefully should redirect... missing the last slash
-        self.click_filter() # checking to see if on food
-        self.driver.get(self.baseurl + 'discover') # hopefully should redirect... missing the last slash
-        self.driver.find_element_by_id('1').click() #should be able to find a place with element 1
-    
     def tearDown(self):
         print("https://saucelabs.com/jobs/%s \n" % self.driver.session_id)
         try:
