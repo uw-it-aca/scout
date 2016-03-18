@@ -1,142 +1,53 @@
-{% extends "brand/brand.html" %}
+{% load staticfiles %}
+{% load scout_filters %}
 
-{% block head %}
+<!DOCTYPE html>
+<html class="no-js" lang="en">
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Scout</title>
-    <meta name="description" content="">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="MobileOptimized" content="320">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
-    <meta http-equiv="cleartype" content="on">
+    <head>
+        {% include "scout/include/app_head.html" %}
+    </head>
 
-    {% load staticfiles %}
-    {% load compress %}
+    <body {% if request.is_mobile or request.is_tablet %}data-mobile="true"{% endif %}>
 
-    <!-- http://realfavicongenerator.net/ -->
-    <link rel="apple-touch-icon" sizes="57x57" href="{% static "scout/ico/apple-touch-icon-57x57.png" %}">
-    <link rel="apple-touch-icon" sizes="60x60" href="{% static "scout/ico/apple-touch-icon-60x60.png" %}">
-    <link rel="apple-touch-icon" sizes="72x72" href="{% static "scout/ico/apple-touch-icon-72x72.png" %}">
-    <link rel="apple-touch-icon" sizes="76x76" href="{% static "scout/ico/apple-touch-icon-76x76.png" %}">
-    <link rel="apple-touch-icon" sizes="114x114" href="{% static "scout/ico/apple-touch-icon-114x114.png" %}">
-    <link rel="apple-touch-icon" sizes="120x120" href="{% static "scout/ico/apple-touch-icon-120x120.png" %}">
-    <link rel="apple-touch-icon" sizes="144x144" href="{% static "scout/ico/apple-touch-icon-144x144.png" %}">
-    <link rel="apple-touch-icon" sizes="152x152" href="{% static "scout/ico/apple-touch-icon-152x152.png" %}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static "scout/ico/apple-touch-icon-180x180.png" %}">
-    <link rel="icon" type="image/png" href="{% static "scout/ico/favicon-32x32.png" %}" sizes="32x32">
-    <link rel="icon" type="image/png" href="{% static "scout/ico/favicon-194x194.png" %}" sizes="194x194">
-    <link rel="icon" type="image/png" href="{% static "scout/ico/favicon-96x96.png" %}" sizes="96x96">
-    <link rel="icon" type="image/png" href="{% static "scout/ico/android-chrome-192x192.png" %}" sizes="192x192">
-    <link rel="icon" type="image/png" href="{% static "scout/ico/favicon-16x16.png" %}" sizes="16x16">
-    <link rel="manifest" href="{% static "scout/ico/manifest.json" %}">
-    <link rel="mask-icon" href="{% static "scout/ico/safari-pinned-tab.svg" %}" color="#6564a8">
-    <meta name="apple-mobile-web-app-title" content="Scout">
-    <meta name="application-name" content="Scout">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="msapplication-TileImage" content="{% static "scout/ico/mstile-144x144.png" %}">
-    <meta name="theme-color" content="#ffffff">
+        <div class="scout-primary">
 
-    {% if request.is_mobile %}
-        <!-- critical (above the fold styles) -->
-        {% compress css inline %}
-        <link rel="stylesheet" href="{% static "vendor/css/normalize-3.0.1.min.css" %}">
-        <link rel="stylesheet" href="{% static "scout/css/critical.scss" %}" type="text/x-scss">
-        <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.5.0.min.css" %}">
-        {% endcompress %}
-        <!-- async (mobile) -->
-        {% compress css %}
-        <link rel="stylesheet" href="{% static "scout/css/mobile.scss" %}" type="text/x-scss">
-        {% endcompress %}
-    {% endif %}
+            <div id="header" class="scout-header">
 
-    {% if request.is_tablet %}
-        <!-- critical (above the fold styles) -->
-        {% compress css inline %}
-        <!-- inline -->
-        <link rel="stylesheet" href="{% static "vendor/css/normalize-3.0.1.min.css" %}">
-        <link rel="stylesheet" href="{% static "scout/css/critical.scss" %}" type="text/x-scss">
-        {% endcompress %}
-        <!-- async (mobile + tablet) -->
-        {% compress css %}
-        <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.5.0.min.css" %}">
-        <link rel="stylesheet" href="{% static "scout/css/mobile.scss" %}" type="text/x-scss">
-        <link rel="stylesheet" href="{% static "scout/css/tablet.scss" %}" type="text/x-scss">
-        {% endcompress %}
-    {% endif %}
+                {% if request.is_mobile or request.is_tablet %}
+                <h1 style="background: url('{% static "scout/img/scout.png" %}') no-repeat 5px; background-size:50px;">
+                {% else %}
+                <h1 style="background: url('{% static "scout/img/scout.png" %}') no-repeat 0px; background-size:13%;">
+                {% endif %}
+                <a id="link_home" href="/" title="List of food places on campus">FoodScout</a></h1>
 
-    {% if is_desktop %}
-        <!-- critical (above the fold styles) -->
-        {% compress css inline %}
-        <link rel="stylesheet" href="{% static "vendor/css/normalize-3.0.1.min.css" %}">
-        <link rel="stylesheet" href="{% static "scout/css/critical.scss" %}" type="text/x-scss">
-        <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.5.0.min.css" %}">
-        <link rel="stylesheet" href="{% static "scout/css/mobile.scss" %}" type="text/x-scss">
-        <link rel="stylesheet" href="{% static "scout/css/tablet.scss" %}" type="text/x-scss">
-        <link rel="stylesheet" href="{% static "scout/css/desktop.scss" %}" type="text/x-scss">
-        {% endcompress %}
+                <div class="scout-navigation" role="navigation" aria-label="main navigation">
+                    <ul class="scout-navigation-items">
+                        <li><a id="link_discover" href="/" title="Discover places to eat on campus">Discover</a></li>
+                        <li><a id="link_food" href="/food/" title="List of food places on campus">Places</a></li>
+                    </ul>
+                </div>
 
-        <!-- async (mobile + tablet + desktop) -->
-        {% compress css %}
-        {% endcompress %}
+            </div>
 
-    {% endif %}
+            <div id="scroll" class="scout-scroll">
+                <div id="content" class="scout-content">
+                    {% block web_content %}{% endblock %}
+                </div>
+            </div>
 
-    <!-- javascript -->
-    {% compress js %}
-    <script async="async" src="{% static "vendor/js/jquery-1.11.0.min.js" %}"></script>
-    <script async="async" src="{% static "vendor/js/js.cookie-2.1.0.min.js" %}"></script>
-    <script async="async" src="{% static "scout/js/web.js" %}"></script>
-    <script async="async" src="{% static "scout/js/layout.js" %}"></script>
-    <script async="async" src="{% static "scout/js/map.js" %}"></script>
-    <script async="async" src="{% static "scout/js/filter.js" %}"></script>
-    <script async="async" src="{% static "scout/js/navigation.js" %}"></script>
-    <script async="async" src="{% static "scout/js/list.js" %}"></script>
-    <script async="async" src="{% static "scout/js/discover.js" %}"></script>
-    <script async="async" src="{% static "scout/js/geolocation.js" %}"></script>
-    {% endcompress %}
-
-    <link href='https://fonts.googleapis.com/css?family=Raleway:700,900' rel='stylesheet' type='text/css'>
-
-    <!-- this script is penalized for being a render blocker... but the trade-off is better since it works best w/ turbolinks -->
-    <script src="//maps.googleapis.com/maps/api/js?libraries=geometry"></script>
-    <script src="//google-maps-utility-library-v3.googlecode.com/svn/trunk/markerwithlabel/src/markerwithlabel.js"></script>
-    <script src="//google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclustererplus/src/markerclusterer.js"></script>
-    <script src="//google-maps-utility-library-v3.googlecode.com/svn/trunk/geolocationmarker/src/geolocationmarker-compiled.js"></script>
-
-    {% if google_analytics %}
-    <!-- google analytics -->
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-        ga('create', '{{ google_analytics }}', {% if devtools_bar %}{'cookieDomain': 'none'}{% else %}'auto'{% endif %});
-        ga('send', 'pageview');
-    </script>
-    {% endif %}
-
-{% endblock %}
-
-{% block header %}
-<a id="link_home" href="/" title="List of food places on campus">FoodScout</a>
-{% endblock %}
-
-{% block top-nav %}
-<ul class="scout-navigation-items">
-    <li><a id="link_discover" href="/" title="Discover places to eat on campus">Discover</a></li>
-    <li><a id="link_food" href="/food/" title="List of food places on campus">Places</a></li>
-</ul>
-{% endblock %}
-
-{% block content %}
-    <div id="scroll" class="scout-scroll">
-
-        <div id="content" class="scout-content">
-
-            {% block web_content %}{% endblock %}
+            <div id="footer" class="scout-footer" role="contentinfo">
+                <div style="padding-left:20px;">&copy;2016 UW-IT ACA and HFS. <a href="http://www.washington.edu/online/privacy/">Privacy</a> <a href="http://www.washington.edu/online/terms/">Terms</a></div>
+            </div>
 
         </div>
-    </div>
-{% endblock %}
+
+        {% if not request.is_mobile and not request.is_tablet %}
+        <!-- desktop only extra container -->
+        <div class="scout-secondary" aria-hidden="true">
+            {% block secondary_content %}{% endblock %}
+        </div>
+        {% endif %}
+
+    </body>
+</html>
