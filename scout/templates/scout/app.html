@@ -14,22 +14,28 @@
     {% load staticfiles %}
     {% load compress %}
 
-    <!-- favicon and mobile device icons-->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% static "vendor/ico/apple-touch-icon-144x144-precomposed.png" %}">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static "vendor/ico/apple-touch-icon-114x114-precomposed.png" %}">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static "vendor/ico/apple-touch-icon-72x72-precomposed.png" %}">
-    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="{% static "vendor/ico/apple-touch-icon-57x57-precomposed.png" %}">
-    <link rel="shortcut icon" href="{% static "vendor/ico/favicon.ico" %}">
-
-    <!-- windows8 - tile icon  & color -->
-    <meta name="msapplication-TileImage" content="{% static "vendor/ico/apple-touch-icon-144x144-precomposed.png" %}">
-    <meta name="msapplication-TileColor" content="#222222">
-
-    <!-- ios webapps - delete if not needed -->
-    <meta name="apple-touch-fullscreen" content="yes" />
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="">
+    <!-- http://realfavicongenerator.net/ -->
+    <link rel="apple-touch-icon" sizes="57x57" href="{% static "scout/ico/apple-touch-icon-57x57.png" %}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{% static "scout/ico/apple-touch-icon-60x60.png" %}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{% static "scout/ico/apple-touch-icon-72x72.png" %}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static "scout/ico/apple-touch-icon-76x76.png" %}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{% static "scout/ico/apple-touch-icon-114x114.png" %}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{% static "scout/ico/apple-touch-icon-120x120.png" %}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{% static "scout/ico/apple-touch-icon-144x144.png" %}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{% static "scout/ico/apple-touch-icon-152x152.png" %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static "scout/ico/apple-touch-icon-180x180.png" %}">
+    <link rel="icon" type="image/png" href="{% static "scout/ico/favicon-32x32.png" %}" sizes="32x32">
+    <link rel="icon" type="image/png" href="{% static "scout/ico/favicon-194x194.png" %}" sizes="194x194">
+    <link rel="icon" type="image/png" href="{% static "scout/ico/favicon-96x96.png" %}" sizes="96x96">
+    <link rel="icon" type="image/png" href="{% static "scout/ico/android-chrome-192x192.png" %}" sizes="192x192">
+    <link rel="icon" type="image/png" href="{% static "scout/ico/favicon-16x16.png" %}" sizes="16x16">
+    <link rel="manifest" href="{% static "scout/ico/manifest.json" %}">
+    <link rel="mask-icon" href="{% static "scout/ico/safari-pinned-tab.svg" %}" color="#6564a8">
+    <meta name="apple-mobile-web-app-title" content="Scout">
+    <meta name="application-name" content="Scout">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-TileImage" content="{% static "scout/ico/mstile-144x144.png" %}">
+    <meta name="theme-color" content="#ffffff">
 
     {% if request.is_mobile %}
         <!-- critical (above the fold styles) -->
