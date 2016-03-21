@@ -96,3 +96,17 @@ class WireframeTest(LiveServerTestCase):
         self.assertEqual(name.text, "Banh & Naan, Husky Den")
         self.assertEqual(food_type.text, "FOOD COURT")
 
+    # testing to see if user can click on a place and then see more details from the "places" page
+    def test_details2(self):
+
+        sauce_client.jobs.update_job(self.driver.session_id, name="Wireframe: Details2")
+        self.go_url()
+        self.click_food()
+        tryit = self.driver.find_element_by_xpath("//div[@id='content']/div[@class='scout-list-container']/ol[@id='scout_list']/li[@id='3']/a[@class='clearfix']/div[@class='scout-spot-content']/div/h3[@class='scout-spot-name']")
+        tryit.click()
+        name = self.driver.find_element_by_class_name("scout-spot-name")
+        food_type = self.driver.find_element_by_class_name("scout-spot-type")
+        self.assertEqual(name.text, "Truck of Food")
+        self.assertEqual(food_type.text, "FOOD TRUCK")
+
+
