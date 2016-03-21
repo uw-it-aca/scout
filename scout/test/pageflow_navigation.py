@@ -113,7 +113,7 @@ class PageflowNavigationTest(LiveServerTestCase):
         res = requests.get(self.baseurl + urlsuffix)
         return res.status_code
 
-    # Sees if the following pages are reachable by URL
+    # Sees if the following pages are reachable/unreachable by URL
     def test_URL(self):
         sauce_client.jobs.update_job(self.driver.session_id, name="Pageflow: URL")
 
@@ -133,13 +133,13 @@ class PageflowNavigationTest(LiveServerTestCase):
         self.assertEqual(self.requestUrlStatus('detail/404'), 500)
 
         #Bad URL
-        self.assertEqual(self.requestUrlStatus('LSFDLK/'), 500)
-
+        self.assertEqual(self.requestUrlStatus('LSFDLK/'), 500) # or should it be a 404... hmm
+        
         #Test some other potential url's that should be able to redirect
-        self.assertEqual(self.requestUrlStatus('food'), requests.codes.ok)
-        self.assertEqual(self.requestUrlStatus('discover'), requests.codes.ok)
+        self.assertEqual(self.requestUrlStatus('food'), 302)
+        self.assertEqual(self.requestUrlStatus('discover'), 302)
 
-        '''
+        ''' Previous Code...
         self.driver.get(self.baseurl + 'food') # hopefully should redirect... missing the last slash
         self.click_filter() # checking to see if on food
         self.driver.get(self.baseurl + 'discover') # hopefully should redirect... missing the last slash
