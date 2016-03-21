@@ -79,10 +79,10 @@ class WireframeTest(LiveServerTestCase):
 
         sauce_client.jobs.update_job(self.driver.session_id, name="Wireframe: Coupons")
         self.go_url()
-        tryit = self.driver.find_element_by_xpath("//div[@id='coupon']/div[@class='scout-card scout-discover-content']/ol/li[2]/a[@class='scout-spot-discover-action']/span[@class='scout-spot-action-text']")
+        tryit = self.driver.find_element_by_xpath("//div[@id='coupon']/div[@class='scout-card scout-discover-content']/ol/li[3]/a[@class='scout-spot-discover-action']/span[@class='scout-spot-action-text']")
         tryit.click()
         results = self.driver.find_element_by_class_name("scout-filter-results-count")
-        self.assertEqual(results.text, "1")
+        self.assertEqual(results.text, "2")
 
     # testing to see if user can click on a place and then see more details from the home page
     def test_details(self):
@@ -109,4 +109,16 @@ class WireframeTest(LiveServerTestCase):
         self.assertEqual(name.text, "Truck of Food")
         self.assertEqual(food_type.text, "FOOD TRUCK")
 
+    def test_getWebsite(self):
+
+        sauce_client.jobs.update_job(self.driver.session_id, name="Wireframe: Get Website")
+        self.go_url()
+        self.click_food()
+        tryit = self.driver.find_element_by_xpath("//div[@id='content']/div[@class='scout-list-container']/ol[@id='scout_list']/li[@id='3']/a[@class='clearfix']/div[@class='scout-spot-content']/div/h3[@class='scout-spot-name']")
+        tryit.click()
+        website = self.driver.find_elements_by_class_name("scout-spot-action-text")
+        website[1].click()
+        self.driver.implicitly_wait(2)
+        # wait... is this the best way to wait?
+        self.assertEqual(self.driver.current_url, website[1].text)
 
