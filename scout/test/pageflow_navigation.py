@@ -3,7 +3,7 @@ A simple functional headless UI test with pyvirtualdisplay and selenium
 Links and URLS
 """
 
-import os, bs4
+import os, bs4, requests
 import sys
 
 from selenium import webdriver
@@ -109,23 +109,42 @@ class PageflowNavigationTest(LiveServerTestCase):
         self.click_discover()
         self.assertEqual(temp, self.driver.current_url)
     
+    def requestUrlStatus(self, urlsuffix=''):
+        res = requests.get(self.baseurl + urlsuffix)
+        return res.status_code
+
     # Sees if the following pages are reachable by URL
     def test_URL(self):
         sauce_client.jobs.update_job(self.driver.session_id, name="Pageflow: URL")
-        #HomePage
-        self.driver.get(self.baseurl)
+
+        #Home Page
+        self.assertEqual(self.requestUrlStatus(), requests.codes.ok)
+        
         #FoodPage
-        self.driver.get(self.baseurl + 'food/')
+        self.assertEqual(self.requestUrlStatus('food/'), requests.codes.ok)
+        
         #Discover Page
-        self.driver.get(self.baseurl + 'discover/')
+        self.assertEqual(self.requestUrlStatus('discover/'), requests.codes.ok)
+
         #Filter Page
-        self.driver.get(self.baseurl + 'filter/')
+        self.assertEqual(self.requestUrlStatus('filter/'), requests.codes.ok)
+
+        #Bad URL (for details)
+        self.assertEqual(self.requestUrlStatus('detail/404'), 500)
+
+        #Bad URL
+        self.assertEqual(self.requestUrlStatus('LSFDLK/'), 500)
 
         #Test some other potential url's that should be able to redirect
+        self.assertEqual(self.requestUrlStatus('food'), requests.codes.ok)
+        self.assertEqual(self.requestUrlStatus('discover'), requests.codes.ok)
+
+        '''
         self.driver.get(self.baseurl + 'food') # hopefully should redirect... missing the last slash
         self.click_filter() # checking to see if on food
         self.driver.get(self.baseurl + 'discover') # hopefully should redirect... missing the last slash
         self.driver.find_element_by_id('1').click() #should be able to find a place with element 1
+        '''
      
     '''
     # goes from home - food - filter - reset - filter - search - resetFilters - details1 - localhost/food - filter 

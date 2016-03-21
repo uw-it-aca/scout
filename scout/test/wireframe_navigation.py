@@ -71,3 +71,28 @@ class WireframeTest(LiveServerTestCase):
         tryit.click()
         tester = self.driver.find_element_by_class_name("scout-filter-results-text")
         self.assertEqual(tester.text, "Open Period")
+        results = self.driver.find_element_by_class_name("scout-filter-results-count")
+        self.assertEqual(results.text, "4")
+
+    # testing to see if user can bring up list of coupon places by clicking view more results
+    def test_coupons(self):
+
+        sauce_client.jobs.update_job(self.driver.session_id, name="Wireframe: Coupons")
+        self.go_url()
+        tryit = self.driver.find_element_by_xpath("//div[@id='coupon']/div[@class='scout-card scout-discover-content']/ol/li[2]/a[@class='scout-spot-discover-action']/span[@class='scout-spot-action-text']")
+        tryit.click()
+        results = self.driver.find_element_by_class_name("scout-filter-results-count")
+        self.assertEqual(results.text, "1")
+
+    # testing to see if user can click on a place and then see more details from the home page
+    def test_details(self):
+
+        sauce_client.jobs.update_job(self.driver.session_id, name="Wireframe: Details")
+        self.go_url()
+        tryit = self.driver.find_element_by_xpath("//div[@id='open']/div[@class='scout-card scout-discover-content']/ol/li[1]/a[@class='clearfix']/span[@class='scout-spot-name']")
+        tryit.click()
+        name = self.driver.find_element_by_class_name("scout-spot-name")
+        food_type = self.driver.find_element_by_class_name("scout-spot-type")
+        self.assertEqual(name.text, "Banh & Naan, Husky Den")
+        self.assertEqual(food_type.text, "FOOD COURT")
+
