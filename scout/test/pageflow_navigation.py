@@ -26,7 +26,7 @@ class PageFlowNavigationTest(LiveServerTestCase):
             'platform': "Mac OS X 10.9",
             'browserName': "chrome",
             'version': "31",
-            'tags': ["Pageflow", "Kevin"] 
+            'tags': ["Pageflow", "Kevin"]
         }
 
         self.driver = webdriver.Remote(
@@ -53,16 +53,6 @@ class PageFlowNavigationTest(LiveServerTestCase):
     def click_filter(self):
         self.click_id('link_filter')
 
-    # tests to see if filter url is navigable
-    def test_sauce(self):
-
-        sauce_client.jobs.update_job(self.driver.session_id, name="Pageflow: Test Sauce")
-
-        self.go_url('filter/')
-        #self.driver.get(self.baseurl + 'filter/')
-        test = self.driver.find_element_by_id('test')
-        self.assertEqual(test.text, 'Hello World!')
-
     def test_main_navigation(self):
 
         """Travels from discover - food - filter - home - food
@@ -77,7 +67,7 @@ class PageFlowNavigationTest(LiveServerTestCase):
         self.assertEqual(legends[0].text, 'CAMPUS')
         self.click_home()
         self.click_food()
-        labels = self.driver.find_elements_by_tag_name('label') # SCOUT-3 
+        labels = self.driver.find_elements_by_tag_name('label') # SCOUT-3
         self.assertEqual(labels[0].text, 'FILTERING BY:')
         self.go_url() # SCOUT-4
         tempSoup2 = bs4.BeautifulSoup(self.driver.page_source, "html5lib")
@@ -108,9 +98,9 @@ class PageFlowNavigationTest(LiveServerTestCase):
         temp = self.driver.current_url
         self.click_discover()
         self.assertEqual(temp, self.driver.current_url)
-        
+
     '''
-    # goes from home - food - filter - reset - filter - search - resetFilters - details1 - localhost/food - filter 
+    # goes from home - food - filter - reset - filter - search - resetFilters - details1 - localhost/food - filter
     # localhost/discover - home
     def test_everything(self):
         sauce_client.jobs.update_job(self.driver.session_id, name="Pageflow: Everything")
@@ -145,7 +135,7 @@ class PageFlowNavigationTest(LiveServerTestCase):
         self.click_filter() # checking to see if on food
         self.driver.get(self.baseurl + 'discover') # hopefully should redirect... missing the last slash
         self.driver.find_element_by_id('1').click() #should be able to find a place with element 1
-    
+
     def tearDown(self):
         print("https://saucelabs.com/jobs/%s \n" % self.driver.session_id)
         try:
