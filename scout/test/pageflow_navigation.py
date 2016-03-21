@@ -16,7 +16,7 @@ ACCESS_KEY = getattr(settings, 'SAUCE_ACCESS_KEY', False)
 from sauceclient import SauceClient
 sauce_client = SauceClient(USERNAME, ACCESS_KEY)
 
-class PageFlowNavigationTest(LiveServerTestCase):
+class PageflowNavigationTest(LiveServerTestCase):
 
     baseurl = 'http://localhost:8001/'
 
@@ -26,7 +26,7 @@ class PageFlowNavigationTest(LiveServerTestCase):
             'platform': "Mac OS X 10.9",
             'browserName': "chrome",
             'version': "31",
-            'tags': ["Pageflow", "Kevin"] 
+            'tags': ["pageflow"] 
         }
 
         self.driver = webdriver.Remote(
