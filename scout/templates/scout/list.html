@@ -1,6 +1,7 @@
 {% extends is_hybrid|yesno:"hybridize/base.html,scout/app.html" %}
 {% load staticfiles %}
 {% load scout_filters %}
+{% load compress %}
 
 {% block title %}List{% endblock %}
 
@@ -82,6 +83,7 @@
 
 </div>
 
+{% compress js inline %}
 <script type="text/javascript">
     window.spot_locations = {
         {% for spot in spots %}
@@ -95,6 +97,7 @@
         {% endfor %}
     };
 </script>
+{% endcompress %}
 
 {% endblock %}
 
