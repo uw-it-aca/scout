@@ -212,7 +212,10 @@ var Map = {
                 zoom: 18,
                 scrollwheel: false,
                 draggable: false,
-                disableDefaultUI: true
+                disableDefaultUI: true,
+                zoomControl: false,
+                disableDoubleClickZoom: true
+
             };
 
         }

@@ -173,6 +173,7 @@
 
                 <div class="scout-spot-map-link">
                     {% if request.is_ios %}
+
                     <a href="maps://maps.apple.com/maps?q={{ spot.latitude }},{{ spot.longitude }}">
                         <span class="fa-stack fa-lg">
                           <i class="fa fa-circle fa-stack-2x"></i>
@@ -181,7 +182,8 @@
                         <span class="scout-map-action-text">Launch Apple Maps</span>
                     </a>
                     {% else %}
-                    <a href="//www.google.com/maps/@{{ spot.latitude }},{{ spot.longitude }},18z?hl=en-US">
+
+                    <a href="//maps.google.com/maps?q={{ spot.latitude }},{{ spot.longitude }}">
                         <span class="fa-stack fa-lg">
                           <i class="fa fa-circle fa-stack-2x"></i>
                           <i class="fa fa-google fa-stack-1x fa-inverse"></i>
