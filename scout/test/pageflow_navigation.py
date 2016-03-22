@@ -85,7 +85,7 @@ class PageflowNavigationTest(LiveServerTestCase):
 
         self.click_food()
         places = self.driver.find_elements_by_class_name('scout-spot-name')
-        places[0].click()
+        places[0].click() # clicking the first place on the list
         spotName = self.driver.find_element_by_class_name('scout-spot-name').text
         self.assertEqual(spotName, 'Truck of Food')
 
@@ -101,18 +101,7 @@ class PageflowNavigationTest(LiveServerTestCase):
         tempSoup2 = bs4.BeautifulSoup(self.driver.page_source, "html5lib")
         # seeing if discover and home html are the same page
         self.assertEqual(tempSoup.select('div > span'), tempSoup2.select('div > span'))
-
-    # Travels through food - filter - home
-    def test_food(self):
-
-        sauce_client.jobs.update_job(self.driver.session_id, name="Pageflow: Navigate Path #2")
-
-        self.go_url()
-        #self.driver.get(self.baseurl)
-        self.click_food();
-        self.click_filter();
-        self.click_home()
-
+        
     def clientUrlStatus(self, urlsuffix=''):
         res = self.client.get(urlsuffix)
         return res.status_code
@@ -147,13 +136,6 @@ class PageflowNavigationTest(LiveServerTestCase):
         # Test some other potential url's that should be able to redirect
         self.assertEqual(self.clientUrlStatus('/food'), 302)
         self.assertEqual(self.clientUrlStatus('/discover'), 302)
-
-        ''' Previous Code...
-        self.driver.get(self.baseurl + 'food') # hopefully should redirect... missing the last slash
-        self.click_filter() # checking to see if on food
-        self.driver.get(self.baseurl + 'discover') # hopefully should redirect... missing the last slash
-        self.driver.find_element_by_id('1').click() #should be able to find a place with element 1
-        '''
 
     def tearDown(self):
         print("https://saucelabs.com/jobs/%s \n" % self.driver.session_id)
