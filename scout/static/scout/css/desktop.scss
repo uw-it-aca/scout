@@ -97,8 +97,10 @@ body { overflow: hidden; }
 // map sidebar container
 .scout-secondary { position: fixed; top:0; right:0; bottom:0; left:$view-panel-width; z-index:0; }
 
-// image overlay
+// google map & font awesome icons
 
-.modal-img {
-    top: 20%;
+.gmnoprint { cursor: pointer !important; }
+.map-label { background: none; color: #f9f9f9; /*cursor: default !important;*/
+    .marker-text { color: #000; margin-left: 8px; text-shadow: 0 0 2px #fff, 0 0 2px #fff; font-weight: bold; display: inline-block; white-space: nowrap;}
+    .fa-cutlery:before { margin-left: 1.8px; }
 }
