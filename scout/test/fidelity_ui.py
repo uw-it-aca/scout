@@ -15,6 +15,7 @@ ACCESS_KEY = getattr(settings, 'SAUCE_ACCESS_KEY', False)
 from sauceclient import SauceClient
 sauce_client = SauceClient(USERNAME, ACCESS_KEY)
 
+
 class UITest(LiveServerTestCase):
 
     def setUp(self):

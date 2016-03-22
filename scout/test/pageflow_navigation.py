@@ -101,7 +101,7 @@ class PageflowNavigationTest(LiveServerTestCase):
         tempSoup2 = bs4.BeautifulSoup(self.driver.page_source, "html5lib")
         # seeing if discover and home html are the same page
         self.assertEqual(tempSoup.select('div > span'), tempSoup2.select('div > span'))
-        
+
     def clientUrlStatus(self, urlsuffix=''):
         res = self.client.get(urlsuffix)
         return res.status_code
@@ -146,17 +146,3 @@ class PageflowNavigationTest(LiveServerTestCase):
                 sauce_client.jobs.update_job(self.driver.session_id, passed=False)
         finally:
             self.driver.quit()
-
-    # User can browse all spaces on campus for a place to eat without knowing anything about the space - https://jira.cac.washington.edu/browse/SCOUT-1
-
-    # User can search for a place to eat on campus by entering the name of the place as a search filter - https://jira.cac.washington.edu/browse/SCOUT-2
-
-    # User can find a place to eat on campus by viewing pins on a map which represent spots that meet the criteria of "open now" and are either near the user's current location or are centered around a central point on campus. https://jira.cac.washington.edu/browse/SCOUT-4
-
-    # User can find a place to eat by searching for places that are 'open specific hours' https://jira.cac.washington.edu/browse/SCOUT-5
-
-    # User can bring up a list of the most popular places to eat by clicking on a link in the app https://jira.cac.washington.edu/browse/SCOUT-6
-
-    # User can bring up a list of the places that serve coffee based on their current location by clicking a link https://jira.cac.washington.edu/browse/SCOUT-7
-
-    # User can bring up a list of places that serve breakfast by clicking a link in the app
