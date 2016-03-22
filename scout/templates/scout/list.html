@@ -83,7 +83,6 @@
 
 </div>
 
-{% compress js inline %}
 <script type="text/javascript">
     window.spot_locations = {
         {% for spot in spots %}
@@ -97,7 +96,6 @@
         {% endfor %}
     };
 </script>
-{% endcompress %}
 
 {% endblock %}
 
