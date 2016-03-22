@@ -62,38 +62,45 @@ class PageflowNavigationTest(LiveServerTestCase):
         sauce_client.jobs.update_job(self.driver.session_id, name="Pageflow: Navigate Path #1")
 
         self.go_url('discover') 
+        # i'll use this later
         tempSoup = bs4.BeautifulSoup(self.driver.page_source, "html5lib")
         self.click_food()
-
         temp = self.driver.current_url
-        self.assertEqual(temp, self.baseurl + 'food/')
 
-        self.click_food()
-        self.assertEqual(self.driver.current_url, temp)
+        # verifying url is correct
+        self.assertEqual(temp, self.baseurl + 'food/') 
+        clickable = self.driver.find_element_by_id('link_food')
+        # checking to see if the tab is disabled (clicking-wise)
+        self.assertEqual(clickable.get_attribute('disabled'), 'true') 
 
         check1 = self.driver.find_elements_by_class_name('scout-filter-results-action')
-        self.assertEqual(check1[0].text, "Filter results")
-        self.assertEqual(check1[1].text, "Reset filter")    
+        self.assertEqual(check1[0].text, "Filter results") 
+        self.assertEqual(check1[1].text, "Reset filter")  
 
         self.click_filter()
+        # verifying url is correct
         self.assertEqual(self.driver.current_url, self.baseurl + 'filter/')
-
         legends = self.driver.find_elements_by_tag_name('Legend') 
         self.assertEqual(legends[0].text, 'CAMPUS')
-        
+
         self.click_food()
         places = self.driver.find_elements_by_class_name('scout-spot-name')
         places[0].click()
-
-        self.assertEqual(self.driver.find_element_by_class_name('scout-spot-name').text, 'Truck of Food')
+        spotName = self.driver.find_element_by_class_name('scout-spot-name').text
+        self.assertEqual(spotName, 'Truck of Food')
 
         self.click_home()
+        # verifying url is correct
         self.assertEqual(self.baseurl, self.driver.current_url)
-        self.click_discover()
-        self.assertEqual(self.baseurl, self.driver.current_url)
+
+        clickable = self.driver.find_element_by_id('link_discover')
+        # checking to see if the tab is disabled (clicking-wise)
+        self.assertEqual(clickable.get_attribute('disabled'), 'true') 
+
         self.click_home()
         tempSoup2 = bs4.BeautifulSoup(self.driver.page_source, "html5lib")
-        self.assertEqual(tempSoup.select('div > span'), tempSoup2.select('div > span')) # seeing if disc and home html are same
+        # seeing if discover and home html are the same page
+        self.assertEqual(tempSoup.select('div > span'), tempSoup2.select('div > span'))
 
     # Travels through food - filter - home
     def test_food(self):
@@ -146,52 +153,6 @@ class PageflowNavigationTest(LiveServerTestCase):
         self.click_filter() # checking to see if on food
         self.driver.get(self.baseurl + 'discover') # hopefully should redirect... missing the last slash
         self.driver.find_element_by_id('1').click() #should be able to find a place with element 1
-       
-    TEST GRAVEYARD 
-    # checks to see if you are on a discover/food tab if you can click the tab (you shouldn't be able to)
-    # test case SCOUT-1
-    def test_clickable(self):
-
-        sauce_client.jobs.update_job(self.driver.session_id, name="Pageflow: Non-Clickable")
-
-        self.go_url()
-        self.click_food()
-        temp = self.driver.current_url
-        self.click_food()
-        self.assertEqual(temp, self.driver.current_url)
-        self.click_discover()
-        temp = self.driver.current_url
-        self.click_discover()
-        self.assertEqual(temp, self.driver.current_url)
-
-    
-    # goes from home - food - filter - reset - filter - search - resetFilters - details1 - localhost/food - filter 
-    # localhost/discover - home
-    def test_everything(self):
-        sauce_client.jobs.update_job(self.driver.session_id, name="Pageflow: Everything")
-
-        self.driver.get(self.baseurl)
-        self.click_food()
-        self.click_filter()
-        self.driver.find_element_by_id('reset_button').click()
-        self.click_filter()
-        self.driver.find_element_by_id('run_search').click()
-        self.click_filter()
-        self.driver.find_element_by_id('1').click()
-        self.click_home()
-        self.assertEqual(self.baseurl, self.driver.current_url)
-        #all pages can be reached by URL
-        
-    # tests to see if filter url is navigable
-    def test_sauce(self):
-
-        sauce_client.jobs.update_job(self.driver.session_id, name="Pageflow: Test Sauce")
-
-        self.go_url('filter/')
-        #self.driver.get(self.baseurl + 'filter/')
-        test = self.driver.find_element_by_id('test')
-        self.assertEqual(test.text, 'Hello World!')
-    """
         '''
 
     def tearDown(self):
