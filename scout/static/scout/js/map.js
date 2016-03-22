@@ -1,4 +1,5 @@
 var Map = {
+
     init_map: function () {
         window.addEventListener('location_changed', function() {
             // list map... location on list.html and map.html (mobile and desktop)

@@ -17,5 +17,6 @@ var Layout = {
             $("#list_map").height($(window).outerHeight() - offsetHeight);
         }
 
+
     },
 };
