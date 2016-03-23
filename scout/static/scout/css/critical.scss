@@ -155,7 +155,7 @@ $scout-link: #3498db;
                             // spot details
                             .scout-spot-name { margin: 0; font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 16px; margin-bottom: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-                            .scout-spot-distance { font-family: sans-serif; font-size: 12px; font-weight: normal; color: #bbb; }
+                            .scout-spot-distance { font-family: sans-serif; font-size: 12px; font-weight: bold; color: #000; }
 
                             .scout-spot-type { }
 
@@ -163,8 +163,9 @@ $scout-link: #3498db;
                                 .fa { color: $scout-purple; }
                             }
 
-                            .scout-spot-food-served { margin: 15px 0 10px; color: #333; text-transform: uppercase; font-size: 11px; line-height: 16px;
-                                span { margin-right: 5px; }
+                            .scout-spot-food-served { margin: 15px 0 10px; color: #333;  font-size: 11px; line-height: 16px;
+                                label { display: block; color: #bbb; }
+                                span { margin-right: 5px; text-transform: capitalize; }
                             }
 
                             .scout-spot-open-period { margin-bottom: 10px; color: #666; text-transform: uppercase; font-size: 14px;
