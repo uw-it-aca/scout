@@ -10,7 +10,7 @@
 
     {% include "scout/include/user_geolocation.html" %}
 
-    <h2 class=" visually-hidden">Filtered shortcuts</h2>
+    <h2 class="visually-hidden">Filtered shortcuts</h2>
 
     {% if request.is_mobile or request.is_tablet %}
     <div style="text-align:right; display:none;">
@@ -23,7 +23,7 @@
 
 <div class="scout-list-container" style="" role="main">
 
-    <h2 class="scout-list-header visually-hidden">List of food places (by distance)</h2>
+    <h2 id="page_food" class="scout-list-header visually-hidden">List of food places (by distance)</h2>
 
     <ol id="scout_list" class="scout-card scout-list">
 
