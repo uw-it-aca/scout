@@ -97,9 +97,9 @@
 <!-- googlme maps -->
 
 {% if google_maps %}
- <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3&amp;key={{ google_maps }}&amp;libraries=geometry&amp;sensor=false"></script>
+ <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3&amp;key={{ google_maps }}&amp;libraries=geometry"></script>
  {% else %}
- <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?libraries=geometry&amp;sensor=false"></script>
+ <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?libraries=geometry"></script>
  {% endif %}
 
 <script src="//google-maps-utility-library-v3.googlecode.com/svn/trunk/markerwithlabel/src/markerwithlabel_packed.js"></script>
