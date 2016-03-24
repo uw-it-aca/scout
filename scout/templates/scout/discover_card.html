@@ -6,7 +6,7 @@
     <ol>
         {% for spot in spots %}
         <li>
-            <a href="/detail/{{ spot.spot_id }}" class="clearfix">
+            <a href="/detail/{{ spot.spot_id }}/" class="clearfix">
                 {% if spot.images %}
                 <span class="scout-spot-image" style="background-image: url('/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}?width=100');">&nbsp;</span>
                 {% else %}

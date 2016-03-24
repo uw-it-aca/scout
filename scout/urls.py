@@ -11,7 +11,7 @@ urlpatterns = patterns(
         name='discover_card_view'),
 
     url(r'^map/', 'scout.views.map_view', name='map_view'),
-    url(r'^detail/(?P<spot_id>[0-9]{1,5})$',
+    url(r'^detail/(?P<spot_id>[0-9]{1,5})/$',
         'scout.views.detail_view', name='detail_view'),
     url(r'^filter/', 'scout.views.filter_view', name='filter_view'),
     url(r'^images/(?P<spot_id>\d+)/image/(?P<image_id>\d+)', views.image_view),
