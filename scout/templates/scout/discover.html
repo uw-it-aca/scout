@@ -7,22 +7,26 @@
 
 {% block web_content %}
 
-<div class="scout-discover-container">
+<div id="page_discover" class="scout-content">
 
-    {% include "scout/include/user_geolocation.html" %}
+    <div class="scout-discover-container">
 
-    <div id="card_loading_indicator" style="position:relative; min-height:400px;">
-        <div class="loader" style="position:absolute; top: 50%; left: 50%; margin-left:-13px; margin-top: -13px;">Loading...</div>
-    </div>
+        {% include "scout/include/user_geolocation.html" %}
 
-    <h2 id="page_discover" class="visually-hidden">Discover places to eat</h2>
+        <div id="card_loading_indicator" style="position:relative; min-height:400px;">
+            <div class="loader" style="position:absolute; top: 50%; left: 50%; margin-left:-13px; margin-top: -13px;">Loading...</div>
+        </div>
 
-    <div id="discover_cards">
-        <div id="open"></div>
-        <div id="coffee"></div>
-        <div id="breakfast"></div>
-        <div id="late"></div>
-        <div id="coupon"></div>
+        <h2 class="visually-hidden">Discover places to eat</h2>
+
+        <div id="discover_cards">
+            <div id="open"></div>
+            <div id="coffee"></div>
+            <div id="breakfast"></div>
+            <div id="late"></div>
+            <div id="coupon"></div>
+        </div>
+
     </div>
 
 </div>
