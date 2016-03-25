@@ -68,23 +68,25 @@ var Map = {
                 map: map,
                 icon: {
                     path: google.maps.SymbolPath.CIRCLE,
-                    fillColor: '#3498db',
+                    fillColor: '#c0392b',
                     fillOpacity: 1,
                     strokeColor: '#ffffff',
-                    scale: 6,
+                    scale: 7,
                     strokeWeight: 2
                 },
             });
 
             // Add radius overlay and bind to location marker
+
             var circle = new google.maps.Circle({
                 map: map,
-                radius: 200,    // 10 miles in metres
-                fillColor: '#2980b9',
-                fillOpacity: 0.1,
+                radius: 40,    // meters
+                fillColor: '#c0392b',
+                fillOpacity: 0.15,
                 strokeWeight: 0
             });
             circle.bindTo('center', locationMarker, 'position');
+
 
             window.user_location_marker = locationMarker;
             map.setOptions({styles: styles});
