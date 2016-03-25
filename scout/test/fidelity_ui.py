@@ -18,20 +18,40 @@ sauce_client = SauceClient(USERNAME, ACCESS_KEY)
 
 class UITest(LiveServerTestCase):
 
+    baseurl = 'http://localhost:8001/'
+    
     def setUp(self):
 
         self.desired_cap = {
-            "name": "UI Tests",
             'platform': "Mac OS X 10.9",
             'browserName': "chrome",
             'version': "31",
+            'tags': ["ui"] 
         }
 
         self.driver = webdriver.Remote(
             command_executor='http://'+USERNAME+':'+ACCESS_KEY+'@ondemand.saucelabs.com:80/wd/hub',
             desired_capabilities=self.desired_cap)
 
-        # self.driver.implicitly_wait(5)
+        self.driver.implicitly_wait(20)
+
+    def click_id(self, elid):
+        self.driver.find_element_by_id(elid).click()
+
+    def go_url(self, urlsuffix = ''):
+        self.driver.get(self.baseurl + urlsuffix)
+
+    def click_food(self):
+        self.click_id('link_food')
+
+    def click_discover(self):
+        self.click_id('link_discover')
+
+    def click_home(self):
+        self.click_id('link_home')
+
+    def click_filter(self):
+        self.click_id('link_filter')
 
     def tearDown(self):
         print("https://saucelabs.com/jobs/%s \n" % self.driver.session_id)
@@ -43,6 +63,14 @@ class UITest(LiveServerTestCase):
         finally:
             self.driver.quit()
 
+    def test_filter_cash(self):
+
+        sauce_client.jobs.update_job(self.driver.session_id, name="UI: Filter Cash")
+
+        self.go_url()
+        self.click_food()
+        self.click_filter()
+        self.driver.find_element_by_value
 
     """
     Let's test the user location functionality of the app. The app should load
@@ -54,7 +82,7 @@ class UITest(LiveServerTestCase):
     """
     def test_user_location(self):
 
-        sauce_client.jobs.update_job(self.driver.session_id, name="UI: Test user location")
+        sauce_client.jobs.update_job(self.driver.session_id, name="UI: Test User Location")
 
         self.driver.get('http://localhost:8001/filter/')
         test = self.driver.find_element_by_id('test')

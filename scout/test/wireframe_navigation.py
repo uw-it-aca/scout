@@ -109,6 +109,7 @@ class WireframeTest(LiveServerTestCase):
         self.assertEqual(name.text, "Truck of Food")
         self.assertEqual(food_type.text, "FOOD TRUCK")
 
+    # testing to see if it can go to the correct external url
     def test_getWebsite(self):
 
         sauce_client.jobs.update_job(self.driver.session_id, name="Wireframe: Get Website")
@@ -121,4 +122,3 @@ class WireframeTest(LiveServerTestCase):
         self.driver.implicitly_wait(2)
         # wait... is this the best way to wait?
         self.assertEqual(self.driver.current_url, website[1].text)
-
