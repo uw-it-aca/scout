@@ -52,6 +52,9 @@ class WireframeTest(LiveServerTestCase):
     def click_filter(self):
         self.click_id('link_filter')
 
+    def updateSauceName(self, name):
+        sauce_client.jobs.update_job(self.driver.session_id, name=name)
+
     def tearDown(self):
         print("https://saucelabs.com/jobs/%s \n" % self.driver.session_id)
         try:
@@ -65,7 +68,7 @@ class WireframeTest(LiveServerTestCase):
     # SCOUT-8, testing to see if user can bring up list of b-fast places by clicking view more results
     def test_breakfast(self):
 
-        sauce_client.jobs.update_job(self.driver.session_id, name="Wireframe: Breakfast")
+        self.updateSauceName("Wireframe: Breakfast")
         self.go_url()
         tryit = self.driver.find_element_by_xpath("//div[@id='breakfast']/div[@class='scout-card scout-discover-content']/ol/li[5]/a[@class='scout-spot-discover-action']/span[@class='scout-spot-action-text']")
         tryit.click()
@@ -77,7 +80,7 @@ class WireframeTest(LiveServerTestCase):
     # testing to see if user can bring up list of coupon places by clicking view more results
     def test_coupons(self):
 
-        sauce_client.jobs.update_job(self.driver.session_id, name="Wireframe: Coupons")
+        self.updateSauceName("Wireframe: Coupons")
         self.go_url()
         tryit = self.driver.find_element_by_xpath("//div[@id='coupon']/div[@class='scout-card scout-discover-content']/ol/li[3]/a[@class='scout-spot-discover-action']/span[@class='scout-spot-action-text']")
         tryit.click()
@@ -87,7 +90,7 @@ class WireframeTest(LiveServerTestCase):
     # testing to see if user can click on a place and then see more details from the home page
     def test_details(self):
 
-        sauce_client.jobs.update_job(self.driver.session_id, name="Wireframe: Details")
+        self.updateSauceName("Wireframe: Details")
         self.go_url()
         tryit = self.driver.find_element_by_xpath("//div[@id='open']/div[@class='scout-card scout-discover-content']/ol/li[1]/a[@class='clearfix']/span[@class='scout-spot-name']")
         tryit.click()
@@ -99,7 +102,7 @@ class WireframeTest(LiveServerTestCase):
     # testing to see if user can click on a place and then see more details from the "places" page
     def test_details2(self):
 
-        sauce_client.jobs.update_job(self.driver.session_id, name="Wireframe: Details2")
+        self.updateSauceName("Wireframe: Details2")
         self.go_url()
         self.click_food()
         tryit = self.driver.find_element_by_xpath("//div[@id='content']/div[@class='scout-list-container']/ol[@id='scout_list']/li[@id='3']/a[@class='clearfix']/div[@class='scout-spot-content']/div/h3[@class='scout-spot-name']")
@@ -112,7 +115,7 @@ class WireframeTest(LiveServerTestCase):
     # testing to see if it can go to the correct external url
     def test_getWebsite(self):
 
-        sauce_client.jobs.update_job(self.driver.session_id, name="Wireframe: Get Website")
+        self.updateSauceName("Wireframe: Get Website")
         self.go_url()
         self.click_food()
         tryit = self.driver.find_element_by_xpath("//div[@id='content']/div[@class='scout-list-container']/ol[@id='scout_list']/li[@id='3']/a[@class='clearfix']/div[@class='scout-spot-content']/div/h3[@class='scout-spot-name']")
