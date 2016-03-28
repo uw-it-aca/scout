@@ -33,6 +33,6 @@ urlpatterns = patterns(
 if settings.DEBUG:
     urlpatterns += patterns(
         '',
-        url(r'^500/$', TemplateView.as_view(template_name='scout/500.html')),
-        url(r'^404/$', TemplateView.as_view(template_name='scout/404.html')),
+        url(r'^500/$', TemplateView.as_view(template_name='500.html')),
+        url(r'^404/$', TemplateView.as_view(template_name='404.html')),
     )
