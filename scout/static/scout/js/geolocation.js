@@ -1,5 +1,11 @@
 var Geolocation = {
-    default_location: { latitude: 47.653811, longitude: -122.307815 },
+
+    // red square
+    default_location: { latitude: 47.6558539, longitude: -122.3094925 },
+
+    // drumheller fountain
+    //default_location: { latitude: 47.653811, longitude: -122.307815 },
+
     location_changed:  new CustomEvent("location_changed"),
 
     update_location: function () {
