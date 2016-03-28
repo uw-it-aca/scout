@@ -71,7 +71,7 @@ var Map = {
                     fillColor: '#c0392b',
                     fillOpacity: 1,
                     strokeColor: '#ffffff',
-                    scale: 7,
+                    scale: 5,
                     strokeWeight: 2
                 },
             });
@@ -80,7 +80,7 @@ var Map = {
 
             var circle = new google.maps.Circle({
                 map: map,
-                radius: 40,    // meters
+                radius: 30,    // meters
                 fillColor: '#c0392b',
                 fillOpacity: 0.15,
                 strokeWeight: 0
