@@ -36,8 +36,25 @@ var List = {
             List.add_spot_distances();
             List.order_spot_list();
             Geolocation.display_location_status();
+            List.set_list_is_visible(true);
+        });
+        window.addEventListener('location_updating', function() {
+            List.set_list_is_visible(false);
+
         });
         Geolocation.init_location_toggles();
+    },
+
+    set_list_is_visible: function(is_visible) {
+        if(is_visible){
+            $("#scout_list").show();
+            $("#list_loading").hide();
+            $("#list_loading").attr("aria-hidden", "false");
+        } else {
+            $("#scout_list").hide();
+            $("#list_loading").show();
+            $("#list_loading").attr("aria-hidden", "false");
+        }
     },
 
     scroll_to_spot: function(target, options, callback) {
