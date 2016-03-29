@@ -68,3 +68,6 @@ static/CACHE
 
 #sass cache
 *.sass-cache
+
+# Swap files
+*.swp

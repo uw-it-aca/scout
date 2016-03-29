@@ -14,6 +14,7 @@ from selenium import webdriver
 from django.test import LiveServerTestCase
 from django.test import Client
 from django.conf import settings
+from sauceclient import SauceClient
 
 # False - runs locally, True - runs on SauceLabs
 useSauce = True
@@ -21,11 +22,11 @@ useSauce = True
 USERNAME = getattr(settings, 'SAUCE_USERNAME', False)
 ACCESS_KEY = getattr(settings, 'SAUCE_ACCESS_KEY', False)
 
-from sauceclient import SauceClient
 sauce_client = SauceClient(USERNAME, ACCESS_KEY)
 
+
 class NavigationTest(LiveServerTestCase):
-    """Pageflow test set for scout"""
+    """Navigation test set for scout"""
 
     def setUp(self):
         self.client = Client()
@@ -34,13 +35,13 @@ class NavigationTest(LiveServerTestCase):
             'platform': 'Mac OS X 10.9',
             'browserName': 'chrome',
             'version': '31',
-            'tags': ['pageflow'] 
+            'tags': ['pageflow']
         }
         self.useSauce = useSauce
 
         if useSauce:
             sauceUrl = 'http://%s:%s@ondemand.saucelabs.com:80/wd/hub' \
-                %(USERNAME, ACCESS_KEY)
+                % (USERNAME, ACCESS_KEY)
             self.driver = webdriver.Remote(
                 command_executor=sauceUrl,
                 desired_capabilities=self.desired_cap)
@@ -60,29 +61,34 @@ class NavigationTest(LiveServerTestCase):
 
         desired_cap_list.append(safari)
 
-        sauceUrl = 'http://%s:%s@ondemand.saucelabs.com:80/wd/hub' %(USERNAME, ACCESS_KEY)
+        sauceUrl = 'http://%s:%s@ondemand.saucelabs.com:80/wd/hub'\
+            %(USERNAME, ACCESS_KEY)
         self.drivers = wd.parallel.Remote(
            desired_capabilities=desired_cap_list,
            command_executor=sauceUrl
         )
         """
-        #self.driver.implicitly_wait(20)
-    
+        # self.driver.implicitly_wait(20)
+
     # @wd.parallel.multiply
     def tearDown(self):
         # print('https://saucelabs.com/jobs/%s \n' % self.driver.session_id)
         if self.useSauce:
             if sys.exc_info() == (None, None, None):
-                sauce_client.jobs.update_job(self.driver.session_id, passed=True)
+                sauce_client.jobs.update_job(
+                    self.driver.session_id,
+                    passed=True)
             else:
-                sauce_client.jobs.update_job(self.driver.session_id, passed=False)
+                sauce_client.jobs.update_job(
+                    self.driver.session_id,
+                    passed=False)
         self.driver.quit()
 
     def click_id(self, elid):
         """Finds and clicks the given id"""
         self.driver.find_element_by_id(elid).click()
 
-    def go_url(self, urlsuffix = ''):
+    def go_url(self, urlsuffix=''):
         """Has the driver go to the given URL"""
         self.driver.get(self.baseurl + urlsuffix)
 
@@ -97,7 +103,7 @@ class NavigationTest(LiveServerTestCase):
 
     def click_filter(self):
         self.click_id('link_filter')
-    
+
     def clientUrlStatus(self, urlsuffix=''):
         """Returns the status code of the given URL"""
         res = self.client.get(urlsuffix)
@@ -110,8 +116,8 @@ class NavigationTest(LiveServerTestCase):
             exploc = self.baseurl + exploc
         self.assertEqual(curloc, exploc)
 
-    def assertUrlStatus(self, urlsuffix = '', code = 200):
-        """Checks to see if the status code of the given URL matches the 
+    def assertUrlStatus(self, urlsuffix='', code=200):
+        """Checks to see if the status code of the given URL matches the
         given status code"""
         self.assertEqual(self.clientUrlStatus(urlsuffix), code)
 
@@ -122,13 +128,13 @@ class NavigationTest(LiveServerTestCase):
 
     # @wd.parallel.multiply
     def test_main_nav(self):
-        """Goes from page to page and verifies that URLs are correct on 
+        """Goes from page to page and verifies that URLs are correct on
         each page """
         self.updateSauceName('Pageflow: Main Navigation')
         self.go_url()
         self.click_places()
         # Locate space list elements
-        firstplace = self.driver.find_element_by_css_selector(\
+        firstplace = self.driver.find_element_by_css_selector(
             'ol#scout_list li a')
         # clicking the first place on the list
         expLoc = firstplace.get_attribute('href')
@@ -179,8 +185,9 @@ class NavigationTest(LiveServerTestCase):
         """Test that the content on the food page is correct"""
         self.updateSauceName('Pageflow: Food Content')
         self.go_url('/food/')
-        filterButtons = self.driver.find_elements_by_class_name('scout-filter-results-action')
-        self.assertEqual(filterButtons[0].text, 'Filter results') 
+        filterButtons = self.driver.find_elements_by_class_name(
+            'scout-filter-results-action')
+        self.assertEqual(filterButtons[0].text, 'Filter results')
         self.assertEqual(filterButtons[1].text, 'Reset filter')
 
     # @wd.parallel.multiply
@@ -199,12 +206,12 @@ class NavigationTest(LiveServerTestCase):
         """Test that the content on the filter page is correct"""
         self.updateSauceName('Pageflow: Filter Content')
         self.go_url('/filter/')
-        legends = self.driver.find_elements_by_tag_name('Legend') 
+        legends = self.driver.find_elements_by_tag_name('Legend')
         self.assertEqual(legends[0].text, 'CAMPUS')
 
     # @wd.parallel.multiply
     def test_foodtab_notclickable(self):
-        """Test that once on the food/places page, the places tab 
+        """Test that once on the food/places page, the places tab
         isn't clickable"""
         self.updateSauceName('Pageflow: Food Tab Not-Clickable')
         self.go_url('/food/')
@@ -220,8 +227,8 @@ class NavigationTest(LiveServerTestCase):
         clickable = self.driver.find_element_by_id('link_discover')
         self.assertEqual(clickable.get_attribute('disabled'), 'true')
 
+    '''
     # Seems redundant since the URL's should be the same
-    @unittest.skip
     def test_discover_equals_home(self):
         """Test that the discover and home pages are identical"""
         self.updateSauceName('Pageflow: Discover Equals Home')
@@ -230,7 +237,9 @@ class NavigationTest(LiveServerTestCase):
         self.click_home()
         tempSoup2 = bs4.BeautifulSoup(self.driver.page_source, "html5lib")
         # seeing if discover and home html are the same page
-        self.assertEqual(tempSoup.select('div > span'), tempSoup2.select('div > span'))
+        self.assertEqual(tempSoup.select('div > span'),
+            tempSoup2.select('div > span'))
+    '''
 
     # @wd.parallel.multiply
     def test_bad_detailURL(self):
@@ -244,7 +253,7 @@ class NavigationTest(LiveServerTestCase):
             self.fail('Didn\'t get 404 for /detail/404')
 
     # uncomment for debugging
-    @unittest.expectedFailure 
+    # @unittest.expectedFailure
     # @wd.parallel.multiply
     def test_bad_homeURL(self):
         """Test an invalid URL and see if it results in a 404"""
@@ -253,7 +262,7 @@ class NavigationTest(LiveServerTestCase):
         self.assertUrlStatus('/LSFDLK/', 404)
 
     # uncomment for debugging
-    @unittest.expectedFailure 
+    # @unittest.expectedFailure
     # @wd.parallel.multiply
     def test_redirect_URLs(self):
         """Test URLs that are meant to redirect(302)"""
@@ -262,81 +271,3 @@ class NavigationTest(LiveServerTestCase):
         self.assertUrlStatus('/food', 302)
         self.assertUrlStatus('/discover', 302)
         self.assertUrlStatus('/filter', 302)
-
-    '''
-    CODE GRAVEYARD
-    def test_main_navigation(self):
-
-        """Travels from discover - food - filter - details - home
-            SCOUT-43                                              """
-
-        self.updateSauceName('Pageflow: Navigate Path #1')
-
-        self.go_url('discover') 
-        # i'll use this later
-        tempSoup = bs4.BeautifulSoup(self.driver.page_source, "html5lib")
-        self.click_places()
-        temp = self.driver.current_url
-
-        # verifying url is correct
-        self.assertEqual(temp, self.baseurl + 'food/') 
-        clickable = self.driver.find_element_by_id('link_food')
-        # checking to see if the tab is disabled (clicking-wise)
-        self.assertEqual(clickable.get_attribute('disabled'), 'true') 
-
-        check1 = self.driver.find_elements_by_class_name('scout-filter-results-action')
-        self.assertEqual(check1[0].text, "Filter results") 
-        self.assertEqual(check1[1].text, "Reset filter")  
-
-        self.click_filter()
-        # verifying url is correct
-        self.assertEqual(self.driver.current_url, self.baseurl + 'filter/')
-        legends = self.driver.find_elements_by_tag_name('Legend') 
-        self.assertEqual(legends[0].text, 'CAMPUS')
-
-        self.click_places()
-        places = self.driver.find_elements_by_class_name('scout-spot-name')
-        places[0].click() # clicking the first place on the list
-        spotName = self.driver.find_element_by_class_name('scout-spot-name').text
-        self.assertEqual(spotName, 'Truck of Food')
-
-        self.click_home()
-        # verifying url is correct
-        self.assertEqual(self.baseurl, self.driver.current_url)
-
-        clickable = self.driver.find_element_by_id('link_discover')
-        # checking to see if the tab is disabled (clicking-wise)
-        self.assertEqual(clickable.get_attribute('disabled'), 'true') 
-
-        self.click_home()
-        tempSoup2 = bs4.BeautifulSoup(self.driver.page_source, "html5lib")
-        # seeing if discover and home html are the same page
-        self.assertEqual(tempSoup.select('div > span'), tempSoup2.select('div > span'))
-        
-    # Sees if the following pages are reachable/unreachable by URL
-    def test_URL(self):
-        
-        # FoodPage
-        self.assertEqual(self.clientUrlStatus('/food/'), 200)
-        
-        # Discover Page
-        self.assertEqual(self.clientUrlStatus('/discover/'), 200)
-
-        # Filter Page
-        self.assertEqual(self.clientUrlStatus('/filter/'), 200)
-
-        # Bad URL (for details)
-        try:
-            self.clientUrlStatus('/detail/404')
-        except Exception as ex:
-            self.assertIn('404', str(ex))
-        else:
-            self.fail('Didn\'t get 404 for /detail/404')
-
-        # Bad URL
-        self.assertEqual(self.clientUrlStatus('/LSFDLK/'), 404) # or should it be a 404... hmm
-
-        # Test some other potential url's that should be able to redirect
-        self.assertEqual(self.clientUrlStatus('/food'), 302)
-        self.assertEqual(self.clientUrlStatus('/discover'), 302)
-    '''
