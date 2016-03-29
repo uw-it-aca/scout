@@ -49,9 +49,11 @@ var List = {
         if(is_visible){
             $("#scout_list").show();
             $("#list_loading").hide();
+            $("#list_loading").attr("aria-hidden", "false");
         } else {
             $("#scout_list").hide();
             $("#list_loading").show();
+            $("#list_loading").attr("aria-hidden", "false");
         }
     },
 

@@ -9,7 +9,12 @@ Discover = {
                 Discover.fetch_cards(card_id, latlng);
             });
         });
+        window.addEventListener('location_updating', function() {
+            Discover.set_cards_are_visible(false);
+        });
+
         Geolocation.init_location_toggles();
+
     },
 
     fetch_cards: function (card_id, latlng) {
@@ -24,13 +29,24 @@ Discover = {
                    accepts: {html: "text/html"},
                    success: function(results) {
                        Discover._attach_card(card_id, results);
-                       $("#card_loading_indicator").hide();
-                       $("#card_loading_indicator").attr("aria-hidden", "true");
                        Discover.add_distance_and_sort();
+                       Discover.set_cards_are_visible(true);
                    },
                    error: function(xhr, status, error) {
                    }
                });
+    },
+
+    set_cards_are_visible: function(is_visible) {
+        if(is_visible){
+            $("#discover_cards").show();
+            $("#card_loading_indicator").hide();
+            $("#card_loading_indicator").attr("aria-hidden", "false");
+        } else {
+            $("#discover_cards").hide();
+            $("#card_loading_indicator").show();
+            $("#card_loading_indicator").attr("aria-hidden", "true");
+        }
     },
 
     _attach_card: function (card_id, card_html) {
