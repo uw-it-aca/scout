@@ -31,6 +31,14 @@ var Navigation = {
             $("#link_discover").css("border-bottom", "solid 4px #fafafa");
             $("#link_food").css("border-bottom", "solid 4px #fafafa");
         }
+        else if (pathname.indexOf("404") !== -1) {
+            $("#link_discover").css("border-bottom", "solid 4px #fafafa");
+            $("#link_food").css("border-bottom", "solid 4px #fafafa");
+        }
+        else if (pathname.indexOf("500") !== -1) {
+            $("#link_discover").css("border-bottom", "solid 4px #fafafa");
+            $("#link_food").css("border-bottom", "solid 4px #fafafa");
+        }
         else {
             $("#link_discover").css({"border-bottom":"solid 4px #6564A8", "color":"#6564A8"});
             $("#link_discover").attr("aria-selected", "true");

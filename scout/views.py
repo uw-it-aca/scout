@@ -5,9 +5,9 @@ from scout.dao.space import get_spot_list, get_spot_by_id, get_filtered_spots
 from scout.dao.space import get_spots_by_filter, get_period_filter
 from scout.dao.image import get_image
 
-# using drumheller fountain as the default center
-DEFAULT_LAT = 47.653811
-DEFAULT_LON = -122.307815
+# using red square as the default center
+DEFAULT_LAT = 47.6558539
+DEFAULT_LON = -122.3094925
 
 
 def discover_view(request):

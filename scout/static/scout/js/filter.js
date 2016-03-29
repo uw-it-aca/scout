@@ -106,6 +106,7 @@ var Filter = {
 
     reset_filter: function() {
         sessionStorage.removeItem("filter_params");
+        $("input:checkbox").attr('checked', false);
         Filter.replace_food_href();
         if(window.location.pathname.indexOf("food") !== -1){
             window.location.replace("/food/");

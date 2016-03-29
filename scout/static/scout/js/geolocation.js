@@ -1,6 +1,14 @@
 var Geolocation = {
-    default_location: { latitude: 47.653811, longitude: -122.307815 },
+
+    // red square
+    default_location: { latitude: 47.6558539, longitude: -122.3094925 },
+
+    // drumheller fountain
+    //default_location: { latitude: 47.653811, longitude: -122.307815 },
+
     location_changed:  new CustomEvent("location_changed"),
+
+    location_updating:  new CustomEvent("location_updating"),
 
     update_location: function () {
         if (!Geolocation.get_is_using_location()) {
@@ -123,6 +131,7 @@ var Geolocation = {
 
             e.preventDefault();
             Geolocation.set_is_using_location(true);
+            window.dispatchEvent(Geolocation.location_updating);
 
             $("#shared_position").show();
             $("#shared_position").attr("aria-hidden", "false");
@@ -141,6 +150,7 @@ var Geolocation = {
 
             e.preventDefault();
             Geolocation.set_is_using_location(false);
+            window.dispatchEvent(Geolocation.location_updating);
 
             $("#shared_position").hide();
             $("#shared_position").attr("aria-hidden", "true");

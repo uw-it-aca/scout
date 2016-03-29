@@ -1,4 +1,5 @@
 var Map = {
+
     init_map: function () {
         window.addEventListener('location_changed', function() {
             // list map... location on list.html and map.html (mobile and desktop)
@@ -67,23 +68,25 @@ var Map = {
                 map: map,
                 icon: {
                     path: google.maps.SymbolPath.CIRCLE,
-                    fillColor: '#3498db',
+                    fillColor: '#c0392b',
                     fillOpacity: 1,
                     strokeColor: '#ffffff',
-                    scale: 6,
+                    scale: 5,
                     strokeWeight: 2
                 },
             });
 
             // Add radius overlay and bind to location marker
+
             var circle = new google.maps.Circle({
                 map: map,
-                radius: 200,    // 10 miles in metres
-                fillColor: '#2980b9',
-                fillOpacity: 0.1,
+                radius: 30,    // meters
+                fillColor: '#c0392b',
+                fillOpacity: 0.15,
                 strokeWeight: 0
             });
             circle.bindTo('center', locationMarker, 'position');
+
 
             window.user_location_marker = locationMarker;
             map.setOptions({styles: styles});
@@ -211,7 +214,10 @@ var Map = {
                 zoom: 18,
                 scrollwheel: false,
                 draggable: false,
-                disableDefaultUI: true
+                disableDefaultUI: true,
+                zoomControl: false,
+                disableDoubleClickZoom: true
+
             };
 
         }

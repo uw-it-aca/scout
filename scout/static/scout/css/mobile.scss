@@ -11,23 +11,6 @@ $scout-link: #3498db;
 
 $footer-height: 30px;
 
-// turbolinks
-
-html.turbolinks-progress-bar::before {
-  background-color: $scout-purple !important;
-  height: 3px !important;
-}
-
-// google map & font awesome icons
-
-.gmnoprint { cursor: default !important; }
-.map-label { background: none; color: #f9f9f9; /*cursor: default !important;*/
-
-    .marker-text { color: #000; margin-left: 8px; text-shadow: 0 0 2px #fff, 0 0 2px #fff; font-weight: bold; display: inline-block; white-space: nowrap;}
-    .fa-cutlery:before { margin-left: 1.8px; }
-}
-
-
 // scrolling body
 
 .scout-scroll {
@@ -39,7 +22,7 @@ html.turbolinks-progress-bar::before {
 
             .scout-spot-meta { }
 
-            .scout-spot-notes { color: #aaa; font-size: 14px; line-height: 16px; }
+            .scout-spot-notes { color: #aaa; font-size: 14px; line-height: 20px; }
 
             .scout-spot-contact-info { }
 
@@ -48,7 +31,7 @@ html.turbolinks-progress-bar::before {
                 // spot details
                 .scout-spot-location { margin-bottom: 20px; }
 
-                .scout-spot-description { margin-bottom: 20px; color: #333; font-size: 14px; line-height: 16px; }
+                .scout-spot-description { margin-bottom: 20px; color: #333; font-size: 14px; line-height: 20px; }
 
                 .scout-spot-gallery { overflow-x: scroll; -webkit-overflow-scrolling: touch; overflow-y: hidden; white-space: nowrap; height: 100px; margin-bottom: 15px;
                     ul {
@@ -72,7 +55,7 @@ html.turbolinks-progress-bar::before {
                     span { display: inline-block; margin-top: 10px; }
                 }
 
-                .scout-spot-building-info { color: #333; font-size: 14px; line-height: 16px; }
+                .scout-spot-building-info { color: #333; font-size: 14px; line-height: 20px; }
 
                 .scout-spot-map { height:200px; margin-bottom: 10px; }
                 .scout-spot-map-link { margin-bottom: 15px; font-size: 14px;
@@ -126,44 +109,7 @@ html.turbolinks-progress-bar::before {
     a { color: $scout-link; display: inline-block; margin-left: 8px; }
 }
 
-// loading spinner
-.loader {
-    font-size: 10px;
-    position: relative;
-    text-indent: -9999em;
-    border-top: 3px solid rgba(255, 255, 255, 0.2);
-    border-right: 3px solid rgba(255, 255, 255, 0.2);
-    border-bottom: 3px solid rgba(255, 255, 255, 0.2);
-    border-left: 3px solid $scout-purple;
-    -webkit-transform: translateZ(0);
-    -ms-transform: translateZ(0);
-    transform: translateZ(0);
-    -webkit-animation: load8 1.1s infinite ease;
-    animation: load8 1.1s infinite ease;
-}
-.loader,
-.loader:after {
-    border-radius: 50%;
-    width: 20px !important;
-    height: 20px !important;
-}
-@-webkit-keyframes load8 {
-  0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
-@keyframes load8 {
-  0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
+.map-label { background: none; color: #f9f9f9; /*cursor: default !important;*/
+    .marker-text { color: #000; margin-left: 8px; text-shadow: 0 0 2px #fff, 0 0 2px #fff; font-weight: bold; display: inline-block; white-space: nowrap;}
+    .fa-cutlery:before { margin-left: 1.8px; }
 }
