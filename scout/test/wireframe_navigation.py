@@ -18,14 +18,14 @@ sauce_client = SauceClient(USERNAME, ACCESS_KEY)
 class WireframeTest(LiveServerTestCase):
 
     baseurl = 'http://localhost:8001/'
-    
+
     def setUp(self):
 
         self.desired_cap = {
             'platform': "Mac OS X 10.9",
             'browserName': "chrome",
             'version': "31",
-            'tags': ["wireframe"] 
+            'tags': ["wireframe"]
         }
 
         self.driver = webdriver.Remote(
