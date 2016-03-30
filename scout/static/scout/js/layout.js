@@ -21,9 +21,13 @@ var Layout = {
         if($(".scout-list-container").length > 0) {
             var offsetHeight = ($(".scout-header").outerHeight() + $(".scout-geolocation").outerHeight() + $(".scout-filter-results").outerHeight() + $(".scout-footer").outerHeight());
             $(".scout-list-container").css({minHeight: $(window).outerHeight() - offsetHeight });
-
         }
 
+        // size the dicover card container
+        if($(".scout-discover-container").length > 0) {
+            var offsetHeight = ($(".scout-header").outerHeight() + $(".scout-geolocation").outerHeight() + $(".scout-footer").outerHeight());
+            $(".scout-discover-container").css({minHeight: $(window).outerHeight() - offsetHeight });
+        }
 
     },
 };

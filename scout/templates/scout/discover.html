@@ -9,11 +9,11 @@
 
 <div id="page_discover" class="scout-content">
 
-    <div class="scout-discover-container">
+    {% include "scout/include/user_geolocation.html" %}
 
-        {% include "scout/include/user_geolocation.html" %}
+    <div class="scout-discover-container" style="position:relative;">
 
-        <div id="card_loading_indicator" style="position:relative; min-height:400px;">
+        <div id="card_loading_indicator" >
             <div class="loader" style="position:absolute; top: 50%; left: 50%; margin-left:-13px; margin-top: -13px;">Loading...</div>
         </div>
 
