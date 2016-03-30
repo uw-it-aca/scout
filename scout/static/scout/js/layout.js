@@ -7,7 +7,7 @@ var Layout = {
 
         // size the detail image height on detail.html
         if($(".scout-details-container .scout-spot-image").length > 0) {
-            var aspectHeight = Math.round(( $(".scout-spot-image").width() /16)*9);
+            var aspectHeight = Math.round(( $(".scout-spot-image").width() /100)*67);
             $(".scout-spot-image").height(aspectHeight);
     	}
 
