@@ -226,20 +226,6 @@ class NavigationTest(LiveServerTestCase):
         clickable = self.driver.find_element_by_id('link_discover')
         self.assertEqual(clickable.get_attribute('disabled'), 'true')
 
-    '''
-    # Seems redundant since the URL's should be the same
-    def test_discover_equals_home(self):
-        """Test that the discover and home pages are identical"""
-        self.updateSauceName('Pageflow: Discover Equals Home')
-        self.go_url('/discover/')
-        tempSoup = bs4.BeautifulSoup(self.driver.page_source, "html5lib")
-        self.click_home()
-        tempSoup2 = bs4.BeautifulSoup(self.driver.page_source, "html5lib")
-        # seeing if discover and home html are the same page
-        self.assertEqual(tempSoup.select('div > span'),
-            tempSoup2.select('div > span'))
-    '''
-
     # @wd.parallel.multiply
     def test_bad_detailURL(self):
         """Ensure a nonexistant space results in a 404 status code"""
