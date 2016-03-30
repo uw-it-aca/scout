@@ -10,10 +10,11 @@ $scout-purple: #6564A8;
 $scout-button: #2ecc71;
 $scout-link: #3498db;
 
+$footer-height: 40px;
+
 // geolocation bar
 
 .scout-geolocation {
-
 
     .scout-geolocation-position { font-size:14px; line-height: 45px; white-space: nowrap; padding: 0 20px 0 13px;
 
@@ -123,7 +124,7 @@ $scout-link: #3498db;
 .scout-scroll { background: #f1f1f1; padding-bottom: 1px;
 
     // generic card
-    .scout-card { margin: 0 0 10px 0; background: #fff; padding: 20px;
+    .scout-card { margin: 0 0 10px 0; background: #fff; padding: 20px; min-height: 100px;
 
         // general list styles
 
@@ -319,6 +320,12 @@ $scout-link: #3498db;
     }
 
 }
+
+// footer
+.scout-footer { background: #fafafa; color:#555; width: 100%; font-size: 75%; text-align:center; line-height: $footer-height; border-top: solid 1px #ddd;
+    a { color: $scout-link; display: inline-block; margin-left: 8px; }
+}
+
 
 // accessibility & helper classes
 

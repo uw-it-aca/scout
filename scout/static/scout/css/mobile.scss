@@ -9,7 +9,7 @@ $scout-purple: #6564A8;
 $scout-button: #2ecc71;
 $scout-link: #3498db;
 
-$footer-height: 30px;
+$footer-height: 40px;
 
 // scrolling body
 
@@ -104,10 +104,7 @@ $footer-height: 30px;
 
 }
 
-// footer
-.scout-footer { background: #fafafa; color:#555; width: 100%; font-size: 75%; text-align:center; line-height: $footer-height; border-top: solid 1px #ddd;
-    a { color: $scout-link; display: inline-block; margin-left: 8px; }
-}
+// google maps
 
 .map-label { background: none; color: #f9f9f9; /*cursor: default !important;*/
     .marker-text { color: #000; margin-left: 8px; text-shadow: 0 0 2px #fff, 0 0 2px #fff; font-weight: bold; display: inline-block; white-space: nowrap;}
