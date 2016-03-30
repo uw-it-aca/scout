@@ -17,6 +17,13 @@ var Layout = {
             $("#list_map").height($(window).outerHeight() - offsetHeight);
         }
 
+        // size the place list container
+        if($(".scout-list-container").length > 0) {
+            var offsetHeight = ($(".scout-header").outerHeight() + $(".scout-geolocation").outerHeight() + $(".scout-filter-results").outerHeight() + $(".scout-footer").outerHeight());
+            $(".scout-list-container").css({minHeight: $(window).outerHeight() - offsetHeight });
+
+        }
+
 
     },
 };

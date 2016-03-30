@@ -360,6 +360,7 @@ hr { border: 0; height: 0; border-bottom: 1px solid #ddd; margin: 0 -20px 20px -
     transform: translateZ(0);
     -webkit-animation: load8 1.1s infinite ease;
     animation: load8 1.1s infinite ease;
+    overflow: hidden;
 }
 .loader,
 .loader:after {
