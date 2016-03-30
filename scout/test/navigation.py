@@ -167,16 +167,11 @@ class NavigationTest(LiveServerTestCase):
         self.assertUrlStatus('/filter/', 200)
 
     # @wd.parallel.multiply
-    def test_discover_exists(self):
-        """Test that the discover page results in a 200"""
-        self.updateSauceName('Pageflow: Discover URL 200')
-        self.assertUrlStatus('/discover/', 200)
-
-    # @wd.parallel.multiply
     def test_home_content(self):
         """Test that there is at least one place listed on the home page"""
         self.updateSauceName('Pageflow: Home Content')
         self.go_url('/')
+        self.driver.find_element_by_id('page_discover')
         places = self.driver.find_elements_by_class_name('scout-spot-name')
         self.assertGreater(len(places), 0)
 
@@ -185,6 +180,7 @@ class NavigationTest(LiveServerTestCase):
         """Test that the content on the food page is correct"""
         self.updateSauceName('Pageflow: Food Content')
         self.go_url('/food/')
+        self.driver.find_element_by_id('page_food')
         filterButtons = self.driver.find_elements_by_class_name(
             'scout-filter-results-action')
         self.assertEqual(filterButtons[0].text, 'Filter results')
@@ -199,13 +195,16 @@ class NavigationTest(LiveServerTestCase):
         # clicking the first place on the list
         places[0].click()
         spotName = self.driver.find_element_by_class_name('scout-spot-name')
-        self.assertEqual(spotName.text, 'Truck of Food')
+        tempUrl = self.driver.current_url.split('/')
+        scoutContent = self.driver.find_element_by_class_name('scout-content')
+        self.assertEqual('page_' + tempUrl[len(tempUrl) - 2], scoutContent.get_attribute('id'))
 
     # @wd.parallel.multiply
     def test_filter_content(self):
         """Test that the content on the filter page is correct"""
         self.updateSauceName('Pageflow: Filter Content')
         self.go_url('/filter/')
+        self.driver.find_element_by_id('page_filter')
         legends = self.driver.find_elements_by_tag_name('Legend')
         self.assertEqual(legends[0].text, 'CAMPUS')
 
@@ -223,7 +222,7 @@ class NavigationTest(LiveServerTestCase):
         """Test that once on the discover/home page, the discover tab
         isn't clickable"""
         self.updateSauceName('Pageflow: Discover Tab Not-Clickable')
-        self.go_url('/discover/')
+        self.go_url('/')
         clickable = self.driver.find_element_by_id('link_discover')
         self.assertEqual(clickable.get_attribute('disabled'), 'true')
 
@@ -245,12 +244,7 @@ class NavigationTest(LiveServerTestCase):
     def test_bad_detailURL(self):
         """Ensure a nonexistant space results in a 404 status code"""
         self.updateSauceName('Pageflow: Nonexistant Space Details Page')
-        try:
-            self.clientUrlStatus('/detail/123456789')
-        except Exception as ex:
-            self.assertIn('404', str(ex))
-        else:
-            self.fail('Didn\'t get 404 for /detail/404')
+        self.assertUrlStatus('/detail/12345679', 404)
 
     # uncomment for debugging
     # @unittest.expectedFailure
@@ -265,9 +259,8 @@ class NavigationTest(LiveServerTestCase):
     # @unittest.expectedFailure
     # @wd.parallel.multiply
     def test_redirect_URLs(self):
-        """Test URLs that are meant to redirect(302)"""
+        """Test URLs that are meant to redirect(301)"""
         self.updateSauceName('Pageflow: Redirecting URLs')
         # Test some other potential url's that should be able to redirect
-        self.assertUrlStatus('/food', 302)
-        self.assertUrlStatus('/discover', 302)
-        self.assertUrlStatus('/filter', 302)
+        self.assertUrlStatus('/food', 301)
+        self.assertUrlStatus('/filter', 301)
