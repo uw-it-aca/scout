@@ -26,5 +26,11 @@ var Layout = {
             $(".scout-discover-container").css({minHeight: $(window).outerHeight() - offsetHeight });
         }
 
+        // size the 404
+        if($("#page_404").length > 0) {
+            var offsetHeight = ($(".scout-header").outerHeight() + $(".scout-footer").outerHeight());
+            $("#page_404").css({minHeight: $(window).outerHeight() - offsetHeight });
+        }
+
     },
 };
