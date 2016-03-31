@@ -1,12 +1,11 @@
 #!/usr/bin/python
 
-from selenium.webdriver.common.by import By
+from selenium import webdriver
+import unittest
 
 class BasePage(object):
     def __init__(self, driver):
         self.driver = driver
-    self.driver.implicitly_wait(5)
-    self.timeout = 30
 
 class PlacesPage(BasePage):
 
@@ -28,23 +27,27 @@ class PlacesPage(BasePage):
 
     @property
     def placesList(self):
-        return self.driver.find_elements_by_id("//div[@class='scout-list-container']/ol[@id='scout_list']/li")
+        return self.driver.find_elements_by_xpath(
+            "//div[@class='scout-list-container']/ol[@id='scout_list']/li")
 
     def reset_filters(self):
         self.filterReset.click()
 
     def get_filters(self):
         self.filterResults.click()
+        return FilterPage(self.driver)
 
     def click_discoverTab(self):
         self.discoverTab.click()
+        return HomePage(self.driver)
 
     def click_placesTab(self):
         self.placesTab.click()
 
-    def click_place(self, num = 0):
+    def click_place(self, num=0):
         try:
             self.placesList[num].click()
         except IndexError:
-            self.fail('Index ' + num + ' is out of range: ' + len(placesList))
-
+            assert False, ('Index ' + str(num) + ' is out of range: ' + str(len(self.placesList))) # is there a better way?
+        else:
+            print('it')

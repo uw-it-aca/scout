@@ -4,6 +4,7 @@ A simple functional headless UI test with pyvirtualdisplay and selenium
 
 import os
 import sys
+from pages import pages
 
 from selenium import webdriver
 from django.test import LiveServerTestCase
@@ -17,7 +18,7 @@ sauce_client = SauceClient(USERNAME, ACCESS_KEY)
 
 class WireframeTest(LiveServerTestCase):
 
-    baseurl = 'http://localhost:8001/'
+    baseurl = 'http://localhost:8001'
 
     def setUp(self):
 
@@ -56,7 +57,6 @@ class WireframeTest(LiveServerTestCase):
         sauce_client.jobs.update_job(self.driver.session_id, name=name)
 
     def tearDown(self):
-        print("https://saucelabs.com/jobs/%s \n" % self.driver.session_id)
         try:
             if sys.exc_info() == (None, None, None):
                 sauce_client.jobs.update_job(self.driver.session_id, passed=True)
@@ -64,6 +64,11 @@ class WireframeTest(LiveServerTestCase):
                 sauce_client.jobs.update_job(self.driver.session_id, passed=False)
         finally:
             self.driver.quit()
+
+    def test_aa(self):
+        self.go_url('/food/')
+        places_page = pages.PlacesPage(self.driver)
+        places_page.click_place(2)
 
     # SCOUT-8, testing to see if user can bring up list of b-fast places by clicking view more results
     def test_breakfast(self):
