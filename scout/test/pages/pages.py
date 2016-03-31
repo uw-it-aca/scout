@@ -24,11 +24,11 @@ class BasePage(object):
         self.homeLogo.click()
         self._become_home()
 
-    def click_discoverTab(self):
+    def click_discovertab(self):
         self.discoverTab.click()
         self._become_home()
 
-    def click_placesTab(self):
+    def click_placestab(self):
         self.placesTab.click()
         self._become_places()
 
@@ -96,7 +96,7 @@ class HomePage(BasePage):
         return self.driver.find_element_by_xpath(
             "//div[@id='coupon']//a[@class='scout-spot-discover-action']")
 
-    def click_Place(self, food='open', num=0):
+    def click_place(self, food='open', num=0):
         placeLists = {
             'open': self.openNearbyList,
             'coffee': self.coffeeList,
@@ -115,7 +115,7 @@ class HomePage(BasePage):
         self._become_detail()
         # return DetailPage(self.driver)
 
-    def click_Results(self, food='open'):
+    def click_results(self, food='open'):
         linkLists = {
             'open': self.openNearbyView,
             'coffee': self.coffeeView,
