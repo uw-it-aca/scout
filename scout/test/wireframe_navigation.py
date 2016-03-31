@@ -70,6 +70,11 @@ class WireframeTest(LiveServerTestCase):
         places_page = pages.PlacesPage(self.driver)
         places_page.click_place(2)
 
+    def test_aHome(self):
+        self.go_url('/')
+        home_page = pages.HomePage(self.driver)
+        home_page.clickResults('breakfast')
+
     # SCOUT-8, testing to see if user can bring up list of b-fast places by clicking view more results
     def test_breakfast(self):
 
