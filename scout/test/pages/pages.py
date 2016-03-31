@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 from selenium import webdriver
+import time
 import unittest
 
 class BasePage(object):
@@ -21,27 +22,41 @@ class BasePage(object):
 
     def click_home(self):
         self.homeLogo.click()
-        return HomePage(self.driver)
+        self._become_home()
 
     def click_discoverTab(self):
         self.discoverTab.click()
-        return HomePage(self.driver)
+        self._become_home()
 
     def click_placesTab(self):
         self.placesTab.click()
-        return PlacesPage(self.driver)
+        self._become_places()
+
+    def _become_home(self):
+        self.__class__ = HomePage
+
+    def _become_places(self):
+        self.__class__ = PlacesPage
+
+    def _become_detail(self):
+        self.__class__ = DetailPage
+
+    def _become_filter(self):
+        self.__class__ = FilterPage
 
 class HomePage(BasePage):
 
     @property
     def openNearbyList(self):
         return self.driver.find_elements_by_xpath(
-            "//div[@id='open']/div[@class='scout-card scout-discover-content']/ol/li[@class='scout-spot-list-discover']")
+            "//div[@id='open']/div[@class='scout-card scout-discover-content']"
+            "/ol/li[@class='scout-spot-list-discover']")
 
     @property
     def coffeeList(self):
         return self.driver.find_elements_by_xpath(
-            "//div[@id='coffee']/div[@class='scout-card scout-discover-content']/ol/li[@class='scout-spot-list-discover']")
+            # "//div[@id='coffee']/div[@class='scout-card scout-discover-content']/ol/li[@class='scout-spot-list-discover']")
+            "//div[@id='coffee']//li[@class='scout-spot-list-discover']")
 
     @property
     def breakfastList(self):
@@ -92,14 +107,15 @@ class HomePage(BasePage):
             'coupon': self.couponList
         }
         try:
-            placeLists.get(food)[num]
+            button = placeLists[food][num]
         except IndexError:
             raise IndexError(
                 'Place index %s out of range: %s'
-                %(num, len(placesLists[food]))
-                )
-        else:
-            return DetailPage(self.driver)
+                %(num, len(placeLists[food]))
+            )
+        button.click()
+        self._become_detail()
+        # return DetailPage(self.driver)
 
     def click_Results(self, food='open'):
         linkLists = {
@@ -111,7 +127,7 @@ class HomePage(BasePage):
         }
         temp = linkLists.get(food)
         temp.click()
-        return PlacesPage(self.driver)
+        self._become_places()
 
 class PlacesPage(BasePage):
 
@@ -152,7 +168,7 @@ class PlacesPage(BasePage):
                 %(num, len(self.placesList))
                 )
         else:
-            return DetailPage(self.driver)
+            self._become_detail()
 
 class FilterPage(BasePage):
 
@@ -180,7 +196,7 @@ class FilterPage(BasePage):
 
     def search(self):
         self.viewButton.click()
-        return PlacesPage(self.driver)
+        self._become_places()
 
     def reset(self):
         self.resetButton.click()
@@ -202,3 +218,9 @@ class DetailsPage(BasePage):
     @property
     def openStatus(self):
         return self.driver.find_element_by_class_name('scout-spot-status')
+
+if __name__ == '__main__':
+    from selenium.webdriver import Firefox, Chrome
+    d = Chrome()
+    d.get('http://localhost:8001/')
+    page = HomePage(d)
