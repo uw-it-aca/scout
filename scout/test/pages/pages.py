@@ -39,7 +39,7 @@ class BasePage(object):
         self.__class__ = PlacesPage
 
     def _become_detail(self):
-        self.__class__ = DetailPage
+        self.__class__ = DetailsPage
 
     def _become_filter(self):
         self.__class__ = FilterPage
@@ -49,29 +49,27 @@ class HomePage(BasePage):
     @property
     def openNearbyList(self):
         return self.driver.find_elements_by_xpath(
-            "//div[@id='open']/div[@class='scout-card scout-discover-content']"
-            "/ol/li[@class='scout-spot-list-discover']")
+            "//div[@id='open']//li[@class='scout-spot-list-discover']")
 
     @property
     def coffeeList(self):
         return self.driver.find_elements_by_xpath(
-            # "//div[@id='coffee']/div[@class='scout-card scout-discover-content']/ol/li[@class='scout-spot-list-discover']")
             "//div[@id='coffee']//li[@class='scout-spot-list-discover']")
 
     @property
     def breakfastList(self):
         return self.driver.find_elements_by_xpath(
-            "/div[@id='breakfast']/div[@class='scout-card scout-discover-content']/ol/li[@class='scout-spot-list-discover']")
+            "//div[@id='breakfast']//li[@class='scout-spot-list-discover']")
 
     @property
     def lateList(self):
         return self.driver.find_elements_by_xpath(
-            "//div[@id='late']/div[@class='scout-card scout-discover-content']/ol/li[@class='scout-spot-list-discover']")
+           "//div[@id='late']//li[@class='scout-spot-list-discover']")
 
     @property
     def couponList(self):
         return self.driver.find_elements_by_xpath(
-            "//div[@id='coupon']/div[@class='scout-card scout-discover-content']/ol/li[@class='scout-spot-list-discover']")
+           "//div[@id='coupon']//li[@class='scout-spot-list-discover']")
 
     @property
     def openNearbyView(self):
