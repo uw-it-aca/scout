@@ -191,19 +191,19 @@ class DetailsPage(BasePage):
 
     @property
     def foodName(self):
-        return self.driver.find_element_by_class('scout-spot-name')
+        return self.driver.find_element_by_class_name('scout-spot-name')
 
     @property
     def foodCuisines(self):
-        return self.driver.find_element_by_class('scout-spot-cuisine')
+        return self.driver.find_element_by_class_name('scout-spot-cuisine')
 
     @property
     def foodType(self):
-        return self.driver.find_element_by_class('scout-spot-type')
+        return self.driver.find_element_by_class_name('scout-spot-type')
 
     @property
     def openStatus(self):
-        return self.driver.find_element_by_class('scout-spot-status')
+        return self.driver.find_element_by_class_name('scout-spot-status')
 
     @property
     def homeLogo(self):
@@ -228,3 +228,8 @@ class DetailsPage(BasePage):
     def click_placesTab(self):
         self.placesTab.click()
 
+    def assertOpenStatus(self, expected='OPEN NOW'):
+        if self.openStatus.text == expected:
+            return True
+        else:
+            return False

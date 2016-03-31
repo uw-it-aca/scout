@@ -77,8 +77,8 @@ class WireframeTest(LiveServerTestCase):
 
     def test_ahelp(self):
         self.go_url('/detail/3')
-        temp = self.driver.find_elements_by_class_name('scout-spot-cuisine')    
-        self.assertEqual(temp[0].text, "FDSSDF")
+        detail_page = pages.DetailsPage(self.driver)
+        self.assertEqual(detail_page.openStatus.text, "OPEN NOW")
 
     # SCOUT-8, testing to see if user can bring up list of b-fast places by clicking view more results
     def test_breakfast(self):
