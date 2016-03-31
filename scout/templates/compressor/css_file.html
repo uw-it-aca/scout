@@ -1,4 +1,2 @@
-<link rel="preload" href="{{ compressed.url }}" as="style" onload="this.rel='stylesheet'"/>
-<noscript>
-    <link rel="stylesheet" href="{{ compressed.url }}" type="text/css"{% if compressed.media %} media="{{ compressed.media }}"{% endif %} />
-</noscript>
+<link rel="stylesheet" href="{{ compressed.url }}" type="text/css" media="only foo" />
+<noscript><link rel="stylesheet" href="{{ compressed.url }}" type="text/css"{% if compressed.media %} media="{{ compressed.media }}"{% endif %} /></noscript>

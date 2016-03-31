@@ -2,6 +2,9 @@ var Layout = {
 
     init_layout: function(){
 
+        /// async load css by flipping the media attribute to all
+    	$('link[rel="stylesheet"]').attr('media', 'all');
+
         var page_path = window.location.pathname;
 
         if (page_path.indexOf("food") !== -1) {
