@@ -72,7 +72,7 @@ class HomePage(BasePage):
             "//div[@id='coupon']//a[@class='scout-spot-discover-action']")
 
     def click_Place(self, food='open', num=0):
-        placeList = {'open': self.openNearbyList, 'coffee': self.coffeeList, 'breakfast', self.breakfastList, 'late': self.lateList, 'coupon': self.couponList}
+        placeList = {'open': self.openNearbyList, 'coffee': self.coffeeList, 'breakfast': self.breakfastList, 'late': self.lateList, 'coupon': self.couponList}
         try:
             placeList.get(food)[num]
         except IndexError:
@@ -176,4 +176,55 @@ class FilterPage(BasePage):
     def openNowBox(self):
         return self.driver.find_element_by_name('open_now')
 
+    def click_home(self):
+        self.homeLogo.click()
+        return HomePage(self.driver)
+
+    def click_discoverTab(self):
+        self.discoverTab.click()
+        return HomePage(self.driver)
+
+    def click_placesTab(self):
+        self.placesTab.click()
+
 class DetailsPage(BasePage):
+
+    @property
+    def foodName(self):
+        return self.driver.find_element_by_class('scout-spot-name')
+
+    @property
+    def foodCuisines(self):
+        return self.driver.find_element_by_class('scout-spot-cuisine')
+
+    @property
+    def foodType(self):
+        return self.driver.find_element_by_class('scout-spot-type')
+
+    @property
+    def openStatus(self):
+        return self.driver.find_element_by_class('scout-spot-status')
+
+    @property
+    def homeLogo(self):
+        return self.driver.find_element_by_id('link_home')
+
+    @property
+    def discoverTab(self):
+        return self.driver.find_element_by_id('link_discover')
+
+    @property
+    def placesTab(self):
+        return self.driver.find_element_by_id('link_food')
+
+    def click_home(self):
+        self.homeLogo.click()
+        return HomePage(self.driver)
+
+    def click_discoverTab(self):
+        self.discoverTab.click()
+        return HomePage(self.driver)
+
+    def click_placesTab(self):
+        self.placesTab.click()
+
