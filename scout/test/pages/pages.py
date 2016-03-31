@@ -7,8 +7,6 @@ class BasePage(object):
     def __init__(self, driver):
         self.driver = driver
 
-class HomePage(BasePage):
-
     @property
     def homeLogo(self):
         return self.driver.find_element_by_id('link_home')
@@ -20,6 +18,20 @@ class HomePage(BasePage):
     @property
     def placesTab(self):
         return self.driver.find_element_by_id('link_food')
+
+    def click_home(self):
+        self.homeLogo.click()
+        return HomePage(self.driver)
+
+    def click_discoverTab(self):
+        self.discoverTab.click()
+        return HomePage(self.driver)
+
+    def click_placesTab(self):
+        self.placesTab.click()
+        return PlacesPage(self.driver)
+
+class HomePage(BasePage):
 
     @property
     def openNearbyList(self):
@@ -72,32 +84,36 @@ class HomePage(BasePage):
             "//div[@id='coupon']//a[@class='scout-spot-discover-action']")
 
     def click_Place(self, food='open', num=0):
-        placeList = {'open': self.openNearbyList, 'coffee': self.coffeeList, 'breakfast': self.breakfastList, 'late': self.lateList, 'coupon': self.couponList}
+        placeLists = {
+            'open': self.openNearbyList,
+            'coffee': self.coffeeList,
+            'breakfast': self.breakfastList,
+            'late': self.lateList,
+            'coupon': self.couponList
+        }
         try:
-            placeList.get(food)[num]
+            placeLists.get(food)[num]
         except IndexError:
-            assert False, ('Index ' + str(num) + ' is out of range: ' + str(len(self.placesList))) # is there a better way?
+            raise IndexError(
+                'Place index %s out of range: %s'
+                %(num, len(placesLists[food]))
+                )
         else:
             return DetailPage(self.driver)
 
     def click_Results(self, food='open'):
-        linkList = {'open': self.openNearbyView, 'coffee': self.coffeeView, 'breakfast': self.breakfastView, 'late': self.lateView, 'coupon': self.couponView}
-        temp = linkList.get(food)
+        linkLists = {
+            'open': self.openNearbyView,
+            'coffee': self.coffeeView,
+            'breakfast': self.breakfastView,
+            'late': self.lateView,
+            'coupon': self.couponView
+        }
+        temp = linkLists.get(food)
         temp.click()
         return PlacesPage(self.driver)
 
-    def click_discoverTab(self):
-        self.discoverTab.click()
-
-    def click_placesTab(self):
-        self.placesTab.click()
-        return PlacesPage(self.driver)
-
 class PlacesPage(BasePage):
-
-    @property
-    def homeLogo(self):
-        return self.driver.find_element_by_id('link_home')
 
     @property
     def filterReset(self):
@@ -108,12 +124,8 @@ class PlacesPage(BasePage):
         return self.driver.find_element_by_id('link_filter')
 
     @property
-    def discoverTab(self):
-        return self.driver.find_element_by_id('link_discover')
-
-    @property
-    def placesTab(self):
-        return self.driver.find_element_by_id('link_food')
+    def placesCount(self):
+        return self.driver.find_element_by_class_name('scout-filter-results-count')
 
     @property
     def placesList(self):
@@ -131,34 +143,18 @@ class PlacesPage(BasePage):
         self.filterResults.click()
         return FilterPage(self.driver)
 
-    def click_discoverTab(self):
-        self.discoverTab.click()
-        return HomePage(self.driver)
-
-    def click_placesTab(self):
-        self.placesTab.click()
-
     def click_place(self, num=0):
         try:
             self.placesList[num].click()
         except IndexError:
-            assert False, ('Index ' + str(num) + ' is out of range: ' + str(len(self.placesList))) # is there a better way?
+            raise IndexError(
+                'Place index %s out of range: %s'
+                %(num, len(self.placesList))
+                )
         else:
             return DetailPage(self.driver)
 
 class FilterPage(BasePage):
-
-    @property
-    def homeLogo(self):
-        return self.driver.find_element_by_id('link_home')
-
-    @property
-    def discoverTab(self):
-        return self.driver.find_element_by_id('link_discover')
-
-    @property
-    def placesTab(self):
-        return self.driver.find_element_by_id('link_food')
 
     @property
     def resetButton(self):
@@ -176,16 +172,18 @@ class FilterPage(BasePage):
     def openNowBox(self):
         return self.driver.find_element_by_name('open_now')
 
-    def click_home(self):
-        self.homeLogo.click()
-        return HomePage(self.driver)
+    def click_seattleBox(self):
+        self.seattleBox.click()
 
-    def click_discoverTab(self):
-        self.discoverTab.click()
-        return HomePage(self.driver)
+    def click_openNow(self):
+        self.openNowBox.click()
 
-    def click_placesTab(self):
-        self.placesTab.click()
+    def search(self):
+        self.viewButton.click()
+        return PlacesPage(self.driver)
+
+    def reset(self):
+        self.resetButton.click()
 
 class DetailsPage(BasePage):
 
@@ -204,32 +202,3 @@ class DetailsPage(BasePage):
     @property
     def openStatus(self):
         return self.driver.find_element_by_class_name('scout-spot-status')
-
-    @property
-    def homeLogo(self):
-        return self.driver.find_element_by_id('link_home')
-
-    @property
-    def discoverTab(self):
-        return self.driver.find_element_by_id('link_discover')
-
-    @property
-    def placesTab(self):
-        return self.driver.find_element_by_id('link_food')
-
-    def click_home(self):
-        self.homeLogo.click()
-        return HomePage(self.driver)
-
-    def click_discoverTab(self):
-        self.discoverTab.click()
-        return HomePage(self.driver)
-
-    def click_placesTab(self):
-        self.placesTab.click()
-
-    def assertOpenStatus(self, expected='OPEN NOW'):
-        if self.openStatus.text == expected:
-            return True
-        else:
-            return False
