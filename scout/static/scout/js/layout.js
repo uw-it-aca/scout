@@ -2,9 +2,6 @@ var Layout = {
 
     init_layout: function(){
 
-        /// async load css by flipping the media attribute to all
-    	$('link[rel="stylesheet"]').attr('media', 'all');
-
         // size the detail image height on detail.html
         if($(".scout-details-container .scout-spot-image").length > 0) {
             var aspectHeight = Math.round(( $(".scout-spot-image").width() /100)*67); //(i.e. 16:9 or 100:67)
