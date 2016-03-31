@@ -130,8 +130,8 @@ var Geolocation = {
         $("#use_location").click(function(e) {
 
             e.preventDefault();
-            Geolocation.set_is_using_location(true);
             window.dispatchEvent(Geolocation.location_updating);
+            Geolocation.set_is_using_location(true);
 
             $("#shared_position").show();
             $("#shared_position").attr("aria-hidden", "false");
@@ -149,8 +149,8 @@ var Geolocation = {
         $("#forget_location").click(function(e) {
 
             e.preventDefault();
-            Geolocation.set_is_using_location(false);
             window.dispatchEvent(Geolocation.location_updating);
+            Geolocation.set_is_using_location(false);
 
             $("#shared_position").hide();
             $("#shared_position").attr("aria-hidden", "true");
