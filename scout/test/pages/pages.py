@@ -96,21 +96,20 @@ class HomePage(BasePage):
         return self.driver.find_element_by_xpath(
             "//div[@id='coupon']//a[@class='scout-spot-discover-action']")
 
-    def click_place(self, food='open', num=0):
-        placeLists = {
+    def click_place(self, food_type='open', num=0):
+        food_types = {
             'open': self.openNearbyList,
             'coffee': self.coffeeList,
             'breakfast': self.breakfastList,
             'late': self.lateList,
             'coupon': self.couponList
         }
+        place_list = food_types[food_type]
         try:
-            button = placeLists[food][num]
+            button = place_list[num]
         except IndexError:
-            raise IndexError(
-                'Place index %s out of range: %s'
-                %(num, len(placeLists[food]))
-            )
+            raise PlaceIndexError(num, place_list)
+
         button.click()
         self._become_detail()
         # return DetailPage(self.driver)
@@ -126,6 +125,12 @@ class HomePage(BasePage):
         temp = linkLists.get(food)
         temp.click()
         self._become_places()
+
+class PlaceIndexError(IndexError):
+    def __init__(self, index, places):
+        length = len(places)
+        out = 'Place index %s out of range: %s' %(index, length)
+        super(PlaceIndexError, self).__init__(out)
 
 class PlacesPage(BasePage):
 
@@ -161,10 +166,7 @@ class PlacesPage(BasePage):
         try:
             self.placesList[num].click()
         except IndexError:
-            raise IndexError(
-                'Place index %s out of range: %s'
-                %(num, len(self.placesList))
-                )
+                raise PlaceIndexError(num, self.placesList)
         else:
             self._become_detail()
 
