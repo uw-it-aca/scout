@@ -96,6 +96,7 @@ var Geolocation = {
 
 
     display_location_status: function () {
+
         if (Geolocation.get_location_type() === "default") {
 
             $("#default_position").show();
@@ -108,11 +109,12 @@ var Geolocation = {
 
             $("#default_position").hide();
             $("#default_position").attr("aria-hidden", "true");
-
+        
             $("#shared_position").show();
             $("#shared_position").attr("aria-hidden", "false");
 
         }
+
     },
 
     init_location_toggles: function() {

@@ -1,30 +1,30 @@
 <h2 class=" visually-hidden">Your location information</h2>
 
 <div class="scout-geolocation">
-    <div class="scout-geolocation-position" id="default_position">
+    <div class="scout-geolocation-position">
+
         <span class="fa-stack fa-lg">
          <i class="fa fa-circle fa-stack-2x"></i>
          <i class="fa fa-map-marker fa-stack-1x fa-inverse"></i>
         </span>
-        <span class="scout-geolocation-location">
-           <span id="default_position">Red Square (default)</span>
-        </span>
-        <span class="scout-geolocation-action" style="float:right;">
-           <a id="use_location" href="javascript:void(0)">Find your location</a>
-        </span>
-    </div>
 
-    <div class="scout-geolocation-position" id="shared_position" style="display:none;">
-        <span class="fa-stack fa-lg">
-         <i class="fa fa-circle fa-stack-2x"></i>
-         <i class="fa fa-map-marker fa-stack-1x fa-inverse"></i>
+        <span id="default_position" style="display:none; width:90%; margin-left: 5px;">
+            <span class="scout-geolocation-location">
+               <span id="default_position">Red Square (default)</span>
+            </span>
+            <span class="scout-geolocation-action" style="float:right;">
+               <a id="use_location" href="javascript:void(0)">Find your location</a>
+            </span>
         </span>
-        <span class="scout-geolocation-location">
-           <span id="shared_position">Your location</span>
-        </span>
-        <span class="scout-geolocation-action" style="float:right;">
-           <a id="forget_location" href="javascript:void(0)">Switch to default</a>
-        </span>
-    </div>
 
+        <span id="shared_position" style="display:none; width:90%; margin-left: 5px;">
+            <span class="scout-geolocation-location">
+               <span id="shared_position">Your location</span>
+            </span>
+            <span class="scout-geolocation-action" style="float:right;">
+               <a id="forget_location" href="javascript:void(0)">Switch to default</a>
+            </span>
+        </span>
+
+    </div>
 </div>

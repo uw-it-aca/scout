@@ -33,9 +33,9 @@ var List = {
 
     init: function () {
         window.addEventListener('location_changed', function() {
+            Geolocation.display_location_status();
             List.add_spot_distances();
             List.order_spot_list();
-            Geolocation.display_location_status();
             List.set_list_is_visible(true);
         });
         window.addEventListener('location_updating', function() {
