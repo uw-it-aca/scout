@@ -134,8 +134,45 @@ def organize_hours(spot):
         'saturday': [],
         'sunday': [],
     }
-    for hours in spot.spot_availability:
-        hours_object[hours.day].append((hours.start_time, hours.end_time))
+
+    days_list = ['monday',
+                 'tuesday',
+                 'wednesday',
+                 'thursday',
+                 'friday',
+                 'saturday',
+                 'sunday']
+
+    for day in days_list:
+        overnight = False
+        day_hours = \
+            [hours for hours in spot.spot_availability if hours.day == day]
+        next_day = (days_list.index(day) + 1) % len(days_list)
+        next_day_hours = \
+            [hours for hours in spot.spot_availability
+             if hours.day == days_list[next_day]]
+        close_used = True
+        for hours in next_day_hours:
+            if hours.start_time == datetime.time(0, 0):
+                overnight = True
+                close = hours.end_time  # get early morning end time
+                close_used = False
+        for hours in day_hours:
+            if hours.end_time == datetime.time(23, 59) and overnight:
+                hours_object[hours.day].append((hours.start_time, close))
+                close_used = True
+            elif (hours.end_time == datetime.time(23, 59) and
+                    not hours.start_time == datetime.time(0, 0)):
+                hours_object[hours.day].append((hours.start_time,
+                                                datetime.time(0, 0)))
+            elif (not hours.start_time == datetime.time(0, 0) and
+                    not hours.end_time == datetime.time(23, 59)):
+                hours_object[hours.day].append((hours.start_time,
+                                                hours.end_time))
+        if not close_used:
+            hours_object[hours.day].append((datetime.time(0, 0),
+                                            close))
+        overnight = False
     spot.hours = hours_object
     return spot
 
