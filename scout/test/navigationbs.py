@@ -17,7 +17,7 @@ from django.conf import settings
 from sauceclient import SauceClient
 
 # False - runs locally, True - runs on SauceLabs
-useSauce = True
+useSauce = False
 
 USERNAME = getattr(settings, 'SAUCE_USERNAME', False)
 ACCESS_KEY = getattr(settings, 'SAUCE_ACCESS_KEY', False)
@@ -173,6 +173,7 @@ class NavigationTest(LiveServerTestCase):
         bs = self.returnSoup('/')
         checkId = bs.select('#page_discover')
         self.assertGreater(len(checkId), 0)
+        print bs
         places = bs.select('.scout-spot-name')
         self.assertGreater(len(places), 0)
 
