@@ -45,9 +45,11 @@ $footer-height: 40px;
         .fa-stack { font-size: 12px; }
         .fa-circle { color: $scout-button; }
             .scout-geolocation-location { color:#111; display: inline-block; }
-            .scout-geolocation-action {  margin-left: 5px;;
+            .scout-geolocation-action {  margin-left: 5px; float: right;
                 a { display: inline-block; display: inline-block; color:$scout-link; text-decoration: underline; }
             }
+        .scout-geolocation-user { display:none; position:absolute; left:40px; right:20px; background:#f1f1f1; }
+        .scout-geolocation-loading { position:absolute; color:#bbb; z-index:0; left:40px; right:20px; }
     }
 }
 

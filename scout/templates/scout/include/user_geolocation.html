@@ -4,26 +4,22 @@
     <div class="scout-geolocation-position">
 
         <span class="fa-stack fa-lg">
-         <i class="fa fa-circle fa-stack-2x"></i>
-         <i class="fa fa-map-marker fa-stack-1x fa-inverse"></i>
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-map-marker fa-stack-1x fa-inverse"></i>
         </span>
 
-        <span style="position:absolute; color:#bbb; z-index:0; left:40px; right:20px;" aria-hidden="true">Loading...</span>
+        <span class="scout-geolocation-loading" style="" aria-hidden="true">Loading...</span>
 
-        <span id="default_position" style="display:none; position:absolute; left:40px; right:20px; background:#f1f1f1;">
-            <span class="scout-geolocation-location">
-               <span id="default_position">Red Square (default)</span>
-            </span>
-            <span class="scout-geolocation-action" style="float:right;">
+        <span class="scout-geolocation-user" id="default_position">
+            <span class="scout-geolocation-location">Red Square (default)</span>
+            <span class="scout-geolocation-action">
                <a id="use_location" href="javascript:void(0)">Find your location</a>
             </span>
         </span>
 
-        <span id="shared_position" style="display:none; position:absolute; left:40px; right:20px; background:#f1f1f1;">
-            <span class="scout-geolocation-location">
-               <span id="shared_position">Your location</span>
-            </span>
-            <span class="scout-geolocation-action" style="float:right;">
+        <span class="scout-geolocation-user" id="shared_position">
+            <span class="scout-geolocation-location">Your location</span>
+            <span class="scout-geolocation-action">
                <a id="forget_location" href="javascript:void(0)">Switch to default</a>
             </span>
         </span>
