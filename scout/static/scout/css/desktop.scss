@@ -3,6 +3,7 @@
 $view-panel-width: 415px;
 $header-height: 102px;
 $footer-height: 40px;
+$image-height: 278px;
 
 // desktop styles
 
@@ -10,12 +11,10 @@ body { overflow: hidden; }
 
 // global overrides for action links
 
-.scout-geolocation-action a, .scout-spot-action-text, .scout-coupon-action-text, .scout-filter-results-action, .scout-footer a {
+.scout-geolocation-action a, .scout-spot-action-text, .scout-coupon-action-text, .scout-filter-results-action, .scout-footer a, .scout-error a {
     text-decoration: none !important;
-
     &:hover { text-decoration: underline !important; }
 }
-
 
 // main container
 .scout-primary { position:absolute; width: $view-panel-width; top:0; bottom:0; -webkit-box-shadow: 5px 0 20px 0 rgba(0,0,0,0.3); box-shadow: 5px 0 20px 0 rgba(0,0,0,0.3); z-index: 1;
@@ -75,7 +74,7 @@ body { overflow: hidden; }
             // details
             .scout-details-container {
 
-                .scout-spot-image { min-height: 253px;
+                .scout-spot-image { height: $image-height;
 
                     .scout-spot-status {  }
                     .scout-spot-open-period {

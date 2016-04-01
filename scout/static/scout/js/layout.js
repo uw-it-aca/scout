@@ -5,6 +5,8 @@ var Layout = {
         /// async load css by flipping the media attribute to all
     	$('link[rel="stylesheet"]').attr('media', 'all');
 
+        var isMobile = $("body").data("mobile");
+
         var page_path = window.location.pathname;
 
         if (page_path.indexOf("food") !== -1) {
@@ -12,8 +14,11 @@ var Layout = {
             $(".scout-list-container").css({minHeight: $(window).outerHeight() - offsetHeight });
         }
         else if (page_path.indexOf("detail") !== -1) {
-            var aspectHeight = Math.round(( $(".scout-spot-image").width() /100)*67); //(i.e. 16:9 or 100:67)
-            $(".scout-spot-image").height(aspectHeight);
+            // if mobile, calculate height of image container
+            if (isMobile !== undefined ) {
+                var aspectHeight = Math.round(( $(".scout-spot-image").width() /100)*67); //(i.e. 16:9 or 100:67)
+                $(".scout-spot-image").height(aspectHeight);
+            }
         }
         else if (page_path.indexOf("map") !== -1) {
             var offsetHeight = ($(".scout-header").outerHeight() + $(".scout-filter-results-container").outerHeight() + $(".scout-footer").outerHeight());

@@ -7,9 +7,18 @@
 {% block web_content %}
 
 <div id="page_404" class="scout-content">
-    <div class="scout-card" style="margin:0;">
+    <div class="scout-card scout-error" style="margin:0;">
         <h2 class="visually-hidden">404 error</h2>
-        <p style="color:red;">404 Error. The page or file you requested, cannot be found.</p>
+        <p class="scout-error-msg">We can't find the page you're looking for.</p>
+
+        <div class="scout-error-body">
+            <p>You may way to:</pp>
+            <ul>
+                <li>Check the URL to see if something was mistyped.</li>
+                <li>Go to the <a href="/">homepage</a> and attempt to find the place you are looking for.</p>
+            </ul>
+        </div>
+
     </div>
 </div>
 

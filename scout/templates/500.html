@@ -274,6 +274,26 @@
                 width: 1px!important;
                 overflow: hidden
             }
+
+            .scout-error-msg {
+                color: red
+            }
+            .scout-error-body {
+                font-size: 14px;
+                color: #222
+            }
+            .scout-error-body ul {
+                list-style: circle!important;
+                padding-left: 30px!important
+            }
+            .scout-error-body ul li {
+                margin-bottom: 5px;
+                color: #777
+            }
+            .scout-error-body a {
+                color: #3498db
+            }
+
             .scout-footer {
                 background: #fafafa;
                 color: #555;
@@ -402,9 +422,18 @@
 
         <div id="scroll" class="scout-scroll">
             <div id="page_500" class="scout-content">
-                <div class="scout-card" style="margin:0;">
+                <div class="scout-card scour-error" style="margin:0;">
                     <h2 class="visually-hidden">500 error</h2>
-                    <p style="color:red;">500 Error. An internal server error caused your page to not load. Please refresh or go back to home.</p>
+                    <p class="scout-error-msg">There was a problem on our end.</p>
+                    <div class="scout-error-body">
+                        <p>Our developers have been alerted of this issue and are working fix the problem.</p>
+                        <p>In the meantime:</pp>
+                        <ul>
+                            <li>Relax, give as a little time, and try back later.</li>
+                            <li>Drop us an email at help@uw.edu and let us know that this has been taking awhile.</li>
+                        </ul>
+                    </div>
+
                 </div>
             </div>
         </div>
