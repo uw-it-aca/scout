@@ -240,7 +240,7 @@ $footer-height: 40px;
 
                 .scout-spot-food-served { margin: 10px 0 5px 0; font-size: 12px; float: left; width: 75%;
                     label {  display: block; text-transform: uppercase; font-size: 10px; margin-bottom: 2px; color: #aaa; }
-                    span { margin-right: 5px; }
+                    span { margin-right: 5px; white-space: nowrap; }
                 }
             }
 
