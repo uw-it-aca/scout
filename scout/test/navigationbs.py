@@ -126,26 +126,22 @@ class NavigationTest(LiveServerTestCase):
         if self.useSauce:
             sauce_client.jobs.update_job(self.driver.session_id, name=name)
 
+    def checkHref(self, exp, loc, response):
+        bs = bs4.BeautifulSoup(response.content, "html5lib")
+        temp = bs.select(loc)
+        self.assertEqual(temp[0].get('href'), exp)
+        return self.client.get(temp[0].get('href'))
+
     # @wd.parallel.multiply
     def test_main_nav(self):
         """Goes from page to page and verifies that URLs are correct on
         each page """
         self.updateSauceName('Pageflow: Main Navigation')
-        self.go_url()
-        self.click_places()
-        # Locate space list elements
-        firstplace = self.driver.find_element_by_css_selector(
-            'ol#scout_list li a')
-        # clicking the first place on the list
-        expLoc = firstplace.get_attribute('href')
-        firstplace.click()
-        self.assertLocation(expLoc)
-        self.click_places()
-        self.assertLocation('/food/')
-        self.click_filter()
-        self.assertLocation('/filter/')
-        self.click_home()
-        self.assertLocation('/')
+        response = self.client.get('/')
+        dest = self.checkHref('/food/', '#link_food', response)
+        dest = self.checkHref('/filter/','#link_filter', dest)
+        dest = self.checkHref('/', '#link_discover', dest)
+        dest = self.checkHref('/', '#link_home', dest)
 
     # @wd.parallel.multiply
     def test_home_exists(self):
@@ -166,65 +162,54 @@ class NavigationTest(LiveServerTestCase):
         self.updateSauceName('Pageflow: Filter URL 200')
         self.assertUrlStatus('/filter/', 200)
 
+    def returnSoup(self, url):
+        response = self.client.get(url)
+        return bs4.BeautifulSoup(response.content, "html5lib")
+
     # @wd.parallel.multiply
     def test_home_content(self):
         """Test that there is at least one place listed on the home page"""
         self.updateSauceName('Pageflow: Home Content')
-        self.go_url('/')
-        self.driver.find_element_by_id('page_discover')
-        places = self.driver.find_elements_by_class_name('scout-spot-name')
+        bs = self.returnSoup('/')
+        checkId = bs.select('#page_discover')
+        self.assertGreater(len(checkId), 0)
+        places = bs.select('.scout-spot-name')
         self.assertGreater(len(places), 0)
 
     # @wd.parallel.multiply
     def test_food_content(self):
         """Test that the content on the food page is correct"""
         self.updateSauceName('Pageflow: Food Content')
-        self.go_url('/food/')
-        self.driver.find_element_by_id('page_food')
-        filterButtons = self.driver.find_elements_by_class_name(
-            'scout-filter-results-action')
-        self.assertEqual(filterButtons[0].text, 'Filter results')
-        self.assertEqual(filterButtons[1].text, 'Reset filter')
+        bs = self.returnSoup('/food/')
+        checkId = bs.select('#page_food')
+        self.assertGreater(len(checkId), 0)
+        filterButtons = bs.select('.scout-filter-results-action')
+        self.assertEqual(filterButtons[0].getText(), 'Filter results')
+        self.assertEqual(filterButtons[1].getText(), 'Reset filter')
 
     # @wd.parallel.multiply
     def test_detail_content(self):
         """Test that the content on the detail page is correct"""
         self.updateSauceName('Pageflow: Detail Content')
-        self.go_url('/food/')
-        places = self.driver.find_elements_by_class_name('scout-spot-name')
+        bs = self.returnSoup('/food/')
+        places = bs.select('ol li a')
         # clicking the first place on the list
-        places[0].click()
-        spotName = self.driver.find_element_by_class_name('scout-spot-name')
-        tempUrl = self.driver.current_url.split('/')
-        scoutContent = self.driver.find_element_by_class_name('scout-content')
-        self.assertEqual('page_' + tempUrl[len(tempUrl) - 2], scoutContent.get_attribute('id'))
+        tempHref = places[0].get('href')
+        bs = self.returnSoup(tempHref)
+        spotName = bs.select('.scout-spot-name')
+        tempUrl = tempHref.split('/')
+        scoutContent = bs.select('.scout-content')
+        self.assertEqual('page_' + tempUrl[len(tempUrl) - 2], scoutContent[0].get('id'))
 
     # @wd.parallel.multiply
     def test_filter_content(self):
         """Test that the content on the filter page is correct"""
         self.updateSauceName('Pageflow: Filter Content')
-        self.go_url('/filter/')
-        self.driver.find_element_by_id('page_filter')
-        legends = self.driver.find_elements_by_tag_name('Legend')
-        self.assertEqual(legends[0].text, 'CAMPUS')
-
-    # @wd.parallel.multiply
-    def test_foodtab_notclickable(self):
-        """Test that once on the food/places page, the places tab
-        isn't clickable"""
-        self.updateSauceName('Pageflow: Food Tab Not-Clickable')
-        self.go_url('/food/')
-        clickable = self.driver.find_element_by_id('link_food')
-        self.assertEqual(clickable.get_attribute('disabled'), 'true')
-
-    # @wd.parallel.multiply
-    def test_discovertab_notclickable(self):
-        """Test that once on the discover/home page, the discover tab
-        isn't clickable"""
-        self.updateSauceName('Pageflow: Discover Tab Not-Clickable')
-        self.go_url('/')
-        clickable = self.driver.find_element_by_id('link_discover')
-        self.assertEqual(clickable.get_attribute('disabled'), 'true')
+        bs = self.returnSoup('/filter/')
+        checkId = bs.select('#page_filter')
+        self.assertGreater(len(checkId), 0)
+        legends = bs.select('legend')
+        self.assertEqual(legends[0].text, 'Campus')
 
     # @wd.parallel.multiply
     def test_bad_detailURL(self):
