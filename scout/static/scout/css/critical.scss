@@ -343,6 +343,15 @@ $footer-height: 40px;
     a { color: $scout-link; display: inline-block; margin-left: 8px; }
 }
 
+.scout-error {
+    .scout-error-msg { color: red; }
+    .scout-error-body { font-size: 14px; color: #222;
+        ul { list-style: circle !important; padding-left: 30px !important;
+            li { margin-bottom: 5px; color: #777; }
+        }
+        a { color: $scout-link; }
+    }
+}
 
 // accessibility & helper classes
 

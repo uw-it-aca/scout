@@ -10,7 +10,7 @@ body { overflow: hidden; }
 
 // global overrides for action links
 
-.scout-geolocation-action a, .scout-spot-action-text, .scout-coupon-action-text, .scout-filter-results-action, .scout-footer a {
+.scout-geolocation-action a, .scout-spot-action-text, .scout-coupon-action-text, .scout-filter-results-action, .scout-footer a, .scout-error a {
     text-decoration: none !important;
 
     &:hover { text-decoration: underline !important; }
