@@ -9,6 +9,7 @@ file.
 $scout-purple: #6564A8;
 $scout-button: #2ecc71;
 $scout-link: #3498db;
+$geolocation-height: 45px;
 $footer-height: 40px;
 
 // webfonts
@@ -39,25 +40,15 @@ $footer-height: 40px;
 
 // geolocation bar
 
-.scout-geolocation {
-
-    .scout-geolocation-position { font-size:14px; line-height: 45px; white-space: nowrap; padding: 0 20px 0 13px;
-
+.scout-geolocation { height: $geolocation-height;
+    .scout-geolocation-position { font-size:14px; line-height: $geolocation-height; white-space: nowrap; padding: 0 20px 0 13px;
         .fa-stack { font-size: 12px; }
         .fa-circle { color: $scout-button; }
-
-
             .scout-geolocation-location { color:#111; display: inline-block; }
             .scout-geolocation-action {  margin-left: 5px;;
-
                 a { display: inline-block; display: inline-block; color:$scout-link; text-decoration: underline; }
-
             }
-
-
-
     }
-
 }
 
 // filter results bar
@@ -382,15 +373,15 @@ hr { border: 0; height: 0; border-bottom: 1px solid #ddd; margin: 0 -20px 20px -
     font-size: 10px;
     position: relative;
     text-indent: -9999em;
-    border-top: 3px solid rgba(255, 255, 255, 0.2);
-    border-right: 3px solid rgba(255, 255, 255, 0.2);
-    border-bottom: 3px solid rgba(255, 255, 255, 0.2);
+    border-top: 3px solid rgba(255, 255, 255, 0.5);
+    border-right: 3px solid rgba(255, 255, 255, 0.5);
+    border-bottom: 3px solid rgba(255, 255, 255, 0.5);
     border-left: 3px solid $scout-purple;
     -webkit-transform: translateZ(0);
     -ms-transform: translateZ(0);
     transform: translateZ(0);
-    -webkit-animation: load8 1.1s infinite ease;
-    animation: load8 1.1s infinite ease;
+    -webkit-animation: load8 1s infinite ease;
+    animation: load8 1s infinite ease;
     overflow: hidden;
 }
 .loader,

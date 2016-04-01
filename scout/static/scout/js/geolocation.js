@@ -104,12 +104,6 @@ var Geolocation = {
             $("#shared_position").hide();
             $("#shared_position").attr("aria-hidden", "true");
 
-            $("#forget_location").hide();
-            $("#forget_location").attr("aria-hidden", "true");
-
-            $("#use_location").show();
-            $("#use_location").attr("aria-hidden", "false");
-
         } else {
 
             $("#default_position").hide();
@@ -118,11 +112,6 @@ var Geolocation = {
             $("#shared_position").show();
             $("#shared_position").attr("aria-hidden", "false");
 
-            $("#use_location").hide();
-            $("#use_location").attr("aria-hidden", "true");
-
-            $("#forget_location").show();
-            $("#forget_location").attr("aria-hidden", "false");
         }
     },
 
@@ -139,11 +128,6 @@ var Geolocation = {
             $("#default_position").hide();
             $("#default_position").attr("aria-hidden", "true");
 
-            $("#use_location").hide();
-            $("#use_location").attr("aria-hidden", "true");
-
-            $("#forget_location").show();
-            $("#forget_location").attr("aria-hidden", "false");
         });
 
         $("#forget_location").click(function(e) {
@@ -157,12 +141,6 @@ var Geolocation = {
 
             $("#default_position").show();
             $("#default_position").attr("aria-hidden", "false");
-
-            $("#forget_location").hide();
-            $("#forget_location").attr("aria-hidden", "true");
-
-            $("#use_location").show();
-            $("#use_location").attr("aria-hidden", "false");
 
         });
     }
