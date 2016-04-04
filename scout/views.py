@@ -5,6 +5,7 @@ from scout.dao.space import get_spot_list, get_spot_by_id, get_filtered_spots
 from scout.dao.space import get_spots_by_filter, get_period_filter
 from scout.dao.image import get_image
 
+
 # using red square as the default center
 DEFAULT_LAT = 47.6558539
 DEFAULT_LON = -122.3094925
@@ -132,6 +133,7 @@ def detail_view(request, spot_id):
     return render_to_response('scout/detail.html', context,
                               context_instance=RequestContext(request))
 
+
 # hybrid views
 def hybrid_list_view(request):
     if len(request.GET) > 0:
@@ -163,6 +165,7 @@ def hybrid_filter_view(request):
 def hybrid_comps_view(request):
     return render_to_response('hybridize/components.html',
                               context_instance=RequestContext(request))
+
 
 # generic views
 def image_view(request, image_id, spot_id):
