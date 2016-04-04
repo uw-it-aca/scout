@@ -1,4 +1,4 @@
-{% extends is_hybrid|yesno:"hybridize/base.html,scout/base.html" %}
+{% extends "scout/base.html" %}
 
 {% load staticfiles %}
 
@@ -47,16 +47,5 @@
     </script>
 
 </div>
-
-{% endblock %}
-
-
-{% block hybrid_content %}
-
-<div class="content-block" style="margin:5px 0;">
-	<div class="buttons-row"><a href="/?hybrid=true&x_replace_page=true&x_page_title=Scout" class="button">List</a><a href="/map/?hybrid=true&x_replace_page=true&x_page_title=Scout" class="button active">Map</a></div>
-</div>
-
-<p>This is a map.... Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non urna et lorem venenatis varius quis sit amet dui. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur a nisi odio. Integer interdum tempor ante vitae dictum. Nullam volutpat diam id odio pulvinar, vel vehicula erat sodales. Maecenas magna ante, interdum id libero et, sodales volutpat orci. </p>
 
 {% endblock %}

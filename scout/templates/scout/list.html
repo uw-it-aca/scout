@@ -1,7 +1,6 @@
-{% extends is_hybrid|yesno:"hybridize/base.html,scout/base.html" %}
+{% extends "scout/base.html" %}
 {% load staticfiles %}
 {% load scout_filters %}
-{% load compress %}
 
 {% block title %}Places to eat{% endblock %}
 
@@ -110,40 +109,4 @@
     <div class="loader" style="position:absolute; top: 50%; left: 50%; margin-left:-10px; margin-top: -10px;">Loading...</div>
 </div>
 
-{% endblock %}
-
-{% block hybrid_content %}
-
-<div class="list-block media-list">
-    <ul>
-
-        {% for spot in spots %}
-        <li>
-            <a href="detail/{{ spot.spot_id }}/?hybrid=true&x_push_page=true&x_page_title={{ spot.name|stackerize }}" class="item-link item-content">
-                <div class="item-media">
-                    <div class="scout-spot-image" style="background:url('{% static "scout/img/coffee-shop-300.jpg" %}') no-repeat center center; background-size: cover !important; width:80px; height:80px">&nbsp;</div>
-                    <!--<img src="{% static "scout/img/coffee-shop-150.jpg" %}" style="width:80px;">-->
-                </div>
-                <div class="item-inner">
-                    <div class="item-title-row">
-                        <div class="item-title">{{ spot.name }}</div>
-                    </div>
-                    <div class="item-subtitle">
-                        {% if spot.foodtype_names %}
-                            {% for foodtype in spot.foodtype_names %}
-                                <span>{{ foodtype }}</span>
-                            {% endfor %}
-                        {% else %} <span style="color:red;">foodtype</span> {% endif %}
-                    </div>
-                    <div class="item-text">
-                        <div style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{% if spot.building_name %}{{ spot.building_name }}{% else %} <span style="color:red;">missing building_name</span> {% endif %}</div>
-                        <div style="font-size:12px;">{% if spot.is_open %}<span class="open">Open now</span>{% else %}<span class="closed" style="color:#A94441;">Currently closed</span>{% endif %}</span></div>
-                    </div>
-                </div>
-            </a>
-        </li>
-        {% endfor %}
-
-    </ul>
-</div>
 {% endblock %}

@@ -132,12 +132,39 @@ def detail_view(request, spot_id):
     return render_to_response('scout/detail.html', context,
                               context_instance=RequestContext(request))
 
+# hybrid views
+def hybrid_list_view(request):
+    if len(request.GET) > 0:
+        spots = get_filtered_spots(request)
+    else:
+        spots = get_spot_list()
+    context = {"spots": spots}
+    return render_to_response('hybridize/list.html', context,
+                              context_instance=RequestContext(request))
+
+
+def hybrid_detail_view(request, spot_id):
+    spot = get_spot_by_id(spot_id)
+    context = {"spot": spot}
+    return render_to_response('hybridize/detail.html', context,
+                              context_instance=RequestContext(request))
+
+
+def hybrid_discover_view(request):
+    return render_to_response('hybridize/discover.html',
+                              context_instance=RequestContext(request))
+
+
+def hybrid_filter_view(request):
+    return render_to_response('hybridize/filter.html',
+                              context_instance=RequestContext(request))
+
 
 def hybrid_comps_view(request):
     return render_to_response('hybridize/components.html',
                               context_instance=RequestContext(request))
 
-
+# generic views
 def image_view(request, image_id, spot_id):
     width = request.GET.get('width', None)
     try:
