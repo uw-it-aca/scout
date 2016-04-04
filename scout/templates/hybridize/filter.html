@@ -303,11 +303,24 @@
 	</ul>
 </div>
 
+{% if request.is_and %}
 <div class="content-block">
 	<div class="content-block-inner">
-        <input id="run_search" type="button" value="View Results">&nbsp;&nbsp;
-        <input id="reset_button" type="button" value="Reset">
+        <p class="buttons-row">
+            <a href="javascript:void(0)" class="button button-raised">Reset</a>&nbsp;&nbsp;
+            <a href="javascript:void(0)" class="button button-fill button-raised">Submit</a>
+        </p>
 	</div>
 </div>
+{% endif %}
+
+{% if request.is_ios %}
+<div class="content-block">
+    <div class="row">
+        <div class="col-50"><a href="javascript:void(0)" class="button button-big button-fill">Submit</a></div>
+        <div class="col-50"><a href="javascript:void(0)" class="button button-big">Reset</a></div>
+    </div>
+</div>
+{% endif %}
 
 {% endblock %}
