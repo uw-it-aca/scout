@@ -1,0 +1,20 @@
+
+/*** framework7 overrides ***/
+
+.item-media {
+
+    img { border-radius: 100%; }
+}
+
+.button .ripple-wave {
+    background-color: #ff0000;
+}
+/*** android styles  ***/
+
+body { font-family: 'Roboto', sans-serif; }
+
+.scout-list {
+
+    a { color: blue !important; }
+
+}
