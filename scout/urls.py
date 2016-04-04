@@ -28,8 +28,10 @@ urlpatterns = patterns(
 
     url(r'^h/components/', 'scout.views.hybrid_comps_view',
         name='hybrid_comps_view'),
-    url(r'^h/filter/', 'scout.views.hybrid_filter_view', name='hybrid_filter_view'),
-    url(r'^h/', 'scout.views.hybrid_discover_view', name='hybrid_discover_view'),
+    url(r'^h/filter/', 'scout.views.hybrid_filter_view',
+        name='hybrid_filter_view'),
+    url(r'^h/', 'scout.views.hybrid_discover_view',
+        name='hybrid_discover_view'),
 
     # has to be last!
     url(r'^$', 'scout.views.discover_view', name='discover_view'),
