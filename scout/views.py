@@ -5,6 +5,7 @@ from scout.dao.space import get_spot_list, get_spot_by_id, get_filtered_spots
 from scout.dao.space import get_spots_by_filter, get_period_filter
 from scout.dao.image import get_image
 
+
 # using red square as the default center
 DEFAULT_LAT = 47.6558539
 DEFAULT_LON = -122.3094925
@@ -133,11 +134,40 @@ def detail_view(request, spot_id):
                               context_instance=RequestContext(request))
 
 
+# hybrid views
+def hybrid_list_view(request):
+    if len(request.GET) > 0:
+        spots = get_filtered_spots(request)
+    else:
+        spots = get_spot_list()
+    context = {"spots": spots}
+    return render_to_response('hybridize/list.html', context,
+                              context_instance=RequestContext(request))
+
+
+def hybrid_detail_view(request, spot_id):
+    spot = get_spot_by_id(spot_id)
+    context = {"spot": spot}
+    return render_to_response('hybridize/detail.html', context,
+                              context_instance=RequestContext(request))
+
+
+def hybrid_discover_view(request):
+    return render_to_response('hybridize/discover.html',
+                              context_instance=RequestContext(request))
+
+
+def hybrid_filter_view(request):
+    return render_to_response('hybridize/filter.html',
+                              context_instance=RequestContext(request))
+
+
 def hybrid_comps_view(request):
     return render_to_response('hybridize/components.html',
                               context_instance=RequestContext(request))
 
 
+# generic views
 def image_view(request, image_id, spot_id):
     width = request.GET.get('width', None)
     try:

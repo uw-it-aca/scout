@@ -1,0 +1,157 @@
+{% extends "hybridize/base.html" %}
+{% load staticfiles %}
+{% load scout_filters %}
+
+{% block title %}{{spot.name}}{% endblock %}
+
+{% block hybrid_content %}
+
+<div class="card">
+
+    {% if spot.images %}
+    <div style="background:url('/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}?width=500') center center no-repeat; background-size:contain; height:200px;" valign="bottom" class="card-header">{{spot.name}}</div>
+    {% else %}
+    <div class="scout-spot-image" style="background: #e5e6e9 url('{% static "scout/img/placeholder-1000.png" %}') no-repeat center center; background-size: contain;">
+    {% endif %}
+
+
+
+    <div class="card-content">
+        <div class="card-content-inner">
+
+            {% if spot.has_alert %}
+            <p>
+                ALERT
+                <br/> {{ spot.alert_notes }}
+            </p>
+            {% endif %}
+
+            <p>type: {% for type in spot.spot_types %}
+                {{ type.name }}
+               {% endfor %}
+            </p>
+
+            <p>{{spot.building_description}}</p>
+
+            <h4>Hours</h4>
+
+            <ul>
+                <li>Monday: {% for hours in spot.hours.monday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
+                <li>Tuesday: {% for hours in spot.hours.tuesday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
+                <li>Wednesday: {% for hours in spot.hours.wednesday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
+                <li>Thursday: {% for hours in spot.hours.thursday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
+                <li>Friday: {% for hours in spot.hours.friday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
+                <li>Saturday: {% for hours in spot.hours.saturday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
+                <li>Sunday: {% for hours in spot.hours.sunday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
+            </ul>
+
+            {% if spot.hours_notes %}
+            <p>Hours Notes:</p>
+            <ul>
+                <li>{{spot.hours_notes}}</li>
+            </ul>
+            {% endif %}
+
+
+            <h4>Location information</h4>
+            <ul>
+                <li>{{ spot.latitude }}</li>
+                <li>{{ spot.longitude }}</li>
+                <li>{{ spot.building_name }}</li>
+                <li>{{ spot.floor }}</li>
+                <li>{{ spot.room_number }}</li>
+                <li>{{ spot.capacity }}</li>
+            </ul>
+            {% if spot.access_notes %}
+            <p>Access Notes</p>
+            <ul>
+                <li>{{spot.access_notes}}</li>
+            </ul>
+            {% endif %}
+            <h4>Misc. information</h4>
+            <ul>
+                {% if spot.has_coupon %} <li>{{ spot.has_coupon }}</li>{% endif %}
+                {% if spot.coupon_expiration %} <li>{{ spot.coupon_expiration }}</li>{% endif %}
+                {% if spot.coupon_url %} <li>{{ spot.coupon_url }}</li>{% endif %}
+                {% if spot.website_url %} <li>{{ spot.website_url }}</li>{% endif %}
+            </ul>
+
+            <h4>Management</h4>
+            <p>this location is managed by...</p>
+            <ul>
+                <li>{{ spot.organization }}</li>
+                <li>{{ spot.manager }}</li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+
+<div class="content-block-title">Open for:</div>
+<div class="list-block">
+    <ul>
+        {% for period in spot.open_periods %}
+        <li class="item-content">
+            <div class="item-inner">
+                <div class="item-title">{{ period }}</div>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<div class="content-block-title">Cuisine:</div>
+<div class="list-block">
+    <ul>
+        {% for cuisinetype in spot.cuisinetype_names %}
+        <li class="item-content">
+            <div class="item-inner">
+                <div class="item-title">{{ cuisinetype }}</div>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<div class="content-block-title">Food Served:</div>
+<div class="list-block">
+    <ul>
+        {% for foodtype in spot.foodtype_names %}
+        <li class="item-content">
+            <div class="item-inner">
+                <div class="item-title">{{ foodtype }}</div>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<div class="content-block-title">Payment Accepted:</div>
+<div class="list-block">
+    <ul>
+        {% for payment in spot.payment_names %}
+        <li class="item-content">
+            <div class="item-inner">
+                <div class="item-title">{{ payment }}</div>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<div class="content-block-title">Getting Here</div>
+<div class="list-block">
+    <ul>
+        <li>
+            <a href="maps://maps.apple.com/maps?q={{ spot.latitude }},{{ spot.longitude }}" class="item-link">
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">Open in Google Maps</div>
+                    </div>
+                </div>
+            </a>
+        </li>
+    </ul>
+</div>
+
+{% endblock %}

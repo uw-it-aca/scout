@@ -20,9 +20,18 @@ urlpatterns = patterns(
     url(r'^filter/', 'scout.views.filter_view', name='filter_view'),
     url(r'^images/(?P<spot_id>\d+)/image/(?P<image_id>\d+)', views.image_view),
 
-    # example hybrid components
-    url(r'^components/', 'scout.views.hybrid_comps_view',
+    # hybrid urls
+    url(r'^h/food/$', 'scout.views.hybrid_list_view', name='hybrid_list_view'),
+
+    url(r'^h/detail/(?P<spot_id>[0-9]{1,5})/$',
+        'scout.views.hybrid_detail_view', name='hybrid_detail_view'),
+
+    url(r'^h/components/', 'scout.views.hybrid_comps_view',
         name='hybrid_comps_view'),
+    url(r'^h/filter/', 'scout.views.hybrid_filter_view',
+        name='hybrid_filter_view'),
+    url(r'^h/', 'scout.views.hybrid_discover_view',
+        name='hybrid_discover_view'),
 
     # has to be last!
     url(r'^$', 'scout.views.discover_view', name='discover_view'),

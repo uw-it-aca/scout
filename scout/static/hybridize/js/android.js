@@ -1,14 +1,22 @@
 // Initialize your app
 
 
-$(function() {
+$(document).on('turbolinks:load', function() {
 
+    console.log("turbolinks fired!");
+
+    // initialize framework7
     var myApp = new Framework7({
 	    router: false,
 		material: true,
 		fastClicks: true,
 		activeState: true,
 	});
-    
+
+    // Include filter js if on filter page
+	if(window.location.href.indexOf("/filter/") > -1){
+		$.getScript('/static/scout/js/filter.js');
+	}
+
 
 });
