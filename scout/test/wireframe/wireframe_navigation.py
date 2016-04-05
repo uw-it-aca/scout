@@ -71,17 +71,17 @@ class WireframeTest(LiveServerTestCase):
         self.go_url('/food/')
         page = pages.PlacesPage(self.driver)
         page.click_place(2)
-        self.assertEqual(page.foodName.text, 'AHHH')
+        self.assertEqual(page.foodName.text, 'Husky Grind at District Market')
 
     def test_aHome(self):
         self.go_url('/')
         home_page = pages.HomePage(self.driver)
-        home_page.clickResults('breakfast')
+        home_page.click_results('breakfast')
 
     def test_ahelp(self):
         self.go_url('/detail/3')
         detail_page = pages.DetailsPage(self.driver)
-        self.assertEqual(detail_page.openStatus.text, "OPEN NOW")
+        self.assertEqual(detail_page.openStatus.text, "CLOSED")
 
     # SCOUT-8, testing to see if user can bring up list of b-fast places by clicking view more results
     def test_breakfast(self):
@@ -92,15 +92,6 @@ class WireframeTest(LiveServerTestCase):
         page.click_results('breakfast')
         self.assertEqual(page.filterBy.text, "Open Period")
         self.assertEqual(page.placesCount.text, "4")
-
-    # testing to see if user can bring up list of coupon places by clicking view more results
-    def test_coupons(self):
-
-        self.updateSauceName("Wireframe: Coupons")
-        self.go_url()
-        page = pages.HomePage(self.driver)
-        page.click_results('coupon')
-        self.assertEqual(page.placesCount.text, "2")
 
     # testing to see if user can click on a place and then see more details from the home page
     def test_details(self):

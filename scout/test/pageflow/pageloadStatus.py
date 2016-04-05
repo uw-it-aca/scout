@@ -52,6 +52,14 @@ class UrlStatusTest(LiveServerTestCase):
         """Test an invalid URL and see if it results in a 404"""
         # Bad URL
         self.assertUrlStatus('/LSFDLK/', 404)
+        self.assertUrlStatus('/foood/', 404)
+
+    def test_filter_searchURL(self):
+        """Test filter search URL's and see if they result in a 200"""
+        self.assertUrlStatus('/food/?open_now=true', 200)
+        self.assertUrlStatus('/food/?food0=s_food_espresso', 200)
+        self.assertUrlStatus('/food/?period0=breakfast', 200)
+        self.assertUrlStatus('/food/?period0=late_night', 200)
 
     # uncomment for debugging
     # @unittest.expectedFailure
