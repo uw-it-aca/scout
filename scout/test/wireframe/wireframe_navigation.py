@@ -98,46 +98,26 @@ class WireframeTest(LiveServerTestCase):
 
         self.updateSauceName("Wireframe: Coupons")
         self.go_url()
-        tryit = self.driver.find_element_by_xpath("//div[@id='coupon']/div[@class='scout-card scout-discover-content']/ol/li[3]/a[@class='scout-spot-discover-action']/span[@class='scout-spot-action-text']")
-        tryit.click()
-        results = self.driver.find_element_by_class_name("scout-filter-results-count")
-        self.assertEqual(results.text, "2")
+        page = pages.HomePage(self.driver)
+        page.click_results('coupon')
+        self.assertEqual(page.placesCount.text, "2")
 
     # testing to see if user can click on a place and then see more details from the home page
     def test_details(self):
 
         self.updateSauceName("Wireframe: Details")
         self.go_url()
-        tryit = self.driver.find_element_by_xpath("//div[@id='open']/div[@class='scout-card scout-discover-content']/ol/li[1]/a[@class='clearfix']/span[@class='scout-spot-name']")
-        tryit.click()
-        name = self.driver.find_element_by_class_name("scout-spot-name")
-        food_type = self.driver.find_element_by_class_name("scout-spot-type")
-        self.assertEqual(name.text, "Banh & Naan, Husky Den")
-        self.assertEqual(food_type.text, "FOOD COURT")
+        page = pages.HomePage(self.driver)
+        page.click_place('open', 2)
+        self.assertEqual(page.foodName.text, "Banh & Naan, Husky Den")
+        self.assertEqual(page.foodType.text, "FOOD COURT")
 
     # testing to see if user can click on a place and then see more details from the "places" page
     def test_details2(self):
 
         self.updateSauceName("Wireframe: Details2")
-        self.go_url()
-        self.click_food()
-        tryit = self.driver.find_element_by_xpath("//div[@id='content']/div[@class='scout-list-container']/ol[@id='scout_list']/li[@id='3']/a[@class='clearfix']/div[@class='scout-spot-content']/div/h3[@class='scout-spot-name']")
-        tryit.click()
-        name = self.driver.find_element_by_class_name("scout-spot-name")
-        food_type = self.driver.find_element_by_class_name("scout-spot-type")
-        self.assertEqual(name.text, "Truck of Food")
-        self.assertEqual(food_type.text, "FOOD TRUCK")
-
-    # testing to see if it can go to the correct external url
-    def test_getWebsite(self):
-
-        self.updateSauceName("Wireframe: Get Website")
-        self.go_url()
-        self.click_food()
-        tryit = self.driver.find_element_by_xpath("//div[@id='content']/div[@class='scout-list-container']/ol[@id='scout_list']/li[@id='3']/a[@class='clearfix']/div[@class='scout-spot-content']/div/h3[@class='scout-spot-name']")
-        tryit.click()
-        website = self.driver.find_elements_by_class_name("scout-spot-action-text")
-        website[1].click()
-        self.driver.implicitly_wait(2)
-        # wait... is this the best way to wait?
-        self.assertEqual(self.driver.current_url, website[1].text)
+        self.go_url('/food/')
+        page = pages.PlacesPage(self.driver)
+        page.click_place(3)
+        self.assertEqual(page.foodName.text, "Banh & Naan, Husky Den")
+        self.assertEqual(page.foodType.text, "FOOD COURT")

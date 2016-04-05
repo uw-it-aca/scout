@@ -155,10 +155,6 @@ class PlacesPage(BasePage):
         return self.driver.find_elements_by_xpath(
             "//div[@class='scout-list-container']/ol[@id='scout_list']/li")
 
-    def click_home(self):
-        self.homeLogo.click()
-        self._become_home()
-
     def reset_filters(self):
         self.filterReset.click()
 
