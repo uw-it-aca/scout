@@ -69,8 +69,9 @@ class WireframeTest(LiveServerTestCase):
 
     def test_aa(self):
         self.go_url('/food/')
-        places_page = pages.PlacesPage(self.driver)
-        places_page.click_place(2)
+        page = pages.PlacesPage(self.driver)
+        page.click_place(2)
+        self.assertEqual(page.foodName.text, 'AHHH')
 
     def test_aHome(self):
         self.go_url('/')
@@ -87,12 +88,10 @@ class WireframeTest(LiveServerTestCase):
 
         self.updateSauceName("Wireframe: Breakfast")
         self.go_url()
-        tryit = self.driver.find_element_by_xpath("//div[@id='breakfast']/div[@class='scout-card scout-discover-content']/ol/li[5]/a[@class='scout-spot-discover-action']/span[@class='scout-spot-action-text']")
-        tryit.click()
-        tester = self.driver.find_element_by_class_name("scout-filter-results-text")
-        self.assertEqual(tester.text, "Open Period")
-        results = self.driver.find_element_by_class_name("scout-filter-results-count")
-        self.assertEqual(results.text, "4")
+        page = pages.HomePage(self.driver)
+        page.click_results('breakfast')
+        self.assertEqual(page.filterBy.text, "Open Period")
+        self.assertEqual(page.placesCount.text, "4")
 
     # testing to see if user can bring up list of coupon places by clicking view more results
     def test_coupons(self):

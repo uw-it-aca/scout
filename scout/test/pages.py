@@ -143,6 +143,10 @@ class PlacesPage(BasePage):
         return self.driver.find_element_by_id('link_filter')
 
     @property
+    def filterBy(self):
+        return self.driver.find_element_by_class_name('scout-filter-results-text')
+
+    @property
     def placesCount(self):
         return self.driver.find_element_by_class_name('scout-filter-results-count')
 
@@ -153,14 +157,14 @@ class PlacesPage(BasePage):
 
     def click_home(self):
         self.homeLogo.click()
-        return HomePage(self.driver)
+        self._become_home()
 
     def reset_filters(self):
         self.filterReset.click()
 
     def get_filters(self):
         self.filterResults.click()
-        return FilterPage(self.driver)
+        self._become_filter()
 
     def click_place(self, num=0):
         try:
