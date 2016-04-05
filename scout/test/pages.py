@@ -32,7 +32,7 @@ class BasePage(object):
         self.placesTab.click()
         self._become_places()
 
-    def _become_home(self):
+    def _become(self):
         self.__class__ = HomePage
 
     def _become_places(self):
@@ -154,6 +154,12 @@ class PlacesPage(BasePage):
     def placesList(self):
         return self.driver.find_elements_by_xpath(
             "//div[@class='scout-list-container']/ol[@id='scout_list']/li")
+
+    def placesName(self, num=0):
+        return self.driver.find_element_by_xpath(
+            "//div[@class='scout-list-container']/ol[@id='scout_list']\
+            /li[@id=%s]/a[@class='clearfix']/div[@class='scout-spot-content']\
+            /div/h3[@class='scout-spot-name']" % str(num))
 
     def reset_filters(self):
         self.filterReset.click()

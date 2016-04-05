@@ -83,6 +83,11 @@ class WireframeTest(LiveServerTestCase):
         detail_page = pages.DetailsPage(self.driver)
         self.assertEqual(detail_page.openStatus.text, "CLOSED")
 
+    def test_name(self):
+        self.go_url('/food/')
+        page = pages.PlacesPage(self.driver)
+        self.assertEqual(page.placesName(2).text, "test")
+
     # SCOUT-8, testing to see if user can bring up list of b-fast places by clicking view more results
     def test_breakfast(self):
 
