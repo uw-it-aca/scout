@@ -4,7 +4,9 @@ A simple functional headless UI test with pyvirtualdisplay and selenium
 
 import os
 import sys
-from pages import pages
+import os.path
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+import pages
 
 from selenium import webdriver
 from django.test import LiveServerTestCase
