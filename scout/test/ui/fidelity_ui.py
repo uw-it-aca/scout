@@ -82,5 +82,5 @@ class UITest(LiveServerTestCase):
         self.updateSauceName('UI: Filter Cash')
         self.go_url('/filter/')
         page = pages.FilterPage(self.driver)
-        page.setFilters({'CAMPUS': {'seattle': True}, 'OPEN PERIOD': {'open_now': True}})
+        page.setFilters({'PAYMENT ACCEPTED': {'cash': True}})
         page.search()

@@ -13,4 +13,3 @@ if USERNAME and ACCESS_KEY:
     from scout.test.pageflow.navigation import MainNavigationTest
     from scout.test.pageflow.pageloadStatus import UrlStatusTest
     from scout.test.pageflow.content import ContentTest
-

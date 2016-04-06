@@ -210,7 +210,10 @@ class FilterPage(BasePage):
             checkboxes = self.getFilterOptions(section)
             for name, check in boxes.items():
                 if check:
-                    checkboxes[name].click()
+                    try:
+                        checkboxes[name].click()
+                    except KeyError:
+                        raise FilterKeyError(name, checkboxes)
 
     def search(self):
         self.viewButton.click()
@@ -218,6 +221,11 @@ class FilterPage(BasePage):
 
     def reset(self):
         self.resetButton.click()
+
+class FilterKeyError(KeyError):
+    def __init__(self, key, filters):
+        out = "Potential filters " + ' '.join(filters.keys()) + " doesn't contain " + key
+        super(FilterKeyError, self).__init__(out)
 
 class DetailsPage(BasePage):
 
