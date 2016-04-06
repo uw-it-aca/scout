@@ -159,7 +159,7 @@ class PlacesPage(BasePage):
         return self.driver.find_element_by_xpath(
             "//div[@class='scout-list-container']/ol[@id='scout_list']\
             /li[@id=%s]/a[@class='clearfix']/div[@class='scout-spot-content']\
-            /div/h3[@class='scout-spot-name']" % str(num))
+            /div/h3[@class='scout-spot-name']" % num)
 
     def reset_filters(self):
         self.filterReset.click()
@@ -186,19 +186,31 @@ class FilterPage(BasePage):
     def viewButton(self):
         return self.driver.find_element_by_id('run_search')
 
-    @property
-    def seattleBox(self):
-        return self.driver.find_element_by_name('seattle')
+    def getFilterSections(self):
+        sects = self.driver.find_elements_by_css_selector('div.scout-card fieldset')
+        results = {}
+        for sect in sects:
+            name = sect.find_element_by_tag_name('legend').text
+            results[name] = sect
+        return results
 
-    @property
-    def openNowBox(self):
-        return self.driver.find_element_by_name('open_now')
+    @staticmethod
+    def getFilterOptions(section):
+        checkboxes = section.find_elements_by_tag_name('input')
+        results = {}
+        for box in checkboxes:
+            name = box.get_attribute('value')
+            results[name] = box
+        return results
 
-    def click_seattleBox(self):
-        self.seattleBox.click()
-
-    def click_openNow(self):
-        self.openNowBox.click()
+    def setFilters(self, filters={}):
+        sections = self.getFilterSections()
+        for label, boxes in filters.items():
+            section = sections[label]
+            checkboxes = self.getFilterOptions(section)
+            for name, check in boxes.items():
+                if check:
+                    checkboxes[name].click()
 
     def search(self):
         self.viewButton.click()
