@@ -10,7 +10,6 @@ import unittest
 import copy
 import urllib2
 
-from selenium import webdriver
 # import wd.parallel
 from django.test import LiveServerTestCase
 from django.test import Client
