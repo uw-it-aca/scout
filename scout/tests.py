@@ -10,6 +10,6 @@ ACCESS_KEY = getattr(settings, 'SAUCE_ACCESS_KEY', False)
 
 if USERNAME and ACCESS_KEY:
     from scout.test.navigation import NavigationTest
-    from scout.test.fidelity_ui import UITest
+    from scout.test.ui.fidelity_ui import UITest
     from scout.test.wireframe.wireframe_navigation import WireframeTest
 
