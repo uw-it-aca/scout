@@ -29,7 +29,7 @@ ACCESS_KEY = getattr(settings, 'SAUCE_ACCESS_KEY', False)
 sauce_client = SauceClient(USERNAME, ACCESS_KEY)
 
 
-class UITest(LiveServerTestCase):
+class FilterTest(LiveServerTestCase):
     """UI test set for scout"""
 
     def setUp(self):

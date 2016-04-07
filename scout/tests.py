@@ -8,7 +8,7 @@ ACCESS_KEY = getattr(settings, 'SAUCE_ACCESS_KEY', False)
 
 if USERNAME and ACCESS_KEY:
     from scout.test.navigation import NavigationTest
-    from scout.test.ui.fidelity_ui import UITest
+    from scout.test.ui.filter import FilterTest
     from scout.test.wireframe.wireframe_navigation import WireframeTest
     from scout.test.pageflow.navigation import MainNavigationTest
     from scout.test.pageflow.pageloadStatus import UrlStatusTest
