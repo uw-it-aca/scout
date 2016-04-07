@@ -21,14 +21,17 @@ class BasePage(object):
         return self.driver.find_element_by_id('link_food')
 
     def click_home(self):
+        """Clicks home logo"""
         self.homeLogo.click()
         self._become_home()
 
     def click_discovertab(self):
+        """Clicks discover tab"""
         self.discoverTab.click()
         self._become_home()
 
     def click_placestab(self):
+        """Clicks places tab"""
         self.placesTab.click()
         self._become_places()
 
@@ -97,6 +100,8 @@ class HomePage(BasePage):
             "//div[@id='coupon']//a[@class='scout-spot-discover-action']")
 
     def click_place(self, food_type='open', num=0):
+        """Given a category and a number, clicks the respective ranked place
+        within that category (the first result being 0)"""
         food_types = {
             'open': self.openNearbyList,
             'coffee': self.coffeeList,
@@ -115,6 +120,8 @@ class HomePage(BasePage):
         # return DetailPage(self.driver)
 
     def click_results(self, food='open'):
+        """Given a category, clicks the view more results link
+        of that category"""
         linkLists = {
             'open': self.openNearbyView,
             'coffee': self.coffeeView,
@@ -156,18 +163,23 @@ class PlacesPage(BasePage):
             "//div[@class='scout-list-container']/ol[@id='scout_list']/li")
 
     def placesName(self, num=0):
+        """Returns the name element of the given
+        numbered place on the places list"""
         place = self.placesList[num]
         placeName = place.find_element_by_class_name('scout-spot-name')
         return placeName
 
     def reset_filters(self):
+        """Clicks the reset filter link"""
         self.filterReset.click()
 
     def get_filters(self):
+        """Clicks the Filter Results link"""
         self.filterResults.click()
         self._become_filter()
 
     def click_place(self, num=0):
+        """Given the num, clicks the respective place on the places list"""
         try:
             self.placesList[num].click()
         except IndexError:
@@ -186,6 +198,8 @@ class FilterPage(BasePage):
         return self.driver.find_element_by_id('run_search')
 
     def getFilterSections(self):
+        """Returns a dictionary that maps the filter category names with the
+        element that contains all the checkboxes"""
         sects = self.driver.find_elements_by_css_selector('div.scout-card fieldset')
         results = {}
         for sect in sects:
@@ -195,6 +209,8 @@ class FilterPage(BasePage):
 
     @staticmethod
     def getFilterOptions(section):
+        """Given an element, returns a dictionary that maps the checkbox labels
+        with the input elements"""
         checkboxes = section.find_elements_by_tag_name('input')
         results = {}
         for box in checkboxes:
@@ -203,6 +219,8 @@ class FilterPage(BasePage):
         return results
 
     def setFilters(self, filters={}):
+        """Given a dictionary containing which filters should be clicked, clicks
+        those respective filters"""
         sections = self.getFilterSections()
         for label, boxes in filters.items():
             try:
@@ -218,10 +236,12 @@ class FilterPage(BasePage):
                         raise FilterKeyError(name, checkboxes)
 
     def search(self):
+        """Clicks the View Results button"""
         self.viewButton.click()
         self._become_places()
 
     def reset(self):
+        """Clicks the reset button"""
         self.resetButton.click()
 
 class FilterKeyError(KeyError):
