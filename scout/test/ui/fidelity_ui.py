@@ -9,8 +9,9 @@ import sys
 import unittest
 import copy
 import os
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-import pages
+#sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+#import pages
+from .. import pages
 
 from selenium import webdriver
 # import wd.parallel
@@ -76,11 +77,64 @@ class UITest(LiveServerTestCase):
             sauce_client.jobs.update_job(self.driver.session_id, name=name)
 
     # @wd.parallel.multiply
-    def test_filter_cash(self):
-        """Goes from page to page and verifies that URLs are correct on
-        each page """
+    def test_filter_set1(self):
+        """Filters out the foods that accept cash, asserts the
+        right data of places show up"""
         self.updateSauceName('UI: Filter Cash')
         self.go_url('/filter/')
         page = pages.FilterPage(self.driver)
-        page.setFilters({'PAYMENT ACCEPTED': {'cash': True}})
+        page.setFilters({'PAYMENT ACCEPTED': {'s_pay_cash': True}})
         page.search()
+        self.assertEqual(page.placesCount.text, '4')
+
+    def test_filter_set2(self):
+        """Filters out the foods that accept cash and serve American
+        cuisine asserts the right data of places show up"""
+        self.updateSauceName('UI: Filter Cash + American')
+        self.go_url('/filter/')
+        page = pages.FilterPage(self.driver)
+        page.setFilters({
+            'PAYMENT ACCEPTED': {'s_pay_cash': True},
+            'CUISINE': {'s_cuisine_american': True}
+        })
+        page.search()
+        self.assertEqual(page.placesCount.text, '2')
+
+    def test_filter_set3(self):
+        """Filters out the food truck, asserts the right data shows up"""
+        self.updateSauceName('UI: Filter Food Truck')
+        self.go_url('/filter/')
+        page = pages.FilterPage(self.driver)
+        page.setFilters({'TYPE': {'food_truck': True}})
+        page.search()
+        self.assertEqual(page.placesCount.text, '1')
+        self.assertEqual(page.placesName(0).text, 'Truck of Food')
+
+
+    def test_filter_set4(self):
+        """Filters out the foods that are open now, accept husky/master cards
+        and serves burgers"""
+        self.updateSauceName('UI: Open + HuskyCard + MasterCard + Burgers')
+        self.go_url('/filter/')
+        page = pages.FilterPage(self.driver)
+        page.setFilters({
+            'PAYMENT ACCEPTED': {'s_pay_husky': True, 's_pay_mastercard': True},
+            'FOOD SERVED': {'s_food_burgers': True},
+            'OPEN PERIOD': {'open_now': True}
+        })
+        page.search()
+        self.assertEqual(page.placesCount.text, '3')
+
+    def test_filter_set5(self):
+        """Filters out the places that are in the Seattle Campus, Cafes, and
+        open for breakfast"""
+        self.updateSauceName('UI: Seattle + Cafe + Breakfast')
+        self.go_url('/filter/')
+        page = pages.FilterPage(self.driver)
+        page.setFilters({
+            'CAMPUS': {'seattle': True},
+            'TYPE': {'cafe': True},
+            'OPEN PERIOD': {'breakfast': True}
+        })
+        page.search()
+        self.assertEqual(page.placesCount.text, '2')

@@ -156,10 +156,9 @@ class PlacesPage(BasePage):
             "//div[@class='scout-list-container']/ol[@id='scout_list']/li")
 
     def placesName(self, num=0):
-        return self.driver.find_element_by_xpath(
-            "//div[@class='scout-list-container']/ol[@id='scout_list']\
-            /li[@id=%s]/a[@class='clearfix']/div[@class='scout-spot-content']\
-            /div/h3[@class='scout-spot-name']" % num)
+        place = self.placesList[num]
+        placeName = place.find_element_by_class_name('scout-spot-name')
+        return placeName
 
     def reset_filters(self):
         self.filterReset.click()
@@ -172,7 +171,7 @@ class PlacesPage(BasePage):
         try:
             self.placesList[num].click()
         except IndexError:
-                raise PlaceIndexError(num, self.placesList)
+            raise PlaceIndexError(num, self.placesList)
         else:
             self._become_detail()
 
@@ -206,7 +205,10 @@ class FilterPage(BasePage):
     def setFilters(self, filters={}):
         sections = self.getFilterSections()
         for label, boxes in filters.items():
-            section = sections[label]
+            try:
+                section = sections[label]
+            except KeyError:
+                raise FilterKeyError(label, sections)
             checkboxes = self.getFilterOptions(section)
             for name, check in boxes.items():
                 if check:
@@ -224,7 +226,9 @@ class FilterPage(BasePage):
 
 class FilterKeyError(KeyError):
     def __init__(self, key, filters):
-        out = "Potential filters " + ' '.join(filters.keys()) + " doesn't contain " + key
+        # out = 'Potential filters: ' + ' '.join(filters.keys()) + ' doesn\'t contain ' + key
+        flist = ' '.join(filters.keys())
+        out = 'Desired filter %s not found in available filters (%s)' %(key, flist)
         super(FilterKeyError, self).__init__(out)
 
 class DetailsPage(BasePage):
