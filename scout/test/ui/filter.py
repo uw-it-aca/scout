@@ -1,7 +1,7 @@
 #!/usr/bin/python
 """
-A simple functional headless UI test with pyvirtualdisplay and selenium
-Links and URLS
+Tests several filters and determines if the right data
+appears on the Places Page
 """
 
 import bs4

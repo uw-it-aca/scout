@@ -1,7 +1,7 @@
 #!/usr/bin/python
 """
-A simple functional headless UI test with pyvirtualdisplay and selenium
-Links and URLS
+Tests the contents of each page, making sure the
+structure of the page is correct
 """
 
 import bs4

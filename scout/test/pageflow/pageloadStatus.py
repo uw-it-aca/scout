@@ -1,7 +1,6 @@
 #!/usr/bin/python
 """
-A simple functional headless UI test with pyvirtualdisplay and selenium
-Links and URLS
+Tests pages and their respective URL status codes
 """
 
 import sys

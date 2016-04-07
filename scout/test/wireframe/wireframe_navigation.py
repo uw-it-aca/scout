@@ -1,12 +1,12 @@
+#!/usr/bin/python
 """
-A simple functional headless UI test with pyvirtualdisplay and selenium
+Tests the Wireframe
 """
 
 import os
 import sys
 import os.path
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-import pages
+from .. import pages
 
 from selenium import webdriver
 from django.test import LiveServerTestCase
