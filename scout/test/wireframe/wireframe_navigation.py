@@ -32,7 +32,7 @@ class WireframeTest(LiveServerTestCase):
         }
 
         self.driver = webdriver.Remote(
-            command_executor='http://'+USERNAME+':'+ACCESS_KEY+'@ondemand.saucelabs.com:80/wd/hub',
+            command_executor='http://%s:%s@ondemand.saucelabs.com:80/wd/hub' % (USERNAME, ACCESS_KEY),
             desired_capabilities=self.desired_cap)
 
         self.driver.implicitly_wait(20)
@@ -67,29 +67,9 @@ class WireframeTest(LiveServerTestCase):
         finally:
             self.driver.quit()
 
-    def test_aa(self):
-        self.go_url('/food/')
-        page = pages.PlacesPage(self.driver)
-        page.click_place(2)
-        self.assertEqual(page.foodName.text, 'Husky Grind at District Market')
-
-    def test_aHome(self):
-        self.go_url('/')
-        home_page = pages.HomePage(self.driver)
-        home_page.click_results('breakfast')
-
-    def test_ahelp(self):
-        self.go_url('/detail/3')
-        detail_page = pages.DetailsPage(self.driver)
-        self.assertEqual(detail_page.openStatus.text, "CLOSED")
-
-    def test_name(self):
-        self.go_url('/food/')
-        page = pages.PlacesPage(self.driver)
-        self.assertEqual(page.placesName(2).text, "test")
-
-    # SCOUT-8, testing to see if user can bring up list of b-fast places by clicking view more results
     def test_breakfast(self):
+    """SCOUT-8, testing to see if user can bring up list of b-fast
+    places by clicking view more results"""
 
         self.updateSauceName("Wireframe: Breakfast")
         self.go_url()
@@ -98,8 +78,9 @@ class WireframeTest(LiveServerTestCase):
         self.assertEqual(page.filterBy.text, "Open Period")
         self.assertEqual(page.placesCount.text, "4")
 
-    # testing to see if user can click on a place and then see more details from the home page
     def test_details(self):
+    """testing to see if user can click on a place and then see more
+    details from the home page"""
 
         self.updateSauceName("Wireframe: Details")
         self.go_url()
@@ -108,8 +89,10 @@ class WireframeTest(LiveServerTestCase):
         self.assertEqual(page.foodName.text, "Banh & Naan, Husky Den")
         self.assertEqual(page.foodType.text, "FOOD COURT")
 
-    # testing to see if user can click on a place and then see more details from the "places" page
+
     def test_details2(self):
+    """testing to see if user can click on a place and then see more
+    details from the "places" page"""
 
         self.updateSauceName("Wireframe: Details2")
         self.go_url('/food/')
