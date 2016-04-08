@@ -164,12 +164,14 @@ class FilterTest(LiveServerTestCase):
 
     def test_filter_remembered(self):
         """Filters out the places that accept cash, searches, returns to filter page
-        to add a filter of American Cuisine, searches (cash should still be checked off"""
+        to add a filter of American Cuisine, searches (cash should still be checked off)"""
         self.updateSauceName('UI: Filter Remembered')
         self.go_url('/filter/')
         page = pages.FilterPage(self.driver)
         page.setFilters({'PAYMENT ACCEPTED': {'s_pay_cash': True}})
         page.search()
+        page.click_home()
+        page.click_placestab()
         page.get_filters()
         page.setFilters({'CUISINE': {'s_cuisine_american': True}})
         page.search()
