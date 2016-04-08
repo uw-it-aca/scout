@@ -177,3 +177,16 @@ class FilterTest(LiveServerTestCase):
         page.search()
         self.assertEqual(page.placesNum, 2)
         self.assertEqual(page.filterBy.text, 'Payment Accepted, Cuisine')
+
+    def test_filter_vs_viewmoreresults(self):
+        self.updateSauceName('UI: Filter vs. View More Results')
+        self.go_url('/filter/')
+        page = pages.FilterPage(self.driver)
+        page.setFilters({'PAYMENT ACCEPTED': {'s_pay_cash': True}})
+        page.search()
+        page.click_home()
+        page.click_results('breakfast')
+        page.get_filters()
+        page.search()
+        self.assertEqual(page.filterBy.text, 'Payment Accepted')
+        # PAYMENT ACCEPTED OR BREAKFAST WHICH ONE IS THE EXPECTED ONE

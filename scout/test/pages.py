@@ -35,7 +35,7 @@ class BasePage(object):
         self.placesTab.click()
         self._become_places()
 
-    def _become(self):
+    def _become_home(self):
         self.__class__ = HomePage
 
     def _become_places(self):
