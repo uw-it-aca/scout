@@ -37,23 +37,8 @@ class AdvNavigationTest(LiveServerTestCase):
 
         self.driver.implicitly_wait(20)
 
-    def click_id(self, elid):
-        self.driver.find_element_by_id(elid).click()
-
     def go_url(self, urlsuffix = ''):
         self.driver.get(self.baseurl + urlsuffix)
-
-    def click_food(self):
-        self.click_id('link_food')
-
-    def click_discover(self):
-        self.click_id('link_discover')
-
-    def click_home(self):
-        self.click_id('link_home')
-
-    def click_filter(self):
-        self.click_id('link_filter')
 
     def updateSauceName(self, name):
         sauce_client.jobs.update_job(self.driver.session_id, name=name)
