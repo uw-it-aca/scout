@@ -52,6 +52,47 @@ class AdvNavigationTest(LiveServerTestCase):
         finally:
             self.driver.quit()
 
+    def test_privacy(self):
+        """Accesses the privacy from the home page"""
+        self.updateSauceName("Wireframe: Privacy from Home")
+        self.go_url()
+        page = pages.HomePage(self.driver)
+        page.click_privacy()
+        self.assertEqual('http://www.washington.edu/online/privacy/', self.driver.current_url)
+
+    def test_privacy2(self):
+        """Accesses the privacy from the places page"""
+        self.updateSauceName("Wireframe: Privacy from Places Page")
+        self.go_url('/food/')
+        page = pages.PlacesPage(self.driver)
+        page.click_privacy()
+        self.assertEqual('http://www.washington.edu/online/privacy/', self.driver.current_url)
+
+    def test_terms(self):
+        """Accesses the terms from the home page"""
+        self.updateSauceName("Wireframe: Terms from Home")
+        self.go_url()
+        page = pages.HomePage(self.driver)
+        page.click_terms()
+        self.assertEqual('http://www.washington.edu/online/terms/', self.driver.current_url)
+
+    def test_terms2(self):
+        """Accesses the terms from the filter page"""
+        self.updateSauceName("Wireframe: Terms from Filter")
+        self.go_url('/filter/')
+        page = pages.FilterPage(self.driver)
+        page.click_terms()
+        self.assertEqual('http://www.washington.edu/online/terms/', self.driver.current_url)
+
+    def test_terms3(self):
+        """Accesses the terms from the details page"""
+        self.updateSauceName("Wireframe: Terms from Details")
+        self.go_url('')
+        page = pages.HomePage(self.driver)
+        page.click_place('open', 1)
+        page.click_terms()
+        self.assertEqual('http://www.washington.edu/online/terms/', self.driver.current_url)
+
     def test_breakfast(self):
         """SCOUT-8, testing to see if user can bring up list of b-fast
         places by clicking view more results"""

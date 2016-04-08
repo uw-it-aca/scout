@@ -25,6 +25,16 @@ class BasePage(object):
         temp =  self.driver.find_element_by_class_name('scout-content')
         return temp.get_attribute('id')
 
+    @property
+    def footer(self):
+        return self.driver.find_element_by_class_name('scout-footer')
+
+    def click_privacy(self):
+        self.footer.find_element_by_link_text('Privacy').click()
+
+    def click_terms(self):
+        self.footer.find_element_by_link_text('Terms').click()
+
     def click_home(self):
         """Clicks home logo"""
         self.homeLogo.click()
