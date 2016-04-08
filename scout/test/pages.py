@@ -158,6 +158,10 @@ class PlacesPage(BasePage):
         return self.driver.find_element_by_class_name('scout-filter-results-count')
 
     @property
+    def placesNum(self):
+        return int(self.placesCount.text)
+
+    @property
     def placesList(self):
         return self.driver.find_elements_by_xpath(
             "//div[@class='scout-list-container']/ol[@id='scout_list']/li")
@@ -211,11 +215,12 @@ class FilterPage(BasePage):
     def getFilterOptions(section):
         """Given an element, returns a dictionary that maps the checkbox labels
         with the input elements"""
-        checkboxes = section.find_elements_by_tag_name('input')
+        checkboxes = section.find_elements_by_tag_name('label')
         results = {}
         for box in checkboxes:
-            name = box.get_attribute('value')
-            results[name] = box
+            filt = FilterBox(box)
+            name = filt.name
+            results[name] = filt
         return results
 
     def setFilters(self, filters={}):
@@ -243,6 +248,16 @@ class FilterPage(BasePage):
     def reset(self):
         """Clicks the reset button"""
         self.resetButton.click()
+
+class FilterBox(object):
+    def __init__(self, element):
+        self.element = element
+        self.box = element.find_element_by_tag_name('input')
+        self.name = self.box.get_attribute('value')
+        self.label = element.text
+
+    def click(self):
+        self.box.click()
 
 class FilterKeyError(KeyError):
     def __init__(self, key, filters):

@@ -68,8 +68,8 @@ class WireframeTest(LiveServerTestCase):
             self.driver.quit()
 
     def test_breakfast(self):
-    """SCOUT-8, testing to see if user can bring up list of b-fast
-    places by clicking view more results"""
+        """SCOUT-8, testing to see if user can bring up list of b-fast
+        places by clicking view more results"""
 
         self.updateSauceName("Wireframe: Breakfast")
         self.go_url()
@@ -79,8 +79,8 @@ class WireframeTest(LiveServerTestCase):
         self.assertEqual(page.placesCount.text, "4")
 
     def test_details(self):
-    """testing to see if user can click on a place and then see more
-    details from the home page"""
+        """testing to see if user can click on a place and then see more
+        details from the home page"""
 
         self.updateSauceName("Wireframe: Details")
         self.go_url()
@@ -91,8 +91,8 @@ class WireframeTest(LiveServerTestCase):
 
 
     def test_details2(self):
-    """testing to see if user can click on a place and then see more
-    details from the "places" page"""
+        """testing to see if user can click on a place and then see more
+        details from the "places" page"""
 
         self.updateSauceName("Wireframe: Details2")
         self.go_url('/food/')

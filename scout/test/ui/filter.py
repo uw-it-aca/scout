@@ -76,17 +76,6 @@ class FilterTest(LiveServerTestCase):
         if self.useSauce:
             sauce_client.jobs.update_job(self.driver.session_id, name=name)
 
-    # @wd.parallel.multiply
-    def test_filter_set1(self):
-        """Filters out the foods that accept cash, asserts the
-        right data of places show up"""
-        self.updateSauceName('UI: Filter Cash')
-        self.go_url('/filter/')
-        page = pages.FilterPage(self.driver)
-        page.setFilters({'PAYMENT ACCEPTED': {'s_pay_cash': True}})
-        page.search()
-        self.assertEqual(page.placesCount.text, '4')
-
     def test_filter_set2(self):
         """Filters out the foods that accept cash and serve American
         cuisine asserts the right data of places show up"""
@@ -98,7 +87,8 @@ class FilterTest(LiveServerTestCase):
             'CUISINE': {'s_cuisine_american': True}
         })
         page.search()
-        self.assertEqual(page.placesCount.text, '2')
+        self.assertEqual(page.placesNum, 2)
+        self.assertEqual(page.filterBy.text, 'Payment Accepted, Cuisine')
 
     def test_filter_set3(self):
         """Filters out the food truck, asserts the right data shows up"""
@@ -107,7 +97,8 @@ class FilterTest(LiveServerTestCase):
         page = pages.FilterPage(self.driver)
         page.setFilters({'TYPE': {'food_truck': True}})
         page.search()
-        self.assertEqual(page.placesCount.text, '1')
+        self.assertEqual(page.placesNum, 1)
+        self.assertEqual(page.filterBy.text, 'Restaurant Type')
         self.assertEqual(page.placesName(0).text, 'Truck of Food')
 
 
@@ -123,7 +114,8 @@ class FilterTest(LiveServerTestCase):
             'OPEN PERIOD': {'open_now': True}
         })
         page.search()
-        self.assertEqual(page.placesCount.text, '3')
+        self.assertEqual(page.filterBy.text, 'Open Period, Payment Accepted, Food Served')
+        self.assertEqual(page.placesNum, 3)
 
     def test_filter_set5(self):
         """Filters out the places that are in the Seattle Campus, Cafes, and
@@ -137,4 +129,49 @@ class FilterTest(LiveServerTestCase):
             'OPEN PERIOD': {'breakfast': True}
         })
         page.search()
-        self.assertEqual(page.placesCount.text, '2')
+        self.assertEqual(page.filterBy.text, 'Campus, Restaurant Type, Open Period')
+        self.assertEqual(page.placesNum, 2)
+
+    def test_filter_reset_places_page(self):
+        """Filters out places that accept cash, then resets filters on the places
+        page"""
+        self.updateSauceName('UI: Reset Filter on Places Page')
+        self.go_url('/filter/')
+        page = pages.FilterPage(self.driver)
+        page.setFilters({'PAYMENT ACCEPTED': {'s_pay_cash': True}})
+        page.search()
+        self.assertEqual(page.placesNum, 4)
+        self.assertEqual(page.filterBy.text, 'Payment Accepted')
+        page.reset_filters()
+        self.assertEqual(page.placesNum, 8)
+        self.assertEqual(page.filterBy.text, '--')
+
+    def test_filter_reset_filter_page(self):
+        """Filters out places that accept cash and serve American cuisine, then resets
+        on the filter page and filters out places with just cash and searches"""
+        self.updateSauceName('UI: Reset Filters on Filter Page')
+        self.go_url('/filter/')
+        page = pages.FilterPage(self.driver)
+        page.setFilters({
+            'PAYMENT ACCEPTED': {'s_pay_cash': True},
+            'CUISINE': {'s_cuisine_american': True}
+        })
+        page.reset()
+        page.setFilters({'PAYMENT ACCEPTED': {'s_pay_cash': True}})
+        page.search()
+        self.assertEqual(page.placesNum, 4)
+        self.assertEqual(page.filterBy.text, 'Payment Accepted')
+
+    def test_filter_remembered(self):
+        """Filters out the places that accept cash, searches, returns to filter page
+        to add a filter of American Cuisine, searches (cash should still be checked off"""
+        self.updateSauceName('UI: Filter Remembered')
+        self.go_url('/filter/')
+        page = pages.FilterPage(self.driver)
+        page.setFilters({'PAYMENT ACCEPTED': {'s_pay_cash': True}})
+        page.search()
+        page.get_filters()
+        page.setFilters({'CUISINE': {'s_cuisine_american': True}})
+        page.search()
+        self.assertEqual(page.placesNum, 2)
+        self.assertEqual(page.filterBy.text, 'Payment Accepted, Cuisine')
