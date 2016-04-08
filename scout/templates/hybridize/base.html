@@ -16,7 +16,7 @@
         {% if request.is_and %}
 
             <!-- framework7 material -->
-            <link rel="stylesheet" media="only foo" type="text/css" href="{% static "hybridize/css/framework7.material.min.css" %}">
+            <link rel="stylesheet" type="text/css" href="{% static "hybridize/css/framework7.material.min.css" %}">
 
             {% compress css %}
             <!-- local override files -->
@@ -39,7 +39,7 @@
         {% if request.is_ios %}
 
         	<!-- framework7 ios -->
-            <link rel="stylesheet" media="only foo" type="text/css" href="{% static "hybridize/css/framework7.ios.min.css" %}">
+            <link rel="stylesheet" type="text/css" href="{% static "hybridize/css/framework7.ios.min.css" %}">
 
             {% compress css %}
             <!-- local override files -->
@@ -62,28 +62,17 @@
 
     <body class="theme-custom">
 
-    <div class="views">
-        <div class="view view-main">
-            <div class="pages">
-                <div class="page">
-                    <div class="page-content" style="position: relative;">
-                    {% block hybrid_content %}{% endblock %}
+        <div class="views">
+            <div class="view view-main">
+                <div class="pages">
+                    <div class="page">
+                        <div class="page-content" style="position: relative;">
+                        {% block hybrid_content %}{% endblock %}
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-
-    {% compress js inline %}
-    <script>
-    var links = document.getElementsByTagName('link');
-    for(var i = 0; i < links.length; i++){
-        var link = links[i];
-        if(link.getAttribute('media') === 'only foo')
-            link.setAttribute('media', 'all');
-    }
-    </script>
-    {% endcompress %}
 
     </body>
 

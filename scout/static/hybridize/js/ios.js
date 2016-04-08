@@ -5,6 +5,9 @@ $(document).on('turbolinks:load', function() {
 
     console.log("turbolinks fired!");
 
+    /// async load css by flipping the media attribute to all
+    $('link[rel="stylesheet"]').attr('media', 'all');
+
     // initialize framework7
     var myApp = new Framework7({
 		router: false,
@@ -16,5 +19,5 @@ $(document).on('turbolinks:load', function() {
 	if(window.location.href.indexOf("/filter/") > -1){
 		$.getScript('/static/scout/js/filter.js');
 	}
-    
+
 });
