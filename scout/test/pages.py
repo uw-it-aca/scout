@@ -20,6 +20,11 @@ class BasePage(object):
     def placesTab(self):
         return self.driver.find_element_by_id('link_food')
 
+    @property
+    def pageId(self):
+        temp =  self.driver.find_element_by_class_name('scout-content')
+        return temp.get_attribute('id')
+
     def click_home(self):
         """Clicks home logo"""
         self.homeLogo.click()

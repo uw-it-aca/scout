@@ -18,7 +18,7 @@ ACCESS_KEY = getattr(settings, 'SAUCE_ACCESS_KEY', False)
 from sauceclient import SauceClient
 sauce_client = SauceClient(USERNAME, ACCESS_KEY)
 
-class WireframeTest(LiveServerTestCase):
+class AdvNavigationTest(LiveServerTestCase):
 
     baseurl = 'http://localhost:8001'
 
@@ -71,10 +71,11 @@ class WireframeTest(LiveServerTestCase):
         """SCOUT-8, testing to see if user can bring up list of b-fast
         places by clicking view more results"""
 
-        self.updateSauceName("Wireframe: Breakfast")
+        self.updateSauceName("Wireframe: Home to Filter Breakfast")
         self.go_url()
         page = pages.HomePage(self.driver)
         page.click_results('breakfast')
+        self.assertEqual('page_food', page.pageId)
         self.assertEqual(page.filterBy.text, "Open Period")
         self.assertEqual(page.placesCount.text, "4")
 
@@ -82,10 +83,11 @@ class WireframeTest(LiveServerTestCase):
         """testing to see if user can click on a place and then see more
         details from the home page"""
 
-        self.updateSauceName("Wireframe: Details")
+        self.updateSauceName("Wireframe: Home to Details")
         self.go_url()
         page = pages.HomePage(self.driver)
         page.click_place('open', 2)
+        self.assertIn('page', page.pageId)
         self.assertEqual(page.foodName.text, "Banh & Naan, Husky Den")
         self.assertEqual(page.foodType.text, "FOOD COURT")
 
@@ -94,9 +96,10 @@ class WireframeTest(LiveServerTestCase):
         """testing to see if user can click on a place and then see more
         details from the "places" page"""
 
-        self.updateSauceName("Wireframe: Details2")
+        self.updateSauceName("Wireframe: Places to Details")
         self.go_url('/food/')
         page = pages.PlacesPage(self.driver)
         page.click_place(3)
+        self.assertIn('page', page.pageId)
         self.assertEqual(page.foodName.text, "Banh & Naan, Husky Den")
         self.assertEqual(page.foodType.text, "FOOD COURT")
