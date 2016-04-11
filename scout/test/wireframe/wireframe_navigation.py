@@ -64,6 +64,18 @@ class AdvNavigationTest(LiveServerTestCase):
         self.assertEqual(page.filterBy.text, "Open Period")
         self.assertEqual(page.placesCount.text, "4")
 
+    def test_coffee(self):
+        """SCOUT-8, testing to see if user can bring up list of b-fast
+        places by clicking view more results"""
+
+        self.updateSauceName("Wireframe: Home to Filter Coffee")
+        self.go_url()
+        page = pages.HomePage(self.driver)
+        page.click_results('coffee')
+        self.assertEqual('page_food', page.pageId)
+        self.assertEqual(page.filterBy.text, "Food Served")
+        self.assertEqual(page.placesCount.text, "2")
+
     def test_details(self):
         """testing to see if user can click on a place and then see more
         details from the home page"""
@@ -76,6 +88,17 @@ class AdvNavigationTest(LiveServerTestCase):
         self.assertEqual(page.foodName.text, "Banh & Naan, Husky Den")
         self.assertEqual(page.foodType.text, "FOOD COURT")
 
+     def test_coffee(self):
+        """SCOUT-8, testing to see if user can bring up list of b-fast
+        places by clicking view more results"""
+
+        self.updateSauceName("Wireframe: Home to Filter Coffee")
+        self.go_url()
+        page = pages.HomePage(self.driver)
+        page.click_results('coffee')
+        self.assertEqual('page_food', page.pageId)
+        self.assertEqual(page.filterBy.text, "Food Served")
+        self.assertEqual(page.placesCount.text, "2")
 
     def test_details2(self):
         """testing to see if user can click on a place and then see more
