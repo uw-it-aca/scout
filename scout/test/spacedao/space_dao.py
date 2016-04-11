@@ -28,8 +28,8 @@ class SpaceDAOTest(TestCase):
                     ('fuzzy_hours_end', 'Tuesday,11:00')]
 
         spots = get_spots_by_filter(filter)
-        self.assertEqual(len(spots), 0)
-        # self.assertEqual(spots[0].extended_info[3].value, 'food')
+        self.assertEqual(len(spots), 5)
+        self.assertEqual(spots[0].extended_info[3].value, 'food')
 
     def test_add_foodtypes(self):
         sc = Spotseeker()
@@ -130,12 +130,12 @@ class SpaceDAOTest(TestCase):
 
     def test_get_spot_list(self):
         spot_list = get_spot_list()
-        self.assertEqual(len(spot_list), 8)
+        self.assertEqual(len(spot_list), 3)
 
     def test_get_spots_by_filter(self):
         filtered_spots = get_spots_by_filter([('extended_info:s_food_pasta', True),
                                              ('type', 'food_court')])
-        self.assertEqual(len(filtered_spots), 0)
+        self.assertEqual(len(filtered_spots), 1)
 
     def test_get_spot_filters(self):
         request = RequestFactory().get('/?payment0=s_pay_dining&type0=food_court&food0=s_food_entrees&food1=s_food_pasta&cuisine0=s_cuisine_chinese&period0=breakfast&open_now=true&campus=seattle')
