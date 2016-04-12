@@ -1,16 +1,14 @@
 #!/usr/bin/python
 """
 Tests the contents of each page, making sure the
-structure of the page is correct
+necessary selectors are present
 """
 
 import bs4
 import sys
 import unittest
 import copy
-import urllib2
 
-from selenium import webdriver
 # import wd.parallel
 from django.test import LiveServerTestCase
 from django.test import Client

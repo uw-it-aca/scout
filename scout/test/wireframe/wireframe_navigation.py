@@ -88,7 +88,7 @@ class AdvNavigationTest(LiveServerTestCase):
         self.assertEqual(page.foodName.text, "Banh & Naan, Husky Den")
         self.assertEqual(page.foodType.text, "FOOD COURT")
 
-     def test_coffee(self):
+    def test_coffee(self):
         """SCOUT-8, testing to see if user can bring up list of b-fast
         places by clicking view more results"""
 

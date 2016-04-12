@@ -25,7 +25,7 @@ ACCESS_KEY = getattr(settings, 'SAUCE_ACCESS_KEY', False)
 sauce_client = SauceClient(USERNAME, ACCESS_KEY)
 
 
-class NavigationTest(LiveServerTestCase):
+class NavigationTestSelenium(LiveServerTestCase):
     """Navigation test set for scout"""
 
     def setUp(self):
@@ -48,29 +48,6 @@ class NavigationTest(LiveServerTestCase):
         else:
             self.driver = webdriver.Firefox()
 
-        """
-        desired_cap_list = []
-
-        safari = copy.copy(webdriver.DesiredCapabilities.SAFARI)
-        safari.update({
-            'platform': 'OS X 10.11',
-            'name': 'safari',
-            'version': '9.0',
-            'build': 'story/food'
-        })
-
-        desired_cap_list.append(safari)
-
-        sauceUrl = 'http://%s:%s@ondemand.saucelabs.com:80/wd/hub'\
-            %(USERNAME, ACCESS_KEY)
-        self.drivers = wd.parallel.Remote(
-           desired_capabilities=desired_cap_list,
-           command_executor=sauceUrl
-        )
-        """
-        # self.driver.implicitly_wait(20)
-
-    # @wd.parallel.multiply
     def tearDown(self):
         # print('https://saucelabs.com/jobs/%s \n' % self.driver.session_id)
         if self.useSauce:
@@ -126,7 +103,6 @@ class NavigationTest(LiveServerTestCase):
         if self.useSauce:
             sauce_client.jobs.update_job(self.driver.session_id, name=name)
 
-    # @wd.parallel.multiply
     def test_main_nav(self):
         """Goes from page to page and verifies that URLs are correct on
         each page """
@@ -147,7 +123,6 @@ class NavigationTest(LiveServerTestCase):
         self.click_home()
         self.assertLocation('/')
 
-    # @wd.parallel.multiply
     def test_home_content(self):
         """Test that there is at least one place listed on the home page"""
         self.updateSauceName('Pageflow: Home Content')
@@ -156,7 +131,6 @@ class NavigationTest(LiveServerTestCase):
         places = self.driver.find_elements_by_class_name('scout-spot-name')
         self.assertGreater(len(places), 0)
 
-    # @wd.parallel.multiply
     def test_food_content(self):
         """Test that the content on the food page is correct"""
         self.updateSauceName('Pageflow: Food Content')
@@ -167,7 +141,6 @@ class NavigationTest(LiveServerTestCase):
         self.assertEqual(filterButtons[0].text, 'Filter results')
         self.assertEqual(filterButtons[1].text, 'Reset filter')
 
-    # @wd.parallel.multiply
     def test_detail_content(self):
         """Test that the content on the detail page is correct"""
         self.updateSauceName('Pageflow: Detail Content')
@@ -180,7 +153,6 @@ class NavigationTest(LiveServerTestCase):
         scoutContent = self.driver.find_element_by_class_name('scout-content')
         self.assertEqual('page_' + tempUrl[len(tempUrl) - 2], scoutContent.get_attribute('id'))
 
-    # @wd.parallel.multiply
     def test_filter_content(self):
         """Test that the content on the filter page is correct"""
         self.updateSauceName('Pageflow: Filter Content')
@@ -189,7 +161,6 @@ class NavigationTest(LiveServerTestCase):
         legends = self.driver.find_elements_by_tag_name('Legend')
         self.assertEqual(legends[0].text, 'CAMPUS')
 
-    # @wd.parallel.multiply
     def test_foodtab_notclickable(self):
         """Test that once on the food/places page, the places tab
         isn't clickable"""
@@ -198,7 +169,6 @@ class NavigationTest(LiveServerTestCase):
         clickable = self.driver.find_element_by_id('link_food')
         self.assertEqual(clickable.get_attribute('disabled'), 'true')
 
-    # @wd.parallel.multiply
     def test_discovertab_notclickable(self):
         """Test that once on the discover/home page, the discover tab
         isn't clickable"""

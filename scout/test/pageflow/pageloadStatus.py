@@ -23,30 +23,23 @@ class UrlStatusTest(LiveServerTestCase):
         given status code"""
         self.assertEqual(self.clientUrlStatus(urlsuffix), code)
 
-    # @wd.parallel.multiply
     def test_home_exists(self):
         """Test that the home page results in a 200"""
         # Home Page
         self.assertUrlStatus('/', 200)
 
-    # @wd.parallel.multiply
     def test_food_exists(self):
         """Test that the food page results in a 200"""
         self.assertUrlStatus('/food/', 200)
 
-    # @wd.parallel.multiply
     def test_filter_exists(self):
         """Test that the filter page results in a 200"""
         self.assertUrlStatus('/filter/', 200)
 
-    # @wd.parallel.multiply
     def test_bad_detailURL(self):
         """Ensure a nonexistant space results in a 404 status code"""
         self.assertUrlStatus('/detail/12345679', 404)
 
-    # uncomment for debugging
-    # @unittest.expectedFailure
-    # @wd.parallel.multiply
     def test_bad_homeURL(self):
         """Test an invalid URL and see if it results in a 404"""
         # Bad URL
@@ -60,9 +53,6 @@ class UrlStatusTest(LiveServerTestCase):
         self.assertUrlStatus('/food/?period0=breakfast', 200)
         self.assertUrlStatus('/food/?period0=late_night', 200)
 
-    # uncomment for debugging
-    # @unittest.expectedFailure
-    # @wd.parallel.multiply
     def test_redirect_URLs(self):
         """Test URLs that are meant to redirect(301)"""
         self.assertUrlStatus('/food', 301)

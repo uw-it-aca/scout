@@ -8,13 +8,10 @@ import bs4
 import sys
 import unittest
 import copy
-import urllib2
 
-# import wd.parallel
 from django.test import LiveServerTestCase
 from django.test import Client
 from django.conf import settings
-from sauceclient import SauceClient
 
 class MainNavigationTest(LiveServerTestCase):
     """Navigation test set for scout"""
@@ -33,7 +30,6 @@ class MainNavigationTest(LiveServerTestCase):
         linkHref = link.get('href')
         self.assertEqual(linkHref, expectedLoc)
 
-    # @wd.parallel.multiply
     def test_main_nav(self):
         """Goes from page to page and verifies that URLs are correct on
         each page """

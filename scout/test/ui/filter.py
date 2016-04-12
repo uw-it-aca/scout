@@ -9,12 +9,9 @@ import sys
 import unittest
 import copy
 import os
-#sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-#import pages
 from .. import pages
 
 from selenium import webdriver
-# import wd.parallel
 from django.test import LiveServerTestCase
 from django.test import Client
 from django.conf import settings
@@ -53,7 +50,6 @@ class FilterTest(LiveServerTestCase):
             self.driver = webdriver.Firefox()
         # self.driver.implicitly_wait(20)
 
-    # @wd.parallel.multiply
     def tearDown(self):
         # print('https://saucelabs.com/jobs/%s \n' % self.driver.session_id)
         if self.useSauce:
@@ -114,7 +110,7 @@ class FilterTest(LiveServerTestCase):
             'OPEN PERIOD': {'open_now': True}
         })
         page.search()
-        self.assertEqual(page.filterBy.text, 'Open Period, Payment Accepted, Food Served')
+        self.assertEqual(page.filterBy.text, 'Payment Accepted, Food Served, Open Period')
         self.assertEqual(page.placesNum, 3)
 
     def test_filter_set5(self):
@@ -189,4 +185,3 @@ class FilterTest(LiveServerTestCase):
         page.get_filters()
         page.search()
         self.assertEqual(page.filterBy.text, 'Payment Accepted')
-        # PAYMENT ACCEPTED OR BREAKFAST WHICH ONE IS THE EXPECTED ONE

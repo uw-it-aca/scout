@@ -7,7 +7,7 @@ USERNAME = getattr(settings, 'SAUCE_USERNAME', False)
 ACCESS_KEY = getattr(settings, 'SAUCE_ACCESS_KEY', False)
 
 if USERNAME and ACCESS_KEY:
-    from scout.test.navigation import NavigationTest
+    from scout.test.pageflow.navigationSel import NavigationTestSelenium
     from scout.test.ui.filter import FilterTest
     from scout.test.wireframe.wireframe_navigation import AdvNavigationTest
     from scout.test.pageflow.navigation import MainNavigationTest
