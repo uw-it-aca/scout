@@ -1,11 +1,107 @@
+// sass variables
+
+$view-panel-width: 415px;
+$header-height: 102px;
+$footer-height: 30px;
+
+// desktop styles
+
 body { overflow: hidden; }
 
-.scout-header { width: 500px; }
+// global overrides for action links
 
-.scout-scroll { position: absolute; top:96px; bottom: 38px; width: 500px; left:0; overflow: scroll; margin-top: 0; }
+.scout-geolocation-action a, .scout-spot-action-text, .scout-coupon-action-text, .scout-filter-results-action, .scout-footer a {
+    text-decoration: none !important;
+
+    &:hover { text-decoration: underline !important; }
+}
 
 
-.scout-map { position: fixed; top:0; left: 500px; bottom: 0; right: 0; overflow: scroll; background: #ddd; }
+// main container
+.scout-primary { position:absolute; width: $view-panel-width; top:0; bottom:0; -webkit-box-shadow: 5px 0 20px 0 rgba(0,0,0,0.3); box-shadow: 5px 0 20px 0 rgba(0,0,0,0.3); z-index: 1;
 
+    // header
+    .scout-header { width: $view-panel-width;
+        h1 {
+            a { padding-left: 58px;}
+        }
+    }
 
-.scout-footer { width: 500px; position: absolute; bottom: 0; }
+    // scrolling body
+    .scout-scroll { position: fixed; top: $header-height; bottom: $footer-height; width: $view-panel-width; left:0; overflow: scroll; margin-top: 0;
+
+        // content
+        .scout-content {
+
+            // filter
+            .scout-filter-results-container {
+                .scout-filter-results { display: block; width: 100%; }
+                .scout-filter-display {
+                    a {  }
+                }
+            }
+
+            /*** list page ***/
+
+            // list
+
+            .scout-list-container {
+
+                .scout-list {
+
+                    .scout-list-item {
+
+                        a {
+
+                            .scout-spot-image { width:23%; }
+                            .scout-spot-content { width:77%; position: relative;
+
+                                .scout-spot-type { font-size: 10px; font-weight: normal; color: #bbb; margin-top: 5px;
+                                    position: absolute; top: 0; right: 0;
+                                    span { text-transform: uppercase; margin-left: 5px; }
+                                }
+
+                                .scout-spot-status { }
+                            }
+                        }
+
+                    }
+
+                }
+            }
+
+            /*** details page ***/
+
+            // details
+            .scout-details-container {
+
+                .scout-spot-image { min-height: 253px;
+
+                    .scout-spot-status {  }
+                    .scout-spot-open-period {
+                        width: 350px;
+                        span { margin-bottom: 0; }
+                    }
+                }
+            }
+
+        }
+
+    }
+
+    // footer
+    .scout-footer { width: $view-panel-width; position: absolute; bottom: 0; text-align: left; }
+
+}
+
+// map sidebar container
+.scout-secondary { position: fixed; top:0; right:0; bottom:0; left:$view-panel-width; z-index:0; }
+
+// google map & font awesome icons
+.scout-spot-list-map {
+    .gmnoprint { cursor: pointer !important; }
+}
+
+.scout-spot-detail-map {
+    .gmnoprint, .map-label { cursor: default !important; }
+}

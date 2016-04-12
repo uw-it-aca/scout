@@ -6,11 +6,47 @@
 
 {% block web_content %}
 
-{% if request.is_mobile or request.is_tablet %}
-<div style="text-align: right;"> <a id="map_link" href="/">List</a> | <a id="map_link" href="/map/">Map</a></div>
-{% endif %}
+<div id="page_map" class="scout-content">
 
-<p>This is a map.... Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non urna et lorem venenatis varius quis sit amet dui. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur a nisi odio. Integer interdum tempor ante vitae dictum. Nullam volutpat diam id odio pulvinar, vel vehicula erat sodales. Maecenas magna ante, interdum id libero et, sodales volutpat orci. </p>
+    <div class="scout-filter-results-container">
+
+        {% include "scout/include/user_geolocation.html" %}
+
+        {% if request.is_mobile or request.is_tablet %}
+        <div style="text-align:right;">
+        <a id="list_link" href="/food/"><i class="fa fa-list"></i> list</a>
+        </div>
+        {% endif %}
+
+        {% include "scout/include/filter_results_bar.html" %}
+
+    </div>
+
+    <h2 class="scout-list-header visually-hidden">Map of Food Places</h2>
+
+    <!-- show a map on the list page -->
+    <div class="scout-map" style="margin:0;">
+        <div id="list_map">
+            <div class="loader" style="position:absolute; top: 50%; left: 50%; margin-left:-10px; margin-top: -10px;">Loading...</div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+    window.spot_locations = {
+        {% for spot in spots %}
+            '{{ spot.spot_id }}': {
+                "spot_name": '{{ spot.name }}',
+                    "id": '{{ spot.spot_id }}',
+                    "building": '{{ spot.building_name }}',
+                    "lat": '{{ spot.latitude }}',
+                    "lng": '{{ spot.longitude }}',
+                    //"icon": 'fa-cutlery',
+            },
+        {% endfor %}
+    };
+    </script>
+
+</div>
 
 {% endblock %}
 

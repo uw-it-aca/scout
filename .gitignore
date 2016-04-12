@@ -1,5 +1,10 @@
 .DS_Store
 
+# devights added other ignores
+.idea
+project/*
+manage.py
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -68,3 +73,6 @@ static/CACHE
 
 #sass cache
 *.sass-cache
+
+# Swap files
+*.swp

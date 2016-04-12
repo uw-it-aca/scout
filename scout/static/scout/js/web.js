@@ -1,24 +1,31 @@
+$(document).on('ready', function(event) {
 
-// initial page load
+    Layout.init_layout();
+    Navigation.set_page_tab();
 
-$(function () { 
-   	
-   	console.log("styles on")
-   	
-	// async load css by flipping the media attribute to all
-	$('link[rel="stylesheet"]').attr('media', 'all');
-		
+    // page based JS calls
+    var page_path = window.location.pathname;
+    if (page_path.indexOf("food") !== -1) {
+        List.init();
+        Map.init_map();
+    } else if (page_path.indexOf("detail") !== -1) {
+        Map.init_map();
+    } else if (page_path.indexOf("filter") !== -1) {
+        Filter.init();
+    } else if (page_path.indexOf("map") !== -1){
+        // Mobile map page
+        Map.init_map_page();
+        List.init();
+        Map.init_map();
+    } else {
+        Discover.init_cards();
+    }
 
-	/**
-	console.log("load google maps");
-	var s = document.createElement("script");
-	s.type = "text/javascript";
-	s.src = "https://maps.googleapis.com/maps/api/js";
-	// Use any selector
-	$("head").append(s);
-	**/
-	console.log("blajfdlksjalaskdfjfasd");
-	
+    Filter.replace_food_href();
+
+    // call this last so all page level location event listeners have been declared
+    Geolocation.update_location();
+
+    Filter.init_events();
+
 });
-
-

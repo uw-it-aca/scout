@@ -4,67 +4,159 @@
 {% block title %}Filter{% endblock %}
 
 {% block web_content %}
+<div id="page_filter" class="scout-content">
 
-<h2>Filter</h2>
-    
-<form>
-	
-    <fieldset>
-        <legend>Restaurant type</legend> 
-        <input name="" type="checkbox" value="cafes">Cafes<br>
-        <input name="" type="checkbox" value="restaurant">Restaurant<br>
-        <input name="" type="checkbox" value="cafeteria">Cafeteria<br>
-        <input name="" type="checkbox" value="food_truck">Food Trucks<br>
-        <input name="" type="checkbox" value="market">Markets<br>
-    </fieldset>
-    
-    <fieldset>
-        <legend>Food served</legend> 
-        <input name="animal" type="checkbox" value="xx">Pizza<br>
-        <input name="animal" type="checkbox" value="xx">Burgers<br>
-        <input name="animal" type="checkbox" value="xx">Salads<br>
-        <input name="animal" type="checkbox" value="xx">Coffee/Espresso<br>
-        <input name="animal" type="checkbox" value="xx">Sandwiches<br>
-    </fieldset>
-    
-    <fieldset>
-        <legend>Cuisine</legend> 
-        <input name="animal" type="checkbox" value="xx">American<br>
-        <input name="animal" type="checkbox" value="xx">BBQ<br>
-        <input name="animal" type="checkbox" value="xx">Chinese<br>
-        <input name="animal" type="checkbox" value="xx">Hawaiian<br>
-        <input name="animal" type="checkbox" value="xx">Itallian<br>
-    </fieldset>
-    
-    <fieldset>
-        <legend>Open Period</legend> 
-			<input name="animal" type="radio" value="xx">Open Now<br>
-	        <input name="animal" type="radio" value="xx">Breakfast<br>
-	        <input name="animal" type="radio" value="xx">Lunch<br>
-	        <input name="animal" type="radio" value="xx">Dinner<br>
-	        <input name="animal" type="radio" value="xx">Late-night<br>
-	    </fieldset>
-    
-    <fieldset>
-	    <legend>Options</legend>
-	       <input name="animal" type="checkbox" value="xx">Delivery yes!<br>
-    </fieldset>
-    
-    <div style="margin-top:1em;">
-        <input onclick="location.href='/?type=cafe&food=pizza';" type="button" value="View Results">
+    <h2 class="visually-hidden">Filter</h2>
+
+    <div class="scout-filter-container" style="padding-top:10px;">
+        {% include "scout/include/filter.html" %}
     </div>
-    
-</form>
 
+</div>
 {% endblock %}
 
-{% block sidebar %}
+{% block secondary_content %}
 <div style="background:url('{% static "scout/img/huskygrind.jpg" %}') no-repeat; background-size:cover; background-position:center center; position:absolute; top:0; bottom:0; width: 100%;">&nbsp;</div>
 {% endblock %}
 
 
 {% block hybrid_content %}
-    
+
+<div class="content-block-title">Campus</div>
+<div class="list-block">
+	<ul>
+		<li>
+			<label class="label-checkbox item-content">
+				<input type="checkbox" name="xx" value="xx" checked="checked">
+				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+				<div class="item-inner">
+					<div class="item-title">Seattle</div>
+				</div>
+			</label>
+		</li>
+		<li>
+			<label class="label-checkbox item-content">
+				<input type="checkbox" name="xx" value="xx">
+				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+				<div class="item-inner">
+					<div class="item-title">Bothell</div>
+				</div>
+			</label>
+		</li>
+		<li>
+			<label class="label-checkbox item-content">
+				<input type="checkbox" name="xx" value="xx">
+				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+				<div class="item-inner">
+					<div class="item-title">Tacoma</div>
+				</div>
+			</label>
+		</li>
+		<li>
+			<label class="label-checkbox item-content">
+				<input type="checkbox" name="xx" value="xx">
+				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+				<div class="item-inner">
+					<div class="item-title">South Lake Union</div>
+				</div>
+			</label>
+		</li>
+	</ul>
+</div>
+
+<div class="content-block-title">Hours / Open for:</div>
+<div class="list-block">
+	<ul>
+		<li>
+			<label class="label-checkbox item-content">
+				<input type="checkbox" name="xx" value="xx" checked="checked">
+				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+				<div class="item-inner">
+					<div class="item-title">Breakfast</div>
+				</div>
+			</label>
+		</li>
+		<li>
+			<label class="label-checkbox item-content">
+				<input type="checkbox" name="xx" value="xx">
+				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+				<div class="item-inner">
+					<div class="item-title">Lunch</div>
+				</div>
+			</label>
+		</li>
+		<li>
+			<label class="label-checkbox item-content">
+				<input type="checkbox" name="xx" value="xx">
+				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+				<div class="item-inner">
+					<div class="item-title">Dinner</div>
+				</div>
+			</label>
+		</li>
+		<li>
+			<label class="label-checkbox item-content">
+				<input type="checkbox" name="xx" value="xx">
+				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+				<div class="item-inner">
+					<div class="item-title">Late Night</div>
+				</div>
+			</label>
+		</li>
+	</ul>
+</div>
+
+<div class="content-block-title">Payment:</div>
+<div class="list-block">
+	<ul>
+		<li>
+			<label class="label-checkbox item-content">
+				<input type="checkbox" name="xx" value="xx" checked="checked">
+				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+				<div class="item-inner">
+					<div class="item-title">Cash</div>
+				</div>
+			</label>
+		</li>
+		<li>
+			<label class="label-checkbox item-content">
+				<input type="checkbox" name="xx" value="xx">
+				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+				<div class="item-inner">
+					<div class="item-title">Husky Card</div>
+				</div>
+			</label>
+		</li>
+		<li>
+			<label class="label-checkbox item-content">
+				<input type="checkbox" name="xx" value="xx">
+				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+				<div class="item-inner">
+					<div class="item-title">Dining Card</div>
+				</div>
+			</label>
+		</li>
+		<li>
+			<label class="label-checkbox item-content">
+				<input type="checkbox" name="xx" value="xx">
+				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+				<div class="item-inner">
+					<div class="item-title">Visa</div>
+				</div>
+			</label>
+		</li>
+        <li>
+			<label class="label-checkbox item-content">
+				<input type="checkbox" name="xx" value="xx">
+				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+				<div class="item-inner">
+					<div class="item-title">Mastercard</div>
+				</div>
+			</label>
+		</li>
+	</ul>
+</div>
+
 <div class="content-block-title">Restaurant type</div>
 <div class="list-block">
 	<ul>
@@ -77,7 +169,16 @@
 				</div>
 			</label>
 		</li>
-		<li>
+        <li>
+			<label class="label-checkbox item-content">
+				<input type="checkbox" name="xx" value="xx">
+				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+				<div class="item-inner">
+					<div class="item-title">Restaurant</div>
+				</div>
+			</label>
+		</li>
+        <li>
 			<label class="label-checkbox item-content">
 				<input type="checkbox" name="xx" value="xx">
 				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
@@ -91,7 +192,7 @@
 				<input type="checkbox" name="xx" value="xx">
 				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
 				<div class="item-inner">
-					<div class="item-title">Cafeteria</div>
+					<div class="item-title">Food Court</div>
 				</div>
 			</label>
 		</li>
@@ -100,7 +201,7 @@
 				<input type="checkbox" name="xx" value="xx">
 				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
 				<div class="item-inner">
-					<div class="item-title">Food Trucks</div>
+					<div class="item-title">Food Truck</div>
 				</div>
 			</label>
 		</li>
@@ -109,14 +210,14 @@
 				<input type="checkbox" name="xx" value="xx">
 				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
 				<div class="item-inner">
-					<div class="item-title">Markets</div>
+					<div class="item-title">Market</div>
 				</div>
 			</label>
 		</li>
 	</ul>
 </div>
 
-<div class="content-block-title">Food types</div>
+<div class="content-block-title">Food served</div>
 <div class="list-block">
 	<ul>
 		<li>
@@ -214,71 +315,6 @@
 					<div class="item-title">Itallian</div>
 				</div>
 			</label>
-		</li>
-	</ul>
-</div>
-
-<div class="content-block-title">Open Hours</div>
-<div class="list-block">
-	<ul>
-		<li>
-			<label class="label-radio item-content">
-				<input type="radio" name="xx" value="xx" checked="checked">
-				<div class="item-inner">
-					<div class="item-title">Now</div>
-				</div>
-			</label>
-		</li>
-		<li>
-			<label class="label-radio item-content">
-				<input type="radio" name="xx" value="xx">
-				<div class="item-inner">
-					<div class="item-title">Breakfast <span>8am-11am</span></div>
-				</div>
-			</label>
-		</li>
-		<li>
-			<label class="label-radio item-content">
-				<input type="radio" name="xx" value="xx">
-				<div class="item-inner">
-					<div class="item-title">Lunch <span>8am-11am</span></div>
-				</div>
-			</label>
-		</li>
-		<li>
-			<label class="label-radio item-content">
-				<input type="radio" name="xx" value="xx">
-				<div class="item-inner">
-					<div class="item-title">Dinner <span>8am-11am</span></div>
-				</div>
-			</label>
-		</li>
-		<li>
-			<label class="label-radio item-content">
-				<input type="radio" name="xx" value="xx">
-				<div class="item-inner">
-					<div class="item-title">Late-night <span>8am-11am</span></div>
-				</div>
-			</label>
-		</li>
-	</ul>
-</div>
-
-<div class="content-block-title">Options</div>
-<div class="list-block">
-	<ul>
-		<li>
-			<div class="item-content">
-				<div class="item-inner">
-					<div class="item-title label">Delivery</div>
-					<div class="item-input">
-						<label class="label-switch">
-							<input type="checkbox">
-							<div class="checkbox"></div>
-						</label>
-					</div>
-				</div>
-			</div>
 		</li>
 	</ul>
 </div>

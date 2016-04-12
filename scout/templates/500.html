@@ -1,0 +1,20 @@
+{% extends "scout/app.html" %}
+
+{% load staticfiles %}
+
+{% block title %}500{% endblock %}
+
+{% block web_content %}
+
+<div id="page_500" class="scout-content" style="padding-top:10px;">
+    <div class="scout-card">
+        <h2 class="visually-hidden">500 error</h2>
+        <p style="color:red;">500 Error. An internal server error caused your page to not load. Please refresh or go back to home.</p>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block secondary_content %}
+<div style="background:url('{% static "scout/img/huskygrind.jpg" %}') no-repeat; background-size:cover; background-position:center center; position:absolute; top:0; bottom:0; width: 100%;">&nbsp;</div>
+{% endblock %}

@@ -1,256 +1,149 @@
 {% extends is_hybrid|yesno:"hybridize/base.html,scout/app.html" %}
+{% load staticfiles %}
+{% load scout_filters %}
+{% load compress %}
 
 {% block title %}List{% endblock %}
 
 {% block web_content %}
 
-{% if request.is_mobile or request.is_tablet %}
-<div style="text-align: right;"> <a id="map_link" href="/">List</a> | <a id="map_link" href="/map/">Map</a></div>
-{% endif %}
+<div id="page_food" class="scout-content">
 
-<h2>All OPEN/NEARBY (if location shared)</h2>
-<h2>All OPEN (centered at fountain)</h2>
-            
-<ul>
-    <li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location:building_name]], [[extended_info:food_served]], [[extended_info:open_period]], DISTANCE_FROM_YOU</a></li>
-    
-    <li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location:building_name]], [[extended_info:food_served]], [[extended_info:open_period]], DISTANCE_FROM_YOU</a></li>
-    <li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location:building_name]], [[extended_info:food_served]], [[extended_info:open_period]], DISTANCE_FROM_YOU</a></li>
-    <li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location:building_name]], [[extended_info:food_served]], [[extended_info:open_period]], DISTANCE_FROM_YOU</a></li>
-    <li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location:building_name]], [[extended_info:food_served]], [[extended_info:open_period]], DISTANCE_FROM_YOU</a></li>
-    <li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location:building_name]], [[extended_info:food_served]], [[extended_info:open_period]], DISTANCE_FROM_YOU</a></li>
-    <li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location:building_name]], [[extended_info:food_served]], [[extended_info:open_period]], DISTANCE_FROM_YOU</a></li>
-    <li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location:building_name]], [[extended_info:food_served]], [[extended_info:open_period]], DISTANCE_FROM_YOU</a></li>
-    <li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location:building_name]], [[extended_info:food_served]], [[extended_info:open_period]], DISTANCE_FROM_YOU</a></li>
-    <li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location:building_name]], [[extended_info:food_served]], [[extended_info:open_period]], DISTANCE_FROM_YOU</a></li>
-    <li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location:building_name]], [[extended_info:food_served]], [[extended_info:open_period]], DISTANCE_FROM_YOU</a></li>
-    <li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location:building_name]], [[extended_info:food_served]], [[extended_info:open_period]], DISTANCE_FROM_YOU</a></li>
-    <li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location:building_name]], [[extended_info:food_served]], [[extended_info:open_period]], DISTANCE_FROM_YOU</a></li>
-    <li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location:building_name]], [[extended_info:food_served]], [[extended_info:open_period]], DISTANCE_FROM_YOU</a></li>
-    <li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location:building_name]], [[extended_info:food_served]], [[extended_info:open_period]], DISTANCE_FROM_YOU</a></li>
-    <li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location:building_name]], [[extended_info:food_served]], [[extended_info:open_period]], DISTANCE_FROM_YOU</a></li>
-    <li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location:building_name]], [[extended_info:food_served]], [[extended_info:open_period]], DISTANCE_FROM_YOU</a></li>
-    <li><a href="/detail/56874" style="display:block;"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"> [[name]], [[location:building_name]], [[extended_info:food_served]], [[extended_info:open_period]], DISTANCE_FROM_YOU</a></li>
-	
-</ul>
+    {% include "scout/include/user_geolocation.html" %}
+
+    <h2 class="visually-hidden">Filtered shortcuts</h2>
+
+    {% if request.is_mobile or request.is_tablet %}
+    <div style="text-align:right; display:none;">
+    <a id="map_link" href="/map/"><i class="fa fa-map"></i> map</a>
+    </div>
+    {% endif %}
+
+    {% include "scout/include/filter_results_bar.html" %}
+
+    <div class="scout-list-container" style="" role="main">
+
+        <h2 class="scout-list-header visually-hidden">List of food places (by distance)</h2>
+
+        <ol id="scout_list" class="scout-card scout-list">
+
+            {% for spot in spots %}
+                <li class="scout-list-item" id="{{ spot.spot_id }}">
+                    <a class="clearfix" href="/detail/{{ spot.spot_id }}/">
+
+                        {% if spot.images %}
+                        <div class="scout-spot-image" style="background-image: url('/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}?width=200');">&nbsp;</div>
+                        {% else %}
+                        <div class="scout-spot-image" style="background: #e5e6e9 url('{% static "scout/img/placeholder-200.png" %}') no-repeat center center; background-size: contain;">&nbsp;</div>
+                        {% endif %}
+
+                        <div class="scout-spot-content">
+
+                            <div style="padding-left: 10px;">
+                                <h3 class="scout-spot-name">{{ spot.name }}</h3>
+                                <div class="scout-spot-location">
+                                    <span class="scout-spot-distance"><span class="visually-hidden">Distance from you:</span><span class="distance-number">-</span>&nbsp;ft.</span>&nbsp;&nbsp;
+                                    {% if spot.building_name %}{{ spot.building_name }}{% else %}<span style="color:red;">missing building_name</span>{% endif %}
+                                </div>
+
+
+                                {% if is_desktop %}
+                                <span class="scout-spot-type">{% if spot.spot_types %}{% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}</span>{% endfor %}{% else %} <span style="color:red;">SPOT_TYPE</span> {% endif %}</span>
+                                {% endif %}
+
+                                <div class="scout-spot-food-served">
+                                    <label>FOOD SERVED</label>
+                                {% if spot.foodtype_names %}
+                                    {% for foodtype in spot.foodtype_names %}
+                                        <span>{{ foodtype }}</span>
+                                    {% endfor %}
+                                {% else %}<span style="color:red;">missing foodserved</span> {% endif %}
+                                </div>
+
+                                <span class="scout-spot-status">{% if spot.is_open %}<span class="open visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</span>
+
+                            </div>
+
+                        </div>
+                    </a>
+                </li>
+            {% empty %}
+                <li class="scout-list-item" style="padding:20px;">
+                    <p style="color:red;">No Results? Try unchecking some of the boxes in your filter.</p>
+                    <div style="font-size:14px;">
+                        <p>Suggestions for improving the results:</p>
+                        <ul>
+                            <li>Try a speicific campus.</li>
+                            <li>Try less options for cuisine or food served.</li>
+                        </ul>
+                    </div>
+                </li>
+            {% endfor %}
+
+        </ol>
+        <div id="list_loading" class="loader" style="position:absolute; top: 50%; left: 50%; margin-left:-10px; margin-top: -10px;display: none;">Loading...</div>
+
+    </div>
+
+    <script type="text/javascript">
+        window.spot_locations = {
+            {% for spot in spots %}
+                '{{ spot.spot_id }}': {
+                    "spot_name": '{{ spot.name }}',
+                        "id": '{{ spot.spot_id }}',
+                        "building": '{{ spot.building_name }}',
+                        "lat": '{{ spot.latitude }}',
+                        "lng": '{{ spot.longitude }}',
+                },
+            {% endfor %}
+        };
+    </script>
+
+</div>
 
 {% endblock %}
 
-{% block sidebar %}
+{% block secondary_content %}
 
 <!-- show a map on the list page -->
-<div id="list_map" style="height:100%;"></div>
+<div id="list_map" class="scout-spot-list-map" style="height:100%; background: #ddd !important;">
+    <div class="loader" style="position:absolute; top: 50%; left: 50%; margin-left:-10px; margin-top: -10px;">Loading...</div>
+</div>
 
-<!-- since turbolinks loads the full body... generate this function in the template. then, call the function in the map.js file -->     
-<script type="text/javascript">
-
-function initializeListMap() {
-	
-	var mapExists = document.getElementById("list_map"); 
-	var myLatlng, mapOptions;
-	
-	if(mapExists) {
-		
-		// center map on uw fountain
-		mapCenter = new google.maps.LatLng(47.653811, -122.307815);
-        mapOptions = { 
-	        center: mapCenter, 
-	        zoom: 16,
-	    };
-		
-		var map = new google.maps.Map(document.getElementById('list_map'), mapOptions);
-                 
-        // multiple pins on a single map
-        var locations = [
-        	["47.6551526", "-122.3079563"], 
-			["47.6558366", "-122.3085307"], 
-			["47.6539295", "-122.3080857"]
-		]
-        
-        var marker, i;
-		
-		for (i = 0; i < locations.length; i++) {  
-			
-			marker = new google.maps.Marker({
-		    position: new google.maps.LatLng(locations[i][0], locations[i][1]),
-		    map: map,
-            animation: google.maps.Animation.DROP
-		    });
-		
-		}
-
-	}
-	
-}
-</script>
-    
 {% endblock %}
 
 {% block hybrid_content %}
 
-<!--<div class="content-block" style="margin:5px 0;">
-	<div class="buttons-row"><a href="/?hybrid=true&x_replace_page=true&x_page_title=Scout" class="button active">List</a><a href="/map/?hybrid=true&x_replace_page=true&x_page_title=Scout" class="button">Map</a></div>
-</div>-->
-
-<div class="list-block media-list">     
+<div class="list-block media-list">
     <ul>
+
+        {% for spot in spots %}
         <li>
-            <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Bobs+Burgers" class="item-link item-content">
-                <div class="item-media"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg"></div>
+            <a href="detail/{{ spot.spot_id }}/?hybrid=true&x_push_page=true&x_page_title={{ spot.name|stackerize }}" class="item-link item-content">
+                <div class="item-media">
+                    <div class="scout-spot-image" style="background:url('{% static "scout/img/coffee-shop-300.jpg" %}') no-repeat center center; background-size: cover !important; width:80px; height:80px">&nbsp;</div>
+                    <!--<img src="{% static "scout/img/coffee-shop-150.jpg" %}" style="width:80px;">-->
+                </div>
                 <div class="item-inner">
                     <div class="item-title-row">
-                        <div class="item-title">Bob's Burgers</div>
+                        <div class="item-title">{{ spot.name }}</div>
                     </div>
-                    <div class="item-subtitle">Pizza, Salad, Category3</div>
-                    <div class="item-text">Phasellus lacinia justo augue, et fringilla felis dignissim sit amet. Nunc eu vulputate ligula. Pellentesque non cursus sem.</div>
+                    <div class="item-subtitle">
+                        {% if spot.foodtype_names %}
+                            {% for foodtype in spot.foodtype_names %}
+                                <span>{{ foodtype }}</span>
+                            {% endfor %}
+                        {% else %} <span style="color:red;">foodtype</span> {% endif %}
+                    </div>
+                    <div class="item-text">
+                        <div style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{% if spot.building_name %}{{ spot.building_name }}{% else %} <span style="color:red;">missing building_name</span> {% endif %}</div>
+                        <div style="font-size:12px;">{% if spot.is_open %}<span class="open">Open now</span>{% else %}<span class="closed" style="color:#A94441;">Currently closed</span>{% endif %}</span></div>
+                    </div>
                 </div>
             </a>
         </li>
-        <li>
-            <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Pagliacci" class="item-link item-content">
-                <div class="item-media"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg" ></div>
-                <div class="item-inner">
-                    <div class="item-title-row">
-                        <div class="item-title">Pagliacci</div>
-                    </div>
-                    <div class="item-subtitle">Pizza, Salad, Category3</div>
-                    <div class="item-text">Phasellus lacinia justo augue, et fringilla felis dignissim sit amet. Nunc eu vulputate ligula. Pellentesque non cursus sem.</div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=By+George" class="item-link item-content">
-                <div class="item-media"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg" ></div>
-                <div class="item-inner">
-                    <div class="item-title-row">
-                        <div class="item-title">By George</div>
-                    </div>
-                    <div class="item-subtitle">Pizza, Salad, Category3</div>
-                    <div class="item-text">Phasellus lacinia justo augue, et fringilla felis dignissim sit amet. Nunc eu vulputate ligula. Pellentesque non cursus sem.</div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Spot+Detail" class="item-link item-content">
-                <div class="item-media"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg" ></div>
-                <div class="item-inner">
-                    <div class="item-title-row">
-                        <div class="item-title">Spot 1</div>
-                    </div>
-                    <div class="item-subtitle">Pizza, Salad, Category3</div>
-                    <div class="item-text">Phasellus lacinia justo augue, et fringilla felis dignissim sit amet. Nunc eu vulputate ligula. Pellentesque non cursus sem.</div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Spot+Detail" class="item-link item-content">
-                <div class="item-media"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg" ></div>
-                <div class="item-inner">
-                    <div class="item-title-row">
-                        <div class="item-title">Spot 1</div>
-                    </div>
-                    <div class="item-subtitle">Pizza, Salad, Category3</div>
-                    <div class="item-text">Phasellus lacinia justo augue, et fringilla felis dignissim sit amet. Nunc eu vulputate ligula. Pellentesque non cursus sem.</div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Spot+Detail" class="item-link item-content">
-                <div class="item-media"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg" ></div>
-                <div class="item-inner">
-                    <div class="item-title-row">
-                        <div class="item-title">Spot 1</div>
-                    </div>
-                    <div class="item-subtitle">Pizza, Salad, Category3</div>
-                    <div class="item-text">Phasellus lacinia justo augue, et fringilla felis dignissim sit amet. Nunc eu vulputate ligula. Pellentesque non cursus sem.</div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Spot+Detail" class="item-link item-content">
-                <div class="item-media"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg" ></div>
-                <div class="item-inner">
-                    <div class="item-title-row">
-                        <div class="item-title">Spot 1</div>
-                    </div>
-                    <div class="item-subtitle">Pizza, Salad, Category3</div>
-                    <div class="item-text">Phasellus lacinia justo augue, et fringilla felis dignissim sit amet. Nunc eu vulputate ligula. Pellentesque non cursus sem.</div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Spot+Detail" class="item-link item-content">
-                <div class="item-media"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg" ></div>
-                <div class="item-inner">
-                    <div class="item-title-row">
-                        <div class="item-title">Spot 1</div>
-                    </div>
-                    <div class="item-subtitle">Pizza, Salad, Category3</div>
-                    <div class="item-text">Phasellus lacinia justo augue, et fringilla felis dignissim sit amet. Nunc eu vulputate ligula. Pellentesque non cursus sem.</div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Spot+Detail" class="item-link item-content">
-                <div class="item-media"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg" ></div>
-                <div class="item-inner">
-                    <div class="item-title-row">
-                        <div class="item-title">Spot 1</div>
-                    </div>
-                    <div class="item-subtitle">Pizza, Salad, Category3</div>
-                    <div class="item-text">Phasellus lacinia justo augue, et fringilla felis dignissim sit amet. Nunc eu vulputate ligula. Pellentesque non cursus sem.</div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Spot+Detail" class="item-link item-content">
-                <div class="item-media"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg" ></div>
-                <div class="item-inner">
-                    <div class="item-title-row">
-                        <div class="item-title">Spot 1</div>
-                    </div>
-                    <div class="item-subtitle">Pizza, Salad, Category3</div>
-                    <div class="item-text">Phasellus lacinia justo augue, et fringilla felis dignissim sit amet. Nunc eu vulputate ligula. Pellentesque non cursus sem.</div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Spot+Detail" class="item-link item-content">
-                <div class="item-media"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg" ></div>
-                <div class="item-inner">
-                    <div class="item-title-row">
-                        <div class="item-title">Spot 1</div>
-                    </div>
-                    <div class="item-subtitle">Pizza, Salad, Category3</div>
-                    <div class="item-text">Phasellus lacinia justo augue, et fringilla felis dignissim sit amet. Nunc eu vulputate ligula. Pellentesque non cursus sem.</div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Spot+Detail" class="item-link item-content">
-                <div class="item-media"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg" ></div>
-                <div class="item-inner">
-                    <div class="item-title-row">
-                        <div class="item-title">Spot 1</div>
-                    </div>
-                    <div class="item-subtitle">Pizza, Salad, Category3</div>
-                    <div class="item-text">Phasellus lacinia justo augue, et fringilla felis dignissim sit amet. Nunc eu vulputate ligula. Pellentesque non cursus sem.</div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/detail/56874?hybrid=true&x_push_page=true&x_page_title=Spot+Detail" class="item-link item-content">
-                <div class="item-media"><img src="//farm5.staticflickr.com/4030/4270568382_00a87abe91_s.jpg" ></div>
-                <div class="item-inner">
-                    <div class="item-title-row">
-                        <div class="item-title">Spot 1</div>
-                    </div>
-                    <div class="item-subtitle">Pizza, Salad, Category3</div>
-                    <div class="item-text">Phasellus lacinia justo augue, et fringilla felis dignissim sit amet. Nunc eu vulputate ligula. Pellentesque non cursus sem.</div>
-                </div>
-            </a>
-        </li>
+        {% endfor %}
+
     </ul>
 </div>
 {% endblock %}
-
