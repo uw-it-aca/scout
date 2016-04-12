@@ -65,7 +65,7 @@ class AdvNavigationTest(LiveServerTestCase):
         self.assertEqual(page.placesCount.text, "4")
 
     def test_coffee(self):
-        """SCOUT-8, testing to see if user can bring up list of b-fast
+        """SCOUT-8, testing to see if user can bring up list of coffee
         places by clicking view more results"""
 
         self.updateSauceName("Wireframe: Home to Filter Coffee")
@@ -74,6 +74,30 @@ class AdvNavigationTest(LiveServerTestCase):
         page.click_results('coffee')
         self.assertEqual('page_food', page.pageId)
         self.assertEqual(page.filterBy.text, "Food Served")
+        self.assertEqual(page.placesCount.text, "2")
+
+    def test_open_nearby(self):
+        """SCOUT-8, testing to see if user can bring up list of
+        places open nearby by clicking view more results"""
+
+        self.updateSauceName("Wireframe: Home to Filter Open Nearby")
+        self.go_url()
+        page = pages.HomePage(self.driver)
+        page.click_results('open')
+        self.assertEqual('page_food', page.pageId)
+        self.assertEqual(page.filterBy.text, "Open Period")
+        self.assertEqual(page.placesCount.text, "8")
+
+    def test_late(self):
+        """SCOUT-8, testing to see if user can bring up list of
+        places open late by clicking view more results"""
+
+        self.updateSauceName("Wireframe: Home to Filter Open Late")
+        self.go_url()
+        page = pages.HomePage(self.driver)
+        page.click_results('late')
+        self.assertEqual('page_food', page.pageId)
+        self.assertEqual(page.filterBy.text, "Open Period")
         self.assertEqual(page.placesCount.text, "2")
 
     def test_details(self):
@@ -87,18 +111,6 @@ class AdvNavigationTest(LiveServerTestCase):
         self.assertIn('page', page.pageId)
         self.assertEqual(page.foodName.text, "Banh & Naan, Husky Den")
         self.assertEqual(page.foodType.text, "FOOD COURT")
-
-    def test_coffee(self):
-        """SCOUT-8, testing to see if user can bring up list of b-fast
-        places by clicking view more results"""
-
-        self.updateSauceName("Wireframe: Home to Filter Coffee")
-        self.go_url()
-        page = pages.HomePage(self.driver)
-        page.click_results('coffee')
-        self.assertEqual('page_food', page.pageId)
-        self.assertEqual(page.filterBy.text, "Food Served")
-        self.assertEqual(page.placesCount.text, "2")
 
     def test_details2(self):
         """testing to see if user can click on a place and then see more
