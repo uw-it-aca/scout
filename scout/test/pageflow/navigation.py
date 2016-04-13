@@ -37,7 +37,6 @@ class MainNavigationTest(LiveServerTestCase):
         dest = self.checkHrefBySelector('/food/', '#link_food', response)
         dest = self.checkHrefBySelector('/filter/','#link_filter', dest)
         dest = self.checkHrefBySelector('/', '#link_discover', dest)
-        dest = self.checkHrefBySelector('/', '#link_home', dest)
 
     def test_filter_to_home(self):
         """Tests the home logo link on the filter page"""
