@@ -46,19 +46,19 @@ class UrlStatusTest(LiveServerTestCase):
         self.assertUrlStatus('/LSFDLK/', 404)
         self.assertUrlStatus('/foood/', 404)
 
-    def test_filter_searchOpenURL(self):
+    def test_filter_search_openURL(self):
         """Test home search URL and see if it results in a 200"""
         self.assertUrlStatus('/food/?open_now=true', 200)
 
-    def test_filter_searchOpenURL(self):
+    def test_filter_search_coffeeURL(self):
         """Test food search URL and see if it results in a 200"""
         self.assertUrlStatus('/food/?food0=s_food_espresso', 200)
 
-    def test_filter_searchOpenURL(self):
+    def test_filter_search_breakfastURL(self):
         """Test breakfast search URL and see if it results in a 200"""
         self.assertUrlStatus('/food/?period0=breakfast', 200)
 
-    def test_filter_searchOpenURL(self):
+    def test_filter_search_lateURL(self):
         """Test late night search URL and see if it results in a 200"""
         self.assertUrlStatus('/food/?period0=late_night', 200)
 
