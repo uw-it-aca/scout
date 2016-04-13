@@ -90,4 +90,7 @@ class MainNavigationTest(LiveServerTestCase):
 
     def test_footer_links_detail(self):
         """Checks the privacy/terms on the detail page"""
-        self.check_footer_links_at_path('/detail/1/')
+        soup = self.get_soup('/food/')
+        places = soup.select('ol li a')
+        tempHref = places[0].get('href')
+        self.check_footer_links_at_path(tempHref)

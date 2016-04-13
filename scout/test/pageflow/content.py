@@ -13,7 +13,6 @@ import copy
 from django.test import LiveServerTestCase
 from django.test import Client
 from django.conf import settings
-from sauceclient import SauceClient
 
 class ContentTest(LiveServerTestCase):
     """Content test set for scout"""
