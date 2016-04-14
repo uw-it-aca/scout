@@ -114,8 +114,8 @@ class AdvNavigationTest(LiveServerTestCase):
         self.assertEqual(page.foodType.text, "FOOD COURT")
 
     def test_details2(self):
-        """testing to see if user can click on a place and then see more
-        details from the "places" page"""
+        """SCOUT-75 testing to see if user can click on a place and
+        then see more details from the "places" page"""
 
         self.updateSauceName("Wireframe: Places to Details")
         self.go_url('/food/')
