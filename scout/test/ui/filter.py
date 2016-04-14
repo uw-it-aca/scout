@@ -73,7 +73,7 @@ class FilterTest(LiveServerTestCase):
             sauce_client.jobs.update_job(self.driver.session_id, name=name)
 
     def test_filter_set2(self):
-        """Filters out the foods that accept cash and serve American
+        """SCOUT-82 Filters out the foods that accept cash and serve American
         cuisine asserts the right data of places show up"""
         self.updateSauceName('UI: Filter Cash + American')
         self.go_url('/filter/')
@@ -87,7 +87,7 @@ class FilterTest(LiveServerTestCase):
         self.assertEqual(page.filterBy.text, 'Payment Accepted, Cuisine')
 
     def test_filter_set3(self):
-        """Filters out the food truck, asserts the right data shows up"""
+        """SCOUT-83 Filters out the food truck, asserts the right data shows up"""
         self.updateSauceName('UI: Filter Food Truck')
         self.go_url('/filter/')
         page = pages.FilterPage(self.driver)
@@ -99,8 +99,8 @@ class FilterTest(LiveServerTestCase):
 
 
     def test_filter_set4(self):
-        """Filters out the foods that are open now, accept husky/master cards
-        and serves burgers"""
+        """SCOUT-84 Filters out the foods that are open now, accept husky/master
+        cards and serves burgers"""
         self.updateSauceName('UI: Open + HuskyCard + MasterCard + Burgers')
         self.go_url('/filter/')
         page = pages.FilterPage(self.driver)
@@ -114,8 +114,8 @@ class FilterTest(LiveServerTestCase):
         self.assertEqual(page.placesNum, 3)
 
     def test_filter_set5(self):
-        """Filters out the places that are in the Seattle Campus, Cafes, and
-        open for breakfast"""
+        """SCOUT-85 Filters out the places that are in the Seattle Campus,
+        Cafes, and open for breakfast"""
         self.updateSauceName('UI: Seattle + Cafe + Breakfast')
         self.go_url('/filter/')
         page = pages.FilterPage(self.driver)
@@ -129,8 +129,8 @@ class FilterTest(LiveServerTestCase):
         self.assertEqual(page.placesNum, 2)
 
     def test_filter_reset_places_page(self):
-        """Filters out places that accept cash, then resets filters on the places
-        page"""
+        """SCOUT-86 Filters out places that accept cash, then resets filters on
+        the places page"""
         self.updateSauceName('UI: Reset Filter on Places Page')
         self.go_url('/filter/')
         page = pages.FilterPage(self.driver)
@@ -143,8 +143,9 @@ class FilterTest(LiveServerTestCase):
         self.assertEqual(page.filterBy.text, '--')
 
     def test_filter_reset_filter_page(self):
-        """Filters out places that accept cash and serve American cuisine, then resets
-        on the filter page and filters out places with just cash and searches"""
+        """SCOUT-87 Filters out places that accept cash and serve American
+        cuisine, then resets on the filter page and filters out places with
+        just cash and searches"""
         self.updateSauceName('UI: Reset Filters on Filter Page')
         self.go_url('/filter/')
         page = pages.FilterPage(self.driver)
@@ -159,8 +160,9 @@ class FilterTest(LiveServerTestCase):
         self.assertEqual(page.filterBy.text, 'Payment Accepted')
 
     def test_filter_remembered(self):
-        """Filters out the places that accept cash, searches, returns to filter page
-        to add a filter of American Cuisine, searches (cash should still be checked off)"""
+        """SCOUT-88 Filters out the places that accept cash, searches, returns
+        to filter page to add a filter of American Cuisine, searches (cash
+        should still be checked off)"""
         self.updateSauceName('UI: Filter Remembered')
         self.go_url('/filter/')
         page = pages.FilterPage(self.driver)
@@ -168,6 +170,8 @@ class FilterTest(LiveServerTestCase):
         page.search()
         page.click_home()
         page.click_placestab()
+        self.assertEqual(page.placesNum, 4)
+        self.assertEqual(page.filterBy.text, 'Payment Accepted')
         page.get_filters()
         page.setFilters({'CUISINE': {'s_cuisine_american': True}})
         page.search()
@@ -175,6 +179,9 @@ class FilterTest(LiveServerTestCase):
         self.assertEqual(page.filterBy.text, 'Payment Accepted, Cuisine')
 
     def test_filter_vs_viewmoreresults(self):
+        """SCOUT-89 Filters out the places that accept cash, then goes to the
+        home page and clicks on a preset filter (breakfast), then returns to
+        the filter page to see if the original cash filter is present"""
         self.updateSauceName('UI: Filter vs. View More Results')
         self.go_url('/filter/')
         page = pages.FilterPage(self.driver)

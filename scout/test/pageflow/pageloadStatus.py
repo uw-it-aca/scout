@@ -56,7 +56,7 @@ class UrlStatusTest(LiveServerTestCase):
         self.assertUrlStatus('/food/?food0=s_food_espresso', 200)
 
     def test_filter_search_breakfastURL(self):
-        """SCOUT-79Test breakfast search URL and see if it results in a 200"""
+        """SCOUT-79 Test breakfast search URL and see if it results in a 200"""
         self.assertUrlStatus('/food/?period0=breakfast', 200)
 
     def test_filter_search_lateURL(self):
@@ -68,6 +68,7 @@ class UrlStatusTest(LiveServerTestCase):
         self.assertUrlStatus('/food/?open_now=plzgivemea404', 404)
         self.assertUrlStatus('/food/?period0', 404)
         self.assertUrlStatus('/food/?food0', 404)
+        self.assertUrlStatus('/food/?plzgimmea404', 404)
 
     def test_filter_addon_404(self):
         """SCOUT-81 Test a filter URL that should return a 404"""

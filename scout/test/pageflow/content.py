@@ -23,14 +23,14 @@ class ContentTest(LiveServerTestCase):
 
     # @wd.parallel.multiply
     def test_home_content(self):
-        """Test that the content on the home page is correct"""
+        """SCOUT-52 Test that the content on the home page is correct"""
         bs = self.returnSoup('')
         checkId = bs.select('#page_discover')
         self.assertGreater(len(checkId), 0)
 
     # @wd.parallel.multiply
     def test_food_content(self):
-        """Test that the content on the food page is correct"""
+        """SCOUT-53 Test that the content on the food page is correct"""
         bs = self.returnSoup('/food/')
         checkId = bs.select('#page_food')
         self.assertGreater(len(checkId), 0)
@@ -40,7 +40,7 @@ class ContentTest(LiveServerTestCase):
 
     # @wd.parallel.multiply
     def test_detail_content(self):
-        """Test that the content on the detail page is correct"""
+        """SCOUT-58 Test that the content on the detail page is correct"""
         bs = self.returnSoup('/food/')
         places = bs.select('ol li a')
         # clicking the first place on the list
@@ -53,7 +53,7 @@ class ContentTest(LiveServerTestCase):
 
     # @wd.parallel.multiply
     def test_filter_content(self):
-        """Test that the content on the filter page is correct"""
+        """SCOUT-54 Test that the content on the filter page is correct"""
         bs = self.returnSoup('/filter/')
         checkId = bs.select('#page_filter')
         self.assertGreater(len(checkId), 0)
