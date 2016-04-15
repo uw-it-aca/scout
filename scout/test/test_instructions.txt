@@ -1,0 +1,41 @@
+How to run Scout Tests
+————————————————————————————————————————————————     
+1. Go to the spotseeker-client folder 
+
+/vagrant/venv/src/spotseeker-client
+————————————————————————————————————————————————     
+2. Make sure you are in the branch qaMock
+(git checkout qaMock)
+————————————————————————————————————————————————     
+3. Go to folder /vagrant/venv/scoutproject
+(folder with manage.py)
+————————————————————————————————————————————————     
+4. Run tests!
+
+To run all tests
+python manage.py test scout.tests
+
+To run a specific test
+for example:
+python manage.py test.scout.tests.FilterTest
+
+TEST CATEGORIES
+ -- Spacedao -- 
+SpaceDAOTest
+
+ -- UI -- 
+FilterTest
+
+-- Wireframe -- 
+AdvNavigationTest
+
+-- Pageflow -- 
+MainNavigationTest
+UrlStatusTest
+ContentTest
+NavigationTestSelenium
+————————————————————————————————————————————————     
+5. Extra/Optional
+To run tests and have the output placed in a file called ‘err’
+Do the following (example tests MainNavigationTest)
+./manage.py test scout.tests.MainNavigationTest > out 2>err & tail -f err
