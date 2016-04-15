@@ -1,6 +1,7 @@
 #!/usr/bin/python
 """
-Tests the Wireframe
+Tests the Wireframe of scout, this particular file incorperates
+mock data and tests the navigation incorporating that data
 """
 
 import os

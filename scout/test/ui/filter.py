@@ -1,10 +1,8 @@
 #!/usr/bin/python
 """
-Tests several filters and determines if the right data
-appears on the Places Page
+Tests the filter functionality, using the mock data
 """
 
-import bs4
 import sys
 import unittest
 import copy
@@ -27,7 +25,7 @@ sauce_client = SauceClient(USERNAME, ACCESS_KEY)
 
 
 class FilterTest(LiveServerTestCase):
-    """UI test set for scout"""
+    """Filter Tests set for scout"""
 
     def setUp(self):
         self.client = Client()
@@ -36,7 +34,7 @@ class FilterTest(LiveServerTestCase):
             'platform': 'Mac OS X 10.9',
             'browserName': 'chrome',
             'version': '31',
-            'tags': ['pageflow']
+            'tags': ['ui']
         }
         self.useSauce = useSauce
 

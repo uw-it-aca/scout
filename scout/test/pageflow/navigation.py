@@ -5,13 +5,7 @@ Testing the flow between pages through links
 """
 
 import bs4
-import sys
-import unittest
-import copy
-
 from django.test import LiveServerTestCase
-from django.test import Client
-from django.conf import settings
 
 class MainNavigationTest(LiveServerTestCase):
     """Navigation test set for scout"""

@@ -4,12 +4,7 @@ Tests pages and their respective URL status codes
 """
 
 import sys
-import unittest
-import copy
-
 from django.test import LiveServerTestCase
-from django.test import Client
-from django.conf import settings
 
 class UrlStatusTest(LiveServerTestCase):
 
