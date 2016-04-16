@@ -245,6 +245,8 @@ def add_additional_info(spot):
         _get_extended_info_by_key("location_description",
                                   spot.extended_info)
     spot.campus = _get_extended_info_by_key("campus", spot.extended_info)
+
+    spot.app_type = _get_extended_info_by_key("app_type", spot.extended_info)
     return spot
 
 
