@@ -114,6 +114,20 @@ class HomePage(BasePage):
         return self.driver.find_element_by_xpath(
             "//div[@id='coupon']//a[@class='scout-spot-discover-action']")
 
+    @property
+    def use_location(self):
+        return self.driver.find_element_by_id('use_location')
+
+    @property
+    def forget_location(self):
+        return self.driver.find_element_by_id('forget_location')
+
+    def click_use_location(self):
+        self.use_location.click()
+
+    def click_forget_location(self):
+        self.forget_location.click()
+
     def click_place(self, food_type='open', num=0):
         """Given a category and a number, clicks the respective ranked place
         within that category (the first result being 0)"""

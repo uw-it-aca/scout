@@ -10,24 +10,35 @@ from django.test import LiveServerTestCase
 class MainNavigationTest(LiveServerTestCase):
     """Navigation test set for scout"""
 
-    def checkHrefBySelector(self, exp, selector, response):
+    def setUp(self):
+        self.soups = {}
+
+    def checkHrefBySelector(self, exp, selector, soup):
         """Given a selector, ensure that the first link found with that
         selector has an href matching 'exp'., returns the response
         of the href."""
-        bs = bs4.BeautifulSoup(response.content, "html5lib")
-        link = bs.select(selector)[0]
+        link = soup.select(selector)[0]
         self.checkHref(link, exp)
-        return self.client.get(exp)
+        return self.get_soup(exp)
 
     def checkHref(self, link, expectedLoc):
         """Given a link, ensure that its href is the same as expectedLoc"""
         linkHref = link.get('href')
         self.assertEqual(linkHref, expectedLoc)
 
+    """
+    def _test_foo_bar(self):
+        import pdb; pdb.set_trace()
+        response = self.client.get('/')
+        for i in xrange(0, 50):
+            #self.client.get('/')
+            bs = bs4.BeautifulSoup(response.content, "html5lib")
+    """
+
     def test_main_nav(self):
         """Goes from page to page and verifies that URLs are correct on
         each page """
-        response = self.client.get('/')
+        response = self.get_soup('/')
         # SCOUT-67
         dest = self.checkHrefBySelector('/food/', '#link_food', response)
         # SCOUT-68
@@ -35,30 +46,40 @@ class MainNavigationTest(LiveServerTestCase):
         # SCOUT-69
         dest = self.checkHrefBySelector('/', '#link_discover', dest)
 
+    def test_home_to_food(self):
+        response = self.get_soup('/')
+        self.checkHrefBySelector('/food/', '#link_food', response)
+
+    def test_home_to_home(self):
+        """SCOUT-61 Tests the home logo link on the home page"""
+        response = self.get_soup('/')
+        self.checkHrefBySelector('/', '#link_home', response)
+
     def test_filter_to_home(self):
         """SCOUT-60 Tests the home logo link on the filter page"""
-        response = self.client.get('/filter/')
+        response = self.get_soup('/filter/')
         self.checkHrefBySelector('/', '#link_home', response)
 
     def test_places_to_home(self):
         """SCOUT-59 Tests the home logo link on the places page"""
-        response = self.client.get('/food/')
-        self.checkHrefBySelector('/', '#link_home', response)
-
-    def test_home_to_home(self):
-        """SCOUT-61 Tests the home logo link on the home page"""
-        response = self.client.get('/')
+        response = self.get_soup('/food/')
         self.checkHrefBySelector('/', '#link_home', response)
 
     def test_filter_to_food(self):
         """SCOUT-62 Tests the food tab link on the filter page"""
-        response = self.client.get('/filter/')
+        response = self.get_soup('/filter/')
         self.checkHrefBySelector('/food/', '#link_food', response)
 
     def get_soup(self, page):
-        """Returns a soup object given a path"""
-        response = self.client.get(page)
-        return bs4.BeautifulSoup(response.content, "html5lib")
+        """Returns a soup object given a path, if there is no soup for the
+        particular suffix, then it will create it and remember it"""
+        if page in self.soups:
+            return self.soups[page]
+        else:
+            response = self.client.get(page)
+            soup = bs4.BeautifulSoup(response.content, "html5lib")
+            self.soups[page] = soup
+            return soup
 
     def check_footer_links_at_path(self, path):
         """Checks the footer links at the given path"""
@@ -86,7 +107,4 @@ class MainNavigationTest(LiveServerTestCase):
 
     def test_footer_links_detail(self):
         """SCOUT-66 Checks the privacy/terms on the detail page"""
-        soup = self.get_soup('/food/')
-        places = soup.select('ol li a')
-        tempHref = places[0].get('href')
-        self.check_footer_links_at_path(tempHref)
+        self.check_footer_links_at_path('/detail/2/')
