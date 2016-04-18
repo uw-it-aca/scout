@@ -76,23 +76,27 @@ class SpaceDAOTest(TestCase):
     def test_spot_open(self):
         local_tz = pytz.timezone('America/Los_Angeles')
         sc = Spotseeker()
-        spot = sc.get_spot_by_id(1)
+        spot = sc.get_spot_by_id(4)
         spot = organize_hours(spot)
 
-        # monday
+        #monday
         current_time = local_tz.localize(datetime.datetime(
             2015, 12, 14, 7, 0, 0, 0))
         self.assertFalse(get_is_spot_open(spot, current_time))
         current_time = local_tz.localize(datetime.datetime(
             2015, 12, 14, 10, 30, 0, 0))
         self.assertTrue(get_is_spot_open(spot, current_time))
+        #tuesday (still open from monday)
         current_time = local_tz.localize(datetime.datetime(
-            2015, 12, 14, 22, 0, 0, 0))
+            2015, 12, 15, 1, 0, 0, 0))
+        self.assertTrue(get_is_spot_open(spot, current_time))
+        #tuesday after monday's opening is closed
+        current_time = local_tz.localize(datetime.datetime(
+            2015, 12, 15, 3, 0, 0, 0))
         self.assertFalse(get_is_spot_open(spot, current_time))
-
-        # sunday
+        #saturday (only open from friday's opening)
         current_time = local_tz.localize(datetime.datetime(
-            2015, 12, 20, 11, 0, 0, 0))
+            2015, 12, 19, 10, 0, 0, 0))
         self.assertFalse(get_is_spot_open(spot, current_time))
 
     def test_open_periods(self):

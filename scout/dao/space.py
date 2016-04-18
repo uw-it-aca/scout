@@ -206,12 +206,26 @@ def get_open_periods_by_day(spot, now):
 
 
 def get_is_spot_open(spot, now):
-    hours = spot.hours[now.strftime("%A").lower()]
-
-    if len(hours) == 0:
+    hours_today = spot.hours[now.strftime("%A").lower()]
+    yesterday = now - datetime.timedelta(days=1)
+    hours_yesterday = spot.hours[yesterday.strftime("%A").lower()]
+    for period in hours_yesterday:
+        open_time = period[0]
+        close_time = period[1]
+        if open_time > close_time and now.time() < close_time:
+            # has an opening past midnight yesterday and NOW is before close
+            return True
+    if len(hours_today) == 0:
+        # has no openings today
         return False
-    for period in hours:
-        if period[0] <= now.time() and period[1] > now.time():
+    for period in hours_today:
+        open_time = period[0]
+        close_time = period[1]
+        if open_time > close_time:
+            if open_time < now.time():
+                # Spot is open past midnight and open before now
+                return True
+        elif open_time <= now.time() < close_time:
             return True
     return False
 
