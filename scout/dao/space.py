@@ -18,7 +18,7 @@ OPEN_PERIODS = {
         # 3pm - 9:59pm
         'dinner': {
             'start': datetime.time(15, 0, 01, 0),
-            'end':  datetime.time(21, 59, 59, 0)
+            'end':  datetime.time(22, 00, 0, 0)
         },
         # 10pm - 4:59am (spans midnight)
         'late_night': {
@@ -208,7 +208,7 @@ def get_open_periods_by_day(spot, now):
         if dinner['start'] <= end and dinner['end'] >= start:
             open_periods['dinner'] = True
         # open late night
-        if start <= breakfast['start'] or end >= dinner['end']:
+        if start <= breakfast['start'] or end > dinner['end']:
             open_periods['late_night'] = True
     return open_periods
 
