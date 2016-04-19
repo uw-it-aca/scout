@@ -206,7 +206,7 @@ $footer-height: 40px;
         // details
         .scout-details-container {
 
-            .scout-spot-image { background-color: #fff; background-size: contain; background-repeat: no-repeat; background-position: center center; min-height: 200px; position: relative;
+            .scout-spot-image { background-color: #fff; background-size: cover; background-repeat: no-repeat; background-position: center center; min-height: 200px; position: relative;
 
                 .scout-spot-status { position: absolute; top: 10px; right: 20px; font-size: 10px; text-transform: uppercase;
                     span {  padding: 0 5px; line-height: 20px; display: inline-block; }
