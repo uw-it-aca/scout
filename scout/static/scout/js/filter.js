@@ -85,6 +85,9 @@ var Filter = {
         if(url.indexOf("&period") > -1 || url.indexOf("?period") > -1){
             filter_categories.push("Open Period");
         }
+        if(url.indexOf("&open_now") > -1 || url.indexOf("?open_now") > -1){
+            filter_categories.push("Open Now");
+        }
         if(url.indexOf("&cuisine") > -1 || url.indexOf("?cuisine") > -1){
             filter_categories.push("Cuisine");
         }
