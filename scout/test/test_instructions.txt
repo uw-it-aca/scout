@@ -17,7 +17,7 @@ python manage.py test scout.tests
 
 To run a specific test
 for example:
-python manage.py test.scout.tests.FilterTest
+python manage.py test scout.tests.FilterTest
 
 TEST CATEGORIES
  -- Spacedao -- 

@@ -46,10 +46,6 @@ class MainNavigationTest(LiveServerTestCase):
         # SCOUT-69
         dest = self.checkHrefBySelector('/', '#link_discover', dest)
 
-    def test_home_to_food(self):
-        response = self.get_soup('/')
-        self.checkHrefBySelector('/food/', '#link_food', response)
-
     def test_home_to_home(self):
         """SCOUT-61 Tests the home logo link on the home page"""
         response = self.get_soup('/')
