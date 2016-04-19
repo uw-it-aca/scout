@@ -132,6 +132,16 @@ class SpaceDAOTest(TestCase):
         self.assertFalse(periods['dinner'])
         self.assertFalse(periods['late_night'])
 
+        # Test spot open across midnight
+        spot = sc.get_spot_by_id(4)
+        spot = organize_hours(spot)
+        current_time = datetime.datetime(2015, 12, 25, 0, 0, 0)
+        periods = get_open_periods_by_day(spot, current_time)
+        self.assertFalse(periods['breakfast'])
+        self.assertTrue(periods['lunch'])
+        self.assertTrue(periods['dinner'])
+        self.assertTrue(periods['late_night'])
+
     def test_get_spot_list(self):
         spot_list = get_spot_list()
         self.assertEqual(len(spot_list), 3)

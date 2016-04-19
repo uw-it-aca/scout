@@ -191,6 +191,10 @@ def get_open_periods_by_day(spot, now):
     for opening in hours:
         start = opening[0]
         end = opening[1]
+        # spot spans midnight
+        if start > end:
+            end = datetime.time(23, 59, 59)
+            open_periods['late_night'] = True
         # open for breakfast
         breakfast = OPEN_PERIODS['breakfast']
         if breakfast['start'] <= end and breakfast['end'] >= start:
