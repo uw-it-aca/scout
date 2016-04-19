@@ -5,21 +5,25 @@ import pytz
 
 
 OPEN_PERIODS = {
+        # 5am - 10:59am
         'breakfast': {
             'start': datetime.time(5, 0, 0, 0),
-            'end':  datetime.time(11, 0, 0, 0)
+            'end':  datetime.time(10, 59, 59, 0)
         },
+        # 11am - 2:59pm
         'lunch': {
             'start': datetime.time(11, 0, 0, 0),
-            'end':  datetime.time(15, 0, 0, 0)
+            'end':  datetime.time(14, 59, 59, 0)
         },
+        # 3pm - 9:59pm
         'dinner': {
             'start': datetime.time(15, 0, 0, 0),
-            'end':  datetime.time(22, 0, 0, 0)
+            'end':  datetime.time(21, 59, 59, 0)
         },
+        # 10pm - 4:59am (spans midnight)
         'late_night': {
             'start': datetime.time(22, 0, 0, 0),
-            'end':  datetime.time(5, 0, 0, 0)
+            'end':  datetime.time(4, 59, 59, 0)
         },
     }
 
