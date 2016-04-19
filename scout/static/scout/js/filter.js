@@ -108,9 +108,7 @@ var Filter = {
         sessionStorage.removeItem("filter_params");
         $("input:checkbox").attr('checked', false);
         Filter.replace_food_href();
-        if(window.location.pathname.indexOf("food") !== -1){
-            window.location.replace("/food/");
-        }
+        window.location.replace("/food/");
     },
 
     init_events: function() {
@@ -133,6 +131,7 @@ var Filter = {
 
         $("#reset_filter, #reset_button").click(function() {
             Filter.reset_filter();
+            console.log("reset hit");
         });
     },
 
