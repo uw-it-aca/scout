@@ -142,6 +142,55 @@ class SpaceDAOTest(TestCase):
         self.assertTrue(periods['dinner'])
         self.assertTrue(periods['late_night'])
 
+        # Test spots that exactly fill period hours
+        spot = sc.get_spot_by_id(5)
+        spot = organize_hours(spot)
+        # monday
+        current_time = datetime.datetime(2016, 4, 18, 0, 0, 0)
+        periods = get_open_periods_by_day(spot, current_time)
+        self.assertFalse(periods['breakfast'])
+        self.assertFalse(periods['lunch'])
+        self.assertFalse(periods['dinner'])
+        self.assertTrue(periods['late_night'])
+        # tuesday
+        current_time = datetime.datetime(2016, 4, 19, 0, 0, 0)
+        periods = get_open_periods_by_day(spot, current_time)
+        self.assertTrue(periods['breakfast'])
+        self.assertFalse(periods['lunch'])
+        self.assertFalse(periods['dinner'])
+        self.assertFalse(periods['late_night'])
+        # wednesday
+        current_time = datetime.datetime(2016, 4, 20, 0, 0, 0)
+        periods = get_open_periods_by_day(spot, current_time)
+        self.assertFalse(periods['breakfast'])
+        self.assertTrue(periods['lunch'])
+        self.assertFalse(periods['dinner'])
+        self.assertFalse(periods['late_night'])
+        # thursday
+        current_time = datetime.datetime(2016, 4, 21, 0, 0, 0)
+        periods = get_open_periods_by_day(spot, current_time)
+        self.assertFalse(periods['breakfast'])
+        self.assertFalse(periods['lunch'])
+        self.assertTrue(periods['dinner'])
+        self.assertFalse(periods['late_night'])
+        # friday
+        current_time = datetime.datetime(2016, 4, 22, 0, 0, 0)
+        periods = get_open_periods_by_day(spot, current_time)
+        self.assertFalse(periods['breakfast'])
+        self.assertFalse(periods['lunch'])
+        self.assertFalse(periods['dinner'])
+        self.assertTrue(periods['late_night'])
+        # sunday
+        current_time = datetime.datetime(2016, 4, 24, 0, 0, 0)
+        periods = get_open_periods_by_day(spot, current_time)
+        self.assertFalse(periods['breakfast'])
+        self.assertFalse(periods['lunch'])
+        self.assertFalse(periods['dinner'])
+        self.assertFalse(periods['late_night'])
+
+
+
+
     def test_get_spot_list(self):
         spot_list = get_spot_list()
         self.assertEqual(len(spot_list), 3)

@@ -7,23 +7,23 @@ import pytz
 OPEN_PERIODS = {
         # 5am - 10:59am
         'breakfast': {
-            'start': datetime.time(5, 0, 01, 0),
-            'end':  datetime.time(10, 59, 59, 0)
+            'start': datetime.time(5, 0, 00, 0),
+            'end':  datetime.time(11, 0, 0, 0)
         },
         # 11am - 2:59pm
         'lunch': {
-            'start': datetime.time(11, 0, 01, 0),
-            'end':  datetime.time(14, 59, 59, 0)
+            'start': datetime.time(11, 0, 0, 0),
+            'end':  datetime.time(15, 0, 0, 0)
         },
         # 3pm - 9:59pm
         'dinner': {
-            'start': datetime.time(15, 0, 01, 0),
-            'end':  datetime.time(22, 00, 0, 0)
+            'start': datetime.time(15, 0, 0, 0),
+            'end':  datetime.time(22, 0, 0, 0)
         },
         # 10pm - 4:59am (spans midnight)
         'late_night': {
-            'start': datetime.time(22, 0, 01, 0),
-            'end':  datetime.time(4, 59, 59, 0)
+            'start': datetime.time(22, 0, 0, 0),
+            'end':  datetime.time(5, 0, 0, 0)
         },
     }
 
@@ -197,18 +197,18 @@ def get_open_periods_by_day(spot, now):
             open_periods['late_night'] = True
         # open for breakfast
         breakfast = OPEN_PERIODS['breakfast']
-        if breakfast['start'] <= end and breakfast['end'] >= start:
+        if breakfast['start'] < end and breakfast['end'] > start:
             open_periods['breakfast'] = True
         # open for lunch
         lunch = OPEN_PERIODS['lunch']
-        if lunch['start'] <= end and lunch['end'] >= start:
+        if lunch['start'] < end and lunch['end'] > start:
             open_periods['lunch'] = True
         # open for dinner
         dinner = OPEN_PERIODS['dinner']
-        if dinner['start'] <= end and dinner['end'] >= start:
+        if dinner['start'] < end and dinner['end'] > start:
             open_periods['dinner'] = True
         # open late night
-        if start <= breakfast['start'] or end > dinner['end']:
+        if start < breakfast['start'] or end > dinner['end']:
             open_periods['late_night'] = True
     return open_periods
 
