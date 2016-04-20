@@ -59,7 +59,7 @@ def get_filtered_spots(request):
     filters = _get_spot_filters(request)
     # adding 'default' filter params
     filters.append(('limit', 0))
-    return get_spots_by_filter(filters)
+    return get_spots_by_filter(filters):
 
 
 def _get_spot_filters(request):
