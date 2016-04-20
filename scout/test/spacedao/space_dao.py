@@ -18,18 +18,18 @@ class SpaceDAOTest(TestCase):
     def test_get_spots_by_filer(self):
         """ tests function used by discover cards to load spaces with
         selected filters. Uses mock data that matches order of this filter.
+        OPEN DURING BREAKFAST ON TUESDAY
         """
 
         filter = [
-                    ('limit', 5), ('center_latitude', u'47.653811'),
-                    ('center_longitude', u'-122.307815'),
+                    ('limit', 5), ('center_latitude', u'47.6558539'),
+                    ('center_longitude', u'-122.30949250000003'),
                     ('distance', 100000),
                     ('fuzzy_hours_start', 'Tuesday,05:00'),
                     ('fuzzy_hours_end', 'Tuesday,11:00')]
 
         spots = get_spots_by_filter(filter)
-        self.assertEqual(len(spots), 5)
-        self.assertEqual(spots[0].extended_info[3].value, 'food')
+        self.assertEqual(len(spots), 4)
 
     def test_add_foodtypes(self):
         sc = Spotseeker()
@@ -130,11 +130,11 @@ class SpaceDAOTest(TestCase):
 
     def test_get_spot_list(self):
         spot_list = get_spot_list()
-        self.assertEqual(len(spot_list), 3)
+        self.assertEqual(len(spot_list), 8)
 
     def test_get_spots_by_filter(self):
         filtered_spots = get_spots_by_filter([('extended_info:s_food_pasta', True),
-                                             ('type', 'food_court')])
+                                             ('type', 'food_truck')])
         self.assertEqual(len(filtered_spots), 1)
 
     def test_get_spot_filters(self):
