@@ -10,8 +10,7 @@ from django.test import LiveServerTestCase
 class MainNavigationTest(LiveServerTestCase):
     """Navigation test set for scout"""
 
-    def setUp(self):
-        self.soups = {}
+    soups = {}
 
     def checkHrefBySelector(self, exp, selector, soup):
         """Given a selector, ensure that the first link found with that
@@ -19,52 +18,61 @@ class MainNavigationTest(LiveServerTestCase):
         of the href."""
         link = soup.select(selector)[0]
         self.checkHref(link, exp)
-        return self.get_soup(exp)
 
     def checkHref(self, link, expectedLoc):
         """Given a link, ensure that its href is the same as expectedLoc"""
         linkHref = link.get('href')
         self.assertEqual(linkHref, expectedLoc)
 
-    """
-    def _test_foo_bar(self):
-        import pdb; pdb.set_trace()
-        response = self.client.get('/')
-        for i in xrange(0, 50):
-            #self.client.get('/')
-            bs = bs4.BeautifulSoup(response.content, "html5lib")
-    """
-
-    def test_main_nav(self):
-        """Goes from page to page and verifies that URLs are correct on
-        each page """
+    def test_home_to_food(self):
+        """SCOUT-67 Tests the places tab link on the home page"""
         response = self.get_soup('/')
-        # SCOUT-67
-        dest = self.checkHrefBySelector('/food/', '#link_food', response)
-        # SCOUT-68
-        dest = self.checkHrefBySelector('/filter/','#link_filter', dest)
-        # SCOUT-69
-        dest = self.checkHrefBySelector('/', '#link_discover', dest)
+        self.checkHrefBySelector('/food/', '#link_food', response)
 
     def test_home_to_home(self):
         """SCOUT-61 Tests the home logo link on the home page"""
         response = self.get_soup('/')
         self.checkHrefBySelector('/', '#link_home', response)
 
+    def test_food_to_home(self):
+        """SCOUT-59 Tests the home logo link on the food page"""
+        response = self.get_soup('/food/')
+        self.checkHrefBySelector('/', '#link_home', response)
+
+    def test_food_to_home_2(self):
+        """Tests the discover tab link on the food page"""
+        response = self.get_soup('/food/')
+        self.checkHrefBySelector('/', '#link_discover', response)
+
+    def test_food_to_filter(self):
+        """SCOUT-68 Tests the filter link on the food page"""
+        response = self.get_soup('/food/')
+        self.checkHrefBySelector('/filter/', '#link_filter', response)
+
     def test_filter_to_home(self):
         """SCOUT-60 Tests the home logo link on the filter page"""
         response = self.get_soup('/filter/')
         self.checkHrefBySelector('/', '#link_home', response)
 
-    def test_places_to_home(self):
-        """SCOUT-59 Tests the home logo link on the places page"""
-        response = self.get_soup('/food/')
-        self.checkHrefBySelector('/', '#link_home', response)
+    def test_filter_to_home_2(self):
+        """SCOUT-69 Tests the discover tab link on the filter page"""
+        response = self.get_soup('/filter/')
+        self.checkHrefBySelector('/', '#link_discover', response)
 
     def test_filter_to_food(self):
         """SCOUT-62 Tests the food tab link on the filter page"""
         response = self.get_soup('/filter/')
         self.checkHrefBySelector('/food/', '#link_food', response)
+
+    """
+    def test_new(self):
+        response = self.client.get('/')
+        for i in range(40):
+            print i
+            # response = self.get_soup('/')
+            self.assertContains(response, '<div id="coupon">', status_code=200, html=True)
+            # self.checkHrefBySelector('/', '#link_home', response)
+    """
 
     def get_soup(self, page):
         """Returns a soup object given a path, if there is no soup for the
