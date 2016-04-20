@@ -59,7 +59,18 @@ def get_filtered_spots(request):
     filters = _get_spot_filters(request)
     # adding 'default' filter params
     filters.append(('limit', 0))
-    return get_spots_by_filter(filters):
+    filters.append(('extended_info:app_type', 'food'))
+
+    spot_client = Spotseeker()
+    try:
+        res = spot_client.search_spots(filters)
+
+        for spot in res:
+            spot = process_extended_info(spot)
+    except DataFailureException:
+        # TODO: consider logging on failure
+        res = []
+    return res
 
 
 def _get_spot_filters(request):
