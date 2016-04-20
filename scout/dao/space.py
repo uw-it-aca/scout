@@ -261,6 +261,8 @@ def add_additional_info(spot):
                                                 spot.extended_info)
     spot.phone = _get_extended_info_by_key("s_phone",
                                            spot.extended_info)
+    spot.email = _get_extended_info_by_key("s_email",
+                                           spot.extended_info)
     spot.website_url = _get_extended_info_by_key("s_website_url",
                                                  spot.extended_info)
     spot.location_description = \
