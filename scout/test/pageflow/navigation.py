@@ -64,16 +64,6 @@ class MainNavigationTest(LiveServerTestCase):
         response = self.get_soup('/filter/')
         self.checkHrefBySelector('/food/', '#link_food', response)
 
-    """
-    def test_new(self):
-        response = self.client.get('/')
-        for i in range(40):
-            print i
-            # response = self.get_soup('/')
-            self.assertContains(response, '<div id="coupon">', status_code=200, html=True)
-            # self.checkHrefBySelector('/', '#link_home', response)
-    """
-
     def get_soup(self, page):
         """Returns a soup object given a path, if there is no soup for the
         particular suffix, then it will create it and remember it"""
