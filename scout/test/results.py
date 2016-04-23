@@ -3,7 +3,7 @@
 from django.test import LiveServerTestCase
 
 class ResultsTest(LiveServerTestCase):
-    
+
     def test_default_results(self):
 
         content = self.client.get('/food/').content

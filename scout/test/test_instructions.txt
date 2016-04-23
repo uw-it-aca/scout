@@ -17,23 +17,16 @@ python manage.py test scout.tests
 
 To run a specific test
 for example:
-python manage.py test scout.tests.FilterTest
+python manage.py test scout.tests.SpaceDAOTest
 
 TEST CATEGORIES
  -- Spacedao -- 
 SpaceDAOTest
 
- -- UI -- 
-FilterTest
-
--- Wireframe -- 
-AdvNavigationTest
-
 -- Pageflow -- 
 MainNavigationTest
 UrlStatusTest
 ContentTest
-NavigationTestSelenium
 ————————————————————————————————————————————————     
 5. Extra/Optional
 To run tests and have the output placed in a file called ‘err’

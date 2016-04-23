@@ -18,18 +18,18 @@ class SpaceDAOTest(TestCase):
     def test_get_spots_by_filer(self):
         """ tests function used by discover cards to load spaces with
         selected filters. Uses mock data that matches order of this filter.
-        OPEN DURING BREAKFAST ON TUESDAY
         """
 
         filter = [
-                    ('limit', 5), ('center_latitude', u'47.6558539'),
-                    ('center_longitude', u'-122.30949250000003'),
+                    ('limit', 5), ('center_latitude', u'47.653811'),
+                    ('center_longitude', u'-122.307815'),
                     ('distance', 100000),
                     ('fuzzy_hours_start', 'Tuesday,05:00'),
                     ('fuzzy_hours_end', 'Tuesday,11:00')]
 
         spots = get_spots_by_filter(filter)
-        self.assertEqual(len(spots), 4)
+        self.assertEqual(len(spots), 5)
+        self.assertEqual(spots[0].extended_info[3].value, 'food')
 
     def test_add_foodtypes(self):
         sc = Spotseeker()
@@ -76,23 +76,27 @@ class SpaceDAOTest(TestCase):
     def test_spot_open(self):
         local_tz = pytz.timezone('America/Los_Angeles')
         sc = Spotseeker()
-        spot = sc.get_spot_by_id(1)
+        spot = sc.get_spot_by_id(4)
         spot = organize_hours(spot)
 
-        # monday
+        #monday
         current_time = local_tz.localize(datetime.datetime(
             2015, 12, 14, 7, 0, 0, 0))
         self.assertFalse(get_is_spot_open(spot, current_time))
         current_time = local_tz.localize(datetime.datetime(
             2015, 12, 14, 10, 30, 0, 0))
         self.assertTrue(get_is_spot_open(spot, current_time))
+        #tuesday (still open from monday)
         current_time = local_tz.localize(datetime.datetime(
-            2015, 12, 14, 22, 0, 0, 0))
+            2015, 12, 15, 1, 0, 0, 0))
+        self.assertTrue(get_is_spot_open(spot, current_time))
+        #tuesday after monday's opening is closed
+        current_time = local_tz.localize(datetime.datetime(
+            2015, 12, 15, 3, 0, 0, 0))
         self.assertFalse(get_is_spot_open(spot, current_time))
-
-        # sunday
+        #saturday (only open from friday's opening)
         current_time = local_tz.localize(datetime.datetime(
-            2015, 12, 20, 11, 0, 0, 0))
+            2015, 12, 19, 10, 0, 0, 0))
         self.assertFalse(get_is_spot_open(spot, current_time))
 
     def test_open_periods(self):
@@ -128,13 +132,72 @@ class SpaceDAOTest(TestCase):
         self.assertFalse(periods['dinner'])
         self.assertFalse(periods['late_night'])
 
+        # Test spot open across midnight
+        spot = sc.get_spot_by_id(4)
+        spot = organize_hours(spot)
+        current_time = datetime.datetime(2015, 12, 25, 0, 0, 0)
+        periods = get_open_periods_by_day(spot, current_time)
+        self.assertFalse(periods['breakfast'])
+        self.assertTrue(periods['lunch'])
+        self.assertTrue(periods['dinner'])
+        self.assertTrue(periods['late_night'])
+
+        # Test spots that exactly fill period hours
+        spot = sc.get_spot_by_id(5)
+        spot = organize_hours(spot)
+        # monday
+        current_time = datetime.datetime(2016, 4, 18, 0, 0, 0)
+        periods = get_open_periods_by_day(spot, current_time)
+        self.assertFalse(periods['breakfast'])
+        self.assertFalse(periods['lunch'])
+        self.assertFalse(periods['dinner'])
+        self.assertTrue(periods['late_night'])
+        # tuesday
+        current_time = datetime.datetime(2016, 4, 19, 0, 0, 0)
+        periods = get_open_periods_by_day(spot, current_time)
+        self.assertTrue(periods['breakfast'])
+        self.assertFalse(periods['lunch'])
+        self.assertFalse(periods['dinner'])
+        self.assertFalse(periods['late_night'])
+        # wednesday
+        current_time = datetime.datetime(2016, 4, 20, 0, 0, 0)
+        periods = get_open_periods_by_day(spot, current_time)
+        self.assertFalse(periods['breakfast'])
+        self.assertTrue(periods['lunch'])
+        self.assertFalse(periods['dinner'])
+        self.assertFalse(periods['late_night'])
+        # thursday
+        current_time = datetime.datetime(2016, 4, 21, 0, 0, 0)
+        periods = get_open_periods_by_day(spot, current_time)
+        self.assertFalse(periods['breakfast'])
+        self.assertFalse(periods['lunch'])
+        self.assertTrue(periods['dinner'])
+        self.assertFalse(periods['late_night'])
+        # friday
+        current_time = datetime.datetime(2016, 4, 22, 0, 0, 0)
+        periods = get_open_periods_by_day(spot, current_time)
+        self.assertFalse(periods['breakfast'])
+        self.assertFalse(periods['lunch'])
+        self.assertFalse(periods['dinner'])
+        self.assertTrue(periods['late_night'])
+        # sunday
+        current_time = datetime.datetime(2016, 4, 24, 0, 0, 0)
+        periods = get_open_periods_by_day(spot, current_time)
+        self.assertFalse(periods['breakfast'])
+        self.assertFalse(periods['lunch'])
+        self.assertFalse(periods['dinner'])
+        self.assertFalse(periods['late_night'])
+
+
+
+
     def test_get_spot_list(self):
         spot_list = get_spot_list()
-        self.assertEqual(len(spot_list), 8)
+        self.assertEqual(len(spot_list), 3)
 
     def test_get_spots_by_filter(self):
         filtered_spots = get_spots_by_filter([('extended_info:s_food_pasta', True),
-                                             ('type', 'food_truck')])
+                                             ('type', 'food_court')])
         self.assertEqual(len(filtered_spots), 1)
 
     def test_get_spot_filters(self):
@@ -142,3 +205,9 @@ class SpaceDAOTest(TestCase):
         filters = _get_spot_filters(request)
         self.assertEqual(len(filters), 9)
 
+    def test_organize_hours(self):
+        sc = Spotseeker()
+        spot = sc.get_spot_by_id(4)
+        spot_hours = organize_hours(spot)
+
+        self.assertEqual(len(spot_hours.hours), 7)
