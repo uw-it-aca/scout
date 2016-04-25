@@ -12,7 +12,7 @@
 
         <h2 class="visually-hidden">{{spot.name}}</h2>
 
-        <div class="scout-card" style="padding: 0;" data-latitude="{{ spot.latitude }}" data-longitude="{{ spot.longitude }}" data-spotname="{{ spot.name }}">
+        <div class="scout-card" style="padding: 0;" data-latitude="{{ spot.latitude }}" data-longitude="{{ spot.longitude }}" data-spotname="{{ spot.name }}" data-building="{{ spot.building_name }}">
 
             <h3 class="visually-hidden">Overview</h3>
 
@@ -172,30 +172,27 @@
                 <div class="scout-spot-map">
                     <div id="detail_map" data-mobile="true" style="height:100%;"></div>
                 </div>
-
-                    <div class="scout-spot-map-link">
-                        {% if request.is_ios %}
-
-                        <a href="maps://maps.apple.com/maps?q={{ spot.latitude }},{{ spot.longitude }}">
-                            <span class="fa-stack fa-lg">
-                              <i class="fa fa-circle fa-stack-2x"></i>
-                              <i class="fa fa-apple fa-stack-1x fa-inverse"></i>
-                            </span>
-                            <span class="scout-map-action-text">Launch Apple Maps</span>
-                        </a>
-                        {% else %}
-
-                        <a href="//maps.google.com/maps?q={{ spot.latitude }},{{ spot.longitude }}">
-                            <span class="fa-stack fa-lg">
-                              <i class="fa fa-circle fa-stack-2x"></i>
-                              <i class="fa fa-google fa-stack-1x fa-inverse"></i>
-                            </span>
-                            <span class="scout-map-action-text">Launch Google Maps</span>
-                        </a>
-                        {% endif %}
-                    </div>
-
                 {% endif %}
+
+                <div class="scout-spot-map-link">
+                    {% if request.is_ios %}
+                    <a href="maps://maps.apple.com/maps?q={{ spot.latitude }},{{ spot.longitude }}" target="_blank">
+                        <span class="fa-stack fa-lg">
+                          <i class="fa fa-circle fa-stack-2x"></i>
+                          <i class="fa fa-apple fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <span class="scout-map-action-text">Launch Apple Maps</span>
+                    </a>
+                    {% else %}
+                    <a href="//maps.google.com/maps?q={{ spot.latitude }},{{ spot.longitude }}" target="_blank">
+                        <span class="fa-stack fa-lg">
+                          <i class="fa fa-circle fa-stack-2x"></i>
+                          <i class="fa fa-google fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <span class="scout-map-action-text">Launch Google Maps</span>
+                    </a>
+                    {% endif %}
+                </div>
 
                 {% if spot.access_notes %}
                 <h4><i class="fa fa-file-text"></i> Notes</h4>

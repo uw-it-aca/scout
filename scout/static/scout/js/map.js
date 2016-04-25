@@ -192,95 +192,108 @@ var Map = {
 
     initializeDetailMap: function() {
 
-    var mapExists = document.getElementById("detail_map");
-    var isMobile = $("body").data("mobile");
-    var myLatlng, mapOptions;
+        var mapExists = document.getElementById("detail_map");
+        var isMobile = $("body").data("mobile");
+        var myLatlng, mapOptions;
 
-    if (mapExists) {
+        if (mapExists) {
 
-        // get spot location from data attributes
-        var spot_lat = $(".scout-card").data("latitude");
-        var spot_lng = $(".scout-card").data("longitude");
-        var spot_name = $(".scout-card").data("spotname");
+            // get spot location from data attributes
+            var spot_lat = $(".scout-card").data("latitude");
+            var spot_lng = $(".scout-card").data("longitude");
+            var spot_name = $(".scout-card").data("spotname");
+            var spot_building = $(".scout-card").data("building");
 
-        // center map direction on spot location
-        myLatlng = new google.maps.LatLng(spot_lat, spot_lng);
+            // center map direction on spot location
+            myLatlng = new google.maps.LatLng(spot_lat, spot_lng);
 
-        // set map options based on mobile or desktop
-        if (isMobile !== undefined ) {
+            // set map options based on mobile or desktop
+            if (isMobile !== undefined ) {
 
-            mapOptions = {
-                center: myLatlng,
-                zoom: 18,
-                scrollwheel: false,
-                draggable: false,
-                disableDefaultUI: true,
-                zoomControl: false,
-                disableDoubleClickZoom: true
+                mapOptions = {
+                    center: myLatlng,
+                    zoom: 18,
+                    scrollwheel: false,
+                    draggable: false,
+                    disableDefaultUI: true,
+                    zoomControl: false,
+                    disableDoubleClickZoom: true
 
-            };
+                };
+
+            }
+            else {
+
+                mapOptions = {
+                    center: myLatlng,
+                    zoom: 19,
+                };
+
+            }
+
+            var styles = [
+                {
+                    "featureType": "poi.place_of_worship",
+                    "elementType": "all",
+                    "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi.business",
+                    "elementType": "labels.icon",
+                    "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi.school",
+                    "elementType": "labels",
+                    "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                    ]
+                }
+            ];
+
+            var map = new google.maps.Map(document.getElementById('detail_map'), mapOptions);
+            map.setOptions({styles: styles});
+
+            // create and open InfoWindow.
+            var contentString = "<div>"+spot_building+"<br/><a href='//maps.google.com/maps?q="+spot_lat+","+spot_lng+"' target='_blank'>Get directions</a></div>";
+
+            var infowindow = new google.maps.InfoWindow({
+                content: contentString
+            });
+
+            var marker = new MarkerWithLabel({
+                position: myLatlng,
+                map: map,
+                title: spot_name,
+                labelContent: "<i class='fa fa-cutlery'></i><span class='marker-text' style='margin-left:15px;font-size:12px;'>" + spot_name + "</span>",
+                //labelContent: "<span class='marker-text' style='margin-left:18px;font-size:12px;'>" + spot_name + "</span>",
+                labelAnchor: new google.maps.Point(6, 6),
+                labelClass: "map-label", // the CSS class for the label
+                icon: {
+                    path: google.maps.SymbolPath.CIRCLE,
+                    fillColor: '#53518e',
+                    fillOpacity: 1,
+                    strokeColor: '#ffffff',
+                    strokeWeight: 2,
+                    scale: 15
+                }
+            });
+
+            marker.addListener('click', function() {
+                infowindow.open(map, marker);
+            });
 
         }
-        else {
 
-            mapOptions = {
-                center: myLatlng,
-                zoom: 19,
-            };
-
-        }
-
-        var styles = [
-            {
-                "featureType": "poi.place_of_worship",
-                "elementType": "all",
-                "stylers": [
-                    {
-                        "visibility": "off"
-                    }
-                ]
-            },
-            {
-                "featureType": "poi.business",
-                "elementType": "labels.icon",
-                "stylers": [
-                    {
-                        "visibility": "off"
-                    }
-                ]
-            },
-            {
-                "featureType": "poi.school",
-                "elementType": "labels",
-                "stylers": [
-                    {
-                        "visibility": "off"
-                    }
-                ]
-            }
-        ];
-
-        var map = new google.maps.Map(document.getElementById('detail_map'), mapOptions);
-        map.setOptions({styles: styles});
-
-        var marker = new MarkerWithLabel({
-            position: myLatlng,
-            map: map,
-            title: spot_name,
-            labelContent: "<i class='fa fa-cutlery'></i><span class='marker-text' style='margin-left:15px;font-size:12px;'>" + spot_name + "</span>",
-            //labelContent: "<span class='marker-text' style='margin-left:18px;font-size:12px;'>" + spot_name + "</span>",
-            labelAnchor: new google.maps.Point(6, 6),
-            labelClass: "map-label", // the CSS class for the label
-            icon: {
-                path: google.maps.SymbolPath.CIRCLE,
-                fillColor: '#53518e',
-                fillOpacity: 1,
-                strokeColor: '#ffffff',
-                strokeWeight: 2,
-                scale: 15
-            }
-        });
     }
-
-}
 };
