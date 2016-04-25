@@ -265,7 +265,7 @@ var Map = {
             map.setOptions({styles: styles});
 
             // create and open InfoWindow.
-            var contentString = "<div>"+spot_building+"<br/><a href='//maps.google.com/maps?q="+spot_lat+","+spot_lng+"' target='_blank'>Get directions</a></div>";
+            var contentString = "<div>"+spot_name+"<br>"+spot_building+"<br/><a href='//maps.google.com/maps?q="+spot_lat+","+spot_lng+"' target='_blank'>Get directions</a></div>";
 
             var infowindow = new google.maps.InfoWindow({
                 content: contentString
