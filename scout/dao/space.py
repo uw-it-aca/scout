@@ -57,6 +57,7 @@ def get_filtered_spots(request):
     filters.append(('limit', 0))
     return get_spots_by_filter(filters)
 
+
 def _get_spot_filters(request):
     params = []
     for param in request.GET:
