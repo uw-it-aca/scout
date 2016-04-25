@@ -158,7 +158,6 @@ def get_open_periods_by_day(spot, now):
 
 def get_is_spot_open(spot, now):
     hours = spot.hours[now.strftime("%A").lower()]
-
     if len(hours) == 0:
         return False
     for period in hours:

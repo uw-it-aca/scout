@@ -188,9 +188,6 @@ class SpaceDAOTest(TestCase):
         self.assertFalse(periods['dinner'])
         self.assertFalse(periods['late_night'])
 
-
-
-
     def test_get_spot_list(self):
         spot_list = get_spot_list()
         self.assertEqual(len(spot_list), 3)
