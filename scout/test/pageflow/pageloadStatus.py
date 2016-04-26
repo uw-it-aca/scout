@@ -4,9 +4,9 @@ Tests pages and their respective URL status codes
 """
 
 import sys
-from django.test import LiveServerTestCase
+from django.test import TestCase
 
-class UrlStatusTest(LiveServerTestCase):
+class UrlStatusTest(TestCase):
 
     def clientUrlStatus(self, urlsuffix=''):
         """Returns the status code of the given URL"""

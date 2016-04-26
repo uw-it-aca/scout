@@ -5,9 +5,9 @@ necessary selectors are present
 """
 
 import bs4
-from django.test import LiveServerTestCase
+from django.test import TestCase
 
-class ContentTest(LiveServerTestCase):
+class ContentTest(TestCase):
     """Content test set for scout, (page id's)"""
 
     def returnSoup(self, url):

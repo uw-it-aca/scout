@@ -5,9 +5,9 @@ Testing the flow between pages through links
 """
 
 import bs4
-from django.test import LiveServerTestCase
+from django.test import TestCase
 
-class MainNavigationTest(LiveServerTestCase):
+class MainNavigationTest(TestCase):
     """Navigation test set for scout"""
 
     soups = {}
