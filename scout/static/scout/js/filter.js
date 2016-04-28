@@ -65,7 +65,6 @@ var Filter = {
     // Return object where keys of the form prefixN are mapped to
     // values in select_results. e.g. 
     _get_params_for_select: function(select_results, prefix) {
-        console.log(select_results)
         params = {};
         if(select_results !== null && select_results.length > 0){
             $.each(select_results, function(idx, result){
