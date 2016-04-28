@@ -1,6 +1,9 @@
 var Filter = {
+    /* Iterates through filter checkboxes to initialize filter parameters,
+       and store it in a session variable. */
     set_filter_params: function() {
 
+        // Each of these forms an array of checked filters in each category
         var campuses = $("#campus_select input:checkbox:checked").map(function() {
             return $(this).val();
         }).get();
@@ -25,6 +28,8 @@ var Filter = {
             return $(this).val();
         }).get();
 
+        // For each filter category, form objects using _get_params_for_select
+        // and add them to params.
         var params = {};
 
         params = $.extend(params, Filter._get_params_for_select(campuses,
@@ -47,6 +52,8 @@ var Filter = {
 
     },
 
+    // Look at session variable and return its JSON. If the session variable
+    // doesn't exist, return undefined.
     get_filter_url: function() {
         if(sessionStorage.getItem("filter_params") !== null){
             var params = JSON.parse(sessionStorage.getItem("filter_params"));
@@ -55,7 +62,10 @@ var Filter = {
         return undefined;
     },
 
+    // Return object where keys of the form prefixN are mapped to
+    // values in select_results. e.g. 
     _get_params_for_select: function(select_results, prefix) {
+        console.log(select_results)
         params = {};
         if(select_results !== null && select_results.length > 0){
             $.each(select_results, function(idx, result){
@@ -66,6 +76,7 @@ var Filter = {
 
     },
 
+    // Parse the current URL to get the human-readable "Filtering By" text
     _get_filter_label_text: function(){
         var filter_categories = [];
         var url = window.location.href;
@@ -100,6 +111,8 @@ var Filter = {
         return filter_string;
     },
 
+    // Get friendly text from _get_filter_label_text, and if not empty,
+    // set the actual text on the page to that. 
     set_filter_text: function(){
         var filter_text = Filter._get_filter_label_text();
         if(filter_text.length > 0){
@@ -107,13 +120,15 @@ var Filter = {
         }
     },
 
+    // Clear session variable, uncheck checkboxes, and reset address bar URL
     reset_filter: function() {
         sessionStorage.removeItem("filter_params");
         $("input:checkbox").attr('checked', false);
         Filter.replace_food_href();
         window.location.replace("/food/");
     },
-
+    
+    // Set the potential events that can occur if buttons/links are clicked
     init_events: function() {
         Filter.set_filter_text();
 
@@ -137,11 +152,13 @@ var Filter = {
             console.log("reset hit");
         });
     },
-
+    
+    // Checks off boxes based on the filter_params
     init: function() {
         Filter.populate_filters_from_saved();
     },
 
+    // Checks off boxes based on the filter_params, if empty does nothing
     populate_filters_from_saved: function() {
         var filter_item;
         // do nothing if no filters are saved
@@ -183,6 +200,8 @@ var Filter = {
         });
     },
 
+    // Connects the food_anchor/link_food button to the URL based on the 
+    // filters selected
     replace_food_href: function(){
         var filter_url = Filter.get_filter_url();
         var food_anchor = $("#link_food");
@@ -197,3 +216,9 @@ var Filter = {
         }
     }
 };
+
+/* node.js exports */
+if (typeof exports == "undefined") {
+    var exports = {};
+}
+exports.Filter = Filter;
