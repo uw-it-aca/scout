@@ -1,3 +1,9 @@
+var filter = require('../filter');
+var jsdom = require('jsdom');
+var assert = require('assert');
+var jquery = require('jquery');
+var fakeSess = require('./testing_tools').fakeSessionStorage;
+
 var filter_selections = {
     type_select: [
         { value: "cafe", checked: true, text: "Cafes"},
@@ -39,18 +45,20 @@ var generateHtml = function generateHtml(filterData) {
     return out;
 };
 
-var filter = require('../filter');
-var jsdom = require('jsdom');
-var html_content = generateHtml(filter_selections);
-var doc = jsdom.jsdom(html_content);
-var window = doc.parentWindow;
-var $ = require('jquery')(window);
-var assert = require('assert');
+var jqueryFromHtml = function jqueryFromHtml(html) {
+    var html_content = generateHtml(filter_selections);
+    var doc = jsdom.jsdom(html_content);
+    var win = doc.parentWindow;
+    var $ = jquery(win);
+    return $;
+}
+
+var defaultJquery = jqueryFromHtml(generateHtml(filter_selections));
 
 describe("Filter Tests", function() {
     describe("Get Params For Select", function() {
         it('Cuisine', function() {
-            global.$ = $;
+            global.$ = defaultJquery;
             var selectedFilters = ["s_cuisine_hawaiian"];
             var exp = { cuisine0: 's_cuisine_hawaiian' };
             var temp = filter.Filter._get_params_for_select(selectedFilters, "cuisine")
@@ -58,7 +66,7 @@ describe("Filter Tests", function() {
         });
 
         it('None', function() {
-            global.$ = $;
+            global.$ = defaultJquery;
             var data = [];
             var exp = {};
             var temp = filter.Filter._get_params_for_select(data, "cuisine")
@@ -67,23 +75,14 @@ describe("Filter Tests", function() {
     });
     describe("Filter Params", function() {
 
-        sessionVars = {}
-        fakeSessionStorage = {
-            setItem: function(item, value) {
-                sessionVars[item] = value;
-            },
-            getItem: function(item) {
-                return sessionVars[item];
-            }
-        }
+        sessionVars = new fakeSess();
 
-        global.sessionStorage = fakeSessionStorage;
+        global.sessionStorage = sessionVars;
         it ('Checked Off', function() {
-            global.$ = $;
+            global.$ = defaultJquery;
             filter.Filter.set_filter_params();
-            var exp = { type0 : 'cafe', type1 : 'cafeteria', food0: "s_food_frozen_yogurt"};
-            console.log(sessionVars["filter_params"]);
-            assert.deepEqual(JSON.parse(sessionVars["filter_params"]), exp);
+            var exp = {type0 : 'cafe', type1 : 'cafeteria', food0: "s_food_frozen_yogurt"};
+            assert.deepEqual(JSON.parse(sessionVars.getItem("filter_params")), exp);
         });
     });
 });
