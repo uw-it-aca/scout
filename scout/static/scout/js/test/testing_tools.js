@@ -7,7 +7,12 @@ var fakeSessionStorage = function fakeSessionStorage(initval){
 };
 
 fakeSessionStorage.prototype.getItem = function(item) {
-    return this.sessionVars[item];
+    var result = this.sessionVars[item];
+    if (result === undefined) {
+        return null;
+    } else {
+        return result;
+    }
 }
 
 fakeSessionStorage.prototype.setItem = function(item, value) {
