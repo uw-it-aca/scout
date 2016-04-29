@@ -1,6 +1,3 @@
-
-
-
 var fakeSessionStorage = function fakeSessionStorage(initval){
     if (initval !== undefined) {
         this.sessionVars = initval;
