@@ -56,6 +56,21 @@ var jqueryFromHtml = function jqueryFromHtml(html) {
 var defaultJquery = jqueryFromHtml(generateHtml(filter_selections));
 
 describe("Filter Tests", function() {
+    describe("Initialization", function() {
+        global.$ = getDefaultJquery();
+        it('should do nothing when filter_params is null', function() {
+            var sessVars = new fakeSess();
+            global.sessionStorage = sessVars;
+            filter.Filter.init();
+        });
+        it('should check off one checkbox', function() {
+            var sessVars = new fakeSess({ sessionVars: { filter_params: '{"type0":"cafe","type1":"cafeteria","food0":"s_food_frozen_yogurt"}' } });
+            global.sessionStorage = sessVars;
+            filter.Filter.init();
+            console.log(global.$); 
+        });
+
+    });
     describe("Get Params For Select", function() {
         it('Cuisine', function() {
             global.$ = defaultJquery;
