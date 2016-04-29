@@ -72,7 +72,7 @@ describe("Filter Tests", function() {
             var sessVars = new fakeSess({ sessionVars: { filter_params: '{"type0":"cafe","type1":"cafeteria","food0":"s_food_frozen_yogurt"}' } });
             global.sessionStorage = sessVars;
             filter.Filter.init();
-             
+            console.log(global.$); 
         });
 
     });
