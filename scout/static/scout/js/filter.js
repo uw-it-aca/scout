@@ -164,7 +164,7 @@ var Filter = {
         if(sessionStorage.getItem("filter_params") === null){
             return;
         }
-
+        
         var params = JSON.parse(sessionStorage.getItem("filter_params"));
         $.each(params, function(idx, val){
             if(idx.indexOf("campus") > -1){

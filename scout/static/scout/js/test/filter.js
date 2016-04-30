@@ -19,6 +19,13 @@ var filter_selections = {
     ],
 };
 
+var filter_selections1 = {
+    payment_select: [
+        { value: "s_pay_cash", checked: false, text: "Husky Card"},
+        { value: "s_pay_dining", checked: false, text: "Dining Card"},
+    ],
+};
+
 var generateSection = function generateSection(label, data){
     var result = '<div id="';
     result += label + '"> ';
@@ -45,8 +52,8 @@ var generateHtml = function generateHtml(filterData) {
     return out;
 };
 
-var jqueryFromHtml = function jqueryFromHtml(html) {
-    var html_content = generateHtml(filter_selections);
+var jqueryFromHtml = function jqueryFromHtml(filters) {
+    var html_content = generateHtml(filters);
     var doc = jsdom.jsdom(html_content);
     var win = doc.parentWindow;
     var $ = jquery(win);
@@ -57,22 +64,24 @@ var getDefaultJquery = function(filters) {
     if (filters === undefined) {
         filters = filter_selections;
     };
-    return jqueryFromHtml(generateHtml(filters));
+    return jqueryFromHtml(filters);
 };
 
 describe("Filter Tests", function() {
     describe("Initialization", function() {
-        global.$ = getDefaultJquery();
         it('should do nothing when filter_params is null', function() {
+            global.$ = getDefaultJquery(filter_selections1);
             var sessVars = new fakeSess();
             global.sessionStorage = sessVars;
             filter.Filter.init();
         });
-        it('should check off one checkbox', function() {
-            var sessVars = new fakeSess({ sessionVars: { filter_params: '{"type0":"cafe","type1":"cafeteria","food0":"s_food_frozen_yogurt"}' } });
+        it('should check off two checkboxes on the html page', function() {
+            global.$ = getDefaultJquery(filter_selections1);
+            var sessVars = new fakeSess({ sessionVars: { filter_params: '{"payment0":"s_pay_cash", "payment1":"s_pay_dining"}' } });
             global.sessionStorage = sessVars;
             filter.Filter.init();
-            console.log(global.$); 
+            console.log(global.sessionStorage);
+            console.log($("html").html());  
         });
 
     });
@@ -94,14 +103,13 @@ describe("Filter Tests", function() {
         });
     });
 
-    describe("Filter Params", function() {
-        global.$ = getDefaultJquery();
+    describe("Filter Params", function() { 
         it ('returns the right params for varied filters', function() {
+            global.$ = getDefaultJquery();
             var sessionVars = new fakeSess();
             global.sessionStorage = sessionVars;
             filter.Filter.set_filter_params();
             var exp = {type0 : 'cafe', type1 : 'cafeteria', food0: "s_food_frozen_yogurt"};
-            console.log(sessionVars);
             assert.deepEqual(JSON.parse(sessionVars.getItem("filter_params")), exp);
         });
     });
