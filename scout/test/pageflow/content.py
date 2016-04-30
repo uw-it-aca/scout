@@ -26,8 +26,7 @@ class ContentTest(TestCase):
         checkId = bs.select('#page_food')
         self.assertGreater(len(checkId), 0)
         filterButtons = bs.select('.scout-filter-results-action')
-        self.assertEqual(filterButtons[0].getText(), 'Filter results')
-        self.assertEqual(filterButtons[1].getText(), 'Reset filter')
+        self.assertGreater(len(filterButtons), 0)
 
     def test_detail_content(self):
         """SCOUT-58 Test that the content on the detail page is correct"""
@@ -47,4 +46,4 @@ class ContentTest(TestCase):
         checkId = bs.select('#page_filter')
         self.assertGreater(len(checkId), 0)
         legends = bs.select('legend')
-        self.assertEqual(legends[0].text, 'Campus')
+        self.assertGreater(len(legends), 0)
