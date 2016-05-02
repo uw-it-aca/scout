@@ -52,8 +52,8 @@ var Filter = {
 
     },
 
-    // Look at session variable and return its JSON. If the session variable
-    // doesn't exist, return undefined.
+    // Look at session variable and return its corresponding URL String
+    // If the session variable doesn't exist, return undefined.
     get_filter_url: function() {
         if(sessionStorage.getItem("filter_params") !== null){
             var params = JSON.parse(sessionStorage.getItem("filter_params"));
