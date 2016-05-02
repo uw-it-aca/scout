@@ -84,3 +84,10 @@ var List = {
     }
 
 };
+
+
+/* node.js exports */
+if (typeof exports == "undefined") {
+    var exports = {};
+}
+exports.List = List;
