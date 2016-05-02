@@ -195,7 +195,6 @@ var Filter = {
                 filter_item = $("#food_select").find("input[value='" + val + "']");
                 $(filter_item[0]).prop("checked", true);
             }
-
         });
     },
 

@@ -24,6 +24,9 @@ var filter_selections1 = {
         { value: "s_pay_cash", checked: false, text: "Husky Card"},
         { value: "s_pay_dining", checked: false, text: "Dining Card"},
     ],
+    food_select: [
+        { value: "s_food_smoothies", checked: false, text: "Smoothies"},
+    ],
 };
 
 var generateSection = function generateSection(label, data){
@@ -74,16 +77,38 @@ describe("Filter Tests", function() {
             var sessVars = new fakeSess();
             global.sessionStorage = sessVars;
             filter.Filter.init();
+            filter_item = $("#food_select").find("input[value='s_food_smoothies']");
+            filter_item2 = $("#payment_select").find("input[value='s_pay_cash']");
+            filter_item3 = $("#payment_select").find("input[value='s_pay_dining']");
+            assert.equal(($(filter_item[0]).prop("checked")), false ); 
+            assert.equal(($(filter_item2[0]).prop("checked")), false );  
+            assert.equal(($(filter_item3[0]).prop("checked")), false );  
         });
-        it('should check off two checkboxes on the html page', function() {
+        it('should check off two checkboxes based on the filter_params', function() {
             global.$ = getDefaultJquery(filter_selections1);
-            var sessVars = new fakeSess({ sessionVars: { filter_params: '{"payment0":"s_pay_cash", "payment1":"s_pay_dining"}' } });
+            var sessVars = new fakeSess({filter_params: '{"payment0":"s_pay_cash", "payment1":"s_pay_dining"}'});
             global.sessionStorage = sessVars;
             filter.Filter.init();
-            console.log(global.sessionStorage);
-            console.log($("html").html());  
+            filter_item = $("#food_select").find("input[value='s_food_smoothies']");
+            filter_item2 = $("#payment_select").find("input[value='s_pay_cash']");
+            filter_item3 = $("#payment_select").find("input[value='s_pay_dining']");
+            assert.equal(($(filter_item[0]).prop("checked")), false ); 
+            assert.equal(($(filter_item2[0]).prop("checked")), true );  
+            assert.equal(($(filter_item3[0]).prop("checked")), true );  
         });
+        it('should be able to check off checkboxes in different sections', function() {
+            global.$ = getDefaultJquery(filter_selections1);
+            var sessVars = new fakeSess({filter_params: '{"payment0":"s_pay_cash", "food0":"s_food_smoothies"}'});
+            global.sessionStorage = sessVars;
+            filter.Filter.init();
+            filter_item = $("#food_select").find("input[value='s_food_smoothies']");
+            filter_item2 = $("#payment_select").find("input[value='s_pay_cash']");
+            filter_item3 = $("#payment_select").find("input[value='s_pay_dining']");
+            assert.equal(($(filter_item[0]).prop("checked")), true ); 
+            assert.equal(($(filter_item2[0]).prop("checked")), true );  
+            assert.equal(($(filter_item3[0]).prop("checked")), false );  
 
+        });
     });
     describe("Filter Params", function() { 
         it ('returns the right params for varied filters', function() {
