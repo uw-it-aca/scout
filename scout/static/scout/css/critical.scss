@@ -46,9 +46,9 @@ $footer-height: 40px;
         .fa-circle { color: $scout-button; }
             .scout-geolocation-location { color:#111; display: inline-block; }
             .scout-geolocation-action {  margin-left: 5px; float: right; font-size: 25px;
-                a {
-                    .fa-toggle-off { color: #999; }
-                    .fa-toggle-on { color: $scout-purple; }
+                a { color: $scout-purple;
+                    .fa-toggle-off { }
+                    .fa-toggle-on { }
                 }
             }
         .scout-geolocation-user { display:none; position:absolute; left:40px; right:20px; background:#f1f1f1; }
