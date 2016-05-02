@@ -76,8 +76,9 @@ var Filter = {
     },
 
     // Parse the current URL to get the human-readable "Filtering By" text
-    _get_filter_label_text: function(url){
+    _get_filter_label_text: function(){
         var filter_categories = [];
+        var url = window.location.href;
         var filter_string = "";
         if(url.indexOf("&campus") > -1 || url.indexOf("?campus") > -1){
             filter_categories.push("Campus");
@@ -112,7 +113,7 @@ var Filter = {
     // Get friendly text from _get_filter_label_text, and if not empty,
     // set the actual text on the page to that. 
     set_filter_text: function(){
-        var filter_text = Filter._get_filter_label_text(window.location.href);
+        var filter_text = Filter._get_filter_label_text();
         if(filter_text.length > 0){
             $("#filter_label_text").html(filter_text);
         }
