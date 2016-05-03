@@ -1,7 +1,7 @@
 var Map = {
 
     init_map: function () {
-        window.addEventListener('location_changed', function() {
+        $(document).on("location_changed", function() {
             // list map... location on list.html and map.html (mobile and desktop)
             if( $("#list_map").length > 0 ) {
                 Map.initializeListMap();
@@ -62,33 +62,39 @@ var Map = {
 
             var map = new google.maps.Map(document.getElementById('list_map'), mapOptions);
 
-            // current location marker
-            var locationMarker = new google.maps.Marker({
-                position: pos,
-                map: map,
-                icon: {
-                    path: google.maps.SymbolPath.CIRCLE,
+            // show user location marker if user is sharing
+            if (Geolocation.get_location_type() !== "default") {
+
+                // current location marker
+                var locationMarker = new google.maps.Marker({
+                    position: pos,
+                    map: map,
+                    icon: {
+                        path: google.maps.SymbolPath.CIRCLE,
+                        fillColor: '#c0392b',
+                        fillOpacity: 1,
+                        strokeColor: '#ffffff',
+                        scale: 5,
+                        strokeWeight: 2
+                    },
+                });
+
+                // add radius overlay and bind to location marker
+                var circle = new google.maps.Circle({
+                    map: map,
+                    radius: 30,    // meters
                     fillColor: '#c0392b',
-                    fillOpacity: 1,
-                    strokeColor: '#ffffff',
-                    scale: 5,
-                    strokeWeight: 2
-                },
-            });
+                    fillOpacity: 0.15,
+                    strokeWeight: 0
+                });
+                circle.bindTo('center', locationMarker, 'position');
 
-            // Add radius overlay and bind to location marker
+                // add user location marker to map
+                window.user_location_marker = locationMarker;
 
-            var circle = new google.maps.Circle({
-                map: map,
-                radius: 30,    // meters
-                fillColor: '#c0392b',
-                fillOpacity: 0.15,
-                strokeWeight: 0
-            });
-            circle.bindTo('center', locationMarker, 'position');
+            }
 
 
-            window.user_location_marker = locationMarker;
             map.setOptions({styles: styles});
 
             // multiple pins on a single map
@@ -180,7 +186,7 @@ var Map = {
             // zoom the map automatically using the bounds of all markers
             window.map_bounds = bounds;
             // Don't store user marker in bounds as it can change
-            bounds.extend(locationMarker.position);
+            //bounds.extend(locationMarker.position);
 
             //map.fitBounds(bounds);
 

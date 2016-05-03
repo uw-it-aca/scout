@@ -1,14 +1,14 @@
 var Geolocation = {
 
     // red square
-    default_location: { latitude: 47.6558539, longitude: -122.3094925 },
+    //default_location: { latitude: 47.6558539, longitude: -122.3094925 },
 
     // drumheller fountain
-    //default_location: { latitude: 47.653811, longitude: -122.307815 },
+    default_location: { latitude: 47.653811, longitude: -122.307815 },
 
-    location_changed:  new CustomEvent("location_changed"),
+    location_changed:  {"type": "location_changed"},
 
-    location_updating:  new CustomEvent("location_updating"),
+    location_updating:  {"type": "location_updating"},
 
     update_location: function () {
         if (!Geolocation.get_is_using_location()) {
@@ -18,7 +18,7 @@ var Geolocation = {
         }
         if(!window.has_set_loc){
             // Fire this event so pages can handle location on page load
-            window.dispatchEvent(Geolocation.location_changed);
+            $.event.trigger(Geolocation.location_changed);
         }
         window.has_set_loc = true;
     },
@@ -48,7 +48,7 @@ var Geolocation = {
         sessionStorage.setItem("lat", position.coords.latitude);
         sessionStorage.setItem("lng", position.coords.longitude);
         Geolocation.set_location_type("user");
-        window.dispatchEvent(Geolocation.location_changed);
+        $.event.trigger(Geolocation.location_changed);
     },
 
     get_latlng_from_coords: function(lat, lng) {
@@ -82,7 +82,7 @@ var Geolocation = {
         sessionStorage.setItem('lat', Geolocation.default_location.latitude);
         sessionStorage.setItem('lng', Geolocation.default_location.longitude);
         Geolocation.set_location_type("default");
-        window.dispatchEvent(Geolocation.location_changed);
+        $.event.trigger(Geolocation.location_changed);
     },
 
     get_distance_from_position: function (item_latlng) {
@@ -109,7 +109,7 @@ var Geolocation = {
 
             $("#default_position").hide();
             $("#default_position").attr("aria-hidden", "true");
-        
+
             $("#shared_position").show();
             $("#shared_position").attr("aria-hidden", "false");
 
@@ -121,7 +121,7 @@ var Geolocation = {
         $("#use_location").click(function(e) {
 
             e.preventDefault();
-            window.dispatchEvent(Geolocation.location_updating);
+            $.event.trigger(Geolocation.location_updating);
             Geolocation.set_is_using_location(true);
 
             $("#shared_position").show();
@@ -135,7 +135,7 @@ var Geolocation = {
         $("#forget_location").click(function(e) {
 
             e.preventDefault();
-            window.dispatchEvent(Geolocation.location_updating);
+            $.event.trigger(Geolocation.location_updating);
             Geolocation.set_is_using_location(false);
 
             $("#shared_position").hide();

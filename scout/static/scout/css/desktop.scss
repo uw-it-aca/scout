@@ -1,6 +1,6 @@
 // sass variables
 
-$view-panel-width: 415px;
+$view-panel-width: 430px;
 $header-height: 102px;
 $footer-height: 40px;
 $image-height: 278px;
@@ -60,6 +60,7 @@ body { overflow: hidden; }
                                     span { text-transform: uppercase; margin-left: 5px; }
                                 }
 
+                                .scout-spot-name { width: 73%; }
                                 .scout-spot-status { }
                             }
                         }

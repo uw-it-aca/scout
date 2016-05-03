@@ -45,8 +45,11 @@ $footer-height: 40px;
         .fa-stack { font-size: 12px; }
         .fa-circle { color: $scout-button; }
             .scout-geolocation-location { color:#111; display: inline-block; }
-            .scout-geolocation-action {  margin-left: 5px; float: right;
-                a { display: inline-block; display: inline-block; color:$scout-link; text-decoration: underline; }
+            .scout-geolocation-action {  margin-left: 5px; float: right; font-size: 25px;
+                a { color: $scout-purple;
+                    .fa-toggle-off { }
+                    .fa-toggle-on { }
+                }
             }
         .scout-geolocation-user { display:none; position:absolute; left:40px; right:20px; background:#f1f1f1; }
         .scout-geolocation-loading { position:absolute; color:#bbb; z-index:0; left:40px; right:20px; }
@@ -339,8 +342,9 @@ $footer-height: 40px;
 }
 
 // footer
-.scout-footer { background: #fafafa; color:#555; width: 100%; font-size: 75%; text-align:center; line-height: $footer-height; border-top: solid 1px #ddd;
-    a { color: $scout-link; display: inline-block; margin-left: 8px; }
+.scout-footer { background: #fafafa; color:#555; width: 100%; font-size: 75%; text-align:center; line-height: $footer-height; border-top: solid 1px #ddd; white-space: nowrap;
+    a { color: $scout-link; display: inline-block;  }
+    a:first-child { margin-left: 10px; }
 }
 
 .scout-error {

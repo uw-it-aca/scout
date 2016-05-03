@@ -1,6 +1,6 @@
 Discover = {
     init_cards: function () {
-        window.addEventListener('location_changed', function() {
+        $(document).on("location_changed", function() {
             Geolocation.display_location_status();
             var discover_divs = $("#discover_cards").children();
             var latlng = Geolocation.get_client_latlng();
@@ -9,7 +9,7 @@ Discover = {
                 Discover.fetch_cards(card_id, latlng);
             });
         });
-        window.addEventListener('location_updating', function() {
+        $(document).on("location_updating", function() {
             Discover.set_cards_are_visible(false);
         });
 
