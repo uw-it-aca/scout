@@ -100,7 +100,10 @@ def get_period_filter(param):
 
 def get_spot_by_id(spot_id):
     spot_client = Spotseeker()
-    res = spot_client.get_spot_by_id(spot_id)
+    try:
+        res = spot_client.get_spot_by_id(spot_id)
+    except DataFailureException:
+        return None
     return process_extended_info(res)
 
 

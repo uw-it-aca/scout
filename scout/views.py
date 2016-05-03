@@ -129,6 +129,9 @@ def list_view(request):
 
 def detail_view(request, spot_id):
     spot = get_spot_by_id(spot_id)
+    if not spot:
+        raise Http404("Spot does not exist")
+
     context = {"spot": spot}
     return render_to_response('scout/detail.html', context,
                               context_instance=RequestContext(request))
