@@ -187,17 +187,17 @@ describe("Filter Tests", function() {
                 })
             });
             global.sessionStorage = sessionVars;
-            filter_url = filter.Filter.get_filter_url();
-            filter_url_parts = filter_url.split('&');
+            var filter_url = filter.Filter.get_filter_url();
+            var filter_url_parts = filter_url.split('&');
             filter_url_parts.sort();
-            expected = [
+            var expected = [
                 'campus0=seattle',
                 'cuisine0=s_cuisine_indian',
                 'open_now=true',
                 'type0=food_court',
                 'type1=market',
             ]
-            expected.sort();
+            expected = expected.sort();
             assert.deepEqual(expected, filter_url_parts);
         });
         it ('returns the URL in the right order for a filter', function() {
@@ -214,6 +214,43 @@ describe("Filter Tests", function() {
            
         });
 
+    });
+    describe("Replace Food Href", function() {
+        it ('the link_food is replaced with the href of no filters', function() {
+            global.$ = tools.jqueryFromHtml(' <a href="/food/" id="link_food">Places</a>');
+            var sessionVars = new fakeSess();
+            global.sessionStorage = sessionVars; 
+            filter.Filter.replace_food_href();
+            var food_anchor = $("#link_food");
+            var value = $(food_anchor).attr('href'); 
+            var exp = "/food/";
+            assert.deepEqual(value, exp);
+        });
+        it ('the link_food is replaced with the expected href of one filter', function() {
+            global.$ = tools.jqueryFromHtml(' <a href="/food/" id="link_food">Places</a>');
+            var sessionVars = new fakeSess({ filter_params: '{"payment0": "s_pay_cash"}'});
+            global.sessionStorage = sessionVars; 
+            filter.Filter.replace_food_href();
+            var food_anchor = $("#link_food");
+            var value = $(food_anchor).attr('href'); 
+            var exp = "/food/?payment0=s_pay_cash";
+            assert.deepEqual(value, exp);
+        });
+        it ('the link_food is replaced with the expected href of multiple filters', function() {
+            global.$ = tools.jqueryFromHtml(' <a href="/food/" id="link_food">Places</a>');
+            var sessionVars = new fakeSess({ filter_params: JSON.stringify({
+                payment0: "s_pay_visa",
+                type0: "food_truck",
+                open_now: "true",
+                })                    
+            });
+            global.sessionStorage = sessionVars; 
+            filter.Filter.replace_food_href();
+            var food_anchor = $("#link_food");
+            var value = $(food_anchor).attr('href'); 
+            var exp = "/food/?payment0=s_pay_visa&type0=food_truck&open_now=true";
+            assert.deepEqual(value, exp);
+        });
     });
 });
 
