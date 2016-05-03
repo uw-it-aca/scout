@@ -1,7 +1,7 @@
 var Map = {
 
     init_map: function () {
-        window.addEventListener('location_changed', function() {
+        $(document).on("location_changed", function() {
             // list map... location on list.html and map.html (mobile and desktop)
             if( $("#list_map").length > 0 ) {
                 Map.initializeListMap();

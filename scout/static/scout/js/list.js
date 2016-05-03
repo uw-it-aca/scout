@@ -32,13 +32,13 @@ var List = {
     },
 
     init: function () {
-        window.addEventListener('location_changed', function() {
+        $(document).on("location_changed", function() {
             Geolocation.display_location_status();
             List.add_spot_distances();
             List.order_spot_list();
             List.set_list_is_visible(true);
         });
-        window.addEventListener('location_updating', function() {
+        $(document).on("location_updating", function() {
             List.set_list_is_visible(false);
 
         });
