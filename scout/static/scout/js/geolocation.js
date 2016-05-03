@@ -1,10 +1,10 @@
 var Geolocation = {
 
     // red square
-    default_location: { latitude: 47.6558539, longitude: -122.3094925 },
+    //default_location: { latitude: 47.6558539, longitude: -122.3094925 },
 
     // drumheller fountain
-    //default_location: { latitude: 47.653811, longitude: -122.307815 },
+    default_location: { latitude: 47.653811, longitude: -122.307815 },
 
     location_changed:  {"type": "location_changed"},
 
@@ -109,7 +109,7 @@ var Geolocation = {
 
             $("#default_position").hide();
             $("#default_position").attr("aria-hidden", "true");
-        
+
             $("#shared_position").show();
             $("#shared_position").attr("aria-hidden", "false");
 
