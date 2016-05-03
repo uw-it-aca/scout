@@ -316,8 +316,21 @@ describe("Filter Tests", function() {
             var exp = "";
             assert.equal(result, exp);
         });
-
-
+    });
+    describe("Set Filter Text", function() {
+        before(function() {
+            global.$ = tools.jqueryFromHtml('<div class="scout-filter-results-text" id="filter_label_text">--</div>');
+        });
+        it ('should not change the filter text, if the URL is empty', function() {
+            global.window = new fakeWindow("");
+            filter.Filter.set_filter_text();     
+            assert.equal($("#filter_label_text").html(), "--");
+        });
+        it ('should change the filter text, if the URL contains a filter', function() {
+            global.window = new fakeWindow("/food/?campus0=tacoma");
+            filter.Filter.set_filter_text();     
+            assert.equal($("#filter_label_text").html(), "Campus");
+        });
     });
 });
 
