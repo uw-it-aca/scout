@@ -83,9 +83,11 @@ var getDefaultJquery = function(filters) {
 
 describe("Filter Tests", function() {
     describe("Initialization", function() {
-        it('should do nothing when filter_params is null', function() {
+        beforeEach(function() {
             global.$ = getDefaultJquery(filter_selections1);
-            var sessVars = new fakeSess();
+        });
+        it('should do nothing when filter_params is null', function() {
+             var sessVars = new fakeSess();
             global.sessionStorage = sessVars;
             filter.Filter.init();
             filter_item = $("#food_select").find("input[value='s_food_smoothies']");
@@ -96,7 +98,6 @@ describe("Filter Tests", function() {
             assert.equal(($(filter_item3[0]).prop("checked")), false );  
         });
         it('should check off two checkboxes based on the filter_params', function() {
-            global.$ = getDefaultJquery(filter_selections1);
             var sessVars = new fakeSess({filter_params: '{"payment0":"s_pay_cash", "payment1":"s_pay_dining"}'});
             global.sessionStorage = sessVars;
             filter.Filter.init();
@@ -108,7 +109,6 @@ describe("Filter Tests", function() {
             assert.equal(($(filter_item3[0]).prop("checked")), true );  
         });
         it('should be able to check off checkboxes in different sections', function() {
-            global.$ = getDefaultJquery(filter_selections1);
             var sessVars = new fakeSess({filter_params: '{"payment0":"s_pay_cash", "food0":"s_food_smoothies"}'});
             global.sessionStorage = sessVars;
             filter.Filter.init();
@@ -226,8 +226,10 @@ describe("Filter Tests", function() {
     });
 
     describe("Replace Food Href", function() {
-        it ('the link_food is replaced with the href of no filters', function() {
+        beforeEach(function() {
             global.$ = tools.jqueryFromHtml(' <a href="" id="link_food">Places</a>');
+        });
+        it ('the link_food is replaced with the href of no filters', function() {
             var sessionVars = new fakeSess();
             global.sessionStorage = sessionVars; 
             filter.Filter.replace_food_href();
@@ -237,7 +239,6 @@ describe("Filter Tests", function() {
             assert.deepEqual(value, exp);
         });
         it ('the link_food is replaced with the expected href of one filter', function() {
-            global.$ = tools.jqueryFromHtml(' <a href="" id="link_food">Places</a>');
             var sessionVars = new fakeSess({ filter_params: '{"payment0": "s_pay_cash"}'});
             global.sessionStorage = sessionVars; 
             filter.Filter.replace_food_href();
@@ -247,7 +248,6 @@ describe("Filter Tests", function() {
             assert.deepEqual(value, exp);
         });
         it ('the link_food is replaced with the expected href of multiple filters', function() {
-            global.$ = tools.jqueryFromHtml(' <a href="" id="link_food">Places</a>');
             var sessionVars = new fakeSess({ filter_params: JSON.stringify({
                 payment0: "s_pay_visa",
                 type0: "food_truck",
@@ -318,7 +318,7 @@ describe("Filter Tests", function() {
         });
     });
     describe("Set Filter Text", function() {
-        before(function() {
+        beforeEach(function() {
             global.$ = tools.jqueryFromHtml('<div class="scout-filter-results-text" id="filter_label_text">--</div>');
         });
         it ('should not change the filter text, if the URL is empty', function() {
