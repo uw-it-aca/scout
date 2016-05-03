@@ -83,9 +83,17 @@ var getDefaultJquery = function(filters) {
 
 describe("Filter Tests", function() {
     describe("Initialization", function() {
+<<<<<<< HEAD
         it('should do nothing when filter_params is null', function() {
             global.$ = getDefaultJquery(filter_selections1);
             var sessVars = new fakeSess();
+=======
+        beforeEach(function() {
+            global.$ = getDefaultJquery(filter_selections1);
+        });
+        it('should do nothing when filter_params is null', function() {
+             var sessVars = new fakeSess();
+>>>>>>> e8b211920f782e3f11a515ff88013fbc74b9b765
             global.sessionStorage = sessVars;
             filter.Filter.init();
             filter_item = $("#food_select").find("input[value='s_food_smoothies']");
@@ -96,7 +104,10 @@ describe("Filter Tests", function() {
             assert.equal(($(filter_item3[0]).prop("checked")), false );  
         });
         it('should check off two checkboxes based on the filter_params', function() {
+<<<<<<< HEAD
             global.$ = getDefaultJquery(filter_selections1);
+=======
+>>>>>>> e8b211920f782e3f11a515ff88013fbc74b9b765
             var sessVars = new fakeSess({filter_params: '{"payment0":"s_pay_cash", "payment1":"s_pay_dining"}'});
             global.sessionStorage = sessVars;
             filter.Filter.init();
@@ -108,7 +119,10 @@ describe("Filter Tests", function() {
             assert.equal(($(filter_item3[0]).prop("checked")), true );  
         });
         it('should be able to check off checkboxes in different sections', function() {
+<<<<<<< HEAD
             global.$ = getDefaultJquery(filter_selections1);
+=======
+>>>>>>> e8b211920f782e3f11a515ff88013fbc74b9b765
             var sessVars = new fakeSess({filter_params: '{"payment0":"s_pay_cash", "food0":"s_food_smoothies"}'});
             global.sessionStorage = sessVars;
             filter.Filter.init();
@@ -226,8 +240,15 @@ describe("Filter Tests", function() {
     });
 
     describe("Replace Food Href", function() {
+<<<<<<< HEAD
         it ('the link_food is replaced with the href of no filters', function() {
             global.$ = tools.jqueryFromHtml(' <a href="" id="link_food">Places</a>');
+=======
+        beforeEach(function() {
+            global.$ = tools.jqueryFromHtml(' <a href="" id="link_food">Places</a>');
+        });
+        it ('the link_food is replaced with the href of no filters', function() {
+>>>>>>> e8b211920f782e3f11a515ff88013fbc74b9b765
             var sessionVars = new fakeSess();
             global.sessionStorage = sessionVars; 
             filter.Filter.replace_food_href();
@@ -237,7 +258,10 @@ describe("Filter Tests", function() {
             assert.deepEqual(value, exp);
         });
         it ('the link_food is replaced with the expected href of one filter', function() {
+<<<<<<< HEAD
             global.$ = tools.jqueryFromHtml(' <a href="" id="link_food">Places</a>');
+=======
+>>>>>>> e8b211920f782e3f11a515ff88013fbc74b9b765
             var sessionVars = new fakeSess({ filter_params: '{"payment0": "s_pay_cash"}'});
             global.sessionStorage = sessionVars; 
             filter.Filter.replace_food_href();
@@ -247,7 +271,10 @@ describe("Filter Tests", function() {
             assert.deepEqual(value, exp);
         });
         it ('the link_food is replaced with the expected href of multiple filters', function() {
+<<<<<<< HEAD
             global.$ = tools.jqueryFromHtml(' <a href="" id="link_food">Places</a>');
+=======
+>>>>>>> e8b211920f782e3f11a515ff88013fbc74b9b765
             var sessionVars = new fakeSess({ filter_params: JSON.stringify({
                 payment0: "s_pay_visa",
                 type0: "food_truck",
@@ -269,7 +296,11 @@ describe("Filter Tests", function() {
             global.$ = getDefaultJquery(filter_selections2);
             sessionVars = new fakeSess({ filter_params: '{"payment0": "s_pay_cash"}'});
             global.sessionStorage = sessionVars;
+<<<<<<< HEAD
             global.window = new fakeWindow("SF");
+=======
+            global.window = new fakeWindow("");
+>>>>>>> e8b211920f782e3f11a515ff88013fbc74b9b765
             filter.Filter.reset_filter(); 
         });
         it('should remove the session variables ("filter_params")', function() {
@@ -290,5 +321,77 @@ describe("Filter Tests", function() {
 
         });
     });
+<<<<<<< HEAD
+=======
+    describe("Get Filter Label Text", function() {
+        var sessionVars;
+        it ('should return the right text with a URL with three different categories', function() {
+            global.window = new fakeWindow("/food/?payment0=s_pay_visa&type0=food_truck&open_now=true");
+            var result = filter.Filter._get_filter_label_text();
+            var exp = "Payment Accepted, Restaurant Type, Open Now";
+            assert.equal(result, exp);
+        });
+        it ('should return the right text with a URL containing filters from same category', function() {
+            global.window = new fakeWindow("/food/?period0=breakfast&period1=lunch&period2=dinner");
+            var result = filter.Filter._get_filter_label_text();
+            var exp = "Open Period";
+            assert.equal(result, exp);
+        });
+        it ('should return the right text with a URL containing multiple filters from same/different categories', function() {
+            global.window = new fakeWindow("/food/?campus0=tacoma&period0=breakfast&period1=lunch&period2=dinner&open_now=true");
+            var result = filter.Filter._get_filter_label_text();
+            var exp = "Campus, Open Period, Open Now";
+            assert.equal(result, exp);
+        });
+        it ('should return an empty string if the URL doesnt contain any filters', function() {
+            global.window = new fakeWindow("/food/");
+            var result = filter.Filter._get_filter_label_text();
+            var exp = "";
+            assert.equal(result, exp);
+        });
+    });
+    describe("Set Filter Text", function() {
+        beforeEach(function() {
+            global.$ = tools.jqueryFromHtml('<div class="scout-filter-results-text" id="filter_label_text">--</div>');
+        });
+        it ('should not change the filter text, if the URL is empty', function() {
+            global.window = new fakeWindow("");
+            filter.Filter.set_filter_text();     
+            assert.equal($("#filter_label_text").html(), "--");
+        });
+        it ('should change the filter text, if the URL contains a filter', function() {
+            global.window = new fakeWindow("/food/?campus0=tacoma");
+            filter.Filter.set_filter_text();     
+            assert.equal($("#filter_label_text").html(), "Campus");
+        });
+    });
+    describe("Init Events", function() {
+        before(function() {
+            global.$ = tools.jqueryFromHtml('<input id="reset_button" type="button" value="Reset"> <input id="run_search" type="button" value="View Results"> <a id="reset_filter"> <input id="noevents">');
+            filter.Filter.init_events();
+        });
+        it ('should attach an event to run_search', function() {
+            var elem = "#run_search";
+            var events = $._data($(elem).get(0), "events")
+            assert.notEqual(events, undefined);
+        });
+        it ('should attach an event to reset_filter', function() {
+            var elem = "#reset_filter";
+            var events = $._data($(elem).get(0), "events")
+            assert.notEqual(events, undefined);
+        });
+        it ('should attach an event to reset_button', function() {
+            var elem = "#reset_button";
+            var events = $._data($(elem).get(0), "events")
+            assert.notEqual(events, undefined);
+        });
+        it ('should not attach an event to noevents', function() {
+            var elem = "#noevents";
+            var events = $._data($(elem).get(0), "events")
+            assert.equal(events, undefined);
+        });
+
+    });
+>>>>>>> e8b211920f782e3f11a515ff88013fbc74b9b765
 });
 
