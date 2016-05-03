@@ -185,10 +185,14 @@ var Map = {
 
             // zoom the map automatically using the bounds of all markers
             window.map_bounds = bounds;
-            // Don't store user marker in bounds as it can change
-            //bounds.extend(locationMarker.position);
 
-            //map.fitBounds(bounds);
+            if (Geolocation.get_location_type() !== "default") {
+                // Don't store user marker in bounds as it can change
+                bounds.extend(locationMarker.position);
+            }
+
+            // fit all spots into the map boundary
+            // map.fitBounds(bounds);
 
             // cluster the markers using marker clusterer
             //var markerCluster = new MarkerClusterer(map, markers);
