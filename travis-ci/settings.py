@@ -60,7 +60,7 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.RemoteUserBackend',
 )
 
-ROOT_URLCONF = 'scoutproject.urls'
+ROOT_URLCONF = 'travis-ci.urls'
 
 TEMPLATES = [
     {
