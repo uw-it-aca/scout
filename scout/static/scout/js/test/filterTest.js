@@ -269,7 +269,7 @@ describe("Filter Tests", function() {
             global.$ = getDefaultJquery(filter_selections2);
             sessionVars = new fakeSess({ filter_params: '{"payment0": "s_pay_cash"}'});
             global.sessionStorage = sessionVars;
-            global.window = new fakeWindow("SF");
+            global.window = new fakeWindow("");
             filter.Filter.reset_filter(); 
         });
         it('should remove the session variables ("filter_params")', function() {
@@ -289,6 +289,35 @@ describe("Filter Tests", function() {
             assert.equal(global.window.location.href, '/food/');
 
         });
+    });
+    describe("Get Filter Label Text", function() {
+        var sessionVars;
+        it ('should return the right text with a URL with three different categories', function() {
+            global.window = new fakeWindow("/food/?payment0=s_pay_visa&type0=food_truck&open_now=true");
+            var result = filter.Filter._get_filter_label_text();
+            var exp = "Payment Accepted, Restaurant Type, Open Now";
+            assert.equal(result, exp);
+        });
+        it ('should return the right text with a URL containing filters from same category', function() {
+            global.window = new fakeWindow("/food/?period0=breakfast&period1=lunch&period2=dinner");
+            var result = filter.Filter._get_filter_label_text();
+            var exp = "Open Period";
+            assert.equal(result, exp);
+        });
+        it ('should return the right text with a URL containing multiple filters from same/different categories', function() {
+            global.window = new fakeWindow("/food/?campus0=tacoma&period0=breakfast&period1=lunch&period2=dinner&open_now=true");
+            var result = filter.Filter._get_filter_label_text();
+            var exp = "Campus, Open Period, Open Now";
+            assert.equal(result, exp);
+        });
+        it ('should return an empty string if the URL doesnt contain any filters', function() {
+            global.window = new fakeWindow("/food/");
+            var result = filter.Filter._get_filter_label_text();
+            var exp = "";
+            assert.equal(result, exp);
+        });
+
+
     });
 });
 
