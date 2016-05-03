@@ -4,6 +4,7 @@ var assert = require('assert');
 var jquery = require('jquery');
 var tools = require('./testing_tools')
 var fakeSess = require('./testing_tools').fakeSessionStorage;
+var fakeWindow = require('./testing_tools').fakeWindow;
 
 var filter_selections = {
     type_select: [
@@ -30,12 +31,22 @@ var filter_selections1 = {
     ],
 };
 
+var filter_selections2 = {
+    payment_select: [
+        { value: "s_pay_cash", checked: true, text: "Husky Card"},
+        { value: "s_pay_dining", checked: true, text: "Dining Card"},
+    ],
+    food_select: [
+        { value: "s_food_smoothies", checked: true, text: "Smoothies"},
+    ],
+};
+
 var default_selections = {
     payment_select: [
         { value: "s_pay_cash", checked: false, text: "Husky Card"},
     ],
-
 };
+
 
 var generateSection = function generateSection(label, data){
     var result = '<div id="';
@@ -197,7 +208,7 @@ describe("Filter Tests", function() {
                 'type0=food_court',
                 'type1=market',
             ]
-            expected = expected.sort();
+            expected.sort();
             assert.deepEqual(expected, filter_url_parts);
         });
         it ('returns the URL in the right order for a filter', function() {
@@ -211,13 +222,12 @@ describe("Filter Tests", function() {
             value = filter.Filter.get_filter_url();
             exp = "payment0=s_pay_visa&type0=food_truck&open_now=true";
             assert.equal(value, exp);
-           
         });
-
     });
+
     describe("Replace Food Href", function() {
         it ('the link_food is replaced with the href of no filters', function() {
-            global.$ = tools.jqueryFromHtml(' <a href="/food/" id="link_food">Places</a>');
+            global.$ = tools.jqueryFromHtml(' <a href="" id="link_food">Places</a>');
             var sessionVars = new fakeSess();
             global.sessionStorage = sessionVars; 
             filter.Filter.replace_food_href();
@@ -227,7 +237,7 @@ describe("Filter Tests", function() {
             assert.deepEqual(value, exp);
         });
         it ('the link_food is replaced with the expected href of one filter', function() {
-            global.$ = tools.jqueryFromHtml(' <a href="/food/" id="link_food">Places</a>');
+            global.$ = tools.jqueryFromHtml(' <a href="" id="link_food">Places</a>');
             var sessionVars = new fakeSess({ filter_params: '{"payment0": "s_pay_cash"}'});
             global.sessionStorage = sessionVars; 
             filter.Filter.replace_food_href();
@@ -237,7 +247,7 @@ describe("Filter Tests", function() {
             assert.deepEqual(value, exp);
         });
         it ('the link_food is replaced with the expected href of multiple filters', function() {
-            global.$ = tools.jqueryFromHtml(' <a href="/food/" id="link_food">Places</a>');
+            global.$ = tools.jqueryFromHtml(' <a href="" id="link_food">Places</a>');
             var sessionVars = new fakeSess({ filter_params: JSON.stringify({
                 payment0: "s_pay_visa",
                 type0: "food_truck",
@@ -250,6 +260,34 @@ describe("Filter Tests", function() {
             var value = $(food_anchor).attr('href'); 
             var exp = "/food/?payment0=s_pay_visa&type0=food_truck&open_now=true";
             assert.deepEqual(value, exp);
+        });
+    });
+
+    describe("Reset Filter", function() {
+        var sessionVars;
+        before(function() {
+            global.$ = getDefaultJquery(filter_selections2);
+            sessionVars = new fakeSess({ filter_params: '{"payment0": "s_pay_cash"}'});
+            global.sessionStorage = sessionVars;
+            global.window = new fakeWindow("SF");
+            filter.Filter.reset_filter(); 
+        });
+        it('should remove the session variables ("filter_params")', function() {
+            // Testing that the filter params are removed from session storage
+            assert.deepEqual(global.sessionStorage, { sessionVars: {} });   
+        });
+        it ('should uncheck any checked boxes', function() {
+            // Testing that all the checkboxes have been unchecked
+            filter_item = $("#food_select").find("input[value='s_food_smoothies']");
+            filter_item2 = $("#payment_select").find("input[value='s_pay_cash']");
+            filter_item3 = $("#payment_select").find("input[value='s_pay_dining']");
+            assert.equal(($(filter_item[0]).prop("checked")), false ); 
+            assert.equal(($(filter_item2[0]).prop("checked")), false );  
+            assert.equal(($(filter_item3[0]).prop("checked")), false );
+        });
+        it ('should change the window location', function() {
+            assert.equal(global.window.location.href, '/food/');
+
         });
     });
 });
