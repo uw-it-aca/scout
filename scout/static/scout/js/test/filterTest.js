@@ -332,5 +332,32 @@ describe("Filter Tests", function() {
             assert.equal($("#filter_label_text").html(), "Campus");
         });
     });
+    describe("Init Events", function() {
+        before(function() {
+            global.$ = tools.jqueryFromHtml('<input id="reset_button" type="button" value="Reset"> <input id="run_search" type="button" value="View Results"> <a id="reset_filter"> <input id="noevents">');
+            filter.Filter.init_events();
+        });
+        it ('should attach an event to run_search', function() {
+            var elem = "#run_search";
+            var events = $._data($(elem).get(0), "events")
+            assert.notEqual(events, undefined);
+        });
+        it ('should attach an event to reset_filter', function() {
+            var elem = "#reset_filter";
+            var events = $._data($(elem).get(0), "events")
+            assert.notEqual(events, undefined);
+        });
+        it ('should attach an event to reset_button', function() {
+            var elem = "#reset_button";
+            var events = $._data($(elem).get(0), "events")
+            assert.notEqual(events, undefined);
+        });
+        it ('should not attach an event to noevents', function() {
+            var elem = "#noevents";
+            var events = $._data($(elem).get(0), "events")
+            assert.equal(events, undefined);
+        });
+
+    });
 });
 
