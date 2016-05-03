@@ -139,13 +139,6 @@ var Filter = {
             }
         });
 
-        $("#filter_toggle").click(function(e) {
-            e.preventDefault();
-            $("#filter_container").toggle("slow", function() {
-                // Animation complete.
-            });
-        });
-
         $("#reset_filter, #reset_button").click(function() {
             Filter.reset_filter();
             console.log("reset hit");

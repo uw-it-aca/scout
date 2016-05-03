@@ -109,6 +109,7 @@ describe("Filter Tests", function() {
             assert.equal(($(filter_item3[0]).prop("checked")), true );  
         });
         it('should be able to check off checkboxes in different sections', function() {
+            global.$ = getDefaultJquery(filter_selections1);
             var sessVars = new fakeSess({filter_params: '{"payment0":"s_pay_cash", "food0":"s_food_smoothies"}'});
             global.sessionStorage = sessVars;
             filter.Filter.init();
