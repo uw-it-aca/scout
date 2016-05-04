@@ -6,6 +6,7 @@ Tests pages and their respective URL status codes
 import sys
 from django.test import TestCase
 
+
 class UrlStatusTest(TestCase):
 
     def clientUrlStatus(self, urlsuffix=''):
@@ -55,7 +56,7 @@ class UrlStatusTest(TestCase):
         self.assertUrlStatus('/food/?period0=breakfast', 200)
 
     def test_filter_search_lateURL(self):
-        """SCOUT-78 Test late night search URL and see if it results in a 200"""
+        """SCOUT-78 Test late night search URL, see if it results in a 200"""
         self.assertUrlStatus('/food/?period0=late_night', 200)
 
     def test_filter_search_404(self):
