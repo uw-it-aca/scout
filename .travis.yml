@@ -16,7 +16,7 @@ before_script:
 script:
   - pep8 scout/ --exclude=migrations,test
   - coverage run --source=scout/ --omit=scout/migrations/* manage.py test scout
-  - mocha scout/static/scout/js/ --recursive
+  - mocha scout/static/scout/js/test --recursive
 after_script:
   - coveralls
 notifications:
