@@ -10,9 +10,13 @@ before_script:
   - pip install -r requirements.txt
   - cp travis-ci/manage.py manage.py
   - python manage.py migrate --noinput
+  - npm install mocha
+  - npm install jquery
+  - npm install jsdom@3
 script:
   - pep8 scout/ --exclude=migrations,test
   - coverage run --source=scout/ --omit=scout/migrations/* manage.py test scout
+  - mocha scout/static/scout/js/ --recursive
 after_script:
   - coveralls
 notifications:
