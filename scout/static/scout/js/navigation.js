@@ -12,7 +12,7 @@ var Navigation = {
             $("#link_food").attr("disabled", "disabled");
             Navigation.disable_clicks();
 
-            $("#link_discover").css("border-bottom", "solid 4px #fafafa");
+            $("#link_discover").css("border-bottom", "solid 4px #f1f1f1");
         }
         else if (pathname.indexOf("/map") !== -1) {
             $("#link_food").css({"border-bottom":"solid 4px #6564A8", "color":"#6564A8"});
@@ -21,15 +21,15 @@ var Navigation = {
             $("#link_food").attr("disabled", "disabled");
             Navigation.disable_clicks();
 
-            $("#link_discover").css("border-bottom", "solid 4px #fafafa");
+            $("#link_discover").css("border-bottom", "solid 4px #f1f1f1");
         }
         else if (pathname.indexOf("/filter") !== -1) {
-            $("#link_discover").css("border-bottom", "solid 4px #fafafa");
-            $("#link_food").css("border-bottom", "solid 4px #fafafa");
+            $("#link_discover").css("border-bottom", "solid 4px #f1f1f1");
+            $("#link_food").css("border-bottom", "solid 4px #f1f1f1");
         }
         else if (pathname.indexOf("/detail") !== -1) {
-            $("#link_discover").css("border-bottom", "solid 4px #fafafa");
-            $("#link_food").css("border-bottom", "solid 4px #fafafa");
+            $("#link_discover").css("border-bottom", "solid 4px #f1f1f1");
+            $("#link_food").css("border-bottom", "solid 4px #f1f1f1");
         }
         else {
             $("#link_discover").css({"border-bottom":"solid 4px #6564A8", "color":"#6564A8"});
