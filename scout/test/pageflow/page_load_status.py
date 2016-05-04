@@ -44,8 +44,10 @@ class UrlStatusTest(TestCase):
         return res.status_code
 
     def assertUrlStatus(self, urlsuffix='', code=200):
-        """Checks to see if the status code of the given URL matches the
-        given status code"""
+        """
+        Checks to see if the status code of the given URL matches the
+        given status code.
+        """
         url_status = self._clientUrlStatus(urlsuffix)
         self.assertEqual(
             url_status, code,
