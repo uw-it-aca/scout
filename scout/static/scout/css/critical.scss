@@ -58,7 +58,7 @@ $footer-height: 40px;
 
 // filter results bar
 
-.scout-filter-results { border-top: solid 1px #ddd;
+.scout-filter-results { /*border-top: solid 1px #ddd;*/
 
     label { display: block; font-size: 10px; text-transform: uppercase; color: #aaa; }
 
@@ -85,7 +85,7 @@ $footer-height: 40px;
 
 // header
 
-.scout-header { background: #f1f1f1; /*border-bottom: solid 1px #999;*/ position: relative;
+.scout-header { background: #fff; /*border-bottom: solid 1px #999;*/ position: relative;
 
     h1 {
         margin: 0;
@@ -107,7 +107,7 @@ $footer-height: 40px;
 
 
     // navigation menu
-    .scout-navigation { position: relative; background: #f1f1f1; line-height: 40px; color: #fff;  margin: 0; padding: 0;
+    .scout-navigation { position: relative; background: #fff; line-height: 40px; color: #fff;  margin: 0; padding: 0;
 
         .scout-navigation-items {
             line-height:38px;
@@ -121,7 +121,7 @@ $footer-height: 40px;
             flex-flow: row wrap;
 
             li { margin: 0; padding: 0; flex: 1 0;
-                a { display: block;  color: #666; text-decoration: none; text-align: center; border-bottom:solid 4px #f1f1f1;
+                a { display: block;  color: #666; text-decoration: none; text-align: center; border-bottom:solid 4px #fff;
                     &:hover { color: $scout-purple; }
                 }
                 a[disabled="disabled"] { cursor: default;}
