@@ -40,19 +40,19 @@ $footer-height: 40px;
 
 // geolocation bar
 
-.scout-geolocation { height: $geolocation-height;
+.scout-geolocation { height: $geolocation-height; background: #999;
     .scout-geolocation-position { font-size:14px; line-height: $geolocation-height; white-space: nowrap; padding: 0 20px 0 13px;
         .fa-stack { font-size: 12px; }
         .fa-circle { color: $scout-button; }
-            .scout-geolocation-location { color:#111; display: inline-block; }
+            .scout-geolocation-location { color:#fff; display: inline-block; }
             .scout-geolocation-action {  margin-left: 5px; float: right; font-size: 25px;
                 a { color: $scout-purple;
                     .fa-toggle-off { }
                     .fa-toggle-on { }
                 }
             }
-        .scout-geolocation-user { display:none; position:absolute; left:40px; right:20px; background:#f1f1f1; }
-        .scout-geolocation-loading { position:absolute; color:#bbb; z-index:0; left:40px; right:20px; }
+        .scout-geolocation-user { display:none; position:absolute; left:40px; right:20px; background:#999; }
+        .scout-geolocation-loading { position:absolute; color:#fff; z-index:0; left:40px; right:20px; }
     }
 }
 
@@ -85,7 +85,7 @@ $footer-height: 40px;
 
 // header
 
-.scout-header { background: #fafafa; border-bottom: solid 1px #d0d1d5; position: relative;
+.scout-header { background: #fafafa; /*border-bottom: solid 1px #d0d1d5;*/ position: relative;
 
     h1 {
         margin: 0;
@@ -107,10 +107,10 @@ $footer-height: 40px;
 
 
     // navigation menu
-    .scout-navigation { position: relative; background: #fafafa; line-height: 41px; color: #fff;  margin: 0; padding: 0;
+    .scout-navigation { position: relative; background: #fafafa; line-height: 40px; color: #fff;  margin: 0; padding: 0;
 
         .scout-navigation-items {
-            line-height:37px;
+            line-height:38px;
             font-size:14px;
             text-transform:uppercase;
             margin: 0;

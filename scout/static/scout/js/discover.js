@@ -14,7 +14,6 @@ Discover = {
         });
 
         Geolocation.init_location_toggles();
-
     },
 
     fetch_cards: function (card_id, latlng) {
@@ -56,6 +55,14 @@ Discover = {
     add_distance_and_sort: function() {
         Discover._add_distance_to_spots();
         Discover._sort_spots_on_cards();
+
+        // update open near card title based on location sharing
+        if (Geolocation.get_location_type() === "default") {
+            $("#open h3").html("Open Near, Seattle Campus (center)");
+        }
+        else {
+            $("#open h3").html("Open Near, your location");
+        }
     },
 
     _add_distance_to_spots: function () {
