@@ -79,22 +79,22 @@ class SpaceDAOTest(TestCase):
         spot = sc.get_spot_by_id(4)
         spot = organize_hours(spot)
 
-        #monday
+        # monday
         current_time = local_tz.localize(datetime.datetime(
             2015, 12, 14, 7, 0, 0, 0))
         self.assertFalse(get_is_spot_open(spot, current_time))
         current_time = local_tz.localize(datetime.datetime(
             2015, 12, 14, 10, 30, 0, 0))
         self.assertTrue(get_is_spot_open(spot, current_time))
-        #tuesday (still open from monday)
+        # tuesday (still open from monday)
         current_time = local_tz.localize(datetime.datetime(
             2015, 12, 15, 1, 0, 0, 0))
         self.assertTrue(get_is_spot_open(spot, current_time))
-        #tuesday after monday's opening is closed
+        # tuesday after monday's opening is closed
         current_time = local_tz.localize(datetime.datetime(
             2015, 12, 15, 3, 0, 0, 0))
         self.assertFalse(get_is_spot_open(spot, current_time))
-        #saturday (only open from friday's opening)
+        # saturday (only open from friday's opening)
         current_time = local_tz.localize(datetime.datetime(
             2015, 12, 19, 10, 0, 0, 0))
         self.assertFalse(get_is_spot_open(spot, current_time))
@@ -188,20 +188,21 @@ class SpaceDAOTest(TestCase):
         self.assertFalse(periods['dinner'])
         self.assertFalse(periods['late_night'])
 
-
-
-
     def test_get_spot_list(self):
         spot_list = get_spot_list()
         self.assertEqual(len(spot_list), 3)
 
     def test_get_spots_by_filter(self):
-        filtered_spots = get_spots_by_filter([('extended_info:s_food_pasta', True),
-                                             ('type', 'food_court')])
+        filtered_spots = get_spots_by_filter([
+            ('extended_info:s_food_pasta', True),
+            ('type', 'food_court')])
         self.assertEqual(len(filtered_spots), 1)
 
     def test_get_spot_filters(self):
-        request = RequestFactory().get('/?payment0=s_pay_dining&type0=food_court&food0=s_food_entrees&food1=s_food_pasta&cuisine0=s_cuisine_chinese&period0=breakfast&open_now=true&campus=seattle')
+        request = RequestFactory().get(
+            '/?payment0=s_pay_dining&type0=food_court&food0=s_food_entrees&'
+            'food1=s_food_pasta&cuisine0=s_cuisine_chinese&period0=breakfast'
+            '&open_now=true&campus=seattle')
         filters = _get_spot_filters(request)
         self.assertEqual(len(filters), 9)
 
