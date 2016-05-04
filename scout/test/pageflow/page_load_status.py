@@ -6,10 +6,39 @@ Tests pages and their respective URL status codes
 import sys
 from django.test import TestCase
 
+# Statuses
+OK = 200
+notfound = 404
+redir = 301
+
 
 class UrlStatusTest(TestCase):
+    """
+    Ensure each listed URL/path results in the expected status code
+    (200, 301, or 404).
+    """
 
-    def clientUrlStatus(self, urlsuffix=''):
+    _testCases = (
+        ('Home', '/', OK),  # SCOUT-52
+        ('Food', '/food/', OK),  # SCOUT-53
+        ('Filter', '/filter/', OK),  # SCOUT-54
+        ('Good Details Page', '/detail/1/', OK),
+        ('Nonexistant Details Page', '/detail/88888/', notfound),  # SCOUT-55
+        ('Malformed Details ID', '/detail/abcdefg', notfound),  # SCOUT-55?
+        ('Malformed Details ID 2', '/detail/123456/', notfound),
+        ('Nonexistant page', '/nonexistant/', notfound),  # SCOUT-56
+        ('Filter Open', '/food/?open_now=true', OK),  # SCOUT-76
+        ('Filter Coffee', '/food/?food0=s_food_espresso', OK),  # SCOUT-77
+        ('Filter Breakfast', '/food/?period0=breakfast', OK),  # SCOUT-79
+        ('Filter Latenight', '/food/?period0=late_night', OK),  # SCOUT-78
+        ('Bad Filter', '/filter/404', notfound),  # SCOUT-81
+        ('Home Missing Slash', '', OK),  # SCOUT-57?
+        ('Food Missing Slash', '/food', redir),  # SCOUT-57?
+        ('Filter Missing Slash', '/filter', redir),  # SCOUT-57?
+        ('Details Missing Slash', '/detail/1234', redir),  # SCOUT-57?
+    )
+
+    def _clientUrlStatus(self, urlsuffix=''):
         """Returns the status code of the given URL"""
         res = self.client.get(urlsuffix)
         return res.status_code
@@ -17,64 +46,27 @@ class UrlStatusTest(TestCase):
     def assertUrlStatus(self, urlsuffix='', code=200):
         """Checks to see if the status code of the given URL matches the
         given status code"""
-        self.assertEqual(self.clientUrlStatus(urlsuffix), code)
+        url_status = self._clientUrlStatus(urlsuffix)
+        self.assertEqual(
+            url_status, code,
+            'URL "%s" returned %s, expected %s' % (urlsuffix, url_status, code)
+        )
 
-    def test_home_exists(self):
-        """SCOUT-52 Test that the home page results in a 200"""
-        # Home Page
-        self.assertUrlStatus('/', 200)
+    def _makeTestFunc(name, url, status=OK):
+        """
+        Returns a function that asserts that the given url results in the
+        given status code, after setting its name and docstring accordingly.
+        """
+        def _testFunc(self):
+            self.assertUrlStatus(url, status)
 
-    def test_food_exists(self):
-        """SCOUT-53 Test that the food page results in a 200"""
-        self.assertUrlStatus('/food/', 200)
+        _testFunc.__name__ = 'test_page_' + name.replace(' ', '_').lower()
+        _testFunc.__doc__ = (
+            'Assert "%s" results in a %s' % (url, status))
 
-    def test_filter_exists(self):
-        """SCOUT-54 Test that the filter page results in a 200"""
-        self.assertUrlStatus('/filter/', 200)
+        return _testFunc
 
-    def test_bad_detailURL(self):
-        """SCOUT-55 Ensure a nonexistant space results in a 404 status code"""
-        self.assertUrlStatus('/detail/12345679', 404)
-        self.assertUrlStatus('/detail/asdf', 404)
-
-    def test_bad_homeURL(self):
-        """SCOUT-56 Test an invalid URL and see if it results in a 404"""
-        # Bad URL
-        self.assertUrlStatus('/LSFDLK/', 404)
-        self.assertUrlStatus('/foood/', 404)
-
-    def test_filter_search_openURL(self):
-        """SCOUT-76 Test home search URL and see if it results in a 200"""
-        self.assertUrlStatus('/food/?open_now=true', 200)
-
-    def test_filter_search_coffeeURL(self):
-        """SCOUT-77 Test food search URL and see if it results in a 200"""
-        self.assertUrlStatus('/food/?food0=s_food_espresso', 200)
-
-    def test_filter_search_breakfastURL(self):
-        """SCOUT-79 Test breakfast search URL and see if it results in a 200"""
-        self.assertUrlStatus('/food/?period0=breakfast', 200)
-
-    def test_filter_search_lateURL(self):
-        """SCOUT-78 Test late night search URL, see if it results in a 200"""
-        self.assertUrlStatus('/food/?period0=late_night', 200)
-
-    # Commenting out for now because I'm not actually sure if
-    # these should be 404s.
-    '''
-    def test_filter_search_404(self):
-        """SCOUT-80 Test a search URL's that should return a 404"""
-        self.assertUrlStatus('/food/?open_now=plzgivemea404', 404)
-        self.assertUrlStatus('/food/?period0', 404)
-        self.assertUrlStatus('/food/?food0', 404)
-        self.assertUrlStatus('/food/?plzgimmea404', 404)
-    '''
-
-    def test_filter_addon_404(self):
-        """SCOUT-81 Test a filter URL that should return a 404"""
-        self.assertUrlStatus('/filter/404', 404)
-
-    def test_redirect_URLs(self):
-        """SCOUT-57 Test URLs that are meant to redirect(301)"""
-        self.assertUrlStatus('/food', 301)
-        self.assertUrlStatus('/filter', 301)
+    for case in _testCases:
+        _testFunc = _makeTestFunc(*case)
+        name = _testFunc.__name__
+        vars()[name] = _testFunc
