@@ -1,6 +1,7 @@
 var jsdom = require('jsdom');
 var jquery = require('jquery');
 
+/*
 var fakeSessionStorage = function fakeSessionStorage(initval){
     if (initval !== undefined) {
         this.sessionVars = initval;
@@ -26,6 +27,7 @@ fakeSessionStorage.prototype.removeItem = function(item) {
     // is this the best way to delte 
     delete this.sessionVars[item];
 }
+*/
 var jqueryFromHtml = function jqueryFromHtml(html) {
     var doc = jsdom.jsdom(html);
     var win = doc.parentWindow;
@@ -33,6 +35,7 @@ var jqueryFromHtml = function jqueryFromHtml(html) {
     return $;
 }
 
+/*
 var fakeWindow = function fakeWindow(initHref) {
     this.location = {};
     if (initHref !== undefined) {
@@ -43,11 +46,11 @@ var fakeWindow = function fakeWindow(initHref) {
     this.location.replace = function(new_loc) {
         this.href = new_loc;
     }
-
 };
+*/
 
 
 
-exports.fakeSessionStorage = fakeSessionStorage;
+//exports.fakeSessionStorage = fakeSessionStorage;
 exports.jqueryFromHtml = jqueryFromHtml;
-exports.fakeWindow = fakeWindow;
+//exports.fakeWindow = fakeWindow;
