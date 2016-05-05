@@ -72,3 +72,4 @@ class UrlStatusTest(TestCase):
         _testFunc = _makeTestFunc(*case)
         name = _testFunc.__name__
         vars()[name] = _testFunc
+    del case, name
