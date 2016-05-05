@@ -73,3 +73,6 @@ static/CACHE
 
 #sass cache
 *.sass-cache
+
+# node
+node_modules/
