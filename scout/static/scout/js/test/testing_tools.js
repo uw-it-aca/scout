@@ -6,9 +6,6 @@ var jqueryFromHtml = function jqueryFromHtml(html) {
     var win = doc.parentWindow;
     var $ = jquery(win);
     return $;
-}
-
-
-
+};
 
 exports.jqueryFromHtml = jqueryFromHtml;

@@ -8,18 +8,18 @@ var makeFakeList = function(distances) {
         var out = '<li class="scout-list-item">';
         out += '<span class="distance-number">';
         out += String(dist);
-        out += '</span></li>'
+        out += '</span></li>';
         return out;
-    }
+    };
 
     var full_html = '';
     for (i = 0; i < distances.length; i++) {
         dist = distances[i];
         full_html += fakeListSection(dist);
-    };
+    }
     return full_html;
 
-}
+};
 
 describe('Spot list', function() {
     it('should sort spots', function() {
@@ -34,7 +34,7 @@ describe('Spot list', function() {
         // Get resulting list
         var actual_list = $('#scout_list').html();
         // Make expected result
-        var expected_list = makeFakeList([2.3, 5, 9])
+        var expected_list = makeFakeList([2.3, 5, 9]);
         // Compare
         assert.equal(expected_list, actual_list);
     });
