@@ -3,7 +3,6 @@
 Tests pages and their respective URL status codes
 """
 
-import sys
 from django.test import TestCase
 
 # Statuses
