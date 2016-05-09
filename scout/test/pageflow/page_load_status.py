@@ -17,18 +17,22 @@ _testCases = (
     ('Filter', '/filter/', OK),  # SCOUT-54
     ('Good Details Page', '/detail/1/', OK),
     ('Nonexistant Details Page', '/detail/88888/', notfound),  # SCOUT-55
-    ('Malformed Details ID', '/detail/abcdefg', notfound),
-    ('Malformed Details ID 2', '/detail/123456/', notfound),
+    ('Malformed Details ID', '/detail/abcdefg', notfound),  # SCOUT-55
+    ('Malformed Details ID 2', '/detail/123456/', notfound),  # SCOUT-55
     ('Nonexistant page', '/nonexistant/', notfound),  # SCOUT-56
     ('Filter Open', '/food/?open_now=true', OK),  # SCOUT-76
     ('Filter Coffee', '/food/?food0=s_food_espresso', OK),  # SCOUT-77
     ('Filter Breakfast', '/food/?period0=breakfast', OK),  # SCOUT-79
     ('Filter Latenight', '/food/?period0=late_night', OK),  # SCOUT-78
+    ('Invalid Filter Params', '/food/?open_now=invalid', OK),  # SCOUT-156
+    ('Invalid Filter Params 2', '/food/?blah', OK),  # SCOUT-156
+    ('Invalid Filter Params 3', '/food/?blah=blah', OK),  # SCOUT-156
+    ('Invalid Food URL', '/food/404', notfound),  # SCOUT-157
     ('Bad Filter', '/filter/404', notfound),  # SCOUT-81
-    ('Home Missing Slash', '', OK),
-    ('Food Missing Slash', '/food', redir),
-    ('Filter Missing Slash', '/filter', redir),
-    ('Details Missing Slash', '/detail/1234', redir),
+    ('Home Missing Slash', '', OK),  # SCOUT-57
+    ('Food Missing Slash', '/food', redir),  # SCOUT-57
+    ('Filter Missing Slash', '/filter', redir),  # SCOUT-57
+    ('Details Missing Slash', '/detail/1234', redir),  # SCOUT-57
 )
 
 
