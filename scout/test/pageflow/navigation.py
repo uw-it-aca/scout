@@ -7,10 +7,14 @@ Testing the flow between pages through links
 import bs4
 from django.test import TestCase
 
+
 class MainNavigationTest(TestCase):
     """Navigation test set for scout"""
 
-    soups = {}
+    @classmethod
+    def setUpClass(cls):
+        super(MainNavigationTest, cls).setUpClass()
+        cls.soups = {}
 
     def checkHrefBySelector(self, exp, selector, soup):
         """Given a selector, ensure that the first link found with that
@@ -84,8 +88,14 @@ class MainNavigationTest(TestCase):
         """Checks the footer links at the given soup"""
         footerLinks = soup.select('div#footer a')
         privacyLink, termsLink = footerLinks
-        self.assertEqual(privacyLink.get('href'), 'http://www.washington.edu/online/privacy/')
-        self.assertEqual(termsLink.get('href'), 'http://www.washington.edu/online/terms/')
+        self.assertEqual(
+            privacyLink.get('href'),
+            'http://www.washington.edu/online/privacy/'
+        )
+        self.assertEqual(
+            termsLink.get('href'),
+            'http://www.washington.edu/online/terms/'
+        )
 
     def test_footer_links_home(self):
         """SCOUT-63 Checks the privacy/terms on the home page"""
