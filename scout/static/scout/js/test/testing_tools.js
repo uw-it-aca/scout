@@ -44,9 +44,7 @@ var fakeWindow = function fakeWindow(initHref) {
     this.location.replace = function(new_loc) {
         this.href = new_loc;
     };
-
 };
-
 
 exports.fakeSessionStorage = fakeSessionStorage;
 exports.jqueryFromHtml = jqueryFromHtml;
