@@ -174,7 +174,7 @@ class SpaceDAOTest(TestCase):
         spot_list = get_spot_list()
         self.assertEqual(len(spot_list), 3)
 
-    def test_get_spots_by_filter(self):
+    def test_get_spots_by_filter_pasta_food_court(self):
         filtered_spots = get_spots_by_filter([
             ('extended_info:s_food_pasta', True),
             ('type', 'food_court')])
