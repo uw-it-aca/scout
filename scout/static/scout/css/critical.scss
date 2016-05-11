@@ -326,7 +326,9 @@ body { background: #f1f1f1; }
                 input[type="checkbox"]  { margin-right: 5px; }
             }
 
-            input[type="button"] { background: $scout-purple; color: #fff; border: none; text-transform: uppercase; padding: 10px 20px; font-size: 13px; border-radius: 2px; }
+            button { background: $scout-purple; color: #ddd; border: none; text-transform: uppercase; padding: 10px 20px; font-size: 12px; border-radius: 2px;
+                .fa { margin-right: 8px; }
+            }
 
             .scout-filter-split { width: 100%;
 
