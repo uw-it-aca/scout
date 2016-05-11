@@ -6,7 +6,7 @@ from django.test.utils import override_settings
 from scout.dao.space import add_foodtype_names_to_spot, add_cuisine_names, \
     add_payment_names, add_additional_info, get_is_spot_open, organize_hours, \
     get_open_periods_by_day, get_spots_by_filter, get_spot_list, \
-    get_spots_by_filter, _get_spot_filters
+    get_spots_by_filter, _get_spot_filters, OPEN_PERIODS
 from spotseeker_restclient.spotseeker import Spotseeker
 
 DAO = "spotseeker_restclient.dao_implementation.spotseeker.File"
@@ -15,19 +15,19 @@ DAO = "spotseeker_restclient.dao_implementation.spotseeker.File"
 @override_settings(SPOTSEEKER_DAO_CLASS=DAO)
 class SpaceDAOTest(TestCase):
 
-    def test_get_spots_by_filer(self):
+    def test_get_spots_by_filter(self):
         """ tests function used by discover cards to load spaces with
         selected filters. Uses mock data that matches order of this filter.
         """
 
-        filter = [
+        filters = [
                     ('limit', 5), ('center_latitude', u'47.653811'),
                     ('center_longitude', u'-122.307815'),
                     ('distance', 100000),
                     ('fuzzy_hours_start', 'Tuesday,05:00'),
                     ('fuzzy_hours_end', 'Tuesday,11:00')]
 
-        spots = get_spots_by_filter(filter)
+        spots = get_spots_by_filter(filters)
         self.assertEqual(len(spots), 5)
         self.assertEqual(spots[0].extended_info[3].value, 'food')
 
@@ -99,100 +99,82 @@ class SpaceDAOTest(TestCase):
             2015, 12, 19, 10, 0, 0, 0))
         self.assertFalse(get_is_spot_open(spot, current_time))
 
+    def assertOpenPeriods(self, spot, time_tuple, open_periods):
+        """
+        Assert that the given spot is open during open_periods on the day
+        specified by time_tuple, and not open in any others.
+        """
+        current_time = datetime.datetime(*time_tuple)
+        periods = get_open_periods_by_day(spot, current_time)
+
+        exp_closed = []
+        exp_open = []
+        for period_name in OPEN_PERIODS.keys():
+            if period_name in open_periods:
+                self.assertTrue(
+                    periods[period_name],
+                    'Expected spot to be open in period %s on date %s'
+                    % (period_name, current_time))
+            else:
+                self.assertFalse(
+                    periods[period_name],
+                    'Expected spot to be closed in period %s on date %s'
+                    % (period_name, current_time))
+
     def test_open_periods(self):
         sc = Spotseeker()
         spot = sc.get_spot_by_id(1)
         spot = organize_hours(spot)
 
-        current_time = datetime.datetime(2015, 12, 21, 0, 0, 0)
-        periods = get_open_periods_by_day(spot, current_time)
-        self.assertTrue(periods['breakfast'])
-        self.assertTrue(periods['lunch'])
-        self.assertTrue(periods['dinner'])
-        self.assertFalse(periods['late_night'])
+        self.assertOpenPeriods(
+            spot,
+            (2015, 12, 21, 0, 0, 0),
+            ('breakfast', 'lunch', 'dinner'))
 
-        current_time = datetime.datetime(2015, 12, 20, 0, 0, 0)
-        periods = get_open_periods_by_day(spot, current_time)
-        self.assertFalse(periods['breakfast'])
-        self.assertFalse(periods['lunch'])
-        self.assertFalse(periods['dinner'])
-        self.assertFalse(periods['late_night'])
+        self.assertOpenPeriods(
+            spot,
+            (2015, 12, 20, 0, 0, 0),
+            ())
 
-        current_time = datetime.datetime(2015, 12, 25, 0, 0, 0)
-        periods = get_open_periods_by_day(spot, current_time)
-        self.assertTrue(periods['breakfast'])
-        self.assertTrue(periods['lunch'])
-        self.assertTrue(periods['dinner'])
-        self.assertTrue(periods['late_night'])
+        self.assertOpenPeriods(
+            spot,
+            (2015, 12, 24, 0, 0, 0),
+            ('breakfast', 'lunch'))
 
-        current_time = datetime.datetime(2015, 12, 24, 0, 0, 0)
-        periods = get_open_periods_by_day(spot, current_time)
-        self.assertTrue(periods['breakfast'])
-        self.assertTrue(periods['lunch'])
-        self.assertFalse(periods['dinner'])
-        self.assertFalse(periods['late_night'])
+        self.assertOpenPeriods(
+            spot,
+            (2015, 12, 25, 0, 0, 0),
+            ('breakfast', 'lunch', 'dinner', 'late_night'))
 
         # Test spot open across midnight
         spot = sc.get_spot_by_id(4)
         spot = organize_hours(spot)
-        current_time = datetime.datetime(2015, 12, 25, 0, 0, 0)
-        periods = get_open_periods_by_day(spot, current_time)
-        self.assertFalse(periods['breakfast'])
-        self.assertTrue(periods['lunch'])
-        self.assertTrue(periods['dinner'])
-        self.assertTrue(periods['late_night'])
+        self.assertOpenPeriods(
+            spot,
+            (2015, 12, 25, 0, 0, 0),
+            ('lunch', 'dinner', 'late_night'))
 
         # Test spots that exactly fill period hours
         spot = sc.get_spot_by_id(5)
         spot = organize_hours(spot)
-        # monday
-        current_time = datetime.datetime(2016, 4, 18, 0, 0, 0)
-        periods = get_open_periods_by_day(spot, current_time)
-        self.assertFalse(periods['breakfast'])
-        self.assertFalse(periods['lunch'])
-        self.assertFalse(periods['dinner'])
-        self.assertTrue(periods['late_night'])
-        # tuesday
-        current_time = datetime.datetime(2016, 4, 19, 0, 0, 0)
-        periods = get_open_periods_by_day(spot, current_time)
-        self.assertTrue(periods['breakfast'])
-        self.assertFalse(periods['lunch'])
-        self.assertFalse(periods['dinner'])
-        self.assertFalse(periods['late_night'])
-        # wednesday
-        current_time = datetime.datetime(2016, 4, 20, 0, 0, 0)
-        periods = get_open_periods_by_day(spot, current_time)
-        self.assertFalse(periods['breakfast'])
-        self.assertTrue(periods['lunch'])
-        self.assertFalse(periods['dinner'])
-        self.assertFalse(periods['late_night'])
-        # thursday
-        current_time = datetime.datetime(2016, 4, 21, 0, 0, 0)
-        periods = get_open_periods_by_day(spot, current_time)
-        self.assertFalse(periods['breakfast'])
-        self.assertFalse(periods['lunch'])
-        self.assertTrue(periods['dinner'])
-        self.assertFalse(periods['late_night'])
-        # friday
-        current_time = datetime.datetime(2016, 4, 22, 0, 0, 0)
-        periods = get_open_periods_by_day(spot, current_time)
-        self.assertFalse(periods['breakfast'])
-        self.assertFalse(periods['lunch'])
-        self.assertFalse(periods['dinner'])
-        self.assertTrue(periods['late_night'])
-        # sunday
-        current_time = datetime.datetime(2016, 4, 24, 0, 0, 0)
-        periods = get_open_periods_by_day(spot, current_time)
-        self.assertFalse(periods['breakfast'])
-        self.assertFalse(periods['lunch'])
-        self.assertFalse(periods['dinner'])
-        self.assertFalse(periods['late_night'])
+        # Monday
+        self.assertOpenPeriods(spot, (2016, 4, 18, 0, 0, 0), ('late_night',))
+        # Tuesday
+        self.assertOpenPeriods(spot, (2016, 4, 19, 0, 0, 0), ('breakfast',))
+        # Wednesday
+        self.assertOpenPeriods(spot, (2016, 4, 20, 0, 0, 0), ('lunch',))
+        # Thursday
+        self.assertOpenPeriods(spot, (2016, 4, 21, 0, 0, 0), ('dinner',))
+        # Friday
+        self.assertOpenPeriods(spot, (2016, 4, 22, 0, 0, 0), ('late_night',))
+        # Sunday
+        self.assertOpenPeriods(spot, (2016, 4, 24, 0, 0, 0), ())
 
     def test_get_spot_list(self):
         spot_list = get_spot_list()
         self.assertEqual(len(spot_list), 3)
 
-    def test_get_spots_by_filter(self):
+    def test_get_spots_by_filter_pasta_food_court(self):
         filtered_spots = get_spots_by_filter([
             ('extended_info:s_food_pasta', True),
             ('type', 'food_court')])

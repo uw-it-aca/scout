@@ -125,13 +125,6 @@ var Filter = {
             }
         });
 
-        $("#filter_toggle").click(function(e) {
-            e.preventDefault();
-            $("#filter_container").toggle("slow", function() {
-                // Animation complete.
-            });
-        });
-
         $("#reset_button").click(function() {
             Filter.reset_filter();
         });
@@ -196,3 +189,9 @@ var Filter = {
         }
     }
 };
+
+/* node.js exports */
+if (typeof exports == "undefined") {
+    var exports = {};
+}
+exports.Filter = Filter;
