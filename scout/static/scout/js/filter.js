@@ -48,15 +48,18 @@ var Filter = {
     },
 
     get_filter_url: function() {
-        if(sessionStorage.getItem("filter_params") !== null){
-            var params = JSON.parse(sessionStorage.getItem("filter_params"));
-            return $.param(params);
+        var params;
+        try {
+            params = JSON.parse(sessionStorage.getItem("filter_params"));
+        } catch(e) {}
+        if(params === undefined || $.isEmptyObject(params)){
+            return undefined;
         }
-        return undefined;
+        return $.param(params);
     },
 
     _get_params_for_select: function(select_results, prefix) {
-        params = {};
+        var params = {};
         if(select_results !== null && select_results.length > 0){
             $.each(select_results, function(idx, result){
                 params[prefix + idx] = result;
