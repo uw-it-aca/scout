@@ -7,14 +7,14 @@ var fakeSess = require('./testing_tools').fakeSessionStorage;
 var fakeWindow = require('./testing_tools').fakeWindow;
 
 /*
-These following associative arrays store info that is used to 
+These following associative arrays store info that is used to
 generate the mock html that the test methods test
 */
 var filter_selections = {
     type_select: [
         { value: "cafe", checked: true, text: "Cafes"},
         { value: "cafeteria", checked: true, text: "Cafeteria"},
-    ], 
+    ],
     payment_select: [
         { value: "s_pay_cash", checked: false, text: "Husky Card"},
         { value: "s_pay_dining", checked: false, text: "Dining Card"},
@@ -51,7 +51,7 @@ var default_selections = {
     ],
 };
 
-// Generates a html div element with given id, creates the 
+// Generates a html div element with given id, creates the
 // filters (labels with checkboxes) modeled by the given data
 var generateSection = function generateSection(id, data){
     var result = '<div id="';
@@ -68,7 +68,7 @@ var generateSection = function generateSection(id, data){
         result += "</label>";
     }
     result += "</div>";
-    return result; 
+    return result;
 };
 
 // Given the filterData, creates html div elements of each
@@ -105,9 +105,9 @@ describe("Filter Tests", function() {
             filter_item = $("#food_select").find("input[value='s_food_smoothies']");
             filter_item2 = $("#payment_select").find("input[value='s_pay_cash']");
             filter_item3 = $("#payment_select").find("input[value='s_pay_dining']");
-            assert.equal(($(filter_item[0]).prop("checked")), false ); 
-            assert.equal(($(filter_item2[0]).prop("checked")), false );  
-            assert.equal(($(filter_item3[0]).prop("checked")), false );  
+            assert.equal(($(filter_item[0]).prop("checked")), false );
+            assert.equal(($(filter_item2[0]).prop("checked")), false );
+            assert.equal(($(filter_item3[0]).prop("checked")), false );
         });
         it('should check off two checkboxes based on the filter_params', function() {
             var sessVars = new fakeSess(
@@ -119,9 +119,9 @@ describe("Filter Tests", function() {
             filter_item = $("#food_select").find("input[value='s_food_smoothies']");
             filter_item2 = $("#payment_select").find("input[value='s_pay_cash']");
             filter_item3 = $("#payment_select").find("input[value='s_pay_dining']");
-            assert.equal(($(filter_item[0]).prop("checked")), false ); 
-            assert.equal(($(filter_item2[0]).prop("checked")), true );  
-            assert.equal(($(filter_item3[0]).prop("checked")), true );  
+            assert.equal(($(filter_item[0]).prop("checked")), false );
+            assert.equal(($(filter_item2[0]).prop("checked")), true );
+            assert.equal(($(filter_item3[0]).prop("checked")), true );
         });
         it('should be able to check off checkboxes in different sections', function() {
             global.$ = getDefaultJquery(filter_selections1);
@@ -134,9 +134,9 @@ describe("Filter Tests", function() {
             filter_item = $("#food_select").find("input[value='s_food_smoothies']");
             filter_item2 = $("#payment_select").find("input[value='s_pay_cash']");
             filter_item3 = $("#payment_select").find("input[value='s_pay_dining']");
-            assert.equal(($(filter_item[0]).prop("checked")), true ); 
-            assert.equal(($(filter_item2[0]).prop("checked")), true );  
-            assert.equal(($(filter_item3[0]).prop("checked")), false );  
+            assert.equal(($(filter_item[0]).prop("checked")), true );
+            assert.equal(($(filter_item2[0]).prop("checked")), true );
+            assert.equal(($(filter_item3[0]).prop("checked")), false );
 
         });
     });
@@ -241,7 +241,7 @@ describe("Filter Tests", function() {
                 payment0: "s_pay_visa",
                 type0: "food_truck",
                 open_now: "true",
-                })                    
+                })
             });
             global.sessionStorage = sessionVars;
             value = Filter.get_filter_url();
@@ -256,10 +256,10 @@ describe("Filter Tests", function() {
         });
         it('the link_food is replaced with the href of no filters', function() {
             var sessionVars = new fakeSess();
-            global.sessionStorage = sessionVars; 
+            global.sessionStorage = sessionVars;
             Filter.replace_food_href();
             var food_anchor = $("#link_food");
-            var value = $(food_anchor).attr('href'); 
+            var value = $(food_anchor).attr('href');
             var exp = "/food/";
             assert.deepEqual(value, exp);
         });
@@ -267,10 +267,10 @@ describe("Filter Tests", function() {
             var sessionVars = new fakeSess(
                 { filter_params: '{"payment0": "s_pay_cash"}'}
             );
-            global.sessionStorage = sessionVars; 
+            global.sessionStorage = sessionVars;
             Filter.replace_food_href();
             var food_anchor = $("#link_food");
-            var value = $(food_anchor).attr('href'); 
+            var value = $(food_anchor).attr('href');
             var exp = "/food/?payment0=s_pay_cash";
             assert.deepEqual(value, exp);
         });
@@ -279,12 +279,12 @@ describe("Filter Tests", function() {
                 payment0: "s_pay_visa",
                 type0: "food_truck",
                 open_now: "true",
-                })                    
+                })
             });
-            global.sessionStorage = sessionVars; 
+            global.sessionStorage = sessionVars;
             Filter.replace_food_href();
             var food_anchor = $("#link_food");
-            var value = $(food_anchor).attr('href'); 
+            var value = $(food_anchor).attr('href');
             var exp = "/food/?payment0=s_pay_visa&type0=food_truck&open_now=true";
             assert.deepEqual(value, exp);
         });
@@ -299,19 +299,19 @@ describe("Filter Tests", function() {
             );
             global.sessionStorage = sessionVars;
             global.window = new fakeWindow("");
-            Filter.reset_filter(); 
+            Filter.reset_filter();
         });
         it('should remove the session variables ("filter_params")', function() {
             // Testing that the filter params are removed from session storage
-            assert.deepEqual(global.sessionStorage, { sessionVars: {} });   
+            assert.deepEqual(global.sessionStorage, { sessionVars: {} });
         });
         it('should uncheck any checked boxes', function() {
             // Testing that all the checkboxes have been unchecked
             filter_item = $("#food_select").find("input[value='s_food_smoothies']");
             filter_item2 = $("#payment_select").find("input[value='s_pay_cash']");
             filter_item3 = $("#payment_select").find("input[value='s_pay_dining']");
-            assert.equal(($(filter_item[0]).prop("checked")), false); 
-            assert.equal(($(filter_item2[0]).prop("checked")), false);  
+            assert.equal(($(filter_item[0]).prop("checked")), false);
+            assert.equal(($(filter_item2[0]).prop("checked")), false);
             assert.equal(($(filter_item3[0]).prop("checked")), false);
         });
         it('should change the window location', function() {
@@ -323,7 +323,7 @@ describe("Filter Tests", function() {
     describe("Get Filter Label Text", function() {
         it('should return the right text with a URL with three different categories', function() {
             global.window = new fakeWindow(
-                "/food/?payment0=s_pay_visa" + 
+                "/food/?payment0=s_pay_visa" +
                 "&type0=food_truck&open_now=true"
             );
             var result = Filter._get_filter_label_text();
@@ -332,7 +332,7 @@ describe("Filter Tests", function() {
         });
         it('should return the right text with a URL containing filters from same category', function() {
             global.window = new fakeWindow(
-                "/food/?period0=breakfast" + 
+                "/food/?period0=breakfast" +
                 "&period1=lunch&period2=dinner"
             );
             var result = Filter._get_filter_label_text();
@@ -360,18 +360,18 @@ describe("Filter Tests", function() {
     describe("Set Filter Text", function() {
         beforeEach(function() {
             global.$ = tools.jqueryFromHtml(
-                '<div class="scout-filter-results-text"' + 
+                '<div class="scout-filter-results-text"' +
                 ' id="filter_label_text">--</div>'
             );
         });
         it('should not change the filter text, if the URL is empty', function() {
             global.window = new fakeWindow("");
-            Filter.set_filter_text();     
+            Filter.set_filter_text();
             assert.equal($("#filter_label_text").html(), "--");
         });
         it('should change the filter text, if the URL contains a filter', function() {
             global.window = new fakeWindow("/food/?campus0=tacoma");
-            Filter.set_filter_text();     
+            Filter.set_filter_text();
             assert.equal($("#filter_label_text").html(), "Campus");
         });
     });
@@ -379,22 +379,17 @@ describe("Filter Tests", function() {
     describe("Init Events", function() {
         before(function() {
             global.$ = tools.jqueryFromHtml(
-                '<input id="reset_button" type="button"' + 
-                ' value="Reset"> <input id="run_search"' + 
-                ' type="button" value="View Results"> ' + 
+                '<input id="reset_button" type="button"' +
+                ' value="Reset"> <input id="run_search"' +
+                ' type="button" value="View Results"> ' +
                 '<a id="reset_filter"> <input id="noevents">'
             );
             Filter.init_events();
         });
-        // These methods check to see if the css selectors 
+        // These methods check to see if the css selectors
         // have/don't have events attached to them
         it('should attach an event to run_search', function() {
             var elem = "#run_search";
-            var events = $._data($(elem).get(0), "events");
-            assert.notEqual(events, undefined);
-        });
-        it('should attach an event to reset_filter', function() {
-            var elem = "#reset_filter";
             var events = $._data($(elem).get(0), "events");
             assert.notEqual(events, undefined);
         });
