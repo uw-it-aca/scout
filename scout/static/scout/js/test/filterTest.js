@@ -393,11 +393,6 @@ describe("Filter Tests", function() {
             var events = $._data($(elem).get(0), "events");
             assert.notEqual(events, undefined);
         });
-        it('should attach an event to reset_filter', function() {
-            var elem = "#reset_filter";
-            var events = $._data($(elem).get(0), "events");
-            assert.notEqual(events, undefined);
-        });
         it('should attach an event to reset_button', function() {
             var elem = "#reset_button";
             var events = $._data($(elem).get(0), "events");
