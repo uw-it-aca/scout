@@ -58,10 +58,10 @@ Discover = {
 
         // update open near card title based on location sharing
         if (Geolocation.get_location_type() === "default") {
-            $("#open h3").html("Open Near, Seattle Campus (center)");
+            $("#open h3").html("Open now, Seattle Campus (center)");
         }
         else {
-            $("#open h3").html("Open Near, your location");
+            $("#open h3").html("Open, near you!");
         }
     },
 
