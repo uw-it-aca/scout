@@ -91,13 +91,11 @@
 {% endcompress %}
 
 <!-- googlme maps -->
-
 {% if google_maps %}
- <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3&amp;key={{ google_maps }}&amp;libraries=geometry"></script>
- {% else %}
- <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?libraries=geometry"></script>
- {% endif %}
-
+<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3&amp;key={{ google_maps }}&amp;libraries=geometry"></script>
+{% else %}
+<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?libraries=geometry"></script>
+{% endif %}
 <script src="{% static 'vendor/js/markerwithlabel_packed.js' %}"></script>
 
 {% if google_analytics %}
