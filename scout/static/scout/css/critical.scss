@@ -38,6 +38,10 @@ $footer-height: 40px;
     font-style: normal;
 }
 
+// global
+
+body { background: #f1f1f1; }
+
 // geolocation bar
 
 .scout-geolocation { height: $geolocation-height; background: #999; position: relative;
