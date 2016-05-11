@@ -111,21 +111,15 @@ class SpaceDAOTest(TestCase):
         exp_open = []
         for period_name in OPEN_PERIODS.keys():
             if period_name in open_periods:
-                exp_open.append(period_name)
+                self.assertTrue(
+                    periods[period_name],
+                    'Expected spot to be open in period %s on date %s'
+                    % (period_name, current_time))
             else:
-                exp_closed.append(period_name)
-
-        for period_name in exp_open:
-            self.assertTrue(
-                periods[period_name],
-                'Expected spot to be open in period %s on date %s'
-                % (period_name, current_time))
-
-        for period_name in exp_closed:
-            self.assertFalse(
-                periods[period_name],
-                'Expected spot to be closed in period %s on date %s'
-                % (period_name, current_time))
+                self.assertFalse(
+                    periods[period_name],
+                    'Expected spot to be closed in period %s on date %s'
+                    % (period_name, current_time))
 
     def test_open_periods(self):
         sc = Spotseeker()
