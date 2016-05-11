@@ -69,19 +69,14 @@ body { background: #f1f1f1; }
     .scout-filter-results-by { padding: 15px 20px 5px 20px; font-size: 14px;
         .scout-filter-results-text { color: #333; font-size: 13px; line-height: 15px; }
     }
-    .scout-filter-results-results { padding: 10px 20px;
+    .scout-filter-results-results { padding: 10px 20px 15px;
 
         .scout-filter-results-count { color: #000; font-size: 25px; font-weight: bold; display:inline-block; line-height: 30px; }
 
-        .scout-filter-results-actions { float:right; display:inline-block; line-height: 30px;
+        .scout-filter-results-actions { float:right; display:inline-block; line-height: 28px;
 
-            a { display: inline-block; margin-left: 10px; text-decoration: none; font-size: 14px; white-space: nowrap;
-
-                .fa-stack { font-size: 12px; }
-                .fa-circle { color: $scout-button; }
-
-                .scout-filter-results-action { color: $scout-link; text-decoration: underline; }
-
+            a { display: inline-block; text-decoration: none; font-size: 14px; white-space: nowrap; background: $scout-purple; border: none; padding: 0 10px; border-radius: 2px;
+                .scout-filter-results-action { color: #ddd; text-transform: uppercase; text-decoration: none; font-size: 11px; margin-left: 5px;}
             }
         }
     }

@@ -132,9 +132,8 @@ var Filter = {
             });
         });
 
-        $("#reset_filter, #reset_button").click(function() {
+        $("#reset_button").click(function() {
             Filter.reset_filter();
-            console.log("reset hit");
         });
     },
 
