@@ -341,9 +341,9 @@ describe("Filter Tests", function() {
         });
         it('should return the right text with a URL containing multiple filters from same/different categories', function() {
             global.window = new fakeWindow(
-                "/food/?campus0=tacoma"
-                + "&period0=breakfast&period1=lunch"
-                + "&period2=dinner&open_now=true"
+                "/food/?campus0=tacoma" +
+                "&period0=breakfast&period1=lunch" +
+                "&period2=dinner&open_now=true"
             );
             var result = Filter._get_filter_label_text();
             var exp = "Campus, Open Period, Open Now";
