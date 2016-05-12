@@ -114,7 +114,7 @@ var Filter = {
         sessionStorage.removeItem("filter_params");
         $("input:checkbox").attr('checked', false);
         Filter.replace_food_href();
-        window.location.replace("/food/");
+        window.location.href = "/food/";
     },
 
     init_events: function() {
@@ -124,7 +124,7 @@ var Filter = {
             Filter.set_filter_params();
             var filtered_url = Filter.get_filter_url();
             if (filtered_url !== undefined){
-                window.location.replace("/food/?"+filtered_url);
+                window.location.href = "/food/?"+filtered_url;
             }
         });
 
