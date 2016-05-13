@@ -13,8 +13,14 @@ describe("Geo Tests", function() {
         var useLocation;
         before(function() {
             global.$ = tools.jqueryFromHtml( 
-                '<span id="default_position" aria-hidden="false"><span> <span></span></span> <span><button id="use_location"><i aria-hidden="true"></i></button></span></span> <span id="shared_position" aria-hidden="true"><span><span></span></span> <span><button id="forget_location"><i aria-hidden="true"></i></button></span></span>'
+                '<span id="default_position" aria-hidden="false"><span>' +
+                '<span></span></span> <span><button id="use_location">' +
+                '<i aria-hidden="true"></i></button></span></span>' +
+                '<span id="shared_position" aria-hidden="true"><span><span>' +
+                '</span></span> <span><button id="forget_location">' +
+                '<i aria-hidden="true"></i></button></span></span>'
             );
+            // Use this to store the "using_location" variable
             global.localStorage = new fakeSess();
             sharedPos = $("#shared_position");
             defaultPos = $("#default_position");
@@ -37,7 +43,6 @@ describe("Geo Tests", function() {
         });
         it("should store the correct using_location variable in local storage when switching back to default location", function() {
             assert.equal(global.localStorage.getItem("using_location"), false);
-    
         });
     });
     describe("Display Location Status", function() {
@@ -45,8 +50,14 @@ describe("Geo Tests", function() {
         var defaultPos;
         beforeEach(function() {
             global.$ = tools.jqueryFromHtml( 
-                '<span id="default_position" aria-hidden="false"><span> <span></span></span> <span><button id="use_location"><i aria-hidden="true"></i></button></span></span> <span id="shared_position" aria-hidden="true"><span><span></span></span> <span><button id="forget_location"><i aria-hidden="true"></i></button></span></span>'
+                '<span id="default_position" aria-hidden="false"><span>' +
+                '<span></span></span> <span><button id="use_location">' +
+                '<i aria-hidden="true"></i></button></span></span>' +
+                '<span id="shared_position" aria-hidden="true"><span><span>' +
+                '</span></span> <span><button id="forget_location">' +
+                '<i aria-hidden="true"></i></button></span></span>'
             );
+            // Use this to store the "location_type" variable
             global.sessionStorage = new fakeSess();
             sharedPos = $("#shared_position");
             defaultPos = $("#default_position");
