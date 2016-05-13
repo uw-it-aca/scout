@@ -6,8 +6,10 @@ from django.test.utils import override_settings
 from scout.dao.space import add_foodtype_names_to_spot, add_cuisine_names, \
     add_payment_names, add_additional_info, get_is_spot_open, organize_hours, \
     get_open_periods_by_day, get_spots_by_filter, get_spot_list, \
-    get_spots_by_filter, _get_spot_filters, OPEN_PERIODS
+    get_spots_by_filter, _get_spot_filters, OPEN_PERIODS, get_spot_by_id
 from spotseeker_restclient.spotseeker import Spotseeker
+from scout.dao import space
+from spotseeker_restclient.exceptions import DataFailureException
 
 DAO = "spotseeker_restclient.dao_implementation.spotseeker.File"
 
@@ -194,3 +196,50 @@ class SpaceDAOTest(TestCase):
         spot_hours = organize_hours(spot)
 
         self.assertEqual(len(spot_hours.hours), 7)
+
+
+class FakeClient(object):
+    """
+    Fake spot client that will cause data failure exceptions
+    """
+    def data_failure(*args, **kwargs):
+        raise DataFailureException('http://foo/bar', 567, 'Foo Bar')
+
+    get_spot_by_id = data_failure
+    search_spots = data_failure
+
+
+@override_settings(SPOTSEEKER_DAO_CLASS=DAO)
+class DAOErrorsTest(TestCase):
+    """
+    Ensure DataFailureExceptions are handled properly in space DAO
+    """
+    def setUp(self):
+        # Use our fake spot client in space dao instead of the real one
+        self.old_client = space.Spotseeker
+        new_client = FakeClient
+        space.Spotseeker = new_client
+
+    def tearDown(self):
+        # Restore original such as to not interfere with other tests
+        space.Spotseeker = self.old_client
+
+    def test_get_spot_list_error(self):
+        """
+        Assert get_spot_list returns an empty list when encountering
+        a failure.
+        """
+        self.assertEqual(get_spot_list(), [])
+
+    def test_get_spots_by_filter_error(self):
+        """
+        Assert get_spots_by_filter returns an empty list when encountering
+        a failure.
+        """
+        self.assertEqual(get_spots_by_filter(), [])
+
+    def test_get_spot_by_id_error(self):
+        """
+        Assert get_spot_by_id returns None when encountering a failure.
+        """
+        self.assertIsNone(get_spot_by_id(4))
