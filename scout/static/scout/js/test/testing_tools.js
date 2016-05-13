@@ -52,7 +52,17 @@ var fakeWindow = function fakeWindow(initHref) {
     };
 };
 
+var fakeWindowPath = function fakeWindowPath(path) {
+    this.location = {};
+    if (path !== undefined) {
+        this.location.pathname = path;
+    } else {
+        this.location.pathname = path;
+    }
+}
+
 // Exporting them so that they may be used in tests
 exports.fakeSessionStorage = fakeSessionStorage;
 exports.jqueryFromHtml = jqueryFromHtml;
 exports.fakeWindow = fakeWindow;
+exports.fakeWindowPath = fakeWindowPath;

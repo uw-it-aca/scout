@@ -48,3 +48,9 @@ var Navigation = {
     }
 
 };
+
+/* node.js exports */
+if (typeof exports == "undefined") {
+    var exports = {};
+}
+exports.Navigation = Navigation;
