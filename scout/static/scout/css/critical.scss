@@ -328,6 +328,10 @@ body { background: #f1f1f1; }
 
             button { background: $scout-purple; color: #ddd; border: none; text-transform: uppercase; padding: 10px 20px; font-size: 12px; border-radius: 2px;
                 .fa { margin-right: 8px; }
+
+                &:disabled { background: #999; color: #888;
+                    .fa { color: #777; }
+                }
             }
 
             .scout-filter-split { width: 100%;
