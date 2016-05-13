@@ -43,8 +43,6 @@ describe("Geo Tests", function() {
     describe("Display Location Status", function() {
         var sharedPos;
         var defaultPos;
-        var forgetLocation;
-        var useLocation;
         beforeEach(function() {
             global.$ = tools.jqueryFromHtml( 
                 '<span id="default_position" aria-hidden="false"><span> <span></span></span> <span><button id="use_location"><i aria-hidden="true"></i></button></span></span> <span id="shared_position" aria-hidden="true"><span><span></span></span> <span><button id="forget_location"><i aria-hidden="true"></i></button></span></span>'
@@ -52,8 +50,6 @@ describe("Geo Tests", function() {
             global.sessionStorage = new fakeSess();
             sharedPos = $("#shared_position");
             defaultPos = $("#default_position");
-            forgetLocation = $("#forget_location");
-            useLocation = $("#use_location");
         });
         it("should correctly toggle hidden html based on a current location_type of user", function() { 
             global.sessionStorage.setItem("location_type", "user");
