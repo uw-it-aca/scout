@@ -116,34 +116,20 @@ var Filter = {
         Filter.replace_food_href();
         window.location.href = "/food/";
     },
-
+    
     init_events: function() {
+
         Filter.set_filter_text();
-
-        // see if all checkboxes are checked
-        $('.scout-filter-container form input:checkbox').click(function() {
-
-            var clicked = false;
-
-            $('.scout-filter-container form input:checkbox').each(function() {
-               if ($(this).is(':checked')) {
-                   clicked = true;
-               }
-            });
-
-            // set disabled attribute for button
-            if (clicked) {
-               $('#run_search').removeAttr('disabled');
-            } else {
-               $('#run_search').attr('disabled', 'disabled');
-            }
-       });
 
         $("#run_search").click(function(){
             Filter.set_filter_params();
             var filtered_url = Filter.get_filter_url();
             if (filtered_url !== undefined){
                 window.location.href = "/food/?"+filtered_url;
+            }
+            else {
+                // reset filter if user submits empty search
+                Filter.reset_filter();
             }
         });
 
