@@ -3,7 +3,7 @@ var jsdom = require('jsdom');
 var assert = require('assert');
 var jquery = require('jquery');
 var tools = require('./testing_tools');
-var fakeSess = require('./testing_tools').fakeSessionStorage;
+var fakeSess = tools.fakeSessionStorage;
 
 describe("Geo Tests", function() {
     describe("Init Location Toggles", function() {
@@ -70,6 +70,12 @@ describe("Geo Tests", function() {
         });
         it("should correctly toggle hidden html based on a current location_type of default", function() { 
             global.sessionStorage.setItem("location_type", "default");
+            Geolocation.display_location_status();
+            assert.equal($(defaultPos).attr('aria-hidden'), 'false');
+            assert.equal($(sharedPos).attr('aria-hidden'), 'true');
+        });
+        it("should correctly toggle hidden html based on a current location_type of undefined (default)", function() { 
+            global.sessionStorage.setItem("location_type", undefined);
             Geolocation.display_location_status();
             assert.equal($(defaultPos).attr('aria-hidden'), 'false');
             assert.equal($(sharedPos).attr('aria-hidden'), 'true');
