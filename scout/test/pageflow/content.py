@@ -27,17 +27,20 @@ class ContentTest(TestCase):
             self.soups[page] = soup
             return soup
 
+    def assertOneExists(self, soup, selector):
+        elements = soup.select(selector)
+        num = len(elements)
+        self.assertEqual(num, 1, 'Expected 1 of %s, got %s' % (selector, num))
+
     def test_home_content(self):
         """SCOUT-52 Test that the content on the home page is correct"""
         bs = self.get_soup('')
-        checkId = bs.select('#page_discover')
-        self.assertEqual(len(checkId), 1)
+        self.assertOneExists(bs, "#page_discover")
 
     def test_food_content(self):
         """SCOUT-53 Test that the content on the food page is correct"""
         bs = self.get_soup('/food/')
-        checkId = bs.select('#page_food')
-        self.assertEqual(len(checkId), 1)
+        self.assertOneExists(bs, "#page_food")
 
     def test_detail_content(self):
         """SCOUT-58 Test that the content on the detail page is correct"""
@@ -57,5 +60,4 @@ class ContentTest(TestCase):
     def test_filter_content(self):
         """SCOUT-54 Test that the content on the filter page is correct"""
         bs = self.get_soup('/filter/')
-        checkId = bs.select('#page_filter')
-        self.assertEqual(len(checkId), 1)
+        self.assertOneExists(bs, "#page_filter")
