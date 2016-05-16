@@ -17,7 +17,7 @@ describe("Navigation Tests", function() {
             link_food = $("#link_food");
             link_discover = $("#link_discover");
         });
-        it ("should disable the correct tab with a URL of /food", function() {
+        it ("should disable the correct tab with a URL of /food/", function() {
             global.window = new fakeWindowPath('/food/');
             Navigation.set_page_tab();
             assert.equal(link_food.attr('disabled'), 'disabled');
@@ -26,20 +26,10 @@ describe("Navigation Tests", function() {
             var events_discover = $._data(link_discover.get(0), "events");
             var events_food = $._data(link_food.get(0), "events");
             assert.equal(events_discover, undefined);
-            assert.notEqual(events_food, undefined);
+            // link_food should have a click event that returns false 
+            assert.notEqual(events_food["click"], undefined);
         });
-        it ("should disable the correct tab with a URL of /map", function() {
-            global.window = new fakeWindowPath('/map/');
-            Navigation.set_page_tab();
-            assert.equal(link_food.attr('disabled'), 'disabled');
-            assert.equal(link_food.attr('aria-selected'), 'true');
-            assert.equal(link_discover.attr('disabled'), undefined);
-            var events_discover = $._data(link_discover.get(0), "events");
-            var events_food = $._data(link_food.get(0), "events");
-            assert.equal(events_discover, undefined);
-            assert.notEqual(events_food, undefined);
-        });
-        it ("shouldn't disable any tabs with a URL of /filter", function() {
+        it ("shouldn't disable any tabs with a URL of /filter/", function() {
             global.window = new fakeWindowPath('/filter/');
             Navigation.set_page_tab();
             assert.equal(link_food.attr('disabled'), undefined);
@@ -60,7 +50,7 @@ describe("Navigation Tests", function() {
             var events_discover = $._data(link_discover.get(0), "events");
             var events_food = $._data(link_food.get(0), "events");
             assert.equal(events_food, undefined);
-            assert.notEqual(events_discover, undefined);
+            assert.notEqual(events_discover["click"], undefined);
         });
      });
 });
