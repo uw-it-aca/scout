@@ -23,6 +23,7 @@ describe("Navigation Tests", function() {
             assert.equal(link_food.attr('disabled'), 'disabled');
             assert.equal(link_food.attr('aria-selected'), 'true');
             assert.equal(link_discover.attr('disabled'), undefined);
+            assert.equal(link_discover.attr('aria-selected'), undefined);
             var events_discover = $._data(link_discover.get(0), "events");
             var events_food = $._data(link_food.get(0), "events");
             assert.equal(events_discover, undefined);
@@ -34,12 +35,16 @@ describe("Navigation Tests", function() {
             Navigation.set_page_tab();
             assert.equal(link_food.attr('disabled'), undefined);
             assert.equal(link_discover.attr('disabled'), undefined);
+            assert.equal(link_food.attr('aria-selected'), undefined);
+            assert.equal(link_discover.attr('aria-selected'), undefined);
         });
         it ("shouldn't disable any tabs with a URL of /detail/", function() {
             global.window = new fakeWindowPath('/detail/');
             Navigation.set_page_tab();
             assert.equal(link_food.attr('disabled'), undefined);
             assert.equal(link_discover.attr('disabled'), undefined);
+            assert.equal(link_food.attr('aria-selected'), undefined);
+            assert.equal(link_discover.attr('aria-selected'), undefined);
         });
         it ("should disable the correct tabs with a URL of /", function() {
             global.window = new fakeWindowPath('/');
@@ -47,9 +52,11 @@ describe("Navigation Tests", function() {
             assert.equal(link_discover.attr('disabled'), 'disabled');
             assert.equal(link_discover.attr('aria-selected'), 'true');
             assert.equal(link_food.attr('disabled'), undefined);
+            assert.equal(link_food.attr('aria-selected'), undefined);
             var events_discover = $._data(link_discover.get(0), "events");
             var events_food = $._data(link_food.get(0), "events");
             assert.equal(events_food, undefined);
+            // link_discover should have a click event that returns false
             assert.notEqual(events_discover["click"], undefined);
         });
      });
