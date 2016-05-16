@@ -42,10 +42,10 @@ var jqueryFromHtml = function jqueryFromHtml(html) {
 // Used to test the href of the current window/browser
 var fakeWindow = function fakeWindow(initHref) {
     this.location = {};
-    if (initHref !== undefined) {
-        this.location.href = initHref;
+    if (initHref === undefined) {
+        this.location.href = '';
     } else {
-        this.location.href = "";
+        this.location.href = initHref;
     }
     this.location.replace = function(new_loc) {
         this.href = new_loc;
@@ -54,8 +54,8 @@ var fakeWindow = function fakeWindow(initHref) {
 
 var fakeWindowPath = function fakeWindowPath(path) {
     this.location = {};
-    if (path !== undefined) {
-        this.location.pathname = path;
+    if (path === undefined) {
+        this.location.pathname = '';
     } else {
         this.location.pathname = path;
     }
