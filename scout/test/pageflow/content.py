@@ -31,32 +31,31 @@ class ContentTest(TestCase):
         """SCOUT-52 Test that the content on the home page is correct"""
         bs = self.get_soup('')
         checkId = bs.select('#page_discover')
-        self.assertGreater(len(checkId), 0)
+        self.assertEqual(len(checkId), 1)
 
     def test_food_content(self):
         """SCOUT-53 Test that the content on the food page is correct"""
         bs = self.get_soup('/food/')
         checkId = bs.select('#page_food')
-        self.assertGreater(len(checkId), 0)
-        filterButtons = bs.select('.scout-filter-results-action')
-        self.assertGreater(len(filterButtons), 0)
+        self.assertEqual(len(checkId), 1)
 
     def test_detail_content(self):
         """SCOUT-58 Test that the content on the detail page is correct"""
         bs = self.get_soup('/food/')
         places = bs.select('ol li a')
-        # clicking the first place on the list
+        # basically clicking the first place on the list
         tempHref = places[0].get('href')
         bs = self.get_soup(tempHref)
-        spotName = bs.select('.scout-spot-name')
         tempUrl = tempHref.split('/')
-        scoutContent = bs.select('.scout-content')
+        # grabbing the id number from the URL (ex. /detail/5106/)
         expUrl = 'page_' + tempUrl[len(tempUrl) - 2]
+        # grabbing the actual id on the page
+        scoutContent = bs.select('.scout-content')
+        # asserting that they are equal
         self.assertEqual(expUrl, scoutContent[0].get('id'))
 
     def test_filter_content(self):
         """SCOUT-54 Test that the content on the filter page is correct"""
         bs = self.get_soup('/filter/')
         checkId = bs.select('#page_filter')
-        self.assertGreater(len(checkId), 0)
-        legends = bs.select('legend')
+        self.assertEqual(len(checkId), 1)
