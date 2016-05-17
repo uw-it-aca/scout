@@ -28,7 +28,7 @@ describe("Navigation Tests", function() {
             var events_food = $._data(link_food.get(0), "events");
             assert.equal(events_discover, undefined);
             // link_food should have a click event that returns false 
-            assert.notEqual(events_food["click"], undefined);
+            assert.notEqual(events_food.click, undefined);
         });
         it ("shouldn't disable any tabs with a URL of /filter/", function() {
             global.window = new fakeWindowPath('/filter/');
@@ -57,7 +57,7 @@ describe("Navigation Tests", function() {
             var events_food = $._data(link_food.get(0), "events");
             assert.equal(events_food, undefined);
             // link_discover should have a click event that returns false
-            assert.notEqual(events_discover["click"], undefined);
+            assert.notEqual(events_discover.click, undefined);
         });
      });
 });
