@@ -14,15 +14,6 @@ var Navigation = {
 
             $("#link_discover").css("border-bottom", "solid 4px #fff");
         }
-        else if (pathname.indexOf("/map") !== -1) {
-            $("#link_food").css({"border-bottom":"solid 4px #6564A8", "color":"#6564A8"});
-            $("#link_food").attr("aria-selected", "true");
-            $("#link_food").attr("tabindex", "-1");
-            $("#link_food").attr("disabled", "disabled");
-            Navigation.disable_clicks();
-
-            $("#link_discover").css("border-bottom", "solid 4px #fff");
-        }
         else if (pathname.indexOf("/filter") !== -1) {
             $("#link_discover").css("border-bottom", "solid 4px #fff");
             $("#link_food").css("border-bottom", "solid 4px #fff");
