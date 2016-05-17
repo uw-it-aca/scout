@@ -12,12 +12,6 @@
 
     <h2 class="visually-hidden">Filtered shortcuts</h2>
 
-    {% if request.is_mobile or request.is_tablet %}
-    <div style="text-align:right; display:none;">
-    <a id="map_link" href="/map/"><i class="fa fa-map"></i> map</a>
-    </div>
-    {% endif %}
-
     {% include "scout/include/filter_results_bar.html" %}
 
     <div class="scout-list-container" style="position:relative;" role="main">
@@ -123,8 +117,7 @@
 
 <!-- show a map on the list page -->
 <div id="list_map" class="scout-spot-list-map" style="height:100%; background: #ddd !important;">
-
-    <div style="position:absolute; top: 50%; left: 50%; margin-left:-15px; margin-top: -110px; z-index:9999;">
+    <div class="scout-spot-list-map-loading" style="position:absolute; top: 50%; left: 50%; margin-left:-15px; margin-top: -110px; z-index:9999;">
         <p class="visually-hidden">loading...</p>
         <div class="sk-fading-circle" aria-hidden="true">
             <div class="sk-circle1 sk-circle"></div>
@@ -141,7 +134,6 @@
             <div class="sk-circle12 sk-circle"></div>
         </div>
     </div>
-
 </div>
 
 {% endblock %}

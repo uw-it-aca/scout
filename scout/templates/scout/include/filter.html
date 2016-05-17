@@ -1,6 +1,5 @@
 <form>
-
-    <div class="scout-card clearfix" style="margin-top:10px;">
+    <div class="scout-card clearfix">
         <fieldset>
             <legend>Campus</legend>
             <div id="campus_select">
@@ -28,7 +27,6 @@
     </div>
 
     <div class="scout-card clearfix">
-
         <fieldset>
             <legend>Type</legend>
             <div id="type_select">
@@ -40,7 +38,6 @@
                 <label><input type="checkbox" value="restaurant">Restaurant</label>
             </div>
         </fieldset>
-
         <fieldset>
             <legend>Payment Accepted</legend>
             <div id="payment_select">
@@ -51,7 +48,6 @@
                 <label><input type="checkbox" value="s_pay_mastercard">Mastercard</label>
             </div>
         </fieldset>
-
     </div>
 
     <div class="scout-card clearfix">
@@ -72,9 +68,7 @@
                 <label><input type="checkbox" value="s_cuisine_vietnamese">Vietnamese</label>
             </div>
         </fieldset>
-
         <fieldset class="scout-filter-split">
-
             <legend>Specific Items</legend>
             <div id="food_select">
                 <label><input type="checkbox" value="s_food_burgers">Burgers</label>
@@ -95,11 +89,10 @@
                 <label><input type="checkbox" value="s_food_tacos">Tacos</label>
             </div>
         </fieldset>
-
     </div>
 
-    <div style="margin-top:-5px; padding: 20px; text-align: right;">
-        <button id="reset_button" type="button" style="background: #ddd; color:#666;"><i class="fa fa-refresh"></i>Reset</button>&nbsp;&nbsp;
+    <div class="scout-filter-actions">
+        <button id="reset_button" type="button" class="action-cancel"><i class="fa fa-refresh"></i>Reset</button>&nbsp;&nbsp;
         <button id="run_search" type="button"><i class="fa fa-list fa-inverse"></i>View Results</button>
     </div>
 

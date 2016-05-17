@@ -5,7 +5,7 @@
     <h3>{{ card_title }}</h3>
     <ol>
         {% for spot in spots %}
-        <li class="scout-spot-list-discover" data-lat="{{ spot.latitude }}" data-lon="{{ spot.longitude }}">
+        <li data-lat="{{ spot.latitude }}" data-lon="{{ spot.longitude }}">
             <a href="/detail/{{ spot.spot_id }}/" class="clearfix">
                 {% if spot.images %}
                 <span class="scout-spot-image" style="background-image: url('/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}?width=100');">&nbsp;</span>
@@ -21,7 +21,7 @@
         </li>
         {% endfor %}
 
-        <li style="text-align: right; margin-top: 15px;">
+        <li>
             <a href="/food/?{{ card_filter_url }}" class="scout-spot-discover-action">
                 <span class="fa-stack fa-lg">
                   <i class="fa fa-circle fa-stack-2x"></i>
@@ -30,6 +30,7 @@
                 <span class="scout-spot-action-text">View more...</span>
             </a>
         </li>
+        
     </ol>
 </div>
 {% endblock %}
