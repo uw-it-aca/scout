@@ -3,11 +3,7 @@ var jquery = require('jquery');
 
 // Used to test the variables stored during the session
 var fakeSessionStorage = function fakeSessionStorage(initval){
-    if (initval !== undefined) {
-        this.sessionVars = initval;
-    } else {
-        this.sessionVars = {};
-    }
+    this.sessionVars = initval || {};
 };
 
 // Returns the value of the given item, if it doesn't exist, 
@@ -42,11 +38,7 @@ var jqueryFromHtml = function jqueryFromHtml(html) {
 // Used to test the href of the current window/browser
 var fakeWindow = function fakeWindow(initHref) {
     this.location = {};
-    if (initHref === undefined) {
-        this.location.href = '';
-    } else {
-        this.location.href = initHref;
-    }
+    this.location.href = initHref || '';
     this.location.replace = function(new_loc) {
         this.href = new_loc;
     };
@@ -54,11 +46,7 @@ var fakeWindow = function fakeWindow(initHref) {
 
 var fakeWindowPath = function fakeWindowPath(path) {
     this.location = {};
-    if (path === undefined) {
-        this.location.pathname = '';
-    } else {
-        this.location.pathname = path;
-    }
+    this.location.pathname = path || '';
 }
 
 // Exporting them so that they may be used in tests
