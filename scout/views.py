@@ -102,11 +102,6 @@ def filter_view(request):
                               context_instance=RequestContext(request))
 
 
-def favorites_view(request):
-    return render_to_response('scout/favorites.html',
-                              context_instance=RequestContext(request))
-
-
 def list_view(request):
     if len(request.GET) > 0:
         spots = get_filtered_spots(request)
