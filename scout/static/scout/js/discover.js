@@ -66,10 +66,10 @@ Discover = {
     },
 
     _add_distance_to_spots: function () {
-        var cards = $("div.scout-discover-content"),
+        var cards = $(".scout-discover-content"),
             spots;
         $.each(cards, function(idx, card){
-            spots = $(card).find("li.scout-spot-list-discover");
+            spots = $(card).find("li");
             $.each(spots, function(idx, spot){
                 var latitude = $(spot).attr("data-lat");
                 var longitude = $(spot).attr("data-lon");
@@ -81,11 +81,11 @@ Discover = {
     },
 
     _sort_spots_on_cards: function () {
-        var cards = $("div.scout-discover-content"),
+        var cards = $(".scout-discover-content"),
             spots,
             spot_parent;
         $.each(cards, function(idx, card){
-            spots = $(card).find("li.scout-spot-list-discover");
+            spots = $(card).find("li");
             spot_parent = spots.parent();
             spots.detach().sort(function(a, b) {
                 var a_distance = parseInt($($(a).find(".scout-spot-distance")[0]).html(), 10);
