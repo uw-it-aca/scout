@@ -30,14 +30,17 @@ OPEN_PERIODS = {
 
 def get_spot_list():
     spot_client = Spotseeker()
+    res = []
     try:
-        res = spot_client.search_spots([('limit', 0),
+        spots = spot_client.search_spots([('limit', 0),
                                         ('extended_info:app_type', 'food')])
-        for spot in res:
+        for spot in spots:
             spot = process_extended_info(spot)
+            if spot is not None:
+                res.append(spot)
     except DataFailureException:
         # TODO: consider logging on failure
-        res = []
+        pass
 
     return res
 
@@ -45,13 +48,16 @@ def get_spot_list():
 def get_spots_by_filter(filters=[]):
     filters.append(('extended_info:app_type', 'food'))
     spot_client = Spotseeker()
+    res = []
     try:
-        res = spot_client.search_spots(filters)
-        for spot in res:
+        spots = spot_client.search_spots(filters)
+        for spot in spots:
             spot = process_extended_info(spot)
+            if spot is not None:
+                res.append(spot)
     except DataFailureException:
         # TODO: consider logging on failure
-        res = []
+        pass
     return res
 
 
@@ -108,6 +114,9 @@ def get_spot_by_id(spot_id):
 
 
 def process_extended_info(spot):
+    is_hidden = _get_extended_info_by_key("is_hidden", spot.extended_info)
+    if is_hidden:
+        return None
     spot = add_foodtype_names_to_spot(spot)
     spot = add_cuisine_names(spot)
     spot = add_payment_names(spot)
