@@ -33,7 +33,7 @@ def get_spot_list():
     res = []
     try:
         spots = spot_client.search_spots([('limit', 0),
-                                        ('extended_info:app_type', 'food')])
+                                         ('extended_info:app_type', 'food')])
         for spot in spots:
             spot = process_extended_info(spot)
             if spot is not None:
