@@ -76,11 +76,17 @@ def _get_spot_filters(request):
         if "type" in param:
             params.append(("type", request.GET[param]))
         if "food" in param:
-            params.append(("extended_info:or:" + request.GET[param], "true"))
+            params.append(
+                ("extended_info:or_group:food", request.GET[param])
+            )
         if "cuisine" in param:
-            params.append(("extended_info:or:" + request.GET[param], "true"))
+            params.append(
+                ("extended_info:or_group:cuisine", request.GET[param])
+            )
         if "payment" in param:
-            params.append(("extended_info:or:" + request.GET[param], "true"))
+            params.append(
+                ("extended_info:or_group:payment", request.GET[param])
+            )
         if "period" in param:
             params += get_period_filter(request.GET[param])
         if "open_now" in param:
