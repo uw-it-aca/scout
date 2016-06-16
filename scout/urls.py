@@ -8,15 +8,24 @@ urlpatterns = patterns(
     '',
     # application urls
     url(r'^$', 'scout.views.discover_view', name='discover_view'),
-    url(r'^food/$', 'scout.views.list_view', name='list_view'),
+
+    url(r'^food/$', 'scout.views.food_list_view', name='food_list_view'),
+    url(r'^food/filter/$', 'scout.views.food_filter_view', name='food_filter_view'),
+
+    url(r'^study/$', 'scout.views.study_list_view', name='study_list_view'),
+    url(r'^tech/$', 'scout.views.tech_list_view', name='tech_list_view'),
+
+    url(r'^detail/(?P<spot_id>[0-9]{1,5})/$',
+        'scout.views.detail_view', name='detail_view'),
+
+
+    url(r'^images/(?P<spot_id>\d+)/image/(?P<image_id>\d+)/$',
+        views.image_view),
+
+    # discover card
     url(r'^discover_card/(?P<discover_category>[a-zA-Z]+)/$',
         'scout.views.discover_card_view',
         name='discover_card_view'),
-    url(r'^detail/(?P<spot_id>[0-9]{1,5})/$',
-        'scout.views.detail_view', name='detail_view'),
-    url(r'^filter/$', 'scout.views.filter_view', name='filter_view'),
-    url(r'^images/(?P<spot_id>\d+)/image/(?P<image_id>\d+)/$',
-        views.image_view),
 
     # hybrid urls
     url(r'^h/$', 'scout.views.hybrid_discover_view',
