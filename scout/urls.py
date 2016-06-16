@@ -6,19 +6,25 @@ from scout import views
 
 urlpatterns = patterns(
     '',
-    # application urls
+    # home
     url(r'^$', 'scout.views.discover_view', name='discover_view'),
 
+    # food
     url(r'^food/$', 'scout.views.food_list_view', name='food_list_view'),
-    url(r'^food/filter/$', 'scout.views.food_filter_view', name='food_filter_view'),
+    url(r'^food/filter/$', 'scout.views.food_filter_view',
+        name='food_filter_view'),
 
+    # study
     url(r'^study/$', 'scout.views.study_list_view', name='study_list_view'),
+
+    # technology
     url(r'^tech/$', 'scout.views.tech_list_view', name='tech_list_view'),
 
+    # spot details
     url(r'^detail/(?P<spot_id>[0-9]{1,5})/$',
         'scout.views.detail_view', name='detail_view'),
 
-
+    # images
     url(r'^images/(?P<spot_id>\d+)/image/(?P<image_id>\d+)/$',
         views.image_view),
 
