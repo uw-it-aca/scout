@@ -317,18 +317,18 @@ def add_study_info(spot):
     if (_get_extended_info_by_key("display_access_restrictions",
                                   spot.extended_info) == "true"):
         spot.access_restrictions = True
-        spot.access_notes = _get_extended_info_by_key("access_notes",
-                                                      spot.extended_info)
+    spot.access_notes = _get_extended_info_by_key("access_notes",
+                                                  spot.extended_info)
 
     if _get_extended_info_by_key("reservable", spot.extended_info) == "true":
         spot.reservable = "true"
-        spot.reservation_notes = _get_extended_info_by_key("reservation_notes",
-                                                           spot.extended_info)
+    spot.reservation_notes = _get_extended_info_by_key("reservation_notes",
+                                                       spot.extended_info)
 
     if _get_extended_info_by_key("has_labstats", spot.extended_info) == "true":
         spot.labstats = True
-        spot.labstats_id = _get_extended_info_by_key("labstats_id",
-                                                     spot.extended_info)
+    spot.labstats_id = _get_extended_info_by_key("labstats_id",
+                                                 spot.extended_info)
 
     return spot
 
