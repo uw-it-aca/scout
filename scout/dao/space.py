@@ -281,6 +281,54 @@ def add_additional_info(spot):
     return spot
 
 
+def add_study_info(spot):
+    RESOURCE_MAPPING = {
+        "has_whiteboards": "Whiteboards",
+        "has_outlets": "Outlets",
+        "has_printing": "Printing",
+        "has_scanning": "Scanning",
+        "has_displays": "Displays",
+        "has_projector": "Projector"
+    }
+    spot.spot_resources = _get_names_for_extended_info("",
+                                                       RESOURCE_MAPPING,
+                                                       spot.extended_info)
+
+    if (_get_extended_info_by_key("has_computers", spot.extended_info) ==
+            "true"):
+        spot.computers = True
+        spot.num_computers = _get_extended_info_by_key("num_computers",
+                                                       spot.extended_info)
+
+    if (_get_extended_info_by_key("has_natural_light", spot.extended_info) ==
+            "true"):
+        spot.natural_light = True
+
+    spot.spot_noise = _get_extended_info_by_key("noise_level",
+                                                spot.extended_info)
+
+    spot.food_nearby = _get_extended_info_by_key("food_nearby",
+                                                 spot.extended_info)
+
+    if (_get_extended_info_by_key("display_access_restrictions",
+                                  spot.extended_info) == "true"):
+        spot.access_restrictions = True
+        spot.access_notes = _get_extended_info_by_key("access_notes",
+                                                      spot.extended_info)
+
+    if _get_extended_info_by_key("reservable", spot.extended_info) == "true":
+        spot.reservable = "true"
+        spot.reservation_notes = _get_extended_info_by_key("reservation_notes",
+                                                           spot.extended_info)
+
+    if _get_extended_info_by_key("has_labstats", spot.extended_info) == "true":
+        spot.labstats = True
+        spot.labstats_id = _get_extended_info_by_key("labstats_id",
+                                                     spot.extended_info)
+
+    return spot
+
+
 def _get_extended_info_by_key(key, extended_info):
     for info in extended_info:
         if info.key == key:
