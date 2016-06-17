@@ -278,6 +278,10 @@ def add_additional_info(spot):
     spot.campus = _get_extended_info_by_key("campus", spot.extended_info)
 
     spot.app_type = _get_extended_info_by_key("app_type", spot.extended_info)
+
+    if spot.app_type is None:
+        spot.app_type = "study"
+
     return spot
 
 
