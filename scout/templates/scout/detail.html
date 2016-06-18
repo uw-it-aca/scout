@@ -147,6 +147,11 @@
                     <div class="scout-spot-notes">{{spot.hours_notes}}</div>
                     {% endif %}
 
+                    {% if spot.display_access_restrictions %}
+                    <h4><i class="fa fa-file-text"></i>Access Notes</h4>
+                    <div class="scout-spot-notes">{{spot.access_notes}}</div>
+                    {% endif %}
+                    
                 </div>
 
             </div>
@@ -193,11 +198,6 @@
                     </a>
                     {% endif %}
                 </div>
-
-                {% if spot.access_notes %}
-                <h4><i class="fa fa-file-text"></i>Access Notes</h4>
-                <div class="scout-spot-notes">{{spot.access_notes}}</div>
-                {% endif %}
 
             </div>
 
