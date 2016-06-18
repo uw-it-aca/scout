@@ -258,7 +258,7 @@ def add_additional_info(spot):
                                               spot.extended_info)
     spot.hours_notes = _get_extended_info_by_key("hours_notes",
                                                  spot.extended_info)
-    spot.access_notes = _get_extended_info_by_key("s_access_notes",
+    spot.access_notes = _get_extended_info_by_key("access_notes",
                                                   spot.extended_info)
     spot.has_coupon = _get_extended_info_by_key("s_has_coupon",
                                                 spot.extended_info)
