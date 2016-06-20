@@ -97,11 +97,7 @@ def discover_card_view(request, discover_category):
                               context_instance=RequestContext(request))
 
 
-def food_filter_view(request):
-    return render_to_response('scout/food/filter.html',
-                              context_instance=RequestContext(request))
-
-
+# food
 def food_list_view(request):
     if len(request.GET) > 0:
         spots = get_filtered_spots(request)
@@ -112,6 +108,22 @@ def food_list_view(request):
                               context_instance=RequestContext(request))
 
 
+def food_detail_view(request, spot_id):
+    spot = get_spot_by_id(spot_id)
+    if not spot:
+        raise Http404("Spot does not exist")
+
+    context = {"spot": spot}
+    return render_to_response('scout/food/detail.html', context,
+                              context_instance=RequestContext(request))
+
+
+def food_filter_view(request):
+    return render_to_response('scout/food/filter.html',
+                              context_instance=RequestContext(request))
+
+
+# study
 def study_list_view(request):
     if len(request.GET) > 0:
         spots = get_filtered_spots(request)
@@ -122,6 +134,7 @@ def study_list_view(request):
                               context_instance=RequestContext(request))
 
 
+# study
 def tech_list_view(request):
     if len(request.GET) > 0:
         spots = get_filtered_spots(request)
@@ -132,17 +145,7 @@ def tech_list_view(request):
                               context_instance=RequestContext(request))
 
 
-def detail_view(request, spot_id):
-    spot = get_spot_by_id(spot_id)
-    if not spot:
-        raise Http404("Spot does not exist")
-
-    context = {"spot": spot}
-    return render_to_response('scout/detail.html', context,
-                              context_instance=RequestContext(request))
-
-
-# hybrid views
+# hybrid
 def hybrid_list_view(request):
     if len(request.GET) > 0:
         spots = get_filtered_spots(request)

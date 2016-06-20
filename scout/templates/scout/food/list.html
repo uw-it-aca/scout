@@ -22,7 +22,7 @@
 
             {% for spot in spots %}
                 <li class="scout-list-item" id="{{ spot.spot_id }}">
-                    <a class="clearfix" href="/detail/{{ spot.spot_id }}/">
+                    <a class="clearfix" href="/food/{{ spot.spot_id }}/">
 
                         {% if spot.images %}
                         <div class="scout-spot-image" style="background-image: url('/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}?width=200');">&nbsp;</div>

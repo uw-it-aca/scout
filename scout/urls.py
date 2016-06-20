@@ -11,6 +11,8 @@ urlpatterns = patterns(
 
     # food
     url(r'^food/$', 'scout.views.food_list_view', name='food_list_view'),
+    url(r'^food/(?P<spot_id>[0-9]{1,5})/$',
+        'scout.views.food_detail_view', name='food_detail_view'),
     url(r'^food/filter/$', 'scout.views.food_filter_view',
         name='food_filter_view'),
 
@@ -19,10 +21,6 @@ urlpatterns = patterns(
 
     # technology
     url(r'^tech/$', 'scout.views.tech_list_view', name='tech_list_view'),
-
-    # spot details
-    url(r'^detail/(?P<spot_id>[0-9]{1,5})/$',
-        'scout.views.detail_view', name='detail_view'),
 
     # images
     url(r'^images/(?P<spot_id>\d+)/image/(?P<image_id>\d+)/$',

@@ -150,7 +150,7 @@ var Map = {
                         //map.setZoom(18);
 
                         //Wrap the content inside an HTML DIV in order to set height and width of InfoWindow.
-                        infoWindow.setContent("<div>"+data.spot_name+"<br>"+data.building+"<br><a href='/detail/"+data.id+"'>View details</a></div>");
+                        infoWindow.setContent("<div>"+data.spot_name+"<br>"+data.building+"<br><a href='/food/"+data.id+"'>View details</a></div>");
                         infoWindow.open(map, marker);
 
                         $('li').css('background', 'none'); // clear any highlighted spots first
