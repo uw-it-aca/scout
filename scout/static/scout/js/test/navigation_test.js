@@ -38,7 +38,7 @@ describe("Navigation Tests", function() {
 
             assert.equal(link_home.attr('aria-selected'), undefined);
             assert.equal(link_food.attr('aria-selected'), 'true');
-            assert.equal(link_food.attr('style'), 'border-bottom:4px solid #6564A8');
+            assert.equal(link_food.attr('style'), 'border-bottom:4px solid #6564A8; color: rgb(101, 100, 168);');
             assert.equal(link_study.attr('aria-selected'), undefined);
             assert.equal(link_tech.attr('aria-selected'), undefined);
         });
@@ -50,7 +50,7 @@ describe("Navigation Tests", function() {
             assert.equal(link_home.attr('aria-selected'), undefined);
             assert.equal(link_food.attr('aria-selected'), undefined);
             assert.equal(link_study.attr('aria-selected'), 'true');
-            assert.equal(link_study.attr('style'), 'border-bottom:4px solid #6564A8');
+            assert.equal(link_study.attr('style'), 'border-bottom:4px solid #6564A8; color: rgb(101, 100, 168);');
             assert.equal(link_tech.attr('aria-selected'), undefined);
         });
         it ("it should highlight the /tech/ tab only", function() {
@@ -61,7 +61,7 @@ describe("Navigation Tests", function() {
             assert.equal(link_food.attr('aria-selected'), undefined);
             assert.equal(link_study.attr('aria-selected'), undefined);
             assert.equal(link_tech.attr('aria-selected'), 'true');
-            assert.equal(link_tech.attr('style'), 'border-bottom:4px solid #6564A8');
+            assert.equal(link_tech.attr('style'), 'border-bottom:4px solid #6564A8; color: rgb(101, 100, 168);');
         });
 
      });
