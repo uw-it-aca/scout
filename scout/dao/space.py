@@ -258,8 +258,11 @@ def add_additional_info(spot):
                                               spot.extended_info)
     spot.hours_notes = _get_extended_info_by_key("hours_notes",
                                                  spot.extended_info)
-    spot.access_notes = _get_extended_info_by_key("s_access_notes",
+    spot.access_notes = _get_extended_info_by_key("access_notes",
                                                   spot.extended_info)
+    spot.access_restrictions = \
+        _get_extended_info_by_key("display_access_restrictions",
+                                  spot.extended_info)
     spot.has_coupon = _get_extended_info_by_key("s_has_coupon",
                                                 spot.extended_info)
     spot.coupon_expiration = _get_extended_info_by_key("s_coupon_expiration",
@@ -278,6 +281,52 @@ def add_additional_info(spot):
     spot.campus = _get_extended_info_by_key("campus", spot.extended_info)
 
     spot.app_type = _get_extended_info_by_key("app_type", spot.extended_info)
+
+    if spot.app_type is None:
+        spot.app_type = "study"
+
+    return spot
+
+
+def add_study_info(spot):
+    RESOURCE_MAPPING = {
+        "has_whiteboards": "Whiteboards",
+        "has_outlets": "Outlets",
+        "has_printing": "Printing",
+        "has_scanning": "Scanning",
+        "has_displays": "Displays",
+        "has_projector": "Projector"
+    }
+    spot.spot_resources = _get_names_for_extended_info("",
+                                                       RESOURCE_MAPPING,
+                                                       spot.extended_info)
+
+    if (_get_extended_info_by_key("has_computers", spot.extended_info) ==
+            "true"):
+        spot.computers = True
+        spot.num_computers = _get_extended_info_by_key("num_computers",
+                                                       spot.extended_info)
+
+    if (_get_extended_info_by_key("has_natural_light", spot.extended_info) ==
+            "true"):
+        spot.natural_light = True
+
+    spot.spot_noise = _get_extended_info_by_key("noise_level",
+                                                spot.extended_info)
+
+    spot.food_nearby = _get_extended_info_by_key("food_nearby",
+                                                 spot.extended_info)
+
+    if _get_extended_info_by_key("reservable", spot.extended_info) == "true":
+        spot.reservable = "true"
+    spot.reservation_notes = _get_extended_info_by_key("reservation_notes",
+                                                       spot.extended_info)
+
+    if _get_extended_info_by_key("has_labstats", spot.extended_info) == "true":
+        spot.labstats = True
+    spot.labstats_id = _get_extended_info_by_key("labstats_id",
+                                                 spot.extended_info)
+
     return spot
 
 
