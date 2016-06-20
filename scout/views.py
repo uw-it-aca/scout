@@ -112,6 +112,26 @@ def food_list_view(request):
                               context_instance=RequestContext(request))
 
 
+def study_list_view(request):
+    if len(request.GET) > 0:
+        spots = get_filtered_spots(request)
+    else:
+        spots = get_spot_list()
+    context = {"spots": spots}
+    return render_to_response('scout/study/list.html', context,
+                              context_instance=RequestContext(request))
+
+
+def tech_list_view(request):
+    if len(request.GET) > 0:
+        spots = get_filtered_spots(request)
+    else:
+        spots = get_spot_list()
+    context = {"spots": spots}
+    return render_to_response('scout/tech/list.html', context,
+                              context_instance=RequestContext(request))
+
+
 def detail_view(request, spot_id):
     spot = get_spot_by_id(spot_id)
     if not spot:
