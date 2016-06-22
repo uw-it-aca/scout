@@ -82,7 +82,7 @@ var Map = {
                 // add radius overlay and bind to location marker
                 var circle = new google.maps.Circle({
                     map: map,
-                    radius: 50,    // meters
+                    radius: 30,    // meters
                     fillColor: '#c0392b',
                     fillOpacity: 0.15,
                     strokeWeight: 0
@@ -90,6 +90,7 @@ var Map = {
                 circle.bindTo('center', locationMarker, 'position');
 
                 // pulsate the user location marker
+                /*
                 var direction = 1;
                 var rmin = 20, rmax = 50;
                 setInterval(function() {
@@ -99,6 +100,7 @@ var Map = {
                     }
                     circle.setRadius(radius + direction * 10);
                 }, 300);
+                */
 
                 // add user location marker to map
                 window.user_location_marker = locationMarker;
@@ -133,7 +135,7 @@ var Map = {
                         fillColor: '#6564A8',
                         fillOpacity: 1,
                         strokeColor: '#ffffff',
-                        scale: 8,
+                        scale: 6,
                         strokeWeight: 2
                     },
                     //id: data.id,
