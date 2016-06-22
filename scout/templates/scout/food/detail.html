@@ -62,7 +62,7 @@
                 {% endif %}
 
                 <div class="scout-spot-food-served">
-                    <label>Food served</label>
+                    <label>Specific Items</label>
                     {% if spot.foodtype_names %}
                         {% for foodtype in spot.foodtype_names %}
                             <span>{{ foodtype }}</span>
@@ -151,7 +151,7 @@
                     <h4><i class="fa fa-file-text"></i>Access Notes</h4>
                     <div class="scout-spot-notes">{{spot.access_notes}}</div>
                     {% endif %}
-                    
+
                 </div>
 
             </div>
