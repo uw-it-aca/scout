@@ -391,6 +391,7 @@ def add_foodtype_names_to_spot(spot):
         "s_food_entrees": "Entrees",
         "s_food_espresso": "Espresso",
         "s_food_frozen_yogurt": "Frozen Yogurt",
+        "s_food_groceries": "Groceries",
         "s_food_pasta": "Pasta",
         "s_food_pastries": "Pastries",
         "s_food_pho": "Pho",
