@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>{% block title %}{% endblock %}</title>
+        <meta name="description" content="">
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="320">
+        <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+        <meta http-equiv="cleartype" content="on">
+
+        {% load staticfiles %}
+        {% load compress %}
+
+        {% if request.is_and %}
+
+            <!-- framework7 material -->
+            <link rel="stylesheet" type="text/css" href="{% static "hybridize/css/framework7.material.min.css" %}">
+
+            {% compress css %}
+            <!-- local override files -->
+            <link rel="stylesheet" href="{% static "hybridize/css/android-theme.scss" %}" type="text/x-scss">
+            <link rel="stylesheet" href="{% static "hybridize/css/android.scss" %}" type="text/x-scss">
+            {% endcompress %}
+
+            {% compress js %}
+            <!-- javascript -->
+		    <script type="text/javascript" src="{% static "hybridize/js/jquery-2.1.4.min.js" %}"></script>
+            <script type="text/javascript" src="{% static "hybridize/js/turbolinks-5.0.0.beta4.min.js" %}"></script>
+		    <script type="text/javascript" src="{% static "hybridize/js/framework7.min.js" %}"></script>
+
+            <!-- local override files -->
+		    <script type="text/javascript" src="{% static "hybridize/js/android.js" %}"></script>
+		    {% endcompress %}
+
+        {% endif %}
+
+        {% if request.is_ios %}
+
+        	<!-- framework7 ios -->
+            <link rel="stylesheet" type="text/css" href="{% static "hybridize/css/framework7.ios.min.css" %}">
+
+            {% compress css %}
+            <!-- local override files -->
+            <link rel="stylesheet" href="{% static "hybridize/css/ios-theme.scss" %}" type="text/x-scss">
+            <link rel="stylesheet" href="{% static "hybridize/css/ios.scss" %}" type="text/x-scss">
+            {% endcompress %}
+
+            {% compress js %}
+            <!-- javascript -->
+		    <script type="text/javascript" src="{% static "hybridize/js/jquery-2.1.4.min.js" %}"></script>
+            <script type="text/javascript" src="{% static "hybridize/js/turbolinks-5.0.0.beta4.min.js" %}"></script>
+		    <script type="text/javascript" src="{% static "hybridize/js/framework7.min.js" %}"></script>
+		    <!-- local override files -->
+		    <script type="text/javascript" src="{% static "hybridize/js/ios.js" %}"></script>
+		    {% endcompress %}
+
+        {% endif %}
+
+    </head>
+
+    <body class="theme-custom">
+
+        <div class="views">
+            <div class="view view-main">
+                <div class="pages">
+                    <div class="page">
+                        <div class="page-content" style="position: relative;">
+                        {% block hybrid_content %}{% endblock %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+
+</html>

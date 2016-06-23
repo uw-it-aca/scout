@@ -1,82 +1,113 @@
-{% extends is_hybrid|yesno:"hybridize/base.html,scout/app.html" %}
+{% extends "scout/base.html" %}
 {% load staticfiles %}
+{% load scout_filters %}
 
-{% block title %}List{% endblock %}
+{% block title %}Places to eat{% endblock %}
 
 {% block web_content %}
 
-<div class="scout-filter-container">
+<div id="page_food" class="scout-content">
 
-    <div class="scout-filter-results">
-        <div>Filtering by: <span id="filter_label_text">None</span></div>
-        <div>Results: {{ spots|length }}</div>
-    </div>
+    {% include "scout/include/user_geolocation.html" %}
 
-    {% if request.is_mobile or request.is_tablet %}
-    <div class="scout-filter-display">
-        <a id="map_link" href="/map/"><i class="fa fa-map"></i> Map</a>
-    </div>
-    {% endif %}
+    <h2 class="visually-hidden">Filtered shortcuts</h2>
 
-</div>
+    {% include "scout/include/filter_results_bar.html" %}
 
-<div class="scout-list-container">
+    <div class="scout-list-container" style="position:relative;" role="main">
 
-    <h2 class="scout-list-header visually-hidden">List of Food Places</h2>
+        <h2 class="scout-list-header visually-hidden">List of food places (by distance)</h2>
 
-    <ul class="scout-list">
+        <ol id="scout_list" class="scout-card scout-list">
 
-        {% for spot in spots %}
-            <li class="scout-list-item" id="{{ spot.spot_id }}">
-                <a class="clearfix" href="detail/{{ spot.spot_id }}">
+            {% for spot in spots %}
+                <li class="scout-list-item" id="{{ spot.spot_id }}">
+                    <a class="clearfix" href="/detail/{{ spot.spot_id }}/">
 
-                    <div class="scout-spot-image" style="background:url('{% static "scout/img/coffee-shop-300.jpg" %}') no-repeat center center;">&nbsp;</div>
+                        {% if spot.images %}
+                        <div class="scout-spot-image" style="background-image: url('/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}?width=200');">&nbsp;</div>
+                        {% else %}
+                        <div class="scout-spot-image" style="background: #e5e6e9 url('{% static "scout/img/placeholder-200.png" %}') no-repeat center center; background-size: contain;">&nbsp;</div>
+                        {% endif %}
 
-                    <div class="scout-spot-content">
+                        <div class="scout-spot-content">
 
-                        <div style="padding:0 10px;">
-                            <h3 class="scout-spot-name">{{ spot.name }} <span class="scout-spot-type">{% for type in spot.spot_types %}<span>{{ type.name }}</span>{% endfor %}</span></h3>
+                            <div style="padding-left: 10px;">
+                                <h3 class="scout-spot-name">{{ spot.name }}</h3>
+                                <div class="scout-spot-location">
+                                    <span class="scout-spot-distance"><span class="visually-hidden">Distance from you:</span><span class="distance-number">-</span>&nbsp;ft.</span>&nbsp;&nbsp;
+                                    {% if spot.building_name %}{{ spot.building_name }}{% else %}<span style="color:red;">missing building_name</span>{% endif %}
+                                </div>
 
-                            <div class="scout-spot-status">{% if spot.is_open %}<span class="open">OPEN NOW</span>{% else %}<span class="closed">CLOSED</span>{% endif %}</div>
 
-                            <div class="scout-spot-open-period" style="display:none;">
-                                <span>TODAY'S HOURS:</span>
-                                {% if spot.open_periods.breakfast %}
-                                    <span>Breakfast</span>
+                                {% if is_desktop %}
+                                <span class="scout-spot-type">{% if spot.spot_types %}{% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}</span>{% endfor %}{% else %} <span style="color:red;">SPOT_TYPE</span> {% endif %}</span>
                                 {% endif %}
-                                {% if spot.open_periods.lunch %}
-                                    <span>Lunch</span>
-                                {% endif %}
-                                {% if spot.open_periods.dinner %}
-                                    <span>Dinner</span>
-                                {% endif %}
-                                {% if spot.open_periods.late_night %}
-                                    <span>Late Night</span>
-                                {% endif %}
+
+                                <div class="scout-spot-food-served">
+                                    <label>SPECIFIC ITEMS</label>
+                                {% if spot.foodtype_names %}
+                                    {% for foodtype in spot.foodtype_names %}
+                                        <span>{{ foodtype }}</span>
+                                    {% endfor %}
+                                {% else %}<span style="color:red;">missing foodtype</span> {% endif %}
+                                </div>
+
+                                <span class="scout-spot-status">{% if spot.is_open %}<span class="open visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</span>
+
                             </div>
 
-                            <div class="scout-spot-food-served">
-                            <span>SERVES:</span>
-                            {% if spot.foodtype_names %}
-                                {% for foodtype in spot.foodtype_names %}
-                                    <span>{{ foodtype }}</span>
-                                {% endfor %}
-                            {% else %} <span style="color:red;">xxxxx</span> {% endif %}
-                            </div>
-
-                            <div class="scout-spot-location">
-                                <div>{% if spot.building_name %}{{ spot.building_name }}{% else %} <span style="color:red;">xxxxx</span> {% endif %}</div>
-                                <div style="display:none;">{% if spot.floor %}{{ spot.floor }}{% else %} <span style="color:red;">xxxxx</span> {% endif %}</div>
-                                <div style="display:none;">{% if spot.room_number %}{{ spot.room_number }}{% else %} <span style="color:red;">xxxxx</span> {% endif %}</div>
-                            </div>
                         </div>
-
+                    </a>
+                </li>
+            {% empty %}
+                <li class="scout-list-item scout-error" style="padding:20px;">
+                    <p class="scout-error-msg">No results? Try updating your filters.</p>
+                    <div class="scout-error-body">
+                        <p>Suggestions for improving the results:</p>
+                        <ul>
+                            <li>Try a speicific campus.</li>
+                            <li>Try less options for cuisine or specific items.</li>
+                        </ul>
                     </div>
-                </a>
-            </li>
-        {% endfor %}
+                </li>
+            {% endfor %}
 
-    </ul>
+        </ol>
+
+        <div id="list_loading">
+            <p class="visually-hidden">loading...</p>
+            <div class="sk-fading-circle" aria-hidden="true">
+                <div class="sk-circle1 sk-circle"></div>
+                <div class="sk-circle2 sk-circle"></div>
+                <div class="sk-circle3 sk-circle"></div>
+                <div class="sk-circle4 sk-circle"></div>
+                <div class="sk-circle5 sk-circle"></div>
+                <div class="sk-circle6 sk-circle"></div>
+                <div class="sk-circle7 sk-circle"></div>
+                <div class="sk-circle8 sk-circle"></div>
+                <div class="sk-circle9 sk-circle"></div>
+                <div class="sk-circle10 sk-circle"></div>
+                <div class="sk-circle11 sk-circle"></div>
+                <div class="sk-circle12 sk-circle"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <script type="text/javascript">
+        window.spot_locations = {
+            {% for spot in spots %}
+                '{{ spot.spot_id }}': {
+                    "spot_name": '{{ spot.name }}',
+                        "id": '{{ spot.spot_id }}',
+                        "building": '{{ spot.building_name }}',
+                        "lat": '{{ spot.latitude }}',
+                        "lng": '{{ spot.longitude }}',
+                },
+            {% endfor %}
+        };
+    </script>
 
 </div>
 
@@ -85,156 +116,24 @@
 {% block secondary_content %}
 
 <!-- show a map on the list page -->
-<div id="list_map" style="height:100%;"></div>
-
-<!-- since turbolinks loads the full body... generate this function in the template. then, call the function in the map.js file -->
-<script type="text/javascript">
-
-function initializeListMap() {
-
-	var mapExists = document.getElementById("list_map");
-	var myLatlng, mapOptions;
-
-	if(mapExists) {
-
-		// center map on uw fountain
-		mapCenter = new google.maps.LatLng(47.653811, -122.307815);
-        mapOptions = {
-	        center: mapCenter,
-	        zoom: 16,
-	    };
-
-        var styles = [
-            {
-                "featureType": "poi.place_of_worship",
-                "elementType": "all",
-                "stylers": [
-                    {
-                        "visibility": "off"
-                    }
-                ]
-            },
-            {
-                "featureType": "poi.business",
-                "elementType": "labels.icon",
-                "stylers": [
-                    {
-                        "visibility": "off"
-                    }
-                ]
-            }
-        ]
-
-		var map = new google.maps.Map(document.getElementById('list_map'), mapOptions);
-        map.setOptions({styles: styles});
-
-        // multiple pins on a single map
-        var locations = [
-            {% for spot in spots %}
-            {
-                "spot_name" : '{{ spot.name }}',
-                "id" : '{{ spot.spot_id }}',
-                "lat" : '{{ spot.latitude }}',
-                "lng" : '{{ spot.longitude }}',
-                "icon": 'fa-cutlery',
-            },
-            {% endfor %}
-		]
-
-        // create and open InfoWindow.
-        var infoWindow = new google.maps.InfoWindow();
-        var markers = [];
-
-        var bounds = new google.maps.LatLngBounds();
-
-		for (var i = 0; i < locations.length; i++) {
-
-            var data = locations[i];
-
-			var marker = new MarkerWithLabel({
-		        position: new google.maps.LatLng(data.lat, data.lng),
-		        map: map,
-                //animation: google.maps.Animation.DROP,
-                labelContent: "<i class='fa " + data.icon +"'></i>",
-                //labelContent: "<i class='fa " + data.icon +"'></i><span class='marker-text'>" + data.spot_name + "</span>",
-                labelAnchor: new google.maps.Point(6, 6),
-                labelClass: "map-label", // the CSS class for the label
-                icon: {
-            		path: google.maps.SymbolPath.CIRCLE,
-            		fillColor: '#6562aa',
-            		fillOpacity: 1,
-            		strokeColor: '#53518e',
-                    scale: 10,
-            		strokeWeight: 3
-            	},
-		    });
-
-            markers.push(marker);
-
-            // attach click event to the marker
-            (function (marker, data) {
-
-                google.maps.event.addListener(marker, "click", function (e) {
-
-                    map.setCenter(marker.getPosition());
-                    map.setZoom(18);
-
-                    //Wrap the content inside an HTML DIV in order to set height and width of InfoWindow.
-                    infoWindow.setContent("<div style = 'width:200px;'>" + data.spot_name + "</div>");
-                    infoWindow.open(map, marker);
-                    $('li').css('background', 'none'); // clear any highlighted spots first
-                    $('#' + data.id).css('background', '#6564A8');
-
-                    $('.scout-scroll').scrollTo('#' + data.id);
-
-                });
-
-                google.maps.event.addListener(infoWindow,'closeclick',function(){
-                    $('#' + data.id).css('background', 'none');
-                });
-
-            })(marker, data);
-
-            // add the marker position to boundary
-            bounds.extend(marker.position);
-
-		}
-
-        // zoom the map automatically using the bounds of all markers
-        map.fitBounds(bounds);
-
-        // cluster the markers using marker clusterer
-        var markerCluster = new MarkerClusterer(map, markers);
-
-	}
-
-}
-</script>
-
-{% endblock %}
-
-{% block hybrid_content %}
-
-<div class="list-block media-list">
-    <ul>
-
-        {% for spot in spots %}
-        <li>
-            <a href="detail/{{ spot.spot_id }}?hybrid=true&x_push_page=true&x_page_title={{ spot.name.split|join:"+" }}" class="item-link item-content">
-                <div class="item-media">
-                    <img src="{% static "scout/img/placeholder.png" %}" style="width:80px;height:80px;">
-                </div>
-                <div class="item-inner">
-                    <div class="item-title-row">
-                        <div class="item-title">{{ spot.name }}</div>
-                    </div>
-                    <div class="item-subtitle">{% for foodtype in spot.foodtype_names %} {{ foodtype }}, {% endfor %}</div>
-                    <div class="item-text">{{ spot.building_description }}</div>
-                </div>
-            </a>
-        </li>
-        {% endfor %}
-
-    </ul>
+<div id="list_map" class="scout-spot-list-map" style="height:100%; background: #ddd !important;">
+    <div class="scout-spot-list-map-loading" style="position:absolute; top: 50%; left: 50%; margin-left:-15px; margin-top: -110px; z-index:9999;">
+        <p class="visually-hidden">loading...</p>
+        <div class="sk-fading-circle" aria-hidden="true">
+            <div class="sk-circle1 sk-circle"></div>
+            <div class="sk-circle2 sk-circle"></div>
+            <div class="sk-circle3 sk-circle"></div>
+            <div class="sk-circle4 sk-circle"></div>
+            <div class="sk-circle5 sk-circle"></div>
+            <div class="sk-circle6 sk-circle"></div>
+            <div class="sk-circle7 sk-circle"></div>
+            <div class="sk-circle8 sk-circle"></div>
+            <div class="sk-circle9 sk-circle"></div>
+            <div class="sk-circle10 sk-circle"></div>
+            <div class="sk-circle11 sk-circle"></div>
+            <div class="sk-circle12 sk-circle"></div>
+        </div>
+    </div>
 </div>
+
 {% endblock %}

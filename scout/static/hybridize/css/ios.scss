@@ -1,0 +1,45 @@
+/*** framework 7 overrides ***/
+
+.pages { position: relative; background: none !important; }
+
+.list-block { margin: 0;
+
+	ul:before { height: 0; }
+
+	ul {
+		li { background: #fff; }
+	}
+}
+
+
+.item-title-row { background-image: none !important; }
+
+.item-title {
+
+    span { color: #666; font-size: 85%; }
+
+}
+
+.item-input { text-align: right;
+	input, select { text-align: right; }
+
+	/*select { width: auto; margin-right: 0; display: inline-block; }*/
+}
+
+/** cards not really in ios.. flat and full width **/
+.card {  margin: 0; border-radius: 0; box-shadow: none;
+    .card-header { border-radius: 0; color: #fff; }
+    .card-content {
+        h4 {  }
+    }
+}
+
+/*** ios hybrid reset ***/
+
+body { background: #efeff4 !important; padding: 0 !important; margin: 0 !important; }
+
+.scout-list {
+
+    a { color: red !important; }
+
+}

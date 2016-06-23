@@ -1,4 +1,8 @@
-{% extends is_hybrid|yesno:"hybridize/base.html,scout/app.html" %}
+{% extends "hybridize/base.html" %}
+{% load staticfiles %}
+{% load scout_filters %}
+
+{% block title %}Components{% endblock %}
 
 {% block hybrid_content %}
 

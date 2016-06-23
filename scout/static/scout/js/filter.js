@@ -1,5 +1,5 @@
 var Filter = {
-    get_filter_url: function() {
+    set_filter_params: function() {
 
         var campuses = $("#campus_select input:checkbox:checked").map(function() {
             return $(this).val();
@@ -39,11 +39,27 @@ var Filter = {
                                                                 "cuisine"));
         params = $.extend(params, Filter._get_params_for_select(periods,
                                                                 "period"));
+        if($("#open_now input").is(":checked")){
+            params = $.extend(params, {"open_now": true});
+        }
+        // Store these
+        sessionStorage.setItem("filter_params", JSON.stringify(params));
+
+    },
+
+    get_filter_url: function() {
+        var params;
+        try {
+            params = JSON.parse(sessionStorage.getItem("filter_params"));
+        } catch(e) {}
+        if(params === undefined || $.isEmptyObject(params)){
+            return undefined;
+        }
         return $.param(params);
     },
 
     _get_params_for_select: function(select_results, prefix) {
-        params = {};
+        var params = {};
         if(select_results !== null && select_results.length > 0){
             $.each(select_results, function(idx, result){
                 params[prefix + idx] = result;
@@ -57,19 +73,25 @@ var Filter = {
         var filter_categories = [];
         var url = window.location.href;
         var filter_string = "";
-        if(url.indexOf("campus") > -1){
+        if(url.indexOf("&campus") > -1 || url.indexOf("?campus") > -1){
             filter_categories.push("Campus");
         }
-        if(url.indexOf("payment") > -1){
+        if(url.indexOf("&payment") > -1 || url.indexOf("?payment") > -1){
             filter_categories.push("Payment Accepted");
         }
-        if(url.indexOf("type") > -1){
+        if(url.indexOf("&type") > -1 || url.indexOf("?type") > -1){
             filter_categories.push("Restaurant Type");
         }
-        if(url.indexOf("food") > -1){
+        if(url.indexOf("&food") > -1 || url.indexOf("?food") > -1){
             filter_categories.push("Food Served");
         }
-        if(url.indexOf("cuisine") > -1){
+        if(url.indexOf("&period") > -1 || url.indexOf("?period") > -1){
+            filter_categories.push("Open Period");
+        }
+        if(url.indexOf("&open_now") > -1 || url.indexOf("?open_now") > -1){
+            filter_categories.push("Open Now");
+        }
+        if(url.indexOf("&cuisine") > -1 || url.indexOf("?cuisine") > -1){
             filter_categories.push("Cuisine");
         }
         for(var i = 0; i < filter_categories.length; i++){
@@ -86,23 +108,98 @@ var Filter = {
         if(filter_text.length > 0){
             $("#filter_label_text").html(filter_text);
         }
-
     },
 
+    reset_filter: function() {
+        sessionStorage.removeItem("filter_params");
+        $("input:checkbox").attr('checked', false);
+        Filter.replace_food_href();
+        window.location.href = "/food/";
+    },
+    
     init_events: function() {
+
         Filter.set_filter_text();
 
         $("#run_search").click(function(){
+            Filter.set_filter_params();
             var filtered_url = Filter.get_filter_url();
-            window.location.replace("/?"+filtered_url);
+            if (filtered_url !== undefined){
+                window.location.href = "/food/?"+filtered_url;
+            }
+            else {
+                // reset filter if user submits empty search
+                Filter.reset_filter();
+            }
         });
 
-        $("#filter_toggle").click(function(e) {
-            e.preventDefault();
-            $("#filter_container").toggle("slow", function() {
-                // Animation complete.
-            });
+        $("#reset_button").click(function() {
+            Filter.reset_filter();
         });
+    },
 
+    init: function() {
+        Filter.populate_filters_from_saved();
+    },
+
+    populate_filters_from_saved: function() {
+        var filter_item;
+        // do nothing if no filters are saved
+        if(sessionStorage.getItem("filter_params") === null){
+            return;
+        }
+
+        var params = JSON.parse(sessionStorage.getItem("filter_params"));
+        $.each(params, function(idx, val){
+            if(idx.indexOf("campus") > -1){
+                filter_item = $("#campus_select").find("input[value='" + val + "']");
+                $(filter_item[0]).prop("checked", true);
+            }
+            if(idx.indexOf("period") > -1){
+                filter_item = $("#period_select").find("input[value='" + val + "']");
+                $(filter_item[0]).prop("checked", true);
+            }
+            if(idx.indexOf("open_now") > -1){
+                filter_item = $("#open_now").find("input[value='open_now']");
+                $(filter_item[0]).prop("checked", true);
+            }
+            if(idx.indexOf("type") > -1){
+                filter_item = $("#type_select").find("input[value='" + val + "']");
+                $(filter_item[0]).prop("checked", true);
+            }
+            if(idx.indexOf("payment") > -1){
+                filter_item = $("#payment_select").find("input[value='" + val + "']");
+                $(filter_item[0]).prop("checked", true);
+            }
+            if(idx.indexOf("cuisine") > -1){
+                filter_item = $("#cuisine_select").find("input[value='" + val + "']");
+                $(filter_item[0]).prop("checked", true);
+            }
+            if(idx.indexOf("food") > -1){
+                filter_item = $("#food_select").find("input[value='" + val + "']");
+                $(filter_item[0]).prop("checked", true);
+            }
+
+        });
+    },
+
+    replace_food_href: function(){
+        var filter_url = Filter.get_filter_url();
+        var food_anchor = $("#link_food");
+        var food_url;
+        if (filter_url !== undefined){
+            food_url = "/food/?" + filter_url;
+        } else {
+            food_url = "/food/";
+        }
+        if(food_anchor !== undefined){
+                $(food_anchor).attr('href', food_url);
+        }
     }
 };
+
+/* node.js exports */
+if (typeof exports == "undefined") {
+    var exports = {};
+}
+exports.Filter = Filter;

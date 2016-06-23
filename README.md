@@ -18,25 +18,25 @@ Refer to the Spotseeker API https://github.com/uw-it-aca/spotseeker_server/wiki/
 
 The following types are to be used for Food finding...
 
-    "type" : ["cafe", "food_court", "cafeteria", "market", "fine_dining", "food_truck"],
-
+    "type" : ["cafe", "cafeteria", "food_court", "food_truck"  "market", "restaurant"],
 
 Scout specific extended info...
 
 	"extended_info": {
 
-		// global extended info
+		// global
 
-		"app_type" : "food",
-		"campus" : "seattle",
+		"app_type" : ["food", "study", "other"],
+		"campus" : "seattle", ( or bothell, tacoma, south_lake_union)
 		"hours_notes" : "",
 		"access_notes" : "",
 
-		// scout extended info
+		// scout
 
 		"s_menu_url" : "",
 		"s_website_url" : "",
-		"s_contact_phone" : "",
+		"s_phone" : "",
+        "s_email" : "",
 
 		"s_has_alert" : false,
 		"s_alert_notes" : "",
@@ -47,37 +47,40 @@ Scout specific extended info...
 		"s_has_coupon" : "true",
 		"s_coupon_expiration" : "datetime",
 		"s_coupon_url" : "",
-		
-		// cuisine extended info
-		
+
+		// cuisine
+
 	    "s_cuisine_american" : true,
         "s_cuisine_bbq" : false,
 		"s_cuisine_chinese" : false,
 		"s_cuisine_hawaiian" : false,
         "s_cuisine_indian" : false,
 		"s_cuisine_italian" : false,
-        "s_cuisine_japanese" : false,
 		"s_cuisine_korean" : false,
         "s_cuisine_mexican" : false,
 		"s_cuisine_vietnamese" : false,
-		"s_cuisine_light_lunch" : false,
-		
-		// food served extended info
-		
-        "s_food_appetizers" : true,
-		"s_food_burgers" : true,
-		"s_food_entrees" : true,
+
+		// food served
+
+        "s_food_breakfast" : true,
+        "s_food_burgers" : true,
+        "s_food_curry" : true,
+        "s_food_desserts" : true,
+        "s_food_entrees" : true,
         "s_food_espresso" : true,
+        "s_food_frozen_yogurt" : true,
         "s_food_pasta" : true,
+        "s_food_pastries" : true,
+        "s_food_pho" : true,
         "s_food_pizza" : true,
-		"s_food_salads" : false,
-		"s_food_sandwiches" : true,
+        "s_food_salads" : true,
+        "s_food_sandwiches" : true,
         "s_food_smoothies" : true,
-		"s_food_sushi" : true,
-		"s_food_tacos" : true,
-		
+        "s_food_sushi_packaged" : true,
+        "s_food_tacos" : true,
+
 		// payment extended info
-		
+
 		"s_pay_cash" : true,
 		"s_pay_visa" : true,
 		"s_pay_mastercard" : true,

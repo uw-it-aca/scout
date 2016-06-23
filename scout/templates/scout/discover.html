@@ -1,367 +1,51 @@
-{% extends is_hybrid|yesno:"hybridize/base.html,scout/app.html" %}
-
+{% extends "scout/base.html" %}
 {% load staticfiles %}
+{% load scout_filters %}
 
-{% block title %}Discover{% endblock %}
+{% block title %}Discover places{% endblock %}
 
 {% block web_content %}
 
-<div style="padding:1em;">
-    <h2 class="visually-hidden">Discover</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non urna et lorem venenatis varius quis sit amet dui. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur a nisi odio.</p>
-    <p>Donec et nulla auctor massa pharetra adipiscing ut sit amet sem. Suspendisse molestie velit vitae mattis tincidunt. Ut sit amet quam mollis, vulputate turpis vel, sagittis felis. </p>
-</div>
+<div id="page_discover" class="scout-content">
 
-{% if open %}
-<div style="background:url('{% static "scout/img/starbucks.jpg" %}') no-repeat center center; background-size:cover;">
-<div style="padding:1em;">
-    <h3>Open Now...</h3>
-    <ul>
-        {% for spot in open %}
-        <li><a href="/detail/{{ spot.spot_id }}">{{spot.name}}</a></li>
-        {% endfor %}
-        <li><a href="/">More...</a></li>
-    </ul>
-</div>
-</div>
-{% endif %}
+    {% include "scout/include/user_geolocation.html" %}
 
-{% if coffee %}
-<div style="background:url('{% static "scout/img/coffee-shop-1200.jpg" %}') no-repeat center center; background-size:cover;">
-<div style="padding:1em;">
-    <h3>Serving Coffee...</h3>
-    <ul>
-        {% for spot in coffee %}
-        <li><a href="/detail/{{ spot.spot_id }}">{{spot.name}}</a></li>
-        {% endfor %}
-        <li><a href="/">More...</a></li>
-    </ul>
-</div>
-</div>
-{% endif %}
+    <div class="scout-discover-container" style="position:relative;">
 
-{% if breakfast %}
-<div style="background:url('{% static "scout/img/huskygrind.jpg" %}') no-repeat center center; background-size:cover;">
-<div style="padding:1em;">
-    <h3>Breakfast before class</h3>
-    <ul>
-        {% for spot in breakfast %}
-        <li><a href="/detail/{{ spot.spot_id }}">{{spot.name}}</a></li>
-        {% endfor %}
-        <li><a href="/">More...</a></li>
-    </ul>
-</div>
-</div>
-{% endif %}
+        <div id="card_loading_indicator" class="scout-discover-loading">
+            <p class="visually-hidden">loading...</p>
+            <div class="sk-fading-circle" aria-hidden="true">
+                <div class="sk-circle1 sk-circle"></div>
+                <div class="sk-circle2 sk-circle"></div>
+                <div class="sk-circle3 sk-circle"></div>
+                <div class="sk-circle4 sk-circle"></div>
+                <div class="sk-circle5 sk-circle"></div>
+                <div class="sk-circle6 sk-circle"></div>
+                <div class="sk-circle7 sk-circle"></div>
+                <div class="sk-circle8 sk-circle"></div>
+                <div class="sk-circle9 sk-circle"></div>
+                <div class="sk-circle10 sk-circle"></div>
+                <div class="sk-circle11 sk-circle"></div>
+                <div class="sk-circle12 sk-circle"></div>
+            </div>
+        </div>
 
-{% if late_night %}
-<h3>Evening class muchies</h3>
-<ul>
-        {% for spot in late_night %}
-        <li><a href="/detail/{{ spot.spot_id }}">{{spot.name}}</a></li>
-        {% endfor %}
-    <li><a href="/">More...</a></li>
-</ul>
-{% endif %}
+        <h2 class="visually-hidden">Discover places to eat</h2>
 
-{% if coupon %}
-<h3>Dine w/ discounts</h3>
-<ul>
-    {% for spot in coupon %}
-    <li><a href="/detail/{{ spot.spot_id }}">{{spot.name}}</a></li>
-    {% endfor %}
-    <li><a href="/">More...</a></li>
-</ul>
-{% endif %}
+        <div id="discover_cards">
+            <div id="open"></div>
+            <div id="coffee"></div>
+            <div id="breakfast"></div>
+            <div id="late"></div>
+            <div id="coupon"></div>
+        </div>
+
+    </div>
+
+</div>
 
 {% endblock %}
 
 {% block secondary_content %}
 <div style="background:url('{% static "scout/img/huskygrind.jpg" %}') no-repeat; background-size:cover; background-position:center center; position:absolute; top:0; bottom:0; width: 100%;">&nbsp;</div>
-{% endblock %}
-
-{% block hybrid_content %}
-
-<div class="card">
-    <div style="background:url('{% static "scout/img/huskygrind.jpg" %}') no-repeat; background-size:cover; height:150px;" valign="bottom" class="card-header">Discover</div>
-    <div class="card-content">
-        <div class="card-content-inner">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non urna et lorem venenatis varius quis sit amet dui. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur a nisi odio.</p>
-            <p>Donec et nulla auctor massa pharetra adipiscing ut sit amet sem. Suspendisse molestie velit vitae mattis tincidunt. Ut sit amet quam mollis, vulputate turpis vel, sagittis felis. </p>
-        </div>
-    </div>
-</div>
-
-<div class="content-block-title">Most popular:</div>
-<div class="list-block">
-    <ul>
-        <li>
-            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=Cultivate" class="item-link">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">Cultivate</div>
-                    </div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=The+8" class="item-link">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">The 8</div>
-                    </div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=By+George" class="item-link">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">By George</div>
-                    </div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=The+Rotunda" class="item-link">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">The Rotunda</div>
-                    </div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=Red+Square+BBQ" class="item-link">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">Red Square BBQ</div>
-                    </div>
-                </div>
-            </a>
-        </li>
-    </ul>
-</div>
-
-<div class="content-block-title">Coffee near you:</div>
-<div class="list-block">
-    <ul>
-        <li>
-            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=Burke+Cafe" class="item-link">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">Burke Cafe</div>
-                    </div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=Husky+Grind" class="item-link">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">Husky Grind</div>
-                    </div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=Parnasus" class="item-link">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">Parnassus</div>
-                    </div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=Public+Grounds" class="item-link">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">Public Grounds</div>
-                    </div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=Overpass+Espresso" class="item-link">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">Overpass Espresso</div>
-                    </div>
-                </div>
-            </a>
-        </li>
-    </ul>
-</div>
-
-<div class="content-block-title">Breakfast before class:</div>
-<div class="list-block">
-    <ul>
-        <li>
-            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=Cultivate" class="item-link">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">Cultivate</div>
-                    </div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=The+8" class="item-link">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">The 8</div>
-                    </div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=By+George" class="item-link">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">By George</div>
-                    </div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=The+Rotunda" class="item-link">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">The Rotunda</div>
-                    </div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=Red+Square+BBQ" class="item-link">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">Red Square BBQ</div>
-                    </div>
-                </div>
-            </a>
-        </li>
-    </ul>
-</div>
-
-<div class="content-block-title">Evening class munchies:</div>
-<div class="list-block">
-    <ul>
-        <li>
-            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=Cultivate" class="item-link">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">Cultivate</div>
-                    </div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=The+8" class="item-link">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">The 8</div>
-                    </div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=By+George" class="item-link">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">By George</div>
-                    </div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=The+Rotunda" class="item-link">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">The Rotunda</div>
-                    </div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=Red+Square+BBQ" class="item-link">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">Red Square BBQ</div>
-                    </div>
-                </div>
-            </a>
-        </li>
-    </ul>
-</div>
-
-<div class="content-block-title">Dine with discounts:</div>
-<div class="list-block">
-    <ul>
-        <li>
-            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=Cultivate" class="item-link">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">Cultivate</div>
-                    </div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=The+8" class="item-link">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">The 8</div>
-                    </div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=By+George" class="item-link">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">By George</div>
-                    </div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=The+Rotunda" class="item-link">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">The Rotunda</div>
-                    </div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/detail/56875/?hybrid=true&x_push_page=true&x_page_title=Red+Square+BBQ" class="item-link">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">Red Square BBQ</div>
-                    </div>
-                </div>
-            </a>
-        </li>
-    </ul>
-</div>
-
-
-
-<div class="content-block-title">Hybrid stuff</div>
-<div class="list-block">
-    <ul>
-        <li>
-            <a href="/components/?hybrid=true&x_push_page=true&x_page_title=Framework7+Forms" class="item-link">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">Components Example</div>
-                    </div>
-                </div>
-            </a>
-        </li>
-    </ul>
-</div>
-
 {% endblock %}

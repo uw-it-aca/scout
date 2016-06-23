@@ -1,66 +1,31 @@
-$(document).on('ready page:load page:restore', function(event) {
+$(document).on('ready', function(event) {
 
-	/// async load css by flipping the media attribute to all
-    console.log("styles on")
-	$('link[rel="stylesheet"]').attr('media', 'all');
+    Layout.init_layout();
+    Navigation.set_page_tab();
+
+    // page based JS calls
+    var page_path = window.location.pathname;
+    if (page_path.indexOf("food") !== -1) {
+        List.init();
+        Map.init_map();
+    } else if (page_path.indexOf("detail") !== -1) {
+        Map.init_map();
+    } else if (page_path.indexOf("filter") !== -1) {
+        Filter.init();
+    } else if (page_path.indexOf("map") !== -1){
+        // Mobile map page
+        Map.init_map_page();
+        List.init();
+        Map.init_map();
+    } else {
+        Discover.init_cards();
+    }
+
+    Filter.replace_food_href();
+
+    // call this last so all page level location event listeners have been declared
+    Geolocation.update_location();
 
     Filter.init_events();
 
-    Navigation.set_page_tab();
-
 });
-
-// scrollTo function
-
-$.fn.scrollTo = function(target, options, callback) {
-    if (typeof options == 'function' && arguments.length == 2) {
-        callback = options;
-        options = target;
-    }
-    var settings = $.extend({
-        scrollTarget: target,
-        offsetTop: 140,
-        duration: 400,
-        //easing: 'swing'
-    }, options);
-
-    return this.each(function() {
-        var scrollPane = $(this);
-        var scrollTarget = (typeof settings.scrollTarget == "number") ? settings.scrollTarget : $(settings.scrollTarget);
-        var scrollY = (typeof scrollTarget == "number") ? scrollTarget : scrollTarget.offset().top + scrollPane.scrollTop() - parseInt(settings.offsetTop);
-        scrollPane.animate({
-            scrollTop: scrollY
-        }, parseInt(settings.duration), settings.easing, function() {
-            if (typeof callback == 'function') {
-                callback.call(this);
-            }
-        });
-    });
-}
-
-
-// handle navigation
-var Navigation = {
-
-    set_page_tab: function(){
-
-        // get the current location
-        var pathname = window.location.pathname;
-
-        if (pathname.indexOf("/discover") >= 0) {
-            $("#link_discover").css({"border-bottom":"solid 3px #6564A8", "color":"#6564A8"});
-        }
-        else if (pathname.indexOf("/filter") >= 0) {
-            $("#link_filter").css({"border-bottom":"solid 3px #6564A8", "color":"#6564A8"});
-        }
-        else if (pathname.indexOf("/detail") >= 0) {
-            $("#link_discover").css("border-bottom", "solid 3px #fff");
-            $("#link_all").css("border-bottom", "solid 3px #fff");
-            $("#link_filter").css("border-bottom", "solid 3px #fff");
-        }
-        else {
-            $("#link_all").css({"border-bottom":"solid 3px #6564A8", "color":"#6564A8"});
-        }
-
-    },
-};
