@@ -246,9 +246,9 @@ def get_is_spot_open(spot, now):
 
 
 def add_additional_info(spot):
-    spot.has_alert = _get_extended_info_by_key("s_has_alert",
+    spot.has_alert = _get_extended_info_by_key("has_alert",
                                                spot.extended_info)
-    spot.alert_notes = _get_extended_info_by_key("s_alert_notes",
+    spot.alert_notes = _get_extended_info_by_key("alert_notes",
                                                  spot.extended_info)
     spot.has_reservation = _get_extended_info_by_key("s_has_reservation",
                                                      spot.extended_info)
@@ -319,7 +319,7 @@ def add_study_info(spot):
 
     if _get_extended_info_by_key("reservable", spot.extended_info) == "true":
         spot.reservable = "true"
-    spot.reservation_notes = _get_extended_info_by_key("reservation_notes",
+    spot.reservation_notes = _get_extended_info_by_key("s_reservation_notes",
                                                        spot.extended_info)
 
     if _get_extended_info_by_key("has_labstats", spot.extended_info) == "true":
