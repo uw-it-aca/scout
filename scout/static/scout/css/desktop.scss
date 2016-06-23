@@ -105,3 +105,10 @@ body { overflow: hidden; }
 .scout-spot-list-map {
     .gmnoprint { cursor: pointer !important; }
 }
+
+// gmap tooltip styles
+.gm-style-iw { line-height: 17px !important;
+    a { color: #427fed; text-decoration: none;
+        &:hover { text-decoration: underline; }
+    }
+}
