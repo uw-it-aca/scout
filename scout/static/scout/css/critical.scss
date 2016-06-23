@@ -85,9 +85,11 @@ body { background: #f1f1f1; }
     }
 }
 
+
+.scout-primary { padding-top: 102px; }
 // header
 
-.scout-header { background: #fff; /*border-bottom: solid 1px #999;*/ position: relative; box-shadow: 0 0 5px rgba(57,70,78,.2);
+.scout-header { background: #fff; /*border-bottom: solid 1px #999;*/ position: fixed; top:0; left:0; right:0; z-index: 9999; box-shadow: 0 0 5px rgba(57,70,78,.2);
 
     h1 {
         margin: 0;
@@ -102,7 +104,7 @@ body { background: #f1f1f1; }
             color: #111;
             text-decoration: none;
             line-height: 60px;
-            display: inline-block;
+            display: block;
             padding-left: 55px;
         }
     }
