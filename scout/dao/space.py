@@ -246,9 +246,9 @@ def get_is_spot_open(spot, now):
 
 
 def add_additional_info(spot):
-    spot.has_alert = _get_extended_info_by_key("s_has_alert",
+    spot.has_alert = _get_extended_info_by_key("has_alert",
                                                spot.extended_info)
-    spot.alert_notes = _get_extended_info_by_key("s_alert_notes",
+    spot.alert_notes = _get_extended_info_by_key("alert_notes",
                                                  spot.extended_info)
     spot.has_reservation = _get_extended_info_by_key("s_has_reservation",
                                                      spot.extended_info)
