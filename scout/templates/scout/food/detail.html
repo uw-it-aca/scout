@@ -148,7 +148,7 @@
                     {% endif %}
 
                     {% if spot.display_access_restrictions %}
-                    <h4><i class="fa fa-file-text"></i>Access Notes</h4>
+                    <h4><i class="fa fa-file-text"></i> Access Notes</h4>
                     <div class="scout-spot-notes">{{spot.access_notes}}</div>
                     {% endif %}
 
@@ -226,15 +226,15 @@
                 {% if spot.has_coupon %}
                 <h4><i class="fa fa-ticket"></i> Coupon</h4>
                 <div class="scout-spot-coupon">
-                    <div>{{ spot.has_coupon }}</div>
-                    <div class="scout-spot-coupon-expire"><span>Expiration:</span> {{ spot.coupon_expiration }}</div>
-                    <a href="{{ spot.coupon_url }}" target="_blank">
+                    <div>This location is currently offering a coupon for food and dining. Use the link below to view the current offering.</div>
+                    <a href="{{ spot.coupon_url }}" target="_blank" style="margin: 10px 0;">
                         <span class="fa-stack fa-lg">
                           <i class="fa fa-circle fa-stack-2x"></i>
                           <i class="fa fa-thumbs-up fa-stack-1x fa-inverse"></i>
                         </span>
                         <span class="scout-coupon-action-text">View the coupon</span>
                     </a>
+                    <div class="scout-spot-coupon-expire"><span>Expiration:</span> {% if spot.coupon_expiration %}{{ spot.coupon_expiration }}{% else %}No expiration specified{% endif %}</div>
                 </div>
                 {% endif %}
 
