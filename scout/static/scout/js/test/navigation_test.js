@@ -17,47 +17,26 @@ describe("Navigation Tests", function() {
             link_food = $("#link_food");
             link_discover = $("#link_discover");
         });
-        it ("should disable the correct tab with a URL of /food/", function() {
-            global.window = new fakeWindowPath('/food/');
-            Navigation.set_page_tab();
-            assert.equal(link_food.attr('disabled'), 'disabled');
-            assert.equal(link_food.attr('aria-selected'), 'true');
-            assert.equal(link_discover.attr('disabled'), undefined);
-            assert.equal(link_discover.attr('aria-selected'), undefined);
-            var events_discover = $._data(link_discover.get(0), "events");
-            var events_food = $._data(link_food.get(0), "events");
-            assert.equal(events_discover, undefined);
-            // link_food should have a click event that returns false 
-            assert.notEqual(events_food.click, undefined);
-        });
-        it ("shouldn't disable any tabs with a URL of /filter/", function() {
-            global.window = new fakeWindowPath('/filter/');
-            Navigation.set_page_tab();
-            assert.equal(link_food.attr('disabled'), undefined);
-            assert.equal(link_discover.attr('disabled'), undefined);
-            assert.equal(link_food.attr('aria-selected'), undefined);
-            assert.equal(link_discover.attr('aria-selected'), undefined);
-        });
-        it ("shouldn't disable any tabs with a URL of /detail/", function() {
-            global.window = new fakeWindowPath('/detail/');
-            Navigation.set_page_tab();
-            assert.equal(link_food.attr('disabled'), undefined);
-            assert.equal(link_discover.attr('disabled'), undefined);
-            assert.equal(link_food.attr('aria-selected'), undefined);
-            assert.equal(link_discover.attr('aria-selected'), undefined);
-        });
-        it ("should disable the correct tabs with a URL of /", function() {
+        it ("it should highlight the 'discover' tab only", function() {
             global.window = new fakeWindowPath('/');
             Navigation.set_page_tab();
-            assert.equal(link_discover.attr('disabled'), 'disabled');
-            assert.equal(link_discover.attr('aria-selected'), 'true');
-            assert.equal(link_food.attr('disabled'), undefined);
             assert.equal(link_food.attr('aria-selected'), undefined);
-            var events_discover = $._data(link_discover.get(0), "events");
-            var events_food = $._data(link_food.get(0), "events");
-            assert.equal(events_food, undefined);
-            // link_discover should have a click event that returns false
-            assert.notEqual(events_discover.click, undefined);
-        });
-     });
+            assert.equal(link_discover.attr('aria-selected'), 'true');
+            assert.equal(link_discover.attr('style'), 'border-bottom: 4px solid #6564A8; color: rgb(101, 100, 168);');
+       });
+       it ("it should highlight the 'places' tab only", function() {
+            global.window = new fakeWindowPath('/food/');
+            Navigation.set_page_tab();
+            assert.equal(link_discover.attr('aria-selected'), undefined);
+            assert.equal(link_food.attr('aria-selected'), 'true');
+            assert.equal(link_food.attr('style'), 'border-bottom: 4px solid #6564A8; color: rgb(101, 100, 168);');
+       });
+       it ("it should highlight the 'places' tab only", function() {
+            global.window = new fakeWindowPath('/detail/');
+            Navigation.set_page_tab();
+            assert.equal(link_discover.attr('aria-selected'), undefined);
+            assert.equal(link_food.attr('aria-selected'), 'true');
+            assert.equal(link_food.attr('style'), 'border-bottom: 4px solid #6564A8; color: rgb(101, 100, 168);');
+       });
+    });
 });
