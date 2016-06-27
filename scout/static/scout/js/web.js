@@ -36,3 +36,17 @@ $(document).on('ready', function(event) {
     Filter.init_events();
 
 });
+
+$(window).scroll(function(){
+
+    var isMobile = $("body").data("mobile");
+
+    if (isMobile) {
+        var sticky = $('.sticky'),
+            scroll = $(window).scrollTop();
+
+        if (scroll >= 200) sticky.addClass('fixed');
+        else sticky.removeClass('fixed');
+    }
+
+});
