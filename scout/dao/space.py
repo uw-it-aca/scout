@@ -260,9 +260,6 @@ def add_additional_info(spot):
                                                  spot.extended_info)
     spot.access_notes = _get_extended_info_by_key("access_notes",
                                                   spot.extended_info)
-    spot.access_restrictions = \
-        _get_extended_info_by_key("display_access_restrictions",
-                                  spot.extended_info)
     spot.has_coupon = _get_extended_info_by_key("s_has_coupon",
                                                 spot.extended_info)
     spot.coupon_expiration = _get_extended_info_by_key("s_coupon_expiration",
