@@ -10,11 +10,50 @@
 
     {% include "scout/include/user_geolocation.html" %}
 
+    <div style="padding:20px;">
+        categories...
+    </div>
+
     <div class="scout-list-container" style="position:relative;" role="main">
 
         <h2 class="scout-list-header visually-hidden">List of tech (by distance)</h2>
 
-        <div id="list_loading">
+        <ol id="scout_list" class="scout-card scout-list">
+
+            <li class="scout-list-item" id="">
+                <a class="clearfix" href="">
+                    <div class="scout-spot-image" style="background: #e5e6e9 url('{% static "scout/img/placeholder-200.png" %}') no-repeat center center; background-size: contain;">&nbsp;</div>
+                    <div class="scout-spot-content">
+                        <div style="padding-left: 10px;">
+                            Duis eget tellus aliquam, feugiat velit nec, cursus mauris. Fusce tristique in risus non scelerisque. Cras nec ultrices eros. Pellentesque nec erat quam. Morbi erat est, faucibus quis nulla vel, feugiat tristique risus.
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <li class="scout-list-item" id="">
+                <a class="clearfix" href="">
+                    <div class="scout-spot-image" style="background: #e5e6e9 url('{% static "scout/img/placeholder-200.png" %}') no-repeat center center; background-size: contain;">&nbsp;</div>
+                    <div class="scout-spot-content">
+                        <div style="padding-left: 10px;">
+                            Duis eget tellus aliquam, feugiat velit nec, cursus mauris. Fusce tristique in risus non scelerisque. Cras nec ultrices eros. Pellentesque nec erat quam. Morbi erat est, faucibus quis nulla vel, feugiat tristique risus.
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <li class="scout-list-item" id="">
+                <a class="clearfix" href="">
+                    <div class="scout-spot-image" style="background: #e5e6e9 url('{% static "scout/img/placeholder-200.png" %}') no-repeat center center; background-size: contain;">&nbsp;</div>
+                    <div class="scout-spot-content">
+                        <div style="padding-left: 10px;">
+                            Duis eget tellus aliquam, feugiat velit nec, cursus mauris. Fusce tristique in risus non scelerisque. Cras nec ultrices eros. Pellentesque nec erat quam. Morbi erat est, faucibus quis nulla vel, feugiat tristique risus.
+                        </div>
+                    </div>
+                </a>
+            </li>
+
+        </ol>
+
+        <div id="tech_list_loading" style="display:none;">
             <p class="visually-hidden">loading...</p>
             <div class="sk-fading-circle" aria-hidden="true">
                 <div class="sk-circle1 sk-circle"></div>
