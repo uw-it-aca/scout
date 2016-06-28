@@ -91,6 +91,7 @@ var Map = {
 
                 // pulsate the user location marker
                 /**
+
                 var direction = 1;
                 var rmin = 20, rmax = 50;
                 setInterval(function() {
@@ -101,6 +102,7 @@ var Map = {
                     circle.setRadius(radius + direction * 10);
                 }, 300);
                 **/
+
 
                 // add user location marker to map
                 window.user_location_marker = locationMarker;
@@ -152,7 +154,7 @@ var Map = {
                         //map.setZoom(18);
 
                         //Wrap the content inside an HTML DIV in order to set height and width of InfoWindow.
-                        infoWindow.setContent("<div><strong>"+data.spot_name+"</strong><br>"+data.building+"<br><a href='/detail/"+data.id+"'>View details</a></div>");
+                        infoWindow.setContent("<div><strong>"+data.spot_name+"</strong><br>"+data.building+"<br><a href='/food/"+data.id+"'>View details</a></div>");
                         infoWindow.open(map, marker);
 
                         $('li').css('background', 'none'); // clear any highlighted spots first

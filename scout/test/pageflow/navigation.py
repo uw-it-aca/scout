@@ -43,11 +43,6 @@ class MainNavigationTest(TestCase):
         response = self.get_soup('/food/')
         self.checkHrefBySelector('/', '#link_home', response)
 
-    def test_food_to_home_2(self):
-        """Tests the discover tab link on the food page"""
-        response = self.get_soup('/food/')
-        self.checkHrefBySelector('/', '#link_discover', response)
-
     def test_food_to_filter(self):
         """SCOUT-68 Tests the filter link on the food page"""
         response = self.get_soup('/food/')
@@ -57,11 +52,6 @@ class MainNavigationTest(TestCase):
         """SCOUT-60 Tests the home logo link on the filter page"""
         response = self.get_soup('/filter/')
         self.checkHrefBySelector('/', '#link_home', response)
-
-    def test_filter_to_home_2(self):
-        """SCOUT-69 Tests the discover tab link on the filter page"""
-        response = self.get_soup('/filter/')
-        self.checkHrefBySelector('/', '#link_discover', response)
 
     def test_filter_to_food(self):
         """SCOUT-62 Tests the food tab link on the filter page"""
