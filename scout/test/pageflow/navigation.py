@@ -5,10 +5,10 @@ Testing the flow between pages through links
 """
 
 import bs4
-from django.test import TestCase
+from scout.test import ScoutTestCase
 
 
-class MainNavigationTest(TestCase):
+class MainNavigationTest(ScoutTestCase):
     """Navigation test set for scout"""
 
     @classmethod
@@ -27,36 +27,6 @@ class MainNavigationTest(TestCase):
         """Given a link, ensure that its href is the same as expectedLoc"""
         linkHref = link.get('href')
         self.assertEqual(linkHref, expectedLoc)
-
-    def test_home_to_food(self):
-        """SCOUT-67 Tests the places tab link on the home page"""
-        response = self.get_soup('/')
-        self.checkHrefBySelector('/food/', '#link_food', response)
-
-    def test_home_to_home(self):
-        """SCOUT-61 Tests the home logo link on the home page"""
-        response = self.get_soup('/')
-        self.checkHrefBySelector('/', '#link_home', response)
-
-    def test_food_to_home(self):
-        """SCOUT-59 Tests the home logo link on the food page"""
-        response = self.get_soup('/food/')
-        self.checkHrefBySelector('/', '#link_home', response)
-
-    def test_food_to_filter(self):
-        """SCOUT-68 Tests the filter link on the food page"""
-        response = self.get_soup('/food/')
-        self.checkHrefBySelector('/filter/', '#link_filter', response)
-
-    def test_filter_to_home(self):
-        """SCOUT-60 Tests the home logo link on the filter page"""
-        response = self.get_soup('/filter/')
-        self.checkHrefBySelector('/', '#link_home', response)
-
-    def test_filter_to_food(self):
-        """SCOUT-62 Tests the food tab link on the filter page"""
-        response = self.get_soup('/filter/')
-        self.checkHrefBySelector('/food/', '#link_food', response)
 
     def get_soup(self, page):
         """Returns a soup object given a path, if there is no soup for the
@@ -87,6 +57,36 @@ class MainNavigationTest(TestCase):
             'http://www.washington.edu/online/terms/'
         )
 
+    def test_home_to_food(self):
+        """SCOUT-67 Tests the places tab link on the home page"""
+        response = self.get_soup('/')
+        self.checkHrefBySelector('/food/', '#link_food', response)
+
+    def test_home_to_home(self):
+        """SCOUT-61 Tests the home logo link on the home page"""
+        response = self.get_soup('/')
+        self.checkHrefBySelector('/', '#link_home', response)
+
+    def test_food_to_home(self):
+        """SCOUT-59 Tests the home logo link on the food page"""
+        response = self.get_soup('/food/')
+        self.checkHrefBySelector('/', '#link_home', response)
+
+    def test_food_to_filter(self):
+        """SCOUT-68 Tests the filter link on the food page"""
+        response = self.get_soup('/food/')
+        self.checkHrefBySelector('/food/filter/', '#link_filter', response)
+
+    def test_filter_to_home(self):
+        """SCOUT-60 Tests the home logo link on the filter page"""
+        response = self.get_soup('/food/filter/')
+        self.checkHrefBySelector('/', '#link_home', response)
+
+    def test_filter_to_food(self):
+        """SCOUT-62 Tests the food tab link on the filter page"""
+        response = self.get_soup('/food/filter/')
+        self.checkHrefBySelector('/food/', '#link_food', response)
+
     def test_footer_links_home(self):
         """SCOUT-63 Checks the privacy/terms on the home page"""
         self.check_footer_links_at_path('/')
@@ -97,8 +97,8 @@ class MainNavigationTest(TestCase):
 
     def test_footer_links_filter(self):
         """SCOUT-65 Checks the privacy/terms on the filter page"""
-        self.check_footer_links_at_path('/filter/')
+        self.check_footer_links_at_path('/food/filter/')
 
     def test_footer_links_detail(self):
         """SCOUT-66 Checks the privacy/terms on the detail page"""
-        self.check_footer_links_at_path('/detail/2/')
+        self.check_footer_links_at_path('/food/2/')

@@ -5,10 +5,10 @@ necessary selectors are present
 """
 
 import bs4
-from django.test import TestCase
+from scout.test import ScoutTestCase
 
 
-class ContentTest(TestCase):
+class ContentTest(ScoutTestCase):
     """Content test set for scout, (page id's)"""
 
     @classmethod
@@ -59,5 +59,5 @@ class ContentTest(TestCase):
 
     def test_filter_content(self):
         """SCOUT-54 Test that the content on the filter page is correct"""
-        bs = self.get_soup('/filter/')
+        bs = self.get_soup('/food/filter/')
         self.assertOneExists(bs, "#page_filter")
