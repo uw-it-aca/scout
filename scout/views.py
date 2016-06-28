@@ -134,7 +134,7 @@ def study_list_view(request):
                               context_instance=RequestContext(request))
 
 
-# study
+# tech
 def tech_list_view(request):
     if len(request.GET) > 0:
         spots = get_filtered_spots(request)

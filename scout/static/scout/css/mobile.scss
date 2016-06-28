@@ -10,6 +10,18 @@ $scout-button: #2ecc71;
 $scout-link: #3498db;
 $footer-height: 40px;
 
+// temporary classes (delete)
+
+.dummy {
+    color: #bdc3c7 !important;
+    * { color: #bdc3c7 !important; }
+}
+
+.scope {
+    color: #e74c3c !important;
+    * { color: #e74c3c !important; }
+}
+
 // scrolling body
 
 .scout-scroll {
