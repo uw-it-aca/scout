@@ -10,11 +10,101 @@
 
     {% include "scout/include/user_geolocation.html" %}
 
+    <div style="padding:20px;">
+        <p>item types</p>
+        <ul>
+            <li>Laptop Computer</li>
+            <li>Data Projector</li>
+            <li>Digital Camera</li>
+            <li>Digital Video Camera</li>
+            <li>Flatbed Scanner</li>
+            <li>3D Printer</li>
+            <li>Tablet PC</li>
+            <li>Projection Screen</li>
+            <li>Portable Audio System</li>
+            <li>CD Recorder</li>
+            <li>External Hard Drive</li>
+            <li>Shotgun Microphone</li>
+            <li>Calculator</li>
+        </ul>
+    </div>
+
     <div class="scout-list-container" style="position:relative;" role="main">
 
         <h2 class="scout-list-header visually-hidden">List of tech (by distance)</h2>
 
-        <div id="list_loading">
+        <ol id="scout_list" class="scout-card scout-list">
+
+            <li class="scout-list-item" id="">
+                <a class="clearfix" href="">
+                    <div class="scout-spot-image" style="background-image: url('{% static "scout/img/solidoodle.jpg" %}')">&nbsp;</div>
+                    <div class="scout-spot-content">
+                        <div style="padding-left: 10px;">
+
+                            <h3 class="scout-spot-name">Solidoodle 4 (Black)</h3>
+                            <div class="scout-spot-location">
+                                <span class="scout-spot-distance"><span class="visually-hidden">Distance from you:</span><span class="distance-number">-</span>&nbsp;ft.</span>&nbsp;&nbsp;
+                                {% if spot.building_name %}{{ spot.building_name }}{% else %}<span style="color:red;">missing building_name</span>{% endif %}
+                            </div>
+
+                            {% if is_desktop %}
+                            <span class="scout-spot-type">{% if spot.spot_types %}{% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}</span>{% endfor %}{% else %} <span style="color:red;">ITEM_TYPE</span> {% endif %}</span>
+                            {% endif %}
+
+                            <span class="scout-spot-status">{% if spot.is_open %}<span class="open visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</span>
+
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <li class="scout-list-item" id="">
+                <a class="clearfix" href="">
+                    <div class="scout-spot-image" style="background-image: url('{% static "scout/img/nikon.jpg" %}')">&nbsp;</div>
+                    <div class="scout-spot-content">
+                        <div style="padding-left: 10px;">
+
+                            <h3 class="scout-spot-name">Nikon D7000 DSLR Camera</h3>
+                            <div class="scout-spot-location">
+                                <span class="scout-spot-distance"><span class="visually-hidden">Distance from you:</span><span class="distance-number">-</span>&nbsp;ft.</span>&nbsp;&nbsp;
+                                {% if spot.building_name %}{{ spot.building_name }}{% else %}<span style="color:red;">missing building_name</span>{% endif %}
+                            </div>
+
+                            {% if is_desktop %}
+                            <span class="scout-spot-type">{% if spot.spot_types %}{% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}</span>{% endfor %}{% else %} <span style="color:red;">ITEM_TYPE</span> {% endif %}</span>
+                            {% endif %}
+
+                            <span class="scout-spot-status">{% if spot.is_open %}<span class="open visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</span>
+
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <li class="scout-list-item" id="">
+                <a class="clearfix" href="">
+                    <div class="scout-spot-image" style="background-image: url('{% static "scout/img/macbook-pro.jpg" %}')">&nbsp;</div>
+                    <div class="scout-spot-content">
+                        <div style="padding-left: 10px;">
+
+                            <h3 class="scout-spot-name">Apple Macbook Pro 2011</h3>
+                            <div class="scout-spot-location">
+                                <span class="scout-spot-distance"><span class="visually-hidden">Distance from you:</span><span class="distance-number">-</span>&nbsp;ft.</span>&nbsp;&nbsp;
+                                {% if spot.building_name %}{{ spot.building_name }}{% else %}<span style="color:red;">missing building_name</span>{% endif %}
+                            </div>
+
+                            {% if is_desktop %}
+                            <span class="scout-spot-type">{% if spot.spot_types %}{% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}</span>{% endfor %}{% else %} <span style="color:red;">ITEM_TYPE</span> {% endif %}</span>
+                            {% endif %}
+
+                            <span class="scout-spot-status">{% if spot.is_open %}<span class="open visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</span>
+
+                        </div>
+                    </div>
+                </a>
+            </li>
+
+        </ol>
+
+        <div id="tech_list_loading" style="display:none;">
             <p class="visually-hidden">loading...</p>
             <div class="sk-fading-circle" aria-hidden="true">
                 <div class="sk-circle1 sk-circle"></div>
