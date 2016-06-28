@@ -246,23 +246,27 @@ def get_is_spot_open(spot, now):
 
 
 def add_additional_info(spot):
+    # global extended_info (study & food)
+    spot.app_type = _get_extended_info_by_key("app_type", spot.extended_info)
+    spot.location_description = \
+        _get_extended_info_by_key("location_description",
+                                  spot.extended_info)
+    spot.campus = _get_extended_info_by_key("campus", spot.extended_info)
+    spot.hours_notes = _get_extended_info_by_key("hours_notes",
+                                                 spot.extended_info)
+    spot.access_notes = _get_extended_info_by_key("access_notes",
+                                                  spot.extended_info)
     spot.has_alert = _get_extended_info_by_key("has_alert",
                                                spot.extended_info)
     spot.alert_notes = _get_extended_info_by_key("alert_notes",
                                                  spot.extended_info)
+    # new extended_info (food only)
     spot.has_reservation = _get_extended_info_by_key("s_has_reservation",
                                                      spot.extended_info)
     spot.reservation_notes = _get_extended_info_by_key("s_reservation_notes",
                                                        spot.extended_info)
     spot.menu_url = _get_extended_info_by_key("s_menu_url",
                                               spot.extended_info)
-    spot.hours_notes = _get_extended_info_by_key("hours_notes",
-                                                 spot.extended_info)
-    spot.access_notes = _get_extended_info_by_key("access_notes",
-                                                  spot.extended_info)
-    spot.access_restrictions = \
-        _get_extended_info_by_key("display_access_restrictions",
-                                  spot.extended_info)
     spot.has_coupon = _get_extended_info_by_key("s_has_coupon",
                                                 spot.extended_info)
     spot.coupon_expiration = _get_extended_info_by_key("s_coupon_expiration",
@@ -275,12 +279,6 @@ def add_additional_info(spot):
                                            spot.extended_info)
     spot.website_url = _get_extended_info_by_key("s_website_url",
                                                  spot.extended_info)
-    spot.location_description = \
-        _get_extended_info_by_key("location_description",
-                                  spot.extended_info)
-    spot.campus = _get_extended_info_by_key("campus", spot.extended_info)
-
-    spot.app_type = _get_extended_info_by_key("app_type", spot.extended_info)
 
     if spot.app_type is None:
         spot.app_type = "study"

@@ -62,6 +62,7 @@
                     </div>
                     {% endif %}
 
+<<<<<<< HEAD:scout/templates/scout/food/detail.html
                     <div class="scout-spot-food-served">
                         <label>Specific Items</label>
                         {% if spot.foodtype_names %}
@@ -70,6 +71,16 @@
                             {% endfor %}
                         {% else %} <span style="color:red;">missing foodtype</span> {% endif %}
                     </div>
+=======
+                <div class="scout-spot-food-served">
+                    <label>Food served</label>
+                    {% if spot.foodtype_names %}
+                        {% for foodtype in spot.foodtype_names %}
+                            <span>{{ foodtype }}</span>
+                        {% endfor %}
+                    {% else %} <span style="color:red;">missing foodtype</span> {% endif %}
+                </div>
+>>>>>>> develop:scout/templates/scout/detail.html
 
                 </div>
 
