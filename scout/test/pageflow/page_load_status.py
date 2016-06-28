@@ -3,7 +3,7 @@
 Tests pages and their respective URL status codes
 """
 
-from django.test import TestCase
+from scout.test import ScoutTestCase
 
 # Statuses
 OK = 200
@@ -14,11 +14,11 @@ redir = 301
 _testCases = (
     ('Home', '/', OK, 'SCOUT-52'),
     ('Food', '/food/', OK, 'SCOUT-53'),
-    ('Filter', '/filter/', OK, 'SCOUT-54'),
-    ('Good Details Page', '/detail/1/', OK, 'SCOUT-58'),
-    ('Nonexistant Details Page', '/detail/88888/', notfound, 'SCOUT-55'),
-    ('Malformed Details ID', '/detail/abcdefg', notfound, 'SCOUT-55'),
-    ('Malformed Details ID 2', '/detail/123456/', notfound, 'SCOUT-55'),
+    ('Filter', '/food/filter/', OK, 'SCOUT-54'),
+    ('Good Details Page', '/food/1/', OK, 'SCOUT-58'),
+    ('Nonexistant Details Page', '/food/88888/', notfound, 'SCOUT-55'),
+    ('Malformed Details ID', '/food/abcdefg', notfound, 'SCOUT-55'),
+    ('Malformed Details ID 2', '/food/123456/', notfound, 'SCOUT-55'),
     ('Nonexistant page', '/nonexistant/', notfound, 'SCOUT-56'),
     ('Filter Open', '/food/?open_now=true', OK, 'SCOUT-76'),
     ('Filter Coffee', '/food/?food0=s_food_espresso', OK, 'SCOUT-77'),
@@ -27,12 +27,12 @@ _testCases = (
     ('Invalid Filter Params', '/food/?open_now=invalid', OK, 'SCOUT-156'),
     ('Invalid Filter Params 2', '/food/?blah', OK, 'SCOUT-156'),
     ('Invalid Filter Params 3', '/food/?blah=blah', OK, 'SCOUT-156'),
-    ('Invalid Food URL', '/food/404', notfound, 'SCOUT-157'),
-    ('Bad Filter', '/filter/404', notfound, 'SCOUT-81'),
+    ('Invalid Food URL', '/food/abc', notfound, 'SCOUT-157'),
+    ('Bad Filter', '/food/filter/404', notfound, 'SCOUT-81'),
     ('Home Missing Slash', '', OK, 'SCOUT-57'),
     ('Food Missing Slash', '/food', redir, 'SCOUT-57'),
-    ('Filter Missing Slash', '/filter', redir, 'SCOUT-57'),
-    ('Details Missing Slash', '/detail/1234', redir, 'SCOUT-57'),
+    ('Filter Missing Slash', '/food/filter', redir, 'SCOUT-57'),
+    ('Details Missing Slash', '/food/1234', redir, 'SCOUT-57'),
 )
 
 
@@ -53,7 +53,7 @@ def _makeTestFunc(name, url, status=OK, issue=None):
     return _testFunc
 
 
-class UrlStatusTest(TestCase):
+class UrlStatusTest(ScoutTestCase):
     """
     Ensure each listed URL/path results in the expected status code
     (200, 301, or 404).
