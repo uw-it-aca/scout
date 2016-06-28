@@ -183,6 +183,9 @@ def image_view(request, image_id, spot_id):
     width = request.GET.get('width', None)
     try:
         resp, content = get_image(spot_id, image_id, width)
-        return HttpResponse(content, content_type=resp['content-type'])
+        etag = resp.get('etag', None)
+        response = HttpResponse(content, content_type=resp['content-type'])
+        response['etag'] = etag
+        return response
     except Exception:
         raise Http404()
