@@ -99,11 +99,12 @@ def discover_card_view(request, discover_category):
 
 # food
 def food_list_view(request):
-    if len(request.GET) > 0:
-        spots = get_filtered_spots(request)
-    else:
-        spots = get_spot_list()
-    context = {"spots": spots}
+
+    app_type = 'food'
+    spots = get_spot_list(app_type)
+    context = {"spots": spots,
+               "count": len(spots),
+               "app_type": app_type}
     return render_to_response('scout/food/list.html', context,
                               context_instance=RequestContext(request))
 
@@ -125,22 +126,22 @@ def food_filter_view(request):
 
 # study
 def study_list_view(request):
-    if len(request.GET) > 0:
-        spots = get_filtered_spots(request)
-    else:
-        spots = get_spot_list()
-    context = {"spots": spots}
+    app_type = 'study'
+    spots = get_spot_list(app_type)
+    context = {"spots": spots,
+               "count": len(spots),
+               "app_type": app_type}
     return render_to_response('scout/study/list.html', context,
                               context_instance=RequestContext(request))
 
 
 # tech
 def tech_list_view(request):
-    if len(request.GET) > 0:
-        spots = get_filtered_spots(request)
-    else:
-        spots = get_spot_list()
-    context = {"spots": spots}
+    app_type = 'tech'
+    spots = get_spot_list(app_type)
+    context = {"spots": spots,
+               "count": len(spots),
+               "app_type": app_type}
     return render_to_response('scout/tech/list.html', context,
                               context_instance=RequestContext(request))
 

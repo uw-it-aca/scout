@@ -28,7 +28,7 @@ var List = {
             }
         });
 
-        $("#scout_list").append(spots);
+        $("#scout_food_list").append(spots);
     },
 
     init: function () {
@@ -47,11 +47,11 @@ var List = {
 
     set_list_is_visible: function(is_visible) {
         if(is_visible){
-            $("#scout_list").show();
+            $("#scout_food_list").show();
             $("#list_loading").hide();
             $("#list_loading").attr("aria-hidden", "false");
         } else {
-            $("#scout_list").hide();
+            $("#scout_food_list").hide();
             $("#list_loading").show();
             $("#list_loading").attr("aria-hidden", "false");
         }

@@ -28,12 +28,17 @@ OPEN_PERIODS = {
     }
 
 
-def get_spot_list():
+def get_spot_list(app_type=None, groups=[]):
     spot_client = Spotseeker()
     res = []
+    filters = []
+    filters.append(('limit', 0))
     try:
-        spots = spot_client.search_spots([('limit', 0),
-                                         ('extended_info:app_type', 'food')])
+        if app_type:
+            filters.append(('extended_info:app_type', app_type))
+        for group in groups:
+            filters.append(('extended_info:group', group))
+        spots = spot_client.search_spots(filters)
         for spot in spots:
             spot = process_extended_info(spot)
             if spot is not None:
