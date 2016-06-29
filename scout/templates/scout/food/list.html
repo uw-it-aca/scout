@@ -12,8 +12,25 @@
 
     <h2 class="visually-hidden">Filtered shortcuts</h2>
 
-    {% include "scout/food/filter_results.html" %}
+    <!-- food filter results -->
+    <div class="scout-filter-results">
+        <div class="scout-filter-results-by">
+            <label>Filtering by:</label>
+            <div id="filter_label_text" class="scout-filter-results-text">None</div>
+        </div>
+        <div class="scout-filter-results-results clearfix">
+            <label>Results:</label>
+            <div class="scout-filter-results-count">{{ spots|length }}</div>
+            <div class="scout-filter-results-actions">
+                <a href="/food/filter/" id="link_filter" title="Filter list of food places on campus">
+                    <i class="fa fa-sliders fa-inverse"></i>
+                    <span class="scout-filter-results-action">Filter Food</span>
+                </a>
+            </div>
+        </div>
+    </div>
 
+    <!-- food list -->
     <div class="scout-list-container" style="position:relative;" role="main">
 
         <h2 class="scout-list-header visually-hidden">List of food places (by distance)</h2>

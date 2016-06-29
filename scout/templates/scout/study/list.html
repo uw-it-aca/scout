@@ -10,14 +10,32 @@
 
     {% include "scout/include/user_geolocation.html" %}
 
+    <!-- food filter results -->
+    <div class="scout-filter-results">
+        <div class="scout-filter-results-by">
+            <label>Filtering by:</label>
+            <div id="filter_label_text" class="scout-filter-results-text">None</div>
+        </div>
+        <div class="scout-filter-results-results clearfix">
+            <label>Results:</label>
+            <div class="scout-filter-results-count">{{ spots|length }}</div>
+            <div class="scout-filter-results-actions">
+                <a href="/study/filter/" id="study_link_filter" title="Filter list of food places on campus">
+                    <i class="fa fa-sliders fa-inverse"></i>
+                    <span class="scout-filter-results-action">Filter Study</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- study list -->
     <div class="scout-list-container" style="position:relative;" role="main">
 
         <h2 class="scout-list-header visually-hidden">List of study places (by distance)</h2>
 
         <ol id="scout_study_list" class="scout-card scout-list">
 
-
-            <li style="background:#aaa;"><h3>BUILDING NAME 1</h3></li>
+            <li style="background:#aaa;"><strong>BUILDING NAME 1</strong></li>
 
             <ol style="margin:0; padding:0;">
                 <li class="scout-list-item" id="{{ spot.spot_id }}">
@@ -92,7 +110,7 @@
                 </li>
             </ol>
 
-            <li style="background:#aaa;"><h3>BUILDING NAME 2</h3></li>
+            <li style="background:#aaa;"><strong>BUILDING NAME 2</strong></li>
             <ol style="margin:0; padding:0;">
                 <li class="scout-list-item" id="{{ spot.spot_id }}">
                     <a class="clearfix" href="/food/{{ spot.spot_id }}/">

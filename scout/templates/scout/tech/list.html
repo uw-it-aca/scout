@@ -10,32 +10,46 @@
 
     {% include "scout/include/user_geolocation.html" %}
 
-    <div style="padding:20px;">
-        <p>item types</p>
-        <ul>
-            <li>Laptop Computer</li>
-            <li>Data Projector</li>
-            <li>Digital Camera</li>
-            <li>Digital Video Camera</li>
-            <li>Flatbed Scanner</li>
-            <li>3D Printer</li>
-            <li>Tablet PC</li>
-            <li>Projection Screen</li>
-            <li>Portable Audio System</li>
-            <li>CD Recorder</li>
-            <li>External Hard Drive</li>
-            <li>Shotgun Microphone</li>
-            <li>Calculator</li>
-        </ul>
+    <!-- tech filter results -->
+    <div class="scout-filter-results">
+        <div class="scout-filter-results-by">
+            <label>Category:</label>
+            <ul>
+                <li>Laptop Computer</li>
+                <li>Data Projector</li>
+                <li>Digital Camera</li>
+                <li>Digital Video Camera</li>
+                <li>Flatbed Scanner</li>
+                <li>3D Printer</li>
+                <li>Tablet PC</li>
+                <li>Projection Screen</li>
+                <li>Portable Audio System</li>
+                <li>CD Recorder</li>
+                <li>External Hard Drive</li>
+                <li>Shotgun Microphone</li>
+                <li>Calculator</li>
+            </ul>
+        </div>
+        <div class="scout-filter-results-results clearfix">
+            <label>Results:</label>
+            <div class="scout-filter-results-count">{{ spots|length }}</div>
+            <div class="scout-filter-results-actions">
+                <a href="/tech/filter/" id="tech_link_filter" title="Filter list of food places on campus">
+                    <i class="fa fa-sliders fa-inverse"></i>
+                    <span class="scout-filter-results-action">Filter Tech</span>
+                </a>
+            </div>
+        </div>
     </div>
 
+    <!-- tech list -->
     <div class="scout-list-container" style="position:relative;" role="main">
 
         <h2 class="scout-list-header visually-hidden">List of tech (by distance)</h2>
 
         <ol id="scout_tech_list" class="scout-card scout-list">
 
-            <li style="background:#aaa;"><h3>SPACE NAME 1</h3></li>
+            <li style="background:#aaa;"><strong>SPACE NAME 1</strong></li>
 
             <ol style="margin:0; padding:0;">
                 <li class="scout-list-item" id="">
@@ -106,7 +120,7 @@
                 </li>
             </ol>
 
-            <li style="background:#aaa;"><h3>SPACE NAME 2</h3></li>
+            <li style="background:#aaa;"><strong>SPACE NAME 2</strong></li>
 
             <ol style="margin:0; padding:0;">
                 <li class="scout-list-item" id="">
