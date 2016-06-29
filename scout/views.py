@@ -127,10 +127,11 @@ def food_filter_view(request):
 
 # study
 def study_list_view(request):
-    if len(request.GET) > 0:
-        spots = get_filtered_spots(request)
-    else:
-        spots = get_filtered_spots(request)
+    # if len(request.GET) > 0:
+        # TODO: not yet working, get study spots by filter
+        # spots = get_filtered_spots(request)
+    # else:
+    spots = get_spot_list()
     context = {"spots": spots,
                "count": len(spots)}
     return render_to_response('scout/study/list.html', context,

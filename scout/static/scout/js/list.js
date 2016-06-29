@@ -48,12 +48,12 @@ var List = {
     set_list_is_visible: function(is_visible) {
         if(is_visible){
             $("#scout_food_list").show();
-            $("#list_loading").hide();
-            $("#list_loading").attr("aria-hidden", "false");
+            $("#food_list_loading").hide();
+            $("#food_list_loading").attr("aria-hidden", "false");
         } else {
             $("#scout_food_list").hide();
-            $("#list_loading").show();
-            $("#list_loading").attr("aria-hidden", "false");
+            $("#food_list_loading").show();
+            $("#food_list_loading").attr("aria-hidden", "false");
         }
     },
 
