@@ -99,9 +99,11 @@ def discover_card_view(request, discover_category):
 
 # food
 def food_list_view(request):
-
     app_type = 'food'
-    spots = get_spot_list(app_type)
+    if len(request.GET) > 0:
+        spots = get_filtered_spots(request)
+    else:
+        spots = get_spot_list(app_type)
     context = {"spots": spots,
                "count": len(spots),
                "app_type": app_type}
