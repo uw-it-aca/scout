@@ -48,7 +48,7 @@
                             </div>
 
                             {% if is_desktop %}
-                            <span class="scout-spot-type">{% if spot.spot_types %}{% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}</span>{% endfor %}{% else %} <span style="color:red;">ITEM_TYPE</span> {% endif %}</span>
+                            <span class="scout-spot-type">{% if spot.spot_types %}{% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}</span>{% endfor %}{% else %} <span style="color:red;">ITEM_CATEGORY</span> {% endif %}</span>
                             {% endif %}
 
                             <span class="scout-spot-status">{% if spot.is_open %}<span class="open visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</span>
@@ -70,7 +70,7 @@
                             </div>
 
                             {% if is_desktop %}
-                            <span class="scout-spot-type">{% if spot.spot_types %}{% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}</span>{% endfor %}{% else %} <span style="color:red;">ITEM_TYPE</span> {% endif %}</span>
+                            <span class="scout-spot-type">{% if spot.spot_types %}{% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}</span>{% endfor %}{% else %} <span style="color:red;">ITEM_CATEGORY</span> {% endif %}</span>
                             {% endif %}
 
                             <span class="scout-spot-status">{% if spot.is_open %}<span class="open visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</span>
@@ -92,7 +92,7 @@
                             </div>
 
                             {% if is_desktop %}
-                            <span class="scout-spot-type">{% if spot.spot_types %}{% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}</span>{% endfor %}{% else %} <span style="color:red;">ITEM_TYPE</span> {% endif %}</span>
+                            <span class="scout-spot-type">{% if spot.spot_types %}{% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}</span>{% endfor %}{% else %} <span style="color:red;">ITEM_CATEGORY</span> {% endif %}</span>
                             {% endif %}
 
                             <span class="scout-spot-status">{% if spot.is_open %}<span class="open visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</span>
@@ -104,7 +104,7 @@
 
         </ol>
 
-        <div id="tech_list_loading" style="display:none;">
+        <div id="tech_list_loading">
             <p class="visually-hidden">loading...</p>
             <div class="sk-fading-circle" aria-hidden="true">
                 <div class="sk-circle1 sk-circle"></div>

@@ -14,7 +14,196 @@
 
         <h2 class="scout-list-header visually-hidden">List of study places (by distance)</h2>
 
-        <div id="list_loading">
+        <ol id="scout_list" class="scout-card scout-list">
+
+
+            <li style="background:#aaa;"><h3>BUILDING NAME</h3></li>
+
+            <ol style="margin:0; padding:0;">
+                <li class="scout-list-item" id="{{ spot.spot_id }}">
+                    <a class="clearfix" href="/food/{{ spot.spot_id }}/">
+
+                        {% if spot.images %}
+                        <div class="scout-spot-image" style="background-image: url('/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}?width=200');">&nbsp;</div>
+                        {% else %}
+                        <div class="scout-spot-image" style="background: #e5e6e9 url('{% static "scout/img/placeholder-200.png" %}') no-repeat center center; background-size: contain;">&nbsp;</div>
+                        {% endif %}
+
+                        <div class="scout-spot-content">
+
+                            <div style="padding-left: 10px;">
+                                <h3 class="scout-spot-name">{{ spot.name }}</h3>
+                                <div class="scout-spot-location">
+                                    <span class="scout-spot-distance"><span class="visually-hidden">Distance from you:</span><span class="distance-number">-</span>&nbsp;ft.</span>&nbsp;&nbsp;
+                                    {% if spot.building_name %}{{ spot.building_name }}{% else %}<span style="color:red;">missing building_name</span>{% endif %}
+                                </div>
+
+
+                                {% if is_desktop %}
+                                <span class="scout-spot-type">{% if spot.spot_types %}{% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}</span>{% endfor %}{% else %} <span style="color:red;">SPOT_TYPE</span> {% endif %}</span>
+                                {% endif %}
+
+                                <div class="scout-spot-food-served">
+                                    <label style="text-transform:uppercase;">Capacity</label>
+                                    <span style="color:red;">missing capacity</span>
+                                </div>
+
+                                <span class="scout-spot-status">{% if spot.is_open %}<span class="open visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</span>
+
+                            </div>
+
+                        </div>
+                    </a>
+                </li>
+                <li class="scout-list-item" id="{{ spot.spot_id }}">
+                    <a class="clearfix" href="/food/{{ spot.spot_id }}/">
+
+                        {% if spot.images %}
+                        <div class="scout-spot-image" style="background-image: url('/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}?width=200');">&nbsp;</div>
+                        {% else %}
+                        <div class="scout-spot-image" style="background: #e5e6e9 url('{% static "scout/img/placeholder-200.png" %}') no-repeat center center; background-size: contain;">&nbsp;</div>
+                        {% endif %}
+
+                        <div class="scout-spot-content">
+
+                            <div style="padding-left: 10px;">
+                                <h3 class="scout-spot-name">{{ spot.name }}</h3>
+                                <div class="scout-spot-location">
+                                    <span class="scout-spot-distance"><span class="visually-hidden">Distance from you:</span><span class="distance-number">-</span>&nbsp;ft.</span>&nbsp;&nbsp;
+                                    {% if spot.building_name %}{{ spot.building_name }}{% else %}<span style="color:red;">missing building_name</span>{% endif %}
+                                </div>
+
+
+                                {% if is_desktop %}
+                                <span class="scout-spot-type">{% if spot.spot_types %}{% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}</span>{% endfor %}{% else %} <span style="color:red;">SPOT_TYPE</span> {% endif %}</span>
+                                {% endif %}
+
+                                <div class="scout-spot-food-served">
+                                    <label style="text-transform:uppercase;">Capacity</label>
+                                    <span style="color:red;">missing capacity</span>
+                                </div>
+
+                                <span class="scout-spot-status">{% if spot.is_open %}<span class="open visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</span>
+
+                            </div>
+
+                        </div>
+                    </a>
+                </li>
+            </ol>
+
+            <li style="background:#aaa;"><h3>BUILDING NAME</h3></li>
+            <ol style="margin:0; padding:0;">
+                <li class="scout-list-item" id="{{ spot.spot_id }}">
+                    <a class="clearfix" href="/food/{{ spot.spot_id }}/">
+
+                        {% if spot.images %}
+                        <div class="scout-spot-image" style="background-image: url('/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}?width=200');">&nbsp;</div>
+                        {% else %}
+                        <div class="scout-spot-image" style="background: #e5e6e9 url('{% static "scout/img/placeholder-200.png" %}') no-repeat center center; background-size: contain;">&nbsp;</div>
+                        {% endif %}
+
+                        <div class="scout-spot-content">
+
+                            <div style="padding-left: 10px;">
+                                <h3 class="scout-spot-name">{{ spot.name }}</h3>
+                                <div class="scout-spot-location">
+                                    <span class="scout-spot-distance"><span class="visually-hidden">Distance from you:</span><span class="distance-number">-</span>&nbsp;ft.</span>&nbsp;&nbsp;
+                                    {% if spot.building_name %}{{ spot.building_name }}{% else %}<span style="color:red;">missing building_name</span>{% endif %}
+                                </div>
+
+
+                                {% if is_desktop %}
+                                <span class="scout-spot-type">{% if spot.spot_types %}{% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}</span>{% endfor %}{% else %} <span style="color:red;">SPOT_TYPE</span> {% endif %}</span>
+                                {% endif %}
+
+                                <div class="scout-spot-food-served">
+                                    <label style="text-transform:uppercase;">Capacity</label>
+                                    <span style="color:red;">missing capacity</span>
+                                </div>
+
+                                <span class="scout-spot-status">{% if spot.is_open %}<span class="open visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</span>
+
+                            </div>
+
+                        </div>
+                    </a>
+                </li>
+                <li class="scout-list-item" id="{{ spot.spot_id }}">
+                    <a class="clearfix" href="/food/{{ spot.spot_id }}/">
+
+                        {% if spot.images %}
+                        <div class="scout-spot-image" style="background-image: url('/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}?width=200');">&nbsp;</div>
+                        {% else %}
+                        <div class="scout-spot-image" style="background: #e5e6e9 url('{% static "scout/img/placeholder-200.png" %}') no-repeat center center; background-size: contain;">&nbsp;</div>
+                        {% endif %}
+
+                        <div class="scout-spot-content">
+
+                            <div style="padding-left: 10px;">
+                                <h3 class="scout-spot-name">{{ spot.name }}</h3>
+                                <div class="scout-spot-location">
+                                    <span class="scout-spot-distance"><span class="visually-hidden">Distance from you:</span><span class="distance-number">-</span>&nbsp;ft.</span>&nbsp;&nbsp;
+                                    {% if spot.building_name %}{{ spot.building_name }}{% else %}<span style="color:red;">missing building_name</span>{% endif %}
+                                </div>
+
+
+                                {% if is_desktop %}
+                                <span class="scout-spot-type">{% if spot.spot_types %}{% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}</span>{% endfor %}{% else %} <span style="color:red;">SPOT_TYPE</span> {% endif %}</span>
+                                {% endif %}
+
+                                <div class="scout-spot-food-served">
+                                    <label style="text-transform:uppercase;">Capacity</label>
+                                    <span style="color:red;">missing capacity</span>
+                                </div>
+
+                                <span class="scout-spot-status">{% if spot.is_open %}<span class="open visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</span>
+
+                            </div>
+
+                        </div>
+                    </a>
+                </li>
+                <li class="scout-list-item" id="{{ spot.spot_id }}">
+                    <a class="clearfix" href="/food/{{ spot.spot_id }}/">
+
+                        {% if spot.images %}
+                        <div class="scout-spot-image" style="background-image: url('/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}?width=200');">&nbsp;</div>
+                        {% else %}
+                        <div class="scout-spot-image" style="background: #e5e6e9 url('{% static "scout/img/placeholder-200.png" %}') no-repeat center center; background-size: contain;">&nbsp;</div>
+                        {% endif %}
+
+                        <div class="scout-spot-content">
+
+                            <div style="padding-left: 10px;">
+                                <h3 class="scout-spot-name">{{ spot.name }}</h3>
+                                <div class="scout-spot-location">
+                                    <span class="scout-spot-distance"><span class="visually-hidden">Distance from you:</span><span class="distance-number">-</span>&nbsp;ft.</span>&nbsp;&nbsp;
+                                    {% if spot.building_name %}{{ spot.building_name }}{% else %}<span style="color:red;">missing building_name</span>{% endif %}
+                                </div>
+
+
+                                {% if is_desktop %}
+                                <span class="scout-spot-type">{% if spot.spot_types %}{% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}</span>{% endfor %}{% else %} <span style="color:red;">SPOT_TYPE</span> {% endif %}</span>
+                                {% endif %}
+
+                                <div class="scout-spot-food-served">
+                                    <label style="text-transform:uppercase;">Capacity</label>
+                                    <span style="color:red;">missing capacity</span>
+                                </div>
+
+                                <span class="scout-spot-status">{% if spot.is_open %}<span class="open visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</span>
+
+                            </div>
+
+                        </div>
+                    </a>
+                </li>
+            </ol>
+
+        </ol>
+
+        <div id="study_list_loading">
             <p class="visually-hidden">loading...</p>
             <div class="sk-fading-circle" aria-hidden="true">
                 <div class="sk-circle1 sk-circle"></div>
