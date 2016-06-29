@@ -1,0 +1,471 @@
+'4222': {
+"spot_name": 'Lobby Area',
+"id": '4222',
+"building": 'Fishery Sciences (FSH)',
+"lat": '47.65296',
+"lng": '-122.316233',
+},
+
+'4223': {
+"spot_name": 'SAFS Student Lounge',
+"id": '4223',
+"building": 'Fishery Sciences (FSH)',
+"lat": '47.652956',
+"lng": '-122.316343',
+},
+
+'4224': {
+"spot_name": 'SAFS Computing Lab, 1st Floor',
+"id": '4224',
+"building": 'Fishery Sciences (FSH)',
+"lat": '47.65345',
+"lng": '-122.315911',
+},
+
+'4225': {
+"spot_name": 'Student Kitchen',
+"id": '4225',
+"building": 'Fishery Sciences (FSH)',
+"lat": '47.652953',
+"lng": '-122.316432',
+},
+
+'4226': {
+"spot_name": '2nd Floor Patio',
+"id": '4226',
+"building": 'Fishery Sciences (FSH)',
+"lat": '47.652941',
+"lng": '-122.316656',
+},
+
+'4227': {
+"spot_name": 'STF Computer Lab',
+"id": '4227',
+"building": 'Fishery Sciences (FSH)',
+"lat": '47.652956',
+"lng": '-122.316343',
+},
+
+'4228': {
+"spot_name": 'College of Ed Meeting Room',
+"id": '4228',
+"building": 'Miller Hall (MLR)',
+"lat": '47.657365',
+"lng": '-122.305976',
+},
+
+'4229': {
+"spot_name": 'College of Ed Computer Lab',
+"id": '4229',
+"building": 'Miller Hall (MLR)',
+"lat": '47.657457',
+"lng": '-122.306103',
+},
+
+'4230': {
+"spot_name": 'Orin&#39;s Place',
+"id": '4230',
+"building": 'Paccar Hall (PCAR)',
+"lat": '47.658865',
+"lng": '-122.308122',
+},
+
+'4231': {
+"spot_name": 'Team Room 210',
+"id": '4231',
+"building": 'Paccar Hall (PCAR)',
+"lat": '47.659419',
+"lng": '-122.308956',
+},
+
+'4232': {
+"spot_name": 'Team Room 212',
+"id": '4232',
+"building": 'Paccar Hall (PCAR)',
+"lat": '47.659378',
+"lng": '-122.308911',
+},
+
+'4233': {
+"spot_name": 'Team Room 214',
+"id": '4233',
+"building": 'Paccar Hall (PCAR)',
+"lat": '47.659339',
+"lng": '-122.308863',
+},
+
+'4234': {
+"spot_name": 'Team Room 218',
+"id": '4234',
+"building": 'Paccar Hall (PCAR)',
+"lat": '47.659293',
+"lng": '-122.308806',
+},
+
+'4235': {
+"spot_name": 'Team Room 220',
+"id": '4235',
+"building": 'Paccar Hall (PCAR)',
+"lat": '47.659264',
+"lng": '-122.308774',
+},
+
+'4236': {
+"spot_name": 'Team Room 222',
+"id": '4236',
+"building": 'Paccar Hall (PCAR)',
+"lat": '47.659243',
+"lng": '-122.308749',
+},
+
+'4237': {
+"spot_name": 'Team Room 226',
+"id": '4237',
+"building": 'Paccar Hall (PCAR)',
+"lat": '47.659206',
+"lng": '-122.308696',
+},
+
+'4238': {
+"spot_name": 'Team Room 228',
+"id": '4238',
+"building": 'Paccar Hall (PCAR)',
+"lat": '47.659186',
+"lng": '-122.308672',
+},
+
+'4239': {
+"spot_name": 'Team Room 230',
+"id": '4239',
+"building": 'Paccar Hall (PCAR)',
+"lat": '47.65916',
+"lng": '-122.308639',
+},
+
+'4240': {
+"spot_name": 'Team Room 260',
+"id": '4240',
+"building": 'Paccar Hall (PCAR)',
+"lat": '47.659181',
+"lng": '-122.308785',
+},
+
+'4241': {
+"spot_name": 'Team Room 262',
+"id": '4241',
+"building": 'Paccar Hall (PCAR)',
+"lat": '47.65917',
+"lng": '-122.308761',
+},
+
+'4242': {
+"spot_name": 'Team Room 264',
+"id": '4242',
+"building": 'Paccar Hall (PCAR)',
+"lat": '47.65916',
+"lng": '-122.308736',
+},
+
+'4243': {
+"spot_name": 'Team Room 266',
+"id": '4243',
+"building": 'Paccar Hall (PCAR)',
+"lat": '47.659147',
+"lng": '-122.308704',
+},
+
+'4244': {
+"spot_name": 'Team Room 268',
+"id": '4244',
+"building": 'Paccar Hall (PCAR)',
+"lat": '47.65914',
+"lng": '-122.308685',
+},
+
+'4245': {
+"spot_name": 'Team Room 270',
+"id": '4245',
+"building": 'Paccar Hall (PCAR)',
+"lat": '47.659132',
+"lng": '-122.308668',
+},
+
+'4246': {
+"spot_name": 'Team Room 310',
+"id": '4246',
+"building": 'Paccar Hall (PCAR)',
+"lat": '47.659187',
+"lng": '-122.308494',
+},
+
+'4247': {
+"spot_name": 'Team Room 312',
+"id": '4247',
+"building": 'Paccar Hall (PCAR)',
+"lat": '47.659176',
+"lng": '-122.308476',
+},
+
+'4248': {
+"spot_name": 'Team Room 314',
+"id": '4248',
+"building": 'Paccar Hall (PCAR)',
+"lat": '47.659165',
+"lng": '-122.308459',
+},
+
+'4305': {
+"spot_name": 'Study Room 320B',
+"id": '4305',
+"building": 'South Campus Center (SOCC)',
+"lat": '47.649485',
+"lng": '-122.310745',
+},
+
+'4306': {
+"spot_name": 'Study Room 320C',
+"id": '4306',
+"building": 'South Campus Center (SOCC)',
+"lat": '47.649349',
+"lng": '-122.310399',
+},
+
+'4307': {
+"spot_name": 'Study Room 320D',
+"id": '4307',
+"building": 'South Campus Center (SOCC)',
+"lat": '47.649361',
+"lng": '-122.310428',
+},
+
+'4308': {
+"spot_name": 'Study Room 320E',
+"id": '4308',
+"building": 'South Campus Center (SOCC)',
+"lat": '47.649397',
+"lng": '-122.310724',
+},
+
+'4309': {
+"spot_name": 'Couch Nooks (4)',
+"id": '4309',
+"building": 'South Campus Center (SOCC)',
+"lat": '47.649549',
+"lng": '-122.311038',
+},
+
+'4310': {
+"spot_name": 'Platform Area',
+"id": '4310',
+"building": 'South Campus Center (SOCC)',
+"lat": '47.64955',
+"lng": '-122.31096',
+},
+
+'4311': {
+"spot_name": '3rd Floor West Nooks (8)',
+"id": '4311',
+"building": 'South Campus Center (SOCC)',
+"lat": '47.649635',
+"lng": '-122.311172',
+},
+
+'4312': {
+"spot_name": '3rd Floor Lounges',
+"id": '4312',
+"building": 'South Campus Center (SOCC)',
+"lat": '47.649643',
+"lng": '-122.310968',
+},
+
+'4313': {
+"spot_name": 'Dining/Study Area',
+"id": '4313',
+"building": 'South Campus Center (SOCC)',
+"lat": '47.649821',
+"lng": '-122.311016',
+},
+
+'4314': {
+"spot_name": 'SCC Patio',
+"id": '4314',
+"building": 'South Campus Center (SOCC)',
+"lat": '47.649361',
+"lng": '-122.310428',
+},
+
+'4315': {
+"spot_name": 'Study Room 1',
+"id": '4315',
+"building": 'Paccar Hall (PCAR)',
+"lat": '47.659438',
+"lng": '-122.307978',
+},
+
+'4316': {
+"spot_name": 'Study Room 2',
+"id": '4316',
+"building": 'Paccar Hall (PCAR)',
+"lat": '47.659418',
+"lng": '-122.308006',
+},
+
+'4317': {
+"spot_name": 'Study Room 3',
+"id": '4317',
+"building": 'Paccar Hall (PCAR)',
+"lat": '47.659402',
+"lng": '-122.308026',
+},
+
+'4318': {
+"spot_name": 'Study Room 4',
+"id": '4318',
+"building": 'Paccar Hall (PCAR)',
+"lat": '47.659386',
+"lng": '-122.308046',
+},
+
+'4319': {
+"spot_name": 'Study Room 5',
+"id": '4319',
+"building": 'Paccar Hall (PCAR)',
+"lat": '47.65937',
+"lng": '-122.308058',
+},
+
+'4320': {
+"spot_name": 'Study Room 6',
+"id": '4320',
+"building": 'Paccar Hall (PCAR)',
+"lat": '47.659355',
+"lng": '-122.308078',
+},
+
+'4321': {
+"spot_name": 'Study Room 7',
+"id": '4321',
+"building": 'Paccar Hall (PCAR)',
+"lat": '47.659339',
+"lng": '-122.30811',
+},
+
+'4322': {
+"spot_name": 'Study Room 8',
+"id": '4322',
+"building": 'Paccar Hall (PCAR)',
+"lat": '47.659318',
+"lng": '-122.308138',
+},
+
+'4323': {
+"spot_name": 'Study Room 9',
+"id": '4323',
+"building": 'Paccar Hall (PCAR)',
+"lat": '47.659318',
+"lng": '-122.308138',
+},
+
+'4324': {
+"spot_name": 'Study Room 10',
+"id": '4324',
+"building": 'Paccar Hall (PCAR)',
+"lat": '47.659339',
+"lng": '-122.30811',
+},
+
+'4325': {
+"spot_name": 'Study Room 11',
+"id": '4325',
+"building": 'Paccar Hall (PCAR)',
+"lat": '47.659427',
+"lng": '-122.307951',
+},
+
+'4443': {
+"spot_name": 'Study Room T202A',
+"id": '4443',
+"building": 'Magnuson Health Sciences Center T (HST)',
+"lat": '47.650537',
+"lng": '-122.308141',
+},
+
+'4444': {
+"spot_name": 'Study Room T202B',
+"id": '4444',
+"building": 'Magnuson Health Sciences Center T (HST)',
+"lat": '47.650546',
+"lng": '-122.308155',
+},
+
+'4445': {
+"spot_name": 'Study Room T202C',
+"id": '4445',
+"building": 'Magnuson Health Sciences Center T (HST)',
+"lat": '47.650553',
+"lng": '-122.308168',
+},
+
+'4446': {
+"spot_name": 'Study Room T203',
+"id": '4446',
+"building": 'Magnuson Health Sciences Center T (HST)',
+"lat": '47.650391',
+"lng": '-122.308324',
+},
+
+'4447': {
+"spot_name": 'Study Room T205',
+"id": '4447',
+"building": 'Magnuson Health Sciences Center T (HST)',
+"lat": '47.650403',
+"lng": '-122.308345',
+},
+
+'4448': {
+"spot_name": 'Study Room T207',
+"id": '4448',
+"building": 'Magnuson Health Sciences Center T (HST)',
+"lat": '47.650414',
+"lng": '-122.308369',
+},
+
+'4451': {
+"spot_name": 'Study Room T213',
+"id": '4451',
+"building": 'Magnuson Health Sciences Center T (HST)',
+"lat": '47.650416',
+"lng": '-122.308426',
+},
+
+'4452': {
+"spot_name": 'Study Room T317A',
+"id": '4452',
+"building": 'Magnuson Health Sciences Center T (HST)',
+"lat": '47.650757',
+"lng": '-122.308892',
+},
+
+'4455': {
+"spot_name": 'Learning Commons',
+"id": '4455',
+"building": 'Magnuson Health Sciences Center T (HST)',
+"lat": '47.650719',
+"lng": '-122.308593',
+},
+
+'4456': {
+"spot_name": 'Orange Area',
+"id": '4456',
+"building": 'Magnuson Health Sciences Center T (HST)',
+"lat": '47.650692',
+"lng": '-122.308508',
+},
+
+'4457': {
+"spot_name": 'Red Area',
+"id": '4457',
+"building": 'Magnuson Health Sciences Center T (HST)',
+"lat": '47.650756',
+"lng": '-122.308546',
+},
