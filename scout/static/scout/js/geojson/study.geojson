@@ -1,73 +1,261 @@
 {
-  "type": "FeatureCollection",
-  "features": [
-    {
-      "type": "Feature",
-      "properties": {
-        "marker-color": "#9437ff",
-        "marker-size": "small",
-        "marker-symbol": "circle-stroked",
-        "title": "Peregrine Espresso",
-        "description": "adsdfj sasdfj asldkjfasdf"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.30774402618407,
-          47.651310314364885
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "marker-color": "#9437ff",
-        "marker-size": "small",
-        "marker-symbol": "circle-stroked",
-        "title": "Qwerty Espresso",
-        "description": "qewrqwererwt"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.30885982513426,
-          47.65336285044984
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "marker-color": "#9437ff",
-        "marker-size": "small",
-        "marker-symbol": "circle-stroked",
-        "title": "Charlon Espresso",
-        "description": "upoiupoiu"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.30774402618407,
-          47.65457698874981
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "marker-color": "#9437ff",
-        "marker-size": "small",
-        "marker-symbol": "circle-stroked",
-        "title": "Husky Espresso",
-        "description": "293489834257"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.30876326560974,
-          47.65438908824026
-        ]
-      }
-    }
-  ]
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "marker-color": "#9437ff",
+                "marker-size": "small",
+                "marker-symbol": "circle-stroked",
+                "title": "Lobby Area",
+                "description": "Fishery Sciences (FSH)"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.316233,
+                    47.65296
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "marker-color": "#9437ff",
+                "marker-size": "small",
+                "marker-symbol": "circle-stroked",
+                "title": "SAFS Student Lounge",
+                "description": "Fishery Sciences (FSH)"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.316343,
+                    47.652956
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "marker-color": "#9437ff",
+                "marker-size": "small",
+                "marker-symbol": "circle-stroked",
+                "title": "College of Ed Meeting Room",
+                "description": "Miller Hall (MLR)"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.305976,
+                    47.657365
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "marker-color": "#9437ff",
+                "marker-size": "small",
+                "marker-symbol": "circle-stroked",
+                "title": "Orin&#39;s Place",
+                "description": "Paccar Hall (PCAR)"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.308122,
+                    47.658865
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "marker-color": "#9437ff",
+                "marker-size": "small",
+                "marker-symbol": "circle-stroked",
+                "title": "Team Room 228",
+                "description": "Paccar Hall (PCAR)"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.308672,
+                    47.659186
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "marker-color": "#9437ff",
+                "marker-size": "small",
+                "marker-symbol": "circle-stroked",
+                "title": "Team Room 115",
+                "description": "Business Hall (BHQ)"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.307669,
+                    47.659289
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "marker-color": "#9437ff",
+                "marker-size": "small",
+                "marker-symbol": "circle-stroked",
+                "title": "Cascade Room (North and South)",
+                "description": "Haggett Hall (HGT)"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.303534,
+                    47.659507
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "marker-color": "#9437ff",
+                "marker-size": "small",
+                "marker-symbol": "circle-stroked",
+                "title": "Glass Room",
+                "description": "McMahon Hall (MCM)"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.303898,
+                    47.658426
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "marker-color": "#9437ff",
+                "marker-size": "small",
+                "marker-symbol": "circle-stroked",
+                "title": "Poplar Room 105",
+                "description": "Poplar Hall (UTO)"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.314079,
+                    47.65657
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "marker-color": "#9437ff",
+                "marker-size": "small",
+                "marker-symbol": "circle-stroked",
+                "title": "Room A",
+                "description": "McCarty Hall (MCC)"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.30437,
+                    47.660284
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "marker-color": "#9437ff",
+                "marker-size": "small",
+                "marker-symbol": "circle-stroked",
+                "title": "Study Room 311D",
+                "description": "South Campus Center (SOCC)"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.310655,
+                    47.649588
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "marker-color": "#9437ff",
+                "marker-size": "small",
+                "marker-symbol": "circle-stroked",
+                "title": "Study Room 1",
+                "description": "Paccar Hall (PCAR)"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.307978,
+                    47.659438
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "marker-color": "#9437ff",
+                "marker-size": "small",
+                "marker-symbol": "circle-stroked",
+                "title": "Gallery Study",
+                "description": "Allen Library (ALB) North"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.307213,
+                    47.655692
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "marker-color": "#9437ff",
+                "marker-size": "small",
+                "marker-symbol": "circle-stroked",
+                "title": "Suzzallo Reference Area",
+                "description": "Suzzallo Library (SUZ)"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.308303,
+                    47.65586
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "marker-color": "#9437ff",
+                "marker-size": "small",
+                "marker-symbol": "circle-stroked",
+                "title": "Music Library",
+                "description": "Music Building (MUS)"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -122.306105,
+                    47.657733
+                ]
+            }
+        }
+
+    ]
 }

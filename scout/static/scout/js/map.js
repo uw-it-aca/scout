@@ -3,7 +3,7 @@ var Map = {
     init_map: function () {
         $(document).on("location_changed", function() {
 
-            // list map... location on list.html and map.html (mobile and desktop)
+            // food list map
             if( $("#list_map").length > 0 ) {
                 console.log("dsflkajdsf");
                 Map.initializeListMap();
@@ -13,6 +13,7 @@ var Map = {
                 Map.initializeDetailMap();
             }
 
+            // study list map
             if( $("#study_list_map").length > 0 ) {
                 Map.initializeStudyListMap();
             }
@@ -114,7 +115,6 @@ var Map = {
                 window.user_location_marker = locationMarker;
 
             }
-
 
             map.setOptions({styles: styles});
 
@@ -335,64 +335,6 @@ var Map = {
 
         if(mapExists) {
 
-            /**
-            // center map on center location received from user
-            mapCenter = pos;
-            mapOptions = {
-                center: mapCenter,
-                zoom: 16
-            };
-
-        	//create the map
-        	map = new google.maps.Map(document.getElementById("study_list_map"), mapOptions);
-
-            // show user location marker if user is sharing
-            if (Geolocation.get_location_type() !== "default") {
-
-                // current location marker
-                var locationMarker = new google.maps.Marker({
-                    position: pos,
-                    map: map,
-                    icon: {
-                        path: google.maps.SymbolPath.CIRCLE,
-                        fillColor: '#c0392b',
-                        fillOpacity: 1,
-                        strokeColor: '#ffffff',
-                        scale: 5,
-                        strokeWeight: 2
-                    },
-                });
-
-                // add radius overlay and bind to location marker
-                var circle = new google.maps.Circle({
-                    map: map,
-                    radius: 30,    // meters
-                    fillColor: '#c0392b',
-                    fillOpacity: 0.15,
-                    strokeWeight: 0
-                });
-                circle.bindTo('center', locationMarker, 'position');
-
-                // add user location marker to map
-                window.user_location_marker = locationMarker;
-
-            }
-
-            // load geojson layer
-            map.data.loadGeoJson('/static/scout/js/geojson/study.geojson');
-
-            // When the user clicks, open an infowindow
-            map.data.addListener('click', function(event) {
-            	var myHTML = event.feature.getProperty("description");
-            	infowindow.setContent("<div style='width:150px;'>"+myHTML+"</div>");
-            	// position the infowindow on the marker
-            	infowindow.setPosition(event.feature.getGeometry().get());
-            	// anchor the infowindow on the marker
-            	infowindow.setOptions({pixelOffset: new google.maps.Size(0,-30)});
-            	infowindow.open(map);
-            });
-            **/
-
             L.mapbox.accessToken = 'pk.eyJ1IjoiY2hhcmxvbnBhbGFjYXkiLCJhIjoiY2lpMHYwZ3I2MDUzbHQzbTFnaWRmZnV1NCJ9.WkswXwuPmbIDcYFdV096Aw';
             var map = L.mapbox.map('study_list_map', 'mapbox.streets')
                 .setView([47.653811, -122.307815], 17);
@@ -405,8 +347,7 @@ var Map = {
                 .loadURL('/static/scout/js/geojson/study.geojson')
                 .addTo(map);
 
-
-            // load the user's location
+            // user location marker
             L.mapbox.featureLayer({
                 // this feature is in the GeoJSON format: see geojson.org
                 // for the full specification
@@ -427,7 +368,7 @@ var Map = {
                     // https://www.mapbox.com/guides/an-open-platform/#simplestyle
                     'marker-size': 'small',
                     'marker-color': '#c0392b',
-                    'marker-symbol': 'circle'
+                    'marker-symbol': 'circle-stroked'
                 }
             }).addTo(map);
 
@@ -441,6 +382,13 @@ var Map = {
                     clusterGroup.addLayer(layer);
                 });
                 map.addLayer(clusterGroup);
+            });
+
+            // size map to fit markers
+            featureLayer.on('ready', function() {
+                // featureLayer.getBounds() returns the corners of the furthest-out markers,
+                // and map.fitBounds() makes sure that the map contains these.
+                map.fitBounds(featureLayer.getBounds());
             });
 
 
