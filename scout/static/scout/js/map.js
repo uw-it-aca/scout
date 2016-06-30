@@ -332,12 +332,10 @@ var Map = {
         console.log("study map initilaized");
 
         var mapExists = document.getElementById("study_list_map");
-        var pos = Geolocation.get_client_latlng();
-        var mapOptions;
-        var infowindow = new google.maps.InfoWindow();
 
         if(mapExists) {
 
+            /**
             // center map on center location received from user
             mapCenter = pos;
             mapOptions = {
@@ -375,20 +373,6 @@ var Map = {
                 });
                 circle.bindTo('center', locationMarker, 'position');
 
-                // pulsate the user location marker
-                /**
-
-                var direction = 1;
-                var rmin = 20, rmax = 50;
-                setInterval(function() {
-                    var radius = circle.getRadius();
-                    if ((radius > rmax) || (radius < rmin)) {
-                        direction *= -1;
-                    }
-                    circle.setRadius(radius + direction * 10);
-                }, 300);
-                **/
-
                 // add user location marker to map
                 window.user_location_marker = locationMarker;
 
@@ -407,12 +391,64 @@ var Map = {
             	infowindow.setOptions({pixelOffset: new google.maps.Size(0,-30)});
             	infowindow.open(map);
             });
+            **/
+
+            L.mapbox.accessToken = 'pk.eyJ1IjoiY2hhcmxvbnBhbGFjYXkiLCJhIjoiY2lpMHYwZ3I2MDUzbHQzbTFnaWRmZnV1NCJ9.WkswXwuPmbIDcYFdV096Aw';
+            var map = L.mapbox.map('study_list_map', 'mapbox.streets')
+                .setView([47.653811, -122.307815], 17);
+
+            // As with any other AJAX request, this technique is subject to the Same Origin Policy:
+            // http://en.wikipedia.org/wiki/Same_origin_policy
+            // So the CSV file must be on the same domain as the Javascript, or the server
+            // delivering it should support CORS.
+            var featureLayer = L.mapbox.featureLayer()
+                .loadURL('/static/scout/js/geojson/study.geojson')
+                .addTo(map);
+
+
+            // load the user's location
+            L.mapbox.featureLayer({
+                // this feature is in the GeoJSON format: see geojson.org
+                // for the full specification
+                type: 'Feature',
+                geometry: {
+                    type: 'Point',
+                    // coordinates here are in longitude, latitude order because
+                    // x, y is the standard for GeoJSON and many formats
+                    coordinates: [
+                      -122.307815,
+                      47.65381
+                    ]
+                },
+                properties: {
+                    title: 'Your location',
+                    description: 'swimming in the fountain',
+                    // one can customize markers by adding simplestyle properties
+                    // https://www.mapbox.com/guides/an-open-platform/#simplestyle
+                    'marker-size': 'small',
+                    'marker-color': '#c0392b',
+                    'marker-symbol': 'circle'
+                }
+            }).addTo(map);
+
+            // Since featureLayer is an asynchronous method, we use the `.on('ready'`
+            // call to only use its marker data once we know it is actually loaded.
+            featureLayer.on('ready', function(e) {
+                // The clusterGroup gets each marker in the group added to it
+                // once loaded, and then is added to the map
+                var clusterGroup = new L.MarkerClusterGroup();
+                e.target.eachLayer(function(layer) {
+                    clusterGroup.addLayer(layer);
+                });
+                map.addLayer(clusterGroup);
+            });
+
 
         }
 
-
-
     },
+
+
 
 
 };

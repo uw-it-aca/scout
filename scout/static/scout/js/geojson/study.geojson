@@ -7,7 +7,8 @@
         "marker-color": "#9437ff",
         "marker-size": "small",
         "marker-symbol": "circle-stroked",
-        "description": "sadkfjjkldfssdaflk"
+        "title": "Peregrine Espresso",
+        "description": "adsdfj sasdfj asldkjfasdf"
       },
       "geometry": {
         "type": "Point",
@@ -23,6 +24,7 @@
         "marker-color": "#9437ff",
         "marker-size": "small",
         "marker-symbol": "circle-stroked",
+        "title": "Qwerty Espresso",
         "description": "qewrqwererwt"
       },
       "geometry": {
@@ -36,9 +38,10 @@
     {
       "type": "Feature",
       "properties": {
-        "marker-color": "#7e7e7e",
+        "marker-color": "#9437ff",
         "marker-size": "small",
         "marker-symbol": "circle-stroked",
+        "title": "Charlon Espresso",
         "description": "upoiupoiu"
       },
       "geometry": {
@@ -52,9 +55,10 @@
     {
       "type": "Feature",
       "properties": {
-        "marker-color": "#7e7e7e",
+        "marker-color": "#9437ff",
         "marker-size": "small",
         "marker-symbol": "circle-stroked",
+        "title": "Husky Espresso",
         "description": "293489834257"
       },
       "geometry": {
