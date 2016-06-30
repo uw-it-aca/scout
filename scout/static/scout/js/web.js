@@ -8,12 +8,14 @@ $(document).on('ready', function(event) {
     if (page_path.indexOf("food") !== -1) {
         console.log("on food");
         // food
+        Geolocation.display_location_status();
         List.init();
         Map.init_map();
         Filter.init();
     }
     else if (page_path.indexOf("study") !== -1){
         console.log("on study");
+        Geolocation.display_location_status();
         // List.init();
         Map.init_map();
     }
