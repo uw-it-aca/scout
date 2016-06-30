@@ -4,17 +4,19 @@ var Map = {
         $(document).on("location_changed", function() {
 
             // food list map
-            if( $("#list_map").length > 0 ) {
-                console.log("dsflkajdsf");
+            if( $("#list_map").length) {
+                console.log("food list map initilaized");
                 Map.initializeListMap();
             }
             //detail page map
             if($("#detail_map").length > 0) {
+                console.log("food detail map initilaized");
                 Map.initializeDetailMap();
             }
 
             // study list map
             if( $("#study_list_map").length > 0 ) {
+                console.log("study list map initilaized");
                 Map.initializeStudyListMap();
             }
 
@@ -329,7 +331,6 @@ var Map = {
     },
 
     initializeStudyListMap: function() {
-        console.log("study map initilaized");
 
         var mapExists = document.getElementById("study_list_map");
 
