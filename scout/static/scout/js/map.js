@@ -2,14 +2,21 @@ var Map = {
 
     init_map: function () {
         $(document).on("location_changed", function() {
+
             // list map... location on list.html and map.html (mobile and desktop)
             if( $("#list_map").length > 0 ) {
+                console.log("dsflkajdsf");
                 Map.initializeListMap();
             }
             //detail page map
             if($("#detail_map").length > 0) {
                 Map.initializeDetailMap();
             }
+
+            if( $("#study_list_map").length > 0 ) {
+                Map.initializeStudyListMap();
+            }
+
         });
         // handle map stuff for window resize
         $(window).resize(function() {
@@ -102,7 +109,6 @@ var Map = {
                     circle.setRadius(radius + direction * 10);
                 }, 300);
                 **/
-
 
                 // add user location marker to map
                 window.user_location_marker = locationMarker;
@@ -320,5 +326,93 @@ var Map = {
 
         }
 
-    }
+    },
+
+    initializeStudyListMap: function() {
+        console.log("study map initilaized");
+
+        var mapExists = document.getElementById("study_list_map");
+        var pos = Geolocation.get_client_latlng();
+        var mapOptions;
+        var infowindow = new google.maps.InfoWindow();
+
+        if(mapExists) {
+
+            // center map on center location received from user
+            mapCenter = pos;
+            mapOptions = {
+                center: mapCenter,
+                zoom: 16
+            };
+
+        	//create the map
+        	map = new google.maps.Map(document.getElementById("study_list_map"), mapOptions);
+
+            // show user location marker if user is sharing
+            if (Geolocation.get_location_type() !== "default") {
+
+                // current location marker
+                var locationMarker = new google.maps.Marker({
+                    position: pos,
+                    map: map,
+                    icon: {
+                        path: google.maps.SymbolPath.CIRCLE,
+                        fillColor: '#c0392b',
+                        fillOpacity: 1,
+                        strokeColor: '#ffffff',
+                        scale: 5,
+                        strokeWeight: 2
+                    },
+                });
+
+                // add radius overlay and bind to location marker
+                var circle = new google.maps.Circle({
+                    map: map,
+                    radius: 30,    // meters
+                    fillColor: '#c0392b',
+                    fillOpacity: 0.15,
+                    strokeWeight: 0
+                });
+                circle.bindTo('center', locationMarker, 'position');
+
+                // pulsate the user location marker
+                /**
+
+                var direction = 1;
+                var rmin = 20, rmax = 50;
+                setInterval(function() {
+                    var radius = circle.getRadius();
+                    if ((radius > rmax) || (radius < rmin)) {
+                        direction *= -1;
+                    }
+                    circle.setRadius(radius + direction * 10);
+                }, 300);
+                **/
+
+                // add user location marker to map
+                window.user_location_marker = locationMarker;
+
+            }
+
+            // load geojson layer
+            map.data.loadGeoJson('/static/scout/js/geojson/study.geojson');
+
+            // When the user clicks, open an infowindow
+            map.data.addListener('click', function(event) {
+            	var myHTML = event.feature.getProperty("description");
+            	infowindow.setContent("<div style='width:150px;'>"+myHTML+"</div>");
+            	// position the infowindow on the marker
+            	infowindow.setPosition(event.feature.getGeometry().get());
+            	// anchor the infowindow on the marker
+            	infowindow.setOptions({pixelOffset: new google.maps.Size(0,-30)});
+            	infowindow.open(map);
+            });
+
+        }
+
+
+
+    },
+
+
 };

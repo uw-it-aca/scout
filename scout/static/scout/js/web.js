@@ -6,14 +6,16 @@ $(document).on('ready', function(event) {
     // page based JS calls
     var page_path = window.location.pathname;
     if (page_path.indexOf("food") !== -1) {
+        console.log("on food");
         // food
         List.init();
         Map.init_map();
         Filter.init();
-        console.log("on food");
     }
     else if (page_path.indexOf("study") !== -1){
         console.log("on study");
+        // List.init();
+        Map.init_map();
     }
     else if (page_path.indexOf("tech") !== -1){
         console.log("on tech");
