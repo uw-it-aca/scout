@@ -17,7 +17,13 @@ var Map = {
             // study list map
             if( $("#study_list_map").length > 0 ) {
                 console.log("study list map initilaized");
-                Map.initializeStudyListMap();
+                Map.init_study_list_map();
+            }
+
+            // study detail map
+            if( $("#study_detail_map").length > 0 ) {
+                console.log("study detail map initilaized");
+                Map.init_study_detail_map();
             }
 
         });
@@ -330,7 +336,7 @@ var Map = {
 
     },
 
-    initializeStudyListMap: function() {
+    init_study_list_map: function() {
 
         var mapExists = document.getElementById("study_list_map");
 
@@ -382,6 +388,51 @@ var Map = {
                     // https://www.mapbox.com/guides/an-open-platform/#simplestyle
                     'marker-size': 'small',
                     'marker-color': '#c0392b',
+                    'marker-symbol': 'circle-stroked'
+                }
+            }).addTo(map);
+
+        }
+
+    },
+
+    init_study_detail_map: function() {
+
+        var mapExists = document.getElementById("study_detail_map");
+
+        if(mapExists) {
+
+            // get spot location from data attributes
+            var spot_lat = $(".scout-card").data("latitude");
+            var spot_lng = $(".scout-card").data("longitude");
+            var spot_name = $(".scout-card").data("spotname");
+            var spot_building = $(".scout-card").data("building");
+
+            L.mapbox.accessToken = 'pk.eyJ1IjoiY2hhcmxvbnBhbGFjYXkiLCJhIjoiY2lpMHYwZ3I2MDUzbHQzbTFnaWRmZnV1NCJ9.WkswXwuPmbIDcYFdV096Aw';
+            var map = L.mapbox.map('study_detail_map', 'mapbox.streets')
+                .setView([spot_lat, spot_lng], 18);
+
+            // add user location marker to map
+            L.mapbox.featureLayer({
+                // this feature is in the GeoJSON format: see geojson.org
+                // for the full specification
+                type: 'Feature',
+                geometry: {
+                    type: 'Point',
+                    // coordinates here are in longitude, latitude order because
+                    // x, y is the standard for GeoJSON and many formats
+                    coordinates: [
+                      spot_lng,
+                      spot_lat
+                    ]
+                },
+                properties: {
+                    title: spot_name,
+                    description: spot_building,
+                    // one can customize markers by adding simplestyle properties
+                    // https://www.mapbox.com/guides/an-open-platform/#simplestyle
+                    'marker-size': 'medium',
+                    'marker-color': '#6564a8',
                     'marker-symbol': 'circle-stroked'
                 }
             }).addTo(map);
