@@ -4,7 +4,7 @@
         {
             "type": "Feature",
             "properties": {
-                "marker-color": "#9437ff",
+                "marker-color": "#6564a8",
                 "marker-size": "small",
                 "marker-symbol": "circle-stroked",
                 "title": "Lobby Area",
@@ -21,7 +21,7 @@
         {
             "type": "Feature",
             "properties": {
-                "marker-color": "#9437ff",
+                "marker-color": "#6564a8",
                 "marker-size": "small",
                 "marker-symbol": "circle-stroked",
                 "title": "SAFS Student Lounge",
@@ -38,7 +38,7 @@
         {
             "type": "Feature",
             "properties": {
-                "marker-color": "#9437ff",
+                "marker-color": "#6564a8",
                 "marker-size": "small",
                 "marker-symbol": "circle-stroked",
                 "title": "College of Ed Meeting Room",
@@ -55,7 +55,7 @@
         {
             "type": "Feature",
             "properties": {
-                "marker-color": "#9437ff",
+                "marker-color": "#6564a8",
                 "marker-size": "small",
                 "marker-symbol": "circle-stroked",
                 "title": "Orin&#39;s Place",
@@ -72,7 +72,7 @@
         {
             "type": "Feature",
             "properties": {
-                "marker-color": "#9437ff",
+                "marker-color": "#6564a8",
                 "marker-size": "small",
                 "marker-symbol": "circle-stroked",
                 "title": "Team Room 228",
@@ -89,7 +89,7 @@
         {
             "type": "Feature",
             "properties": {
-                "marker-color": "#9437ff",
+                "marker-color": "#6564a8",
                 "marker-size": "small",
                 "marker-symbol": "circle-stroked",
                 "title": "Team Room 115",
@@ -106,7 +106,7 @@
         {
             "type": "Feature",
             "properties": {
-                "marker-color": "#9437ff",
+                "marker-color": "#6564a8",
                 "marker-size": "small",
                 "marker-symbol": "circle-stroked",
                 "title": "Cascade Room (North and South)",
@@ -123,7 +123,7 @@
         {
             "type": "Feature",
             "properties": {
-                "marker-color": "#9437ff",
+                "marker-color": "#6564a8",
                 "marker-size": "small",
                 "marker-symbol": "circle-stroked",
                 "title": "Glass Room",
@@ -140,7 +140,7 @@
         {
             "type": "Feature",
             "properties": {
-                "marker-color": "#9437ff",
+                "marker-color": "#6564a8",
                 "marker-size": "small",
                 "marker-symbol": "circle-stroked",
                 "title": "Poplar Room 105",
@@ -157,7 +157,7 @@
         {
             "type": "Feature",
             "properties": {
-                "marker-color": "#9437ff",
+                "marker-color": "#6564a8",
                 "marker-size": "small",
                 "marker-symbol": "circle-stroked",
                 "title": "Room A",
@@ -174,7 +174,7 @@
         {
             "type": "Feature",
             "properties": {
-                "marker-color": "#9437ff",
+                "marker-color": "#6564a8",
                 "marker-size": "small",
                 "marker-symbol": "circle-stroked",
                 "title": "Study Room 311D",
@@ -191,7 +191,7 @@
         {
             "type": "Feature",
             "properties": {
-                "marker-color": "#9437ff",
+                "marker-color": "#6564a8",
                 "marker-size": "small",
                 "marker-symbol": "circle-stroked",
                 "title": "Study Room 1",
@@ -208,7 +208,7 @@
         {
             "type": "Feature",
             "properties": {
-                "marker-color": "#9437ff",
+                "marker-color": "#6564a8",
                 "marker-size": "small",
                 "marker-symbol": "circle-stroked",
                 "title": "Gallery Study",
@@ -225,7 +225,7 @@
         {
             "type": "Feature",
             "properties": {
-                "marker-color": "#9437ff",
+                "marker-color": "#6564a8",
                 "marker-size": "small",
                 "marker-symbol": "circle-stroked",
                 "title": "Suzzallo Reference Area",
@@ -242,7 +242,7 @@
         {
             "type": "Feature",
             "properties": {
-                "marker-color": "#9437ff",
+                "marker-color": "#6564a8",
                 "marker-size": "small",
                 "marker-symbol": "circle-stroked",
                 "title": "Music Library",
