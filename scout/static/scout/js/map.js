@@ -346,9 +346,22 @@ var Map = {
             // delivering it should support CORS.
             var featureLayer = L.mapbox.featureLayer()
                 .loadURL('/static/scout/js/geojson/study.geojson')
-                .addTo(map);
+                .on('ready', function(e) {
 
-            // user location marker
+                    // fit the markers onto the map bounds
+                    featureLayer.eachLayer(function(layer) {
+                        map.fitBounds(featureLayer.getBounds());
+                    });
+
+                    // handle marker clustering
+                    var clusterGroup = new L.MarkerClusterGroup();
+                    e.target.eachLayer(function(layer) {
+                       clusterGroup.addLayer(layer);
+                    });
+                    map.addLayer(clusterGroup);
+                })
+
+            // add user location marker to map
             L.mapbox.featureLayer({
                 // this feature is in the GeoJSON format: see geojson.org
                 // for the full specification
@@ -372,26 +385,6 @@ var Map = {
                     'marker-symbol': 'circle-stroked'
                 }
             }).addTo(map);
-
-            // Since featureLayer is an asynchronous method, we use the `.on('ready'`
-            // call to only use its marker data once we know it is actually loaded.
-            featureLayer.on('ready', function(e) {
-                // The clusterGroup gets each marker in the group added to it
-                // once loaded, and then is added to the map
-                var clusterGroup = new L.MarkerClusterGroup();
-                e.target.eachLayer(function(layer) {
-                    clusterGroup.addLayer(layer);
-                });
-                map.addLayer(clusterGroup);
-            });
-
-            // size map to fit markers
-            featureLayer.on('ready', function() {
-                // featureLayer.getBounds() returns the corners of the furthest-out markers,
-                // and map.fitBounds() makes sure that the map contains these.
-                map.fitBounds(featureLayer.getBounds());
-            });
-
 
         }
 
