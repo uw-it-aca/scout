@@ -138,6 +138,21 @@ def study_list_view(request):
                               context_instance=RequestContext(request))
 
 
+def study_detail_view(request, spot_id):
+    spot = get_spot_by_id(spot_id)
+    if not spot:
+        raise Http404("Spot does not exist")
+
+    context = {"spot": spot}
+    return render_to_response('scout/study/detail.html', context,
+                              context_instance=RequestContext(request))
+
+
+def study_filter_view(request):
+    return render_to_response('scout/study/filter.html',
+                              context_instance=RequestContext(request))
+
+
 # tech
 def tech_list_view(request):
     spots = get_spot_list('tech')

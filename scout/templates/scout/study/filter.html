@@ -1,0 +1,42 @@
+{% extends "scout/base.html" %}
+{% load staticfiles %}
+
+{% block title %}Filter places{% endblock %}
+
+{% block web_content %}
+<div id="page_filter" class="scout-content">
+
+    <h2 class="visually-hidden">Filter</h2>
+
+    <div class="scout-filter-container">
+
+        <form>
+            <div class="scout-card clearfix">
+                <fieldset>
+                    <legend>Campus</legend>
+                    <div id="campus_select">
+                        <label><input type="checkbox" name="seattle" value="seattle" />Seattle</label>
+                        <label><input type="checkbox" name="bothell" value="bothell" />Bothell</label>
+                        <label><input type="checkbox" name="tacoma" value="tacoma" />Tacoma</label>
+                        <label><input type="checkbox" name="south_lake_union" value="south_lake_union" />South Lake Union</label>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="scout-card">Study filters to go here!</div>
+
+            <div class="scout-filter-actions">
+                <button id="reset_study_button" type="button" class="action-cancel"><i class="fa fa-refresh"></i>Reset</button>&nbsp;&nbsp;
+                <button id="run_study_search" type="button"><i class="fa fa-list fa-inverse"></i>View Results</button>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+{% endblock %}
+
+{% block secondary_content %}
+<div style="background:url('{% static "scout/img/huskygrind.jpg" %}') no-repeat; background-size:cover; background-position:center center; position:absolute; top:0; bottom:0; width: 100%;">&nbsp;</div>
+{% endblock %}

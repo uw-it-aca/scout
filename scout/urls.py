@@ -18,6 +18,10 @@ urlpatterns = patterns(
 
     # study
     url(r'^study/$', 'scout.views.study_list_view', name='study_list_view'),
+    url(r'^study/(?P<spot_id>[0-9]{1,5})/$',
+        'scout.views.study_detail_view', name='study_detail_view'),
+    url(r'^study/filter/$', 'scout.views.study_filter_view',
+        name='study_filter_view'),
 
     # technology
     url(r'^tech/$', 'scout.views.tech_list_view', name='tech_list_view'),

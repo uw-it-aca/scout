@@ -1,0 +1,204 @@
+{% extends "scout/base.html" %}
+{% load staticfiles %}
+{% load scout_filters %}
+
+{% block title %}{{spot.name}}{% endblock %}
+
+{% block web_content %}
+
+<div id="page_{{spot.spot_id}}" class="scout-content">
+
+    <div class="scout-details-container" role="main">
+
+        <h2 class="visually-hidden">{{spot.name}}</h2>
+
+        <div class="scout-card scout-details-card" data-latitude="{{ spot.latitude }}" data-longitude="{{ spot.longitude }}" data-spotname="{{ spot.name }}" data-building="{{ spot.building_name }}">
+
+            <h3 class="visually-hidden">Overview</h3>
+
+            {% if spot.images %}
+            <div class="scout-spot-image" style="background-image: linear-gradient(rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0)), url('/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}?width=500');">
+            {% else %}
+            <div class="scout-spot-image" style="background: #e5e6e9 url('{% static "scout/img/placeholder-1000.png" %}') no-repeat center center; background-size: contain;">
+            {% endif %}
+
+            </div>
+
+            <h4 class="visually-hidden">Study stuff</h4>
+
+            <div class="sticky">
+                <div class="scout-spot-meta clearfix">
+
+                    <div class="scout-spot-name">{{spot.name}}</div>
+                    <div class="scout-spot-type">
+                        {% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}</span>{% endfor %}
+                    </div>
+
+                    <div class="scout-spot-food-served">
+                        <label>Has stuff...</label>
+                        {% if spot.foodtype_names %}
+                            {% for foodtype in spot.foodtype_names %}
+                                <span>{{ foodtype }}</span>
+                            {% endfor %}
+                        {% else %} <span style="color:red;">missing has items</span> {% endif %}
+                    </div>
+
+                </div>
+
+                {% if spot.has_alert %}
+                <div class="scout-spot-alert">
+                    <i class="fa fa-exclamation-triangle"></i> {{ spot.alert_notes }}
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="scout-spot-contact-info">
+
+                <h4 class="visually-hidden">Contact information</h4>
+
+                {% if spot.phone %}
+                <div class="scout-spot-phone">
+                    <a href="tel:+1{{ spot.phone }}">
+                        <span class="visually-hidden">Restaurant phone:</span>
+                        <span class="fa-stack fa-lg">
+                          <i class="fa fa-circle fa-stack-2x"></i>
+                          <i class="fa fa-phone fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <span class="scout-spot-action-text">{{ spot.phone | format_phone }}</span>
+                    </a>
+                </div>
+                {% endif %}
+
+                {% if spot.website_url %}
+                <div class="scout-spot-website">
+                    <a href="{{spot.website_url}}" target="_blank">
+                        <span class="visually-hidden">Website URL:</span>
+                        <span class="fa-stack fa-lg">
+                          <i class="fa fa-circle fa-stack-2x"></i>
+                          <i class="fa fa-laptop fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <span class="scout-spot-action-text">{{spot.website_url}}</span>
+                    </a>
+                </div>
+                {% endif %}
+
+                {% if spot.menu_url %}
+                <h4 class="visually-hidden">Menu information</h4>
+                <div class="scout-spot-menu">
+                    <a href="{{spot.menu_url}}" target="_blank">
+                        <span class="visually-hidden">Restaurant menu URL:</span>
+                        <span class="fa-stack fa-lg">
+                          <i class="fa fa-circle fa-stack-2x"></i>
+                          <i class="fa fa-cutlery fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <span class="scout-spot-action-text">{{spot.menu_url}}</span>
+                    </a>
+                </div>
+                {% endif %}
+
+            </div>
+
+        </div>
+
+        <div class="scout-spot-content">
+
+            <div class="scout-card">
+                <div class="scout-spot-hours">
+                    <h3>Hours</h3>
+                    <h4 class="visually-hidden">Open hours</h4>
+                    <ul style="margin-bottom: 15px;">
+                        <li><span class="day">Monday:</span> {% for hours in spot.hours.monday %}{% if not forloop.first %}, {% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|remove_periods }}{% empty %}<span class="closed">Closed</span>{% endfor %}</li>
+                        <li><span class="day">Tuesday:</span> {% for hours in spot.hours.tuesday %}{% if not forloop.first %}, {% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|remove_periods }}{% empty %}<span class="closed">Closed</span>{% endfor %}</li>
+                        <li><span class="day">Wednesday:</span> {% for hours in spot.hours.wednesday %}{% if not forloop.first %}, {% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|remove_periods }}{% empty %}<span class="closed">Closed</span>{% endfor %}</li>
+                        <li><span class="day">Thursday:</span> {% for hours in spot.hours.thursday %}{% if not forloop.first %}, {% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|remove_periods }}{% empty %}<span class="closed">Closed</span>{% endfor %}</li>
+                        <li><span class="day">Friday:</span> {% for hours in spot.hours.friday %}{% if not forloop.first %}, {% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|remove_periods }}{% empty %}<span class="closed">Closed</span>{% endfor %}</li>
+                        <li><span class="day">Saturday:</span> {% for hours in spot.hours.saturday %}{% if not forloop.first %}, {% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|remove_periods }}{% empty %}<span class="closed">Closed</span>{% endfor %}</li>
+                        <li><span class="day">Sunday:</span> {% for hours in spot.hours.sunday %}{% if not forloop.first %}, {% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|remove_periods }}{% empty %}<span class="closed">Closed</span>{% endfor %}</li>
+                    </ul>
+
+                    {% if spot.hours_notes %}
+                    <h4><i class="fa fa-file-text"></i> Notes</h4>
+                    <div class="scout-spot-notes">{{spot.hours_notes}}</div>
+                    {% endif %}
+
+                    {% if spot.display_access_restrictions %}
+                    <h4><i class="fa fa-file-text"></i> Access Notes</h4>
+                    <div class="scout-spot-notes">{{spot.access_notes}}</div>
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+            <div class="scout-card">
+
+                <div class="scout-spot-location">
+                    <h3>Location</h3>
+
+                    <h4 class="visually-hidden">Building information</h4>
+                    <div class="scout-spot-building-info">
+                        <ul>
+                            {% if spot.building_name %}<li>{{ spot.building_name }}</li>{% endif %}
+                            {% if spot.floor %}<li>{{ spot.floor }}</li>{% endif %}
+                            {% if spot.room_number %}<li>{{ spot.room_number }}</li>{% endif %}
+                        </ul>
+                    </div>
+
+                </div>
+
+                {% if request.is_mobile %}
+                <h4 class="visually-hidden">Map</h4>
+                <div class="scout-spot-map">
+                    <div id="detail_map" data-mobile="true" style="height:100%;"></div>
+                </div>
+                {% endif %}
+
+                <div class="scout-spot-map-link">
+                    {% if request.is_ios %}
+                    <a href="maps://maps.apple.com/maps?q={{ spot.latitude }},{{ spot.longitude }}" target="_blank">
+                        <span class="fa-stack fa-lg">
+                          <i class="fa fa-circle fa-stack-2x"></i>
+                          <i class="fa fa-apple fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <span class="scout-map-action-text">Launch Apple Maps</span>
+                    </a>
+                    {% else %}
+                    <a href="//maps.google.com/maps?q={{ spot.latitude }},{{ spot.longitude }}" target="_blank">
+                        <span class="fa-stack fa-lg">
+                          <i class="fa fa-circle fa-stack-2x"></i>
+                          <i class="fa fa-google fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <span class="scout-map-action-text">Launch Google Maps</span>
+                    </a>
+                    {% endif %}
+                </div>
+
+            </div>
+
+            <div class="scout-card">
+                <h3>Details</h3>
+
+                {% if spot.location_description %}
+                <h4 class="visually-hidden">Description</h4>
+                <div class="scout-spot-description">{{spot.location_description}}</div>
+                {% endif %}
+
+                {% if spot.has_reservation %}
+                <h4><i class="fa fa-bookmark"></i> Reservations</h4>
+                <div class="scout-spot-reservation">{{spot.reservation_notes}}</div>
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block secondary_content %}
+<!-- show a map on the list page -->
+<div id="study_detail_map" class="scout-spot-detail-map" style="height:100%;"></div>
+{% endblock %}
