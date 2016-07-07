@@ -392,6 +392,8 @@ var Map = {
                 }
             }).addTo(map);
 
+            var circle = L.circleMarker([47.65381, -122.307815], {radius: 30, color: '#c0392b'}).addTo(map);
+
         }
 
     },
