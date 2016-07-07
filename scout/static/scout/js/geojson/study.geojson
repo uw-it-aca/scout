@@ -8,7 +8,8 @@
                 "marker-size": "small",
                 "marker-symbol": "circle-stroked",
                 "title": "Lobby Area",
-                "description": "Fishery Sciences (FSH)"
+                "description": "Fishery Sciences (FSH)",
+                "id": "4227"
             },
             "geometry": {
                 "type": "Point",
@@ -25,7 +26,8 @@
                 "marker-size": "small",
                 "marker-symbol": "circle-stroked",
                 "title": "SAFS Student Lounge",
-                "description": "Fishery Sciences (FSH)"
+                "description": "Fishery Sciences (FSH)",
+                "id": "4227"
             },
             "geometry": {
                 "type": "Point",
@@ -42,7 +44,8 @@
                 "marker-size": "small",
                 "marker-symbol": "circle-stroked",
                 "title": "College of Ed Meeting Room",
-                "description": "Miller Hall (MLR)"
+                "description": "Miller Hall (MLR)",
+                "id": "4227"
             },
             "geometry": {
                 "type": "Point",
@@ -59,7 +62,8 @@
                 "marker-size": "small",
                 "marker-symbol": "circle-stroked",
                 "title": "Orin&#39;s Place",
-                "description": "Paccar Hall (PCAR)"
+                "description": "Paccar Hall (PCAR)",
+                "id": "4227"
             },
             "geometry": {
                 "type": "Point",
@@ -76,7 +80,8 @@
                 "marker-size": "small",
                 "marker-symbol": "circle-stroked",
                 "title": "Team Room 228",
-                "description": "Paccar Hall (PCAR)"
+                "description": "Paccar Hall (PCAR)",
+                "id": "4227"
             },
             "geometry": {
                 "type": "Point",
@@ -93,7 +98,8 @@
                 "marker-size": "small",
                 "marker-symbol": "circle-stroked",
                 "title": "Team Room 115",
-                "description": "Business Hall (BHQ)"
+                "description": "Business Hall (BHQ)",
+                "id": "4227"
             },
             "geometry": {
                 "type": "Point",
@@ -110,7 +116,8 @@
                 "marker-size": "small",
                 "marker-symbol": "circle-stroked",
                 "title": "Cascade Room (North and South)",
-                "description": "Haggett Hall (HGT)"
+                "description": "Haggett Hall (HGT)",
+                "id": "4227"
             },
             "geometry": {
                 "type": "Point",
@@ -127,7 +134,8 @@
                 "marker-size": "small",
                 "marker-symbol": "circle-stroked",
                 "title": "Glass Room",
-                "description": "McMahon Hall (MCM)"
+                "description": "McMahon Hall (MCM)",
+                "id": "4227"
             },
             "geometry": {
                 "type": "Point",
@@ -144,7 +152,8 @@
                 "marker-size": "small",
                 "marker-symbol": "circle-stroked",
                 "title": "Poplar Room 105",
-                "description": "Poplar Hall (UTO)"
+                "description": "Poplar Hall (UTO)",
+                "id": "4227"
             },
             "geometry": {
                 "type": "Point",
@@ -161,7 +170,8 @@
                 "marker-size": "small",
                 "marker-symbol": "circle-stroked",
                 "title": "Room A",
-                "description": "McCarty Hall (MCC)"
+                "description": "McCarty Hall (MCC)",
+                "id": "4227"
             },
             "geometry": {
                 "type": "Point",
@@ -178,7 +188,8 @@
                 "marker-size": "small",
                 "marker-symbol": "circle-stroked",
                 "title": "Study Room 311D",
-                "description": "South Campus Center (SOCC)"
+                "description": "South Campus Center (SOCC)",
+                "id": "4227"
             },
             "geometry": {
                 "type": "Point",
@@ -195,7 +206,8 @@
                 "marker-size": "small",
                 "marker-symbol": "circle-stroked",
                 "title": "Study Room 1",
-                "description": "Paccar Hall (PCAR)"
+                "description": "Paccar Hall (PCAR)",
+                "id": "4227"
             },
             "geometry": {
                 "type": "Point",
@@ -212,7 +224,8 @@
                 "marker-size": "small",
                 "marker-symbol": "circle-stroked",
                 "title": "Gallery Study",
-                "description": "Allen Library (ALB) North"
+                "description": "Allen Library (ALB) North",
+                "id": "4227"
             },
             "geometry": {
                 "type": "Point",
@@ -229,7 +242,8 @@
                 "marker-size": "small",
                 "marker-symbol": "circle-stroked",
                 "title": "Suzzallo Reference Area",
-                "description": "Suzzallo Library (SUZ)"
+                "description": "Suzzallo Library (SUZ)",
+                "id": "4227"
             },
             "geometry": {
                 "type": "Point",
@@ -246,7 +260,8 @@
                 "marker-size": "small",
                 "marker-symbol": "circle-stroked",
                 "title": "Music Library",
-                "description": "Music Building (MUS)"
+                "description": "Music Building (MUS)",
+                "id": "4227"
             },
             "geometry": {
                 "type": "Point",

@@ -366,6 +366,10 @@ var Map = {
                     });
                     map.addLayer(clusterGroup);
                 })
+                .on('click', function(e) {
+                    //console.log(e.layer.feature.properties.id);
+                    List.scroll_to_spot('#' + e.layer.feature.properties.id);
+                 });
 
             // add user location marker to map
             L.mapbox.featureLayer({
