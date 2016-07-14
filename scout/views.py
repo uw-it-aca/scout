@@ -164,30 +164,30 @@ def tech_list_view(request):
 
 
 # hybrid
-def hybrid_list_view(request):
-    if len(request.GET) > 0:
-        spots = get_filtered_spots(request)
-    else:
-        spots = get_spot_list()
-    context = {"spots": spots}
-    return render_to_response('hybridize/list.html', context,
-                              context_instance=RequestContext(request))
-
-
-def hybrid_detail_view(request, spot_id):
-    spot = get_spot_by_id(spot_id)
-    context = {"spot": spot}
-    return render_to_response('hybridize/detail.html', context,
-                              context_instance=RequestContext(request))
-
-
 def hybrid_discover_view(request):
     return render_to_response('hybridize/discover.html',
                               context_instance=RequestContext(request))
 
 
-def hybrid_filter_view(request):
-    return render_to_response('hybridize/filter.html',
+def hybrid_food_list_view(request):
+    if len(request.GET) > 0:
+        spots = get_filtered_spots(request)
+    else:
+        spots = get_spot_list()
+    context = {"spots": spots}
+    return render_to_response('hybridize/food/list.html', context,
+                              context_instance=RequestContext(request))
+
+
+def hybrid_food_detail_view(request, spot_id):
+    spot = get_spot_by_id(spot_id)
+    context = {"spot": spot}
+    return render_to_response('hybridize/food/detail.html', context,
+                              context_instance=RequestContext(request))
+
+
+def hybrid_food_filter_view(request):
+    return render_to_response('hybridize/food/filter.html',
                               context_instance=RequestContext(request))
 
 

@@ -6,18 +6,26 @@
 
 {% block hybrid_content %}
 
+<div style="height:100px;">
+    <div>
+        <p>Filtering by:</p>
+        <p>Results: {{ spots|length }}</p>
+    </div>
+    <p><a style="display:block;" href="/h/food/filter/">Filter</a></p>
+</div>
+
 <div class="list-block media-list scout-list">
     <ul>
 
         {% for spot in spots %}
         <li>
-            <a href="/h/detail/{{ spot.spot_id }}/" class="item-link item-content">
+            <a href="/h/food/{{ spot.spot_id }}/" class="item-link item-content">
                 <div class="item-media">
 
                     {% if spot.images %}
                     <div class="scout-spot-image" style="background: url('/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}?width=100') no-repeat center center; background-size: contain !important; width:80px; height:80px">&nbsp;</div>
                     {% else %}
-                    <div class="scout-spot-image" style="background: #e5e6e9 url('{% static "scout/img/placeholder-200.png" %}') no-repeat center center; background-size: contain;">&nbsp;</div>
+                    <div class="scout-spot-image" style="background: #e5e6e9 url('{% static "scout/img/placeholder-200.png" %}') no-repeat center center; background-size: contain !important; width:80px; height:80px">&nbsp;</div>
                     {% endif %}
 
                 </div>

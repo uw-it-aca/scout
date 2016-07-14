@@ -38,13 +38,15 @@ urlpatterns = patterns(
     # hybrid urls
     url(r'^h/$', 'scout.views.hybrid_discover_view',
         name='hybrid_discover_view'),
-    url(r'^h/food/$', 'scout.views.hybrid_list_view', name='hybrid_list_view'),
-    url(r'^h/detail/(?P<spot_id>[0-9]{1,5})/$',
-        'scout.views.hybrid_detail_view', name='hybrid_detail_view'),
+    url(r'^h/food/$', 'scout.views.hybrid_food_list_view', name='hybrid_food_list_view'),
+    url(r'^h/food/(?P<spot_id>[0-9]{1,5})/$',
+        'scout.views.hybrid_food_detail_view', name='hybrid_food_detail_view'),
+    url(r'^h/food/filter/$', 'scout.views.hybrid_food_filter_view',
+        name='hybrid_food_filter_view'),
+
     url(r'^h/components/$', 'scout.views.hybrid_comps_view',
         name='hybrid_comps_view'),
-    url(r'^h/filter/$', 'scout.views.hybrid_filter_view',
-        name='hybrid_filter_view'),
+
 
 )
 
