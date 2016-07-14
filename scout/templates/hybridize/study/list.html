@@ -2,7 +2,7 @@
 {% load staticfiles %}
 {% load scout_filters %}
 
-{% block title %}Food{% endblock %}
+{% block title %}Study{% endblock %}
 
 {% block hybrid_content %}
 
@@ -11,7 +11,7 @@
         <p>Filtering by:</p>
         <p>Results: {{ spots|length }}</p>
     </div>
-    <p><a style="display:block;" href="/h/food/filter/">Filter</a></p>
+    <p><a style="display:block;" href="/h/study/filter/">Filter</a></p>
 </div>
 
 <div class="list-block media-list scout-list">
@@ -19,7 +19,7 @@
 
         {% for spot in spots %}
         <li>
-            <a href="/h/food/{{ spot.spot_id }}/" class="item-link item-content">
+            <a href="/h/study/{{ spot.spot_id }}/" class="item-link item-content">
                 <div class="item-media">
 
                     {% if spot.images %}
@@ -34,11 +34,7 @@
                         <div class="item-title">{{ spot.name }}</div>
                     </div>
                     <div class="item-subtitle">
-                        {% if spot.foodtype_names %}
-                            {% for foodtype in spot.foodtype_names %}
-                                <span>{{ foodtype }}</span>
-                            {% endfor %}
-                        {% else %} <span style="color:red;">foodtype</span> {% endif %}
+                        subtitle goes here
                     </div>
                     <div class="item-text">
                         <div style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{% if spot.building_name %}{{ spot.building_name }}{% else %} <span style="color:red;">missing building_name</span> {% endif %}</div>

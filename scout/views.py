@@ -173,7 +173,7 @@ def hybrid_food_list_view(request):
     if len(request.GET) > 0:
         spots = get_filtered_spots(request)
     else:
-        spots = get_spot_list()
+        spots = get_spot_list('food')
     context = {"spots": spots}
     return render_to_response('hybridize/food/list.html', context,
                               context_instance=RequestContext(request))
@@ -188,6 +188,18 @@ def hybrid_food_detail_view(request, spot_id):
 
 def hybrid_food_filter_view(request):
     return render_to_response('hybridize/food/filter.html',
+                              context_instance=RequestContext(request))
+
+
+def hybrid_study_list_view(request):
+    # if len(request.GET) > 0:
+        # TODO: not yet working, get study spots by filter
+        # spots = get_filtered_spots(request)
+    # else:
+    spots = get_spot_list()
+    context = {"spots": spots,
+               "count": len(spots)}
+    return render_to_response('hybridize/study/list.html', context,
                               context_instance=RequestContext(request))
 
 
