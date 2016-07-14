@@ -97,56 +97,109 @@ def discover_card_view(request, discover_category):
                               context_instance=RequestContext(request))
 
 
-def filter_view(request):
-    return render_to_response('scout/filter.html',
-                              context_instance=RequestContext(request))
-
-
-def list_view(request):
+# food
+def food_list_view(request):
     if len(request.GET) > 0:
         spots = get_filtered_spots(request)
     else:
-        spots = get_spot_list()
-    context = {"spots": spots}
-    return render_to_response('scout/list.html', context,
+        spots = get_spot_list('food')
+    context = {"spots": spots,
+               "count": len(spots),
+               "app_type": 'food'}
+    return render_to_response('scout/food/list.html', context,
                               context_instance=RequestContext(request))
 
 
-def detail_view(request, spot_id):
+def food_detail_view(request, spot_id):
     spot = get_spot_by_id(spot_id)
     if not spot:
         raise Http404("Spot does not exist")
 
     context = {"spot": spot}
-    return render_to_response('scout/detail.html', context,
+    return render_to_response('scout/food/detail.html', context,
                               context_instance=RequestContext(request))
 
 
-# hybrid views
-def hybrid_list_view(request):
-    if len(request.GET) > 0:
-        spots = get_filtered_spots(request)
-    else:
-        spots = get_spot_list()
-    context = {"spots": spots}
-    return render_to_response('hybridize/list.html', context,
+def food_filter_view(request):
+    return render_to_response('scout/food/filter.html',
                               context_instance=RequestContext(request))
 
 
-def hybrid_detail_view(request, spot_id):
+# study
+def study_list_view(request):
+    # if len(request.GET) > 0:
+        # TODO: not yet working, get study spots by filter
+        # spots = get_filtered_spots(request)
+    # else:
+    spots = get_spot_list()
+    context = {"spots": spots,
+               "count": len(spots)}
+    return render_to_response('scout/study/list.html', context,
+                              context_instance=RequestContext(request))
+
+
+def study_detail_view(request, spot_id):
     spot = get_spot_by_id(spot_id)
+    if not spot:
+        raise Http404("Spot does not exist")
+
     context = {"spot": spot}
-    return render_to_response('hybridize/detail.html', context,
+    return render_to_response('scout/study/detail.html', context,
                               context_instance=RequestContext(request))
 
 
+def study_filter_view(request):
+    return render_to_response('scout/study/filter.html',
+                              context_instance=RequestContext(request))
+
+
+# tech
+def tech_list_view(request):
+    spots = get_spot_list('tech')
+    context = {"spots": spots,
+               "count": len(spots),
+               "app_type": 'tech'}
+    return render_to_response('scout/tech/list.html', context,
+                              context_instance=RequestContext(request))
+
+
+# hybrid
 def hybrid_discover_view(request):
     return render_to_response('hybridize/discover.html',
                               context_instance=RequestContext(request))
 
 
-def hybrid_filter_view(request):
-    return render_to_response('hybridize/filter.html',
+def hybrid_food_list_view(request):
+    if len(request.GET) > 0:
+        spots = get_filtered_spots(request)
+    else:
+        spots = get_spot_list('food')
+    context = {"spots": spots}
+    return render_to_response('hybridize/food/list.html', context,
+                              context_instance=RequestContext(request))
+
+
+def hybrid_food_detail_view(request, spot_id):
+    spot = get_spot_by_id(spot_id)
+    context = {"spot": spot}
+    return render_to_response('hybridize/food/detail.html', context,
+                              context_instance=RequestContext(request))
+
+
+def hybrid_food_filter_view(request):
+    return render_to_response('hybridize/food/filter.html',
+                              context_instance=RequestContext(request))
+
+
+def hybrid_study_list_view(request):
+    # if len(request.GET) > 0:
+        # TODO: not yet working, get study spots by filter
+        # spots = get_filtered_spots(request)
+    # else:
+    spots = get_spot_list()
+    context = {"spots": spots,
+               "count": len(spots)}
+    return render_to_response('hybridize/study/list.html', context,
                               context_instance=RequestContext(request))
 
 
@@ -160,6 +213,9 @@ def image_view(request, image_id, spot_id):
     width = request.GET.get('width', None)
     try:
         resp, content = get_image(spot_id, image_id, width)
-        return HttpResponse(content, content_type=resp['content-type'])
+        etag = resp.get('etag', None)
+        response = HttpResponse(content, content_type=resp['content-type'])
+        response['etag'] = etag
+        return response
     except Exception:
         raise Http404()

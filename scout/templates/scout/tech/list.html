@@ -1,0 +1,235 @@
+{% extends "scout/base.html" %}
+{% load staticfiles %}
+{% load scout_filters %}
+
+{% block title %}Places to Technology{% endblock %}
+
+{% block web_content %}
+
+<div id="page_study" class="scout-content">
+
+    {% include "scout/include/user_geolocation.html" %}
+
+    <!-- tech filter results -->
+    <div class="scout-filter-results">
+        <div class="scout-filter-results-by">
+            <label>Category:</label>
+            <ul>
+                <li>Laptop Computer</li>
+                <li>Data Projector</li>
+                <li>Digital Camera</li>
+                <li>Digital Video Camera</li>
+                <li>Flatbed Scanner</li>
+                <li>3D Printer</li>
+                <li>Tablet PC</li>
+                <li>Projection Screen</li>
+                <li>Portable Audio System</li>
+                <li>CD Recorder</li>
+                <li>External Hard Drive</li>
+                <li>Shotgun Microphone</li>
+                <li>Calculator</li>
+            </ul>
+        </div>
+        <div class="scout-filter-results-results clearfix">
+            <label>Results:</label>
+            <div class="scout-filter-results-count">{{ spots|length }}</div>
+            <div class="scout-filter-results-actions">
+                <a href="/tech/filter/" id="tech_link_filter" title="Filter list of food places on campus">
+                    <i class="fa fa-sliders fa-inverse"></i>
+                    <span class="scout-filter-results-action">Filter Tech</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- tech list -->
+    <div class="scout-list-container" style="position:relative;" role="main">
+
+        <h2 class="scout-list-header visually-hidden">List of tech (by distance)</h2>
+
+        <ol id="scout_tech_list" class="scout-card scout-list">
+
+            <li style="background:#aaa;"><strong>SPACE NAME 1</strong></li>
+
+            <ol style="margin:0; padding:0;">
+                <li class="scout-list-item" id="">
+                    <a class="clearfix" href="">
+                        <div class="scout-spot-image" style="background-image: url('{% static "scout/img/solidoodle.jpg" %}')">&nbsp;</div>
+                        <div class="scout-spot-content">
+                            <div style="padding-left: 10px;">
+
+                                <h3 class="scout-spot-name">Solidoodle 4 (Black)</h3>
+                                <div class="scout-spot-location">
+                                    <span class="scout-spot-distance"><span class="visually-hidden">Distance from you:</span><span class="distance-number">-</span>&nbsp;ft.</span>&nbsp;&nbsp;
+                                    {% if spot.building_name %}{{ spot.building_name }}{% else %}<span style="color:red;">missing building_name</span>{% endif %}
+                                </div>
+
+                                {% if is_desktop %}
+                                <span class="scout-spot-type">{% if spot.spot_types %}{% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}</span>{% endfor %}{% else %} <span style="color:red;">ITEM_CATEGORY</span> {% endif %}</span>
+                                {% endif %}
+
+                                <span class="scout-spot-status">{% if spot.is_open %}<span class="open visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</span>
+
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <li class="scout-list-item" id="">
+                    <a class="clearfix" href="">
+                        <div class="scout-spot-image" style="background-image: url('{% static "scout/img/nikon.jpg" %}')">&nbsp;</div>
+                        <div class="scout-spot-content">
+                            <div style="padding-left: 10px;">
+
+                                <h3 class="scout-spot-name">Nikon D7000 DSLR Camera</h3>
+                                <div class="scout-spot-location">
+                                    <span class="scout-spot-distance"><span class="visually-hidden">Distance from you:</span><span class="distance-number">-</span>&nbsp;ft.</span>&nbsp;&nbsp;
+                                    {% if spot.building_name %}{{ spot.building_name }}{% else %}<span style="color:red;">missing building_name</span>{% endif %}
+                                </div>
+
+                                {% if is_desktop %}
+                                <span class="scout-spot-type">{% if spot.spot_types %}{% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}</span>{% endfor %}{% else %} <span style="color:red;">ITEM_CATEGORY</span> {% endif %}</span>
+                                {% endif %}
+
+                                <span class="scout-spot-status">{% if spot.is_open %}<span class="open visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</span>
+
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <li class="scout-list-item" id="">
+                    <a class="clearfix" href="">
+                        <div class="scout-spot-image" style="background-image: url('{% static "scout/img/macbook-pro.jpg" %}')">&nbsp;</div>
+                        <div class="scout-spot-content">
+                            <div style="padding-left: 10px;">
+
+                                <h3 class="scout-spot-name">Apple Macbook Pro 2011</h3>
+                                <div class="scout-spot-location">
+                                    <span class="scout-spot-distance"><span class="visually-hidden">Distance from you:</span><span class="distance-number">-</span>&nbsp;ft.</span>&nbsp;&nbsp;
+                                    {% if spot.building_name %}{{ spot.building_name }}{% else %}<span style="color:red;">missing building_name</span>{% endif %}
+                                </div>
+
+                                {% if is_desktop %}
+                                <span class="scout-spot-type">{% if spot.spot_types %}{% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}</span>{% endfor %}{% else %} <span style="color:red;">ITEM_CATEGORY</span> {% endif %}</span>
+                                {% endif %}
+
+                                <span class="scout-spot-status">{% if spot.is_open %}<span class="open visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</span>
+
+                            </div>
+                        </div>
+                    </a>
+                </li>
+            </ol>
+
+            <li style="background:#aaa;"><strong>SPACE NAME 2</strong></li>
+
+            <ol style="margin:0; padding:0;">
+                <li class="scout-list-item" id="">
+                    <a class="clearfix" href="">
+                        <div class="scout-spot-image" style="background-image: url('{% static "scout/img/solidoodle.jpg" %}')">&nbsp;</div>
+                        <div class="scout-spot-content">
+                            <div style="padding-left: 10px;">
+
+                                <h3 class="scout-spot-name">Solidoodle 4 (Black)</h3>
+                                <div class="scout-spot-location">
+                                    <span class="scout-spot-distance"><span class="visually-hidden">Distance from you:</span><span class="distance-number">-</span>&nbsp;ft.</span>&nbsp;&nbsp;
+                                    {% if spot.building_name %}{{ spot.building_name }}{% else %}<span style="color:red;">missing building_name</span>{% endif %}
+                                </div>
+
+                                {% if is_desktop %}
+                                <span class="scout-spot-type">{% if spot.spot_types %}{% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}</span>{% endfor %}{% else %} <span style="color:red;">ITEM_CATEGORY</span> {% endif %}</span>
+                                {% endif %}
+
+                                <span class="scout-spot-status">{% if spot.is_open %}<span class="open visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</span>
+
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <li class="scout-list-item" id="">
+                    <a class="clearfix" href="">
+                        <div class="scout-spot-image" style="background-image: url('{% static "scout/img/nikon.jpg" %}')">&nbsp;</div>
+                        <div class="scout-spot-content">
+                            <div style="padding-left: 10px;">
+
+                                <h3 class="scout-spot-name">Nikon D7000 DSLR Camera</h3>
+                                <div class="scout-spot-location">
+                                    <span class="scout-spot-distance"><span class="visually-hidden">Distance from you:</span><span class="distance-number">-</span>&nbsp;ft.</span>&nbsp;&nbsp;
+                                    {% if spot.building_name %}{{ spot.building_name }}{% else %}<span style="color:red;">missing building_name</span>{% endif %}
+                                </div>
+
+                                {% if is_desktop %}
+                                <span class="scout-spot-type">{% if spot.spot_types %}{% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}</span>{% endfor %}{% else %} <span style="color:red;">ITEM_CATEGORY</span> {% endif %}</span>
+                                {% endif %}
+
+                                <span class="scout-spot-status">{% if spot.is_open %}<span class="open visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</span>
+
+                            </div>
+                        </div>
+                    </a>
+                </li>
+            </ol>
+
+        </ol>
+
+        <div id="tech_list_loading">
+            <p class="visually-hidden">loading...</p>
+            <div class="sk-fading-circle" aria-hidden="true">
+                <div class="sk-circle1 sk-circle"></div>
+                <div class="sk-circle2 sk-circle"></div>
+                <div class="sk-circle3 sk-circle"></div>
+                <div class="sk-circle4 sk-circle"></div>
+                <div class="sk-circle5 sk-circle"></div>
+                <div class="sk-circle6 sk-circle"></div>
+                <div class="sk-circle7 sk-circle"></div>
+                <div class="sk-circle8 sk-circle"></div>
+                <div class="sk-circle9 sk-circle"></div>
+                <div class="sk-circle10 sk-circle"></div>
+                <div class="sk-circle11 sk-circle"></div>
+                <div class="sk-circle12 sk-circle"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <script type="text/javascript">
+        window.spot_locations = {
+            {% for spot in spots %}
+                '{{ spot.spot_id }}': {
+                    "spot_name": '{{ spot.name }}',
+                        "id": '{{ spot.spot_id }}',
+                        "building": '{{ spot.building_name }}',
+                        "lat": '{{ spot.latitude }}',
+                        "lng": '{{ spot.longitude }}',
+                },
+            {% endfor %}
+        };
+    </script>
+
+</div>
+
+{% endblock %}
+
+{% block secondary_content %}
+
+<!-- show a map on the list page -->
+<div id="study_list_map" class="scout-spot-list-map" style="height:100%; background: #ddd !important;">
+    <div class="scout-spot-list-map-loading" style="position:absolute; top: 50%; left: 50%; margin-left:-15px; margin-top: -110px; z-index:9999;">
+        <p class="visually-hidden">loading...</p>
+        <div class="sk-fading-circle" aria-hidden="true">
+            <div class="sk-circle1 sk-circle"></div>
+            <div class="sk-circle2 sk-circle"></div>
+            <div class="sk-circle3 sk-circle"></div>
+            <div class="sk-circle4 sk-circle"></div>
+            <div class="sk-circle5 sk-circle"></div>
+            <div class="sk-circle6 sk-circle"></div>
+            <div class="sk-circle7 sk-circle"></div>
+            <div class="sk-circle8 sk-circle"></div>
+            <div class="sk-circle9 sk-circle"></div>
+            <div class="sk-circle10 sk-circle"></div>
+            <div class="sk-circle11 sk-circle"></div>
+            <div class="sk-circle12 sk-circle"></div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

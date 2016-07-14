@@ -2,22 +2,30 @@
 {% load staticfiles %}
 {% load scout_filters %}
 
-{% block title %}Places{% endblock %}
+{% block title %}Study{% endblock %}
 
 {% block hybrid_content %}
+
+<div style="height:100px;">
+    <div>
+        <p>Filtering by:</p>
+        <p>Results: {{ spots|length }}</p>
+    </div>
+    <p><a style="display:block;" href="/h/study/filter/">Filter</a></p>
+</div>
 
 <div class="list-block media-list scout-list">
     <ul>
 
         {% for spot in spots %}
         <li>
-            <a href="/h/detail/{{ spot.spot_id }}/" class="item-link item-content">
+            <a href="/h/study/{{ spot.spot_id }}/" class="item-link item-content">
                 <div class="item-media">
 
                     {% if spot.images %}
                     <div class="scout-spot-image" style="background: url('/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}?width=100') no-repeat center center; background-size: contain !important; width:80px; height:80px">&nbsp;</div>
                     {% else %}
-                    <div class="scout-spot-image" style="background: #e5e6e9 url('{% static "scout/img/placeholder-200.png" %}') no-repeat center center; background-size: contain;">&nbsp;</div>
+                    <div class="scout-spot-image" style="background: #e5e6e9 url('{% static "scout/img/placeholder-200.png" %}') no-repeat center center; background-size: contain !important; width:80px; height:80px">&nbsp;</div>
                     {% endif %}
 
                 </div>
@@ -26,11 +34,7 @@
                         <div class="item-title">{{ spot.name }}</div>
                     </div>
                     <div class="item-subtitle">
-                        {% if spot.foodtype_names %}
-                            {% for foodtype in spot.foodtype_names %}
-                                <span>{{ foodtype }}</span>
-                            {% endfor %}
-                        {% else %} <span style="color:red;">foodtype</span> {% endif %}
+                        subtitle goes here
                     </div>
                     <div class="item-text">
                         <div style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{% if spot.building_name %}{{ spot.building_name }}{% else %} <span style="color:red;">missing building_name</span> {% endif %}</div>

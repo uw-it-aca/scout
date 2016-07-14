@@ -112,3 +112,11 @@ body { overflow: hidden; }
         &:hover { text-decoration: underline; }
     }
 }
+
+// mapbox overrides
+
+.marker-cluster div { color: #fff; }
+
+.marker-cluster-small, .marker-cluster-medium { background: #ddd !important; // outer border color
+    div { background: #6564a8 !important; } // inner circler
+}

@@ -11,10 +11,8 @@
     {% if spot.images %}
     <div style="background:url('/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}?width=500') center center no-repeat; background-size:contain; height:200px;" valign="bottom" class="card-header">{{spot.name}}</div>
     {% else %}
-    <div class="scout-spot-image" style="background: #e5e6e9 url('{% static "scout/img/placeholder-1000.png" %}') no-repeat center center; background-size: contain;">
+    <div style="background: #e5e6e9 url('{% static "scout/img/placeholder-1000.png" %}') no-repeat center center; background-size: contain; height:200px;" valign="bottom" class="card-header">{{spot.name}}</div>
     {% endif %}
-
-
 
     <div class="card-content">
         <div class="card-content-inner">

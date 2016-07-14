@@ -28,12 +28,12 @@ var List = {
             }
         });
 
-        $("#scout_list").append(spots);
+        $("#scout_food_list").append(spots);
     },
 
     init: function () {
         $(document).on("location_changed", function() {
-            Geolocation.display_location_status();
+            //Geolocation.display_location_status();
             List.add_spot_distances();
             List.order_spot_list();
             List.set_list_is_visible(true);
@@ -47,13 +47,13 @@ var List = {
 
     set_list_is_visible: function(is_visible) {
         if(is_visible){
-            $("#scout_list").show();
-            $("#list_loading").hide();
-            $("#list_loading").attr("aria-hidden", "false");
+            $("#scout_food_list").show();
+            $("#food_list_loading").hide();
+            $("#food_list_loading").attr("aria-hidden", "false");
         } else {
-            $("#scout_list").hide();
-            $("#list_loading").show();
-            $("#list_loading").attr("aria-hidden", "false");
+            $("#scout_food_list").hide();
+            $("#food_list_loading").show();
+            $("#food_list_loading").attr("aria-hidden", "false");
         }
     },
 

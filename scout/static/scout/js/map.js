@@ -2,14 +2,30 @@ var Map = {
 
     init_map: function () {
         $(document).on("location_changed", function() {
-            // list map... location on list.html and map.html (mobile and desktop)
-            if( $("#list_map").length > 0 ) {
+
+            // food list map
+            if( $("#list_map").length) {
+                console.log("food list map initilaized");
                 Map.initializeListMap();
             }
             //detail page map
             if($("#detail_map").length > 0) {
+                console.log("food detail map initilaized");
                 Map.initializeDetailMap();
             }
+
+            // study list map
+            if( $("#study_list_map").length > 0 ) {
+                console.log("study list map initilaized");
+                Map.init_study_list_map();
+            }
+
+            // study detail map
+            if( $("#study_detail_map").length > 0 ) {
+                console.log("study detail map initilaized");
+                Map.init_study_detail_map();
+            }
+
         });
         // handle map stuff for window resize
         $(window).resize(function() {
@@ -91,6 +107,7 @@ var Map = {
 
                 // pulsate the user location marker
                 /**
+
                 var direction = 1;
                 var rmin = 20, rmax = 50;
                 setInterval(function() {
@@ -106,7 +123,6 @@ var Map = {
                 window.user_location_marker = locationMarker;
 
             }
-
 
             map.setOptions({styles: styles});
 
@@ -152,7 +168,7 @@ var Map = {
                         //map.setZoom(18);
 
                         //Wrap the content inside an HTML DIV in order to set height and width of InfoWindow.
-                        infoWindow.setContent("<div><strong>"+data.spot_name+"</strong><br>"+data.building+"<br><a href='/detail/"+data.id+"'>View details</a></div>");
+                        infoWindow.setContent("<div><strong>"+data.spot_name+"</strong><br>"+data.building+"<br><a href='/food/"+data.id+"'>View details</a></div>");
                         infoWindow.open(map, marker);
 
                         $('li').css('background', 'none'); // clear any highlighted spots first
@@ -318,5 +334,120 @@ var Map = {
 
         }
 
-    }
+    },
+
+    init_study_list_map: function() {
+
+        var mapExists = document.getElementById("study_list_map");
+
+        if(mapExists) {
+
+            L.mapbox.accessToken = 'pk.eyJ1IjoiY2hhcmxvbnBhbGFjYXkiLCJhIjoiY2lpMHYwZ3I2MDUzbHQzbTFnaWRmZnV1NCJ9.WkswXwuPmbIDcYFdV096Aw';
+            var map = L.mapbox.map('study_list_map', 'mapbox.streets')
+                .setView([47.653811, -122.307815], 17);
+
+            // As with any other AJAX request, this technique is subject to the Same Origin Policy:
+            // http://en.wikipedia.org/wiki/Same_origin_policy
+            // So the CSV file must be on the same domain as the Javascript, or the server
+            // delivering it should support CORS.
+            var featureLayer = L.mapbox.featureLayer()
+                .loadURL('/static/scout/js/geojson/study.geojson')
+                .on('ready', function(e) {
+
+                    // fit the markers onto the map bounds
+                    featureLayer.eachLayer(function(layer) {
+                        map.fitBounds(featureLayer.getBounds());
+                    });
+
+                    // handle marker clustering
+                    var clusterGroup = new L.MarkerClusterGroup();
+                    e.target.eachLayer(function(layer) {
+                       clusterGroup.addLayer(layer);
+                    });
+                    map.addLayer(clusterGroup);
+                })
+                .on('click', function(e) {
+                    //console.log(e.layer.feature.properties.id);
+                    List.scroll_to_spot('#' + e.layer.feature.properties.id);
+                 });
+
+            // add user location marker to map
+            L.mapbox.featureLayer({
+                // this feature is in the GeoJSON format: see geojson.org
+                // for the full specification
+                type: 'Feature',
+                geometry: {
+                    type: 'Point',
+                    // coordinates here are in longitude, latitude order because
+                    // x, y is the standard for GeoJSON and many formats
+                    coordinates: [
+                      -122.307815,
+                      47.65381
+                    ]
+                },
+                properties: {
+                    title: 'Your location',
+                    description: 'swimming in the fountain',
+                    // one can customize markers by adding simplestyle properties
+                    // https://www.mapbox.com/guides/an-open-platform/#simplestyle
+                    'marker-size': 'small',
+                    'marker-color': '#c0392b',
+                    'marker-symbol': 'circle-stroked'
+                }
+            }).addTo(map);
+
+            var circle = L.circleMarker([47.65381, -122.307815], {radius: 30, color: '#c0392b'}).addTo(map);
+
+        }
+
+    },
+
+    init_study_detail_map: function() {
+
+        var mapExists = document.getElementById("study_detail_map");
+
+        if(mapExists) {
+
+            // get spot location from data attributes
+            var spot_lat = $(".scout-card").data("latitude");
+            var spot_lng = $(".scout-card").data("longitude");
+            var spot_name = $(".scout-card").data("spotname");
+            var spot_building = $(".scout-card").data("building");
+
+            L.mapbox.accessToken = 'pk.eyJ1IjoiY2hhcmxvbnBhbGFjYXkiLCJhIjoiY2lpMHYwZ3I2MDUzbHQzbTFnaWRmZnV1NCJ9.WkswXwuPmbIDcYFdV096Aw';
+            var map = L.mapbox.map('study_detail_map', 'mapbox.streets')
+                .setView([spot_lat, spot_lng], 18);
+
+            // add user location marker to map
+            L.mapbox.featureLayer({
+                // this feature is in the GeoJSON format: see geojson.org
+                // for the full specification
+                type: 'Feature',
+                geometry: {
+                    type: 'Point',
+                    // coordinates here are in longitude, latitude order because
+                    // x, y is the standard for GeoJSON and many formats
+                    coordinates: [
+                      spot_lng,
+                      spot_lat
+                    ]
+                },
+                properties: {
+                    title: spot_name,
+                    description: spot_building,
+                    // one can customize markers by adding simplestyle properties
+                    // https://www.mapbox.com/guides/an-open-platform/#simplestyle
+                    'marker-size': 'medium',
+                    'marker-color': '#6564a8',
+                    'marker-symbol': 'circle-stroked'
+                }
+            }).addTo(map);
+
+        }
+
+    },
+
+
+
+
 };

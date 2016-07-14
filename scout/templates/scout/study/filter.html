@@ -1,0 +1,101 @@
+{% extends "scout/base.html" %}
+{% load staticfiles %}
+
+{% block title %}Filter places{% endblock %}
+
+{% block web_content %}
+<div id="page_filter" class="scout-content">
+
+    <h2 class="visually-hidden">Filter</h2>
+
+    <div class="scout-filter-container">
+
+        <form>
+            <div class="scout-card clearfix">
+                <fieldset>
+                    <legend>Campus</legend>
+                    <div id="campus_select">
+                        <label><input type="checkbox" name="seattle" value="seattle" />Seattle</label>
+                        <label><input type="checkbox" name="bothell" value="bothell" />Bothell</label>
+                        <label><input type="checkbox" name="tacoma" value="tacoma" />Tacoma</label>
+                        <label><input type="checkbox" name="south_lake_union" value="south_lake_union" />South Lake Union</label>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="scout-card clearfix">
+                <fieldset class="scout-filter-split">
+                    <legend>Type</legend>
+                    <div id="type_select">
+                        <label><input type="checkbox" value="xxxxxx">Study room</label>
+                        <label><input type="checkbox" value="xxxxxx">Study area</label>
+                        <label><input type="checkbox" value="xxxxxx">Computer lab</label>
+                        <label><input type="checkbox" value="xxxxxx">Production studio</label>
+                        <label><input type="checkbox" value="xxxxxx">Conference/classroom</label>
+                        <label><input type="checkbox" value="xxxxxx">Open space</label>
+                        <label><input type="checkbox" value="xxxxxx">Lounge</label>
+                        <label><input type="checkbox" value="xxxxxx">Café</label>
+                        <label><input type="checkbox" value="xxxxxx">Outdoor area</label>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="scout-card clearfix">
+                <fieldset class="scout-filter-split">
+                    <legend>Resources</legend>
+                    <div id="type_select">
+                        <label><input type="checkbox" value="xxxxxx">Whiteboard</label>
+                        <label><input type="checkbox" value="xxxxxx">Outlets</label>
+                        <label><input type="checkbox" value="xxxxxx">Computer</label>
+                        <label><input type="checkbox" value="xxxxxx">Scanning</label>
+                        <label><input type="checkbox" value="xxxxxx">Large display (for laptop)</label>
+                        <label><input type="checkbox" value="xxxxxx">Projector</label>
+                        <label><input type="checkbox" value="xxxxxx">Prining</label>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="scout-card clearfix">
+
+                <fieldset>
+                    <legend>Noise level</legend>
+                    <div id="campus_select">
+                        <label><input type="checkbox" name="seattle" value="xxxxxx" />Silent</label>
+                        <label><input type="checkbox" name="bothell" value="xxxxxx" />Low hum</label>
+                        <label><input type="checkbox" name="tacoma" value="xxxxxx" />Chatter</label>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Food/coffee</legend>
+                    <div id="campus_select">
+                        <label><input type="checkbox" name="seattle" value="xxxxxx" />In space</label>
+                        <label><input type="checkbox" name="bothell" value="xxxxxx" />In building</label>
+                        <label><input type="checkbox" name="tacoma" value="xxxxxx" />In neighboring building</label>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Lighting</legend>
+                    <div id="campus_select">
+                        <label><input type="checkbox" name="seattle" value="xxxxxx" />Natural Light</label>
+                    </div>
+                </fieldset>
+
+            </div>
+
+            <div class="scout-filter-actions">
+                <button id="reset_study_button" type="button" class="action-cancel"><i class="fa fa-refresh"></i>Reset</button>&nbsp;&nbsp;
+                <button id="run_study_search" type="button"><i class="fa fa-list fa-inverse"></i>View Results</button>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+{% endblock %}
+
+{% block secondary_content %}
+<div style="background:url('{% static "scout/img/huskygrind.jpg" %}') no-repeat; background-size:cover; background-position:center center; position:absolute; top:0; bottom:0; width: 100%;">&nbsp;</div>
+{% endblock %}

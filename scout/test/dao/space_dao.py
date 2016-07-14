@@ -173,8 +173,9 @@ class SpaceDAOTest(TestCase):
         self.assertOpenPeriods(spot, (2016, 4, 24, 0, 0, 0), ())
 
     def test_get_spot_list(self):
-        spot_list = get_spot_list()
-        self.assertEqual(len(spot_list), 3)
+        self.assertEqual(len(get_spot_list(app_type='food')), 3)
+        self.assertEqual(len(get_spot_list(app_type='study')), 0)
+        self.assertEqual(len(get_spot_list(app_type='tech')), 0)
 
     def test_get_spots_by_filter_pasta_food_court(self):
         filtered_spots = get_spots_by_filter([

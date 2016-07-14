@@ -6,28 +6,55 @@ from scout import views
 
 urlpatterns = patterns(
     '',
-    # application urls
+    # home
     url(r'^$', 'scout.views.discover_view', name='discover_view'),
-    url(r'^food/$', 'scout.views.list_view', name='list_view'),
-    url(r'^discover_card/(?P<discover_category>[a-zA-Z]+)/$',
-        'scout.views.discover_card_view',
-        name='discover_card_view'),
-    url(r'^detail/(?P<spot_id>[0-9]{1,5})/$',
-        'scout.views.detail_view', name='detail_view'),
-    url(r'^filter/$', 'scout.views.filter_view', name='filter_view'),
+
+    # food
+    url(r'^food/$', 'scout.views.food_list_view', name='food_list_view'),
+    url(r'^food/(?P<spot_id>[0-9]{1,5})/$',
+        'scout.views.food_detail_view', name='food_detail_view'),
+    url(r'^food/filter/$', 'scout.views.food_filter_view',
+        name='food_filter_view'),
+
+    # study
+    url(r'^study/$', 'scout.views.study_list_view', name='study_list_view'),
+    url(r'^study/(?P<spot_id>[0-9]{1,5})/$',
+        'scout.views.study_detail_view', name='study_detail_view'),
+    url(r'^study/filter/$', 'scout.views.study_filter_view',
+        name='study_filter_view'),
+
+    # technology
+    url(r'^tech/$', 'scout.views.tech_list_view', name='tech_list_view'),
+
+    # images
     url(r'^images/(?P<spot_id>\d+)/image/(?P<image_id>\d+)/$',
         views.image_view),
 
-    # hybrid urls
+    # discover card
+    url(r'^discover_card/(?P<discover_category>[a-zA-Z]+)/$',
+        'scout.views.discover_card_view',
+        name='discover_card_view'),
+
+    # hybrid home
     url(r'^h/$', 'scout.views.hybrid_discover_view',
         name='hybrid_discover_view'),
-    url(r'^h/food/$', 'scout.views.hybrid_list_view', name='hybrid_list_view'),
-    url(r'^h/detail/(?P<spot_id>[0-9]{1,5})/$',
-        'scout.views.hybrid_detail_view', name='hybrid_detail_view'),
+
+    # hybrid food
+    url(r'^h/food/$', 'scout.views.hybrid_food_list_view',
+        name='hybrid_food_list_view'),
+    url(r'^h/food/(?P<spot_id>[0-9]{1,5})/$',
+        'scout.views.hybrid_food_detail_view', name='hybrid_food_detail_view'),
+    url(r'^h/food/filter/$', 'scout.views.hybrid_food_filter_view',
+        name='hybrid_food_filter_view'),
+
+    # hybrid study
+    url(r'^h/study/$', 'scout.views.hybrid_study_list_view',
+        name='hybrid_study_list_view'),
+
+    # hybrid components
     url(r'^h/components/$', 'scout.views.hybrid_comps_view',
         name='hybrid_comps_view'),
-    url(r'^h/filter/$', 'scout.views.hybrid_filter_view',
-        name='hybrid_filter_view'),
+
 
 )
 

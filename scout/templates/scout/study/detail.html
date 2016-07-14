@@ -22,63 +22,41 @@
             <div class="scout-spot-image" style="background: #e5e6e9 url('{% static "scout/img/placeholder-1000.png" %}') no-repeat center center; background-size: contain;">
             {% endif %}
 
-                <h4 class="visually-hidden">Today's statuses</h4>
-                <div class="scout-spot-status" role="alert">{% if spot.is_open %}<span class="open">Open now</span>{% else %}<span class="closed">Closed</span>{% endif %}</div>
-
-                <div class="scout-spot-open-period">
-                    <span class="visually-hidden">Open periods:</span>
-                    {% if spot.open_periods.breakfast %}
-                        <span>Breakfast</span>
-                    {% endif %}
-                    {% if spot.open_periods.lunch %}
-                        <span>Lunch</span>
-                    {% endif %}
-                    {% if spot.open_periods.dinner %}
-                        <span>Dinner</span>
-                    {% endif %}
-                    {% if spot.open_periods.late_night %}
-                        <span>Late Night</span>
-                    {% endif %}
-                </div>
-
             </div>
 
-            <h4 class="visually-hidden">Food stuff</h4>
+            <h4 class="visually-hidden">Study stuff</h4>
 
-            <div class="scout-spot-meta clearfix">
+            <div class="sticky">
+                <div class="scout-spot-meta clearfix">
 
-                <div class="scout-spot-name">{{spot.name}}</div>
-                <div class="scout-spot-type">
-                    {% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}</span>{% endfor %}
+                    <div class="scout-spot-name">{{spot.name}}</div>
+                    <div class="scout-spot-type">
+                        {% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}</span>{% endfor %}
+                    </div>
+
+                    <div class="scout-spot-food-served">
+                        <label>Has stuff...</label>
+                        {% if spot.foodtype_names %}
+                            {% for foodtype in spot.foodtype_names %}
+                                <span>{{ foodtype }}</span>
+                            {% endfor %}
+                        {% else %} <span style="color:red;">missing has items</span> {% endif %}
+                    </div>
+
                 </div>
 
-                {% if spot.cuisinetype_names %}
-                <div class="scout-spot-cuisine">
-                    <label>Cuisine</label>
-                        {% for cuisinetype in spot.cuisinetype_names %}
-                        <span>{{ cuisinetype }}</span>
-                        {% endfor %}
+                {% if spot.has_alert %}
+                <div class="scout-spot-alert">
+                    <i class="fa fa-exclamation-triangle"></i> {{ spot.alert_notes }}
                 </div>
                 {% endif %}
 
-                <div class="scout-spot-food-served">
-                    <label>Specific Items</label>
-                    {% if spot.foodtype_names %}
-                        {% for foodtype in spot.foodtype_names %}
-                            <span>{{ foodtype }}</span>
-                        {% endfor %}
-                    {% else %} <span style="color:red;">missing foodtype</span> {% endif %}
-                </div>
 
             </div>
-
-            {% if spot.has_alert %}
-            <div class="scout-spot-alert">
-                <i class="fa fa-exclamation-triangle"></i> {{ spot.alert_notes }}
-            </div>
-            {% endif %}
 
             <div class="scout-spot-contact-info">
+
+                replace with study specific information
 
                 <h4 class="visually-hidden">Contact information</h4>
 
@@ -148,7 +126,7 @@
                     {% endif %}
 
                     {% if spot.display_access_restrictions %}
-                    <h4><i class="fa fa-file-text"></i>Access Notes</h4>
+                    <h4><i class="fa fa-file-text"></i> Access Notes</h4>
                     <div class="scout-spot-notes">{{spot.access_notes}}</div>
                     {% endif %}
 
@@ -214,30 +192,6 @@
                 <div class="scout-spot-reservation">{{spot.reservation_notes}}</div>
                 {% endif %}
 
-                <h4><i class="fa fa-credit-card"></i> Payment accepted</h4>
-                <div class="scout-spot-payment">
-                    <ul>
-                        {% for payment in spot.payment_names %}
-                        <li>{{ payment }}</li>
-                        {% endfor %}
-                    </ul>
-                </div>
-
-                {% if spot.has_coupon %}
-                <h4><i class="fa fa-ticket"></i> Coupon</h4>
-                <div class="scout-spot-coupon">
-                    <div>{{ spot.has_coupon }}</div>
-                    <div class="scout-spot-coupon-expire"><span>Expiration:</span> {{ spot.coupon_expiration }}</div>
-                    <a href="{{ spot.coupon_url }}" target="_blank">
-                        <span class="fa-stack fa-lg">
-                          <i class="fa fa-circle fa-stack-2x"></i>
-                          <i class="fa fa-thumbs-up fa-stack-1x fa-inverse"></i>
-                        </span>
-                        <span class="scout-coupon-action-text">View the coupon</span>
-                    </a>
-                </div>
-                {% endif %}
-
             </div>
 
         </div>
@@ -250,5 +204,5 @@
 
 {% block secondary_content %}
 <!-- show a map on the list page -->
-<div id="detail_map" class="scout-spot-detail-map" style="height:100%;"></div>
+<div id="study_detail_map" class="scout-spot-detail-map" style="height:100%;"></div>
 {% endblock %}
