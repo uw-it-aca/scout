@@ -40,14 +40,16 @@ urlpatterns = patterns(
         name='hybrid_discover_view'),
 
     # hybrid food
-    url(r'^h/food/$', 'scout.views.hybrid_food_list_view', name='hybrid_food_list_view'),
+    url(r'^h/food/$', 'scout.views.hybrid_food_list_view',
+        name='hybrid_food_list_view'),
     url(r'^h/food/(?P<spot_id>[0-9]{1,5})/$',
         'scout.views.hybrid_food_detail_view', name='hybrid_food_detail_view'),
     url(r'^h/food/filter/$', 'scout.views.hybrid_food_filter_view',
         name='hybrid_food_filter_view'),
 
     # hybrid study
-    url(r'^h/study/$', 'scout.views.hybrid_study_list_view', name='hybrid_study_list_view'),
+    url(r'^h/study/$', 'scout.views.hybrid_study_list_view',
+        name='hybrid_study_list_view'),
 
     # hybrid components
     url(r'^h/components/$', 'scout.views.hybrid_comps_view',
