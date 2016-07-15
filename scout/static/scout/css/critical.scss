@@ -174,7 +174,7 @@ body { background: #f1f1f1; }
 
                     a { display:block; text-decoration:none; padding:10px 20px; color:#000; min-height: 100px; overflow: hidden;
 
-                        .scout-spot-image {  background-color: #fff; background-size:contain; background-position: center center; background-repeat: no-repeat; width:30%; height:100px; float:left; position: relative; }
+                        .scout-spot-image {  background-color: #fff; background-size:cover; background-position: center center; background-repeat: no-repeat; width:30%; height:100px; float:left; position: relative; }
                         .scout-spot-content { display:inline-block; float:left; width:70%; margin:0;
 
                             // spot details
