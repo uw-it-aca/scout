@@ -61,7 +61,7 @@
                                 <span class="scout-spot-type">{% if spot.spot_types %}{% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}</span>{% endfor %}{% else %} <span style="color:red;">SPOT_TYPE</span> {% endif %}</span>
                                 {% endif %}
 
-                                <div class="scout-spot-food-served hidden">
+                                <div class="scout-spot-food-served hidden" aria-hidden="true">
                                     <label style="text-transform:uppercase;">Food served</label>
                                     {% if spot.foodtype_names %}
                                         {% for foodtype in spot.foodtype_names %}
