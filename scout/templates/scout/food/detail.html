@@ -54,7 +54,7 @@
                     </div>
 
                     {% if spot.cuisinetype_names %}
-                    <div class="scout-spot-cuisine">
+                    <div class="scout-spot-cuisine hidden" aria-hidden="true">
                         <label>Cuisine</label>
                             {% for cuisinetype in spot.cuisinetype_names %}
                             <span>{{ cuisinetype }}</span>
@@ -62,7 +62,7 @@
                     </div>
                     {% endif %}
 
-                    <div class="scout-spot-food-served">
+                    <div class="scout-spot-food-served hidden" aria-hidden="true">
                         <label>Food served</label>
                         {% if spot.foodtype_names %}
                             {% for foodtype in spot.foodtype_names %}

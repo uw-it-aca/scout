@@ -174,7 +174,7 @@ body { background: #f1f1f1; }
 
                     a { display:block; text-decoration:none; padding:10px 20px; color:#000; min-height: 100px; overflow: hidden;
 
-                        .scout-spot-image {  background-color: #fff; background-size:contain; background-position: center center; background-repeat: no-repeat; width:30%; height:100px; float:left; position: relative; }
+                        .scout-spot-image {  background-color: #fff; background-size:cover; background-position: center center; background-repeat: no-repeat; width:30%; height:100px; float:left; position: relative; }
                         .scout-spot-content { display:inline-block; float:left; width:70%; margin:0;
 
                             // spot details
@@ -213,7 +213,7 @@ body { background: #f1f1f1; }
         // details
         .scout-details-container {
 
-            .scout-details-card { padding: 0; margin-top: 10px; }
+            .scout-details-card { padding: 0; margin-top: 0; }
 
             .scout-spot-image { background-color: #fff; background-size: cover; background-repeat: no-repeat; background-position: center center; min-height: 200px; position: relative;
 
@@ -244,12 +244,12 @@ body { background: #f1f1f1; }
                     span { margin-left: 10px; }
                 }
 
-                .scout-spot-cuisine { margin: 10px 0 5px 0; font-size: 12px; float: left; width: 25%;
+                .scout-spot-cuisine { margin: 10px 10px 5px 0; font-size: 12px; float: left; width: 25%;
                     label { display: block; text-transform: uppercase; font-size: 10px; margin-bottom: 2px; color: #aaa; }
                     span { margin-right: 5px; }
                 }
 
-                .scout-spot-food-served { margin: 10px 0 5px 0; font-size: 12px; float: left; width: 75%;
+                .scout-spot-food-served { margin: 10px 0 5px 0; font-size: 12px; float: left; width: 70%;
                     label {  display: block; text-transform: uppercase; font-size: 10px; margin-bottom: 2px; color: #aaa; }
                     span { margin-right: 5px; white-space: nowrap; }
                 }

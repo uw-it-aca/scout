@@ -61,13 +61,13 @@
                                 <span class="scout-spot-type">{% if spot.spot_types %}{% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}</span>{% endfor %}{% else %} <span style="color:red;">SPOT_TYPE</span> {% endif %}</span>
                                 {% endif %}
 
-                                <div class="scout-spot-food-served">
+                                <div class="scout-spot-food-served hidden" aria-hidden="true">
                                     <label style="text-transform:uppercase;">Food served</label>
-                                {% if spot.foodtype_names %}
-                                    {% for foodtype in spot.foodtype_names %}
-                                        <span>{{ foodtype }}</span>
-                                    {% endfor %}
-                                {% else %}<span style="color:red;">missing foodtype</span> {% endif %}
+                                    {% if spot.foodtype_names %}
+                                        {% for foodtype in spot.foodtype_names %}
+                                            <span>{{ foodtype }}</span>
+                                        {% endfor %}
+                                    {% else %}<span style="color:red;">missing foodtype</span> {% endif %}
                                 </div>
 
                                 <span class="scout-spot-status">{% if spot.is_open %}<span class="open visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</span>
@@ -91,24 +91,6 @@
             {% endfor %}
 
         </ol>
-
-        <div id="food_list_loading">
-            <p class="visually-hidden">loading...</p>
-            <div class="sk-fading-circle" aria-hidden="true">
-                <div class="sk-circle1 sk-circle"></div>
-                <div class="sk-circle2 sk-circle"></div>
-                <div class="sk-circle3 sk-circle"></div>
-                <div class="sk-circle4 sk-circle"></div>
-                <div class="sk-circle5 sk-circle"></div>
-                <div class="sk-circle6 sk-circle"></div>
-                <div class="sk-circle7 sk-circle"></div>
-                <div class="sk-circle8 sk-circle"></div>
-                <div class="sk-circle9 sk-circle"></div>
-                <div class="sk-circle10 sk-circle"></div>
-                <div class="sk-circle11 sk-circle"></div>
-                <div class="sk-circle12 sk-circle"></div>
-            </div>
-        </div>
 
     </div>
 
