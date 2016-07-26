@@ -217,29 +217,14 @@ body { background: #f1f1f1; }
 
             .scout-spot-image { background-color: #fff; background-size: cover; background-repeat: no-repeat; background-position: center center; min-height: 200px; position: relative;
 
-                .scout-spot-status { position: absolute; top: 10px; right: 20px; font-size: 10px; text-transform: uppercase;
-                    span {  padding: 0 5px; line-height: 20px; display: inline-block; }
-                    .open { background: #D6E9C5; color: #3c763d; }
-                    .closed { background: #ebccd1; color: #a94442; }
-                }
-                .scout-spot-open-period {
-                    width: 100px;
-                    position: absolute;
-                    top: 10px;
-                    left: 20px;
-                    color: #fff;
-                    text-transform: uppercase;
-                    font-size: 10px;
 
-                    span { padding: 0 5px; line-height: 20px; display: inline-block; margin-bottom: 4px; background: #444; }
-                }
             }
 
             .scout-spot-alert { margin: 0; padding: 15px 20px; background: #fcf8e3; color: #8a6d3b; font-size: 14px; line-height: 16px;}
 
             .scout-spot-meta { background: $scout-purple; color: #fff; padding: 10px 20px; position: relative;
 
-                .scout-spot-name { font-family: 'ralewaybold'; font-size: 18px; margin: 0; line-height: 30px; }
+                .scout-spot-name { font-family: 'ralewaybold'; font-size: 18px; margin: 0; line-height: 30px; width:75%; white-space: nowrap; overflow-x: hidden; text-overflow: ellipsis; }
                 .scout-spot-type { text-transform: uppercase; font-weight: normal; font-size: 12px; margin: 0; position: absolute; top: 15px; right:20px; color: #ccc;
                     span { margin-left: 10px; }
                 }
@@ -253,6 +238,18 @@ body { background: #f1f1f1; }
                     label {  display: block; text-transform: uppercase; font-size: 10px; margin-bottom: 2px; color: #aaa; }
                     span { margin-right: 5px; white-space: nowrap; }
                 }
+
+                .scout-spot-status { position: absolute; bottom: 15px; right: 20px; font-size: 10px; text-transform: uppercase;
+                    span {  padding: 0 5px; line-height: 20px; display: inline-block; }
+                    .open { background: #D6E9C5; color: #3c763d; }
+                    .closed { background: #ebccd1; color: #a94442; }
+                }
+                .scout-spot-open-period {color: #fff; margin: 10px 10px 5px 0; font-size: 12px; float: left; width: 70%;
+                    label {  display: block; text-transform: uppercase; font-size: 10px; margin-bottom: 2px; color: #aaa; }
+                    span { margin-right: 8px; }
+                }
+
+
             }
 
             .scout-spot-contact-info { padding:15px 0;
