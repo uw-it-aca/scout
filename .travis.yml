@@ -3,7 +3,6 @@ language: python
 python:
   - "2.7.6"
 install: 
-  - pip install setuptools==24.0.3
   - python setup.py -q install
 before_script:
   - pip install coverage
