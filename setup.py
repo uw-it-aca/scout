@@ -20,6 +20,7 @@ setup(
         'django-htmlmin',
         'django-pyscss',
         'pytz',
+        'beautifulsoup4',
         'html5lib==0.9999999'
     ],
     license='Apache License, Version 2.0',  # example license
