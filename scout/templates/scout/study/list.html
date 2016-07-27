@@ -78,10 +78,11 @@
             {% endfor %}
 
         </ol>
-    
+
     </div>
 
     <script type="text/javascript">
+
         window.spot_locations = {
             {% for spot in spots %}
                 '{{ spot.spot_id }}': {
@@ -93,6 +94,33 @@
                 },
             {% endfor %}
         };
+
+        var study_geojson = {
+            "type": "FeatureCollection",
+            "features": [
+                {% for spot in spots %}
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "marker-color": "#6564a8",
+                        "marker-size": "small",
+                        "marker-symbol": "circle-stroked",
+                        "title": "{{ spot.name }}'",
+                        "description": "{{ spot.building_name }}",
+                        "id": "{{ spot.spot_id }}"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            {{ spot.longitude }},
+                            {{ spot.latitude }}
+                        ]
+                    }
+                },
+                {% endfor %}
+            ]
+        }
+
     </script>
 
 </div>

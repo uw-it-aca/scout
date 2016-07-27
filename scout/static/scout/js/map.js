@@ -344,15 +344,17 @@ var Map = {
 
             L.mapbox.accessToken = 'pk.eyJ1IjoiY2hhcmxvbnBhbGFjYXkiLCJhIjoiY2lpMHYwZ3I2MDUzbHQzbTFnaWRmZnV1NCJ9.WkswXwuPmbIDcYFdV096Aw';
             var map = L.mapbox.map('study_list_map', 'mapbox.streets')
-                .setView([47.653811, -122.307815], 17);
+                .setView([47.653811, -122.307815], 17)
+                .featureLayer.setGeoJSON(study_geojson);
 
-            // As with any other AJAX request, this technique is subject to the Same Origin Policy:
-            // http://en.wikipedia.org/wiki/Same_origin_policy
-            // So the CSV file must be on the same domain as the Javascript, or the server
-            // delivering it should support CORS.
+            /***
             var featureLayer = L.mapbox.featureLayer()
-                .loadURL('/static/scout/js/geojson/study.geojson')
+
+                //.loadURL('/static/scout/js/geojson/study.geojson')
+
                 .on('ready', function(e) {
+
+                    console.log("map ready");
 
                     // fit the markers onto the map bounds
                     featureLayer.eachLayer(function(layer) {
@@ -361,15 +363,29 @@ var Map = {
 
                     // handle marker clustering
                     var clusterGroup = new L.MarkerClusterGroup();
-                    e.target.eachLayer(function(layer) {
-                       clusterGroup.addLayer(layer);
+
+                    featureLayer.eachLayer(function(layer) {
+                       clusterGroup.addLayer(featureLayer);
                     });
                     map.addLayer(clusterGroup);
+
+
                 })
-                .on('click', function(e) {
-                    //console.log(e.layer.feature.properties.id);
-                    List.scroll_to_spot('#' + e.layer.feature.properties.id);
-                 });
+            ***/
+
+            map.on('ready', function(e) {
+
+                var markers = new L.MarkerClusterGroup();
+                var geoJsonLayer = L.geoJson(study_geojson);
+                markers.addLayer(geoJsonLayer);
+                map.addLayer(markers);
+                
+            });
+
+            map.on('click', function(e) {
+                //console.log(e.layer.feature.properties.id);
+                List.scroll_to_spot('#' + e.layer.feature.properties.id);
+            });
 
             // add user location marker to map
             L.mapbox.featureLayer({
@@ -396,7 +412,8 @@ var Map = {
                 }
             }).addTo(map);
 
-            var circle = L.circleMarker([47.65381, -122.307815], {radius: 30, color: '#c0392b'}).addTo(map);
+            // circle radius around user location
+            // var circle = L.circleMarker([47.65381, -122.307815], {radius: 30, color: '#c0392b'}).addTo(map);
 
         }
 
