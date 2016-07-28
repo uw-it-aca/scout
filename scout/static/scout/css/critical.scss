@@ -197,8 +197,8 @@ body { background: #f1f1f1; }
                                 span { margin-right: 10px; }
                             }
 
-                            .scout-spot-status { font-size: 12px; white-space: nowrap;
-                                .open { color:#D6E9C5; display: block; }
+                            .scout-spot-status { font-size: 12px; white-space: nowrap;  display: block; margin-top: 1em;
+                                .open { color:#D6E9C5; }
                                 .closed { color: #A94441; }
                             }
 

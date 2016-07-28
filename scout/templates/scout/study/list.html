@@ -14,7 +14,7 @@
     <div class="scout-filter-results">
         <div class="scout-filter-results-by">
             <label>Filtering by:</label>
-            <div id="filter_label_text" class="scout-filter-results-text">None</div>
+            <div id="filter_label_text" class="scout-filter-results-text">---</div>
         </div>
         <div class="scout-filter-results-results clearfix">
             <label>Results:</label>
@@ -52,8 +52,13 @@
                         <div style="padding-left: 10px;">
                             <h3 class="scout-spot-name">{{ spot.name }}</h3>
                             <div class="scout-spot-location">
+
                                 <span class="scout-spot-distance"><span class="visually-hidden">Distance from you:</span><span class="distance-number">-</span>&nbsp;ft.</span>&nbsp;&nbsp;
                                 {% if spot.building_name %}{{ spot.building_name }}{% else %}<span style="color:red;">missing building_name</span>{% endif %}
+
+                                <p>floor: {{spot.floor}}</p>
+                                <p>location_description: {{spot.location_description}}</p>
+
                             </div>
 
 
@@ -61,11 +66,9 @@
                             <span class="scout-spot-type">{% if spot.spot_types %}{% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}</span>{% endfor %}{% else %} <span style="color:red;">SPOT_TYPE</span> {% endif %}</span>
                             {% endif %}
 
-                            <div class="scout-spot-food-served">
-                                <label style="text-transform:uppercase;">Capacity</label>
-                                {% if spot.capacity %}
-                                        <span>{{ spot.capacity }}</span>
-                                {% else %}<span style="color:red;">missing capacity</span> {% endif %}
+                            <div class="scout-spot-xxxx">
+                                <p>Seats: {% if spot.capacity %}<span>{{ spot.capacity }}</span>{% else %}<span style="color:red;">missing capacity</span> {% endif %}</p>
+                                <p class="scope">Lab Stats: {{spot.labstats}} <span>{{ spot.auto_labstats_available }} / {{ spot.auto_labstats_total }}</span></p>
                             </div>
 
                             <span class="scout-spot-status">{% if spot.is_open %}<span class="open visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</span>
