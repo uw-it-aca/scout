@@ -146,7 +146,7 @@ var Map = {
                     //labelContent: "<i class='fa " + data.icon +"'></i><span class='marker-text'>" + data.spot_name + "</span>",
                     labelAnchor: new google.maps.Point(6, 6),
                     labelClass: "map-label", // the CSS class for the label
-                    /*
+
                     // basic google sympbol markers
                     icon: {
                         path: google.maps.SymbolPath.CIRCLE,
@@ -156,7 +156,7 @@ var Map = {
                         scale: 6,
                         strokeWeight: 2
                     },
-
+                    /*
                     // svg path as a marker
                     icon: {
                         path: "M0-48c-9.8 0-17.7 7.8-17.7 17.4 0 15.5 17.7 30.6 17.7 30.6s17.7-15.4 17.7-30.6c0-9.6-7.9-17.4-17.7-17.4z",
@@ -166,15 +166,14 @@ var Map = {
                         strokeWeight: 0,
                         scale: 1
                     },
-                    */
-
                     // image url as marker
                     icon: {
                         url: "/static/scout/img/map-marker.png", // url
                         scaledSize: new google.maps.Size(30, 30), // scaled size
                         origin: new google.maps.Point(0,0), // origin
-                        anchor: new google.maps.Point(0, 0) // anchor
+                        anchor: new google.maps.Point(30, 30) // anchor
                     },
+                    */
 
                 });
 
