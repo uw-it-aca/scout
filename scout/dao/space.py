@@ -53,8 +53,13 @@ def get_spot_list(app_type=None, groups=[]):
     return res
 
 
-def get_spots_by_filter(filters=[]):
+def get_food_spots_by_filter(filters=[]):
     filters.append(('extended_info:app_type', 'food'))
+    res = get_spots_by_filter(filters)
+    return res
+
+
+def get_spots_by_filter(filters=[]):
     spot_client = Spotseeker()
     res = []
     try:
@@ -73,7 +78,7 @@ def get_filtered_spots(request):
     filters = _get_spot_filters(request)
     # adding 'default' filter params
     filters.append(('limit', 0))
-    return get_spots_by_filter(filters)
+    return get_food_spots_by_filter(filters)
 
 
 def _get_spot_filters(request):

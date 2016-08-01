@@ -49,6 +49,41 @@
 
         <ol id="scout_tech_list" class="scout-card scout-list">
 
+        {% for spot in spots %}
+            <li style="background:#aaa;"><strong>{{ spot.name }}</strong></li>
+            {% if spot.items %}
+                <ol style="margin:0; padding:0;">
+            {% endif %}
+            {% for item in spot.items %}
+                <li class="scout-list-item" id="">
+                    <a class="clearfix" href="">
+                        <div class="scout-spot-image" style="background-image: url('{% static "scout/img/solidoodle.jpg" %}')">&nbsp;</div>
+                        <div class="scout-spot-content">
+                            <div style="padding-left: 10px;">
+
+                                <h3 class="scout-spot-name">{{ item.name }}</h3>
+                                <div class="scout-spot-location">
+                                    <span class="scout-spot-distance"><span class="visually-hidden">Distance from you:</span><span class="distance-number">-</span>&nbsp;ft.</span>&nbsp;&nbsp;
+                                    {% if spot.building_name %}{{ spot.building_name }}{% else %}<span style="color:red;">missing building_name</span>{% endif %}
+                                </div>
+
+                                {% if is_desktop %}
+                                <span class="scout-spot-type">{% if item.category %}<span>{{ item.category }}</span>{% else %} <span style="color:red;">ITEM_CATEGORY</span> {% endif %}</span>
+                                {% endif %}
+
+                                <span class="scout-spot-status">{% if spot.is_open %}<span class="open visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</span>
+
+                            </div>
+                        </div>
+                    </a>
+                </li>
+            {% endfor %}
+            {% if spot.items %}
+                </ol>
+            {% endif %}
+
+        {% endfor %}
+
             <li style="background:#aaa;"><strong>SPACE NAME 1</strong></li>
 
             <ol style="margin:0; padding:0;">

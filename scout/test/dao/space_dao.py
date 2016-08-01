@@ -5,8 +5,8 @@ from django.test import TestCase
 from django.test.utils import override_settings
 from scout.dao.space import add_foodtype_names_to_spot, add_cuisine_names, \
     add_payment_names, add_additional_info, get_is_spot_open, organize_hours, \
-    get_open_periods_by_day, get_spots_by_filter, get_spot_list, \
-    get_spots_by_filter, _get_spot_filters, OPEN_PERIODS, get_spot_by_id
+    get_open_periods_by_day, get_food_spots_by_filter, get_spot_list, \
+    get_food_spots_by_filter, _get_spot_filters, OPEN_PERIODS, get_spot_by_id
 from spotseeker_restclient.spotseeker import Spotseeker
 from scout.dao import space
 from spotseeker_restclient.exceptions import DataFailureException
@@ -29,7 +29,7 @@ class SpaceDAOTest(TestCase):
                     ('fuzzy_hours_start', 'Tuesday,05:00'),
                     ('fuzzy_hours_end', 'Tuesday,11:00')]
 
-        spots = get_spots_by_filter(filters)
+        spots = get_food_spots_by_filter(filters)
         self.assertEqual(len(spots), 5)
         self.assertEqual(spots[0].extended_info[3].value, 'food')
 
@@ -178,7 +178,7 @@ class SpaceDAOTest(TestCase):
         self.assertEqual(len(get_spot_list(app_type='tech')), 0)
 
     def test_get_spots_by_filter_pasta_food_court(self):
-        filtered_spots = get_spots_by_filter([
+        filtered_spots = get_food_spots_by_filter([
             ('extended_info:s_food_pasta', True),
             ('type', 'food_court')])
         self.assertEqual(len(filtered_spots), 1)
@@ -237,7 +237,7 @@ class DAOErrorsTest(TestCase):
         Assert get_spots_by_filter returns an empty list when encountering
         a failure.
         """
-        self.assertEqual(get_spots_by_filter(), [])
+        self.assertEqual(get_food_spots_by_filter(), [])
 
     def test_get_spot_by_id_error(self):
         """
