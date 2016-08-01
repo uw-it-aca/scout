@@ -417,3 +417,13 @@ def add_foodtype_names_to_spot(spot):
                                                        FOOD_TYPE_MAPPING,
                                                        spot.extended_info)
     return spot
+
+
+def group_spots_by_building(spots):
+    grouped_spots = {}
+    for spot in spots:
+        if spot.building_name in grouped_spots:
+            grouped_spots[spot.building_name].append(spot)
+        else:
+            grouped_spots[spot.building_name] = [spot]
+    return grouped_spots

@@ -6,7 +6,8 @@ from django.test.utils import override_settings
 from scout.dao.space import add_foodtype_names_to_spot, add_cuisine_names, \
     add_payment_names, add_additional_info, get_is_spot_open, organize_hours, \
     get_open_periods_by_day, get_food_spots_by_filter, get_spot_list, \
-    get_food_spots_by_filter, _get_spot_filters, OPEN_PERIODS, get_spot_by_id
+    get_food_spots_by_filter, _get_spot_filters, OPEN_PERIODS, get_spot_by_id,\
+    group_spots_by_building
 from spotseeker_restclient.spotseeker import Spotseeker
 from scout.dao import space
 from spotseeker_restclient.exceptions import DataFailureException
@@ -197,6 +198,19 @@ class SpaceDAOTest(TestCase):
         spot_hours = organize_hours(spot)
 
         self.assertEqual(len(spot_hours.hours), 7)
+
+    def test_group_by_building(self):
+        spots = []
+        sc = Spotseeker()
+        spots.append(sc.get_spot_by_id(1))
+        spots.append(sc.get_spot_by_id(4))
+        spots.append(sc.get_spot_by_id(5))
+
+        grouped_spots = group_spots_by_building(spots)
+        self.assertEqual(len(grouped_spots), 2)
+        self.assertIn("Odegaard Undergraduate Library", grouped_spots)
+        self.assertEqual(len(grouped_spots["Odegaard Undergraduate Library"]),
+                         2)
 
 
 class FakeClient(object):
