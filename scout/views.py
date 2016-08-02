@@ -56,15 +56,15 @@ def discover_card_view(request, discover_category):
                 ('extended_info:s_has_coupon', 'true')
             ]
         },
-        "breakfast": {
-            "title": "Open during Breakfast (5am - 11am)",
-            "filter_url": "period0=breakfast",
+        "morning": {
+            "title": "Open during Morning (5am - 11am)",
+            "filter_url": "period0=morning",
             "filter": [
                 ('limit', 5),
                 ('center_latitude', lat if lat else DEFAULT_LAT),
                 ('center_longitude', lon if lon else DEFAULT_LON),
                 ('distance', 100000)
-                ] + get_period_filter('breakfast')
+                ] + get_period_filter('morning')
 
         },
         "late": {
