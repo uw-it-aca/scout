@@ -132,7 +132,7 @@ class SpaceDAOTest(TestCase):
         self.assertOpenPeriods(
             spot,
             (2015, 12, 21, 0, 0, 0),
-            ('breakfast', 'lunch', 'dinner'))
+            ('morning', 'afternoon', 'evening'))
 
         self.assertOpenPeriods(
             spot,
@@ -142,12 +142,12 @@ class SpaceDAOTest(TestCase):
         self.assertOpenPeriods(
             spot,
             (2015, 12, 24, 0, 0, 0),
-            ('breakfast', 'lunch'))
+            ('morning', 'afternoon'))
 
         self.assertOpenPeriods(
             spot,
             (2015, 12, 25, 0, 0, 0),
-            ('breakfast', 'lunch', 'dinner', 'late_night'))
+            ('morning', 'afternoon', 'evening', 'late_night'))
 
         # Test spot open across midnight
         spot = sc.get_spot_by_id(4)
@@ -155,7 +155,7 @@ class SpaceDAOTest(TestCase):
         self.assertOpenPeriods(
             spot,
             (2015, 12, 25, 0, 0, 0),
-            ('lunch', 'dinner', 'late_night'))
+            ('afternoon', 'evening', 'late_night'))
 
         # Test spots that exactly fill period hours
         spot = sc.get_spot_by_id(5)
@@ -163,11 +163,11 @@ class SpaceDAOTest(TestCase):
         # Monday
         self.assertOpenPeriods(spot, (2016, 4, 18, 0, 0, 0), ('late_night',))
         # Tuesday
-        self.assertOpenPeriods(spot, (2016, 4, 19, 0, 0, 0), ('breakfast',))
+        self.assertOpenPeriods(spot, (2016, 4, 19, 0, 0, 0), ('morning',))
         # Wednesday
-        self.assertOpenPeriods(spot, (2016, 4, 20, 0, 0, 0), ('lunch',))
+        self.assertOpenPeriods(spot, (2016, 4, 20, 0, 0, 0), ('afternoon',))
         # Thursday
-        self.assertOpenPeriods(spot, (2016, 4, 21, 0, 0, 0), ('dinner',))
+        self.assertOpenPeriods(spot, (2016, 4, 21, 0, 0, 0), ('evening',))
         # Friday
         self.assertOpenPeriods(spot, (2016, 4, 22, 0, 0, 0), ('late_night',))
         # Sunday
@@ -187,7 +187,7 @@ class SpaceDAOTest(TestCase):
     def test_get_spot_filters(self):
         request = RequestFactory().get(
             '/?payment0=s_pay_dining&type0=food_court&food0=s_food_entrees&'
-            'food1=s_food_pasta&cuisine0=s_cuisine_chinese&period0=breakfast'
+            'food1=s_food_pasta&cuisine0=s_cuisine_chinese&period0=morning'
             '&open_now=true&campus=seattle')
         filters = _get_spot_filters(request)
         self.assertEqual(len(filters), 9)
