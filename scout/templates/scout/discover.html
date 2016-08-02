@@ -32,6 +32,10 @@
 
         <h2 class="visually-hidden">Discover places to eat</h2>
 
+        {% if not is_desktop %}
+        <div style="background:url('{% static "scout/img/uw-ob.jpg" %}') no-repeat; background-size:cover; height: 300px; width: 100%; margin-bottom:10px;">&nbsp;</div>
+        {% endif %}
+
         <div id="discover_cards">
             <div id="open"></div>
             <div id="coffee"></div>
@@ -47,5 +51,5 @@
 {% endblock %}
 
 {% block secondary_content %}
-<div style="background:url('{% static "scout/img/huskygrind.jpg" %}') no-repeat; background-size:cover; background-position:center center; position:absolute; top:0; bottom:0; width: 100%;">&nbsp;</div>
+<div style="background:url('{% static "scout/img/uw-ob.jpg" %}') no-repeat; background-size:cover; background-position:center center; position:absolute; top:0; bottom:0; width: 100%;">&nbsp;</div>
 {% endblock %}

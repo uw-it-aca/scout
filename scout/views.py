@@ -2,7 +2,8 @@ from django.http import Http404, HttpResponse
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from scout.dao.space import get_spot_list, get_spot_by_id, get_filtered_spots
-from scout.dao.space import get_spots_by_filter, get_period_filter
+from scout.dao.space import get_food_spots_by_filter, get_period_filter, \
+    get_spots_by_filter
 from scout.dao.image import get_image
 
 
@@ -83,7 +84,7 @@ def discover_card_view(request, discover_category):
     except KeyError:
         raise Http404("Discover card does not exist")
 
-    spots = get_spots_by_filter(discover_data["filter"])
+    spots = get_food_spots_by_filter(discover_data["filter"])
     if len(spots) == 0:
         raise Http404("No spots for card")
     context = {
@@ -155,7 +156,7 @@ def study_filter_view(request):
 
 # tech
 def tech_list_view(request):
-    spots = get_spot_list('tech')
+    spots = get_spots_by_filter([('has_items', 'true')])
     context = {"spots": spots,
                "count": len(spots),
                "app_type": 'tech'}

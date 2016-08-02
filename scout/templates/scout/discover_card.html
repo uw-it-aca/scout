@@ -8,7 +8,7 @@
         <li data-lat="{{ spot.latitude }}" data-lon="{{ spot.longitude }}">
             <a href="/food/{{ spot.spot_id }}/" class="clearfix">
                 {% if spot.images %}
-                <span class="scout-spot-image" style="background-image: url('/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}?width=100');">&nbsp;</span>
+                <span class="scout-spot-image" style="background-image: url('/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}/?width=100');">&nbsp;</span>
                 {% else %}
                 <span class="scout-spot-image" style="background: #e5e6e9 url('{% static "scout/img/placeholder-200.png" %}') no-repeat center center; background-size: contain;">&nbsp;</span>
                 {% endif %}
