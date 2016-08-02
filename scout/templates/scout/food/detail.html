@@ -57,14 +57,14 @@
 
                     <div class="scout-spot-open-period">
                         <label>Open periods</label>
-                        {% if spot.open_periods.breakfast %}
-                            <span>Breakfast</span>
+                        {% if spot.open_periods.morning %}
+                            <span>Morning</span>
                         {% endif %}
-                        {% if spot.open_periods.lunch %}
-                            <span>Lunch</span>
+                        {% if spot.open_periods.afternoon %}
+                            <span>Afternoon</span>
                         {% endif %}
-                        {% if spot.open_periods.dinner %}
-                            <span>Dinner</span>
+                        {% if spot.open_periods.evening %}
+                            <span>Evening</span>
                         {% endif %}
                         {% if spot.open_periods.late_night %}
                             <span>Late Night</span>

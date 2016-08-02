@@ -6,17 +6,17 @@ import pytz
 
 OPEN_PERIODS = {
         # 5am - 10:59am
-        'breakfast': {
+        'morning': {
             'start': datetime.time(5, 0, 00, 0),
             'end':  datetime.time(11, 0, 0, 0)
         },
         # 11am - 2:59pm
-        'lunch': {
+        'afternoon': {
             'start': datetime.time(11, 0, 0, 0),
             'end':  datetime.time(15, 0, 0, 0)
         },
         # 3pm - 9:59pm
-        'dinner': {
+        'evening': {
             'start': datetime.time(15, 0, 0, 0),
             'end':  datetime.time(22, 0, 0, 0)
         },
@@ -203,9 +203,9 @@ def organize_hours(spot):
 
 def get_open_periods_by_day(spot, now):
     # defining 'late night' as any time not covered by another period
-    open_periods = {'breakfast': False,
-                    'lunch': False,
-                    'dinner': False,
+    open_periods = {'morning': False,
+                    'afternoon': False,
+                    'evening': False,
                     'late_night': False}
     hours = spot.hours[now.strftime("%A").lower()]
     for opening in hours:
@@ -215,20 +215,20 @@ def get_open_periods_by_day(spot, now):
         if start > end:
             end = datetime.time(23, 59, 59)
             open_periods['late_night'] = True
-        # open for breakfast
-        breakfast = OPEN_PERIODS['breakfast']
-        if breakfast['start'] < end and breakfast['end'] > start:
-            open_periods['breakfast'] = True
-        # open for lunch
-        lunch = OPEN_PERIODS['lunch']
-        if lunch['start'] < end and lunch['end'] > start:
-            open_periods['lunch'] = True
-        # open for dinner
-        dinner = OPEN_PERIODS['dinner']
-        if dinner['start'] < end and dinner['end'] > start:
-            open_periods['dinner'] = True
+        # open for morning
+        morning = OPEN_PERIODS['morning']
+        if morning['start'] < end and morning['end'] > start:
+            open_periods['morning'] = True
+        # open for afternoon
+        afternoon = OPEN_PERIODS['afternoon']
+        if afternoon['start'] < end and afternoon['end'] > start:
+            open_periods['afternoon'] = True
+        # open for evening
+        evening = OPEN_PERIODS['evening']
+        if evening['start'] < end and evening['end'] > start:
+            open_periods['evening'] = True
         # open late night
-        if start < breakfast['start'] or end > dinner['end']:
+        if start < morning['start'] or end > evening['end']:
             open_periods['late_night'] = True
     return open_periods
 
