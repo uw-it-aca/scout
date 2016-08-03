@@ -24,7 +24,7 @@ $(document).on('ready', function(event) {
             dots: true,
             arrows: false,
         });
-        
+
     }
     else if (page_path.indexOf("tech") !== -1){
         console.log("on tech");
@@ -56,7 +56,7 @@ $(window).scroll(function(){
         var sticky = $('.sticky'),
             scroll = $(window).scrollTop();
 
-        if (scroll >= 200) sticky.addClass('fixed');
+        if (scroll >= 250) sticky.addClass('fixed');
         else sticky.removeClass('fixed');
     }
 
