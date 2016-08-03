@@ -207,10 +207,11 @@ class SpaceDAOTest(TestCase):
         spots.append(sc.get_spot_by_id(5))
 
         grouped_spots = group_spots_by_building(spots)
+
         self.assertEqual(len(grouped_spots), 2)
-        self.assertIn("Odegaard Undergraduate Library", grouped_spots)
-        self.assertEqual(len(grouped_spots["Odegaard Undergraduate Library"]),
-                         2)
+        self.assertEqual(grouped_spots[1]['name'],
+                         "Odegaard Undergraduate Library")
+        self.assertEqual(len(grouped_spots[1]), 2)
 
 
 class FakeClient(object):

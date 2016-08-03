@@ -3,7 +3,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from scout.dao.space import get_spot_list, get_spot_by_id, get_filtered_spots
 from scout.dao.space import get_food_spots_by_filter, get_period_filter, \
-    get_spots_by_filter
+    get_spots_by_filter, group_spots_by_building
 from scout.dao.image import get_image
 
 
@@ -133,7 +133,8 @@ def study_list_view(request):
         # spots = get_filtered_spots(request)
     # else:
     spots = get_spot_list()
-    context = {"spots": spots,
+    spots = group_spots_by_building(spots)
+    context = {"grouped_spots": spots,
                "count": len(spots)}
     return render_to_response('scout/study/list.html', context,
                               context_instance=RequestContext(request))

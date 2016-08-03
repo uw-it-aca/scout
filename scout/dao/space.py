@@ -426,4 +426,9 @@ def group_spots_by_building(spots):
             grouped_spots[spot.building_name].append(spot)
         else:
             grouped_spots[spot.building_name] = [spot]
-    return grouped_spots
+    list_structure = []
+    for name in grouped_spots:
+        building_dict = {"name": name,
+                         "spots": grouped_spots[name]}
+        list_structure.append(building_dict)
+    return list_structure
