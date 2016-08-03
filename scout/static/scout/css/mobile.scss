@@ -136,3 +136,11 @@ $footer-height: 40px;
     .marker-text { color: #000; margin-left: 8px; text-shadow: 0 0 2px #fff, 0 0 2px #fff; font-weight: bold; display: inline-block; white-space: nowrap;}
     .fa-cutlery:before { margin-left: 1.8px; }
 }
+
+// slick slider overrides
+
+.slick-dotted {
+    margin-bottom: 0 !important;
+}
+
+.slick-dots { bottom: 20px !important; }

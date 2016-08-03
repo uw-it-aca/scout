@@ -17,9 +17,11 @@
             <h3 class="visually-hidden">Overview</h3>
 
             {% if spot.images %}
+            <div class='slick'>
                 {% for image in spot.images %}
                 <div class="scout-spot-image" style="background-image: linear-gradient(rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0)), url('/images/{{ spot.spot_id }}/image/{{ image.image_id }}/?width=500');"></div>
                 {% endfor %}
+            </div>
             {% else %}
             <div class="scout-spot-image" style="background: #e5e6e9 url('{% static "scout/img/placeholder-1000.png" %}') no-repeat center center; background-size: contain;"></div>
             {% endif %}

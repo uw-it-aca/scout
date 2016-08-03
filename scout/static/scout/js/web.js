@@ -39,6 +39,13 @@ $(document).on('ready', function(event) {
 
     Filter.init_events();
 
+    // initialize slick image slider
+    $('.slick').slick({
+        dots: true,
+        arrows: false,
+    });
+
+
 });
 
 $(window).scroll(function(){
