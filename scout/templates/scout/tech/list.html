@@ -15,23 +15,24 @@
         <div class="scout-filter-results-by">
             <label>Category:</label>
             <ul>
-                <li>Laptop Computer</li>
-                <li>Data Projector</li>
-                <li>Digital Camera</li>
-                <li>Digital Video Camera</li>
-                <li>Flatbed Scanner</li>
-                <li>3D Printer</li>
-                <li>Tablet PC</li>
-                <li>Projection Screen</li>
-                <li>Portable Audio System</li>
-                <li>CD Recorder</li>
-                <li>External Hard Drive</li>
-                <li>Shotgun Microphone</li>
-                <li>Calculator</li>
+                <li><a href="/tech/?category=camera">Cameras</a></li>
+                <li>Printers</li>
+                <li>Tablets</li>
+                <li>Workstations</li>
+                <li>Monitors</li>
             </ul>
+
+            <label>Sub category: (based on category)</label>
+            <ul>
+                <li><a href="/tech/?category=camera&subcategory=digital">Digital camera</a></li>
+                <li><a href="/tech/?category=camera&subcategory=digital_video">Digital Video Camera</a></li>
+                <li><a href="/tech/?category=camera&subcategory=outdoor">Outdoor Wildlife camera</a></li>
+                <li><a href="/tech/?category=camera&subcategory=waterproof">Waterproof Camera</a></li>
+            </ul>
+
         </div>
         <div class="scout-filter-results-results clearfix">
-            <label>Results:</label>
+            <label>Items:</label>
             <div class="scout-filter-results-count">{{ spots|length }}</div>
             <div class="scout-filter-results-actions">
                 <a href="/tech/filter/" id="tech_link_filter" title="Filter list of food places on campus">
