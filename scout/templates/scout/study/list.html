@@ -18,7 +18,7 @@
         </div>
         <div class="scout-filter-results-results clearfix">
             <label>Results:</label>
-            <div class="scout-filter-results-count">{{ spots|length }}</div>
+            <div class="scout-filter-results-count">{{ count }}</div>
             <div class="scout-filter-results-actions">
                 <a href="/study/filter/" id="study_link_filter" title="Filter list of food places on campus">
                     <i class="fa fa-sliders fa-inverse"></i>
@@ -36,7 +36,9 @@
         <ol id="scout_study_list" class="scout-card scout-list">
             {% for group in grouped_spots %}
 
-            <li style="background:#aaa;" class="scope"><strong>{{ group.name }}</strong></li>
+            <li style="background:#aaa; padding: 5px 20px; color: #fff; font-size:14px;">
+                <div>{% if group.name %}{{ group.name }}{% else %}<span style="color:red;">missing building_name</span>{% endif %}</div>
+            </li>
 
                 {% for spot in group.spots %}
                 <li class="scout-list-item" id="{{ spot.spot_id }}">
