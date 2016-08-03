@@ -13,12 +13,11 @@ var Layout = {
             var offsetHeight = ($(".scout-header").outerHeight() + $(".scout-geolocation").outerHeight() + $(".scout-filter-results").outerHeight() + $(".scout-footer").outerHeight());
             $(".scout-list-container").css({minHeight: $(window).outerHeight() - offsetHeight });
         }
-        else if (page_path.indexOf("detail") !== -1) {
-            // if mobile, calculate height of image container
-            if (isMobile !== undefined ) {
-                var aspectHeight = Math.round(( $(".scout-spot-image").width() /100)*67); //(i.e. 16:9 or 100:67)
-                $(".scout-spot-image").height(aspectHeight);
-            }
+        else if (page_path.indexOf("study") !== -1) {
+
+        }
+        else if (page_path.indexOf("tech") !== -1) {
+
         }
         else if (page_path.indexOf("map") !== -1) {
             var offsetHeight = ($(".scout-header").outerHeight() + $(".scout-filter-results-container").outerHeight() + $(".scout-footer").outerHeight());
@@ -35,6 +34,13 @@ var Layout = {
             }
 
         }
+
+        // if mobile, calculate height of image container
+        if (isMobile !== undefined ) {
+            var aspectHeight = Math.round(( $(".scout-spot-image").width() /100)*67); //(i.e. 16:9 or 100:67)
+            $(".scout-spot-image").height(aspectHeight);
+        }
+
 
     },
 };

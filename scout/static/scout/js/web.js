@@ -18,6 +18,13 @@ $(document).on('ready', function(event) {
         Geolocation.display_location_status();
         // List.init();
         Map.init_map();
+
+        // initialize slick image slider
+        $('.scout-spot-gallery').slick({
+            dots: true,
+            arrows: false,
+        });
+        
     }
     else if (page_path.indexOf("tech") !== -1){
         console.log("on tech");
@@ -38,13 +45,6 @@ $(document).on('ready', function(event) {
     Geolocation.update_location();
 
     Filter.init_events();
-
-    // initialize slick image slider
-    $('.slick').slick({
-        dots: true,
-        arrows: false,
-    });
-
 
 });
 
