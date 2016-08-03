@@ -37,8 +37,8 @@ var Layout = {
 
         // if mobile, calculate height of image container
         if (isMobile !== undefined ) {
-            var aspectHeight = Math.round(( $(".scout-spot-image").width() /100)*67); //(i.e. 16:9 or 100:67)
-            $(".scout-spot-image").height(aspectHeight);
+            var aspectHeight = Math.round(( $(".spot-detail-main-image").width() /100)*67); //(i.e. 16:9 or 100:67)
+            $(".spot-detail-main-image").height(aspectHeight);
         }
 
 
