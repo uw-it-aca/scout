@@ -61,12 +61,12 @@ var List = {
         }
         var settings = $.extend({
             scrollTarget: target,
-            offsetTop: 140,
+            offsetTop: 102,
             duration: 400,
             //easing: 'swing'
         }, options);
 
-        var scrollPane = $('.scout-scroll');
+        var scrollPane = $('html, body');
         var scrollTarget = (typeof settings.scrollTarget == "number") ? settings.scrollTarget : $(settings.scrollTarget);
         var scrollY = (typeof scrollTarget == "number") ? scrollTarget : scrollTarget.offset().top + scrollPane.scrollTop() - parseInt(settings.offsetTop);
         scrollPane.animate({
