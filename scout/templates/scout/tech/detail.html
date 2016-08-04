@@ -2,11 +2,11 @@
 {% load staticfiles %}
 {% load scout_filters %}
 
-{% block title %}{{item.name}}{% endblock %}
+{% block title %}{{spot.filtered_item.name}}{% endblock %}
 
 {% block web_content %}
 
-<div id="page_{{spot.spot_id}}" class="scout-content">
+<div id="page_{{spot.filtered_item.item_id}}" class="scout-content">
 
     <div class="scout-details-container" role="main">
 
@@ -29,7 +29,7 @@
             <div class="sticky">
                 <div class="scout-spot-meta clearfix">
 
-                    <div class="scout-spot-name">{% if item.name %}{{item.name}}{% else %}item name missing{% endif %}</div>
+                    <div class="scout-spot-name">{% if spot.filtered_item.name %}{{spot.filtered_item.name}}{% else %}item name missing{% endif %}</div>
                     <div class="scout-spot-type">
                         {% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}
 </span>{% endfor %}
