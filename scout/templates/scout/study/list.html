@@ -37,7 +37,7 @@
             {% for group in grouped_spots %}
 
             <li class="sticky-header">
-                <div>{% if group.name %}{{ group.name }}{% else %}<span style="color:red;">missing building_name</span>{% endif %}</div>
+                <span>{% if group.name %}{{ group.name }}{% else %}missing building_name{% endif %}</span>
             </li>
 
                 {% for spot in group.spots %}

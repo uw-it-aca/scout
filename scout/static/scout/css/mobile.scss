@@ -132,12 +132,18 @@ $footer-height: 40px;
 
 // scrolling sticky header (study list)
 
-.sticky-header { background:#aaa; padding: 5px 20px; color: #fff; font-size:14px; }
 .sticky-header-wrap {position:relative;}
 
-.sticky-helper { background:#aaa; padding: 5px 20px; color: #fff; font-size:14px; }
+.sticky-header { background:#aaa; color: #fff; font-size:14px; width: 100%;
+    span { display: block; padding: 5px 20px; }
+}
+
+.sticky-helper { background:#aaa; color: #fff; font-size:14px; width: 100%;
+    span { display: block; padding: 5px 20px; }
+}
 .sticky-helper.sticky-header-hidden { display: none; }
-.sticky-helper.is-sticky { display: block; background:#aaa; padding: 5px 20px; color: #fff; font-size:14px; position:absolute; top: 102px !important; left: 0; right:0; z-index: 9999; }
+.sticky-helper.is-sticky { display: block; background:#aaa; color: #fff; font-size:14px; position:absolute; top: 102px !important; left: 0; right:0; z-index: 9999;
+}
 
 // google maps
 

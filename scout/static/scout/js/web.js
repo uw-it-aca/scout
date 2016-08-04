@@ -25,6 +25,10 @@ $(document).on('ready', function(event) {
             arrows: false,
         });
 
+        $('.sticky-header-wrap').stickyHeaders({
+            stickyElement: 'li',
+        });
+
     }
     else if (page_path.indexOf("tech") !== -1){
         console.log("on tech");
@@ -45,10 +49,6 @@ $(document).on('ready', function(event) {
     Geolocation.update_location();
 
     Filter.init_events();
-
-    $('.sticky-header-wrap').stickyHeaders({
-        stickyElement: 'li',
-    });
 
 });
 
