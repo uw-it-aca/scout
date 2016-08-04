@@ -71,7 +71,16 @@
 
                                 <div class="scout-spot-xxxx">
                                     <p>Seats {% if spot.capacity %}<span>{{ spot.capacity }}</span>{% else %}<span style="color:red;">xx</span> {% endif %}</p>
-                                    <p class="scope">Lab Stats: <i class="fa fa-desktop" aria-hidden="true"></i> {{spot.labstats}} <span>{{ spot.auto_labstats_available }} / {{ spot.auto_labstats_total }}</span></p>
+                                    {% if spot.labstats_id %}
+                                        {% if spot.auto_labstats_total != 0 %}
+                                            {% if spot.auto_labstats_available != 0 %}
+                                                <p class="scope" style="color: green!important;">Lab Stats: <i class="fa fa-desktop" aria-hidden="true" style="color: green!important;"></i> <span style="color: green!important;">{{ spot.auto_labstats_available }} / {{ spot.auto_labstats_total }}</span></p>
+                                            {% endif %}
+                                        {% endif %}
+                                        {% else %}
+                                        <p class="scope">Lab Stats: <i class="fa fa-desktop" aria-hidden="true"></i> <span>{{ spot.auto_labstats_available }} / {{ spot.auto_labstats_total }}</span></p>
+                                    {% endif %}
+
                                 </div>
 
                                 <span class="scout-spot-status">{% if spot.is_open %}<span class="open visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</span>
