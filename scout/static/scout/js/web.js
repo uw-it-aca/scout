@@ -46,6 +46,10 @@ $(document).on('ready', function(event) {
 
     Filter.init_events();
 
+    $('.sticky-header-wrap').stickyHeaders({
+        stickyElement: 'li',
+    });
+
 });
 
 $(window).scroll(function(){

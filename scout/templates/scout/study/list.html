@@ -33,10 +33,10 @@
 
         <h2 class="scout-list-header visually-hidden">List of study places (by distance)</h2>
 
-        <ol id="scout_study_list" class="scout-card scout-list">
+        <ol id="scout_study_list" class="scout-card scout-list sticky-header-wrap">
             {% for group in grouped_spots %}
 
-            <li style="background:#aaa; padding: 5px 20px; color: #fff; font-size:14px;">
+            <li class="sticky-header">
                 <div>{% if group.name %}{{ group.name }}{% else %}<span style="color:red;">missing building_name</span>{% endif %}</div>
             </li>
 
