@@ -20,7 +20,16 @@
                 {% else %}
                 <h1 style="background: url('{% static "scout/img/scout.png" %}') no-repeat 0px; background-size:13%;">
                 {% endif %}
-                <a id="link_home" href="/" title="Discover places and things on campus">Scout</a></h1>
+                <a id="link_home" href="/" title="Discover places and things on campus">Scout</a>
+
+                <select style="position:absolute; z-index:9999; top:20px; right:20px;">
+                    <option value="seattle">Seattle</option>
+                    <option value="bothell">Bothell</option>
+                    <option value="tacoma">Tacoma</option>
+                    <option value="south_lake_union">South Lake Union</option>
+                </select>
+
+                </h1>
 
                 <div class="scout-navigation" role="navigation" aria-label="main navigation">
                     <ul class="scout-navigation-items">

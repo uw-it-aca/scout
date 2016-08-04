@@ -1,7 +1,10 @@
 var Geolocation = {
 
-    // red square
-    //default_location: { latitude: 47.6558539, longitude: -122.3094925 },
+    // campus default_locations (center)
+    // seattle: { latitude: 47.653811, longitude: -122.307815 },
+    // slu: { latitude: 47.62456939, longitude: -122.34105337 },
+    // bothell: { latitude: 47.75907121, longitude: -122.19103843 },
+    // tacoma: { latitude: 47.24458187, longitude: -122.43763134 },
 
     // drumheller fountain
     default_location: { latitude: 47.653811, longitude: -122.307815 },
