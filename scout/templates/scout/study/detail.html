@@ -42,7 +42,9 @@
                             {% for foodtype in spot.foodtype_names %}
                                 <span>{{ foodtype }}</span>
                             {% endfor %}
-                        {% else %} <span style="color:red;">missing has items</span> {% endif %}
+                        {% else %}
+                            <span style="color:red;">missing has items</span>
+                        {% endif %}
                     </div>
 
                 </div>
