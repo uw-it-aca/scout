@@ -5,62 +5,51 @@ var Map = {
 
             // food list map
             if( $("#food_list_map").length) {
-
                 var map_id = 'food_list_map';
-                console.log("food list map initilaized");
-                Map.initializeListMap(map_id);
-
+                Map.load_list_map(map_id);
             }
             //food detail map
             if($("#food_detail_map").length > 0) {
-
                 var map_id = 'food_detail_map';
-                console.log("food detail map initilaized");
-                Map.initializeDetailMap(map_id);
-
+                Map.load_detail_map(map_id);
             }
-
             // study list map
             if( $("#study_list_map").length > 0 ) {
-
                 var map_id = 'study_list_map';
-                console.log("study list map initilaized");
-                Map.initializeListMap(map_id);
-
+                Map.load_list_map(map_id);
             }
-
             // study detail map
             if( $("#study_detail_map").length > 0 ) {
-
                 var map_id = 'study_detail_map';
-                console.log("study detail map initilaized");
-                Map.initializeDetailMap(map_id);
+                Map.load_detail_map(map_id);
             }
 
         });
-        
+
         // handle map stuff for window resize
         $(window).resize(function() {
+
             // food list map
             if($("#food_list_map").length > 0) {
                 var map_id = 'food_list_map';
-                Map.initializeListMap(map_id);
+                Map.load_list_map(map_id);
             }
             // food detail map
             if($("#food_detail_map").length > 0) {
                 var map_id = 'food_detail_map';
-                Map.initializeDetailMap(map_id);
+                Map.load_detail_map(map_id);
             }
             // study list map
             if( $("#study_list_map").length > 0 ) {
                 var map_id = 'study_list_map';
-                Map.initializeListMap(map_id);
+                Map.load_list_map(map_id);
             }
             // study detail map
             if( $("#study_detail_map").length > 0 ) {
                 var map_id = 'study_detail_map';
-                Map.initializeDetailMap(map_id);
+                Map.load_detail_map(map_id);
             }
+
         });
     },
 
@@ -68,7 +57,7 @@ var Map = {
         //Geolocation.init_location_toggles();
     },
 
-    initializeListMap: function (map_id) {
+    load_list_map: function (map_id) {
 
         console.log(map_id);
 
@@ -76,7 +65,7 @@ var Map = {
         var pos = Geolocation.get_client_latlng();
         var mapOptions;
         if(mapExists) {
-            // center map on center location received from user
+            // center map on default location OR location received from user
             mapCenter = pos;
             mapOptions = {
                 center: mapCenter,
@@ -134,7 +123,6 @@ var Map = {
 
                 // pulsate the user location marker
                 /**
-
                 var direction = 1;
                 var rmin = 20, rmax = 50;
                 setInterval(function() {
@@ -169,8 +157,6 @@ var Map = {
                     position: new google.maps.LatLng(data.lat, data.lng),
                     map: map,
                     //animation: google.maps.Animation.DROP,
-                    //labelContent: "<i class='fa " + data.icon +"'></i>",
-                    //labelContent: "<i class='fa " + data.icon +"'></i><span class='marker-text'>" + data.spot_name + "</span>",
                     labelAnchor: new google.maps.Point(6, 6),
                     labelClass: "map-label", // the CSS class for the label
 
@@ -221,7 +207,7 @@ var Map = {
                         $('li').css('background', 'none'); // clear any highlighted spots first
                         $('#' + data.id).css('background', '#e8eaf7');
 
-                        //$('.scout-scroll').scrollTo('#' + data.id);
+                        // scroll to spot on list
                         List.scroll_to_spot('#' + data.id);
 
                     });
@@ -232,7 +218,7 @@ var Map = {
 
                     // prevent google maps from being tab navigated
                     google.maps.event.addListener(map, "tilesloaded", function(){
-                        $("#list_map a").attr("tabindex","-1");
+                        $("#" + map_id +" a").attr("tabindex","-1");
                     });
 
                     // handle hover event for main list view
@@ -268,15 +254,16 @@ var Map = {
             }
 
             // fit all spots into the map boundary
-            // map.fitBounds(bounds);
+            //map.fitBounds(bounds);
 
             // cluster the markers using marker clusterer
+            // TODO: find new markercluster solution that is not deprecated by Google
             //var markerCluster = new MarkerClusterer(map, markers);
             window.map = map;
         }
     },
 
-    initializeDetailMap: function(map_id) {
+    load_detail_map: function(map_id) {
 
         console.log(map_id);
 
@@ -364,7 +351,6 @@ var Map = {
                 map: map,
                 title: spot_name,
                 labelContent: "<i class='fa fa-cutlery'></i><span class='marker-text' style='margin-left:15px;font-size:12px;'>" + spot_name + "</span>",
-                //labelContent: "<span class='marker-text' style='margin-left:18px;font-size:12px;'>" + spot_name + "</span>",
                 labelAnchor: new google.maps.Point(6, 6),
                 labelClass: "map-label", // the CSS class for the label
                 icon: {
