@@ -301,7 +301,6 @@ var Map = {
                     disableDefaultUI: true,
                     zoomControl: false,
                     disableDoubleClickZoom: true
-
                 };
 
             }
@@ -310,6 +309,7 @@ var Map = {
                 mapOptions = {
                     center: myLatlng,
                     zoom: 19,
+                    streetViewControl: false,
                 };
 
             }
