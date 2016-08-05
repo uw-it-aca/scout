@@ -193,7 +193,7 @@ class SpaceDAOTest(TestCase):
         filters = _get_spot_filters(request)
         self.assertEqual(len(filters), 9)
 
-    def test_organize_hours(self):
+    def test_organize_hours_premade(self):
         sc = Spotseeker()
         spot = sc.get_spot_by_id(4)
         spot_hours = organize_hours(spot)
