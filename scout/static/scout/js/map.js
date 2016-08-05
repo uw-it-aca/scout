@@ -256,9 +256,16 @@ var Map = {
             // fit all spots into the map boundary
             //map.fitBounds(bounds);
 
+            // marker clusterer options
+            var mc_options = {
+                imagePath: '/static/vendor/img/m',
+                gridSize: 50,
+                minimumClusterSize: 3,
+                maxZoom: 20
+            };
             // cluster the markers using marker clusterer
-            // TODO: find new markercluster solution that is not deprecated by Google
-            //var markerCluster = new MarkerClusterer(map, markers);
+            var markerCluster = new MarkerClusterer(map, markers, mc_options);
+
             window.map = map;
         }
     },
