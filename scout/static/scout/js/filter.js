@@ -1,7 +1,7 @@
 var Filter = {
     set_filter_params: function() {
 
-        var campuses = $("#campus_select input:checkbox:checked").map(function() {
+        var campuses = $("#campus_select input:radio:checked").map(function() {
             return $(this).val();
         }).get();
 
@@ -116,7 +116,7 @@ var Filter = {
         Filter.replace_food_href();
         window.location.href = "/food/";
     },
-    
+
     init_events: function() {
 
         Filter.set_filter_text();

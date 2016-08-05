@@ -115,25 +115,12 @@ var Map = {
                 // add radius overlay and bind to location marker
                 var circle = new google.maps.Circle({
                     map: map,
-                    radius: 30,    // meters
+                    radius: 40,    // meters
                     fillColor: '#c0392b',
                     fillOpacity: 0.15,
                     strokeWeight: 0
                 });
                 circle.bindTo('center', locationMarker, 'position');
-
-                // pulsate the user location marker
-                /**
-                var direction = 1;
-                var rmin = 20, rmax = 50;
-                setInterval(function() {
-                    var radius = circle.getRadius();
-                    if ((radius > rmax) || (radius < rmin)) {
-                        direction *= -1;
-                    }
-                    circle.setRadius(radius + direction * 10);
-                }, 300);
-                **/
 
                 // add user location marker to map
                 window.user_location_marker = locationMarker;
@@ -255,7 +242,7 @@ var Map = {
             }
 
             // fit all spots into the map boundary
-            //map.fitBounds(bounds);
+            map.fitBounds(bounds);
 
             // marker clusterer options
             var mc_options = {

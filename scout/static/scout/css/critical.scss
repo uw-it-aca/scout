@@ -330,7 +330,7 @@ body { background: #f1f1f1; }
             }
             label { display: block; line-height: 25px; font-size: 14px; white-space: nowrap;
                 span { color: #aaa; }
-                input[type="checkbox"]  { margin-right: 5px; }
+                input[type="checkbox"], input[type="radio"]    { margin-right: 5px; }
             }
 
             .scout-filter-split { width: 100%;
