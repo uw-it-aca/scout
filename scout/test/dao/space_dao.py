@@ -229,12 +229,12 @@ class SpaceDAOTest(TestCase):
                         'sunday': [((0, 0), (2, 30))]}
 
         hours_expected = {'monday': [(time(23, 0), time(2, 0))],
-                          'tuesday' : [(time(22, 0), time(3, 0))],
-                          'wednesday' : [],
-                          'thursday' : [],
-                          'friday' : [(time(19, 0), time(23, 59))],
-                          'saturday' : [(time(0, 0), time(23, 59))],
-                          'sunday' : [(time(0, 0), time(2, 30))]}
+                          'tuesday': [(time(22, 0), time(3, 0))],
+                          'wednesday': [],
+                          'thursday': [],
+                          'friday': [(time(19, 0), time(23, 59))],
+                          'saturday': [(time(0, 0), time(23, 59))],
+                          'sunday': [(time(0, 0), time(2, 30))]}
 
         avail = []
         for day, hours in hours_before.items():

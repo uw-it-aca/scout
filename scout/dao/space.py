@@ -166,8 +166,9 @@ def organize_hours(spot):
         day_hours = [h for h in raw_hours if h.day == day]
         # Try to find an hours object that spans to end of day, excluding
         # anything that spans the entire day
-        overnight_today = [h for h in day_hours if h.end_time == end_of_day
-                           and h.start_time != start_of_day]
+        overnight_today = [h for h in day_hours
+                           if h.end_time == end_of_day and
+                           h.start_time != start_of_day]
         # Try to find an hours object that starts at 0:00 tomorrow
         next_day = days_list[(idx + 1) % len(days_list)]
         overnight_next_day = [h for h in raw_hours if h.day == next_day and
