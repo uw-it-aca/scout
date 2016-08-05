@@ -95,15 +95,6 @@
 <script async="async" src="{% static "scout/js/geolocation.js" %}"></script>
 {% endcompress %}
 
-<!-- mapbox -->
-<script src='//api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script>
-<link href='//api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet' />
-
-<script src='//api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js'></script>
-<link href='//api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.css' rel='stylesheet' />
-<link href='//api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.Default.css' rel='stylesheet' />
-
-
 <!-- googlme maps -->
 {% if google_maps %}
 <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3&amp;key={{ google_maps }}&amp;libraries=geometry"></script>

@@ -61,7 +61,7 @@ var List = {
         }
         var settings = $.extend({
             scrollTarget: target,
-            offsetTop: 102,
+            offsetTop: 130,
             duration: 400,
             //easing: 'swing'
         }, options);

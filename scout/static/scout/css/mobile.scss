@@ -134,11 +134,11 @@ $footer-height: 40px;
 
 .sticky-header-wrap {position:relative;}
 
-.sticky-header { background:#aaa; color: #fff; font-size:14px; width: 100%;
+.sticky-header { background:#aaa !important; color: #fff; font-size:14px; width: 100%;
     span { display: block; padding: 5px 20px; }
 }
 
-.sticky-helper { background:#aaa; color: #fff; font-size:14px; width: 100%;
+.sticky-helper { background:#aaa !important; color: #fff; font-size:14px; width: 100%;
     span { display: block; padding: 5px 20px; }
 }
 .sticky-helper.sticky-header-hidden { display: none; }

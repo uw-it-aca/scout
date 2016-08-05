@@ -96,39 +96,19 @@
     </div>
 
     <script type="text/javascript">
-
         window.spot_locations = {
-            {% for spot in spots %}
-                '{{ spot.spot_id }}': {
-                    "spot_name": '{{ spot.name }}',
-                        "id": '{{ spot.spot_id }}',
-                        "building": '{{ spot.building_name }}',
-                        "lat": '{{ spot.latitude }}',
-                        "lng": '{{ spot.longitude }}',
-                },
+            {% for group in grouped_spots %}
+                {% for spot in group.spots %}
+                    '{{ spot.spot_id }}': {
+                        "spot_name": '{{ spot.name }}',
+                            "id": '{{ spot.spot_id }}',
+                            "building": '{{ spot.building_name }}',
+                            "lat": '{{ spot.latitude }}',
+                            "lng": '{{ spot.longitude }}',
+                    },
+                {% endfor %}
             {% endfor %}
         };
-
-        var study_geojson = [
-            {% for spot in spots %}
-            {
-                "type": "Feature",
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": [{{ spot.longitude }}, {{ spot.latitude }}]
-                },
-                "properties": {
-                    "marker-color": "#6564a8",
-                    "marker-size": "small",
-                    "marker-symbol": "circle-stroked",
-                    "title": "{{ spot.name }}",
-                    "description": "{{ spot.building_name }}",
-                    "id": "{{ spot.spot_id }}"
-                },
-            },
-            {% endfor %}
-        ];
-
     </script>
 
 </div>
