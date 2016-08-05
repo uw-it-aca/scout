@@ -5,6 +5,7 @@ from scout.dao.space import get_spot_list, get_spot_by_id, get_filtered_spots
 from scout.dao.space import get_food_spots_by_filter, get_period_filter, \
     get_spots_by_filter, group_spots_by_building
 from scout.dao.image import get_image
+from scout.dao.item import get_item_by_id
 
 
 # using red square as the default center
@@ -166,7 +167,10 @@ def tech_list_view(request):
 
 
 def tech_detail_view(request, item_id):
-    return render_to_response('scout/tech/detail.html',
+    spot_filtered_items = get_item_by_id(int(item_id))
+    context = {"spot": spot_filtered_items,
+               "app_type": 'tech'}
+    return render_to_response('scout/tech/detail.html', context,
                               context_instance=RequestContext(request))
 
 
