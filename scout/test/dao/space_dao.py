@@ -215,9 +215,10 @@ class SpaceDAOTest(TestCase):
         self.assertEqual(len(grouped_spots[1]), 2)
 
     def test_organize_hours(self):
-
-        DAYS = ('monday', 'tuesday', 'wednesday', 'thursday', 'friday',
-                'saturday', 'sunday')
+        """
+        Tests the organize_hours function. Includes cases for overnight
+        and extremely long time periods.
+        """
         spot = Spot()
         time = datetime.time
         hours_before = {'monday': [((23, 0), (23, 59))],
