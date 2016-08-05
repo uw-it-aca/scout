@@ -69,6 +69,7 @@ var Map = {
             mapCenter = pos;
             mapOptions = {
                 center: mapCenter,
+                streetViewControl: false,
                 zoom: 16
             };
             var styles = [
