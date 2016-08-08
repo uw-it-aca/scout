@@ -60,12 +60,14 @@ body { //overflow: hidden;
                             .scout-spot-image { width:23%; }
                             .scout-spot-content { width:77%; position: relative;
 
+                                /*
                                 .scout-spot-type { font-size: 10px; font-weight: normal; color: #bbb; margin-top: 5px;
                                     position: absolute; top: 0; right: 0;
                                     span { text-transform: uppercase; margin-left: 5px; }
                                 }
+                                */
 
-                                .scout-spot-name { width: 73%; }
+                                .scout-spot-name { /*width: 73%;*/ }
                                 .scout-spot-status { }
                             }
                         }
