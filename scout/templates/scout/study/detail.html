@@ -115,9 +115,26 @@
                 </div>
                 {% endif %}
 
-                <p>Noise level: {{ spot.spot_noise }}</p>
-                <p>Natural Lighting: {{ spot.natural_light }}</p>
-                <p>Food/Coffee: {{ spot.food_nearby }}</p>
+                <p>Noise level:
+                <span class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-volume-up fa-stack-1x fa-inverse"></i>
+                </span>
+                {{ spot.spot_noise }}</p>
+
+                <p>Natural Lighting:
+                <span class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-lightbulb-o fa-stack-1x fa-inverse"></i>
+                </span>
+                {{ spot.natural_light }}</p>
+
+                <p>Food/Coffee:
+                <span class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-cutlery fa-stack-1x fa-inverse"></i>
+                </span>
+                {{ spot.food_nearby }}</p>
 
                 {% if spot.reservable %}
                 <h4><i class="fa fa-bookmark"></i> Reservations</h4>
