@@ -36,15 +36,15 @@
                         {% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}</span>{% endfor %}
                     </div>
 
-                    <div class="scout-spot-food-served">
-                        <label>Has stuff...</label>
-                        {% if spot.foodtype_names %}
-                            {% for foodtype in spot.foodtype_names %}
-                                <span>{{ foodtype }}</span>
+                    <div class="scout-spot-resources">
+                        <label>Resources</label>
+                        
+                        {% if spot.spot_resources %}
+                            {% for spot_resource in spot.spot_resources %}
+                                <span>{{ spot_resource }}</span>
                             {% endfor %}
-                        {% else %}
-                            <span style="color:red;">missing has items</span>
-                        {% endif %}
+                        {% else %} <span style="color:red;">missing resources</span> {% endif %}
+
                     </div>
 
                 </div>
@@ -58,9 +58,8 @@
 
             </div>
 
+            <!--
             <div class="scout-spot-contact-info">
-
-                replace with study specific information
 
                 <h4 class="visually-hidden">Contact information</h4>
 
@@ -105,10 +104,36 @@
                 {% endif %}
 
             </div>
+            -->
 
         </div>
 
         <div class="scout-spot-content">
+
+            <div class="scout-card">
+                <h3>Details</h3>
+
+                {% if spot.capacity %}<span>Seats  {{ spot.capacity }}</span>{% endif %}
+
+                {% if spot.labstats_id %}
+                    {% if spot.auto_labstats_total != 0 %}
+                        {% if spot.auto_labstats_available != 0 %}
+                            <span><i class="fa fa-desktop" aria-hidden="true"></i> <span style="color:lime;">{{ spot.auto_labstats_available }}</span> / {{ spot.auto_labstats_total }}</span>
+                        {% endif %}
+                    {% endif %}
+                {% endif %}
+
+
+                <p>Noise level: {{ spot.spot_noise }}</p>
+                <p>Natural Lighting: {{ spot.natural_light }}</p>
+                <p>Food/Coffee: {{ spot.food_nearby }}</p>
+
+                {% if spot.reservable %}
+                <h4><i class="fa fa-bookmark"></i> Reservations</h4>
+                <div class="scout-spot-reservation">{{spot.reservation_notes}}</div>
+                {% endif %}
+
+            </div>
 
             <div class="scout-card">
                 <div class="scout-spot-hours">
@@ -145,12 +170,17 @@
 
                     <h4 class="visually-hidden">Building information</h4>
                     <div class="scout-spot-building-info">
-                        <ul>
+
+                        <!--<ul>
                             {% if spot.building_name %}<li>{{ spot.building_name }}</li>{% endif %}
                             {% if spot.floor %}<li>{{ spot.floor }}</li>{% endif %}
                             {% if spot.room_number %}<li>{{ spot.room_number }}</li>{% endif %}
-                        </ul>
+                        </ul>-->
+
+                        <div>{{ spot.location_description }}</div>
                     </div>
+
+
 
                 </div>
 
@@ -180,21 +210,6 @@
                     </a>
                     {% endif %}
                 </div>
-
-            </div>
-
-            <div class="scout-card">
-                <h3>Details</h3>
-
-                {% if spot.location_description %}
-                <h4 class="visually-hidden">Description</h4>
-                <div class="scout-spot-description">{{spot.location_description}}</div>
-                {% endif %}
-
-                {% if spot.has_reservation %}
-                <h4><i class="fa fa-bookmark"></i> Reservations</h4>
-                <div class="scout-spot-reservation">{{spot.reservation_notes}}</div>
-                {% endif %}
 
             </div>
 

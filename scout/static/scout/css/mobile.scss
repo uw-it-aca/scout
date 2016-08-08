@@ -115,36 +115,6 @@ $footer-height: 40px;
 
 }
 
-// sticky header
-
-.sticky { background: #fff; }
-
-.fixed {
-    position: fixed;
-    top: 102px;
-    left: 0;
-    right: 0;
-    z-index: 9999;
-    padding: 0;
-    // border-bottom: solid 1px #dde4e6;
-    box-shadow: 0 0 5px rgba(57,70,78,.2);
-}
-
-// scrolling sticky header (study list)
-
-.sticky-header-wrap {position:relative;}
-
-.sticky-header { background:#aaa !important; color: #fff; font-size:14px; width: 100%;
-    span { display: block; padding: 5px 20px; }
-}
-
-.sticky-helper { background:#aaa !important; color: #fff; font-size:14px; width: 100%;
-    span { display: block; padding: 5px 20px; }
-}
-.sticky-helper.sticky-header-hidden { display: none; }
-.sticky-helper.is-sticky { display: block; background:#aaa; color: #fff; font-size:14px; position:absolute; top: 102px !important; left: 0; right:0; z-index: 9999;
-}
-
 // google maps
 
 .map-label { background: none; color: #f9f9f9; /*cursor: default !important;*/

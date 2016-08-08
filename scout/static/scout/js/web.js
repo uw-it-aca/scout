@@ -28,7 +28,7 @@ $(document).on('ready', function(event) {
         $('.sticky-header-wrap').stickyHeaders({
             stickyElement: 'li',
         });
-
+        
     }
     else if (page_path.indexOf("tech") !== -1){
         console.log("on tech");

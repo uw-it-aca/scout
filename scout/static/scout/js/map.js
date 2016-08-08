@@ -212,7 +212,7 @@ var Map = {
                     // handle hover event for main list view
                     $('#' + data.id).hover(
                         function () {
-                            
+
                             //map.setCenter(marker.getPosition());
                             $('li').css('background', 'none');
                             $(this).css({"background":"#e8eaf7"});

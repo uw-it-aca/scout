@@ -53,35 +53,36 @@
                         <div class="scout-spot-content">
 
                             <div style="padding-left: 10px;">
-                                <h3 class="scout-spot-name">{{ spot.name }}</h3>
-                                <div class="scout-spot-location">
 
-                                    <span class="scout-spot-distance"><span class="visually-hidden">Distance from you:</span><span class="distance-number">--</span>&nbsp;ft.</span>&nbsp;&nbsp;
-                                    {% if spot.building_name %}{{ spot.building_name }}{% else %}<span style="color:red;">missing building_name</span>{% endif %}
+                                <div class="clearfix">
+                                    <div class="scout-spot-type">{% if spot.spot_types %}{% for type in spot.spot_types %}<span>
+                                        {% if type.name == 'open'%}{{ type.name|remove_underscores }} space{% else %}{{ type.name|remove_underscores }}{% endif %}</span>{% endfor %}{% else %} <span style="color:red;">SPOT_TYPE</span> {% endif %}</div>
 
-                                    <p>{{spot.location_description}}</p>
+                                    <div class="scout-spot-capacity">
+                                        {% if spot.capacity %}<span>Seats  {{ spot.capacity }}</span>{% endif %}
 
-                                </div>
-
-                                {% if is_desktop %}
-                                <span class="scout-spot-type">{% if spot.spot_types %}{% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}</span>{% endfor %}{% else %} <span style="color:red;">SPOT_TYPE</span> {% endif %}</span>
-                                {% endif %}
-
-                                <div class="scout-spot-xxxx">
-
-                                    <p>Seats {% if spot.capacity %}<span>{{ spot.capacity }}</span>{% else %}<span style="color:red;">xx</span> {% endif %}</p>
-
-                                    {% if spot.labstats_id %}
-                                        {% if spot.auto_labstats_total != 0 %}
-                                            {% if spot.auto_labstats_available != 0 %}
-                                                <div><i class="fa fa-desktop" aria-hidden="true"></i> <span style="color:lime;">{{ spot.auto_labstats_available }}</span> / {{ spot.auto_labstats_total }}</div>
+                                        {% if spot.labstats_id %}
+                                            {% if spot.auto_labstats_total != 0 %}
+                                                {% if spot.auto_labstats_available != 0 %}
+                                                    <span><i class="fa fa-desktop" aria-hidden="true"></i> <span style="color:lime;">{{ spot.auto_labstats_available }}</span> / {{ spot.auto_labstats_total }}</span>
+                                                {% endif %}
                                             {% endif %}
                                         {% endif %}
-                                    {% endif %}
+                                    </div>
+                                </div>
+
+                                <h3 class="scout-spot-name">{{ spot.name }}</h3>
+
+                                <div class="scout-spot-location">
+
+                                    <span class="scout-spot-distance"><span class="visually-hidden">Distance from you:</span><span class="distance-number scope">---</span>&nbsp;ft.</span>&nbsp;&nbsp;
+                                    {% if spot.building_name %}{{ spot.building_name }}{% else %}<span style="color:red;">missing building_name</span>{% endif %}
+
+                                    <!--{% if spot.location_description %}<p>{{spot.location_description|insert_newline|linebreaks}}</p>{% else %}<span style="color:red;">missing location_description</span></p>{% endif %}-->
 
                                 </div>
 
-                                <span class="scout-spot-status">{% if spot.is_open %}<span class="open visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</span>
+                                <div class="scout-spot-status">{% if spot.is_open %}<span class="open visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</div>
 
                             </div>
 
@@ -95,27 +96,29 @@
 
     </div>
 
-    <script type="text/javascript">
-        window.spot_locations = {
-            {% for group in grouped_spots %}
-                {% for spot in group.spots %}
-                    '{{ spot.spot_id }}': {
-                        "spot_name": '{{ spot.name }}',
-                            "id": '{{ spot.spot_id }}',
-                            "building": '{{ spot.building_name }}',
-                            "lat": '{{ spot.latitude }}',
-                            "lng": '{{ spot.longitude }}',
-                    },
-                {% endfor %}
-            {% endfor %}
-        };
-    </script>
+
 
 </div>
 
 {% endblock %}
 
 {% block secondary_content %}
+
+<script type="text/javascript">
+    window.spot_locations = {
+        {% for group in grouped_spots %}
+            {% for spot in group.spots %}
+                '{{ spot.spot_id }}': {
+                    "spot_name": '{{ spot.name }}',
+                        "id": '{{ spot.spot_id }}',
+                        "building": '{{ spot.building_name }}',
+                        "lat": '{{ spot.latitude }}',
+                        "lng": '{{ spot.longitude }}',
+                },
+            {% endfor %}
+        {% endfor %}
+    };
+</script>
 
 <!-- show a map on the list page -->
 <div id="study_list_map" class="scout-spot-list-map" style="height:100%; background: #ddd !important;">
