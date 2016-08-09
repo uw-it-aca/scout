@@ -100,7 +100,7 @@
                           <i class="fa fa-circle fa-stack-2x"></i>
                           <i class="fa fa-lightbulb-o fa-stack-1x fa-inverse"></i>
                         </span>
-                        <span class="scout-spot-action-text">Natural light</span>
+                        <span class="scout-spot-action-text">Natural lighting</span>
                     </div>
                 </div>
                 {% endif %}
@@ -113,7 +113,12 @@
                           <i class="fa fa-circle fa-stack-2x"></i>
                           <i class="fa fa-coffee fa-stack-1x fa-inverse"></i>
                         </span>
-                        <span class="scout-spot-action-text">{{ spot.food_nearby }}</span>
+                        <span class="scout-spot-action-text">
+                            {% if spot.food_nearby == 'building' %}Available in building
+                            {% elif spot.food_nearby == 'neighboring' %}Available neighboring building
+                            {% elif spot.food_nearby == 'space' %}Available in the space
+                            {% else %}{{ spot.food_nearby }}{% endif %}
+                        </span>
                     </div>
                 </div>
                 {% endif %}
