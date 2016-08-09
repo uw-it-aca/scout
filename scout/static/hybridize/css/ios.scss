@@ -9,16 +9,20 @@
 	ul {
 		li { background: #fff; }
 	}
+
+    .item-inner { overflow: hidden;
+
+        .item-title-row { background-image: none !important; }
+
+        .item-title {
+            span { color: #666; font-size: 85%; }
+        }
+
+    }
+
 }
 
 
-.item-title-row { background-image: none !important; }
-
-.item-title {
-
-    span { color: #666; font-size: 85%; }
-
-}
 
 .item-input { text-align: right;
 	input, select { text-align: right; }
@@ -40,6 +44,15 @@ body { background: #efeff4 !important; padding: 0 !important; margin: 0 !importa
 
 .scout-list {
 
-    a { color: red !important; }
+    .scout-list-header {
+        border-top: solid 1px #c8c7cc;
+        border-bottom: solid 1px #c8c7cc;
+        text-transform: uppercase;;
+        font-size: 13px;
+        color: #555;
+        line-height: 28px;
+        padding-left: 15px;
+        margin-top: -1px; //hack for row borders
+    }
 
 }
