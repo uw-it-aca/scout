@@ -331,7 +331,8 @@ def add_study_info(spot):
 
     if _get_extended_info_by_key("reservable", spot.extended_info) == "true":
         spot.reservable = "true"
-    spot.reservation_notes = _get_extended_info_by_key("s_reservation_notes",
+
+    spot.reservation_notes = _get_extended_info_by_key("reservation_notes",
                                                        spot.extended_info)
 
     if _get_extended_info_by_key("has_labstats", spot.extended_info) == "true":
