@@ -29,9 +29,6 @@
                {% endfor %}
             </p>
 
-
-
-
             <h4>Location information</h4>
             <ul>
                 <li>{{ spot.latitude }}</li>
@@ -40,7 +37,9 @@
                 <li>{{ spot.location_description }}</li>
                 <li>{{ spot.floor }}</li>
                 <li>{{ spot.room_number }}</li>
-                <li>{{ spot.capacity }}</li>
+                <li>capacity: {{ spot.capacity }}</li>
+                <li>reservable? {{ spot.reservable }}</li>
+                <li>{{ spot.reservation_notes }}</li>
             </ul>
 
             {% if spot.access_notes %}
