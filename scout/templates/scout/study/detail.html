@@ -47,13 +47,13 @@
 
                     </div>
 
-                    <div>
+                    <div class="scout-spot-extra">
                         {% if spot.capacity %}<span>Seats  {{ spot.capacity }}</span>{% endif %}
 
                         {% if spot.labstats_id %}
                             {% if spot.auto_labstats_total != 0 %}
                                 {% if spot.auto_labstats_available != 0 %}
-                                    <span><i class="fa fa-desktop" aria-hidden="true"></i> <span style="color:lime;">{{ spot.auto_labstats_available }}</span> / {{ spot.auto_labstats_total }}</span>
+                                    <span><i class="fa fa-desktop" aria-hidden="true"></i> <span style="color:#2ecc71;">{{ spot.auto_labstats_available }}</span> / {{ spot.auto_labstats_total }}</span>
                                 {% endif %}
                             {% endif %}
                         {% endif %}
@@ -70,75 +70,65 @@
 
             </div>
 
+            <div class="scout-spot-info">
 
-            <div class="scout-spot-contact-info">
+                <h4 class="visually-hidden">Space Information</h4>
 
-                <h4 class="visually-hidden">Contact information</h4>
-
-                {% if spot.phone %}
-                <div class="scout-spot-phone">
-                    <a href="tel:+1{{ spot.phone }}">
-                        <span class="visually-hidden">Restaurant phone:</span>
+                {% if spot.spot_noise %}
+                <div class="scout-spot-info-item">
+                    <div>
+                        <span class="visually-hidden">Noise Level:</span>
                         <span class="fa-stack fa-lg">
                           <i class="fa fa-circle fa-stack-2x"></i>
-                          <i class="fa fa-phone fa-stack-1x fa-inverse"></i>
+                          <i class="fa fa-volume-up fa-stack-1x fa-inverse"></i>
                         </span>
-                        <span class="scout-spot-action-text">{{ spot.phone | format_phone }}</span>
-                    </a>
+                        <span class="scout-spot-action-text" style="text-transform:capitalize;">
+                            {% if spot.spot_noise == 'quiet' %}Low hum
+                            {% elif spot.spot_noise == 'moderate' %}Chatter
+                            {% elif spot.spot_noise == 'variable' %}Chatter
+                            {% else %}{{ spot.spot_noise }}{% endif %}
+                        </span>
+                    </div>
                 </div>
                 {% endif %}
 
-                {% if spot.website_url %}
-                <div class="scout-spot-website">
-                    <a href="{{spot.website_url}}" target="_blank">
-                        <span class="visually-hidden">Website URL:</span>
+                {% if spot.natural_light %}
+                <div class="scout-spot-info-item">
+                    <div>
+                        <span class="visually-hidden">Lighting:</span>
                         <span class="fa-stack fa-lg">
                           <i class="fa fa-circle fa-stack-2x"></i>
-                          <i class="fa fa-laptop fa-stack-1x fa-inverse"></i>
+                          <i class="fa fa-lightbulb-o fa-stack-1x fa-inverse"></i>
                         </span>
-                        <span class="scout-spot-action-text">{{spot.website_url}}</span>
-                    </a>
+                        <span class="scout-spot-action-text">Natural light</span>
+                    </div>
                 </div>
                 {% endif %}
 
-                {% if spot.menu_url %}
-                <h4 class="visually-hidden">Menu information</h4>
-                <div class="scout-spot-menu">
-                    <a href="{{spot.menu_url}}" target="_blank">
-                        <span class="visually-hidden">Restaurant menu URL:</span>
+                {% if spot.food_nearby %}
+                <div class="scout-spot-info-item">
+                    <div>
+                        <span class="visually-hidden">Food/Coffee:</span>
                         <span class="fa-stack fa-lg">
                           <i class="fa fa-circle fa-stack-2x"></i>
-                          <i class="fa fa-cutlery fa-stack-1x fa-inverse"></i>
+                          <i class="fa fa-coffee fa-stack-1x fa-inverse"></i>
                         </span>
-                        <span class="scout-spot-action-text">{{spot.menu_url}}</span>
-                    </a>
+                        <span class="scout-spot-action-text">{{ spot.food_nearby }}</span>
+                    </div>
                 </div>
                 {% endif %}
-
-                <p>Noise level:
-                <span class="fa-stack fa-lg">
-                  <i class="fa fa-circle fa-stack-2x"></i>
-                  <i class="fa fa-volume-up fa-stack-1x fa-inverse"></i>
-                </span>
-                {{ spot.spot_noise }}</p>
-
-                <p>Natural Lighting:
-                <span class="fa-stack fa-lg">
-                  <i class="fa fa-circle fa-stack-2x"></i>
-                  <i class="fa fa-lightbulb-o fa-stack-1x fa-inverse"></i>
-                </span>
-                {{ spot.natural_light }}</p>
-
-                <p>Food/Coffee:
-                <span class="fa-stack fa-lg">
-                  <i class="fa fa-circle fa-stack-2x"></i>
-                  <i class="fa fa-cutlery fa-stack-1x fa-inverse"></i>
-                </span>
-                {{ spot.food_nearby }}</p>
 
                 {% if spot.reservable %}
-                <h4><i class="fa fa-bookmark"></i> Reservations</h4>
-                <div class="scout-spot-reservation">{{spot.reservation_notes}}</div>
+                <div class="scout-spot-info-item">
+                    <div>
+                        <span class="visually-hidden">Reservable:</span>
+                        <span class="fa-stack fa-lg">
+                          <i class="fa fa-circle fa-stack-2x"></i>
+                          <i class="fa fa-bookmark fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <span class="scout-spot-action-text">Reservable: {{ spot.reservable }}, Notes: {{ spot.reservation_notes }}</span>
+                    </div>
+                </div>
                 {% endif %}
 
             </div>

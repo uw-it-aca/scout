@@ -213,10 +213,7 @@ body { background: #f1f1f1; }
 
             .scout-details-card { padding: 0; margin-top: 0; }
 
-            .scout-spot-image { background-color: #fff; background-size: cover; background-repeat: no-repeat; background-position: center center; min-height: 200px; position: relative;
-
-
-            }
+            .scout-spot-image { background-color: #fff; background-size: cover; background-repeat: no-repeat; background-position: center center; min-height: 200px; position: relative; }
 
             .scout-spot-alert { margin: 0; padding: 15px 20px; background: #fcf8e3; color: #8a6d3b; font-size: 14px; line-height: 16px;}
 
@@ -232,15 +229,16 @@ body { background: #f1f1f1; }
                     span { margin-right: 5px; }
                 }
 
-                .scout-spot-food-served, .scout-spot-resources { margin: 10px 0 5px 0; font-size: 12px; float: left; width: 70%;
+                .scout-spot-resources { margin: 10px 0 5px 0; font-size: 12px; float: left; width: 80%;
                     label {  display: block; text-transform: uppercase; font-size: 10px; margin-bottom: 2px; color: #aaa; }
                     span { margin-right: 5px; white-space: nowrap; }
                 }
 
-                .scout-spot-status { position: absolute; bottom: 15px; right: 20px; font-size: 10px; text-transform: uppercase;
-                    span {  padding: 0 5px; line-height: 20px; display: inline-block; }
-                    .open { background: #D6E9C5; color: #3c763d; }
-                    .closed { background: #ebccd1; color: #a94442; }
+                .scout-spot-extra { float:right; width: 20%; font-size: 12px; margin-top: 25px; text-align: right; }
+
+                .scout-spot-status { position: absolute; bottom: 15px; right: 20px; font-size: 12px; text-transform: uppercase;
+                    .open { color: #2ecc71; }
+                    .closed { color: #a94442; }
                 }
                 .scout-spot-open-period {color: #fff; margin: 10px 10px 5px 0; font-size: 12px; float: left; width: 70%;
                     label {  display: block; text-transform: uppercase; font-size: 10px; margin-bottom: 2px; color: #aaa; }
@@ -250,21 +248,28 @@ body { background: #f1f1f1; }
 
             }
 
-            .scout-spot-contact-info { padding:15px 0;
+            .scout-spot-info { padding:15px 0;
 
-                // details actions
-                .scout-spot-phone { padding: 0 20px; }
-                .scout-spot-menu { padding: 0 20px; }
-                .scout-spot-website { padding: 0 20px; }
+                .scout-spot-info-item { padding: 0 20px;
 
-                a { text-decoration: none; color:$scout-link; font-size: 14px; display: inline-block; width: 100%; text-overflow: ellipsis; overflow: hidden; line-height: 30px; white-space: nowrap;
+                    a { text-decoration: none; color:$scout-link; font-size: 14px; display: inline-block; width: 100%; text-overflow: ellipsis; overflow: hidden; line-height: 30px; white-space: nowrap;
 
-                    .fa { margin-right: 10px; }
+                        .fa { margin-right: 10px; }
+                        .fa-stack { font-size: 12px; }
+                        .fa-circle { color: $scout-button; }
 
-                    .fa-stack { font-size: 12px; }
-                    .fa-circle { color: $scout-button; }
+                        .scout-spot-action-text { text-decoration: underline; }
+                    }
 
-                    .scout-spot-action-text { text-decoration: underline; }
+                    div { font-size: 14px; display: inline-block; width: 100%; text-overflow: ellipsis; overflow: hidden; line-height: 30px; white-space: nowrap;
+
+                        .fa { margin-right: 10px; }
+                        .fa-stack { font-size: 12px; }
+                        .fa-circle { color: $scout-button; }
+
+                        .scout-spot-action-text { text-decoration: none !important; }
+                    }
+
                 }
 
             }

@@ -80,12 +80,12 @@
                 {% endif %}
             </div>
 
-            <div class="scout-spot-contact-info">
+            <div class="scout-spot-info">
 
                 <h4 class="visually-hidden">Contact information</h4>
 
                 {% if spot.phone %}
-                <div class="scout-spot-phone">
+                <div class="scout-spot-info-item">
                     <a href="tel:+1{{ spot.phone }}">
                         <span class="visually-hidden">Restaurant phone:</span>
                         <span class="fa-stack fa-lg">
@@ -98,7 +98,7 @@
                 {% endif %}
 
                 {% if spot.website_url %}
-                <div class="scout-spot-website">
+                <div class="scout-spot-info-item">
                     <a href="{{spot.website_url}}" target="_blank">
                         <span class="visually-hidden">Website URL:</span>
                         <span class="fa-stack fa-lg">
@@ -112,7 +112,7 @@
 
                 {% if spot.menu_url %}
                 <h4 class="visually-hidden">Menu information</h4>
-                <div class="scout-spot-menu">
+                <div class="scout-spot-info-item">
                     <a href="{{spot.menu_url}}" target="_blank">
                         <span class="visually-hidden">Restaurant menu URL:</span>
                         <span class="fa-stack fa-lg">
