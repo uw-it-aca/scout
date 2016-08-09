@@ -131,9 +131,10 @@
                           <i class="fa fa-circle fa-stack-2x"></i>
                           <i class="fa fa-bookmark fa-stack-1x fa-inverse"></i>
                         </span>
-                        <span class="scout-spot-action-text">Reservable: {{ spot.reservable }}, Notes: {{ spot.reservation_notes }}</span>
-                    </div>
+                        <span class="scout-spot-action-text">Reservable: {{ spot.reservable }}</span>
+                    </div
                 </div>
+                <div style="white-space: normal; overflow: visible; line-height:20px; margin-left:30px; ">{{ spot.reservation_notes }}<div>
                 {% endif %}
 
             </div>
