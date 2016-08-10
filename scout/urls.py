@@ -53,7 +53,8 @@ urlpatterns = patterns(
     url(r'^h/study/$', 'scout.views.hybrid_study_list_view',
         name='hybrid_study_list_view'),
     url(r'^h/study/(?P<spot_id>[0-9]{1,5})/$',
-        'scout.views.hybrid_study_detail_view', name='hybrid_study_detail_view'),
+        'scout.views.hybrid_study_detail_view',
+        name='hybrid_study_detail_view'),
 
     # hybrid components
     url(r'^h/components/$', 'scout.views.hybrid_comps_view',
