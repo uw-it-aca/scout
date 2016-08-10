@@ -15,11 +15,11 @@
 </div>
 
 <div class="list-block media-list scout-list">
-    <ul>
 
-        {% for group in grouped_spots %}
-
-        <li class="scout-list-header">{% if group.name %}{{ group.name }}{% else %}missing building_name{% endif %}</li>
+    {% for group in grouped_spots %}
+    <div class="list-group">
+        <ul>
+            <li class="list-group-title">{% if group.name %}{{ group.name }}{% else %}missing building_name{% endif %}</li>
 
             {% for spot in group.spots %}
             <li>
@@ -50,8 +50,9 @@
             </li>
             {% endfor %}
 
-        {% endfor %}
+        </ul>
+    </div>
+    {% endfor %}
 
-    </ul>
 </div>
 {% endblock %}

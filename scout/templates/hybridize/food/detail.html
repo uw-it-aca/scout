@@ -17,21 +17,49 @@
     <div class="card-content">
         <div class="card-content-inner">
 
-            {% if spot.has_alert %}
-            <p>
-                ALERT
-                <br/> {{ spot.alert_notes }}
-            </p>
-            {% endif %}
-
             <p>type: {% for type in spot.spot_types %}
-                {{ type.name }}
+                {{ type.name|remove_underscores }}
                {% endfor %}
             </p>
 
-            <p>{{spot.building_description}}</p>
+            <p>Alert!</p>
+            <ul>
+                <li>has_alert: {{spot.has_alert}}</li>
+                <li>alert_notes: {{ spot.alert_notes }}</li>
+            </ul>
 
-            <h4>Hours</h4>
+            <p>Location information</p>
+            <ul>
+                <li>lat: {{ spot.latitude }}</li>
+                <li>lng: {{ spot.longitude }}</li>
+                <li>building: {{ spot.building_name }}</li>
+                <li>floor: {{ spot.floor }}</li>
+                <li>room: {{ spot.room_number }}</li>
+                <li>capacity: {{ spot.capacity }}</li>
+                <li>location_description: {{ spot.location_description }}</li>
+            </ul>
+
+            <p>Spot info</p>
+            <ul>
+                <li>phone: {{ spot.phone | format_phone }}</li>
+                <li>website: {{spot.website_url}}</li>
+                <li>menu: {{spot.menu_url}}</li>
+            </ul>
+
+            <p>Reservations</p>
+            <ul>
+                <li>has_reservation: {{ spot.has_reservation }}</li>
+                <li>{{ spot.reservation_notes }}</li>
+            </ul>
+
+            <p>Access Notes</p>
+            <ul>
+                <li>access_restrictions: {{ spot.display_access_restrictions }}
+                <li>access_notes: {{spot.access_notes}}</li>
+            </ul>
+
+
+            <p>Hours</p>
 
             <ul>
                 <li>Monday: {% for hours in spot.hours.monday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
@@ -43,39 +71,21 @@
                 <li>Sunday: {% for hours in spot.hours.sunday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
             </ul>
 
-            {% if spot.hours_notes %}
+            <p>{% if spot.is_open %}Open now{% else %}Currently closed{% endif %}</p>
+
             <p>Hours Notes:</p>
             <ul>
                 <li>{{spot.hours_notes}}</li>
             </ul>
-            {% endif %}
 
-
-            <h4>Location information</h4>
+            <p>Coupons</p>
             <ul>
-                <li>{{ spot.latitude }}</li>
-                <li>{{ spot.longitude }}</li>
-                <li>{{ spot.building_name }}</li>
-                <li>{{ spot.floor }}</li>
-                <li>{{ spot.room_number }}</li>
-                <li>{{ spot.capacity }}</li>
-            </ul>
-            {% if spot.access_notes %}
-            <p>Access Notes</p>
-            <ul>
-                <li>{{spot.access_notes}}</li>
-            </ul>
-            {% endif %}
-            <h4>Misc. information</h4>
-            <ul>
-                {% if spot.has_coupon %} <li>{{ spot.has_coupon }}</li>{% endif %}
-                {% if spot.coupon_expiration %} <li>{{ spot.coupon_expiration }}</li>{% endif %}
-                {% if spot.coupon_url %} <li>{{ spot.coupon_url }}</li>{% endif %}
-                {% if spot.website_url %} <li>{{ spot.website_url }}</li>{% endif %}
+                <li>has_coupon: {{ spot.has_coupon }}</li>
+                <li>coupon_expiration: {{ spot.coupon_expiration }}</li>
+                <li>coupon_url: {{ spot.coupon_url }}</li>
             </ul>
 
-            <h4>Management</h4>
-            <p>this location is managed by...</p>
+            <p>Management</p>
             <ul>
                 <li>{{ spot.organization }}</li>
                 <li>{{ spot.manager }}</li>
@@ -97,6 +107,7 @@
         {% endfor %}
     </ul>
 </div>
+
 <!--
 <div class="content-block-title">Cuisine:</div>
 <div class="list-block">
@@ -110,7 +121,6 @@
         {% endfor %}
     </ul>
 </div>
-
 <div class="content-block-title">Food Served:</div>
 <div class="list-block">
     <ul>
@@ -124,6 +134,7 @@
     </ul>
 </div>
 -->
+
 <div class="content-block-title">Payment Accepted:</div>
 <div class="list-block">
     <ul>

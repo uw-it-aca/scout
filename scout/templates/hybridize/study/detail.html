@@ -17,37 +17,63 @@
     <div class="card-content">
         <div class="card-content-inner">
 
-            {% if spot.has_alert %}
-            <p>
-                ALERT
-                <br/> {{ spot.alert_notes }}
-            </p>
-            {% endif %}
-
             <p>type: {% for type in spot.spot_types %}
-                {{ type.name }}
+                {{ type.name|remove_underscores }}
                {% endfor %}
             </p>
 
-            <h4>Location information</h4>
+            <p>Space Information</p>
             <ul>
-                <li>{{ spot.latitude }}</li>
-                <li>{{ spot.longitude }}</li>
-                <li>{{ spot.building_name }}</li>
-                <li>{{ spot.location_description }}</li>
-                <li>{{ spot.floor }}</li>
-                <li>{{ spot.room_number }}</li>
-                <li>capacity: {{ spot.capacity }}</li>
-                <li>reservable? {{ spot.reservable }}</li>
+                <li>noise: {{ spot.spot_noise }}</li>
+                <li>natural light? {{ spot.natural_light }}</li>
+                <li>food_nearby: {{ spot.food_nearby }}</li>
+            </ul>
+
+            <p>Alert!</p>
+            <ul>
+                <li>has_alert: {{spot.has_alert}}</li>
+                <li>alert_notes: {{ spot.alert_notes }}</li>
+            </ul>
+
+            <p>Location information</p>
+            <ul>
+                <li>lat: {{ spot.latitude }}</li>
+                <li>lng: {{ spot.longitude }}</li>
+                <li>building: {{ spot.building_name }}</li>
+                <li>floor: {{ spot.floor }}</li>
+                <li>room: {{ spot.room_number }}</li>
+
+                <li>location_description: {{ spot.location_description }}</li>
+            </ul>
+
+            <p>Seats/Labstats</p>
+            <ul>
+                <li>seats: {{ spot.capacity }}</li>
+
+
+                <li>labstats:
+                {% if spot.labstats_id %}
+                    {% if spot.auto_labstats_total != 0 %}
+                        {% if spot.auto_labstats_available != 0 %}
+                            <i class="fa fa-desktop" aria-hidden="true"></i> <span style="color:#2ecc71;">{{ spot.auto_labstats_available }}</span> / {{ spot.auto_labstats_total }}
+                        {% endif %}
+                    {% endif %}
+                {% endif %}
+                </li>
+
+            </ul>
+
+            <p>Reservable</p>
+            <ul>
+                <li>reservable: {{ spot.reservable }}</li>
                 <li>{{ spot.reservation_notes }}</li>
             </ul>
 
-            {% if spot.access_notes %}
             <p>Access Notes</p>
             <ul>
-                <li>{{spot.access_notes}}</li>
+                <li>access_restrictions: {{ spot.display_access_restrictions }}
+                <li>access_notes: {{spot.access_notes}}</li>
             </ul>
-            {% endif %}
 
         </div>
     </div>
@@ -82,6 +108,8 @@
                 <li>Sunday: {% for hours in spot.hours.sunday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
             </ul>
 
+            <p>{% if spot.is_open %}Open now{% else %}Currently closed{% endif %}</p>
+            
             {% if spot.hours_notes %}
             <p>Hours Notes:</p>
             <ul>
