@@ -58,25 +58,8 @@
                 <li>access_notes: {{spot.access_notes}}</li>
             </ul>
 
-
-            <p>Hours</p>
-
-            <ul>
-                <li>Monday: {% for hours in spot.hours.monday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
-                <li>Tuesday: {% for hours in spot.hours.tuesday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
-                <li>Wednesday: {% for hours in spot.hours.wednesday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
-                <li>Thursday: {% for hours in spot.hours.thursday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
-                <li>Friday: {% for hours in spot.hours.friday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
-                <li>Saturday: {% for hours in spot.hours.saturday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
-                <li>Sunday: {% for hours in spot.hours.sunday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
-            </ul>
-
             <p>{% if spot.is_open %}Open now{% else %}Currently closed{% endif %}</p>
 
-            <p>Hours Notes:</p>
-            <ul>
-                <li>{{spot.hours_notes}}</li>
-            </ul>
 
             <p>Coupons</p>
             <ul>
@@ -106,6 +89,57 @@
         </li>
         {% endfor %}
     </ul>
+</div>
+
+<div class="content-block-title">Open Hours</div>
+<div class="list-block">
+    <ul>
+        <li class="item-content">
+            <div class="item-inner">
+                <div class="item-title">Monday</div>
+                <div class="item-after">{% for hours in spot.hours.monday %} {{ hours.0|time:"gA"}} - {{ hours.1|time:"gA"}} {% empty %} Closed {% endfor %}</div>
+            </div>
+        </li>
+        <li class="item-content">
+            <div class="item-inner">
+                <div class="item-title">Tuesday</div>
+                <div class="item-after">{% for hours in spot.hours.tuesday %} {{ hours.0|time:"gA"}} - {{ hours.1|time:"gA"}} {% empty %} Closed {% endfor %}</div>
+            </div>
+        </li>
+        <li class="item-content">
+            <div class="item-inner">
+                <div class="item-title">Wednesday</div>
+                <div class="item-after"> {% for hours in spot.hours.wednesday %} {{ hours.0|time:"gA"}} - {{ hours.1|time:"gA"}} {% empty %} Closed {% endfor %}</div>
+            </div>
+        </li>
+        <li class="item-content">
+            <div class="item-inner">
+                <div class="item-title">Thursday</div>
+                <div class="item-after">{% for hours in spot.hours.thursday %} {{ hours.0|time:"gA"}} - {{ hours.1|time:"gA"}} {% empty %} Closed {% endfor %}</div>
+            </div>
+        </li>
+        <li class="item-content">
+            <div class="item-inner">
+                <div class="item-title">Friday</div>
+                <div class="item-after">{% for hours in spot.hours.friday %} {{ hours.0|time:"gA"}} - {{ hours.1|time:"gA"}} {% empty %} Closed {% endfor %}</div>
+            </div>
+        </li>
+        <li class="item-content">
+            <div class="item-inner">
+                <div class="item-title">Saturday</div>
+                <div class="item-after">{% for hours in spot.hours.saturday %} {{ hours.0|time:"gA"}} - {{ hours.1|time:"gA"}} {% empty %} Closed {% endfor %}</div>
+            </div>
+        </li>
+        <li class="item-content">
+            <div class="item-inner">
+                <div class="item-title">Sunday</div>
+                <div class="item-after">{% for hours in spot.hours.sunday %} {{ hours.0|time:"gA"}} - {{ hours.1|time:"gA"}} {% empty %} Closed {% endfor %}</div>
+            </div>
+        </li>
+    </ul>
+    <div class="list-block-label" style="margin-bottom:1em;">
+        <i class="fa fa-clock-o" aria-hidden="true"></i> {{spot.hours_notes}}
+    </div>
 </div>
 
 <!--

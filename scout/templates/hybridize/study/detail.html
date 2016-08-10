@@ -22,12 +22,6 @@
                {% endfor %}
             </p>
 
-            <p>Space Information</p>
-            <ul>
-                <li>noise: {{ spot.spot_noise }}</li>
-                <li>natural light? {{ spot.natural_light }}</li>
-                <li>food_nearby: {{ spot.food_nearby }}</li>
-            </ul>
 
             <p>Alert!</p>
             <ul>
@@ -75,60 +69,103 @@
                 <li>access_notes: {{spot.access_notes}}</li>
             </ul>
 
+            <p>{% if spot.is_open %}Open now{% else %}Currently closed{% endif %}</p>
+
         </div>
     </div>
 </div>
 
-<div class="content-block-title">Resources</div>
+<div class="content-block-title">Open Hours</div>
 <div class="list-block">
     <ul>
-        {% for spot_resource in spot.spot_resources %}
         <li class="item-content">
             <div class="item-inner">
-                <div class="item-title">{{ spot_resource }}</div>
+                <div class="item-title">Monday</div>
+                <div class="item-after">{% for hours in spot.hours.monday %} {{ hours.0|time:"gA"}} - {{ hours.1|time:"gA"}} {% empty %} Closed {% endfor %}</div>
             </div>
         </li>
-        {% endfor %}
+        <li class="item-content">
+            <div class="item-inner">
+                <div class="item-title">Tuesday</div>
+                <div class="item-after">{% for hours in spot.hours.tuesday %} {{ hours.0|time:"gA"}} - {{ hours.1|time:"gA"}} {% empty %} Closed {% endfor %}</div>
+            </div>
+        </li>
+        <li class="item-content">
+            <div class="item-inner">
+                <div class="item-title">Wednesday</div>
+                <div class="item-after"> {% for hours in spot.hours.wednesday %} {{ hours.0|time:"gA"}} - {{ hours.1|time:"gA"}} {% empty %} Closed {% endfor %}</div>
+            </div>
+        </li>
+        <li class="item-content">
+            <div class="item-inner">
+                <div class="item-title">Thursday</div>
+                <div class="item-after">{% for hours in spot.hours.thursday %} {{ hours.0|time:"gA"}} - {{ hours.1|time:"gA"}} {% empty %} Closed {% endfor %}</div>
+            </div>
+        </li>
+        <li class="item-content">
+            <div class="item-inner">
+                <div class="item-title">Friday</div>
+                <div class="item-after">{% for hours in spot.hours.friday %} {{ hours.0|time:"gA"}} - {{ hours.1|time:"gA"}} {% empty %} Closed {% endfor %}</div>
+            </div>
+        </li>
+        <li class="item-content">
+            <div class="item-inner">
+                <div class="item-title">Saturday</div>
+                <div class="item-after">{% for hours in spot.hours.saturday %} {{ hours.0|time:"gA"}} - {{ hours.1|time:"gA"}} {% empty %} Closed {% endfor %}</div>
+            </div>
+        </li>
+        <li class="item-content">
+            <div class="item-inner">
+                <div class="item-title">Sunday</div>
+                <div class="item-after">{% for hours in spot.hours.sunday %} {{ hours.0|time:"gA"}} - {{ hours.1|time:"gA"}} {% empty %} Closed {% endfor %}</div>
+            </div>
+        </li>
+    </ul>
+    <div class="list-block-label" style="margin-bottom:1em;">
+        <i class="fa fa-clock-o" aria-hidden="true"></i> {{spot.hours_notes}}
+    </div>
+</div>
 
+
+<div class="content-block-title">Environment</div>
+<div class="list-block">
+    <ul>
+        <li class="item-content">
+            <div class="item-inner">
+                <div class="item-title">Resources</div>
+                <div class="item-after">{% for spot_resource in spot.spot_resources %}{{ spot_resource }}, {% endfor %}</div>
+            </div>
+        </li>
+        <li class="item-content">
+            <div class="item-inner">
+                <div class="item-title">Food/Coffee</div>
+                <div class="item-after">{{ spot.food_nearby }}</div>
+            </div>
+        </li>
+        <li class="item-content">
+            <div class="item-inner">
+                <div class="item-title">Noise level</div>
+                <div class="item-after"> {{ spot.spot_noise }}</div>
+            </div>
+        </li>
+        <li class="item-content">
+            <div class="item-inner">
+                <div class="item-title">Lighting</div>
+                <div class="item-after">{{ spot.natural_light }}</div>
+            </div>
+        </li>
     </ul>
 </div>
 
-<div class="content-block-title">Hours</div>
-<div class="card" style="margin-top:1em;">
-    <div class="card-content">
-        <div class="card-content-inner">
-
-            <ul>
-                <li>Monday: {% for hours in spot.hours.monday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
-                <li>Tuesday: {% for hours in spot.hours.tuesday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
-                <li>Wednesday: {% for hours in spot.hours.wednesday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
-                <li>Thursday: {% for hours in spot.hours.thursday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
-                <li>Friday: {% for hours in spot.hours.friday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
-                <li>Saturday: {% for hours in spot.hours.saturday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
-                <li>Sunday: {% for hours in spot.hours.sunday %} {{ hours.0 }} - {{ hours.1 }} {% empty %} Closed {% endfor %}</li>
-            </ul>
-
-            <p>{% if spot.is_open %}Open now{% else %}Currently closed{% endif %}</p>
-            
-            {% if spot.hours_notes %}
-            <p>Hours Notes:</p>
-            <ul>
-                <li>{{spot.hours_notes}}</li>
-            </ul>
-            {% endif %}
-
-        </div>
-    </div>
-</div>
-
 <div class="content-block-title">Getting Here</div>
+
 <div class="list-block">
     <ul>
         <li>
             <a href="maps://maps.apple.com/maps?q={{ spot.latitude }},{{ spot.longitude }}" class="item-link">
                 <div class="item-content">
                     <div class="item-inner">
-                        <div class="item-title">Open in Google Maps</div>
+                        <div class="item-title">Get directions to building in Maps</div>
                     </div>
                 </div>
             </a>
