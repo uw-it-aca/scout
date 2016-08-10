@@ -136,7 +136,7 @@ def study_list_view(request):
     spots = get_spot_list()
     spots = group_spots_by_building(spots)
     context = {"grouped_spots": spots,
-               "count": len(spots)}
+               "count": len(get_spot_list())}
     return render_to_response('scout/study/list.html', context,
                               context_instance=RequestContext(request))
 
@@ -206,7 +206,7 @@ def hybrid_study_list_view(request):
     spots = get_spot_list()
     spots = group_spots_by_building(spots)
     context = {"grouped_spots": spots,
-               "count": len(spots)}
+               "count": len(get_spot_list())}
     return render_to_response('hybridize/study/list.html', context,
                               context_instance=RequestContext(request))
 
