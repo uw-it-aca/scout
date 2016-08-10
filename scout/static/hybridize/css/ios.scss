@@ -46,7 +46,7 @@
 }
 
 /** cards not really in ios.. flat and full width **/
-.card {  margin: 0; border-radius: 0; box-shadow: none;
+.card {  margin: 0 !important; border-radius: 0; box-shadow: none;
     .card-header { border-radius: 0; color: #fff; }
     .card-content {
         h4 {  }
