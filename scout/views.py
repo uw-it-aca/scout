@@ -218,6 +218,15 @@ def hybrid_study_detail_view(request, spot_id):
                               context_instance=RequestContext(request))
 
 
+def hybrid_tech_list_view(request):
+    spots = get_spots_by_filter([('has_items', 'true')])
+    context = {"spots": spots,
+               "count": len(spots),
+               "app_type": 'tech'}
+    return render_to_response('hybridize/tech/list.html', context,
+                              context_instance=RequestContext(request))
+
+
 def hybrid_comps_view(request):
     return render_to_response('hybridize/components.html',
                               context_instance=RequestContext(request))
