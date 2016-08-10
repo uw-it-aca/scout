@@ -1,13 +1,19 @@
 /*** framework 7 overrides ***/
 
-.pages { position: relative; background: none !important; }
+.views { overflow: hidden !important; overflow-x: hidden !important; overflow-y: auto !important; }
+
+.pages { position: relative; background: none !important;
+    .page {
+        .page-content { overflow-x: hidden !important; }
+    }
+}
 
 .list-block { margin: 0;
 
 	ul:before { height: 0; }
 
 	ul {
-		li { background: #fff; }
+		li { }
 	}
 
     .item-inner { overflow: hidden;
@@ -33,8 +39,6 @@
 
 }
 
-
-
 .item-input { text-align: right;
 	input, select { text-align: right; }
 
@@ -51,7 +55,7 @@
 
 /*** ios hybrid reset ***/
 
-body { background: #efeff4 !important; padding: 0 !important; margin: 0 !important; }
+body { background: #efeff4 !important; padding: 0 !important; margin: 0 !important; overflow-x: hidden; }
 
 .scout-list {
 
