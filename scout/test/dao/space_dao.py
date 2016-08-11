@@ -7,7 +7,7 @@ from scout.dao.space import add_foodtype_names_to_spot, add_cuisine_names, \
     add_payment_names, add_additional_info, get_is_spot_open, organize_hours, \
     get_open_periods_by_day, get_food_spots_by_filter, get_spot_list, \
     get_food_spots_by_filter, _get_spot_filters, OPEN_PERIODS, get_spot_by_id,\
-    group_spots_by_building, get_avg_latlng_for_spots
+    group_spots_by_building, get_avg_latlng_for_spots, add_latlng_to_building
 from spotseeker_restclient.spotseeker import Spotseeker
 from scout.dao import space
 from spotseeker_restclient.exceptions import DataFailureException
@@ -221,6 +221,17 @@ class SpaceDAOTest(TestCase):
         spots.append(sc.get_spot_by_id(5))
         avg_latlng = get_avg_latlng_for_spots(spots)
         self.assertEqual(avg_latlng, (47.65607183333333, -122.3100596))
+
+    def test_get_building_latlng(self):
+        spots = []
+        sc = Spotseeker()
+        spots.append(sc.get_spot_by_id(1))
+        spots.append(sc.get_spot_by_id(4))
+        spots.append(sc.get_spot_by_id(5))
+        grouped_spots = group_spots_by_building(spots)
+        grouped_spots = add_latlng_to_building(grouped_spots)
+        self.assertEqual(grouped_spots[1]['latitude'], 47.656462)
+        self.assertEqual(grouped_spots[1]['longitude'], -122.3125347)
 
 
 class FakeClient(object):

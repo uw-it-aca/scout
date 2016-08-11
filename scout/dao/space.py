@@ -446,8 +446,11 @@ def group_spots_by_building(spots):
     return list_structure
 
 
-def sort_buildings(building_list):
-    pass
+def add_latlng_to_building(building_list):
+    for building in building_list:
+        building['latitude'], building['longitude'] = \
+            get_avg_latlng_for_spots(building['spots'])
+    return building_list
 
 
 def get_avg_latlng_for_spots(spots):
