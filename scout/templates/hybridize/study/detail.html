@@ -25,24 +25,30 @@
 {% endblock %}
 
 {% block hybrid_content %}
+
 <div class="card">
 
     {% if spot.images %}
-    <div style="background:url('/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}/?width=500') center center no-repeat; background-size:cover; height:270px;" valign="bottom" class="card-header">&nbsp;</div>
+    <div class="photo-gallery">
+        {% for image in spot.images %}
+        <div style="background:url('/images/{{ spot.spot_id }}/image/{{ image.image_id }}/?width=500') center center no-repeat; background-size:cover; height:270px;" valign="bottom">&nbsp;</div>
+        {% endfor %}
+    </div>
     {% else %}
-    <div style="background: #e5e6e9 url('{% static "scout/img/placeholder-1000.png" %}') no-repeat center center; background-size: cover; height:270px;" valign="bottom" class="card-header">&nbsp;</div>
+    <div style="background: #e5e6e9 url('{% static "scout/img/placeholder-1000.png" %}') no-repeat center center; background-size: cover; height:270px;" valign="bottom">&nbsp;</div>
     {% endif %}
 
     <div class="card-content">
         <div class="card-content-inner">
 
-            <h2>{{spot.name}}</h2>
-            <p>type: {% for type in spot.spot_types %}
-                {{ type.name|remove_underscores }}
-               {% endfor %}
-            </p>
-
-            <p>{% if spot.is_open %}Open now{% else %}Currently closed{% endif %}</p>
+            <div class="row no-gutter">
+                <div class="col-66" style="text-transform: capitalize; ">
+                    {% for type in spot.spot_types %}
+                    {% if type.name == 'open'%}{{ type.name|remove_underscores }} space{% else %}{{ type.name|remove_underscores }}{% endif %}
+                    {% endfor %}
+                </div>
+                <div class="col-33" style="text-align:right;">{% if spot.is_open %}<span style="color:#2ecc71;">Open now</span>{% else %}<span style="color:#a94441;">Currently closed</span>{% endif %}</div>
+            </div>
 
         </div>
     </div>
@@ -79,7 +85,7 @@
                     {% if spot.labstats_id %}
                         {% if spot.auto_labstats_total != 0 %}
                             {% if spot.auto_labstats_available != 0 %}
-                                <i class="fa fa-desktop" aria-hidden="true"></i> <span style="color:#2ecc71;">{{ spot.auto_labstats_available }}</span> / {{ spot.auto_labstats_total }}
+                                <i class="fa fa-desktop" aria-hidden="true"></i>&nbsp;<span style="color:#2ecc71;">{{ spot.auto_labstats_available }}</span>&nbsp;/&nbsp;{{ spot.auto_labstats_total }}
                             {% endif %}
                         {% endif %}
                     {% endif %}

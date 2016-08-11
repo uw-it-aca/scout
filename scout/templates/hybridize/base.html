@@ -23,6 +23,7 @@
             <!-- local override files -->
             <link rel="stylesheet" href="{% static "hybridize/css/android-theme.scss" %}" type="text/x-scss">
             <link rel="stylesheet" href="{% static "hybridize/css/android.scss" %}" type="text/x-scss">
+            <link rel="stylesheet" href="{% static "scout/css/slick.scss" %}" type="text/x-scss">
             {% endcompress %}
 
             {% compress js %}
@@ -30,7 +31,7 @@
 		    <script type="text/javascript" src="{% static "hybridize/js/jquery-2.1.4.min.js" %}"></script>
             <script type="text/javascript" src="{% static "hybridize/js/turbolinks-5.0.0.beta4.min.js" %}"></script>
 		    <script type="text/javascript" src="{% static "hybridize/js/framework7.min.js" %}"></script>
-
+            <script type="text/javascript" src="{% static "vendor/js/slick.min.js" %}"></script>
             <!-- local override files -->
 		    <script type="text/javascript" src="{% static "hybridize/js/android.js" %}"></script>
 		    {% endcompress %}
@@ -43,7 +44,9 @@
             <link rel="stylesheet" type="text/css" href="{% static "hybridize/css/framework7.ios.min.css" %}">
             <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.5.0.min.css" %}">
 
+
             {% compress css %}
+            <link rel="stylesheet" href="{% static "scout/css/slick.scss" %}" type="text/x-scss">
             <!-- local override files -->
             <link rel="stylesheet" href="{% static "hybridize/css/ios-theme.scss" %}" type="text/x-scss">
             <link rel="stylesheet" href="{% static "hybridize/css/ios.scss" %}" type="text/x-scss">
@@ -54,6 +57,7 @@
 		    <script type="text/javascript" src="{% static "hybridize/js/jquery-2.1.4.min.js" %}"></script>
             <script type="text/javascript" src="{% static "hybridize/js/turbolinks-5.0.0.beta4.min.js" %}"></script>
 		    <script type="text/javascript" src="{% static "hybridize/js/framework7.min.js" %}"></script>
+            <script type="text/javascript" src="{% static "vendor/js/slick.min.js" %}"></script>
 		    <!-- local override files -->
 		    <script type="text/javascript" src="{% static "hybridize/js/ios.js" %}"></script>
 		    {% endcompress %}
@@ -65,7 +69,7 @@
     <body class="theme-custom">
 
         {% block hybrid_notification %}{% endblock %}
-        
+
         <div class="views">
             <div class="view view-main">
                 <div class="pages">

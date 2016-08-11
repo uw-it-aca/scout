@@ -36,13 +36,15 @@
 
     <div class="card-content">
         <div class="card-content-inner">
-            <h2>{{ spot.name }}</h2>
-            <p>type: {% for type in spot.spot_types %}
-                {{ type.name|remove_underscores }}
-               {% endfor %}
-            </p>
 
-            <p>{% if spot.is_open %}Open now{% else %}Currently closed{% endif %}</p>
+            <div class="row no-gutter">
+                <div class="col-66" style="text-transform: capitalize; ">
+                    {% for type in spot.spot_types %}
+                    {% if type.name == 'open'%}{{ type.name|remove_underscores }} space{% else %}{{ type.name|remove_underscores }}{% endif %}
+                    {% endfor %}
+                </div>
+                <div class="col-33" style="text-align:right;">{% if spot.is_open %}<span style="color:#2ecc71;">Open now</span>{% else %}<span style="color:#a94441;">Currently closed</span>{% endif %}</div>
+            </div>
 
         </div>
     </div>

@@ -243,7 +243,7 @@ var Map = {
             }
 
             // fit all spots into the map boundary
-            map.fitBounds(bounds);
+            //map.fitBounds(bounds);
 
             // marker clusterer options
             var mc_options = {

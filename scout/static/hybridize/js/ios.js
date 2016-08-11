@@ -34,4 +34,10 @@ $(document).on('turbolinks:load', function() {
         Turbolinks.clearCache();
     });
 
+    // initialize slick image slider
+    $('.photo-gallery').slick({
+        dots: true,
+        arrows: false,
+    });
+
 });
