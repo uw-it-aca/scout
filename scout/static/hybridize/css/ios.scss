@@ -64,4 +64,16 @@ body { background: #efeff4 !important; padding: 0 !important; margin: 0 !importa
 .scout-list {
 
 
+
+}
+
+// webkit sticky header on scroll
+.stuck {
+  position: -webkit-sticky;
+  position: -moz-sticky;
+  position: -ms-sticky;
+  position: -o-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 9999;
 }

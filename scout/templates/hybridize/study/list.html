@@ -6,14 +6,24 @@
 
 {% block hybrid_content %}
 
-<div style="height:100px;">
-    <div>
-        <p>Filtering by:</p>
-        <p>Results: {{ count }}</p>
-    </div>
-    <p><a style="display:block;" href="/h/study/filter/">Filter</a></p>
-</div>
+<div class="card">
+    <div class="card-content">
+        <div class="card-content-inner">
 
+            <div><a href="/h/study/filter/">Filter</a> (handle natively)</div>
+
+            <div class="row no-gutter">
+                <div class="col-66">
+                    Filtering by: sadfkjasdjf lk
+                </div>
+                <div class="col-33" style="text-align:right;">
+                    {{ count }} spaces
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
 <div class="list-block media-list scout-list">
 
     {% for group in grouped_spots %}
