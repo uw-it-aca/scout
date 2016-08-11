@@ -89,10 +89,11 @@ var Geolocation = {
     },
 
     get_distance_from_position: function (item_latlng) {
-        // Returns distance in rounded feet
+        // Returns distance in miles, rounded to 2 decimals
         var current_latlng = Geolocation.get_client_latlng();
         var distance = google.maps.geometry.spherical.computeDistanceBetween(current_latlng, item_latlng);
-        distance = Math.round(distance * 3.280839895);
+        var miles_per_meter = 0.000621371;
+        distance = (distance * miles_per_meter).toFixed(2);
         return distance;
 
     },
