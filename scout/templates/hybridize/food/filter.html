@@ -308,7 +308,7 @@
 	<div class="content-block-inner">
         <p class="buttons-row">
             <a href="javascript:void(0)" class="button button-raised">Reset</a>&nbsp;&nbsp;
-            <a href="javascript:void(0)" onClick="Turbolinks.visit('/edit', { action: 'replace' })" class="button button-fill button-raised">Submit</a>
+            <a href="javascript:void(0)" id="food_filter_submit" class="button button-fill button-raised">Submit</a>
         </p>
 	</div>
 </div>
@@ -317,7 +317,7 @@
 {% if request.is_ios %}
 <div class="content-block">
     <div class="row">
-        <div class="col-50"><a href="javascript:void(0)" onClick="Turbolinks.visit('/h/food/', { action: 'replace' })" class="button button-big button-fill">Submit</a></div>
+        <div class="col-50"><a href="javascript:void(0)" id="food_filter_submit" class="button button-big button-fill">Submit</a></div>
         <div class="col-50"><a href="javascript:void(0)" class="button button-big">Reset</a></div>
     </div>
 </div>

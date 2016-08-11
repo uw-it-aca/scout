@@ -27,4 +27,11 @@ $(document).on('turbolinks:load', function() {
         myApp.closeNotification(".notification-item")
     });
 
+    // handle food filter submit
+    $("#food_filter_submit").click(function(e) {
+        e.preventDefault();
+        history.back(1);
+        Turbolinks.clearCache();
+    });
+
 });
