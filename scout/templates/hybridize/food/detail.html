@@ -54,7 +54,7 @@
         {{ spot.location_description }}
     </div>
     <ul>
-        <li>
+        <!--<li>
             <a href="#" class="item-link">
                 <div class="item-content">
                     <div class="item-inner">
@@ -62,6 +62,13 @@
                     </div>
                 </div>
             </a>
+        </li>-->
+        <li>
+            <div class="item-content">
+                <div class="item-inner">
+                    <div class="item-title">Location <span>{{ spot.building_name }}</span></div>
+                </div>
+            </div>
         </li>
         {% if spot.phone %}
         <li>
@@ -104,13 +111,13 @@
     </div>
 </div>
 
-<div class="content-block-title">Open for</div>
+<div class="content-block-title">Open periods</div>
 <div class="list-block">
     <ul>
         {% for period in spot.open_periods %}
         <li class="item-content">
             <div class="item-inner">
-                <div class="item-title">{{ period }}</div>
+                <div class="item-title" style="text-transform: capitalize;">{{ period|remove_underscores }}</div>
             </div>
         </li>
         {% endfor %}
