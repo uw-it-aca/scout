@@ -50,11 +50,14 @@
 
 <div class="list-block">
     <ul>
-        <li class="item-content">
-            <div class="item-inner">
-                <div class="item-title">Location</div>
-                <div class="item-after" style="max-width:70%; max-height:initial;white-space:normal;">{{ spot.location_description }}</dvi>
-            </div>
+        <li>
+            <a href="#" class="item-link">
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">Location <span>{{ spot.location_description }}</span></div>
+                    </div>
+                </div>
+            </a>
         </li>
         <li class="item-content">
             <div class="item-inner">
@@ -142,8 +145,22 @@
     <ul>
         <li class="item-content">
             <div class="item-inner">
+                {% if spot.spot_resources|length < 3 %}
                 <div class="item-title">Resources</div>
-                <div class="item-after">{% for spot_resource in spot.spot_resources %}{{ spot_resource }}, {% endfor %}</div>
+                <div class="item-after">
+                    {% for spot_resource in spot.spot_resources %}
+                    {% if forloop.last %}{{ spot_resource }}{% else %}{{ spot_resource }}, {% endif %}
+                    {% endfor %}
+                </div>
+                {% else %}
+                <div class="item-title">Resources
+                    <span>
+                        {% for spot_resource in spot.spot_resources %}
+                        {% if forloop.last %}{{ spot_resource }}{% else %}{{ spot_resource }}, {% endif %}
+                        {% endfor %}
+                    </span>
+                </div>
+                {% endif %}
             </div>
         </li>
         <li class="item-content">

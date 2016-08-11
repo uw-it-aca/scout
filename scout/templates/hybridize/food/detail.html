@@ -54,25 +54,34 @@
         {{ spot.location_description }}
     </div>
     <ul>
-        <li class="item-content">
-            <div class="item-inner">
-                <div class="item-title">Location</div>
-                <div class="item-after">{{ spot.building_name }}</dvi>
-            </div>
+        <li>
+            <a href="#" class="item-link">
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">Location <span>{{ spot.building_name }}</span></div>
+                    </div>
+                </div>
+            </a>
         </li>
         {% if spot.phone %}
-        <li class="item-content">
-            <div class="item-inner">
-                <div class="item-title">Phone</div>
-                <div class="item-after"><a href="#">{{ spot.phone | format_phone }}</a></dvi>
-            </div>
+        <li>
+            <a href="tel:+1{{ spot.phone }}" class="item-link" data-turbolinks="false">
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">Phone <span>{{ spot.phone | format_phone }}</span></div>
+                    </div>
+                </div>
+            </a>
         </li>
         {% endif %}
-        <li class="item-content">
-            <div class="item-inner">
-                <div class="item-title">Website</div>
-                <div class="item-after" style="max-width:70%; max-height:initial;white-space:normal;">{{spot.website_url}}</dvi>
-            </div>
+        <li>
+            <a href="{{spot.website_url}}" class="item-link" data-turbolinks="false">
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">Website <span>{{ spot.website_url }}</span></div>
+                    </div>
+                </div>
+            </a>
         </li>
         <li class="item-content">
             <div class="item-inner">
