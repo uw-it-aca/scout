@@ -181,12 +181,14 @@
                 <div class="item-after"> {{ spot.spot_noise }}</div>
             </div>
         </li>
+        {% if spot.natural_light %}
         <li class="item-content">
             <div class="item-inner">
                 <div class="item-title">Lighting</div>
-                <div class="item-after">{{ spot.natural_light }}</div>
+                <div class="item-after">Natural light</div>
             </div>
         </li>
+        {% endif %}
     </ul>
 </div>
 
