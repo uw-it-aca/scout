@@ -85,17 +85,23 @@
                 </div>
             </a>
         </li>
-        <li class="item-content">
-            <div class="item-inner">
-                <div class="item-title">Menu</div>
-                <div class="item-after" style="max-width:70%; max-height:initial;white-space:normal;">{{spot.menu_url}}</dvi>
-            </div>
+        <li>
+            <a href="{{ spot.menu_url }}" class="item-link" data-turbolinks="false">
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">Menu <span>{{ spot.menu_url }}</span></div>
+                    </div>
+                </div>
+            </a>
         </li>
-        <li class="item-content">
-            <div class="item-inner">
-                <div class="item-title">Coupon</div>
-                <div class="item-after" style="max-width:70%; max-height:initial;white-space:normal;">{{ spot.coupon_expiration }}, {{ spot.coupon_url }}</dvi>
-            </div>
+        <li>
+            <a href="{{ spot.coupon_url }}" class="item-link" data-turbolinks="false">
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">Coupon <span>Expires: {{ spot.coupon_expiration }}, {{ spot.coupon_url }}</span></div>
+                    </div>
+                </div>
+            </a>
         </li>
     </ul>
     <div class="list-block-label" style="margin-bottom:1em;">
