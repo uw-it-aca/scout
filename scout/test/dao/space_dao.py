@@ -211,7 +211,7 @@ class SpaceDAOTest(TestCase):
         self.assertEqual(len(grouped_spots), 2)
         self.assertEqual(grouped_spots[1]['name'],
                          "Odegaard Undergraduate Library")
-        self.assertEqual(len(grouped_spots[1]), 2)
+        self.assertEqual(len(grouped_spots[1]['spots']), 2)
 
     def test_get_avg_latlng(self):
         spots = []
