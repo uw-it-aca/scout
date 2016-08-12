@@ -24,6 +24,17 @@ var Map = {
                 Map.load_detail_map(map_id);
             }
 
+            // tech list map
+            if( $("#tech_list_map").length > 0 ) {
+                var map_id = 'tech_list_map';
+                Map.load_list_map(map_id);
+            }
+            // tech detail map
+            if( $("#tech_detail_map").length > 0 ) {
+                var map_id = 'tech_detail_map';
+                Map.load_detail_map(map_id);
+            }
+
         });
 
         // handle map stuff for window resize
@@ -47,6 +58,16 @@ var Map = {
             // study detail map
             if( $("#study_detail_map").length > 0 ) {
                 var map_id = 'study_detail_map';
+                Map.load_detail_map(map_id);
+            }
+            // tech list map
+            if( $("#tech_list_map").length > 0 ) {
+                var map_id = 'tech_list_map';
+                Map.load_list_map(map_id);
+            }
+            // tech detail map
+            if( $("#tech_detail_map").length > 0 ) {
+                var map_id = 'tech_detail_map';
                 Map.load_detail_map(map_id);
             }
 

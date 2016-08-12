@@ -12,7 +12,10 @@
 
     <!-- tech filter results -->
     <div class="scout-filter-results">
+
         <div class="scout-filter-results-by">
+
+            <!--
             <label>Category:</label>
             <ul>
                 <li>Cameras</li>
@@ -21,8 +24,9 @@
                 <li>Workstations</li>
                 <li>Monitors</li>
             </ul>
+            -->
 
-            <label>Sub category: (based on category)</label>
+            <label>Type: (sub_category)</label>
             <ul>
                 <li><a href="/tech/?subcategory=digital">Digital camera</a></li>
                 <li><a href="/tech/?subcategory=digital_video">Digital Video Camera</a></li>
@@ -34,12 +38,14 @@
         <div class="scout-filter-results-results clearfix">
             <label>Items:</label>
             <div class="scout-filter-results-count">{{ spots|length }}</div>
+            <!--
             <div class="scout-filter-results-actions">
                 <a href="/tech/filter/" id="tech_link_filter" title="Filter list of food places on campus">
                     <i class="fa fa-sliders fa-inverse"></i>
                     <span class="scout-filter-results-action">Filter Tech</span>
                 </a>
             </div>
+            -->
         </div>
     </div>
 
@@ -68,9 +74,7 @@
                                     {% if spot.building_name %}{{ spot.building_name }}{% else %}<span style="color:red;">missing building_name</span>{% endif %}
                                 </div>
 
-                                {% if is_desktop %}
                                 <span class="scout-spot-type">{% if item.category %}<span>{{ item.category }}</span>{% else %} <span style="color:red;">ITEM_CATEGORY</span> {% endif %}</span>
-                                {% endif %}
 
                                 <span class="scout-spot-status">{% if spot.is_open %}<span class="open visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</span>
 
@@ -89,25 +93,25 @@
 
     </div>
 
-    <script type="text/javascript">
-        window.spot_locations = {
-            {% for spot in spots %}
-                '{{ spot.spot_id }}': {
-                    "spot_name": '{{ spot.name }}',
-                        "id": '{{ spot.spot_id }}',
-                        "building": '{{ spot.building_name }}',
-                        "lat": '{{ spot.latitude }}',
-                        "lng": '{{ spot.longitude }}',
-                },
-            {% endfor %}
-        };
-    </script>
-
 </div>
 
 {% endblock %}
 
 {% block secondary_content %}
+
+<script type="text/javascript">
+    window.spot_locations = {
+        {% for spot in spots %}
+            '{{ spot.spot_id }}': {
+                "spot_name": '{{ spot.name }}',
+                    "id": '{{ spot.spot_id }}',
+                    "building": '{{ spot.building_name }}',
+                    "lat": '{{ spot.latitude }}',
+                    "lng": '{{ spot.longitude }}',
+            },
+        {% endfor %}
+    };
+</script>
 
 <!-- show a map on the list page -->
 <div id="tech_list_map" class="scout-spot-list-map" style="height:100%; background: #ddd !important;">
