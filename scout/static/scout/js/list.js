@@ -3,13 +3,12 @@ var List = {
         var spots = $(".scout-list-item");
 
         $.each(spots, function(idx, item){
-            var spot_id = $(item).attr('id');
-            if(spot_id !== undefined){
-                var spot_data = window.spot_locations[spot_id];
-                var spot_latlng = Geolocation.get_latlng_from_coords(spot_data.lat, spot_data.lng);
-                var distance = Geolocation.get_distance_from_position(spot_latlng);
-                $($(item).find(".distance-number")[0]).html(distance);
-            }
+            var lat = $(item).attr("data-spot-lat");
+            var lng = $(item).attr("data-spot-lng");
+
+            var spot_latlng = Geolocation.get_latlng_from_coords(lat, lng);
+            var distance = Geolocation.get_distance_from_position(spot_latlng);
+            $($(item).find(".distance-number")[0]).html(distance);
         });
     },
 
@@ -31,11 +30,57 @@ var List = {
         $("#scout_food_list").append(spots);
     },
 
+    add_building_distances: function () {
+        var buildings = $(".scout-list-building");
+
+        $.each(buildings, function(idx, building){
+            var lat = $(building).attr('data-building-lat');
+            var lng = $(building).attr('data-building-lng');
+            var building_latlng = Geolocation.get_latlng_from_coords(lat, lng);
+            var distance = Geolocation.get_distance_from_position(building_latlng);
+            $(building).attr('data-building-distance', distance);
+        });
+
+    },
+
+    sort_buildings: function () {
+        var buildings = $(".scout-list-building");
+        buildings.detach().sort(function(a, b){
+            var a_dist = parseFloat($(a).attr('data-building-distance'));
+            var b_dist = parseFloat($(b).attr('data-building-distance'));
+            if(a_dist < b_dist){
+                return -1;
+            } else if (a_dist > b_dist){
+                return 1;
+            } else {
+                return 0;
+            }
+        });
+        $("#scout_study_list").append(buildings);
+    },
+
+
+    add_geodata_to_study_list: function () {
+        //List.add_spot_distances();
+        List.add_building_distances();
+        List.sort_buildings();
+    },
+
+    add_geodata_to_other_list: function () {
+        List.add_spot_distances();
+        List.order_spot_list();
+    },
+
+
     init: function () {
         $(document).on("location_changed", function() {
             //Geolocation.display_location_status();
-            List.add_spot_distances();
-            List.order_spot_list();
+            var page_path = window.location.pathname;
+            if (page_path.indexOf("study") !== -1){
+                List.add_geodata_to_study_list();
+            } else {
+                List.add_geodata_to_other_list();
+            }
             List.set_list_is_visible(true);
         });
         $(document).on("location_updating", function() {

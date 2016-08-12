@@ -16,8 +16,8 @@ $(document).on('ready', function(event) {
     else if (page_path.indexOf("study") !== -1){
         console.log("on study");
         Geolocation.display_location_status();
-        // List.init();
-        Map.init_map();
+        List.init();
+        //Map.init_map();
 
         // initialize slick image slider
         $('.scout-spot-gallery').slick({
@@ -25,9 +25,9 @@ $(document).on('ready', function(event) {
             arrows: false,
         });
 
-        $('.sticky-header-wrap').stickyHeaders({
-            stickyElement: 'li',
-        });
+        //$('.sticky-header-wrap').stickyHeaders({
+        //    stickyElement: 'li',
+        //});
         
     }
     else if (page_path.indexOf("tech") !== -1){

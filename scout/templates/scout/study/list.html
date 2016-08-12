@@ -36,12 +36,12 @@
         <ol id="scout_study_list" class="scout-card scout-list sticky-header-wrap">
             {% for group in grouped_spots %}
 
-            <li class="sticky-header">
+            <li class="scout-list-building" data-building-name="{{ group.name }}" data-building-lat="{{ group.latitude }}" data-building-lng="{{ group.longitude }}">
                 <span>{% if group.name %}{{ group.name }}{% else %}missing building_name{% endif %}</span>
-            </li>
 
+                <ol>
                 {% for spot in group.spots %}
-                <li class="scout-list-item" id="{{ spot.spot_id }}">
+                <li class="scout-list-item" id="{{ spot.spot_id }}" data-spot-lat="{{ spot.latitude }}" data-spot-lng="{{ spot.longitude }}">
                     <a class="clearfix" href="/study/{{ spot.spot_id }}/">
 
                         {% if spot.images %}
@@ -90,6 +90,8 @@
                     </a>
                 </li>
                 {% endfor %}
+                </ol>
+            </li>
             {% endfor %}
 
         </ol>
@@ -103,22 +105,6 @@
 {% endblock %}
 
 {% block secondary_content %}
-
-<script type="text/javascript">
-    window.spot_locations = {
-        {% for group in grouped_spots %}
-            {% for spot in group.spots %}
-                '{{ spot.spot_id }}': {
-                    "spot_name": '{{ spot.name }}',
-                        "id": '{{ spot.spot_id }}',
-                        "building": '{{ spot.building_name }}',
-                        "lat": '{{ spot.latitude }}',
-                        "lng": '{{ spot.longitude }}',
-                },
-            {% endfor %}
-        {% endfor %}
-    };
-</script>
 
 <!-- show a map on the list page -->
 <div id="study_list_map" class="scout-spot-list-map" style="height:100%; background: #ddd !important;">

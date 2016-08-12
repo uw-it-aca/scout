@@ -33,6 +33,7 @@ def get_spot_list(app_type=None, groups=[]):
     res = []
     filters = []
     filters.append(('limit', 0))
+    filters.append(('extended_info:campus', 'tacoma'))
     try:
         if app_type:
             filters.append(('extended_info:app_type', app_type))
@@ -443,7 +444,7 @@ def group_spots_by_building(spots):
         building_dict = {"name": name,
                          "spots": grouped_spots[name]}
         list_structure.append(building_dict)
-    return list_structure
+    return add_latlng_to_building(list_structure)
 
 
 def add_latlng_to_building(building_list):
