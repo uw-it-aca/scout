@@ -9,13 +9,27 @@ var Geolocation = {
     // drumheller fountain
     default_location: { latitude: 47.653811, longitude: -122.307815 },
 
+    campus_locations: function(campus){
+        var locations = {
+            "seattle": { "latitude": 47.653811, "longitude": -122.307815 },
+            "south_lake_union": { "latitude": 47.62456939, "longitude": -122.34105337 },
+            "bothell": { "latitude": 47.75907121, "longitude": -122.19103843 },
+            "tacoma": { "latitude": 47.24458187, "longitude": -122.43763134 },
+        };
+        if(locations[campus] !== undefined){
+            Geolocation.default_location.latitude = locations[campus]["latitude"];
+            Geolocation.default_location.longitude = locations[campus]["longitude"];
+        }
+    },
+
     location_changed:  {"type": "location_changed"},
 
     location_updating:  {"type": "location_updating"},
 
     update_location: function () {
+        // current user location is given more precedence over campus location.
         if (!Geolocation.get_is_using_location()) {
-            Geolocation.set_default_location();
+            Geolocation.set_campus_location();
         } else {
             Geolocation.query_client_location();
         }
@@ -81,7 +95,10 @@ var Geolocation = {
         }
     },
 
-    set_default_location: function() {
+    set_campus_location: function() {
+        //var index = 0;
+        var campus = JSON.parse(sessionStorage.getItem("filter_params"))["campus0"];
+        Geolocation.campus_locations(campus);
         sessionStorage.setItem('lat', Geolocation.default_location.latitude);
         sessionStorage.setItem('lng', Geolocation.default_location.longitude);
         Geolocation.set_location_type("default");
