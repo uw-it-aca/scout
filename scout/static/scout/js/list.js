@@ -42,14 +42,14 @@ var List = {
             var lng = $(building).attr('data-building-lng');
             var building_latlng = Geolocation.get_latlng_from_coords(lat, lng);
             var distance = Geolocation.get_distance_from_position(building_latlng);
-            $(building).attr('data-building-distance', distance);
+            $(building).attr('data-spot-distance', distance);
         });
 
     },
 
     sort_buildings: function () {
         var buildings = $(".scout-list-building").detach();
-        var sorted_spots = List.sort_spots_by_distance(spots); 
+        var sorted_spots = List.sort_spots_by_distance(buildings);
         $("#scout_study_list").append(sorted_spots);
     },
 

@@ -21,15 +21,22 @@
                 <h1 style="background: url('{% static "scout/img/scout.png" %}') no-repeat 0px; background-size:13%;">
                 {% endif %}
                 <a id="link_home" href="/" title="Discover places and things on campus">Scout</a>
-
-                <select id="campus_select_base" style="position:absolute; z-index:9999; top:20px; right:20px; font-size:12px; font-family: sans-serif;">
-                    <option value="seattle">Seattle</option>
-                    <option value="bothell">Bothell</option>
-                    <option value="tacoma">Tacoma</option>
-                    <option value="south_lake_union">South Lake Union</option>
-                </select>
-
                 </h1>
+
+                <div id="location_select_heading" class="scout-campus-chooser">
+                    <div aria-labelledby="location_select_heading">
+                        <label id="location_select_heading" for="location_select" class="visually-hidden">Select campus:</label>
+                        <select id="campus_select_base">
+                            <option value="seattle">Seattle</option>
+                            <option value="bothell">Bothell</option>
+                            <option value="tacoma">Tacoma</option>
+                            <option value="south_lake_union">South Lake Union</option>
+                        </select>
+                    </div>
+                    <div class="scout-campus-display">
+                        <i class="fa fa-chevron-circle-down"></i>
+                    </div>
+                </div>
 
                 <div class="scout-navigation" role="navigation" aria-label="main navigation">
                     <ul class="scout-navigation-items">

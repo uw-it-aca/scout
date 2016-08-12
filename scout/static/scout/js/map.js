@@ -24,6 +24,17 @@ var Map = {
                 Map.load_detail_map(map_id);
             }
 
+            // tech list map
+            if( $("#tech_list_map").length > 0 ) {
+                var map_id = 'tech_list_map';
+                Map.load_list_map(map_id);
+            }
+            // tech detail map
+            if( $("#tech_detail_map").length > 0 ) {
+                var map_id = 'tech_detail_map';
+                Map.load_detail_map(map_id);
+            }
+
         });
 
         // handle map stuff for window resize
@@ -49,6 +60,16 @@ var Map = {
                 var map_id = 'study_detail_map';
                 Map.load_detail_map(map_id);
             }
+            // tech list map
+            if( $("#tech_list_map").length > 0 ) {
+                var map_id = 'tech_list_map';
+                Map.load_list_map(map_id);
+            }
+            // tech detail map
+            if( $("#tech_detail_map").length > 0 ) {
+                var map_id = 'tech_detail_map';
+                Map.load_detail_map(map_id);
+            }
 
         });
     },
@@ -60,7 +81,6 @@ var Map = {
     load_list_map: function (map_id) {
         var mapExists = document.getElementById(map_id);
         var pos = Geolocation.get_client_latlng();
-        console.log(pos);
         var mapOptions;
         if(mapExists) {
             // center map on default location OR location received from user
@@ -258,9 +278,6 @@ var Map = {
     },
 
     load_detail_map: function(map_id) {
-
-        console.log(map_id);
-
         var mapExists = document.getElementById(map_id);
         var isMobile = $("body").data("mobile");
         var myLatlng, mapOptions;
