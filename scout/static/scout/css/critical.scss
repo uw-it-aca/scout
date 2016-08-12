@@ -109,6 +109,38 @@ body { background: #f1f1f1; }
         }
     }
 
+    .scout-campus-chooser { position:absolute; z-index:9999; top:15px; right:20px; font-size:12px; font-family: sans-serif;
+
+        #location_select {
+            position: absolute;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            text-indent: 0.01px;
+            color: #666;
+            border: none;
+            height: 28px;
+            line-height: 28px;
+            padding-left: 30px;
+            left: 0;
+            background: transparent;
+            width: 150px
+        }
+
+        .scout-campus-display {
+            display: inline-block;
+            text-decoration: none;
+            font-size: 14px;
+            white-space: nowrap;
+            background: #e8eaf7;
+            color: #999;
+            border: none;
+            padding-left:10px;
+            border-radius: 2px;
+            line-height: 28px;
+            width:140px;
+        }
+
+    }
 
     // navigation menu
     .scout-navigation { position: relative; background: #fff; line-height: 40px; color: #fff;  margin: 0; padding: 0;
