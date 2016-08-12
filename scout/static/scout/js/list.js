@@ -61,7 +61,7 @@ var List = {
 
 
     add_geodata_to_study_list: function () {
-        //List.add_spot_distances();
+        List.add_spot_distances();
         List.add_building_distances();
         List.sort_buildings();
     },
@@ -122,6 +122,24 @@ var List = {
             }
         });
 
+    },
+
+    get_spot_locations: function(){
+        var spot_data = []
+        var spots = $(".scout-list-item");
+        $.each(spots, function (idx, spot) {
+            var id = $(spot).attr("id");
+            var lat = $(spot).attr("data-spot-lat");
+            var lng = $(spot).attr("data-spot-lng");
+            var spot_name = $(spot).attr("data-spot-name");
+            var building = $(spot).attr("data-spot-building");
+            spot_data.push({"id": id,
+                             "lat": lat,
+                             "lng": lng,
+                             "spot_name": spot_name,
+                             "building": building})
+        });
+        return spot_data
     }
 
 };

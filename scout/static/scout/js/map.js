@@ -58,9 +58,6 @@ var Map = {
     },
 
     load_list_map: function (map_id) {
-
-        console.log(map_id);
-
         var mapExists = document.getElementById(map_id);
         var pos = Geolocation.get_client_latlng();
         var mapOptions;
@@ -130,7 +127,7 @@ var Map = {
             map.setOptions({styles: styles});
 
             // multiple pins on a single map
-            var locations = window.spot_locations;
+            var locations = List.get_spot_locations();
 
             var bounds = new google.maps.LatLngBounds();
 

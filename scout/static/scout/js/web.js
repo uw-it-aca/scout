@@ -17,7 +17,7 @@ $(document).on('ready', function(event) {
         console.log("on study");
         Geolocation.display_location_status();
         List.init();
-        //Map.init_map();
+        Map.init_map();
 
         // initialize slick image slider
         $('.scout-spot-gallery').slick({

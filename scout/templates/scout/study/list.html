@@ -41,7 +41,7 @@
 
                 <ol>
                 {% for spot in group.spots %}
-                <li class="scout-list-item" id="{{ spot.spot_id }}" data-spot-lat="{{ spot.latitude }}" data-spot-lng="{{ spot.longitude }}">
+                <li class="scout-list-item" id="{{ spot.spot_id }}" data-spot-lat="{{ spot.latitude }}" data-spot-lng="{{ spot.longitude }}" data-spot-building="{{ spot.building_name }}" data-spot-name="{{ spot.name }}">
                     <a class="clearfix" href="/study/{{ spot.spot_id }}/">
 
                         {% if spot.images %}

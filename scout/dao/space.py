@@ -33,7 +33,7 @@ def get_spot_list(app_type=None, groups=[]):
     res = []
     filters = []
     filters.append(('limit', 0))
-    filters.append(('extended_info:campus', 'tacoma'))
+
     try:
         if app_type:
             filters.append(('extended_info:app_type', app_type))
