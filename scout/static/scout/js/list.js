@@ -14,8 +14,13 @@ var List = {
     },
 
     order_spot_list: function () {
-        var spots = $(".scout-list-item");
-        spots.detach().sort(function(a, b) {
+        var spots = $(".scout-list-item").detach();
+        var sorted_spots = List.sort_spots_by_distance(spots);
+        $("#scout_food_list").append(sorted_spots);
+    },
+
+    sort_spots_by_distance: function(spots) {
+        spots.sort(function(a, b) {
             var a_distance = parseFloat($(a).attr('data-spot-distance'));
             var b_distance = parseFloat($(b).attr('data-spot-distance'));
             if(a_distance < b_distance){
@@ -26,8 +31,7 @@ var List = {
                 return 0;
             }
         });
-
-        $("#scout_food_list").append(spots);
+        return spots;
     },
 
     add_building_distances: function () {
@@ -44,19 +48,9 @@ var List = {
     },
 
     sort_buildings: function () {
-        var buildings = $(".scout-list-building");
-        buildings.detach().sort(function(a, b){
-            var a_dist = parseFloat($(a).attr('data-building-distance'));
-            var b_dist = parseFloat($(b).attr('data-building-distance'));
-            if(a_dist < b_dist){
-                return -1;
-            } else if (a_dist > b_dist){
-                return 1;
-            } else {
-                return 0;
-            }
-        });
-        $("#scout_study_list").append(buildings);
+        var buildings = $(".scout-list-building").detach();
+        var sorted_spots = List.sort_spots_by_distance(spots); 
+        $("#scout_study_list").append(sorted_spots);
     },
 
 
