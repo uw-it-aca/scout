@@ -4,7 +4,7 @@ var tools = require('./testing_tools');
 
 var makeFakeList = function(distances) {
     var fakeListSection = function(dist) {
-        var out = '<li class="scout-list-item">';
+        var out = '<li class="scout-list-item" data-spot-distance="' + dist + '">';
         out += '<span class="distance-number">';
         out += String(dist);
         out += '</span></li>';
