@@ -34,7 +34,7 @@ describe('List Food Tests', function() {
             // Make expected result
             var expected_list = makeFakeList([1.1, 2.3, 5, 9]);
             // Compare
-            assert.equal(expected_list, actual_list);
+            assert.equal(actual_list, expected_list);
         });
         it('should not do anything to an empty list of food spots', function() {
             // Need to wrap our actual list in an element so we can grab
@@ -49,7 +49,7 @@ describe('List Food Tests', function() {
             // Make expected result
             var expected_list = makeFakeList([]);
             // Compare
-            assert.equal(expected_list, actual_list);
+            assert.equal(actual_list, expected_list);
         });
     });
 });
