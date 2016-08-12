@@ -8,12 +8,12 @@ var List = {
 
             var spot_latlng = Geolocation.get_latlng_from_coords(lat, lng);
             var distance = Geolocation.get_distance_from_position(spot_latlng);
+            $(item).attr("data-spot-distance", distance);
             $($(item).find(".distance-number")[0]).html(distance);
         });
     },
 
     order_spot_list: function () {
-
         var spots = $(".scout-list-item");
         spots.detach().sort(function(a, b) {
             var a_distance = parseFloat($(a).attr('data-spot-distance'));
