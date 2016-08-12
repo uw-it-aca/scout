@@ -25,10 +25,10 @@ $(document).on('ready', function(event) {
             arrows: false,
         });
 
-        //$('.sticky-header-wrap').stickyHeaders({
-        //    stickyElement: 'li',
-        //});
-        
+        $('.sticky-header-wrap').stickyHeaders({
+            stickyElement: 'div',
+        });
+
     }
     else if (page_path.indexOf("tech") !== -1){
         console.log("on tech");
