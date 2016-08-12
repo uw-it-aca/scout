@@ -16,8 +16,8 @@ var List = {
 
         var spots = $(".scout-list-item");
         spots.detach().sort(function(a, b) {
-            var a_distance = parseInt($($(a).find(".distance-number")[0]).html(), 10);
-            var b_distance = parseInt($($(b).find(".distance-number")[0]).html(), 10);
+            var a_distance = parseFloat($(a).attr('data-spot-distance'));
+            var b_distance = parseFloat($(b).attr('data-spot-distance'));
             if(a_distance < b_distance){
                 return -1;
             } else if (a_distance > b_distance){

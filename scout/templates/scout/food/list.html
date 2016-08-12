@@ -38,7 +38,7 @@
         <ol id="scout_food_list" class="scout-card scout-list">
 
             {% for spot in spots %}
-                <li class="scout-list-item" id="{{ spot.spot_id }}">
+                <li class="scout-list-item" id="{{ spot.spot_id }}"  data-spot-lat="{{ spot.latitude }}" data-spot-lng="{{ spot.longitude }}" data-spot-building="{{ spot.building_name }}" data-spot-name="{{ spot.name }}">
                     <a class="clearfix" href="/food/{{ spot.spot_id }}/">
 
                         {% if spot.images %}
@@ -106,21 +106,6 @@
 {% endblock %}
 
 {% block secondary_content %}
-
-<script type="text/javascript">
-    window.spot_locations = {
-        {% for spot in spots %}
-            '{{ spot.spot_id }}': {
-                "spot_name": '{{ spot.name }}',
-                    "id": '{{ spot.spot_id }}',
-                    "building": '{{ spot.building_name }}',
-                    "lat": '{{ spot.latitude }}',
-                    "lng": '{{ spot.longitude }}',
-            },
-        {% endfor %}
-    };
-</script>
-
 <!-- show a map on the list page -->
 <div id="food_list_map" class="scout-spot-list-map" style="height:100%; background: #ddd !important;">
     <div class="scout-spot-list-map-loading" style="position:absolute; top: 50%; left: 50%; margin-left:-15px; margin-top: -110px; z-index:9999;">

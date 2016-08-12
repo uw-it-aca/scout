@@ -60,6 +60,7 @@ var Map = {
     load_list_map: function (map_id) {
         var mapExists = document.getElementById(map_id);
         var pos = Geolocation.get_client_latlng();
+        console.log(pos);
         var mapOptions;
         if(mapExists) {
             // center map on default location OR location received from user
