@@ -53,7 +53,8 @@ var Filter = {
             params = JSON.parse(sessionStorage.getItem("filter_params"));
         } catch(e) {}
         if(params === undefined || $.isEmptyObject(params)){
-            return undefined;
+            params = {"campus0": "seattle"};
+            sessionStorage.setItem("filter_params", JSON.stringify(params));
         }
         return $.param(params);
     },
@@ -112,9 +113,10 @@ var Filter = {
 
     reset_filter: function() {
         sessionStorage.removeItem("filter_params");
-        $("input:checkbox").attr('checked', false);
         Filter.replace_food_href();
-        window.location.href = "/food/";
+        var filter_url = Filter.get_filter_url();
+        var type_url = Filter.get_current_type();
+        window.location.href = type_url + "?" + filter_url;
     },
 
     init_events: function() {
@@ -125,7 +127,8 @@ var Filter = {
             Filter.set_filter_params();
             var filtered_url = Filter.get_filter_url();
             if (filtered_url !== undefined){
-                window.location.href = "/food/?"+filtered_url;
+                var current_type = Filter.get_current_type();
+                window.location.href = current_type+"?"+filtered_url;
             }
             else {
                 // reset filter if user submits empty search
@@ -136,6 +139,29 @@ var Filter = {
         $("#reset_button").click(function() {
             Filter.reset_filter();
         });
+
+        $("#campus_select_base").change(function(){
+            var campus = $(this).val();
+            params = JSON.parse(sessionStorage.getItem("filter_params"));
+            params["campus0"] = campus;
+            sessionStorage.setItem("filter_params", JSON.stringify(params));
+            var filter_url = Filter.get_filter_url();
+            var type_url = Filter.get_current_type();
+            window.location.href = type_url + "?" + filter_url;
+        });
+    },
+
+    get_current_type: function() {
+        var current_page = window.location.pathname;
+        if (current_page.indexOf("study") !== -1){
+            return "/study/";
+        }
+        else if (current_page.indexOf("tech") !== -1){
+            return "/tech/";
+        }
+        else {
+            return "/food/";
+        }
     },
 
     init: function() {
@@ -154,6 +180,7 @@ var Filter = {
             if(idx.indexOf("campus") > -1){
                 filter_item = $("#campus_select").find("input[value='" + val + "']");
                 $(filter_item[0]).prop("checked", true);
+                $("#campus_select_base").val(val).change();
             }
             if(idx.indexOf("period") > -1){
                 filter_item = $("#period_select").find("input[value='" + val + "']");
@@ -186,14 +213,12 @@ var Filter = {
     replace_food_href: function(){
         var filter_url = Filter.get_filter_url();
         var food_anchor = $("#link_food");
-        var food_url;
+        var food_url = "/food/";
         if (filter_url !== undefined){
-            food_url = "/food/?" + filter_url;
-        } else {
-            food_url = "/food/";
+            food_url = food_url + "?" + filter_url;
         }
         if(food_anchor !== undefined){
-                $(food_anchor).attr('href', food_url);
+            $(food_anchor).attr('href', food_url);
         }
     }
 };
