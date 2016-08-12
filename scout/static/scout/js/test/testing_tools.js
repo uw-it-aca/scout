@@ -39,6 +39,7 @@ var jqueryFromHtml = function jqueryFromHtml(html) {
 var fakeWindow = function fakeWindow(initHref) {
     this.location = {};
     this.location.href = initHref || '';
+    this.location.pathname = this.location.href;
     this.location.replace = function(new_loc) {
         this.href = new_loc;
     };
