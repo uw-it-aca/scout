@@ -33,15 +33,15 @@ var getDistances = function(spots) {
 describe('List Food Tests', function() {
     describe('Order Food Spot List', function() {
         it('should sort food spots that need to be sorted', function() {
-            // Need to wrap our actual list in an element so we can grab
-            // the HTML easily
+            // Generating a list of spot objects with the following distances 
             var spots = makeFakeList([5, 2.3, 9, 1.1]);
             // Do the sorting
             sorted_spots = List.sort_spots_by_distance(spots);
-            // Get resulting list
+            // Get resulting distances from the spots
+            sorted_distances = getDistances(sorted_spots);
             var expected_list = [1.1, 2.3, 5, 9];
             // Compare
-            assert.deepEqual(expected_list, getDistances(sorted_spots));
+            assert.deepEqual(expected_list, sorted_distances);
         });
         it('should not do anything to an empty list of food spots', function() {
             // Need to wrap our actual list in an element so we can grab
