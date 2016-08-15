@@ -258,10 +258,9 @@ var Map = {
             if (Geolocation.get_location_type() !== "default") {
                 // Don't store user marker in bounds as it can change
                 bounds.extend(locationMarker.position);
+                // fit all spots (include user location) onto map
+                map.fitBounds(bounds);
             }
-
-            // fit all spots into the map boundary
-            //map.fitBounds(bounds);
 
             // marker clusterer options
             var mc_options = {
