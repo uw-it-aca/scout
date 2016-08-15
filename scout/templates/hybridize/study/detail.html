@@ -5,23 +5,44 @@
 {% block title %}{{spot.name}}{% endblock %}
 
 {% block hybrid_notification %}
+
+{% if request.is_ios %}
 <div class="notifications list-block media-list" style="display: block; transform: translate3d(0px, 0px, 0px);">
     <ul>
         <li class="notification-item" style="margin-top: 0px;">
             <div class="item-content">
                 <div class="item-inner">
                     <div class="item-title-row">
-                        <div class="item-title">has_alert {{spot.has_alert}}</div>
+                        <div class="item-title">Alert: {{spot.has_alert}}</div>
                         <div class="item-after">
                             <a href="#" class="close-notification" data-turbolinks="false"><span></span></a>
                         </div>
                     </div>
-                    <div class="item-text">{{ spot.alert_notes }}</div>
+                    <div class="item-text">{{ spot.alert_notes }}: Multi-line message. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc in magna nisi.</div>
                 </div>
             </div>
         </li>
     </ul>
 </div>
+{% endif %}
+
+{% if request.is_and %}
+<div class="notifications list-block" style="display: block; transform: translate3d(0px, 0px, 0px);">
+    <ul>
+        <li class="notification-item">
+            <div class="item-content">
+                <div class="item-inner">
+                    <div class="item-title">{{ spot.alert_notes }}: Multi-line message. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc in magna nisi.</div>
+                    <div class="item-after">
+                        <a href="#" class="button close-notification" data-turbolinks="false">Close</a>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+{% endif %}
+
 {% endblock %}
 
 {% block hybrid_content %}
