@@ -116,7 +116,7 @@ var Map = {
             // show user location marker if user is sharing
             if (Geolocation.get_location_type() !== "default") {
 
-                // current location marker
+                // create a marker for user location
                 var locationMarker = new google.maps.Marker({
                     position: pos,
                     map: map,
@@ -130,7 +130,7 @@ var Map = {
                     },
                 });
 
-                // add radius overlay and bind to location marker
+                // add radius overlay and bind to user location marker
                 var circle = new google.maps.Circle({
                     map: map,
                     radius: 40,    // meters
@@ -139,6 +139,17 @@ var Map = {
                     strokeWeight: 0
                 });
                 circle.bindTo('center', locationMarker, 'position');
+
+                // pulsate the radius overlay
+                var direction = 1;
+                var rmin = 20, rmax = 30;
+                setInterval(function() {
+                    var radius = circle.getRadius();
+                    if ((radius > rmax) || (radius < rmin)) {
+                        direction *= -1;
+                    }
+                    circle.setRadius(radius + direction * 10);
+                }, 400);
 
                 // add user location marker to map
                 window.user_location_marker = locationMarker;
@@ -175,36 +186,15 @@ var Map = {
                         scale: 6,
                         strokeWeight: 2
                     },
-                    /*
-                    // svg path as a marker
-                    icon: {
-                        path: "M0-48c-9.8 0-17.7 7.8-17.7 17.4 0 15.5 17.7 30.6 17.7 30.6s17.7-15.4 17.7-30.6c0-9.6-7.9-17.4-17.7-17.4z",
-                        fillColor: '#FF0000',
-                        fillOpacity: .6,
-                        anchor: new google.maps.Point(0,0),
-                        strokeWeight: 0,
-                        scale: 1
-                    },
-                    // image url as marker
-                    icon: {
-                        url: "/static/scout/img/map-marker.png", // url
-                        scaledSize: new google.maps.Size(30, 30), // scaled size
-                        origin: new google.maps.Point(0,0), // origin
-                        anchor: new google.maps.Point(30, 30) // anchor
-                    },
-                    */
 
                 });
 
                 markers.push(marker);
 
-                // attach click event to the marker
+                // attach events to markers
                 (function (marker, data) {
 
                     google.maps.event.addListener(marker, "click", function (e) {
-
-                        //map.setCenter(marker.getPosition());
-                        //map.setZoom(18);
 
                         //Wrap the content inside an HTML DIV in order to set height and width of InfoWindow.
                         infoWindow.setContent("<div><strong>"+data.spot_name+"</strong><br>"+data.building+"<br><a href='/food/"+data.id+"'>View details</a></div>");
