@@ -122,11 +122,11 @@ var Map = {
                     map: map,
                     icon: {
                         path: google.maps.SymbolPath.CIRCLE,
-                        fillColor: '#c0392b',
+                        fillColor: '#ffffff',
                         fillOpacity: 1,
-                        strokeColor: '#ffffff',
+                        strokeColor: '#c0392b',
                         scale: 5,
-                        strokeWeight: 2
+                        strokeWeight: 5
                     },
                 });
 
@@ -180,11 +180,11 @@ var Map = {
                     // basic google sympbol markers
                     icon: {
                         path: google.maps.SymbolPath.CIRCLE,
-                        fillColor: '#6564A8',
+                        fillColor: '#ffffff',
                         fillOpacity: 1,
-                        strokeColor: '#ffffff',
-                        scale: 6,
-                        strokeWeight: 2
+                        strokeColor: '#6564A8',
+                        scale: 5,
+                        strokeWeight: 5
                     },
 
                 });
