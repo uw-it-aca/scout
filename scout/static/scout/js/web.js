@@ -18,6 +18,7 @@ $(document).on('ready', function(event) {
         Geolocation.display_location_status();
         List.init();
         Map.init_map();
+        Filter.init();
 
         // initialize slick image slider
         $('.scout-spot-gallery').slick({
@@ -42,7 +43,6 @@ $(document).on('ready', function(event) {
     else {
         Discover.init_cards();
     }
-
     Filter.replace_food_href();
 
     // call this last so all page level location event listeners have been declared
