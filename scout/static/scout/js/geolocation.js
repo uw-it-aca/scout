@@ -16,6 +16,7 @@ var Geolocation = {
             "bothell": { "latitude": 47.75907121, "longitude": -122.19103843 },
             "tacoma": { "latitude": 47.24458187, "longitude": -122.43763134 },
         };
+        $.event.trigger(Geolocation.location_updating);
         if(locations[campus] !== undefined){
             Geolocation.default_location.latitude = locations[campus]["latitude"];
             Geolocation.default_location.longitude = locations[campus]["longitude"];
@@ -25,6 +26,8 @@ var Geolocation = {
     location_changed:  {"type": "location_changed"},
 
     location_updating:  {"type": "location_updating"},
+
+    geolocation_status: { watchid: undefined },
 
     update_location: function () {
         // current user location is given more precedence over campus location.
@@ -78,20 +81,25 @@ var Geolocation = {
         return Geolocation.get_latlng_from_coords(lat, lng);
     },
 
-    handle_watch_position: function (updated_location) {
+    handle_watch_position: function (position) {
        if(Geolocation.get_is_using_location()){
-           var new_position = Geolocation.get_latlng_from_coords(updated_location.coords.latitude, updated_location.coords.longitude);
+           var new_position = Geolocation.get_latlng_from_coords(position.coords.latitude, position.coords.longitude);
            var distance = Geolocation.get_distance_from_position(new_position);
-           if(distance > 100){
-               Geolocation.set_client_location(updated_location);
-           }
+           Geolocation.set_client_location(position);
        }
     },
 
     query_client_location: function() {
         // deal w/ error state
         if (navigator.geolocation) {
-            navigator.geolocation.watchPosition(Geolocation.handle_watch_position);
+            Geolocation.geolocation_status.watchid = navigator.geolocation.watchPosition(Geolocation.handle_watch_position);
+        }
+    },
+
+    stop_watching_location: function(){
+        var watchid = Geolocation.geolocation_status.watchid;
+        if(watchid){
+            navigator.geolocation.clearWatch(watchid);
         }
     },
 
@@ -135,7 +143,6 @@ var Geolocation = {
             $("#shared_position").attr("aria-hidden", "false");
 
         }
-
     },
 
     init_location_toggles: function() {
@@ -158,6 +165,7 @@ var Geolocation = {
             e.preventDefault();
             $.event.trigger(Geolocation.location_updating);
             Geolocation.set_is_using_location(false);
+            Geolocation.stop_watching_location();
 
             $("#shared_position").hide();
             $("#shared_position").attr("aria-hidden", "true");
