@@ -174,6 +174,11 @@ def tech_detail_view(request, item_id):
                               context_instance=RequestContext(request))
 
 
+def tech_filter_view(request):
+    return render_to_response('scout/tech/filter.html',
+                              context_instance=RequestContext(request))
+
+
 # hybrid
 def hybrid_discover_view(request):
     return render_to_response('hybridize/discover.html',

@@ -27,6 +27,8 @@ urlpatterns = patterns(
     url(r'^tech/$', 'scout.views.tech_list_view', name='tech_list_view'),
     url(r'^tech/(?P<item_id>[0-9]{1,5})/$',
         'scout.views.tech_detail_view', name='tech_detail_view'),
+    url(r'^tech/filter/$', 'scout.views.tech_filter_view',
+        name='tech_filter_view'),
 
     # images
     url(r'^images/(?P<spot_id>\d+)/image/(?P<image_id>\d+)/$',
