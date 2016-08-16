@@ -11,6 +11,7 @@ from scout.dao.space import add_foodtype_names_to_spot, add_cuisine_names, \
 from spotseeker_restclient.spotseeker import Spotseeker
 from scout.dao import space
 from spotseeker_restclient.exceptions import DataFailureException
+from spotseeker_restclient.models.spot import Spot, SpotAvailableHours
 
 DAO = "spotseeker_restclient.dao_implementation.spotseeker.File"
 
@@ -192,7 +193,7 @@ class SpaceDAOTest(TestCase):
         filters = _get_spot_filters(request)
         self.assertEqual(len(filters), 9)
 
-    def test_organize_hours(self):
+    def test_organize_hours_premade(self):
         sc = Spotseeker()
         spot = sc.get_spot_by_id(4)
         spot_hours = organize_hours(spot)
@@ -232,6 +233,41 @@ class SpaceDAOTest(TestCase):
         grouped_spots = add_latlng_to_building(grouped_spots)
         self.assertEqual(grouped_spots[1]['latitude'], 47.656462)
         self.assertEqual(grouped_spots[1]['longitude'], -122.3125347)
+
+    def test_organize_hours(self):
+        """
+        Tests the organize_hours function. Includes cases for overnight
+        and extremely long time periods.
+        """
+        spot = Spot()
+        time = datetime.time
+        hours_before = {'monday': [((23, 0), (23, 59))],
+                        'tuesday': [((0, 0), (2, 0)), ((22, 0), (23, 59))],
+                        'wednesday': [((0, 0), (3, 0))],
+                        # Test 24h+
+                        'friday': [((19, 0), (23, 59))],
+                        'saturday': [((0, 0), (23, 59))],
+                        'sunday': [((0, 0), (2, 30))]}
+
+        hours_expected = {'monday': [(time(23, 0), time(2, 0))],
+                          'tuesday': [(time(22, 0), time(3, 0))],
+                          'wednesday': [],
+                          'thursday': [],
+                          'friday': [(time(19, 0), time(23, 59))],
+                          'saturday': [(time(0, 0), time(23, 59))],
+                          'sunday': [(time(0, 0), time(2, 30))]}
+
+        avail = []
+        for day, hours in hours_before.items():
+            for start, end in hours:
+                avail.append(SpotAvailableHours(day=day,
+                                                start_time=time(*start),
+                                                end_time=time(*end)))
+
+        spot.spot_availability = avail
+        organize_hours(spot)
+
+        self.assertEqual(hours_expected, spot.hours)
 
 
 class FakeClient(object):

@@ -151,54 +151,49 @@ def process_extended_info(spot):
 
 
 def organize_hours(spot):
-    hours_object = {
-        'monday': [],
-        'tuesday': [],
-        'wednesday': [],
-        'thursday': [],
-        'friday': [],
-        'saturday': [],
-        'sunday': [],
-    }
-
-    days_list = ['monday',
+    days_list = ('monday',
                  'tuesday',
                  'wednesday',
                  'thursday',
                  'friday',
                  'saturday',
-                 'sunday']
+                 'sunday')
+    hours_object = {}
+    raw_hours = list(spot.spot_availability)
+    for idx, day in enumerate(days_list):
+        today_hours = []
+        start_of_day = datetime.time(0, 0)
+        end_of_day = datetime.time(23, 59)
+        day_hours = [h for h in raw_hours if h.day == day]
+        # Try to find an hours object that spans to end of day, excluding
+        # anything that spans the entire day
+        overnight_today = [h for h in day_hours
+                           if h.end_time == end_of_day and
+                           h.start_time != start_of_day]
+        # Try to find an hours object that starts at 0:00 tomorrow
+        next_day = days_list[(idx + 1) % len(days_list)]
+        overnight_next_day = [h for h in raw_hours if h.day == next_day and
+                              h.start_time == start_of_day and
+                              h.end_time != end_of_day]
+        # If we have a period today that extends to 23:59 and a period
+        # tomorrow that starts at 0:00, combine them and remove originals.
+        if overnight_today and overnight_next_day:
+            today_hours.append((overnight_today[0].start_time,
+                                overnight_next_day[0].end_time))
+            raw_hours.remove(overnight_next_day[0])
+            day_hours.remove(overnight_today[0])
+            # Preserving SCOUT-238 behavior for now. If we want to change
+            # that behavior, delete the following two lines.
+            if day == 'sunday':
+                del hours_object['monday'][0]
 
-    for day in days_list:
-        overnight = False
-        day_hours = \
-            [hours for hours in spot.spot_availability if hours.day == day]
-        next_day = (days_list.index(day) + 1) % len(days_list)
-        next_day_hours = \
-            [hours for hours in spot.spot_availability
-             if hours.day == days_list[next_day]]
-        close_used = True
-        for hours in next_day_hours:
-            if hours.start_time == datetime.time(0, 0):
-                overnight = True
-                close = hours.end_time  # get early morning end time
-                close_used = False
+        # Add all the non-special-case hours
         for hours in day_hours:
-            if hours.end_time == datetime.time(23, 59) and overnight:
-                hours_object[hours.day].append((hours.start_time, close))
-                close_used = True
-            elif (hours.end_time == datetime.time(23, 59) and
-                    not hours.start_time == datetime.time(0, 0)):
-                hours_object[hours.day].append((hours.start_time,
-                                                datetime.time(0, 0)))
-            elif (not hours.start_time == datetime.time(0, 0) and
-                    not hours.end_time == datetime.time(23, 59)):
-                hours_object[hours.day].append((hours.start_time,
-                                                hours.end_time))
-        if not close_used:
-            hours_object[hours.day].append((datetime.time(0, 0),
-                                            close))
-        overnight = False
+            today_hours.append((hours.start_time, hours.end_time))
+        # Fixes SCOUT-237
+        today_hours.sort()
+        hours_object[day] = today_hours
+
     spot.hours = hours_object
     return spot
 
