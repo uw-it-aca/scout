@@ -30,22 +30,45 @@
             </div>
         </div>
 
-        <h2 class="visually-hidden">Discover places to eat</h2>
+        <h2 class="visually-hidden">Discover Seattle Campus</h2>
 
         {% if not is_desktop %}
         <div style="background:url('{% static "scout/img/uw-ob.jpg" %}') no-repeat; background-size:cover; height: 300px; width: 100%; margin-bottom:10px;">&nbsp;</div>
         {% endif %}
 
-        <div style="border:solid 1px red; height:100px;">
-            discover... the uw
+        <div style="background:url('{% static "scout/img/students-studying.jpg" %}') no-repeat; background-size:cover; padding: 100px 20px 20px 20px;">
+
+            <h3>Looking for:</h3>
+            <p>A place to study? Scout helps you browse study spots without having to walk all over campus.</p>
+
         </div>
 
         <div id="discover_cards">
+            
             <div id="open"></div>
-            <div id="coffee"></div>
+            <!--<div id="coffee"></div>-->
             <div id="morning"></div>
             <div id="late"></div>
-            <div id="coupon"></div>
+            <!--<div id="coupon"></div>-->
+
+            <div id="study_outdoors">
+                <div class="scout-card scout-discover-content">
+                    <h3>
+                        <span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i> <i class="fa fa-graduation-cap fa-stack-1x fa-inverse"></i></span>
+                        study outdoors (summer time?)
+                    </h3>
+                </div>
+            </div>
+
+            <div id="study_computer_labs">
+                <div class="scout-card scout-discover-content">
+                    <h3>
+                        <span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i> <i class="fa fa-graduation-cap fa-stack-1x fa-inverse"></i></span>
+                        study computer labs
+                    </h3>
+                </div>
+            </div>
+
         </div>
 
     </div>
