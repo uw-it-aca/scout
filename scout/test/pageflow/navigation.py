@@ -24,7 +24,7 @@ urls = {
 }
 
 tests = {
-    'home': ('food', 'study', 'tech'),
+    'home': ('home', 'food', 'study', 'tech'),
     'food': ('home', 'study', 'tech', 'food_filter'),
     'study': ('home', 'food', 'tech', 'study_filter'),
     'tech': ('home', 'food', 'study', 'tech_filter'),
@@ -34,6 +34,7 @@ tests = {
     'food_detail': ('home', 'food', 'study', 'tech'),
 }
 
+
 def _makeTestFunc(start, end):
     """Returns a function that tests the navigation between two pages"""
 
@@ -41,18 +42,19 @@ def _makeTestFunc(start, end):
         page = self.get_soup(urls[start])
         self.assertTrue(self.checkLinkExists(page, urls[end]))
 
-    _testFunc.__name__ = 'test_%s_to_%s' %(start, end)
-    _testFunc.__doc__ = 'Assert that %s has a link to %s' %(start, end)
+    _testFunc.__name__ = 'test_%s_to_%s' % (start, end)
+    _testFunc.__doc__ = 'Assert that %s has a link to %s' % (start, end)
     return _testFunc
+
 
 def _makeTestFooterFunc(start):
 
-    def _testFunc(self):
+    def _func(self):
         self.check_footer_links_at_path(urls[start])
 
-    _testFunc.__name__ = "test_%s_footer_links" %(start)
-    _testFunc.__doc__ = "Assert that the %s page contains the footer links" %(start)
-    return _testFunc
+    _func.__name__ = "test_%s_footer_links" % (start)
+    _func.__doc__ = "Assert that %s page contains the footer links" % (start)
+    return _func
 
 
 class MainNavigationTest(ScoutTestCase):
@@ -73,7 +75,6 @@ class MainNavigationTest(ScoutTestCase):
             vars()[testLinkName] = testLink
 
     del page, link, links, testLink, testLinkName, testFooter, testFooterName
-
 
     def checkLinkExists(self, soup, link):
         return bool(soup.find('a', href=link))
@@ -118,51 +119,3 @@ class MainNavigationTest(ScoutTestCase):
             termsLink.get('href'),
             'http://www.washington.edu/online/terms/'
         )
-
-    '''
-    def test_home_to_food(self):
-        """SCOUT-67 Tests the places tab link on the home page"""
-        response = self.get_soup('/')
-        self.checkHrefBySelector('/food/', '#link_food', response)
-
-    def test_home_to_home(self):
-        """SCOUT-61 Tests the home logo link on the home page"""
-        response = self.get_soup('/')
-        self.checkHrefBySelector('/', '#link_home', response)
-
-    def test_food_to_home(self):
-        """SCOUT-59 Tests the home logo link on the food page"""
-        response = self.get_soup('/food/')
-        self.checkHrefBySelector('/', '#link_home', response)
-
-    def test_food_to_filter(self):
-        """SCOUT-68 Tests the filter link on the food page"""
-        response = self.get_soup('/food/')
-        self.checkHrefBySelector('/food/filter/', '#link_filter', response)
-
-    def test_filter_to_home(self):
-        """SCOUT-60 Tests the home logo link on the filter page"""
-        response = self.get_soup('/food/filter/')
-        self.checkHrefBySelector('/', '#link_home', response)
-
-    def test_filter_to_food(self):
-        """SCOUT-62 Tests the food tab link on the filter page"""
-        response = self.get_soup('/food/filter/')
-        self.checkHrefBySelector('/food/', '#link_food', response)
-
-    def test_footer_links_home(self):
-        """SCOUT-63 Checks the privacy/terms on the home page"""
-        self.check_footer_links_at_path('/')
-
-    def test_footer_links_food(self):
-        """SCOUT-64 Checks the privacy/terms on the places page"""
-        self.check_footer_links_at_path('/food/')
-
-    def test_footer_links_filter(self):
-        """SCOUT-65 Checks the privacy/terms on the filter page"""
-        self.check_footer_links_at_path('/food/filter/')
-
-    def test_footer_links_detail(self):
-        """SCOUT-66 Checks the privacy/terms on the detail page"""
-        self.check_footer_links_at_path('/food/2/')
-    '''
