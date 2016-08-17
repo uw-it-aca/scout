@@ -7,6 +7,53 @@ Testing the flow between pages through links
 import bs4
 from scout.test import ScoutTestCase
 
+baseUrl = '/'
+foodUrl = baseUrl + 'food/'
+studyUrl = baseUrl + 'study/'
+techUrl = baseUrl + 'tech/'
+
+urls = {
+    'home': baseUrl,
+    'food': foodUrl,
+    'study': studyUrl,
+    'tech': techUrl,
+    'food_filter': foodUrl + 'filter/',
+    'study_filter': studyUrl + 'filter/',
+    'tech_filter': techUrl + 'filter/',
+    'food_detail': foodUrl + '1/',
+}
+
+tests = {
+    'home': ('food', 'study', 'tech'),
+    'food': ('home', 'study', 'tech', 'food_filter'),
+    'study': ('home', 'food', 'tech', 'study_filter'),
+    'tech': ('home', 'food', 'study', 'tech_filter'),
+    'food_filter': ('home', 'food', 'study', 'tech'),
+    'study_filter': ('home', 'food', 'study', 'tech'),
+    'tech_filter': ('home', 'food', 'study', 'tech'),
+    'food_detail': ('home', 'food', 'study', 'tech'),
+}
+
+def _makeTestFunc(start, end):
+    """Returns a function that tests the navigation between two pages"""
+
+    def _testFunc(self):
+        page = self.get_soup(urls[start])
+        self.assertTrue(self.checkLinkExists(page, urls[end]))
+
+    _testFunc.__name__ = 'test_%s_to_%s' %(start, end)
+    _testFunc.__doc__ = 'Assert that %s has a link to %s' %(start, end)
+    return _testFunc
+
+def _makeTestFooterFunc(start):
+
+    def _testFunc(self):
+        self.check_footer_links_at_path(urls[start])
+
+    _testFunc.__name__ = "test_%s_footer_links" %(start)
+    _testFunc.__doc__ = "Assert that the %s page contains the footer links" %(start)
+    return _testFunc
+
 
 class MainNavigationTest(ScoutTestCase):
     """Navigation test set for scout"""
@@ -15,6 +62,21 @@ class MainNavigationTest(ScoutTestCase):
     def setUpClass(cls):
         super(MainNavigationTest, cls).setUpClass()
         cls.soups = {}
+
+    for page, links in tests.items():
+        testFooter = _makeTestFooterFunc(page)
+        testFooterName = testFooter.__name__
+        vars()[testFooterName] = testFooter
+        for link in links:
+            testLink = _makeTestFunc(page, link)
+            testLinkName = testLink.__name__
+            vars()[testLinkName] = testLink
+
+    del page, link, links, testLink, testLinkName, testFooter, testFooterName
+
+
+    def checkLinkExists(self, soup, link):
+        return bool(soup.find('a', href=link))
 
     def checkHrefBySelector(self, exp, selector, soup):
         """Given a selector, ensure that the first link found with that
@@ -57,6 +119,7 @@ class MainNavigationTest(ScoutTestCase):
             'http://www.washington.edu/online/terms/'
         )
 
+    '''
     def test_home_to_food(self):
         """SCOUT-67 Tests the places tab link on the home page"""
         response = self.get_soup('/')
@@ -102,3 +165,4 @@ class MainNavigationTest(ScoutTestCase):
     def test_footer_links_detail(self):
         """SCOUT-66 Checks the privacy/terms on the detail page"""
         self.check_footer_links_at_path('/food/2/')
+    '''
