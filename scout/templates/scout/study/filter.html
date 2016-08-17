@@ -1,0 +1,121 @@
+{% extends "scout/base.html" %}
+{% load staticfiles %}
+
+{% block title %}Filter study{% endblock %}
+
+{% block web_content %}
+<div id="page_filter" class="scout-content">
+
+    <h2 class="visually-hidden">Filter</h2>
+
+    <div class="scout-filter-container">
+
+        <form>
+
+            <div class="scout-card clearfix">
+                <fieldset>
+                    <legend>Campus</legend>
+                    <div id="campus_select">
+                        <label><input type="radio" value="seattle" />Seattle</label>
+                        <label><input type="radio" value="bothell" />Bothell</label>
+                        <label><input type="radio" value="tacoma" />Tacoma</label>
+                        <label><input type="radio" value="south_lake_union" />South Lake Union</label>
+                    </div>
+                </fieldset>
+
+                <fieldset style="width:100%;">
+                    <legend>Building</legend>
+                    <div id="building_select">
+                        <!--Needs to be updated dynamically!-->
+                        <select multiple style="width:100%;">
+                            <option value="">Burke Memorial-Washington State Museum (BMM)</option>
+                            <option value="">Allen Library (ALB) South</option>
+                            <option value="">Art Building (ART)</option>
+                            <option value="">Intramural Activities Building (IMA)</option>
+                            <option>Alder Hall</option>
+                            <option>Architecture Hall (ARC)</option>
+                            <option>Suzzallo Library (SUZ)</option>
+                            <option>Poplar Hall</option>
+                        </select>
+                    </div>
+                </fieldset>
+
+            </div>
+
+            <div class="scout-card clearfix">
+                <fieldset class="scout-filter-split">
+                    <legend>Type</legend>
+                    <div id="type_select">
+                        <label><input type="checkbox" value="study">Study room</label>
+                        <label><input type="checkbox" value="study_area">Study area</label>
+                        <label><input type="checkbox" value="computer_lab">Computer lab</label>
+                        <label><input type="checkbox" value="studio">Production studio</label>
+                        <label><input type="checkbox" value="conference">Conference/classroom</label>
+                        <label><input type="checkbox" value="open">Open space</label>
+                        <label><input type="checkbox" value="lounge">Lounge</label>
+                        <label><input type="checkbox" value="cafe">Café</label>
+                        <label><input type="checkbox" value="outdoor_area">Outdoor area</label>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="scout-card clearfix">
+                <fieldset class="scout-filter-split">
+                    <legend>Resources</legend>
+                    <div id="resources_select">
+                        <!--Values might need changing. Filters will work as intended!-->
+                        <label><input type="checkbox" value="has_whiteboards">Whiteboard</label>
+                        <label><input type="checkbox" value="has_outlets">Outlets</label>
+                        <label><input type="checkbox" value="has_computers">Computer</label>
+                        <label><input type="checkbox" value="has_scanning">Scanning</label>
+                        <label><input type="checkbox" value="has_displays">Large display (for laptop)</label>
+                        <label><input type="checkbox" value="has_projector">Projector</label>
+                        <label><input type="checkbox" value="has_printing">Prining</label>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="scout-card clearfix">
+
+                <fieldset>
+                    <legend>Noise level</legend>
+                    <div id="noise_select">
+                        <label><input type="radio" value="silent" />Silent</label>
+                        <label><input type="radio" value="quiet" />Low hum</label>
+                        <label><input type="radio" value="moderate" />Chatter</label>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Food/coffee</legend>
+                    <div id="food_select">
+                        <label><input type="radio" value="space" />In space</label>
+                        <label><input type="radio" value="building" />In building</label>
+                        <label><input type="radio" value="neighboring" />In neighboring building</label>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Lighting</legend>
+                    <div id="lighting_select">
+                        <label><input type="checkbox" value="has_natural_light" />Natural Light</label>
+                    </div>
+                </fieldset>
+
+            </div>
+
+            <div class="scout-filter-actions">
+                <button id="reset_study_button" type="button" class="action-cancel"><i class="fa fa-refresh"></i>Reset</button>&nbsp;&nbsp;
+                <button id="run_study_search" type="button"><i class="fa fa-list fa-inverse"></i>View Results</button>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+{% endblock %}
+
+{% block secondary_content %}
+<div style="background:url('{% static "scout/img/huskygrind.jpg" %}') no-repeat; background-size:cover; background-position:center center; position:absolute; top:0; bottom:0; width: 100%;">&nbsp;</div>
+{% endblock %}

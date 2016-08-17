@@ -1,0 +1,104 @@
+{% extends "hybridize/base.html" %}
+{% load staticfiles %}
+{% load scout_filters %}
+
+{% block title %}Discover{% endblock %}
+
+{% block hybrid_content %}
+
+<div class="content">
+    <div style="background:url('{% static "scout/img/uw-ob.jpg" %}') no-repeat; background-size:cover; height:270px;" valign="bottom" class="content-header">Discover</div>
+    <div class="content-content">
+        <!--<div class="content-content-inner" style="padding:20px;">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non urna et lorem venenatis varius quis sit amet dui. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur a nisi odio.
+        </div>-->
+    </div>
+</div>
+
+
+<div class="content-block-title">Open Nearby</div>
+<div class="list-block">
+    <ul>
+        <li>
+            <a href="/h/food/5071/" class="item-link">
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">By George</div>
+                    </div>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="/h/food/5072/" class="item-link">
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">Cafe 815 Mercer</div>
+                    </div>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="/h/food/5073/" class="item-link">
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">Court Cafe</div>
+                    </div>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="/h/food/5075/" class="item-link">
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">Dawg Bites</div>
+                    </div>
+                </div>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+<div class="content-block-title">Temporary Navigation</div>
+<div class="list-block">
+    <ul>
+        <li>
+            <a href="/h/components/" class="item-link">
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">Components Example</div>
+                    </div>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="/h/food/" class="item-link">
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">Food</div>
+                    </div>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="/h/study/" class="item-link">
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">Study</div>
+                    </div>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="/h/tech/" class="item-link">
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">Tech</div>
+                    </div>
+                </div>
+            </a>
+        </li>
+    </ul>
+</div>
+
+{% endblock %}

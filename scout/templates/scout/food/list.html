@@ -1,0 +1,130 @@
+{% extends "scout/base.html" %}
+{% load staticfiles %}
+{% load scout_filters %}
+
+{% block title %}Places to eat{% endblock %}
+
+{% block web_content %}
+
+<div id="page_food" class="scout-content">
+
+    {% include "scout/include/user_geolocation.html" %}
+
+    <h2 class="visually-hidden">Filtered shortcuts</h2>
+
+    <!-- food filter results -->
+    <div class="scout-filter-results">
+        <div class="scout-filter-results-by">
+            <label>Filtering by:</label>
+            <div id="filter_label_text" class="scout-filter-results-text">---</div>
+        </div>
+        <div class="scout-filter-results-results clearfix">
+            <label>Spaces:</label>
+            <div class="scout-filter-results-count">{{ spots|length }}</div>
+            <div class="scout-filter-results-actions">
+                <a href="/food/filter/" id="link_filter" title="Filter list of food places on campus">
+                    <i class="fa fa-sliders fa-inverse"></i>
+                    <span class="scout-filter-results-action">Filter Food</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- food list -->
+    <div class="scout-list-container" style="position:relative;" role="main">
+
+        <h2 class="scout-list-header visually-hidden">List of food places (by distance)</h2>
+
+        <ol id="scout_food_list" class="scout-card scout-list">
+
+            {% for spot in spots %}
+                <li class="scout-list-item" id="{{ spot.spot_id }}"  data-spot-lat="{{ spot.latitude }}" data-spot-lng="{{ spot.longitude }}" data-spot-building="{{ spot.building_name }}" data-spot-name="{{ spot.name }}">
+                    <a class="clearfix" href="/food/{{ spot.spot_id }}/">
+
+                        {% if spot.images %}
+                        <div class="scout-spot-image" style="background-image: url('/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}/?width=200');">&nbsp;</div>
+                        {% else %}
+                        <div class="scout-spot-image" style="background: #e5e6e9 url('{% static "scout/img/placeholder-200.png" %}') no-repeat center center; background-size: contain;">&nbsp;</div>
+                        {% endif %}
+
+                        <div class="scout-spot-content">
+
+                            <div style="padding-left: 10px;">
+
+                                <div class="clearfix">
+                                    <div class="scout-spot-type">{% if spot.spot_types %}{% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}</span>{% endfor %}{% else %} <span style="color:red;">SPOT_TYPE</span> {% endif %}</div>
+                                </div>
+
+                                <h3 class="scout-spot-name">{{ spot.name }}</h3>
+                                <div class="scout-spot-location">
+
+                                    <span class="scout-spot-distance"><span class="visually-hidden">Distance from you:</span><span class="distance-number">---</span>&nbsp;mi.</span>&nbsp;&nbsp;
+                                    {% if spot.building_name %}{{ spot.building_name }}{% else %}<span style="color:red;">missing building_name</span>{% endif %}
+
+                                    <!--
+                                    <div class="scout-spot-food-served hidden" aria-hidden="true">
+                                        <label style="text-transform:uppercase;">Food served</label>
+                                        {% if spot.foodtype_names %}
+                                            {% for foodtype in spot.foodtype_names %}
+                                                <span>{{ foodtype }}</span>
+                                            {% endfor %}
+                                        {% else %}<span style="color:red;">missing foodtype</span> {% endif %}
+                                    </div>
+                                    --->
+
+
+                                </div>
+
+                                <div class="scout-spot-status">{% if spot.is_open %}<span class="open visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</div>
+
+                            </div>
+
+                        </div>
+                    </a>
+                </li>
+            {% empty %}
+                <li class="scout-list-item scout-error" style="padding:20px;">
+                    <p class="scout-error-msg">No results? Try updating your filters.</p>
+                    <div class="scout-error-body">
+                        <p>Suggestions for improving the results:</p>
+                        <ul>
+                            <li>Try a speicific campus.</li>
+                            <li>Try less options for cuisine or food served.</li>
+                        </ul>
+                    </div>
+                </li>
+            {% endfor %}
+
+        </ol>
+
+    </div>
+
+
+
+</div>
+
+{% endblock %}
+
+{% block secondary_content %}
+<!-- show a map on the list page -->
+<div id="food_list_map" class="scout-spot-list-map" style="height:100%; background: #ddd !important;">
+    <div class="scout-spot-list-map-loading" style="position:absolute; top: 50%; left: 50%; margin-left:-15px; margin-top: -110px; z-index:9999;">
+        <p class="visually-hidden">loading...</p>
+        <div class="sk-fading-circle" aria-hidden="true">
+            <div class="sk-circle1 sk-circle"></div>
+            <div class="sk-circle2 sk-circle"></div>
+            <div class="sk-circle3 sk-circle"></div>
+            <div class="sk-circle4 sk-circle"></div>
+            <div class="sk-circle5 sk-circle"></div>
+            <div class="sk-circle6 sk-circle"></div>
+            <div class="sk-circle7 sk-circle"></div>
+            <div class="sk-circle8 sk-circle"></div>
+            <div class="sk-circle9 sk-circle"></div>
+            <div class="sk-circle10 sk-circle"></div>
+            <div class="sk-circle11 sk-circle"></div>
+            <div class="sk-circle12 sk-circle"></div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

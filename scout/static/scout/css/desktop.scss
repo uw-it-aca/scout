@@ -1,11 +1,129 @@
-body { overflow: hidden; }
+// sass variables
 
-.scout-header { width: 500px; }
+$view-panel-width: 430px;
+$header-height: 102px;
+$footer-height: 40px;
+$image-height: 278px;
 
-.scout-scroll { position: absolute; top:96px; bottom: 38px; width: 500px; left:0; overflow: scroll; margin-top: 0; }
+// desktop styles
 
+body { //overflow: hidden;
+}
 
-.scout-map { position: fixed; top:0; left: 500px; bottom: 0; right: 0; overflow: scroll; background: #ddd; }
+// global overrides for action links
 
+.scout-geolocation-action a, .scout-spot-action-text, .scout-coupon-action-text, .scout-footer a, .scout-error a {
+    text-decoration: none !important;
+    &:hover { text-decoration: underline !important; }
+}
 
-.scout-footer { width: 500px; position: absolute; bottom: 0; }
+// main container
+.scout-primary { /*position:absolute;*/ width: $view-panel-width; top:0; bottom:0;
+    //-webkit-box-shadow: 5px 0 20px 0 rgba(0,0,0,0.3); box-shadow: 5px 0 20px 0 rgba(0,0,0,0.3);
+    box-shadow: 0 0 5px rgba(57,70,78,.2);
+
+    z-index: 1;
+
+    // header
+    .scout-header { width: $view-panel-width;
+        h1 {
+            a { padding-left: 58px;}
+        }
+    }
+
+    // scrolling body
+    .scout-scroll { /*position: fixed;*/ top: $header-height; bottom: $footer-height; width: $view-panel-width; left:0; /*overflow: scroll;*/ margin-top: 0; z-index: -1;
+
+        // content
+        .scout-content {
+
+            // filter
+            .scout-filter-results-container {
+                .scout-filter-results { display: block; width: 100%; }
+                .scout-filter-display {
+                    a {  }
+                }
+            }
+
+            /*** list page ***/
+
+            // list
+
+            .scout-list-container {
+
+                .scout-list {
+
+                    .scout-list-item {
+
+                        a {
+
+                            .scout-spot-image { width:23%; }
+                            .scout-spot-content { width:77%; position: relative;
+
+                                /*
+                                .scout-spot-type { font-size: 10px; font-weight: normal; color: #bbb; margin-top: 5px;
+                                    position: absolute; top: 0; right: 0;
+                                    span { text-transform: uppercase; margin-left: 5px; }
+                                }
+                                */
+
+                                .scout-spot-name { /*width: 73%;*/ }
+                                .scout-spot-status { }
+                            }
+                        }
+
+                    }
+
+                }
+            }
+
+            /*** details page ***/
+
+            // details
+            .scout-details-container {
+
+                .scout-spot-image { height: $image-height;
+
+                    .scout-spot-status {  }
+                    .scout-spot-open-period {
+                        width: 350px;
+                        span { margin-bottom: 0; }
+                    }
+                }
+            }
+
+        }
+
+    }
+
+    // footer
+    .scout-footer { width: $view-panel-width; /*position: absolute;*/ bottom: 0; text-align: left; }
+
+}
+
+// map sidebar container
+.scout-secondary { position: fixed; top:0; right:0; bottom:0; left:$view-panel-width; z-index:0; }
+
+// google map & font awesome icons
+.scout-spot-list-map {
+    .gmnoprint { cursor: pointer !important; }
+}
+
+// gmap tooltip styles
+.gm-style-iw { line-height: 17px !important;
+    a { color: #427fed; text-decoration: none;
+        &:hover { text-decoration: underline; }
+    }
+}
+
+// mapbox overrides
+
+.marker-cluster div { color: #fff; }
+
+.marker-cluster-small, .marker-cluster-medium { background: #ddd !important; // outer border color
+    div { background: #6564a8 !important; } // inner circler
+}
+
+// scrolling sticky header (study list)
+
+.sticky-helper { width: $view-panel-width; }
