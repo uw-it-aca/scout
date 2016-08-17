@@ -1,6 +1,6 @@
 var List = {
     add_spot_distances: function () {
-        var spots = $(".scout-list-item");
+        var spots = $(".scout-list-item").not(".scout-error");
 
         $.each(spots, function(idx, item){
             var lat = $(item).attr("data-spot-lat");
@@ -14,7 +14,7 @@ var List = {
     },
 
     order_spot_list: function () {
-        var spots = $(".scout-list-item").detach();
+        var spots = $(".scout-list-item").not(".scout-error").detach();
         var sorted_spots = List.sort_spots_by_distance(spots);
         $("#scout_food_list").append(sorted_spots);
     },
@@ -120,7 +120,7 @@ var List = {
 
     get_spot_locations: function(){
         var spot_data = []
-        var spots = $(".scout-list-item");
+        var spots = $(".scout-list-item").not(".scout-error");
         $.each(spots, function (idx, spot) {
             var id = $(spot).attr("id");
             var lat = $(spot).attr("data-spot-lat");
