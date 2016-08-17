@@ -1,18 +1,38 @@
 var Geolocation = {
 
-    // red square
-    //default_location: { latitude: 47.6558539, longitude: -122.3094925 },
+    // campus default_locations (center)
+    // seattle: { latitude: 47.653811, longitude: -122.307815 },
+    // slu: { latitude: 47.62456939, longitude: -122.34105337 },
+    // bothell: { latitude: 47.75907121, longitude: -122.19103843 },
+    // tacoma: { latitude: 47.24458187, longitude: -122.43763134 },
 
     // drumheller fountain
     default_location: { latitude: 47.653811, longitude: -122.307815 },
+
+    campus_locations: function(campus){
+        var locations = {
+            "seattle": { "latitude": 47.653811, "longitude": -122.307815 },
+            "south_lake_union": { "latitude": 47.62456939, "longitude": -122.34105337 },
+            "bothell": { "latitude": 47.75907121, "longitude": -122.19103843 },
+            "tacoma": { "latitude": 47.24458187, "longitude": -122.43763134 },
+        };
+        $.event.trigger(Geolocation.location_updating);
+        if(locations[campus] !== undefined){
+            Geolocation.default_location.latitude = locations[campus]["latitude"];
+            Geolocation.default_location.longitude = locations[campus]["longitude"];
+        }
+    },
 
     location_changed:  {"type": "location_changed"},
 
     location_updating:  {"type": "location_updating"},
 
+    geolocation_status: { watchid: undefined },
+
     update_location: function () {
+        // current user location is given more precedence over campus location.
         if (!Geolocation.get_is_using_location()) {
-            Geolocation.set_default_location();
+            Geolocation.set_campus_location();
         } else {
             Geolocation.query_client_location();
         }
@@ -61,24 +81,32 @@ var Geolocation = {
         return Geolocation.get_latlng_from_coords(lat, lng);
     },
 
-    handle_watch_position: function (updated_location) {
+    handle_watch_position: function (position) {
        if(Geolocation.get_is_using_location()){
-           var new_position = Geolocation.get_latlng_from_coords(updated_location.coords.latitude, updated_location.coords.longitude);
+           var new_position = Geolocation.get_latlng_from_coords(position.coords.latitude, position.coords.longitude);
            var distance = Geolocation.get_distance_from_position(new_position);
-           if(distance > 100){
-               Geolocation.set_client_location(updated_location);
-           }
+           Geolocation.set_client_location(position);
        }
     },
 
     query_client_location: function() {
         // deal w/ error state
         if (navigator.geolocation) {
-            navigator.geolocation.watchPosition(Geolocation.handle_watch_position);
+            Geolocation.geolocation_status.watchid = navigator.geolocation.watchPosition(Geolocation.handle_watch_position);
         }
     },
 
-    set_default_location: function() {
+    stop_watching_location: function(){
+        var watchid = Geolocation.geolocation_status.watchid;
+        if(watchid){
+            navigator.geolocation.clearWatch(watchid);
+        }
+    },
+
+    set_campus_location: function() {
+        //var index = 0;
+        var campus = JSON.parse(sessionStorage.getItem("filter_params"))["campus0"];
+        Geolocation.campus_locations(campus);
         sessionStorage.setItem('lat', Geolocation.default_location.latitude);
         sessionStorage.setItem('lng', Geolocation.default_location.longitude);
         Geolocation.set_location_type("default");
@@ -86,10 +114,11 @@ var Geolocation = {
     },
 
     get_distance_from_position: function (item_latlng) {
-        // Returns distance in rounded feet
+        // Returns distance in miles, rounded to 2 decimals
         var current_latlng = Geolocation.get_client_latlng();
         var distance = google.maps.geometry.spherical.computeDistanceBetween(current_latlng, item_latlng);
-        distance = Math.round(distance * 3.280839895);
+        var miles_per_meter = 0.000621371;
+        distance = (distance * miles_per_meter).toFixed(2);
         return distance;
 
     },
@@ -114,7 +143,6 @@ var Geolocation = {
             $("#shared_position").attr("aria-hidden", "false");
 
         }
-
     },
 
     init_location_toggles: function() {
@@ -137,6 +165,7 @@ var Geolocation = {
             e.preventDefault();
             $.event.trigger(Geolocation.location_updating);
             Geolocation.set_is_using_location(false);
+            Geolocation.stop_watching_location();
 
             $("#shared_position").hide();
             $("#shared_position").attr("aria-hidden", "true");

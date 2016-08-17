@@ -3,8 +3,9 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from scout.dao.space import get_spot_list, get_spot_by_id, get_filtered_spots
 from scout.dao.space import get_food_spots_by_filter, get_period_filter, \
-    get_spots_by_filter
+    get_spots_by_filter, group_spots_by_building
 from scout.dao.image import get_image
+from scout.dao.item import get_item_by_id
 
 
 # using red square as the default center
@@ -56,15 +57,15 @@ def discover_card_view(request, discover_category):
                 ('extended_info:s_has_coupon', 'true')
             ]
         },
-        "breakfast": {
-            "title": "Open during Breakfast (5am - 11am)",
-            "filter_url": "period0=breakfast",
+        "morning": {
+            "title": "Open during Morning (5am - 11am)",
+            "filter_url": "period0=morning",
             "filter": [
                 ('limit', 5),
                 ('center_latitude', lat if lat else DEFAULT_LAT),
                 ('center_longitude', lon if lon else DEFAULT_LON),
                 ('distance', 100000)
-                ] + get_period_filter('breakfast')
+                ] + get_period_filter('morning')
 
         },
         "late": {
@@ -133,8 +134,9 @@ def study_list_view(request):
         # spots = get_filtered_spots(request)
     # else:
     spots = get_spot_list()
-    context = {"spots": spots,
-               "count": len(spots)}
+    spots = group_spots_by_building(spots)
+    context = {"grouped_spots": spots,
+               "count": len(get_spot_list())}
     return render_to_response('scout/study/list.html', context,
                               context_instance=RequestContext(request))
 
@@ -161,6 +163,19 @@ def tech_list_view(request):
                "count": len(spots),
                "app_type": 'tech'}
     return render_to_response('scout/tech/list.html', context,
+                              context_instance=RequestContext(request))
+
+
+def tech_detail_view(request, item_id):
+    spot_filtered_items = get_item_by_id(int(item_id))
+    context = {"spot": spot_filtered_items,
+               "app_type": 'tech'}
+    return render_to_response('scout/tech/detail.html', context,
+                              context_instance=RequestContext(request))
+
+
+def tech_filter_view(request):
+    return render_to_response('scout/tech/filter.html',
                               context_instance=RequestContext(request))
 
 
@@ -193,14 +208,27 @@ def hybrid_food_filter_view(request):
 
 
 def hybrid_study_list_view(request):
-    # if len(request.GET) > 0:
-        # TODO: not yet working, get study spots by filter
-        # spots = get_filtered_spots(request)
-    # else:
     spots = get_spot_list()
-    context = {"spots": spots,
-               "count": len(spots)}
+    spots = group_spots_by_building(spots)
+    context = {"grouped_spots": spots,
+               "count": len(get_spot_list())}
     return render_to_response('hybridize/study/list.html', context,
+                              context_instance=RequestContext(request))
+
+
+def hybrid_study_detail_view(request, spot_id):
+    spot = get_spot_by_id(spot_id)
+    context = {"spot": spot}
+    return render_to_response('hybridize/study/detail.html', context,
+                              context_instance=RequestContext(request))
+
+
+def hybrid_tech_list_view(request):
+    spots = get_spots_by_filter([('has_items', 'true')])
+    context = {"spots": spots,
+               "count": len(spots),
+               "app_type": 'tech'}
+    return render_to_response('hybridize/tech/list.html', context,
                               context_instance=RequestContext(request))
 
 

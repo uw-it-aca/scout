@@ -7,10 +7,11 @@ from scout.dao.space import add_foodtype_names_to_spot, add_cuisine_names, \
     add_payment_names, add_additional_info, get_is_spot_open, organize_hours, \
     get_open_periods_by_day, get_food_spots_by_filter, get_spot_list, \
     get_food_spots_by_filter, _get_spot_filters, OPEN_PERIODS, get_spot_by_id,\
-    group_spots_by_building
+    group_spots_by_building, get_avg_latlng_for_spots, add_latlng_to_building
 from spotseeker_restclient.spotseeker import Spotseeker
 from scout.dao import space
 from spotseeker_restclient.exceptions import DataFailureException
+from spotseeker_restclient.models.spot import Spot, SpotAvailableHours
 
 DAO = "spotseeker_restclient.dao_implementation.spotseeker.File"
 
@@ -132,7 +133,7 @@ class SpaceDAOTest(TestCase):
         self.assertOpenPeriods(
             spot,
             (2015, 12, 21, 0, 0, 0),
-            ('breakfast', 'lunch', 'dinner'))
+            ('morning', 'afternoon', 'evening'))
 
         self.assertOpenPeriods(
             spot,
@@ -142,12 +143,12 @@ class SpaceDAOTest(TestCase):
         self.assertOpenPeriods(
             spot,
             (2015, 12, 24, 0, 0, 0),
-            ('breakfast', 'lunch'))
+            ('morning', 'afternoon'))
 
         self.assertOpenPeriods(
             spot,
             (2015, 12, 25, 0, 0, 0),
-            ('breakfast', 'lunch', 'dinner', 'late_night'))
+            ('morning', 'afternoon', 'evening', 'late_night'))
 
         # Test spot open across midnight
         spot = sc.get_spot_by_id(4)
@@ -155,7 +156,7 @@ class SpaceDAOTest(TestCase):
         self.assertOpenPeriods(
             spot,
             (2015, 12, 25, 0, 0, 0),
-            ('lunch', 'dinner', 'late_night'))
+            ('afternoon', 'evening', 'late_night'))
 
         # Test spots that exactly fill period hours
         spot = sc.get_spot_by_id(5)
@@ -163,11 +164,11 @@ class SpaceDAOTest(TestCase):
         # Monday
         self.assertOpenPeriods(spot, (2016, 4, 18, 0, 0, 0), ('late_night',))
         # Tuesday
-        self.assertOpenPeriods(spot, (2016, 4, 19, 0, 0, 0), ('breakfast',))
+        self.assertOpenPeriods(spot, (2016, 4, 19, 0, 0, 0), ('morning',))
         # Wednesday
-        self.assertOpenPeriods(spot, (2016, 4, 20, 0, 0, 0), ('lunch',))
+        self.assertOpenPeriods(spot, (2016, 4, 20, 0, 0, 0), ('afternoon',))
         # Thursday
-        self.assertOpenPeriods(spot, (2016, 4, 21, 0, 0, 0), ('dinner',))
+        self.assertOpenPeriods(spot, (2016, 4, 21, 0, 0, 0), ('evening',))
         # Friday
         self.assertOpenPeriods(spot, (2016, 4, 22, 0, 0, 0), ('late_night',))
         # Sunday
@@ -187,12 +188,12 @@ class SpaceDAOTest(TestCase):
     def test_get_spot_filters(self):
         request = RequestFactory().get(
             '/?payment0=s_pay_dining&type0=food_court&food0=s_food_entrees&'
-            'food1=s_food_pasta&cuisine0=s_cuisine_chinese&period0=breakfast'
+            'food1=s_food_pasta&cuisine0=s_cuisine_chinese&period0=morning'
             '&open_now=true&campus=seattle')
         filters = _get_spot_filters(request)
         self.assertEqual(len(filters), 9)
 
-    def test_organize_hours(self):
+    def test_organize_hours_premade(self):
         sc = Spotseeker()
         spot = sc.get_spot_by_id(4)
         spot_hours = organize_hours(spot)
@@ -207,10 +208,66 @@ class SpaceDAOTest(TestCase):
         spots.append(sc.get_spot_by_id(5))
 
         grouped_spots = group_spots_by_building(spots)
+
         self.assertEqual(len(grouped_spots), 2)
-        self.assertIn("Odegaard Undergraduate Library", grouped_spots)
-        self.assertEqual(len(grouped_spots["Odegaard Undergraduate Library"]),
-                         2)
+        self.assertEqual(grouped_spots[1]['name'],
+                         "Odegaard Undergraduate Library")
+        self.assertEqual(len(grouped_spots[1]['spots']), 2)
+
+    def test_get_avg_latlng(self):
+        spots = []
+        sc = Spotseeker()
+        spots.append(sc.get_spot_by_id(1))
+        spots.append(sc.get_spot_by_id(4))
+        spots.append(sc.get_spot_by_id(5))
+        avg_latlng = get_avg_latlng_for_spots(spots)
+        self.assertEqual(avg_latlng, (47.65607183333333, -122.3100596))
+
+    def test_get_building_latlng(self):
+        spots = []
+        sc = Spotseeker()
+        spots.append(sc.get_spot_by_id(1))
+        spots.append(sc.get_spot_by_id(4))
+        spots.append(sc.get_spot_by_id(5))
+        grouped_spots = group_spots_by_building(spots)
+        grouped_spots = add_latlng_to_building(grouped_spots)
+        self.assertEqual(grouped_spots[1]['latitude'], 47.656462)
+        self.assertEqual(grouped_spots[1]['longitude'], -122.3125347)
+
+    def test_organize_hours(self):
+        """
+        Tests the organize_hours function. Includes cases for overnight
+        and extremely long time periods.
+        """
+        spot = Spot()
+        time = datetime.time
+        hours_before = {'monday': [((23, 0), (23, 59))],
+                        'tuesday': [((0, 0), (2, 0)), ((22, 0), (23, 59))],
+                        'wednesday': [((0, 0), (3, 0))],
+                        # Test 24h+
+                        'friday': [((19, 0), (23, 59))],
+                        'saturday': [((0, 0), (23, 59))],
+                        'sunday': [((0, 0), (2, 30))]}
+
+        hours_expected = {'monday': [(time(23, 0), time(2, 0))],
+                          'tuesday': [(time(22, 0), time(3, 0))],
+                          'wednesday': [],
+                          'thursday': [],
+                          'friday': [(time(19, 0), time(23, 59))],
+                          'saturday': [(time(0, 0), time(23, 59))],
+                          'sunday': [(time(0, 0), time(2, 30))]}
+
+        avail = []
+        for day, hours in hours_before.items():
+            for start, end in hours:
+                avail.append(SpotAvailableHours(day=day,
+                                                start_time=time(*start),
+                                                end_time=time(*end)))
+
+        spot.spot_availability = avail
+        organize_hours(spot)
+
+        self.assertEqual(hours_expected, spot.hours)
 
 
 class FakeClient(object):

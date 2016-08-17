@@ -6,17 +6,17 @@ import pytz
 
 OPEN_PERIODS = {
         # 5am - 10:59am
-        'breakfast': {
+        'morning': {
             'start': datetime.time(5, 0, 00, 0),
             'end':  datetime.time(11, 0, 0, 0)
         },
         # 11am - 2:59pm
-        'lunch': {
+        'afternoon': {
             'start': datetime.time(11, 0, 0, 0),
             'end':  datetime.time(15, 0, 0, 0)
         },
         # 3pm - 9:59pm
-        'dinner': {
+        'evening': {
             'start': datetime.time(15, 0, 0, 0),
             'end':  datetime.time(22, 0, 0, 0)
         },
@@ -33,6 +33,7 @@ def get_spot_list(app_type=None, groups=[]):
     res = []
     filters = []
     filters.append(('limit', 0))
+
     try:
         if app_type:
             filters.append(('extended_info:app_type', app_type))
@@ -140,6 +141,7 @@ def process_extended_info(spot):
     spot = add_cuisine_names(spot)
     spot = add_payment_names(spot)
     spot = add_additional_info(spot)
+    spot = add_study_info(spot)
     spot = organize_hours(spot)
 
     now = datetime.datetime.now(pytz.timezone('America/Los_Angeles'))
@@ -149,63 +151,58 @@ def process_extended_info(spot):
 
 
 def organize_hours(spot):
-    hours_object = {
-        'monday': [],
-        'tuesday': [],
-        'wednesday': [],
-        'thursday': [],
-        'friday': [],
-        'saturday': [],
-        'sunday': [],
-    }
-
-    days_list = ['monday',
+    days_list = ('monday',
                  'tuesday',
                  'wednesday',
                  'thursday',
                  'friday',
                  'saturday',
-                 'sunday']
+                 'sunday')
+    hours_object = {}
+    raw_hours = list(spot.spot_availability)
+    for idx, day in enumerate(days_list):
+        today_hours = []
+        start_of_day = datetime.time(0, 0)
+        end_of_day = datetime.time(23, 59)
+        day_hours = [h for h in raw_hours if h.day == day]
+        # Try to find an hours object that spans to end of day, excluding
+        # anything that spans the entire day
+        overnight_today = [h for h in day_hours
+                           if h.end_time == end_of_day and
+                           h.start_time != start_of_day]
+        # Try to find an hours object that starts at 0:00 tomorrow
+        next_day = days_list[(idx + 1) % len(days_list)]
+        overnight_next_day = [h for h in raw_hours if h.day == next_day and
+                              h.start_time == start_of_day and
+                              h.end_time != end_of_day]
+        # If we have a period today that extends to 23:59 and a period
+        # tomorrow that starts at 0:00, combine them and remove originals.
+        if overnight_today and overnight_next_day:
+            today_hours.append((overnight_today[0].start_time,
+                                overnight_next_day[0].end_time))
+            raw_hours.remove(overnight_next_day[0])
+            day_hours.remove(overnight_today[0])
+            # Preserving SCOUT-238 behavior for now. If we want to change
+            # that behavior, delete the following two lines.
+            if day == 'sunday':
+                del hours_object['monday'][0]
 
-    for day in days_list:
-        overnight = False
-        day_hours = \
-            [hours for hours in spot.spot_availability if hours.day == day]
-        next_day = (days_list.index(day) + 1) % len(days_list)
-        next_day_hours = \
-            [hours for hours in spot.spot_availability
-             if hours.day == days_list[next_day]]
-        close_used = True
-        for hours in next_day_hours:
-            if hours.start_time == datetime.time(0, 0):
-                overnight = True
-                close = hours.end_time  # get early morning end time
-                close_used = False
+        # Add all the non-special-case hours
         for hours in day_hours:
-            if hours.end_time == datetime.time(23, 59) and overnight:
-                hours_object[hours.day].append((hours.start_time, close))
-                close_used = True
-            elif (hours.end_time == datetime.time(23, 59) and
-                    not hours.start_time == datetime.time(0, 0)):
-                hours_object[hours.day].append((hours.start_time,
-                                                datetime.time(0, 0)))
-            elif (not hours.start_time == datetime.time(0, 0) and
-                    not hours.end_time == datetime.time(23, 59)):
-                hours_object[hours.day].append((hours.start_time,
-                                                hours.end_time))
-        if not close_used:
-            hours_object[hours.day].append((datetime.time(0, 0),
-                                            close))
-        overnight = False
+            today_hours.append((hours.start_time, hours.end_time))
+        # Fixes SCOUT-237
+        today_hours.sort()
+        hours_object[day] = today_hours
+
     spot.hours = hours_object
     return spot
 
 
 def get_open_periods_by_day(spot, now):
     # defining 'late night' as any time not covered by another period
-    open_periods = {'breakfast': False,
-                    'lunch': False,
-                    'dinner': False,
+    open_periods = {'morning': False,
+                    'afternoon': False,
+                    'evening': False,
                     'late_night': False}
     hours = spot.hours[now.strftime("%A").lower()]
     for opening in hours:
@@ -215,20 +212,20 @@ def get_open_periods_by_day(spot, now):
         if start > end:
             end = datetime.time(23, 59, 59)
             open_periods['late_night'] = True
-        # open for breakfast
-        breakfast = OPEN_PERIODS['breakfast']
-        if breakfast['start'] < end and breakfast['end'] > start:
-            open_periods['breakfast'] = True
-        # open for lunch
-        lunch = OPEN_PERIODS['lunch']
-        if lunch['start'] < end and lunch['end'] > start:
-            open_periods['lunch'] = True
-        # open for dinner
-        dinner = OPEN_PERIODS['dinner']
-        if dinner['start'] < end and dinner['end'] > start:
-            open_periods['dinner'] = True
+        # open for morning
+        morning = OPEN_PERIODS['morning']
+        if morning['start'] < end and morning['end'] > start:
+            open_periods['morning'] = True
+        # open for afternoon
+        afternoon = OPEN_PERIODS['afternoon']
+        if afternoon['start'] < end and afternoon['end'] > start:
+            open_periods['afternoon'] = True
+        # open for evening
+        evening = OPEN_PERIODS['evening']
+        if evening['start'] < end and evening['end'] > start:
+            open_periods['evening'] = True
         # open late night
-        if start < breakfast['start'] or end > dinner['end']:
+        if start < morning['start'] or end > evening['end']:
             open_periods['late_night'] = True
     return open_periods
 
@@ -330,13 +327,24 @@ def add_study_info(spot):
 
     if _get_extended_info_by_key("reservable", spot.extended_info) == "true":
         spot.reservable = "true"
-    spot.reservation_notes = _get_extended_info_by_key("s_reservation_notes",
+
+    spot.reservation_notes = _get_extended_info_by_key("reservation_notes",
                                                        spot.extended_info)
 
     if _get_extended_info_by_key("has_labstats", spot.extended_info) == "true":
         spot.labstats = True
-    spot.labstats_id = _get_extended_info_by_key("labstats_id",
-                                                 spot.extended_info)
+        spot.labstats_id = _get_extended_info_by_key("labstats_id",
+                                                     spot.extended_info)
+        spot.auto_labstats_total = _get_extended_info_by_key(
+                                                     "auto_labstats_total",
+                                                     spot.extended_info)
+        spot.auto_labstats_available = _get_extended_info_by_key(
+                                                     "auto_labstats_available",
+                                                     spot.extended_info)
+        if spot.auto_labstats_available is None\
+           or spot.auto_labstats_total is None:
+            spot.auto_labstats_total = 0
+            spot.auto_labstats_available = 0
 
     return spot
 
@@ -426,4 +434,27 @@ def group_spots_by_building(spots):
             grouped_spots[spot.building_name].append(spot)
         else:
             grouped_spots[spot.building_name] = [spot]
-    return grouped_spots
+    list_structure = []
+    for name in grouped_spots:
+        building_dict = {"name": name,
+                         "spots": grouped_spots[name]}
+        list_structure.append(building_dict)
+    return add_latlng_to_building(list_structure)
+
+
+def add_latlng_to_building(building_list):
+    for building in building_list:
+        building['latitude'], building['longitude'] = \
+            get_avg_latlng_for_spots(building['spots'])
+    return building_list
+
+
+def get_avg_latlng_for_spots(spots):
+    avg_lat = 0
+    avg_lng = 0
+    count = len(spots)
+    for spot in spots:
+        avg_lat += spot.latitude
+        avg_lng += spot.longitude
+
+    return avg_lat/count, avg_lng/count

@@ -16,8 +16,19 @@ $(document).on('ready', function(event) {
     else if (page_path.indexOf("study") !== -1){
         console.log("on study");
         Geolocation.display_location_status();
-        // List.init();
+        List.init();
         Map.init_map();
+
+        // initialize slick image slider
+        $('.scout-spot-gallery').slick({
+            dots: true,
+            arrows: false,
+        });
+
+        $('.sticky-header-wrap').stickyHeaders({
+            stickyElement: 'div',
+        });
+
     }
     else if (page_path.indexOf("tech") !== -1){
         console.log("on tech");
@@ -49,7 +60,7 @@ $(window).scroll(function(){
         var sticky = $('.sticky'),
             scroll = $(window).scrollTop();
 
-        if (scroll >= 200) sticky.addClass('fixed');
+        if (scroll >= 250) sticky.addClass('fixed');
         else sticky.removeClass('fixed');
     }
 

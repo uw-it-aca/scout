@@ -28,3 +28,8 @@ def stackerize(value):
     value = value.replace(' ', '+')
 
     return value
+
+
+@register.filter
+def insert_newline(value):
+    return value.replace(', ', '\n')

@@ -20,4 +20,24 @@ $(document).on('turbolinks:load', function() {
 		$.getScript('/static/scout/js/filter.js');
 	}
 
+    // handle closing notifcation banners
+    $(".close-notification").click(function(e) {
+        e.preventDefault();
+        //alert( "Handler for .click() called." );
+        myApp.closeNotification(".notification-item")
+    });
+
+    // handle food filter submit
+    $("#food_filter_submit").click(function(e) {
+        e.preventDefault();
+        history.back(1);
+        Turbolinks.clearCache();
+    });
+
+    // initialize slick image slider
+    $('.photo-gallery').slick({
+        dots: true,
+        arrows: false,
+    });
+
 });

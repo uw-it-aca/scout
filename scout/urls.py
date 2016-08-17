@@ -25,6 +25,10 @@ urlpatterns = patterns(
 
     # technology
     url(r'^tech/$', 'scout.views.tech_list_view', name='tech_list_view'),
+    url(r'^tech/(?P<item_id>[0-9]{1,5})/$',
+        'scout.views.tech_detail_view', name='tech_detail_view'),
+    url(r'^tech/filter/$', 'scout.views.tech_filter_view',
+        name='tech_filter_view'),
 
     # images
     url(r'^images/(?P<spot_id>\d+)/image/(?P<image_id>\d+)/$',
@@ -50,6 +54,13 @@ urlpatterns = patterns(
     # hybrid study
     url(r'^h/study/$', 'scout.views.hybrid_study_list_view',
         name='hybrid_study_list_view'),
+    url(r'^h/study/(?P<spot_id>[0-9]{1,5})/$',
+        'scout.views.hybrid_study_detail_view',
+        name='hybrid_study_detail_view'),
+
+    # hybrid tech
+    url(r'^h/tech/$', 'scout.views.hybrid_tech_list_view',
+        name='hybrid_tech_list_view'),
 
     # hybrid components
     url(r'^h/components/$', 'scout.views.hybrid_comps_view',

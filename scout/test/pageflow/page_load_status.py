@@ -25,7 +25,7 @@ _testCases = (
     ('Malformed Food Details ID 2', '/food/123456/', notfound, 'SCOUT-55'),
     ('Food Filter Open', '/food/?open_now=true', OK, 'SCOUT-76'),
     ('Food Filter Coffee', '/food/?food0=s_food_espresso', OK, 'SCOUT-77'),
-    ('Food Filter Breakfast', '/food/?period0=breakfast', OK, 'SCOUT-79'),
+    ('Food Filter Breakfast', '/food/?period0=morning', OK, 'SCOUT-79'),
     ('Food Filter Latenight', '/food/?period0=late_night', OK, 'SCOUT-78'),
     # Invalid params should not cause a 404 or other error
     ('Food Invalid Filter Params', '/food/?open_now=invalid', OK, 'SCOUT-156'),

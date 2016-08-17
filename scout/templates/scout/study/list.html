@@ -17,8 +17,8 @@
             <div id="filter_label_text" class="scout-filter-results-text">---</div>
         </div>
         <div class="scout-filter-results-results clearfix">
-            <label>Results:</label>
-            <div class="scout-filter-results-count">{{ spots|length }}</div>
+            <label>Spaces:</label>
+            <div class="scout-filter-results-count">{{ count }}</div>
             <div class="scout-filter-results-actions">
                 <a href="/study/filter/" id="study_link_filter" title="Filter list of food places on campus">
                     <i class="fa fa-sliders fa-inverse"></i>
@@ -33,50 +33,69 @@
 
         <h2 class="scout-list-header visually-hidden">List of study places (by distance)</h2>
 
-        <ol id="scout_study_list" class="scout-card scout-list">
+        <ol id="scout_study_list" class="scout-card scout-list sticky-header-wrap">
+            {% for group in grouped_spots %}
 
-            <li style="background:#aaa;" class="scope"><strong>GROUP BY BUILDING NAME</strong></li>
+            <li class="scout-list-building" data-building-name="{{ group.name }}" data-building-lat="{{ group.latitude }}" data-building-lng="{{ group.longitude }}">
 
-            {% for spot in spots %}
-            <li class="scout-list-item" id="{{ spot.spot_id }}">
-                <a class="clearfix" href="/study/{{ spot.spot_id }}/">
+                <div class="sticky-header">
+                    <span>{% if group.name %}{{ group.name }}{% else %}missing building_name{% endif %}</span>
+                </div>
 
-                    {% if spot.images %}
-                    <div class="scout-spot-image" style="background-image: url('/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}/?width=200'); background-size:cover;">&nbsp;</div>
-                    {% else %}
-                    <div class="scout-spot-image" style="background: #e5e6e9 url('{% static "scout/img/placeholder-200.png" %}') no-repeat center center; background-size: contain;">&nbsp;</div>
-                    {% endif %}
+                <ol style="margin:0; padding:0;">
 
-                    <div class="scout-spot-content">
+                    {% for spot in group.spots %}
+                    <li class="scout-list-item" id="{{ spot.spot_id }}" data-spot-lat="{{ spot.latitude }}" data-spot-lng="{{ spot.longitude }}" data-spot-building="{{ spot.building_name }}" data-spot-name="{{ spot.name }}">
+                        <a class="clearfix" href="/study/{{ spot.spot_id }}/">
 
-                        <div style="padding-left: 10px;">
-                            <h3 class="scout-spot-name">{{ spot.name }}</h3>
-                            <div class="scout-spot-location">
-
-                                <span class="scout-spot-distance"><span class="visually-hidden">Distance from you:</span><span class="distance-number">-</span>&nbsp;ft.</span>&nbsp;&nbsp;
-                                {% if spot.building_name %}{{ spot.building_name }}{% else %}<span style="color:red;">missing building_name</span>{% endif %}
-
-                                <p>floor: {{spot.floor}}</p>
-                                <p>location_description: {{spot.location_description}}</p>
-
-                            </div>
-
-
-                            {% if is_desktop %}
-                            <span class="scout-spot-type">{% if spot.spot_types %}{% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}</span>{% endfor %}{% else %} <span style="color:red;">SPOT_TYPE</span> {% endif %}</span>
+                            {% if spot.images %}
+                            <div class="scout-spot-image" style="background-image: url('/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}/?width=200'); background-size:cover;">&nbsp;</div>
+                            {% else %}
+                            <div class="scout-spot-image" style="background: #e5e6e9 url('{% static "scout/img/placeholder-200.png" %}') no-repeat center center; background-size: contain;">&nbsp;</div>
                             {% endif %}
 
-                            <div class="scout-spot-xxxx">
-                                <p>Seats: {% if spot.capacity %}<span>{{ spot.capacity }}</span>{% else %}<span style="color:red;">missing capacity</span> {% endif %}</p>
-                                <p class="scope">Lab Stats: {{spot.labstats}} <span>{{ spot.auto_labstats_available }} / {{ spot.auto_labstats_total }}</span></p>
+                            <div class="scout-spot-content">
+
+                                <div style="padding-left: 10px;">
+
+                                    <div class="clearfix">
+                                        <div class="scout-spot-type">{% if spot.spot_types %}{% for type in spot.spot_types %}<span>
+                                            {% if type.name == 'open'%}{{ type.name|remove_underscores }} space{% else %}{{ type.name|remove_underscores }}{% endif %}</span>{% endfor %}{% else %} <span style="color:red;">SPOT_TYPE</span> {% endif %}</div>
+
+                                        <div class="scout-spot-capacity">
+                                            {% if spot.capacity %}<span>Seats  {{ spot.capacity }}</span>{% endif %}
+
+                                            {% if spot.labstats_id %}
+                                                {% if spot.auto_labstats_total != 0 %}
+                                                    {% if spot.auto_labstats_available != 0 %}
+                                                        <span><i class="fa fa-desktop" aria-hidden="true"></i> <span style="color:lime;">{{ spot.auto_labstats_available }}</span> / {{ spot.auto_labstats_total }}</span>
+                                                    {% endif %}
+                                                {% endif %}
+                                            {% endif %}
+                                        </div>
+                                    </div>
+
+                                    <h3 class="scout-spot-name">{{ spot.name }}</h3>
+
+                                    <div class="scout-spot-location">
+
+                                        <span class="scout-spot-distance"><span class="visually-hidden">Distance from you:</span><span class="distance-number">---</span>&nbsp;mi.</span>&nbsp;&nbsp;
+                                        {% if spot.building_name %}{{ spot.building_name }}{% else %}<span style="color:red;">missing building_name</span>{% endif %}
+
+                                        <!--{% if spot.location_description %}<p>{{spot.location_description|insert_newline|linebreaks}}</p>{% else %}<span style="color:red;">missing location_description</span></p>{% endif %}-->
+
+                                    </div>
+
+                                    <div class="scout-spot-status">{% if spot.is_open %}<span class="open visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</div>
+
+                                </div>
+
                             </div>
+                        </a>
+                    </li>
+                    {% endfor %}
 
-                            <span class="scout-spot-status">{% if spot.is_open %}<span class="open visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</span>
-
-                        </div>
-
-                    </div>
-                </a>
+                </ol>
             </li>
             {% endfor %}
 
@@ -84,41 +103,7 @@
 
     </div>
 
-    <script type="text/javascript">
 
-        window.spot_locations = {
-            {% for spot in spots %}
-                '{{ spot.spot_id }}': {
-                    "spot_name": '{{ spot.name }}',
-                        "id": '{{ spot.spot_id }}',
-                        "building": '{{ spot.building_name }}',
-                        "lat": '{{ spot.latitude }}',
-                        "lng": '{{ spot.longitude }}',
-                },
-            {% endfor %}
-        };
-
-        var study_geojson = [
-            {% for spot in spots %}
-            {
-                "type": "Feature",
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": [{{ spot.longitude }}, {{ spot.latitude }}]
-                },
-                "properties": {
-                    "marker-color": "#6564a8",
-                    "marker-size": "small",
-                    "marker-symbol": "circle-stroked",
-                    "title": "{{ spot.name }}",
-                    "description": "{{ spot.building_name }}",
-                    "id": "{{ spot.spot_id }}"
-                },
-            },
-            {% endfor %}
-        ];
-
-    </script>
 
 </div>
 

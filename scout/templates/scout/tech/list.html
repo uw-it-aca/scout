@@ -12,33 +12,40 @@
 
     <!-- tech filter results -->
     <div class="scout-filter-results">
+
         <div class="scout-filter-results-by">
-            <label>Category:</label>
+
+            <label></label>
             <ul>
-                <li>Laptop Computer</li>
-                <li>Data Projector</li>
-                <li>Digital Camera</li>
-                <li>Digital Video Camera</li>
-                <li>Flatbed Scanner</li>
-                <li>3D Printer</li>
-                <li>Tablet PC</li>
-                <li>Projection Screen</li>
-                <li>Portable Audio System</li>
-                <li>CD Recorder</li>
-                <li>External Hard Drive</li>
-                <li>Shotgun Microphone</li>
-                <li>Calculator</li>
+                <li>Laptops</li>
+                <li>Accessories</li>
+                <li>Projectors</li>
+                <li>Cameras</li>
+                <li>Video Cameras</li>
+                <li>Audio</li>
+                <li>Tablets</li>
             </ul>
+
+            <label>Type: (sub_category) Most Popular 5?</label>
+            <ul>
+                <li><a href="/tech/?subcategory=digital">Digital camera</a></li>
+                <li><a href="/tech/?subcategory=digital_video">Digital Video Camera</a></li>
+                <li><a href="/tech/?subcategory=outdoor">Outdoor Wildlife camera</a></li>
+                <li><a href="/tech/?subcategory=waterproof">Waterproof Camera</a></li>
+            </ul>
+
         </div>
         <div class="scout-filter-results-results clearfix">
-            <label>Results:</label>
+            <label>Items:</label>
             <div class="scout-filter-results-count">{{ spots|length }}</div>
+
             <div class="scout-filter-results-actions">
                 <a href="/tech/filter/" id="tech_link_filter" title="Filter list of food places on campus">
                     <i class="fa fa-sliders fa-inverse"></i>
                     <span class="scout-filter-results-action">Filter Tech</span>
                 </a>
             </div>
+
         </div>
     </div>
 
@@ -49,178 +56,145 @@
 
         <ol id="scout_tech_list" class="scout-card scout-list">
 
-        {% for spot in spots %}
-            <li style="background:#aaa;"><strong>{{ spot.name }}</strong></li>
-            {% if spot.items %}
+            <li class="scout-list-building">
+
+                <div class="sticky-header">
+                    <span>Spot Name (grouping)</span>
+                </div>
+
+                {% for spot in spots %}
+                    <li style="background:#aaa;"><strong>{{ spot.name }}</strong></li>
+                    {% if spot.items %}
+                        <ol style="margin:0; padding:0;">
+                    {% endif %}
+                    {% for item in spot.items %}
+                        <li class="scout-list-item" id="">
+                            <a class="clearfix" href="/tech/{{ item.item_id }}/">
+                                <div class="scout-spot-image" style="background-image: url('{% static "scout/img/solidoodle.jpg" %}')">&nbsp;</div>
+                                <div class="scout-spot-content">
+                                    <div style="padding-left: 10px;">
+
+                                        <div class="clearfix">
+                                            <div class="scout-spot-type">{% if item.sub_category %}<span>{{ item.sub_category }}</span>{% else %} <span style="color:red;">ITEM_SUB_CATEGORY</span> {% endif %}</div>
+                                            <div class="scout-spot-capacity">
+                                                <span>Available&nbsp;&nbsp;<span style="color:lime;">4</span> / 8</span>
+                                            </div>
+                                        </div>
+
+                                        <h3 class="scout-spot-name">{{ item.name }}</h3>
+                                        <div class="scout-spot-location">
+                                            <span class="scout-spot-distance"><span class="visually-hidden">Distance from you:</span><span class="distance-number">-</span>&nbsp;mi.</span>&nbsp;&nbsp;
+                                            {% if spot.building_name %}{{ spot.building_name }}{% else %}<span style="color:red;">missing building_name</span>{% endif %}
+                                        </div>
+
+
+                                        <span class="scout-spot-status">{% if spot.is_open %}<span class="open visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</span>
+
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    {% endfor %}
+                    {% if spot.items %}
+                        </ol>
+                    {% endif %}
+
+                {% endfor %}
+            </li>
+        </ol>
+
+        <ol class="scout-card scout-list">
+            <li class="scout-list-building">
+
+                <div class="sticky-header">
+                    <span>Static Spot Grouping</span>
+                </div>
+
                 <ol style="margin:0; padding:0;">
-            {% endif %}
-            {% for item in spot.items %}
-                <li class="scout-list-item" id="">
-                    <a class="clearfix" href="">
-                        <div class="scout-spot-image" style="background-image: url('{% static "scout/img/solidoodle.jpg" %}')">&nbsp;</div>
-                        <div class="scout-spot-content">
-                            <div style="padding-left: 10px;">
+                    <li class="scout-list-item" id="">
+                        <a class="clearfix" href="#">
+                            <div class="scout-spot-image" style="background-image: url('{% static "scout/img/solidoodle.jpg" %}')">&nbsp;</div>
+                            <div class="scout-spot-content">
+                                <div style="padding-left: 10px;">
 
-                                <h3 class="scout-spot-name">{{ item.name }}</h3>
-                                <div class="scout-spot-location">
-                                    <span class="scout-spot-distance"><span class="visually-hidden">Distance from you:</span><span class="distance-number">-</span>&nbsp;ft.</span>&nbsp;&nbsp;
-                                    {% if spot.building_name %}{{ spot.building_name }}{% else %}<span style="color:red;">missing building_name</span>{% endif %}
+                                    <div class="clearfix">
+                                        <div class="scout-spot-type"><span>ITEM_SUB_CATEGORY</span></div>
+                                        <div class="scout-spot-capacity">
+                                            <span>Available&nbsp;&nbsp;<span style="color:lime;">4</span> / 8</span>
+                                        </div>
+                                    </div>
+
+                                    <h3 class="scout-spot-name">Solidoodle 4</h3>
+                                    <div class="scout-spot-location">
+                                        <span class="scout-spot-distance"><span class="visually-hidden">Distance from you:</span><span class="distance-number">---</span>&nbsp;mi.</span>&nbsp;&nbsp;
+                                        Co-Motion Tech Space&nbsp;&nbsp;{% if spot.is_open %}<span class="open visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}
+                                    </div>
+
+                                    <span class="scout-spot-status">14 business days</span>
+
                                 </div>
-
-                                {% if is_desktop %}
-                                <span class="scout-spot-type">{% if item.category %}<span>{{ item.category }}</span>{% else %} <span style="color:red;">ITEM_CATEGORY</span> {% endif %}</span>
-                                {% endif %}
-
-                                <span class="scout-spot-status">{% if spot.is_open %}<span class="open visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</span>
-
                             </div>
-                        </div>
-                    </a>
-                </li>
-            {% endfor %}
-            {% if spot.items %}
+                        </a>
+                    </li>
+
+                    <li class="scout-list-item" id="">
+                        <a class="clearfix" href="#">
+                            <div class="scout-spot-image" style="background-image: url('{% static "scout/img/nikon.jpg" %}')">&nbsp;</div>
+                            <div class="scout-spot-content">
+                                <div style="padding-left: 10px;">
+
+                                    <div class="clearfix">
+                                        <div class="scout-spot-type"><span>ITEM_SUB_CATEGORY</span></div>
+                                        <div class="scout-spot-capacity">
+                                            <span>Available&nbsp;&nbsp;<span style="color:lime;">12</span> / 15</span>
+                                        </div>
+                                    </div>
+
+                                    <h3 class="scout-spot-name">Nikon Camera</h3>
+                                    <div class="scout-spot-location">
+                                        <span class="scout-spot-distance"><span class="visually-hidden">Distance from you:</span><span class="distance-number">---</span>&nbsp;mi.</span>&nbsp;&nbsp;
+                                        Kane Hall (KNE)&nbsp;&nbsp;{% if spot.is_open %}<span class="open visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}
+                                    </div>
+
+                                    <span class="scout-spot-status">14 business days</span>
+
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li class="scout-list-item" id="">
+                        <a class="clearfix" href="#">
+                            <div class="scout-spot-image" style="background-image: url('{% static "scout/img/macbook-pro.jpg" %}')">&nbsp;</div>
+                            <div class="scout-spot-content">
+                                <div style="padding-left: 10px;">
+
+                                    <div class="clearfix">
+                                        <div class="scout-spot-type"><span>ITEM_SUB_CATEGORY</span></div>
+                                        <div class="scout-spot-capacity">
+                                            <span>Available&nbsp;&nbsp;<span style="color:lime;">20</span> / 20</span>
+                                        </div>
+                                    </div>
+
+                                    <h3 class="scout-spot-name">Apple Macbook Pro</h3>
+                                    <div class="scout-spot-location">
+                                        <span class="scout-spot-distance"><span class="visually-hidden">Distance from you:</span><span class="distance-number">---</span>&nbsp;mi.</span>&nbsp;&nbsp;
+                                        Kane Hall (KNE)&nbsp;&nbsp;{% if spot.is_open %}<span class="open visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}
+                                    </div>
+
+                                    <span class="scout-spot-status">14 business days</span>
+
+                                </div>
+                            </div>
+                        </a>
+                    </li>
                 </ol>
-            {% endif %}
 
-        {% endfor %}
-
-            <li style="background:#aaa;"><strong>SPACE NAME 1</strong></li>
-
-            <ol style="margin:0; padding:0;">
-                <li class="scout-list-item" id="">
-                    <a class="clearfix" href="">
-                        <div class="scout-spot-image" style="background-image: url('{% static "scout/img/solidoodle.jpg" %}')">&nbsp;</div>
-                        <div class="scout-spot-content">
-                            <div style="padding-left: 10px;">
-
-                                <h3 class="scout-spot-name">Solidoodle 4 (Black)</h3>
-                                <div class="scout-spot-location">
-                                    <span class="scout-spot-distance"><span class="visually-hidden">Distance from you:</span><span class="distance-number">-</span>&nbsp;ft.</span>&nbsp;&nbsp;
-                                    {% if spot.building_name %}{{ spot.building_name }}{% else %}<span style="color:red;">missing building_name</span>{% endif %}
-                                </div>
-
-                                {% if is_desktop %}
-                                <span class="scout-spot-type">{% if spot.spot_types %}{% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}</span>{% endfor %}{% else %} <span style="color:red;">ITEM_CATEGORY</span> {% endif %}</span>
-                                {% endif %}
-
-                                <span class="scout-spot-status">{% if spot.is_open %}<span class="open visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</span>
-
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <li class="scout-list-item" id="">
-                    <a class="clearfix" href="">
-                        <div class="scout-spot-image" style="background-image: url('{% static "scout/img/nikon.jpg" %}')">&nbsp;</div>
-                        <div class="scout-spot-content">
-                            <div style="padding-left: 10px;">
-
-                                <h3 class="scout-spot-name">Nikon D7000 DSLR Camera</h3>
-                                <div class="scout-spot-location">
-                                    <span class="scout-spot-distance"><span class="visually-hidden">Distance from you:</span><span class="distance-number">-</span>&nbsp;ft.</span>&nbsp;&nbsp;
-                                    {% if spot.building_name %}{{ spot.building_name }}{% else %}<span style="color:red;">missing building_name</span>{% endif %}
-                                </div>
-
-                                {% if is_desktop %}
-                                <span class="scout-spot-type">{% if spot.spot_types %}{% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}</span>{% endfor %}{% else %} <span style="color:red;">ITEM_CATEGORY</span> {% endif %}</span>
-                                {% endif %}
-
-                                <span class="scout-spot-status">{% if spot.is_open %}<span class="open visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</span>
-
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <li class="scout-list-item" id="">
-                    <a class="clearfix" href="">
-                        <div class="scout-spot-image" style="background-image: url('{% static "scout/img/macbook-pro.jpg" %}')">&nbsp;</div>
-                        <div class="scout-spot-content">
-                            <div style="padding-left: 10px;">
-
-                                <h3 class="scout-spot-name">Apple Macbook Pro 2011</h3>
-                                <div class="scout-spot-location">
-                                    <span class="scout-spot-distance"><span class="visually-hidden">Distance from you:</span><span class="distance-number">-</span>&nbsp;ft.</span>&nbsp;&nbsp;
-                                    {% if spot.building_name %}{{ spot.building_name }}{% else %}<span style="color:red;">missing building_name</span>{% endif %}
-                                </div>
-
-                                {% if is_desktop %}
-                                <span class="scout-spot-type">{% if spot.spot_types %}{% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}</span>{% endfor %}{% else %} <span style="color:red;">ITEM_CATEGORY</span> {% endif %}</span>
-                                {% endif %}
-
-                                <span class="scout-spot-status">{% if spot.is_open %}<span class="open visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</span>
-
-                            </div>
-                        </div>
-                    </a>
-                </li>
-            </ol>
-
-            <li style="background:#aaa;"><strong>SPACE NAME 2</strong></li>
-
-            <ol style="margin:0; padding:0;">
-                <li class="scout-list-item" id="">
-                    <a class="clearfix" href="">
-                        <div class="scout-spot-image" style="background-image: url('{% static "scout/img/solidoodle.jpg" %}')">&nbsp;</div>
-                        <div class="scout-spot-content">
-                            <div style="padding-left: 10px;">
-
-                                <h3 class="scout-spot-name">Solidoodle 4 (Black)</h3>
-                                <div class="scout-spot-location">
-                                    <span class="scout-spot-distance"><span class="visually-hidden">Distance from you:</span><span class="distance-number">-</span>&nbsp;ft.</span>&nbsp;&nbsp;
-                                    {% if spot.building_name %}{{ spot.building_name }}{% else %}<span style="color:red;">missing building_name</span>{% endif %}
-                                </div>
-
-                                {% if is_desktop %}
-                                <span class="scout-spot-type">{% if spot.spot_types %}{% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}</span>{% endfor %}{% else %} <span style="color:red;">ITEM_CATEGORY</span> {% endif %}</span>
-                                {% endif %}
-
-                                <span class="scout-spot-status">{% if spot.is_open %}<span class="open visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</span>
-
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <li class="scout-list-item" id="">
-                    <a class="clearfix" href="">
-                        <div class="scout-spot-image" style="background-image: url('{% static "scout/img/nikon.jpg" %}')">&nbsp;</div>
-                        <div class="scout-spot-content">
-                            <div style="padding-left: 10px;">
-
-                                <h3 class="scout-spot-name">Nikon D7000 DSLR Camera</h3>
-                                <div class="scout-spot-location">
-                                    <span class="scout-spot-distance"><span class="visually-hidden">Distance from you:</span><span class="distance-number">-</span>&nbsp;ft.</span>&nbsp;&nbsp;
-                                    {% if spot.building_name %}{{ spot.building_name }}{% else %}<span style="color:red;">missing building_name</span>{% endif %}
-                                </div>
-
-                                {% if is_desktop %}
-                                <span class="scout-spot-type">{% if spot.spot_types %}{% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}</span>{% endfor %}{% else %} <span style="color:red;">ITEM_CATEGORY</span> {% endif %}</span>
-                                {% endif %}
-
-                                <span class="scout-spot-status">{% if spot.is_open %}<span class="open visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</span>
-
-                            </div>
-                        </div>
-                    </a>
-                </li>
-            </ol>
+            </li>
 
         </ol>
 
     </div>
-
-    <script type="text/javascript">
-        window.spot_locations = {
-            {% for spot in spots %}
-                '{{ spot.spot_id }}': {
-                    "spot_name": '{{ spot.name }}',
-                        "id": '{{ spot.spot_id }}',
-                        "building": '{{ spot.building_name }}',
-                        "lat": '{{ spot.latitude }}',
-                        "lng": '{{ spot.longitude }}',
-                },
-            {% endfor %}
-        };
-    </script>
 
 </div>
 
@@ -228,8 +202,22 @@
 
 {% block secondary_content %}
 
+<script type="text/javascript">
+    window.spot_locations = {
+        {% for spot in spots %}
+            '{{ spot.spot_id }}': {
+                "spot_name": '{{ spot.name }}',
+                    "id": '{{ spot.spot_id }}',
+                    "building": '{{ spot.building_name }}',
+                    "lat": '{{ spot.latitude }}',
+                    "lng": '{{ spot.longitude }}',
+            },
+        {% endfor %}
+    };
+</script>
+
 <!-- show a map on the list page -->
-<div id="study_list_map" class="scout-spot-list-map" style="height:100%; background: #ddd !important;">
+<div id="tech_list_map" class="scout-spot-list-map" style="height:100%; background: #ddd !important;">
     <div class="scout-spot-list-map-loading" style="position:absolute; top: 50%; left: 50%; margin-left:-15px; margin-top: -110px; z-index:9999;">
         <p class="visually-hidden">loading...</p>
         <div class="sk-fading-circle" aria-hidden="true">

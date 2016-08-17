@@ -5,7 +5,7 @@ var jquery = require('jquery');
 var tools = require('./testing_tools');
 var fakeSess = require('./testing_tools').fakeSessionStorage;
 var fakeWindow = require('./testing_tools').fakeWindow;
-
+var default_campus = 'seattle'
 /*
 These following associative arrays store info that is used to
 generate the mock html that the test methods test
@@ -197,13 +197,13 @@ describe("Filter Tests", function() {
     });
 
     describe("Get Filter URL", function() {
-        it('returns undefined for no filters', function() {
+        it('returns a default campus location URL when there are no filters', function() {
             var sessionVars = new fakeSess();
             global.sessionStorage = sessionVars;
             value = Filter.get_filter_url();
-            assert.equal(value, undefined);
+            assert.equal(value, "campus0=" + default_campus);
         });
-        it('returns the correct URL for one filter', function() {
+        it('returns the correct URL when there is one filter', function() {
             var sessionVars = new fakeSess(
                 { filter_params: '{"payment0":"s_pay_cash"}'}
             );
@@ -260,7 +260,7 @@ describe("Filter Tests", function() {
             Filter.replace_food_href();
             var food_anchor = $("#link_food");
             var value = $(food_anchor).attr('href');
-            var exp = "/food/";
+            var exp = "/food/?campus0=" + default_campus;
             assert.deepEqual(value, exp);
         });
         it('the link_food is replaced with the expected href of one filter', function() {
@@ -302,21 +302,12 @@ describe("Filter Tests", function() {
             Filter.reset_filter();
         });
         it('should remove the session variables ("filter_params")', function() {
-            // Testing that the filter params are removed from session storage
-            assert.deepEqual(global.sessionStorage, { sessionVars: {} });
-        });
-        it('should uncheck any checked boxes', function() {
-            // Testing that all the checkboxes have been unchecked
-            filter_item = $("#food_select").find("input[value='s_food_smoothies']");
-            filter_item2 = $("#payment_select").find("input[value='s_pay_cash']");
-            filter_item3 = $("#payment_select").find("input[value='s_pay_dining']");
-            assert.equal(($(filter_item[0]).prop("checked")), false);
-            assert.equal(($(filter_item2[0]).prop("checked")), false);
-            assert.equal(($(filter_item3[0]).prop("checked")), false);
+            // Testing that the filter params are removed from session storage replaced with the default campus
+            assert.deepEqual(global.sessionStorage.sessionVars.filter_params, '{"campus0":"' + default_campus + '"}');
         });
         it('should change the window location', function() {
-            // Testing that the window's href has changed
-            assert.equal(global.window.location.href, '/food/');
+            // Testing that the window's href has changed back to the default campus
+            assert.equal(global.window.location.href, '/food/?campus0=' + default_campus);
         });
     });
 

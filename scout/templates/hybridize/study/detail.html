@@ -50,9 +50,13 @@
 <div class="card">
 
     {% if spot.images %}
-    <div style="background:url('/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}/?width=500') center center no-repeat; background-size:cover; height:270px;" valign="bottom" class="card-header">&nbsp;</div>
+    <div class="photo-gallery">
+        {% for image in spot.images %}
+        <div style="background:url('/images/{{ spot.spot_id }}/image/{{ image.image_id }}/?width=500') center center no-repeat; background-size:cover; height:270px;" valign="bottom">&nbsp;</div>
+        {% endfor %}
+    </div>
     {% else %}
-    <div style="background: #e5e6e9 url('{% static "scout/img/placeholder-1000.png" %}') no-repeat center center; background-size: cover; height:270px;" valign="bottom" class="card-header">&nbsp;</div>
+    <div style="background: #e5e6e9 url('{% static "scout/img/placeholder-1000.png" %}') no-repeat center center; background-size: cover; height:270px;" valign="bottom">&nbsp;</div>
     {% endif %}
 
     <div class="card-content">
@@ -69,81 +73,46 @@
 
         </div>
     </div>
-
 </div>
 
-<div class="list-block">
-    <div class="list-block-label" style="margin-bottom:1em;">
-        {{ spot.location_description }}
-    </div>
+<div class="list-block" style="margin-top:1em;">
     <ul>
         <li>
             <a href="maps://maps.apple.com/maps?q={{ spot.latitude }},{{ spot.longitude }}" class="item-link">
                 <div class="item-content">
                     <div class="item-inner">
-                        <div class="item-title">Location <span>{{ spot.building_name }}</span></div>
+                        <div class="item-title">Location <span>{{ spot.location_description }}</span></div>
                     </div>
                 </div>
             </a>
         </li>
-        {% if spot.phone %}
-        <li>
-            <a href="tel:+1{{ spot.phone }}" class="item-link" data-turbolinks="false">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">Phone <span>{{ spot.phone | format_phone }}</span></div>
-                    </div>
-                </div>
-            </a>
+        <li class="item-content">
+            <div class="item-inner">
+                <div class="item-title">Seats</div>
+                <div class="item-after">{{ spot.capacity }}</dvi>
+            </div>
         </li>
-        {% endif %}
-        <li>
-            <a href="{{spot.website_url}}" class="item-link" data-turbolinks="false">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">Website <span>{{ spot.website_url }}</span></div>
-                    </div>
+        <li class="item-content">
+            <div class="item-inner">
+                <div class="item-title">Computers</div>
+                <div class="item-after">
+                    {% if spot.labstats_id %}
+                        {% if spot.auto_labstats_total != 0 %}
+                            {% if spot.auto_labstats_available != 0 %}
+                                <i class="fa fa-desktop" aria-hidden="true"></i>&nbsp;<span style="color:#2ecc71;">{{ spot.auto_labstats_available }}</span>&nbsp;/&nbsp;{{ spot.auto_labstats_total }}
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
                 </div>
-            </a>
-        </li>
-        <li>
-            <a href="{{ spot.menu_url }}" class="item-link" data-turbolinks="false">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">Menu <span>{{ spot.menu_url }}</span></div>
-                    </div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="{{ spot.coupon_url }}" class="item-link" data-turbolinks="false">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">Coupon <span>Expires: {{ spot.coupon_expiration }}, {{ spot.coupon_url }}</span></div>
-                    </div>
-                </div>
-            </a>
+            </div>
         </li>
     </ul>
     <div class="list-block-label" style="margin-bottom:1em;">
-        <i class="fa fa-bookmark" aria-hidden="true"></i> reservation notes: {{ spot.has_reservation }}, {{ spot.reservation_notes }}
+        <i class="fa fa-bookmark" aria-hidden="true"></i> reservaable: {{ spot.reservable }}, {{ spot.reservation_notes }}
     </div>
     <div class="list-block-label" style="margin-bottom:1em;">
         <i class="fa fa-sign-in" aria-hidden="true"></i> access notes: {{ spot.display_access_restrictions }}, {{spot.access_notes}}
     </div>
-</div>
-
-<div class="content-block-title">Open periods</div>
-<div class="list-block">
-    <ul>
-        {% for period in spot.open_periods %}
-        <li class="item-content">
-            <div class="item-inner">
-                <div class="item-title" style="text-transform: capitalize;">{{ period|remove_underscores }}</div>
-            </div>
-        </li>
-        {% endfor %}
-    </ul>
 </div>
 
 <div class="content-block-title">Open Hours</div>
@@ -193,58 +162,66 @@
         </li>
     </ul>
     <div class="list-block-label" style="margin-bottom:1em;">
-        <i class="fa fa-clock-o" aria-hidden="true"></i> hours_notes: {{spot.hours_notes}}
+        <i class="fa fa-clock-o" aria-hidden="true"></i> {{spot.hours_notes}}
     </div>
 </div>
 
-<!--
-<div class="content-block-title">Cuisine:</div>
-<div class="list-block">
-    <ul>
-        {% for cuisinetype in spot.cuisinetype_names %}
-        <li class="item-content">
-            <div class="item-inner">
-                <div class="item-title">{{ cuisinetype }}</div>
-            </div>
-        </li>
-        {% endfor %}
-    </ul>
-</div>
-<div class="content-block-title">Food Served:</div>
-<div class="list-block">
-    <ul>
-        {% for foodtype in spot.foodtype_names %}
-        <li class="item-content">
-            <div class="item-inner">
-                <div class="item-title">{{ foodtype }}</div>
-            </div>
-        </li>
-        {% endfor %}
-    </ul>
-</div>
--->
 
-<div class="content-block-title">Payment Accepted</div>
+<div class="content-block-title">Environment</div>
 <div class="list-block">
     <ul>
-        {% for payment in spot.payment_names %}
         <li class="item-content">
             <div class="item-inner">
-                <div class="item-title">{{ payment }}</div>
+                {% if spot.spot_resources|length < 3 %}
+                <div class="item-title">Resources</div>
+                <div class="item-after">
+                    {% for spot_resource in spot.spot_resources %}
+                    {% if forloop.last %}{{ spot_resource }}{% else %}{{ spot_resource }}, {% endif %}
+                    {% endfor %}
+                </div>
+                {% else %}
+                <div class="item-title">Resources
+                    <span>
+                        {% for spot_resource in spot.spot_resources %}
+                        {% if forloop.last %}{{ spot_resource }}{% else %}{{ spot_resource }}, {% endif %}
+                        {% endfor %}
+                    </span>
+                </div>
+                {% endif %}
             </div>
         </li>
-        {% endfor %}
+        <li class="item-content">
+            <div class="item-inner">
+                <div class="item-title">Food/Coffee</div>
+                <div class="item-after">{{ spot.food_nearby }}</div>
+            </div>
+        </li>
+        <li class="item-content">
+            <div class="item-inner">
+                <div class="item-title">Noise level</div>
+                <div class="item-after"> {{ spot.spot_noise }}</div>
+            </div>
+        </li>
+        {% if spot.natural_light %}
+        <li class="item-content">
+            <div class="item-inner">
+                <div class="item-title">Lighting</div>
+                <div class="item-after">Natural light</div>
+            </div>
+        </li>
+        {% endif %}
     </ul>
 </div>
 
 <div class="content-block-title">Getting Here</div>
+
 <div class="list-block">
     <ul>
         <li>
             <a href="maps://maps.apple.com/maps?q={{ spot.latitude }},{{ spot.longitude }}" class="item-link">
                 <div class="item-content">
                     <div class="item-inner">
-                        <div class="item-title">Open in Google Maps</div>
+                        <div class="item-title">Get directions to building in Maps</div>
                     </div>
                 </div>
             </a>

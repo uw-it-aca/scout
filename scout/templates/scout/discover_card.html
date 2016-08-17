@@ -14,7 +14,7 @@
                 {% endif %}
                 <span class="scout-spot-name" style="">{{spot.name}}</span>
 
-                <div class="scout-spot-location" style=""><span class="scout-spot-distance" style=""></span>&nbsp;ft.&nbsp;&nbsp; {% if spot.building_name %}{{ spot.building_name }}{% else %}<span style="color:red;">missing building_name</span>{% endif %}</div>
+                <div class="scout-spot-location" style=""><span class="scout-spot-distance" style=""></span>&nbsp;mi.&nbsp;&nbsp; {% if spot.building_name %}{{ spot.building_name }}{% else %}<span style="color:red;">missing building_name</span>{% endif %}</div>
 
                 <span>{% if not spot.is_open %}<span class="closed">Currently closed</span>{% endif %}</span>
             </a>

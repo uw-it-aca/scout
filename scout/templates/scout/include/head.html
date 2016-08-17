@@ -37,6 +37,7 @@
     {% compress css inline %}
     <link rel="stylesheet" href="{% static "vendor/css/normalize-3.0.1.min.css" %}">
     <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.5.0.min.css" %}">
+    <link rel="stylesheet" href="{% static "scout/css/slick.scss" %}" type="text/x-scss">
     <link rel="stylesheet" href="{% static "scout/css/critical.scss" %}" type="text/x-scss">
     {% endcompress %}
     <!-- async (mobile) -->
@@ -51,6 +52,7 @@
     <!-- inline -->
     <link rel="stylesheet" href="{% static "vendor/css/normalize-3.0.1.min.css" %}">
     <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.5.0.min.css" %}">
+    <link rel="stylesheet" href="{% static "scout/css/slick.scss" %}" type="text/x-scss">
     <link rel="stylesheet" href="{% static "scout/css/critical.scss" %}" type="text/x-scss">
     {% endcompress %}
     <!-- async (mobile + tablet) -->
@@ -65,6 +67,7 @@
     {% compress css inline %}
     <link rel="stylesheet" href="{% static "vendor/css/normalize-3.0.1.min.css" %}">
     <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.5.0.min.css" %}">
+    <link rel="stylesheet" href="{% static "scout/css/slick.scss" %}" type="text/x-scss">
     <link rel="stylesheet" href="{% static "scout/css/critical.scss" %}" type="text/x-scss">
     <link rel="stylesheet" href="{% static "scout/css/mobile.scss" %}" type="text/x-scss">
     <link rel="stylesheet" href="{% static "scout/css/tablet.scss" %}" type="text/x-scss">
@@ -80,6 +83,8 @@
 {% compress js %}
 <script async="async" src="{% static "vendor/js/jquery-1.11.0.min.js" %}"></script>
 <script async="async" src="{% static "vendor/js/js.cookie-2.1.0.min.js" %}"></script>
+<script async="async" src="{% static "vendor/js/slick.min.js" %}"></script>
+<script async="async" src="{% static "vendor/js/jquery-sticky-headers.js" %}"></script>
 <script async="async" src="{% static "scout/js/web.js" %}"></script>
 <script async="async" src="{% static "scout/js/layout.js" %}"></script>
 <script async="async" src="{% static "scout/js/map.js" %}"></script>
@@ -90,22 +95,14 @@
 <script async="async" src="{% static "scout/js/geolocation.js" %}"></script>
 {% endcompress %}
 
-<!-- mapbox -->
-<script src='//api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script>
-<link href='//api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet' />
-
-<script src='//api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js'></script>
-<link href='//api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.css' rel='stylesheet' />
-<link href='//api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.Default.css' rel='stylesheet' />
-
-
 <!-- googlme maps -->
 {% if google_maps %}
 <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3&amp;key={{ google_maps }}&amp;libraries=geometry"></script>
 {% else %}
 <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?libraries=geometry"></script>
 {% endif %}
-<script src="{% static 'vendor/js/markerwithlabel_packed.js' %}"></script>
+<script src="{% static 'vendor/js/markerwithlabel.js' %}"></script>
+<script src="{% static 'vendor/js/markerclusterer.js' %}"></script>
 
 {% if google_analytics %}
 <!-- google analytics -->

@@ -19,7 +19,7 @@
             <div id="filter_label_text" class="scout-filter-results-text">---</div>
         </div>
         <div class="scout-filter-results-results clearfix">
-            <label>Results:</label>
+            <label>Spaces:</label>
             <div class="scout-filter-results-count">{{ spots|length }}</div>
             <div class="scout-filter-results-actions">
                 <a href="/food/filter/" id="link_filter" title="Filter list of food places on campus">
@@ -38,7 +38,7 @@
         <ol id="scout_food_list" class="scout-card scout-list">
 
             {% for spot in spots %}
-                <li class="scout-list-item" id="{{ spot.spot_id }}">
+                <li class="scout-list-item" id="{{ spot.spot_id }}"  data-spot-lat="{{ spot.latitude }}" data-spot-lng="{{ spot.longitude }}" data-spot-building="{{ spot.building_name }}" data-spot-name="{{ spot.name }}">
                     <a class="clearfix" href="/food/{{ spot.spot_id }}/">
 
                         {% if spot.images %}
@@ -50,27 +50,32 @@
                         <div class="scout-spot-content">
 
                             <div style="padding-left: 10px;">
+
+                                <div class="clearfix">
+                                    <div class="scout-spot-type">{% if spot.spot_types %}{% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}</span>{% endfor %}{% else %} <span style="color:red;">SPOT_TYPE</span> {% endif %}</div>
+                                </div>
+
                                 <h3 class="scout-spot-name">{{ spot.name }}</h3>
                                 <div class="scout-spot-location">
-                                    <span class="scout-spot-distance"><span class="visually-hidden">Distance from you:</span><span class="distance-number">-</span>&nbsp;ft.</span>&nbsp;&nbsp;
+
+                                    <span class="scout-spot-distance"><span class="visually-hidden">Distance from you:</span><span class="distance-number">---</span>&nbsp;mi.</span>&nbsp;&nbsp;
                                     {% if spot.building_name %}{{ spot.building_name }}{% else %}<span style="color:red;">missing building_name</span>{% endif %}
+
+                                    <!--
+                                    <div class="scout-spot-food-served hidden" aria-hidden="true">
+                                        <label style="text-transform:uppercase;">Food served</label>
+                                        {% if spot.foodtype_names %}
+                                            {% for foodtype in spot.foodtype_names %}
+                                                <span>{{ foodtype }}</span>
+                                            {% endfor %}
+                                        {% else %}<span style="color:red;">missing foodtype</span> {% endif %}
+                                    </div>
+                                    --->
+
+
                                 </div>
 
-
-                                {% if is_desktop %}
-                                <span class="scout-spot-type">{% if spot.spot_types %}{% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}</span>{% endfor %}{% else %} <span style="color:red;">SPOT_TYPE</span> {% endif %}</span>
-                                {% endif %}
-
-                                <div class="scout-spot-food-served hidden" aria-hidden="true">
-                                    <label style="text-transform:uppercase;">Food served</label>
-                                    {% if spot.foodtype_names %}
-                                        {% for foodtype in spot.foodtype_names %}
-                                            <span>{{ foodtype }}</span>
-                                        {% endfor %}
-                                    {% else %}<span style="color:red;">missing foodtype</span> {% endif %}
-                                </div>
-
-                                <span class="scout-spot-status">{% if spot.is_open %}<span class="open visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</span>
+                                <div class="scout-spot-status">{% if spot.is_open %}<span class="open visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</div>
 
                             </div>
 
@@ -94,28 +99,15 @@
 
     </div>
 
-    <script type="text/javascript">
-        window.spot_locations = {
-            {% for spot in spots %}
-                '{{ spot.spot_id }}': {
-                    "spot_name": '{{ spot.name }}',
-                        "id": '{{ spot.spot_id }}',
-                        "building": '{{ spot.building_name }}',
-                        "lat": '{{ spot.latitude }}',
-                        "lng": '{{ spot.longitude }}',
-                },
-            {% endfor %}
-        };
-    </script>
+
 
 </div>
 
 {% endblock %}
 
 {% block secondary_content %}
-
 <!-- show a map on the list page -->
-<div id="list_map" class="scout-spot-list-map" style="height:100%; background: #ddd !important;">
+<div id="food_list_map" class="scout-spot-list-map" style="height:100%; background: #ddd !important;">
     <div class="scout-spot-list-map-loading" style="position:absolute; top: 50%; left: 50%; margin-left:-15px; margin-top: -110px; z-index:9999;">
         <p class="visually-hidden">loading...</p>
         <div class="sk-fading-circle" aria-hidden="true">

@@ -1,7 +1,7 @@
 {% extends "scout/base.html" %}
 {% load staticfiles %}
 
-{% block title %}Filter places{% endblock %}
+{% block title %}Filter Study{% endblock %}
 
 {% block web_content %}
 <div id="page_filter" class="scout-content">
@@ -16,10 +16,10 @@
                 <fieldset>
                     <legend>Campus</legend>
                     <div id="campus_select">
-                        <label><input type="checkbox" name="seattle" value="seattle" />Seattle</label>
-                        <label><input type="checkbox" name="bothell" value="bothell" />Bothell</label>
-                        <label><input type="checkbox" name="tacoma" value="tacoma" />Tacoma</label>
-                        <label><input type="checkbox" name="south_lake_union" value="south_lake_union" />South Lake Union</label>
+                        <label><input type="radio" name="campus" value="seattle" />Seattle</label>
+                        <label><input type="radio" name="campus" value="bothell" />Bothell</label>
+                        <label><input type="radio" name="campus" value="tacoma" />Tacoma</label>
+                        <!--<label><input type="radio" name="south_lake_union" value="south_lake_union" />South Lake Union</label>-->
                     </div>
                 </fieldset>
 
@@ -45,15 +45,15 @@
                 <fieldset class="scout-filter-split">
                     <legend>Type</legend>
                     <div id="type_select">
-                        <label><input type="checkbox" value="xxxxxx">Study room</label>
-                        <label><input type="checkbox" value="xxxxxx">Study area</label>
-                        <label><input type="checkbox" value="xxxxxx">Computer lab</label>
-                        <label><input type="checkbox" value="xxxxxx">Production studio</label>
-                        <label><input type="checkbox" value="xxxxxx">Conference/classroom</label>
-                        <label><input type="checkbox" value="xxxxxx">Open space</label>
-                        <label><input type="checkbox" value="xxxxxx">Lounge</label>
-                        <label><input type="checkbox" value="xxxxxx">Café</label>
-                        <label><input type="checkbox" value="xxxxxx">Outdoor area</label>
+                        <label><input type="checkbox" value="study">Study room</label>
+                        <label><input type="checkbox" value="study_area">Study area</label>
+                        <label><input type="checkbox" value="computer_lab">Computer lab</label>
+                        <label><input type="checkbox" value="studio">Production studio</label>
+                        <label><input type="checkbox" value="conference">Conference/classroom</label>
+                        <label><input type="checkbox" value="open">Open space</label>
+                        <label><input type="checkbox" value="lounge">Lounge</label>
+                        <label><input type="checkbox" value="cafe">Café</label>
+                        <label><input type="checkbox" value="outdoor_area">Outdoor area</label>
                     </div>
                 </fieldset>
             </div>
@@ -61,8 +61,8 @@
             <div class="scout-card clearfix">
                 <fieldset class="scout-filter-split">
                     <legend>Resources</legend>
-                    <div id="type_select">
-                        <label><input type="checkbox" value="xxxxxx">Whiteboard</label>
+                    <div id="resources_select">
+                        <label><input type="checkbox" value="has_whiteboards">Whiteboard</label>
                         <label><input type="checkbox" value="xxxxxx">Outlets</label>
                         <label><input type="checkbox" value="xxxxxx">Computer</label>
                         <label><input type="checkbox" value="xxxxxx">Scanning</label>
@@ -77,26 +77,26 @@
 
                 <fieldset>
                     <legend>Noise level</legend>
-                    <div id="campus_select">
-                        <label><input type="checkbox" name="seattle" value="xxxxxx" />Silent</label>
-                        <label><input type="checkbox" name="bothell" value="xxxxxx" />Low hum</label>
-                        <label><input type="checkbox" name="tacoma" value="xxxxxx" />Chatter</label>
+                    <div id="noise_select">
+                        <label><input type="radio" name="noise_level" value="xxxxxx" />Silent</label>
+                        <label><input type="radio" name="noise_level" value="xxxxxx" />Low hum</label>
+                        <label><input type="radio" name="noise_level" value="xxxxxx" />Chatter</label>
                     </div>
                 </fieldset>
 
                 <fieldset>
                     <legend>Food/coffee</legend>
-                    <div id="campus_select">
-                        <label><input type="checkbox" name="seattle" value="xxxxxx" />In space</label>
-                        <label><input type="checkbox" name="bothell" value="xxxxxx" />In building</label>
-                        <label><input type="checkbox" name="tacoma" value="xxxxxx" />In neighboring building</label>
+                    <div id="food_select">
+                        <label><input type="radio" name="food_nearby" value="space" />In space</label>
+                        <label><input type="radio" name="food_nearby" value="building" />In building</label>
+                        <label><input type="radio" name="food_nearby" value="neighboring" />In neighboring building</label>
                     </div>
                 </fieldset>
 
                 <fieldset>
                     <legend>Lighting</legend>
-                    <div id="campus_select">
-                        <label><input type="checkbox" name="seattle" value="xxxxxx" />Natural Light</label>
+                    <div id="lighting_select">
+                        <label><input type="checkbox" name="has_natural_light" value="true" />Natural Light</label>
                     </div>
                 </fieldset>
 

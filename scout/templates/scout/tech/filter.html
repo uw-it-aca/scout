@@ -1,0 +1,73 @@
+{% extends "scout/base.html" %}
+{% load staticfiles %}
+
+{% block title %}Filter Technology{% endblock %}
+
+{% block web_content %}
+<div id="page_filter" class="scout-content">
+
+    <h2 class="visually-hidden">Filter</h2>
+
+    <div class="scout-filter-container">
+
+        <form>
+
+            <div class="scout-card clearfix">
+                <fieldset>
+                    <legend>Campus</legend>
+                    <div id="campus_select">
+                        <label><input type="radio" name="campus" value="seattle" />Seattle</label>
+                        <label><input type="radio" name="campus" value="bothell" />Bothell</label>
+                        <label><input type="radio" name="campus" value="tacoma" />Tacoma</label>
+                        <!--<label><input type="radio" name="south_lake_union" value="south_lake_union" />South Lake Union</label>-->
+                    </div>
+                </fieldset>
+
+            </div>
+
+            <div class="scout-card clearfix">
+                <fieldset class="scout-filter-split">
+                    <legend>Type (sub_category)</legend>
+                    <div id="type_select">
+                        <label><input type="checkbox" value="study">Digital Camera</label>
+                        <label><input type="checkbox" value="study_area">asdfasdf</label>
+                        <label><input type="checkbox" value="computer_lab">sadfasdf</label>
+                        <label><input type="checkbox" value="studio">safdaf</label>
+                        <label><input type="checkbox" value="conference">asdfasdf</label>
+                        <label><input type="checkbox" value="open">asdfas</label>
+                        <label><input type="checkbox" value="lounge">asdf</label>
+                        <label><input type="checkbox" value="cafe">asdfasfd</label>
+                        <label><input type="checkbox" value="outdoor_area">asdfsa</label>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="scout-card clearfix">
+                <fieldset class="scout-filter-split">
+                    <legend>Brand</legend>
+                    <div id="resources_select">
+                        <label><input type="checkbox" value="has_whiteboards">Apple</label>
+                        <label><input type="checkbox" value="xxxxxx">Dell</label>
+                        <label><input type="checkbox" value="xxxxxx">HP</label>
+                        <label><input type="checkbox" value="xxxxxx">Nikon</label>
+                        <label><input type="checkbox" value="xxxxxx">Canon</label>
+                        <label><input type="checkbox" value="xxxxxx">Sony</label>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="scout-filter-actions">
+                <button id="reset_tech_button" type="button" class="action-cancel"><i class="fa fa-refresh"></i>Reset</button>&nbsp;&nbsp;
+                <button id="run_tech_search" type="button"><i class="fa fa-list fa-inverse"></i>View Results</button>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+{% endblock %}
+
+{% block secondary_content %}
+<div style="background:url('{% static "scout/img/huskygrind.jpg" %}') no-repeat; background-size:cover; background-position:center center; position:absolute; top:0; bottom:0; width: 100%;">&nbsp;</div>
+{% endblock %}

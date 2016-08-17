@@ -4,39 +4,73 @@ var Map = {
         $(document).on("location_changed", function() {
 
             // food list map
-            if( $("#list_map").length) {
-                console.log("food list map initilaized");
-                Map.initializeListMap();
+            if( $("#food_list_map").length) {
+                var map_id = 'food_list_map';
+                Map.load_list_map(map_id);
             }
-            //detail page map
-            if($("#detail_map").length > 0) {
-                console.log("food detail map initilaized");
-                Map.initializeDetailMap();
+            //food detail map
+            if($("#food_detail_map").length > 0) {
+                var map_id = 'food_detail_map';
+                Map.load_detail_map(map_id);
             }
-
             // study list map
             if( $("#study_list_map").length > 0 ) {
-                console.log("study list map initilaized");
-                Map.init_study_list_map();
+                var map_id = 'study_list_map';
+                Map.load_list_map(map_id);
             }
-
             // study detail map
             if( $("#study_detail_map").length > 0 ) {
-                console.log("study detail map initilaized");
-                Map.init_study_detail_map();
+                var map_id = 'study_detail_map';
+                Map.load_detail_map(map_id);
+            }
+
+            // tech list map
+            if( $("#tech_list_map").length > 0 ) {
+                var map_id = 'tech_list_map';
+                Map.load_list_map(map_id);
+            }
+            // tech detail map
+            if( $("#tech_detail_map").length > 0 ) {
+                var map_id = 'tech_detail_map';
+                Map.load_detail_map(map_id);
             }
 
         });
+
         // handle map stuff for window resize
         $(window).resize(function() {
-            // list map
-            if($("#list_map").length > 0) {
-                Map.initializeListMap();
+
+            // food list map
+            if($("#food_list_map").length > 0) {
+                var map_id = 'food_list_map';
+                Map.load_list_map(map_id);
             }
-            // detail page map
-            if($("#detail_map").length > 0) {
-                Map.initializeDetailMap();
+            // food detail map
+            if($("#food_detail_map").length > 0) {
+                var map_id = 'food_detail_map';
+                Map.load_detail_map(map_id);
             }
+            // study list map
+            if( $("#study_list_map").length > 0 ) {
+                var map_id = 'study_list_map';
+                Map.load_list_map(map_id);
+            }
+            // study detail map
+            if( $("#study_detail_map").length > 0 ) {
+                var map_id = 'study_detail_map';
+                Map.load_detail_map(map_id);
+            }
+            // tech list map
+            if( $("#tech_list_map").length > 0 ) {
+                var map_id = 'tech_list_map';
+                Map.load_list_map(map_id);
+            }
+            // tech detail map
+            if( $("#tech_detail_map").length > 0 ) {
+                var map_id = 'tech_detail_map';
+                Map.load_detail_map(map_id);
+            }
+
         });
     },
 
@@ -44,15 +78,16 @@ var Map = {
         //Geolocation.init_location_toggles();
     },
 
-    initializeListMap: function () {
-        var mapExists = document.getElementById("list_map");
+    load_list_map: function (map_id) {
+        var mapExists = document.getElementById(map_id);
         var pos = Geolocation.get_client_latlng();
         var mapOptions;
         if(mapExists) {
-            // center map on center location received from user
+            // center map on default location OR location received from user
             mapCenter = pos;
             mapOptions = {
                 center: mapCenter,
+                streetViewControl: false,
                 zoom: 16
             };
             var styles = [
@@ -76,48 +111,45 @@ var Map = {
                 }
             ];
 
-            var map = new google.maps.Map(document.getElementById('list_map'), mapOptions);
+            var map = new google.maps.Map(document.getElementById(map_id), mapOptions);
 
             // show user location marker if user is sharing
             if (Geolocation.get_location_type() !== "default") {
 
-                // current location marker
+                // create a marker for user location
                 var locationMarker = new google.maps.Marker({
                     position: pos,
                     map: map,
                     icon: {
                         path: google.maps.SymbolPath.CIRCLE,
-                        fillColor: '#c0392b',
+                        fillColor: '#ffffff',
                         fillOpacity: 1,
-                        strokeColor: '#ffffff',
+                        strokeColor: '#c0392b',
                         scale: 5,
-                        strokeWeight: 2
+                        strokeWeight: 5
                     },
                 });
 
-                // add radius overlay and bind to location marker
+                // add radius overlay and bind to user location marker
                 var circle = new google.maps.Circle({
                     map: map,
-                    radius: 30,    // meters
+                    radius: 40,    // meters
                     fillColor: '#c0392b',
                     fillOpacity: 0.15,
                     strokeWeight: 0
                 });
                 circle.bindTo('center', locationMarker, 'position');
 
-                // pulsate the user location marker
-                /**
-
+                // pulsate the radius overlay
                 var direction = 1;
-                var rmin = 20, rmax = 50;
+                var rmin = 20, rmax = 30;
                 setInterval(function() {
                     var radius = circle.getRadius();
                     if ((radius > rmax) || (radius < rmin)) {
                         direction *= -1;
                     }
                     circle.setRadius(radius + direction * 10);
-                }, 300);
-                **/
+                }, 400);
 
                 // add user location marker to map
                 window.user_location_marker = locationMarker;
@@ -127,7 +159,7 @@ var Map = {
             map.setOptions({styles: styles});
 
             // multiple pins on a single map
-            var locations = window.spot_locations;
+            var locations = List.get_spot_locations();
 
             var bounds = new google.maps.LatLngBounds();
 
@@ -142,50 +174,27 @@ var Map = {
                     position: new google.maps.LatLng(data.lat, data.lng),
                     map: map,
                     //animation: google.maps.Animation.DROP,
-                    //labelContent: "<i class='fa " + data.icon +"'></i>",
-                    //labelContent: "<i class='fa " + data.icon +"'></i><span class='marker-text'>" + data.spot_name + "</span>",
                     labelAnchor: new google.maps.Point(6, 6),
                     labelClass: "map-label", // the CSS class for the label
 
                     // basic google sympbol markers
                     icon: {
                         path: google.maps.SymbolPath.CIRCLE,
-                        fillColor: '#6564A8',
+                        fillColor: '#ffffff',
                         fillOpacity: 1,
-                        strokeColor: '#ffffff',
-                        scale: 6,
-                        strokeWeight: 2
+                        strokeColor: '#6564A8',
+                        scale: 5,
+                        strokeWeight: 5
                     },
-                    /*
-                    // svg path as a marker
-                    icon: {
-                        path: "M0-48c-9.8 0-17.7 7.8-17.7 17.4 0 15.5 17.7 30.6 17.7 30.6s17.7-15.4 17.7-30.6c0-9.6-7.9-17.4-17.7-17.4z",
-                        fillColor: '#FF0000',
-                        fillOpacity: .6,
-                        anchor: new google.maps.Point(0,0),
-                        strokeWeight: 0,
-                        scale: 1
-                    },
-                    // image url as marker
-                    icon: {
-                        url: "/static/scout/img/map-marker.png", // url
-                        scaledSize: new google.maps.Size(30, 30), // scaled size
-                        origin: new google.maps.Point(0,0), // origin
-                        anchor: new google.maps.Point(30, 30) // anchor
-                    },
-                    */
 
                 });
 
                 markers.push(marker);
 
-                // attach click event to the marker
+                // attach events to markers
                 (function (marker, data) {
 
                     google.maps.event.addListener(marker, "click", function (e) {
-
-                        //map.setCenter(marker.getPosition());
-                        //map.setZoom(18);
 
                         //Wrap the content inside an HTML DIV in order to set height and width of InfoWindow.
                         infoWindow.setContent("<div><strong>"+data.spot_name+"</strong><br>"+data.building+"<br><a href='/food/"+data.id+"'>View details</a></div>");
@@ -194,7 +203,7 @@ var Map = {
                         $('li').css('background', 'none'); // clear any highlighted spots first
                         $('#' + data.id).css('background', '#e8eaf7');
 
-                        //$('.scout-scroll').scrollTo('#' + data.id);
+                        // scroll to spot on list
                         List.scroll_to_spot('#' + data.id);
 
                     });
@@ -205,12 +214,13 @@ var Map = {
 
                     // prevent google maps from being tab navigated
                     google.maps.event.addListener(map, "tilesloaded", function(){
-                        $("#list_map a").attr("tabindex","-1");
+                        $("#" + map_id +" a").attr("tabindex","-1");
                     });
 
                     // handle hover event for main list view
                     $('#' + data.id).hover(
                         function () {
+
                             //map.setCenter(marker.getPosition());
                             $('li').css('background', 'none');
                             $(this).css({"background":"#e8eaf7"});
@@ -238,20 +248,26 @@ var Map = {
             if (Geolocation.get_location_type() !== "default") {
                 // Don't store user marker in bounds as it can change
                 bounds.extend(locationMarker.position);
+                // fit all spots (include user location) onto map
+                map.fitBounds(bounds);
             }
 
-            // fit all spots into the map boundary
-            // map.fitBounds(bounds);
-
+            // marker clusterer options
+            var mc_options = {
+                imagePath: '/static/vendor/img/m',
+                gridSize: 30,
+                minimumClusterSize: 3,
+                maxZoom: 20
+            };
             // cluster the markers using marker clusterer
-            //var markerCluster = new MarkerClusterer(map, markers);
+            var markerCluster = new MarkerClusterer(map, markers, mc_options);
+
             window.map = map;
         }
     },
 
-    initializeDetailMap: function() {
-
-        var mapExists = document.getElementById("detail_map");
+    load_detail_map: function(map_id) {
+        var mapExists = document.getElementById(map_id);
         var isMobile = $("body").data("mobile");
         var myLatlng, mapOptions;
 
@@ -277,7 +293,6 @@ var Map = {
                     disableDefaultUI: true,
                     zoomControl: false,
                     disableDoubleClickZoom: true
-
                 };
 
             }
@@ -286,6 +301,7 @@ var Map = {
                 mapOptions = {
                     center: myLatlng,
                     zoom: 19,
+                    streetViewControl: false,
                 };
 
             }
@@ -320,7 +336,7 @@ var Map = {
                 }
             ];
 
-            var map = new google.maps.Map(document.getElementById('detail_map'), mapOptions);
+            var map = new google.maps.Map(document.getElementById(map_id), mapOptions);
             map.setOptions({styles: styles});
 
             // create and open InfoWindow.
@@ -335,7 +351,6 @@ var Map = {
                 map: map,
                 title: spot_name,
                 labelContent: "<i class='fa fa-cutlery'></i><span class='marker-text' style='margin-left:15px;font-size:12px;'>" + spot_name + "</span>",
-                //labelContent: "<span class='marker-text' style='margin-left:18px;font-size:12px;'>" + spot_name + "</span>",
                 labelAnchor: new google.maps.Point(6, 6),
                 labelClass: "map-label", // the CSS class for the label
                 icon: {
@@ -355,122 +370,5 @@ var Map = {
         }
 
     },
-
-    init_study_list_map: function() {
-
-        var mapExists = document.getElementById("study_list_map");
-
-        if(mapExists) {
-
-            L.mapbox.accessToken = 'pk.eyJ1IjoiY2hhcmxvbnBhbGFjYXkiLCJhIjoiY2lpMHYwZ3I2MDUzbHQzbTFnaWRmZnV1NCJ9.WkswXwuPmbIDcYFdV096Aw';
-            var map = L.mapbox.map('study_list_map', 'mapbox.streets')
-                .setView([47.653811, -122.307815], 17);
-
-            // As with any other AJAX request, this technique is subject to the Same Origin Policy:
-            // http://en.wikipedia.org/wiki/Same_origin_policy
-            // So the CSV file must be on the same domain as the Javascript, or the server
-            // delivering it should support CORS.
-            var featureLayer = L.mapbox.featureLayer()
-                //.setGeoJSON(study_geojson)
-                .loadURL('/static/scout/js/geojson/study.geojson')
-                .on('ready', function(e) {
-
-                    // fit the markers onto the map bounds
-                    featureLayer.eachLayer(function(layer) {
-                        map.fitBounds(featureLayer.getBounds());
-                    });
-
-                    // handle marker clustering
-                    var clusterGroup = new L.MarkerClusterGroup();
-                    e.target.eachLayer(function(layer) {
-                       clusterGroup.addLayer(layer);
-                    });
-                    map.addLayer(clusterGroup);
-
-                })
-                .on('click', function(e) {
-                    //console.log(e.layer.feature.properties.id);
-                    List.scroll_to_spot('#' + e.layer.feature.properties.id);
-                 });
-
-            // add user location marker to map
-            L.mapbox.featureLayer({
-                // this feature is in the GeoJSON format: see geojson.org
-                // for the full specification
-                type: 'Feature',
-                geometry: {
-                    type: 'Point',
-                    // coordinates here are in longitude, latitude order because
-                    // x, y is the standard for GeoJSON and many formats
-                    coordinates: [
-                      -122.307815,
-                      47.65381
-                    ]
-                },
-                properties: {
-                    title: 'Your location',
-                    description: 'swimming in the fountain',
-                    // one can customize markers by adding simplestyle properties
-                    // https://www.mapbox.com/guides/an-open-platform/#simplestyle
-                    'marker-size': 'small',
-                    'marker-color': '#c0392b',
-                    'marker-symbol': 'circle-stroked'
-                }
-            }).addTo(map);
-
-            // radius circle for user location
-            // var circle = L.circleMarker([47.65381, -122.307815], {radius: 30, color: '#c0392b'}).addTo(map);
-
-        }
-
-    },
-
-    init_study_detail_map: function() {
-
-        var mapExists = document.getElementById("study_detail_map");
-
-        if(mapExists) {
-
-            // get spot location from data attributes
-            var spot_lat = $(".scout-card").data("latitude");
-            var spot_lng = $(".scout-card").data("longitude");
-            var spot_name = $(".scout-card").data("spotname");
-            var spot_building = $(".scout-card").data("building");
-
-            L.mapbox.accessToken = 'pk.eyJ1IjoiY2hhcmxvbnBhbGFjYXkiLCJhIjoiY2lpMHYwZ3I2MDUzbHQzbTFnaWRmZnV1NCJ9.WkswXwuPmbIDcYFdV096Aw';
-            var map = L.mapbox.map('study_detail_map', 'mapbox.streets')
-                .setView([spot_lat, spot_lng], 18);
-
-            // add user location marker to map
-            L.mapbox.featureLayer({
-                // this feature is in the GeoJSON format: see geojson.org
-                // for the full specification
-                type: 'Feature',
-                geometry: {
-                    type: 'Point',
-                    // coordinates here are in longitude, latitude order because
-                    // x, y is the standard for GeoJSON and many formats
-                    coordinates: [
-                      spot_lng,
-                      spot_lat
-                    ]
-                },
-                properties: {
-                    title: spot_name,
-                    description: spot_building,
-                    // one can customize markers by adding simplestyle properties
-                    // https://www.mapbox.com/guides/an-open-platform/#simplestyle
-                    'marker-size': 'medium',
-                    'marker-color': '#6564a8',
-                    'marker-symbol': 'circle-stroked'
-                }
-            }).addTo(map);
-
-        }
-
-    },
-
-
-
 
 };
