@@ -54,12 +54,6 @@ def get_spot_list(app_type=None, groups=[]):
     return res
 
 
-def get_food_spots_by_filter(filters=[]):
-    filters.append(('extended_info:app_type', 'food'))
-    res = get_spots_by_filter(filters)
-    return res
-
-
 def get_spots_by_filter(filters=[]):
     spot_client = Spotseeker()
     res = []
@@ -75,11 +69,17 @@ def get_spots_by_filter(filters=[]):
     return res
 
 
-def get_filtered_spots(request):
+def get_filtered_spots(request, app_type=None):
     filters = _get_spot_filters(request)
     # adding 'default' filter params
     filters.append(('limit', 0))
-    return get_food_spots_by_filter(filters)
+    if(app_type == "food"):
+        filters.append(('extended_info:app_type', 'food'))
+    elif(app_type == "tech"):
+        filters.append(('extended_info:app_type', 'tech'))
+    elif(app_type == "study"):
+        filters.append(('open_now', 'true'))
+    return get_spots_by_filter(filters)
 
 
 def _get_spot_filters(request):
@@ -105,6 +105,18 @@ def _get_spot_filters(request):
             params += get_period_filter(request.GET[param])
         if "open_now" in param:
             params.append(("open_now", "true"))
+        if "building" in param:
+            params.append(("building_name", request.GET[param]))
+        if "resources" in param:
+            params.append(
+                ("extended_info:or_group:resources", request.GET[param])
+            )
+        if "noise" in param:
+            params.append(("extended_info:noise_level", request.GET[param]))
+        if "lighting" in param:
+            params.append(
+                ("extended_info:or_group:lighting", request.GET[param])
+            )
     return params
 
 

@@ -129,8 +129,7 @@ var Filter = {
             if (filtered_url !== undefined){
                 var current_type = Filter.get_current_type();
                 window.location.href = current_type+"?"+filtered_url;
-            }
-            else {
+            } else {
                 // reset filter if user submits empty search
                 Filter.reset_filter();
             }
@@ -159,8 +158,10 @@ var Filter = {
         else if (current_page.indexOf("tech") !== -1){
             return "/tech/";
         }
-        else {
+        else if (current_page.indexOf("food") !== -1){
             return "/food/";
+        } else {
+            return "/"
         }
     },
 
@@ -211,16 +212,25 @@ var Filter = {
     },
 
     replace_food_href: function(){
-        var filter_url = Filter.get_filter_url();
-        var food_anchor = $("#link_food");
-        var food_url = "/food/";
-        if (filter_url !== undefined){
-            food_url = food_url + "?" + filter_url;
+        var filter = Filter.get_filter_url();
+        var anchors = {
+            "/food/": "#link_food",
+            "/study/": "#link_study",
+            "/tech/": "#link_tech",
+        };
+
+        for (anchor in anchors){
+            var filtered_url = anchor;
+            var anchor_id = $(anchors[anchor]);
+            if (filter !== undefined){
+                filtered_url = filtered_url + "?" + filter;
+            }
+            if(anchor_id !== undefined){
+                anchor_id.attr('href', filtered_url);
+            }
         }
-        if(food_anchor !== undefined){
-            $(food_anchor).attr('href', food_url);
-        }
-    }
+    },
+
 };
 
 /* node.js exports */

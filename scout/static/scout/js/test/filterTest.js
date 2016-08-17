@@ -298,7 +298,7 @@ describe("Filter Tests", function() {
                 { filter_params: '{"payment0": "s_pay_cash"}'}
             );
             global.sessionStorage = sessionVars;
-            global.window = new fakeWindow("");
+            global.window = new fakeWindow("/food/");
             Filter.reset_filter();
         });
         it('should remove the session variables ("filter_params")', function() {

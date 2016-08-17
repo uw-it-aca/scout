@@ -2,7 +2,7 @@ from django.http import Http404, HttpResponse
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from scout.dao.space import get_spot_list, get_spot_by_id, get_filtered_spots
-from scout.dao.space import get_food_spots_by_filter, get_period_filter, \
+from scout.dao.space import get_period_filter, \
     get_spots_by_filter, group_spots_by_building
 from scout.dao.image import get_image
 from scout.dao.item import get_item_by_id
@@ -23,6 +23,7 @@ def discover_card_view(request, discover_category):
     lat = request.GET.get('latitude', None)
     lon = request.GET.get('longitude', None)
 
+    # Hardcoded for food at the moment. Change it per need basis.
     discover_categories = {
         "open": {
             "title": "Open Near",
@@ -32,8 +33,9 @@ def discover_card_view(request, discover_category):
                 ('open_now', True),
                 ('center_latitude', lat if lat else DEFAULT_LAT),
                 ('center_longitude', lon if lon else DEFAULT_LON),
-                ('distance', 100000)
-            ]
+                ('distance', 100000),
+                ('extended_info:app_type', 'food')
+                ]
         },
         "coffee": {
             "title": "Serves Coffee And Espresso",
@@ -43,8 +45,9 @@ def discover_card_view(request, discover_category):
                 ('center_latitude', lat if lat else DEFAULT_LAT),
                 ('center_longitude', lon if lon else DEFAULT_LON),
                 ('distance', 100000),
-                ('extended_info:s_food_espresso', 'true')
-            ]
+                ('extended_info:s_food_espresso', 'true'),
+                ('extended_info:app_type', 'food')
+                ]
         },
         "coupon": {
             "title": "Dine with Discounts",
@@ -54,8 +57,9 @@ def discover_card_view(request, discover_category):
                 ('center_latitude', lat if lat else DEFAULT_LAT),
                 ('center_longitude', lon if lon else DEFAULT_LON),
                 ('distance', 100000),
-                ('extended_info:s_has_coupon', 'true')
-            ]
+                ('extended_info:s_has_coupon', 'true'),
+                ('extended_info:app_type', 'food')
+                ]
         },
         "morning": {
             "title": "Open during Morning (5am - 11am)",
@@ -64,7 +68,8 @@ def discover_card_view(request, discover_category):
                 ('limit', 5),
                 ('center_latitude', lat if lat else DEFAULT_LAT),
                 ('center_longitude', lon if lon else DEFAULT_LON),
-                ('distance', 100000)
+                ('distance', 100000),
+                ('extended_info:app_type', 'food')
                 ] + get_period_filter('morning')
 
         },
@@ -75,7 +80,8 @@ def discover_card_view(request, discover_category):
                 ('limit', 5),
                 ('center_latitude', lat if lat else DEFAULT_LAT),
                 ('center_longitude', lon if lon else DEFAULT_LON),
-                ('distance', 100000)
+                ('distance', 100000),
+                ('extended_info:app_type', 'food')
                 ] + get_period_filter('late_night')
         },
     }
@@ -85,7 +91,7 @@ def discover_card_view(request, discover_category):
     except KeyError:
         raise Http404("Discover card does not exist")
 
-    spots = get_food_spots_by_filter(discover_data["filter"])
+    spots = get_spots_by_filter(discover_data["filter"])
     if len(spots) == 0:
         raise Http404("No spots for card")
     context = {
@@ -102,7 +108,7 @@ def discover_card_view(request, discover_category):
 # food
 def food_list_view(request):
     if len(request.GET) > 0:
-        spots = get_filtered_spots(request)
+        spots = get_filtered_spots(request, "food")
     else:
         spots = get_spot_list('food')
     context = {"spots": spots,
@@ -129,14 +135,14 @@ def food_filter_view(request):
 
 # study
 def study_list_view(request):
-    # if len(request.GET) > 0:
-        # TODO: not yet working, get study spots by filter
-        # spots = get_filtered_spots(request)
-    # else:
-    spots = get_spot_list()
-    spots = group_spots_by_building(spots)
-    context = {"grouped_spots": spots,
-               "count": len(get_spot_list())}
+    if len(request.GET) > 0:
+        spots = get_filtered_spots(request, "study")
+    else:
+        spots = get_spot_list()
+    grouped_spots = group_spots_by_building(spots)
+    context = {"spots": spots,
+               "grouped_spots": grouped_spots,
+               "count": len(spots)}
     return render_to_response('scout/study/list.html', context,
                               context_instance=RequestContext(request))
 
@@ -157,6 +163,7 @@ def study_filter_view(request):
 
 
 # tech
+# not completely implemented
 def tech_list_view(request):
     spots = get_spots_by_filter([('has_items', 'true')])
     context = {"spots": spots,
@@ -187,7 +194,7 @@ def hybrid_discover_view(request):
 
 def hybrid_food_list_view(request):
     if len(request.GET) > 0:
-        spots = get_filtered_spots(request)
+        spots = get_filtered_spots(request, "food")
     else:
         spots = get_spot_list('food')
     context = {"spots": spots}
@@ -208,10 +215,14 @@ def hybrid_food_filter_view(request):
 
 
 def hybrid_study_list_view(request):
-    spots = get_spot_list()
-    spots = group_spots_by_building(spots)
-    context = {"grouped_spots": spots,
-               "count": len(get_spot_list())}
+    if len(request.GET) > 0:
+        spots = get_filtered_spots(request, "study")
+    else:
+        spots = get_spot_list()
+    grouped_spots = group_spots_by_building(spots)
+    context = {"spots": spots,
+               "grouped_spots": grouped_spots,
+               "count": len(spots)}
     return render_to_response('hybridize/study/list.html', context,
                               context_instance=RequestContext(request))
 
