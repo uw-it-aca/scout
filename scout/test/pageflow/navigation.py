@@ -79,18 +79,6 @@ class MainNavigationTest(ScoutTestCase):
     def checkLinkExists(self, soup, link):
         return bool(soup.find('a', href=link))
 
-    def checkHrefBySelector(self, exp, selector, soup):
-        """Given a selector, ensure that the first link found with that
-        selector has an href matching 'exp'., returns the response
-        of the href."""
-        link = soup.select(selector)[0]
-        self.checkHref(link, exp)
-
-    def checkHref(self, link, expectedLoc):
-        """Given a link, ensure that its href is the same as expectedLoc"""
-        linkHref = link.get('href')
-        self.assertEqual(linkHref, expectedLoc)
-
     def get_soup(self, page):
         """Returns a soup object given a path, if there is no soup for the
         particular suffix, then it will create it and remember it"""
