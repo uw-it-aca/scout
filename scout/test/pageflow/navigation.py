@@ -21,8 +21,11 @@ urls = {
     'study_filter': studyUrl + 'filter/',
     'tech_filter': techUrl + 'filter/',
     'food_detail': foodUrl + '1/',
+    # TODO add study_detail, tech_detail
 }
 
+# the key for this dictionary represents a page and the corresponding tuple
+# represents the pages that should be linked to on the page
 tests = {
     'home': ('home', 'food', 'study', 'tech'),
     'food': ('home', 'study', 'tech', 'food_filter'),
