@@ -4,7 +4,7 @@ var Map = {
         $(document).on("location_changed", function() {
 
             // food list map
-            if( $("#food_list_map").length) {
+            if( $("#food_list_map").length > 0) {
                 var map_id = 'food_list_map';
                 Map.load_list_map(map_id);
             }
@@ -110,12 +110,10 @@ var Map = {
                     ]
                 }
             ];
-
             var map = new google.maps.Map(document.getElementById(map_id), mapOptions);
 
             // show user location marker if user is sharing
             if (Geolocation.get_location_type() !== "default") {
-
                 // create a marker for user location
                 var locationMarker = new google.maps.Marker({
                     position: pos,
@@ -160,7 +158,6 @@ var Map = {
 
             // multiple pins on a single map
             var locations = List.get_spot_locations();
-
             var bounds = new google.maps.LatLngBounds();
 
             // create and open InfoWindow.

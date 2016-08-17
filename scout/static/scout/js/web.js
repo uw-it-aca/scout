@@ -5,7 +5,8 @@ $(document).on('ready', function(event) {
 
     // page based JS calls
     var page_path = window.location.pathname;
-    if (page_path.indexOf("food") !== -1) {
+
+    if (page_path.indexOf("/food") !== -1) {
         console.log("on food");
         // food
         Geolocation.display_location_status();
@@ -13,11 +14,12 @@ $(document).on('ready', function(event) {
         Map.init_map();
         Filter.init();
     }
-    else if (page_path.indexOf("study") !== -1){
+    else if (page_path.indexOf("/study") !== -1){
         console.log("on study");
         Geolocation.display_location_status();
         List.init();
         Map.init_map();
+        Filter.init();
 
         // initialize slick image slider
         $('.scout-spot-gallery').slick({
@@ -30,16 +32,12 @@ $(document).on('ready', function(event) {
         });
 
     }
-    else if (page_path.indexOf("tech") !== -1){
+    else if (page_path.indexOf("/tech") !== -1){
         console.log("on tech");
     }
-    else if (page_path.indexOf("map") !== -1){
-        // mobile map
-        Map.init_map_page();
-        List.init();
-        Map.init_map();
-    }
     else {
+
+        console.log("on discover");
         Discover.init_cards();
     }
 
