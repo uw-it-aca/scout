@@ -32,6 +32,7 @@ tests = {
     'study_filter': ('home', 'food', 'study', 'tech'),
     'tech_filter': ('home', 'food', 'study', 'tech'),
     'food_detail': ('home', 'food', 'study', 'tech'),
+    # TODO add study_detail, tech_detail
 }
 
 
@@ -48,6 +49,7 @@ def _makeTestFunc(start, end):
 
 
 def _makeTestFooterFunc(start):
+    """Returns a function that tests the footer links on a page"""
 
     def _func(self):
         self.check_footer_links_at_path(urls[start])
@@ -66,9 +68,11 @@ class MainNavigationTest(ScoutTestCase):
         cls.soups = {}
 
     for page, links in tests.items():
+        # testing the footer links on 'page'
         testFooter = _makeTestFooterFunc(page)
         testFooterName = testFooter.__name__
         vars()[testFooterName] = testFooter
+        # testing that each link in the tuple is present on 'page'
         for link in links:
             testLink = _makeTestFunc(page, link)
             testLinkName = testLink.__name__
@@ -77,6 +81,7 @@ class MainNavigationTest(ScoutTestCase):
     del page, link, links, testLink, testLinkName, testFooter, testFooterName
 
     def checkLinkExists(self, soup, link):
+        """Returns true if a link with the given href is found in the page"""
         return bool(soup.find('a', href=link))
 
     def get_soup(self, page):
