@@ -105,6 +105,8 @@ var Filter = {
     },
 
     set_filter_text: function(){
+        // this will now have a paramater, so it can set the filter text
+        // based on what it recieves as a parameter.
         var filter_text = Filter._get_filter_label_text();
         if(filter_text.length > 0){
             $("#filter_label_text").html(filter_text);
@@ -112,6 +114,8 @@ var Filter = {
     },
 
     reset_filter: function() {
+        // this will now have a paramater, so it can set the delete app type
+        // specific filters.
         sessionStorage.removeItem("filter_params");
         Filter.replace_food_href();
         var filter_url = Filter.get_filter_url();
