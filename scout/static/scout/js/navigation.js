@@ -1,5 +1,33 @@
 var Navigation = {
 
+    set_campus_selection: function() {
+
+        // get the current location
+        var pathname = window.location.pathname;
+
+        if (pathname.indexOf("/seattle") !== -1) {
+            $("#campus_select_base").val("seattle");
+        }
+        else if  (pathname.indexOf("/bothell") !== -1) {
+            $("#campus_select_base").val("bothell");
+        }
+        else if  (pathname.indexOf("/tacoma") !== -1) {
+            $("#campus_select_base").val("tacoma");
+        }
+
+        $("#campus_select_base").change(function(){
+
+            console.log("campus changed");
+
+            var url = $(this).val();
+            if (url) {
+                window.location = "/" + url; // redirect
+            }
+            return false;
+
+        });
+    },
+
     set_page_tab: function(){
 
         // get the current location

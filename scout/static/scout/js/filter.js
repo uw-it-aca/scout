@@ -139,7 +139,9 @@ var Filter = {
             Filter.reset_filter();
         });
 
+        /****
         $("#campus_select_base").change(function(){
+
             var campus = $(this).val();
             params = JSON.parse(sessionStorage.getItem("filter_params"));
             params["campus0"] = campus;
@@ -148,6 +150,7 @@ var Filter = {
             var type_url = Filter.get_current_type();
             window.location.href = type_url + "?" + filter_url;
         });
+        ***/
     },
 
     get_current_type: function() {
@@ -181,7 +184,7 @@ var Filter = {
             if(idx.indexOf("campus") > -1){
                 filter_item = $("#campus_select").find("input[value='" + val + "']");
                 $(filter_item[0]).prop("checked", true);
-                $("#campus_select_base").val(val).change();
+                //$("#campus_select_base").val(val).change();
             }
             if(idx.indexOf("period") > -1){
                 filter_item = $("#period_select").find("input[value='" + val + "']");
