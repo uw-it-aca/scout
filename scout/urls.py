@@ -1,30 +1,40 @@
 from django.conf import settings
 from django.conf.urls import patterns, include, url
 from django.views.generic import TemplateView
+from django.views.generic.base import RedirectView
 
 from scout import views
 
 urlpatterns = patterns(
     '',
     # home
-    url(r'^$', 'scout.views.discover_view', name='discover_view'),
+    # url(r'^$', 'scout.views.discover_view', name='discover_view'),
+    url(r'^$', RedirectView.as_view(url='/seattle')),
+
+    # campus discovery
+    url(r'^seattle/$', 'scout.views.discover_view', name='discover_view'),
+    url(r'^bothell/$', 'scout.views.discover_view', name='discover_view'),
+    url(r'^tacoma/$', 'scout.views.discover_view', name='discover_view'),
 
     # food
-    url(r'^food/$', 'scout.views.food_list_view', name='food_list_view'),
+    url(r'^(?P<campus>[a-zA-Z]+)/food/$', 'scout.views.food_list_view',
+        name='food_list_view'),
     url(r'^food/(?P<spot_id>[0-9]{1,5})/$',
         'scout.views.food_detail_view', name='food_detail_view'),
     url(r'^food/filter/$', 'scout.views.food_filter_view',
         name='food_filter_view'),
 
     # study
-    url(r'^study/$', 'scout.views.study_list_view', name='study_list_view'),
+    url(r'^(?P<campus>[a-zA-Z]+)/study/$', 'scout.views.study_list_view',
+        name='study_list_view'),
     url(r'^study/(?P<spot_id>[0-9]{1,5})/$',
         'scout.views.study_detail_view', name='study_detail_view'),
     url(r'^study/filter/$', 'scout.views.study_filter_view',
         name='study_filter_view'),
 
     # technology
-    url(r'^tech/$', 'scout.views.tech_list_view', name='tech_list_view'),
+    url(r'^(?P<campus>[a-zA-Z]+)/tech/$', 'scout.views.tech_list_view',
+        name='tech_list_view'),
     url(r'^tech/(?P<item_id>[0-9]{1,5})/$',
         'scout.views.tech_detail_view', name='tech_detail_view'),
     url(r'^tech/filter/$', 'scout.views.tech_filter_view',
