@@ -7,7 +7,7 @@ Testing the flow between pages through links
 import bs4
 from scout.test import ScoutTestCase
 
-baseUrl = '/'
+baseUrl = 'seattle/'
 foodUrl = baseUrl + 'food/'
 studyUrl = baseUrl + 'study/'
 techUrl = baseUrl + 'tech/'
