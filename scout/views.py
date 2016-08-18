@@ -106,11 +106,8 @@ def discover_card_view(request, discover_category):
 
 
 # food
-def food_list_view(request):
-    if len(request.GET) > 0:
-        spots = get_filtered_spots(request, "food")
-    else:
-        spots = get_spot_list('food')
+def food_list_view(request, campus):
+    spots = get_filtered_spots(request, campus, "food")
     context = {"spots": spots,
                "count": len(spots),
                "app_type": 'food'}
@@ -134,11 +131,8 @@ def food_filter_view(request):
 
 
 # study
-def study_list_view(request):
-    if len(request.GET) > 0:
-        spots = get_filtered_spots(request, "study")
-    else:
-        spots = get_spot_list()
+def study_list_view(request, campus):
+    spots = get_filtered_spots(request, campus, "study")
     grouped_spots = group_spots_by_building(spots)
     context = {"spots": spots,
                "grouped_spots": grouped_spots,
@@ -164,8 +158,9 @@ def study_filter_view(request):
 
 # tech
 # not completely implemented
-def tech_list_view(request):
-    spots = get_spots_by_filter([('has_items', 'true')])
+def tech_list_view(request, campus):
+    # spots = get_spots_by_filter([('has_items', 'true')])
+    spots = get_filtered_spots(request, campus, "tech")
     context = {"spots": spots,
                "count": len(spots),
                "app_type": 'tech'}

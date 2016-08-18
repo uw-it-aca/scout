@@ -105,8 +105,8 @@ var Geolocation = {
 
     set_campus_location: function() {
         //var index = 0;
-        var campus = JSON.parse(sessionStorage.getItem("filter_params"))["campus0"];
-        Geolocation.campus_locations(campus);
+        //var campus = JSON.parse(sessionStorage.getItem("filter_params"))["campus0"];
+        //Geolocation.campus_locations(campus);
         sessionStorage.setItem('lat', Geolocation.default_location.latitude);
         sessionStorage.setItem('lng', Geolocation.default_location.longitude);
         Geolocation.set_location_type("default");

@@ -52,6 +52,7 @@ var Filter = {
         try {
             params = JSON.parse(sessionStorage.getItem("filter_params"));
         } catch(e) {}
+
         if(params === undefined || $.isEmptyObject(params)){
             params = {"campus0": "seattle"};
             sessionStorage.setItem("filter_params", JSON.stringify(params));
@@ -74,9 +75,11 @@ var Filter = {
         var filter_categories = [];
         var url = window.location.href;
         var filter_string = "";
+        /***
         if(url.indexOf("&campus") > -1 || url.indexOf("?campus") > -1){
             filter_categories.push("Campus");
         }
+        ***/
         if(url.indexOf("&payment") > -1 || url.indexOf("?payment") > -1){
             filter_categories.push("Payment Accepted");
         }
@@ -113,7 +116,7 @@ var Filter = {
 
     reset_filter: function() {
         sessionStorage.removeItem("filter_params");
-        Filter.replace_food_href();
+        Filter.replace_navigation_href();
         var filter_url = Filter.get_filter_url();
         var type_url = Filter.get_current_type();
         window.location.href = type_url + "?" + filter_url;
@@ -181,11 +184,14 @@ var Filter = {
 
         var params = JSON.parse(sessionStorage.getItem("filter_params"));
         $.each(params, function(idx, val){
+
+            /**
             if(idx.indexOf("campus") > -1){
                 filter_item = $("#campus_select").find("input[value='" + val + "']");
                 $(filter_item[0]).prop("checked", true);
                 //$("#campus_select_base").val(val).change();
             }
+            **/
             if(idx.indexOf("period") > -1){
                 filter_item = $("#period_select").find("input[value='" + val + "']");
                 $(filter_item[0]).prop("checked", true);
@@ -214,16 +220,24 @@ var Filter = {
         });
     },
 
-    replace_food_href: function(){
+    replace_navigation_href: function(){
         var filter = Filter.get_filter_url();
+
+        // get the campus from the url
+        var campus = window.location.pathname.split('/')[1]
+
+        // make sure scout icon goes to correct campus
+        $("#link_home").attr("href", "/" + campus);
+
         var anchors = {
-            "/food/": "#link_food",
-            "/study/": "#link_study",
-            "/tech/": "#link_tech",
+            "/food/" : "#link_food",
+            "/study/" : "#link_study",
+            "/tech/" : "#link_tech",
         };
 
         for (anchor in anchors){
-            var filtered_url = anchor;
+            // build the url with filtered params
+            var filtered_url = "/" + campus + anchor;
             var anchor_id = $(anchors[anchor]);
             if (filter !== undefined){
                 filtered_url = filtered_url + "?" + filter;
@@ -232,6 +246,7 @@ var Filter = {
                 anchor_id.attr('href', filtered_url);
             }
         }
+
     },
 
 };
