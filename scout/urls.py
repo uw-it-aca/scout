@@ -1,13 +1,20 @@
 from django.conf import settings
 from django.conf.urls import patterns, include, url
 from django.views.generic import TemplateView
+from django.views.generic.base import RedirectView
 
 from scout import views
 
 urlpatterns = patterns(
     '',
     # home
-    url(r'^$', 'scout.views.discover_view', name='discover_view'),
+    #url(r'^$', 'scout.views.discover_view', name='discover_view'),
+    url(r'^$', RedirectView.as_view(url='/seattle')),
+
+    # campus discovery
+    url(r'^seattle/$', 'scout.views.discover_view', name='discover_view'),
+    url(r'^bothell/$', 'scout.views.discover_view', name='discover_view'),
+    url(r'^tacoma/$', 'scout.views.discover_view', name='discover_view'),
 
     # food
     url(r'^food/$', 'scout.views.food_list_view', name='food_list_view'),
