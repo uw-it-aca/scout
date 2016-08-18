@@ -20,16 +20,16 @@
                 {% else %}
                 <h1 style="background: url('{% static "scout/img/scout.png" %}') no-repeat 0px; background-size:13%;">
                 {% endif %}
-                <a id="link_home" href="/" title="Discover places and things on campus">Scout</a>
+                <a id="link_home" href="/{{ campus }}" title="Discover places and things on campus">Scout</a>
                 </h1>
 
                 <div id="location_select_heading" class="scout-campus-chooser">
                     <div aria-labelledby="location_select_heading">
                         <label id="location_select_heading" for="location_select" class="visually-hidden">Select campus:</label>
                         <select id="campus_select_base">
-                            <option value="seattle">Seattle</option>
-                            <option value="bothell">Bothell</option>
-                            <option value="tacoma">Tacoma</option>
+                            <option value="seattle" {% if campus == 'seattle' %}selected{% endif %}>Seattle</option>
+                            <option value="bothell" {% if campus == 'bothell' %}selected{% endif %}>Bothell</option>
+                            <option value="tacoma" {% if campus == 'tacoma' %}selected{% endif %}>Tacoma</option>
                         </select>
                     </div>
                     <div class="scout-campus-display">
@@ -39,9 +39,9 @@
 
                 <div class="scout-navigation" role="navigation" aria-label="main navigation">
                     <ul class="scout-navigation-items">
-                        <li><a id="link_food" href="food/" title="List of food places on campus"><i class="fa fa-cutlery" aria-hidden="true"></i> Food</a></li>
-                        <li><a id="link_study" href="study/" title="List of study places on campus"><i class="fa fa-graduation-cap" aria-hidden="true"></i> Study</a></li>
-                        <li><a id="link_tech" href="tech/" title="List of technology resources on campus"><i class="fa fa-laptop" aria-hidden="true"></i> Tech</a></li>
+                        <li><a id="link_food" href="/{{ campus }}/food/" {% if app_type == 'food' %}class="active"{% endif %} title="List of food places on campus"><i class="fa fa-cutlery" aria-hidden="true"></i> Food</a></li>
+                        <li><a id="link_study" href="/{{ campus }}/study/" {% if app_type == None %}class="active"{% endif %} title="List of study places on campus"><i class="fa fa-graduation-cap" aria-hidden="true"></i> Study</a></li>
+                        <li><a id="link_tech" href="/{{ campus }}/tech/" {% if app_type == 'tech' %}class="active"{% endif %} title="List of technology resources on campus"><i class="fa fa-laptop" aria-hidden="true"></i> Tech</a></li>
                     </ul>
                 </div>
 

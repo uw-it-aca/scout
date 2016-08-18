@@ -3,7 +3,6 @@ $(document).on('ready', function(event) {
     Layout.init_layout();
 
     Navigation.set_campus_selection();
-    Navigation.set_page_tab();
 
     // page based JS calls
     var page_path = window.location.pathname;

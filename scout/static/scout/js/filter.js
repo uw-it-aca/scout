@@ -223,12 +223,7 @@ var Filter = {
     replace_navigation_href: function(){
         var filter = Filter.get_filter_url();
 
-        // get the campus from the url
-        var campus = window.location.pathname.split('/')[1]
-
-        // make sure scout icon goes to correct campus
-        $("#link_home").attr("href", "/" + campus);
-
+        /***
         var anchors = {
             "/food/" : "#link_food",
             "/study/" : "#link_study",
@@ -237,7 +232,7 @@ var Filter = {
 
         for (anchor in anchors){
             // build the url with filtered params
-            var filtered_url = "/" + campus + anchor;
+            var filtered_url = anchor;
             var anchor_id = $(anchors[anchor]);
             if (filter !== undefined){
                 filtered_url = filtered_url + "?" + filter;
@@ -246,6 +241,7 @@ var Filter = {
                 anchor_id.attr('href', filtered_url);
             }
         }
+        ***/
 
     },
 

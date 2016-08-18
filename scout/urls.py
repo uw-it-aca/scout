@@ -8,13 +8,11 @@ from scout import views
 urlpatterns = patterns(
     '',
     # home
-    # url(r'^$', 'scout.views.discover_view', name='discover_view'),
     url(r'^$', RedirectView.as_view(url='/seattle')),
 
     # campus discovery
-    url(r'^seattle/$', 'scout.views.discover_view', name='discover_view'),
-    url(r'^bothell/$', 'scout.views.discover_view', name='discover_view'),
-    url(r'^tacoma/$', 'scout.views.discover_view', name='discover_view'),
+    url(r'^(?P<campus>[a-zA-Z]+)/$', 'scout.views.discover_view',
+        name='discover_view'),
 
     # food
     url(r'^(?P<campus>[a-zA-Z]+)/food/$', 'scout.views.food_list_view',
