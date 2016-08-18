@@ -141,7 +141,8 @@ def study_list_view(request, campus):
     context = {"spots": spots,
                "campus": campus,
                "grouped_spots": grouped_spots,
-               "count": len(spots)}
+               "count": len(spots),
+               "app_type": 'study'}
     return render_to_response('scout/study/list.html', context,
                               context_instance=RequestContext(request))
 
