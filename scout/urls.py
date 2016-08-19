@@ -10,6 +10,33 @@ urlpatterns = patterns(
     # home
     url(r'^$', RedirectView.as_view(url='/seattle')),
 
+    # hybrid home
+    url(r'^h/$', 'scout.views.hybrid_discover_view',
+        name='hybrid_discover_view'),
+
+    # hybrid food
+    url(r'^h/food/$', 'scout.views.hybrid_food_list_view',
+        name='hybrid_food_list_view'),
+    url(r'^h/food/(?P<spot_id>[0-9]{1,5})/$',
+        'scout.views.hybrid_food_detail_view', name='hybrid_food_detail_view'),
+    url(r'^h/food/filter/$', 'scout.views.hybrid_food_filter_view',
+        name='hybrid_food_filter_view'),
+
+    # hybrid study
+    url(r'^h/study/$', 'scout.views.hybrid_study_list_view',
+        name='hybrid_study_list_view'),
+    url(r'^h/study/(?P<spot_id>[0-9]{1,5})/$',
+        'scout.views.hybrid_study_detail_view',
+        name='hybrid_study_detail_view'),
+
+    # hybrid tech
+    url(r'^h/tech/$', 'scout.views.hybrid_tech_list_view',
+        name='hybrid_tech_list_view'),
+
+    # hybrid components
+    url(r'^h/components/$', 'scout.views.hybrid_comps_view',
+        name='hybrid_comps_view'),
+
     # campus discovery
     url(r'^(?P<campus>[a-zA-Z]+)/$', 'scout.views.discover_view',
         name='discover_view'),
@@ -47,32 +74,7 @@ urlpatterns = patterns(
         'scout.views.discover_card_view',
         name='discover_card_view'),
 
-    # hybrid home
-    url(r'^h/$', 'scout.views.hybrid_discover_view',
-        name='hybrid_discover_view'),
 
-    # hybrid food
-    url(r'^h/food/$', 'scout.views.hybrid_food_list_view',
-        name='hybrid_food_list_view'),
-    url(r'^h/food/(?P<spot_id>[0-9]{1,5})/$',
-        'scout.views.hybrid_food_detail_view', name='hybrid_food_detail_view'),
-    url(r'^h/food/filter/$', 'scout.views.hybrid_food_filter_view',
-        name='hybrid_food_filter_view'),
-
-    # hybrid study
-    url(r'^h/study/$', 'scout.views.hybrid_study_list_view',
-        name='hybrid_study_list_view'),
-    url(r'^h/study/(?P<spot_id>[0-9]{1,5})/$',
-        'scout.views.hybrid_study_detail_view',
-        name='hybrid_study_detail_view'),
-
-    # hybrid tech
-    url(r'^h/tech/$', 'scout.views.hybrid_tech_list_view',
-        name='hybrid_tech_list_view'),
-
-    # hybrid components
-    url(r'^h/components/$', 'scout.views.hybrid_comps_view',
-        name='hybrid_comps_view'),
 
 
 )
