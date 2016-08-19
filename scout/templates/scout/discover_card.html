@@ -3,13 +3,13 @@
 {% block content %}
 <div class="scout-card scout-discover-content">
     <h3>
-        <span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i> <i class="fa fa-cutlery fa-stack-1x fa-inverse"></i></span> 
+        <span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i> <i class="fa fa-cutlery fa-stack-1x fa-inverse"></i></span>
         <span class="scout-card-title">{{ card_title }}</span>
     </h3>
     <ol>
         {% for spot in spots %}
         <li data-lat="{{ spot.latitude }}" data-lon="{{ spot.longitude }}">
-            <a href="/food/{{ spot.spot_id }}/" class="clearfix">
+            <a href="/{{campus}}/food/{{ spot.spot_id }}/" class="clearfix">
                 {% if spot.images %}
                 <span class="scout-spot-image" style="background-image: url('/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}/?width=100');">&nbsp;</span>
                 {% else %}
@@ -25,7 +25,7 @@
         {% endfor %}
 
         <li>
-            <a href="/food/?{{ card_filter_url }}" class="scout-spot-discover-action">
+            <a href="/{{campus}}/food/?{{ card_filter_url }}" class="scout-spot-discover-action">
                 <span class="fa-stack fa-lg">
                   <i class="fa fa-circle fa-stack-2x"></i>
                   <i class="fa fa-share fa-stack-1x fa-inverse"></i>

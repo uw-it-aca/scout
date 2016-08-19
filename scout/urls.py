@@ -17,17 +17,17 @@ urlpatterns = patterns(
     # food
     url(r'^(?P<campus>[a-zA-Z]+)/food/$', 'scout.views.food_list_view',
         name='food_list_view'),
-    url(r'^food/(?P<spot_id>[0-9]{1,5})/$',
+    url(r'^(?P<campus>[a-zA-Z]+)/food/(?P<spot_id>[0-9]{1,5})/$',
         'scout.views.food_detail_view', name='food_detail_view'),
-    url(r'^food/filter/$', 'scout.views.food_filter_view',
+    url(r'^(?P<campus>[a-zA-Z]+)/food/filter/$', 'scout.views.food_filter_view',
         name='food_filter_view'),
 
     # study
     url(r'^(?P<campus>[a-zA-Z]+)/study/$', 'scout.views.study_list_view',
         name='study_list_view'),
-    url(r'^study/(?P<spot_id>[0-9]{1,5})/$',
+    url(r'^(?P<campus>[a-zA-Z]+)/study/(?P<spot_id>[0-9]{1,5})/$',
         'scout.views.study_detail_view', name='study_detail_view'),
-    url(r'^study/filter/$', 'scout.views.study_filter_view',
+    url(r'^(?P<campus>[a-zA-Z]+)/study/filter/$', 'scout.views.study_filter_view',
         name='study_filter_view'),
 
     # technology

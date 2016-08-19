@@ -119,18 +119,22 @@ def food_list_view(request, campus):
                               context_instance=RequestContext(request))
 
 
-def food_detail_view(request, spot_id):
+def food_detail_view(request, campus, spot_id):
     spot = get_spot_by_id(spot_id)
     if not spot:
         raise Http404("Spot does not exist")
 
-    context = {"spot": spot}
+    context = {"spot": spot,
+               "campus": campus,
+               "app_type": 'food'}
     return render_to_response('scout/food/detail.html', context,
                               context_instance=RequestContext(request))
 
 
-def food_filter_view(request):
-    return render_to_response('scout/food/filter.html',
+def food_filter_view(request, campus):
+    context = {"campus": campus,
+               "app_type": 'food'}
+    return render_to_response('scout/food/filter.html', context,
                               context_instance=RequestContext(request))
 
 
@@ -147,18 +151,22 @@ def study_list_view(request, campus):
                               context_instance=RequestContext(request))
 
 
-def study_detail_view(request, spot_id):
+def study_detail_view(request, campus, spot_id):
     spot = get_spot_by_id(spot_id)
     if not spot:
         raise Http404("Spot does not exist")
 
-    context = {"spot": spot}
+    context = {"spot": spot,
+               "campus": campus,
+               "app_type": 'study'}
     return render_to_response('scout/study/detail.html', context,
                               context_instance=RequestContext(request))
 
 
-def study_filter_view(request):
-    return render_to_response('scout/study/filter.html',
+def study_filter_view(request, campus):
+    context = {"campus": campus,
+               "app_type": 'study'}
+    return render_to_response('scout/study/filter.html', context,
                               context_instance=RequestContext(request))
 
 
