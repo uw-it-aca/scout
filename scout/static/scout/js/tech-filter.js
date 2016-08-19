@@ -4,7 +4,7 @@ var Tech_Filter = {
 
     // class handles filters for tech
     // filters are stored under the session variable
-    // tech-filter-params.
+    // tech_filter_params.
 
     set_filter_params: function(){
         // similar implementation as the current filter.js for this
