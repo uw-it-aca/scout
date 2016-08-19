@@ -193,9 +193,9 @@ class SpaceDAOTest(TestCase):
         request = RequestFactory().get(
             '/?payment0=s_pay_dining&type0=food_court&food0=s_food_entrees&'
             'food1=s_food_pasta&cuisine0=s_cuisine_chinese&period0=morning'
-            '&open_now=true&campus=seattle')
+            '&open_now=true')
         filters = _get_spot_filters(request)
-        self.assertEqual(len(filters), 9)
+        self.assertEqual(len(filters), 8)
 
     def test_organize_hours_premade(self):
         sc = Spotseeker()
