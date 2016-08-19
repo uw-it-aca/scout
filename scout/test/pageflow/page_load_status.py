@@ -14,25 +14,35 @@ baseUrl = '/seattle'
 # Each of these will be turned into a test function
 _testCases = (
     # General
-    ('Home', '/', redir, 'SCOUT-52'), # redirects to /seattle/
+    # redirects to /seattle/
+    ('Home', '/', redir, 'SCOUT-52'),
     ('Nonexistant page', '/nonexistant/', notfound, 'SCOUT-56'),
-    ('Home Missing Slash', '', redir, 'SCOUT-57'), # redirects to / then /seattle/
+    # redirects to / then /seattle/
+    ('Home Missing Slash', '', redir, 'SCOUT-57'),
     ('Home Seattle', baseUrl + '/', OK),
     # Food
     ('Food', baseUrl + '/food/', OK, 'SCOUT-53'),
     ('Food Filter', baseUrl + '/food/filter/', OK, 'SCOUT-54'),
     ('Food Details Page', baseUrl + '/food/1/', OK, 'SCOUT-58'),
-    ('Nonexistant Food Details Page', baseUrl + '/food/88888/', notfound, 'SCOUT-55'),
-    ('Malformed Food Details ID', baseUrl + '/food/abcdefg', notfound, 'SCOUT-55'),
-    ('Malformed Food Details ID 2', baseUrl + '/food/123456/', notfound, 'SCOUT-55'),
+    ('Nonexistant Food Details Page',
+     baseUrl + '/food/88888/', notfound, 'SCOUT-55'),
+    ('Malformed Food Details ID',
+     baseUrl + '/food/abcdefg', notfound, 'SCOUT-55'),
+    ('Malformed Food Details ID 2',
+     baseUrl + '/food/123456/', notfound, 'SCOUT-55'),
     ('Food Filter Open', baseUrl + '/food/?open_now=true', OK, 'SCOUT-76'),
-    ('Food Filter Coffee', baseUrl + '/food/?food0=s_food_espresso', OK, 'SCOUT-77'),
-    ('Food Filter Breakfast', baseUrl + '/food/?period0=morning', OK, 'SCOUT-79'),
-    ('Food Filter Latenight', baseUrl + '/food/?period0=late_night', OK, 'SCOUT-78'),
+    ('Food Filter Coffee',
+     baseUrl + '/food/?food0=s_food_espresso', OK, 'SCOUT-77'),
+    ('Food Filter Breakfast',
+     baseUrl + '/food/?period0=morning', OK, 'SCOUT-79'),
+    ('Food Filter Latenight',
+     baseUrl + '/food/?period0=late_night', OK, 'SCOUT-78'),
     # Invalid params should not cause a 404 or other error
-    ('Food Invalid Filter Params', baseUrl + '/food/?open_now=invalid', OK, 'SCOUT-156'),
+    ('Food Invalid Filter Params',
+     baseUrl + '/food/?open_now=invalid', OK, 'SCOUT-156'),
     ('Food Invalid Filter Params 2', baseUrl + '/food/?blah', OK, 'SCOUT-156'),
-    ('Food Invalid Filter Params 3', baseUrl + '/food/?blah=blah', OK, 'SCOUT-156'),
+    ('Food Invalid Filter Params 3',
+     baseUrl + '/food/?blah=blah', OK, 'SCOUT-156'),
     ('Invalid Food URL', baseUrl + '/food/abc', notfound, 'SCOUT-157'),
     ('Food Bad Filter', baseUrl + '/food/filter/404', notfound, 'SCOUT-81'),
     ('Food Missing Slash', baseUrl + '/food', redir, 'SCOUT-57'),
