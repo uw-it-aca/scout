@@ -6,24 +6,11 @@ var Layout = {
     	$('link[rel="stylesheet"]').attr('media', 'all');
 
         var isMobile = $("body").data("mobile");
+
         var offsetHeight;
 
-        // set minimum page heights for the content area
-        var page_path = window.location.pathname;
-
-        if (page_path.indexOf("/food") !== -1) {
-            offsetHeight = ($(".scout-header").outerHeight() + $(".scout-geolocation").outerHeight() + $(".scout-filter-results").outerHeight() + $(".scout-footer").outerHeight());
-            $(".scout-list-container").css({minHeight: $(window).outerHeight() - offsetHeight });
-        }
-        else if (page_path.indexOf("/study") !== -1) {
-            offsetHeight = ($(".scout-header").outerHeight() + $(".scout-geolocation").outerHeight() + $(".scout-filter-results").outerHeight() + $(".scout-footer").outerHeight());
-            $(".scout-list-container").css({minHeight: $(window).outerHeight() - offsetHeight });
-        }
-        else if (page_path.indexOf("/tech") !== -1) {
-            offsetHeight = ($(".scout-header").outerHeight() + $(".scout-geolocation").outerHeight() + $(".scout-filter-results").outerHeight() + $(".scout-footer").outerHeight());
-            $(".scout-list-container").css({minHeight: $(window).outerHeight() - offsetHeight });
-        }
-        else {
+        // set min height for pages
+        if ($('#page_discover').length > 0) {
 
             // discover page doesn't have filter results display
             offsetHeight = ($(".scout-header").outerHeight() + $(".scout-geolocation").outerHeight() + $(".scout-footer").outerHeight());
@@ -34,6 +21,17 @@ var Layout = {
                 var offsetHeight = ($(".scout-header").outerHeight() + $(".scout-footer").outerHeight());
                 $("#page_404").css({minHeight: $(window).outerHeight() - offsetHeight });
             }
+
+        } else if ($('#page_filter').length > 0)  {
+
+            // filter page doesn't have geolocation bar
+            offsetHeight = ($(".scout-header").outerHeight() + $(".scout-footer").outerHeight());
+            $(".scout-filter-container").css({minHeight: $(window).outerHeight() - (offsetHeight + 10) });
+
+        } else {
+
+            offsetHeight = ($(".scout-header").outerHeight() + $(".scout-geolocation").outerHeight() + $(".scout-filter-results").outerHeight() + $(".scout-footer").outerHeight());
+            $(".scout-list-container").css({minHeight: $(window).outerHeight() - offsetHeight });
 
         }
 
