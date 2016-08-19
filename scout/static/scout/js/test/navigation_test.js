@@ -4,67 +4,57 @@ var assert = require('assert');
 var jquery = require('jquery');
 var tools = require('./testing_tools');
 var fakeWindowPath = tools.fakeWindowPath;
+var fakeSess = require('./testing_tools').fakeSessionStorage;
 
 describe("Navigation Tests", function() {
     describe("Init Location Toggles", function() {
-
-        var link_home, link_food, link_study, link_tech;
-
+        var campus;
         beforeEach(function() {
             global.$ = tools.jqueryFromHtml(
-                '<a id="link_home"> </a>' +
-                '<a id="link_food"> </a>' +
-                '<a id="link_study"> </a>' +
-                '<a id="link_tech"> </a>'
+                '<select id="campus_select_base">' + 
+                '<option value="seattle">Seattle</option>' +
+                '<option value="bothell">Bothell</option>' +
+                '<option value="tacoma">Tacoma</option>' +
+                '</select>'
             );
-            link_home = $("#link_home");
-            link_food = $("#link_food");
-            link_study = $("#link_study");
-            link_tech = $("#link_tech");
+            campus = $("#campus_select_base");
         });
 
-        it ("no tabs should be highlighted", function() {
-            global.window = new fakeWindowPath('/seattle/');
-            //Navigation.set_page_tab();
-
-            //assert.equal(link_home.attr('aria-selected'), 'true');
-            assert.equal(link_food.attr('aria-selected'), undefined);
-            assert.equal(link_study.attr('aria-selected'), undefined);
-            assert.equal(link_tech.attr('aria-selected'), undefined);
-        });
-        it ("it should highlight the 'food' tab only", function() {
+        it ("The URL changes if the Campus Value Changes (Bothell)", function() {
             global.window = new fakeWindowPath('/seattle/food/');
-            //Navigation.set_page_tab();
+            Navigation.set_campus_selection();
+            campus.val("bothell");
+            campus.trigger("change");
 
-            assert.equal(link_food.attr('aria-selected'), 'true');
-            assert.equal(link_food.attr('class'), 'active');
-
-            assert.equal(link_home.attr('aria-selected'), undefined);
-            assert.equal(link_study.attr('aria-selected'), undefined);
-            assert.equal(link_tech.attr('aria-selected'), undefined);
+            assert.equal(global.window.location, '/bothell/food/');
         });
-        it ("it should highlight the 'study' tab only", function() {
+        it ("The URL changes if the Campus Value Changes (Tacoma)", function() {
             global.window = new fakeWindowPath('/seattle/study/');
-            //Navigation.set_page_tab();
+            Navigation.set_campus_selection();
+            campus.val("tacoma");
+            campus.trigger("change");
 
-            assert.equal(link_study.attr('aria-selected'), 'true');
-            assert.equal(link_study.attr('class'), 'active');
-
-            assert.equal(link_home.attr('aria-selected'), undefined);
-            assert.equal(link_food.attr('aria-selected'), undefined);
-            assert.equal(link_tech.attr('aria-selected'), undefined);
+            assert.equal(global.window.location, '/tacoma/study/');
         });
-        it ("it should highlight the 'tech' tab only", function() {
-            global.window = new fakeWindowPath('/seattle/tech/');
-            //Navigation.set_page_tab();
+        it ("The URL changes if the Campus Value Changes (Seattle)", function() {
+            global.window = new fakeWindowPath('/bothell/');
+            Navigation.set_campus_selection();
+            campus.val("seattle");
+            campus.trigger("change");
 
-            assert.equal(link_tech.attr('aria-selected'), 'true');
-            assert.equal(link_tech.attr('class'), 'active');
-
-            assert.equal(link_home.attr('aria-selected'), undefined);
-            assert.equal(link_food.attr('aria-selected'), undefined);
-            assert.equal(link_study.attr('aria-selected'), undefined);
+            assert.equal(global.window.location, '/seattle/');
         });
+        it ("The URL preserves the params when changing campuses", function() {
+            global.window = new fakeWindowPath('/seattle/food/?payment0=s_pay_husky');
+            var sessVars = new fakeSess(
+                {food_filter_params: '{"payment0":"s_pay_husky"}'}
+            );
+            global.sessionStorage = sessVars;
+            Navigation.set_campus_selection();
+            campus.val("tacoma");
+            campus.trigger("change");
 
-     });
+            assert.equal(global.window.location, '/tacoma/food/?payment0=s_pay_husky');
+        });
+    });
 });
