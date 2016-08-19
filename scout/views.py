@@ -183,16 +183,19 @@ def tech_list_view(request, campus):
                               context_instance=RequestContext(request))
 
 
-def tech_detail_view(request, item_id):
+def tech_detail_view(request, campus, item_id):
     spot_filtered_items = get_item_by_id(int(item_id))
     context = {"spot": spot_filtered_items,
+               "campus": campus,
                "app_type": 'tech'}
     return render_to_response('scout/tech/detail.html', context,
                               context_instance=RequestContext(request))
 
 
-def tech_filter_view(request):
-    return render_to_response('scout/tech/filter.html',
+def tech_filter_view(request, campus):
+    context = {"campus": campus,
+               "app_type": 'tech'}
+    return render_to_response('scout/tech/filter.html', context,
                               context_instance=RequestContext(request))
 
 

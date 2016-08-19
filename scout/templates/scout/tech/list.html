@@ -40,7 +40,7 @@
             <div class="scout-filter-results-count">{{ spots|length }}</div>
 
             <div class="scout-filter-results-actions">
-                <a href="{{ campus }}/tech/filter/" id="tech_link_filter" title="Filter list of food places on campus">
+                <a href="/{{ campus }}/tech/filter/" id="tech_link_filter" title="Filter list of food places on campus">
                     <i class="fa fa-sliders fa-inverse"></i>
                     <span class="scout-filter-results-action">Filter Tech</span>
                 </a>
@@ -69,7 +69,7 @@
                     {% endif %}
                     {% for item in spot.items %}
                         <li class="scout-list-item" id="">
-                            <a class="clearfix" href="/tech/{{ item.item_id }}/">
+                            <a class="clearfix" href="/{{campus}}/tech/{{ item.item_id }}/">
                                 <div class="scout-spot-image" style="background-image: url('{% static "scout/img/solidoodle.jpg" %}')">&nbsp;</div>
                                 <div class="scout-spot-content">
                                     <div style="padding-left: 10px;">

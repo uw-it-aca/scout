@@ -60,9 +60,9 @@ urlpatterns = patterns(
     # technology
     url(r'^(?P<campus>[a-zA-Z]+)/tech/$', 'scout.views.tech_list_view',
         name='tech_list_view'),
-    url(r'^tech/(?P<item_id>[0-9]{1,5})/$',
+    url(r'^(?P<campus>[a-zA-Z]+)/tech/(?P<item_id>[0-9]{1,5})/$',
         'scout.views.tech_detail_view', name='tech_detail_view'),
-    url(r'^tech/filter/$', 'scout.views.tech_filter_view',
+    url(r'^(?P<campus>[a-zA-Z]+)/tech/filter/$', 'scout.views.tech_filter_view',
         name='tech_filter_view'),
 
     # images
