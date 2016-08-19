@@ -10,43 +10,6 @@ urlpatterns = patterns(
     # home
     url(r'^$', RedirectView.as_view(url='/seattle')),
 
-    # campus discovery
-    url(r'^(?P<campus>[a-zA-Z]+)/$', 'scout.views.discover_view',
-        name='discover_view'),
-
-    # food
-    url(r'^(?P<campus>[a-zA-Z]+)/food/$', 'scout.views.food_list_view',
-        name='food_list_view'),
-    url(r'^food/(?P<spot_id>[0-9]{1,5})/$',
-        'scout.views.food_detail_view', name='food_detail_view'),
-    url(r'^food/filter/$', 'scout.views.food_filter_view',
-        name='food_filter_view'),
-
-    # study
-    url(r'^(?P<campus>[a-zA-Z]+)/study/$', 'scout.views.study_list_view',
-        name='study_list_view'),
-    url(r'^study/(?P<spot_id>[0-9]{1,5})/$',
-        'scout.views.study_detail_view', name='study_detail_view'),
-    url(r'^study/filter/$', 'scout.views.study_filter_view',
-        name='study_filter_view'),
-
-    # technology
-    url(r'^(?P<campus>[a-zA-Z]+)/tech/$', 'scout.views.tech_list_view',
-        name='tech_list_view'),
-    url(r'^tech/(?P<item_id>[0-9]{1,5})/$',
-        'scout.views.tech_detail_view', name='tech_detail_view'),
-    url(r'^tech/filter/$', 'scout.views.tech_filter_view',
-        name='tech_filter_view'),
-
-    # images
-    url(r'^images/(?P<spot_id>\d+)/image/(?P<image_id>\d+)/$',
-        views.image_view),
-
-    # discover card
-    url(r'^discover_card/(?P<discover_category>[a-zA-Z]+)/$',
-        'scout.views.discover_card_view',
-        name='discover_card_view'),
-
     # hybrid home
     url(r'^h/$', 'scout.views.hybrid_discover_view',
         name='hybrid_discover_view'),
@@ -73,6 +36,45 @@ urlpatterns = patterns(
     # hybrid components
     url(r'^h/components/$', 'scout.views.hybrid_comps_view',
         name='hybrid_comps_view'),
+
+    # campus discovery
+    url(r'^(?P<campus>[a-zA-Z]+)/$', 'scout.views.discover_view',
+        name='discover_view'),
+
+    # food
+    url(r'^(?P<campus>[a-zA-Z]+)/food/$', 'scout.views.food_list_view',
+        name='food_list_view'),
+    url(r'^(?P<campus>[a-zA-Z]+)/food/(?P<spot_id>[0-9]{1,5})/$',
+        'scout.views.food_detail_view', name='food_detail_view'),
+    url(r'^(?P<campus>[a-zA-Z]+)/food/filter/$',
+        'scout.views.food_filter_view', name='food_filter_view'),
+
+    # study
+    url(r'^(?P<campus>[a-zA-Z]+)/study/$', 'scout.views.study_list_view',
+        name='study_list_view'),
+    url(r'^(?P<campus>[a-zA-Z]+)/study/(?P<spot_id>[0-9]{1,5})/$',
+        'scout.views.study_detail_view', name='study_detail_view'),
+    url(r'^(?P<campus>[a-zA-Z]+)/study/filter/$',
+        'scout.views.study_filter_view', name='study_filter_view'),
+
+    # technology
+    url(r'^(?P<campus>[a-zA-Z]+)/tech/$', 'scout.views.tech_list_view',
+        name='tech_list_view'),
+    url(r'^tech/(?P<item_id>[0-9]{1,5})/$',
+        'scout.views.tech_detail_view', name='tech_detail_view'),
+    url(r'^tech/filter/$', 'scout.views.tech_filter_view',
+        name='tech_filter_view'),
+
+    # images
+    url(r'^images/(?P<spot_id>\d+)/image/(?P<image_id>\d+)/$',
+        views.image_view),
+
+    # discover card
+    url(r'^discover_card/(?P<discover_category>[a-zA-Z]+)/$',
+        'scout.views.discover_card_view',
+        name='discover_card_view'),
+
+
 
 
 )

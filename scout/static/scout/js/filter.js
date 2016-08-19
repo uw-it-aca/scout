@@ -97,16 +97,21 @@ var Filter = {
     },
 
     get_current_type: function() {
+
         var current_page = window.location.pathname;
+        var campus = window.location.pathname.split('/')[1]
+
         if (current_page.indexOf("study") > -1){
-            return "/study/";
+            return "/" + campus + "/study/";
         } else if (current_page.indexOf("tech") > -1){
-            return "/tech/";
+            return "/" + campus + "/tech/";
         } else if (current_page.indexOf("food") > -1){
-            return "/food/";
+            return "/" + campus + "/food/";
         } else {
-            return "/"
+            return "/" + campus;
         }
+
+        return current_page;
     },
 
     init: function() {
