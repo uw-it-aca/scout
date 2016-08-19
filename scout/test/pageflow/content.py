@@ -44,18 +44,6 @@ class ContentTest(ScoutTestCase):
         bs = self.get_soup(baseUrl + 'food/')
         self.assertOneExists(bs, "#page_food")
 
-    def test_detail_content(self):
-        """SCOUT-58 Test that the content on the detail page is correct"""
-        spot_list = get_spot_list(app_type='food')
-        temp_id = str(spot_list[0].spot_id)
-        bs = self.get_soup(baseUrl + 'food/' + temp_id)
-        # grabbing the id number from the URL (ex. /detail/5106/)
-        expUrl = 'page_' + temp_id
-        # grabbing the actual id on the page
-        scoutContent = bs.select('.scout-content')
-        # asserting that they are equal
-        self.assertEqual(expUrl, scoutContent[0].get('id'))
-
     def test_filter_content(self):
         """SCOUT-54 Test that the content on the filter page is correct"""
         bs = self.get_soup(baseUrl + 'food/filter/')

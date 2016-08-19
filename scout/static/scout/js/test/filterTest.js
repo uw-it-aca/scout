@@ -310,7 +310,7 @@ describe("Filter Tests", function() {
                 { food_filter_params: '{"payment0": "s_pay_cash"}'}
             );
             global.sessionStorage = sessionVars;
-            global.window = new fakeWindow("/food/");
+            global.window = new fakeWindow("/seattle/food/");
             Filter.reset_filter('food_filter_params', 'food');
         });
         it('should remove the session variables ("filter_params")', function() {
@@ -319,7 +319,7 @@ describe("Filter Tests", function() {
         });
         it('should change the window location', function() {
             // Testing that the window's href has changed back to the default campus
-            assert.equal(global.window.location.href, '/' + default_campus + '/food/');
+            assert.equal(global.window.location.pathname, '/' + default_campus + '/food/');
         });
     });
 
