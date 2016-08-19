@@ -151,7 +151,7 @@ var Filter = {
         var campus = window.location.pathname.split('/')[1]
 
         // make sure scout icon goes to correct campus
-        $("#link_home").attr("href", "/" + campus);
+        $("#link_home").attr("href", "/" + campus + "/");
 
         var anchors = {
             "/food/" : "#link_food",
