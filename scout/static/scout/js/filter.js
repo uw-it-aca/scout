@@ -32,7 +32,7 @@ var Filter = {
     _get_filter_label_text: function(){
         var url = window.location.href;
         var type = Filter.get_current_type();
-        var filter_categories = ["Campus"];
+        var filter_categories = [];
         var specific_categories = [];
 
         if(type.indexOf("food") > -1) {
