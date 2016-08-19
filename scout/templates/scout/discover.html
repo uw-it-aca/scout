@@ -30,9 +30,15 @@
             </div>
         </div>
 
-        <div style="background:url('{% static "scout/img/students-studying.jpg" %}') no-repeat; background-size:cover; padding: 150px 20px 20px 20px; color:#fff;">
+        {% if campus == 'seattle' %}
+        <div style="background:url('{% static "scout/img/uw-signage.jpg" %}') no-repeat; background-size:cover; padding: 150px 20px 20px 20px; color:#fff;">
+        {% elif campus == 'bothell' %}
+        <div style="background:url('{% static "scout/img/uwb-signage.jpg" %}') no-repeat; background-size:cover; padding: 150px 20px 20px 20px; color:#fff;">
+        {% elif campus == 'tacoma' %}
+        <div style="background:url('{% static "scout/img/uwt-signage.jpg" %}') no-repeat; background-size:cover; padding: 150px 20px 20px 20px; color:#fff;">
+        {% endif %}
             <h2 style="color:purple">Discover {{campus}}</h2>
-            <p>A place to study? Scout helps you browse study spots without having to walk all over campus.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas nec efficitur velit. Praesent laoreet efficitur nisl porta interdum. Aenean vel efficitur libero.</p>
         </div>
 
         <div id="discover_cards">
@@ -70,5 +76,5 @@
 {% endblock %}
 
 {% block secondary_content %}
-<div style="background:url('{% static "scout/img/uw-signage.jpg" %}') no-repeat; background-size:cover; background-position:center center; position:absolute; top:0; bottom:0; width: 100%;">&nbsp;</div>
+<div>Discover map goes here!</div>
 {% endblock %}

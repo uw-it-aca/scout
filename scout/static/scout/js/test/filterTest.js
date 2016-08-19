@@ -257,7 +257,7 @@ describe("Filter Tests", function() {
         it('the link_food is replaced with the href of no filters', function() {
             var sessionVars = new fakeSess();
             global.sessionStorage = sessionVars;
-            Filter.replace_food_href();
+            Filter.replace_navigation_href();
             var food_anchor = $("#link_food");
             var value = $(food_anchor).attr('href');
             var exp = "/food/?campus0=" + default_campus;
@@ -268,7 +268,7 @@ describe("Filter Tests", function() {
                 { filter_params: '{"payment0": "s_pay_cash"}'}
             );
             global.sessionStorage = sessionVars;
-            Filter.replace_food_href();
+            Filter.replace_navigation_href();
             var food_anchor = $("#link_food");
             var value = $(food_anchor).attr('href');
             var exp = "/food/?payment0=s_pay_cash";
@@ -282,7 +282,7 @@ describe("Filter Tests", function() {
                 })
             });
             global.sessionStorage = sessionVars;
-            Filter.replace_food_href();
+            Filter.replace_navigation_href();
             var food_anchor = $("#link_food");
             var value = $(food_anchor).attr('href');
             var exp = "/food/?payment0=s_pay_visa&type0=food_truck&open_now=true";
