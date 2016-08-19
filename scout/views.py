@@ -13,8 +13,11 @@ DEFAULT_LAT = 47.6558539
 DEFAULT_LON = -122.3094925
 
 
-def discover_view(request):
-    return render_to_response('scout/discover.html',
+def discover_view(request, campus):
+    context = {
+        "campus": campus,
+    }
+    return render_to_response('scout/discover.html', context,
                               context_instance=RequestContext(request))
 
 
@@ -109,6 +112,7 @@ def discover_card_view(request, discover_category):
 def food_list_view(request, campus):
     spots = get_filtered_spots(request, campus, "food")
     context = {"spots": spots,
+               "campus": campus,
                "count": len(spots),
                "app_type": 'food'}
     return render_to_response('scout/food/list.html', context,
@@ -135,8 +139,10 @@ def study_list_view(request, campus):
     spots = get_filtered_spots(request, campus, "study")
     grouped_spots = group_spots_by_building(spots)
     context = {"spots": spots,
+               "campus": campus,
                "grouped_spots": grouped_spots,
-               "count": len(spots)}
+               "count": len(spots),
+               "app_type": 'study'}
     return render_to_response('scout/study/list.html', context,
                               context_instance=RequestContext(request))
 
@@ -162,6 +168,7 @@ def tech_list_view(request, campus):
     # spots = get_spots_by_filter([('has_items', 'true')])
     spots = get_filtered_spots(request, campus, "tech")
     context = {"spots": spots,
+               "campus": campus,
                "count": len(spots),
                "app_type": 'tech'}
     return render_to_response('scout/tech/list.html', context,

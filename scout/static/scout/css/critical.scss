@@ -159,6 +159,8 @@ body { background: #f1f1f1; }
             li { margin: 0; padding: 0; flex: 1 0;
                 a { display: block;  color: #666; text-decoration: none; text-align: center; border-bottom:solid 4px #fff;
                     &:hover { color: $scout-purple; }
+
+                    &.active { border-bottom: 4px solid $scout-purple; color: $scout-purple; }
                 }
                 a[disabled="disabled"] { cursor: default;}
             }
