@@ -24,7 +24,7 @@ describe("Navigation Tests", function() {
         });
 
         it ("no tabs should be highlighted", function() {
-            global.window = new fakeWindowPath('/');
+            global.window = new fakeWindowPath('/seattle/');
             //Navigation.set_page_tab();
 
             //assert.equal(link_home.attr('aria-selected'), 'true');
@@ -33,7 +33,7 @@ describe("Navigation Tests", function() {
             assert.equal(link_tech.attr('aria-selected'), undefined);
         });
         it ("it should highlight the 'food' tab only", function() {
-            global.window = new fakeWindowPath('/food/');
+            global.window = new fakeWindowPath('/seattle/food/');
             //Navigation.set_page_tab();
 
             assert.equal(link_food.attr('aria-selected'), 'true');
@@ -44,7 +44,7 @@ describe("Navigation Tests", function() {
             assert.equal(link_tech.attr('aria-selected'), undefined);
         });
         it ("it should highlight the 'study' tab only", function() {
-            global.window = new fakeWindowPath('/study/');
+            global.window = new fakeWindowPath('/seattle/study/');
             //Navigation.set_page_tab();
 
             assert.equal(link_study.attr('aria-selected'), 'true');
@@ -55,7 +55,7 @@ describe("Navigation Tests", function() {
             assert.equal(link_tech.attr('aria-selected'), undefined);
         });
         it ("it should highlight the 'tech' tab only", function() {
-            global.window = new fakeWindowPath('/tech/');
+            global.window = new fakeWindowPath('/seattle/tech/');
             //Navigation.set_page_tab();
 
             assert.equal(link_tech.attr('aria-selected'), 'true');
