@@ -25,43 +25,45 @@ describe("Navigation Tests", function() {
 
         it ("no tabs should be highlighted", function() {
             global.window = new fakeWindowPath('/');
-            Navigation.set_page_tab();
+            //Navigation.set_page_tab();
 
-            assert.equal(link_home.attr('aria-selected'), 'true');
+            //assert.equal(link_home.attr('aria-selected'), 'true');
             assert.equal(link_food.attr('aria-selected'), undefined);
             assert.equal(link_study.attr('aria-selected'), undefined);
             assert.equal(link_tech.attr('aria-selected'), undefined);
         });
         it ("it should highlight the 'food' tab only", function() {
             global.window = new fakeWindowPath('/food/');
-            Navigation.set_page_tab();
+            //Navigation.set_page_tab();
+
+            assert.equal(link_food.attr('aria-selected'), 'true');
+            assert.equal(link_food.attr('class'), 'active');
 
             assert.equal(link_home.attr('aria-selected'), undefined);
-            assert.equal(link_food.attr('aria-selected'), 'true');
-            assert.equal(link_food.attr('style'), 'border-bottom: 4px solid #6564A8; color: rgb(101, 100, 168);');
             assert.equal(link_study.attr('aria-selected'), undefined);
             assert.equal(link_tech.attr('aria-selected'), undefined);
         });
         it ("it should highlight the 'study' tab only", function() {
-
             global.window = new fakeWindowPath('/study/');
-            Navigation.set_page_tab();
+            //Navigation.set_page_tab();
+
+            assert.equal(link_study.attr('aria-selected'), 'true');
+            assert.equal(link_study.attr('class'), 'active');
 
             assert.equal(link_home.attr('aria-selected'), undefined);
             assert.equal(link_food.attr('aria-selected'), undefined);
-            assert.equal(link_study.attr('aria-selected'), 'true');
-            assert.equal(link_study.attr('style'), 'border-bottom: 4px solid #6564A8; color: rgb(101, 100, 168);');
             assert.equal(link_tech.attr('aria-selected'), undefined);
         });
         it ("it should highlight the 'tech' tab only", function() {
             global.window = new fakeWindowPath('/tech/');
-            Navigation.set_page_tab();
+            //Navigation.set_page_tab();
+
+            assert.equal(link_tech.attr('aria-selected'), 'true');
+            assert.equal(link_tech.attr('class'), 'active');
 
             assert.equal(link_home.attr('aria-selected'), undefined);
             assert.equal(link_food.attr('aria-selected'), undefined);
             assert.equal(link_study.attr('aria-selected'), undefined);
-            assert.equal(link_tech.attr('aria-selected'), 'true');
-            assert.equal(link_tech.attr('style'), 'border-bottom: 4px solid #6564A8; color: rgb(101, 100, 168);');
         });
 
      });
