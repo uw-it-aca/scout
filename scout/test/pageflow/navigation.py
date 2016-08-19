@@ -13,8 +13,7 @@ studyUrl = baseUrl + 'study/'
 techUrl = baseUrl + 'tech/'
 
 urls = {
-    'home': '/',
-    'home_campus': baseUrl,
+    'home': baseUrl,
     'food': foodUrl,
     'study': studyUrl,
     'tech': techUrl,
@@ -28,7 +27,7 @@ urls = {
 # the key for this dictionary represents a page and the corresponding tuple
 # represents the pages that should be linked to on the page
 tests = {
-    'home_campus': ('home', 'food', 'study', 'tech'),
+    'home': ('home', 'food', 'study', 'tech'),
     'food': ('home', 'study', 'tech', 'food_filter'),
     'study': ('home', 'food', 'tech', 'study_filter'),
     'tech': ('home', 'food', 'study', 'tech_filter'),
