@@ -85,12 +85,11 @@ var Filter = {
     },
 
     redirect_to_page: function(type) {
-        // get the campus from the url
-        var campus = window.location.pathname.split('/')[1]
+        var campus = window.location.pathname.split('/')[1];
         var filter_url = Filter.get_filter_url(type);
 
         if (filter_url !== undefined){
-            window.location.href = "/" + campus + type + "?" + filter_url;
+            window.location.href = "/"+ campus + type + "?" + filter_url;
         } else {
             window.location.href = "/" + campus + type;
         }
@@ -99,16 +98,15 @@ var Filter = {
     get_current_type: function() {
 
         var current_page = window.location.pathname;
-        var campus = window.location.pathname.split('/')[1]
 
         if (current_page.indexOf("study") > -1){
-            return "/" + campus + "/study/";
+            return "/study/";
         } else if (current_page.indexOf("tech") > -1){
-            return "/" + campus + "/tech/";
+            return "/tech/";
         } else if (current_page.indexOf("food") > -1){
-            return "/" + campus + "/food/";
+            return "/food/";
         } else {
-            return "/" + campus;
+            return "/";
         }
 
         return current_page;
