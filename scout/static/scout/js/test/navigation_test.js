@@ -4,6 +4,7 @@ var assert = require('assert');
 var jquery = require('jquery');
 var tools = require('./testing_tools');
 var fakeWindowPath = tools.fakeWindowPath;
+var fakeSess = require('./testing_tools').fakeSessionStorage;
 
 describe("Navigation Tests", function() {
     describe("Init Location Toggles", function() {
@@ -45,6 +46,10 @@ describe("Navigation Tests", function() {
         });
         it ("The URL preserves the params when changing campuses", function() {
             global.window = new fakeWindowPath('/seattle/food/?payment0=s_pay_husky/');
+            var sessVars = new fakeSess(
+                {food_filter_params: '{"payment0":"s_pay_husky"}'}
+            );
+            global.sessionStorage = sessVars;
             Navigation.set_campus_selection();
             campus.val("tacoma");
             campus.trigger("change");
