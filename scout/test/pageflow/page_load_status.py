@@ -47,7 +47,7 @@ _testCases = (
     ('Food Bad Filter', baseUrl + '/food/filter/404', notfound, 'SCOUT-81'),
     ('Food Missing Slash', baseUrl + '/food', redir, 'SCOUT-57'),
     ('Food Filter Missing Slash', baseUrl + '/food/filter', redir, 'SCOUT-57'),
-    ('Food Details Missing Slash', '/food/1234', redir, 'SCOUT-57'),
+    ('Food Details Missing Slash', baseUrl + '/food/1234', redir, 'SCOUT-57'),
     # Study
     ('Study', baseUrl + '/study/', OK),
     # ('Study Filter', '/study/filter/', OK),
