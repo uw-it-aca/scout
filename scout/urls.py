@@ -12,7 +12,7 @@ urlpatterns = patterns(
 
     # hybrid home
     url(r'^h/$', RedirectView.as_view(url='/h/seattle')),
-    url(r'^h/(?P<campus>[(seattle|bothell|tacoma)]+)/$',
+    url(r'^h/(?P<campus>(seattle|bothell|tacoma)+)/$',
         'scout.views.hybrid_discover_view', name='hybrid_discover_view'),
 
     # hybrid food
@@ -39,34 +39,34 @@ urlpatterns = patterns(
         name='hybrid_comps_view'),
 
     # campus discovery
-    url(r'^(?P<campus>[(seattle|bothell|tacoma)]+)/$',
+    url(r'^(?P<campus>(seattle|bothell|tacoma))/$',
         'scout.views.discover_view', name='discover_view'),
 
     # food
-    url(r'^(?P<campus>[(seattle|bothell|tacoma)]+)/food/$',
+    url(r'^(?P<campus>(seattle|bothell|tacoma)+)/food/$',
         'scout.views.food_list_view', name='food_list_view'),
-    url(r'^(?P<campus>[(seattle|bothell|tacoma)]+)/food/'
+    url(r'^(?P<campus>(seattle|bothell|tacoma)+)/food/'
         '(?P<spot_id>[0-9]{1,5})/$', 'scout.views.food_detail_view',
         name='food_detail_view'),
-    url(r'^(?P<campus>[(seattle|bothell|tacoma)]+)/food/filter/$',
+    url(r'^(?P<campus>(seattle|bothell|tacoma)+)/food/filter/$',
         'scout.views.food_filter_view', name='food_filter_view'),
 
     # study
-    url(r'^(?P<campus>[(seattle|bothell|tacoma)]+)/study/$',
+    url(r'^(?P<campus>(seattle|bothell|tacoma)+)/study/$',
         'scout.views.study_list_view', name='study_list_view'),
-    url(r'^(?P<campus>[(seattle|bothell|tacoma)]+)/study/'
+    url(r'^(?P<campus>(seattle|bothell|tacoma)+)/study/'
         '(?P<spot_id>[0-9]{1,5})/$', 'scout.views.study_detail_view',
         name='study_detail_view'),
-    url(r'^(?P<campus>[(seattle|bothell|tacoma)]+)/study/filter/$',
+    url(r'^(?P<campus>(seattle|bothell|tacoma)+)/study/filter/$',
         'scout.views.study_filter_view', name='study_filter_view'),
 
     # technology
-    url(r'^(?P<campus>[(seattle|bothell|tacoma)]+)/tech/$',
+    url(r'^(?P<campus>(seattle|bothell|tacoma)+)/tech/$',
         'scout.views.tech_list_view', name='tech_list_view'),
-    url(r'^(?P<campus>[(seattle|bothell|tacoma)]+)/tech/'
+    url(r'^(?P<campus>(seattle|bothell|tacoma)+)/tech/'
         '(?P<item_id>[0-9]{1,5})/$', 'scout.views.tech_detail_view',
         name='tech_detail_view'),
-    url(r'^(?P<campus>[(seattle|bothell|tacoma)]+)/tech/filter/$',
+    url(r'^(?P<campus>(seattle|bothell|tacoma)+)/tech/filter/$',
         'scout.views.tech_filter_view', name='tech_filter_view'),
 
     # images
