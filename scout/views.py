@@ -207,51 +207,56 @@ def hybrid_discover_view(request, campus):
                               context_instance=RequestContext(request))
 
 
-def hybrid_food_list_view(request):
-    if len(request.GET) > 0:
-        spots = get_filtered_spots(request, "food")
-    else:
-        spots = get_spot_list('food')
-    context = {"spots": spots}
+def hybrid_food_list_view(request, campus):
+    spots = get_filtered_spots(request, campus, "food")
+    context = {"spots": spots,
+               "campus": campus}
     return render_to_response('hybridize/food/list.html', context,
                               context_instance=RequestContext(request))
 
 
-def hybrid_food_detail_view(request, spot_id):
+def hybrid_food_detail_view(request, campus, spot_id):
     spot = get_spot_by_id(spot_id)
-    context = {"spot": spot}
+    context = {"spot": spot,
+               "campus": campus}
     return render_to_response('hybridize/food/detail.html', context,
                               context_instance=RequestContext(request))
 
 
-def hybrid_food_filter_view(request):
-    return render_to_response('hybridize/food/filter.html',
+def hybrid_food_filter_view(request, campus):
+    context = {"campus": campus}
+    return render_to_response('hybridize/food/filter.html', context,
                               context_instance=RequestContext(request))
 
 
-def hybrid_study_list_view(request):
-    if len(request.GET) > 0:
-        spots = get_filtered_spots(request, "study")
-    else:
-        spots = get_spot_list()
+def hybrid_study_list_view(request, campus):
+    spots = get_filtered_spots(request, campus, "study")
     grouped_spots = group_spots_by_building(spots)
     context = {"spots": spots,
+               "campus": campus,
                "grouped_spots": grouped_spots,
-               "count": len(spots)}
+               "count": len(spots),
+               "app_type": 'study'}
     return render_to_response('hybridize/study/list.html', context,
                               context_instance=RequestContext(request))
 
 
-def hybrid_study_detail_view(request, spot_id):
+def hybrid_study_detail_view(request, campus, spot_id):
     spot = get_spot_by_id(spot_id)
-    context = {"spot": spot}
+    if not spot:
+        raise Http404("Spot does not exist")
+
+    context = {"spot": spot,
+               "campus": campus,
+               "app_type": 'study'}
     return render_to_response('hybridize/study/detail.html', context,
                               context_instance=RequestContext(request))
 
 
-def hybrid_tech_list_view(request):
+def hybrid_tech_list_view(reques, campus):
     spots = get_spots_by_filter([('has_items', 'true')])
     context = {"spots": spots,
+               "campus": campus,
                "count": len(spots),
                "app_type": 'tech'}
     return render_to_response('hybridize/tech/list.html', context,
