@@ -37,9 +37,9 @@ $(document).on('ready', function(event) {
         console.log("on tech");
     }
     else {
-
         console.log("on discover");
         Discover.init_cards();
+        Map.init_map();
     }
 
     Filter.replace_navigation_href();

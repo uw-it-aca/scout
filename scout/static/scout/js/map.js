@@ -35,6 +35,12 @@ var Map = {
                 Map.load_detail_map(map_id);
             }
 
+            // discover map
+            if( $("#discover_list_map").length > 0 ) {
+                var map_id = 'discover_list_map';
+                Map.load_list_map(map_id);
+            }
+
         });
 
         // handle map stuff for window resize
@@ -71,6 +77,12 @@ var Map = {
                 Map.load_detail_map(map_id);
             }
 
+            // discover map
+            if( $("#discover_list_map").length > 0 ) {
+                var map_id = 'discover_list_map';
+                Map.load_list_map(map_id);
+            }
+
         });
     },
 
@@ -83,6 +95,9 @@ var Map = {
         var pos = Geolocation.get_client_latlng();
         var mapOptions;
         if(mapExists) {
+
+            console.log("map exists");
+
             // center map on default location OR location received from user
             mapCenter = pos;
             mapOptions = {
