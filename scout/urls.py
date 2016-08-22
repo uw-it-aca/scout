@@ -12,7 +12,7 @@ urlpatterns = patterns(
 
     # hybrid home
     url(r'^h/$', RedirectView.as_view(url='/h/seattle')),
-    url(r'^h/(?P<campus>[(seattle|bothell|tacoma)]+)/$',
+    url(r'^h/(?P<campus>(seattle|bothell|tacoma)+)/$',
         'scout.views.hybrid_discover_view', name='hybrid_discover_view'),
 
     # hybrid food
