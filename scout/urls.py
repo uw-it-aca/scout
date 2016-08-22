@@ -10,10 +10,10 @@ urlpatterns = patterns(
     # home
     url(r'^$', RedirectView.as_view(url='/seattle')),
 
-    # ^(?!^(seattle|bothell|tacoma)${1}).*
     # hybrid home
-    url(r'^h/$', 'scout.views.hybrid_discover_view',
-        name='hybrid_discover_view'),
+    url(r'^h/$', RedirectView.as_view(url='/h/seattle')),
+    url(r'^h/(?P<campus>[(seattle|bothell|tacoma)]+)/$',
+        'scout.views.hybrid_discover_view', name='hybrid_discover_view'),
 
     # hybrid food
     url(r'^h/food/$', 'scout.views.hybrid_food_list_view',

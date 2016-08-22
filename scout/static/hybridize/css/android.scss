@@ -6,6 +6,26 @@
     img { border-radius: 100%; }
 }
 
+
+.list-block { margin: 0;
+
+	ul:before { height: 0; }
+
+	ul {
+		li { }
+	}
+
+    .item-inner { overflow: hidden;
+
+        .item-title {
+            span { color: #666; font-size: 80%; display: block; overflow: hidden; text-overflow: ellipsis; }
+        }
+
+    }
+
+}
+
+
 .button .ripple-wave {
     //background-color: #ffcc33; //gold
 }
