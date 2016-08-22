@@ -314,7 +314,7 @@ describe("Filter Tests", function() {
             Filter.reset_filter('food_filter_params', 'food');
         });
         it('should remove the session variables ("filter_params")', function() {
-            // Testing that the filter params are removed from session storage 
+            // Testing that the filter params are removed from session storage
             assert.deepEqual(global.sessionStorage.sessionVars.food_filter_params, undefined);
         });
         it('should change the window location', function() {
@@ -349,7 +349,7 @@ describe("Filter Tests", function() {
                 "&period2=dinner&open_now=true"
             );
             var result = Filter._get_filter_label_text();
-            var exp = "Campus, Open Period, Open Now";
+            var exp = "Open Period, Open Now";
             assert.equal(result, exp);
         });
         it('should return an empty string if the URL doesnt contain any filters', function() {
@@ -375,7 +375,7 @@ describe("Filter Tests", function() {
         it('should change the filter text, if the URL contains a filter', function() {
             global.window = new fakeWindow("/food/?campus0=tacoma");
             Filter.set_filter_text();
-            assert.equal($("#filter_label_text").html(), "Campus");
+            assert.equal($("#filter_label_text").html(), "--");
         });
     });
 

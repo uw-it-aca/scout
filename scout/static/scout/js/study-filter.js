@@ -53,8 +53,8 @@ var Study_Filter = {
         var filter_categories = [];
         filter_labels = {
             "building": "Building",
-            "type": "Restaurant Type",
-            "food": "Food Served",
+            "type": "Study Type",
+            "food": "Refreshments",
             "lighting": "Lighting",
             "noise": "Noise Level",
             "resources": "Resources"
