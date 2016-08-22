@@ -15,12 +15,6 @@ DEFAULT_LON = -122.3094925
 
 def discover_view(request, campus):
 
-    # list of possible campuses
-    campuses = ['seattle', 'bothell', 'tacoma']
-
-    if campus not in campuses:
-        raise Http404("Campus does not exist")
-
     context = {
         "campus": campus,
     }
