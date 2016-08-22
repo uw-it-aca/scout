@@ -7,7 +7,15 @@
 {% block hybrid_content %}
 
 <div class="content">
-    <div style="background:url('{% static "scout/img/uw-ob.jpg" %}') no-repeat; background-size:cover; height:270px;" valign="bottom" class="content-header">Discover</div>
+
+    {% if campus == 'seattle' %}
+    <div style="background:url('{% static "scout/img/uw-signage.jpg" %}') no-repeat center center; background-size:cover; height:270px;" valign="bottom" class="content-header">Discover {{campus}}</div>
+    {% elif campus == 'bothell' %}
+    <div style="background:url('{% static "scout/img/uwb-signage.jpg" %}') no-repeat center center; background-size:cover; height:270px;" valign="bottom" class="content-header">Discover {{campus}}</div>
+    {% elif campus == 'tacoma' %}
+    <div style="background:url('{% static "scout/img/uwt-signage.jpg" %}') no-repeat center center; background-size:cover; height:270px;" valign="bottom" class="content-header">Discover {{campus}}</div>
+    {% endif %}
+
     <div class="content-content">
         <!--<div class="content-content-inner" style="padding:20px;">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non urna et lorem venenatis varius quis sit amet dui. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur a nisi odio.
@@ -16,7 +24,7 @@
 </div>
 
 
-<div class="content-block-title">Open Nearby</div>
+<div class="content-block-title">Open Nearby, {{campus}} campus</div>
 <div class="list-block">
     <ul>
         <li>

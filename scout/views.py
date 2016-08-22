@@ -201,8 +201,9 @@ def tech_filter_view(request, campus):
 
 
 # hybrid
-def hybrid_discover_view(request):
-    return render_to_response('hybridize/discover.html',
+def hybrid_discover_view(request, campus):
+    context = {"campus": campus}
+    return render_to_response('hybridize/discover.html', context,
                               context_instance=RequestContext(request))
 
 
