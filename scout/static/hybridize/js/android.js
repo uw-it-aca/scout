@@ -29,5 +29,11 @@ $(document).on('turbolinks:load', function() {
         myApp.closeNotification(".notification-item")
     });
 
+    // initialize slick image slider
+    $('.photo-gallery').slick({
+        dots: true,
+        arrows: false,
+    });
+
 
 });
