@@ -33,7 +33,7 @@
                     <div class="scout-spot-type">
                         {% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}
 </span>{% endfor %}
-                        <span>Category</span>
+                        <span>{{ item.subcategory }}</span>
                     </div>
 
                     <div class="scout-spot-food-served">
