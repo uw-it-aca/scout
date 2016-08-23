@@ -119,8 +119,6 @@ def _get_spot_filters(request):
             params.append(
                 ("extended_info:or_group:lighting", request.GET[param])
             )
-        if "category" in param:
-            params.append(("item:category", request.GET[param]))
         if "subcategory" in param:
             params.append(("item:subcategory", request.GET[param]))
         if "brand" in param:
