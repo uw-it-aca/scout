@@ -34,6 +34,30 @@ urlpatterns = patterns(
     # hybrid tech
     url(r'^h/(?P<campus>(seattle|bothell|tacoma))/tech/$',
         'scout.views.hybrid_tech_list_view', name='hybrid_tech_list_view'),
+    url(r'^h/(?P<campus>(seattle|bothell|tacoma))/food/$',
+        'scout.views.hybrid_food_list_view',
+        name='hybrid_food_list_view'),
+    url(r'^h/(?P<campus>(seattle|bothell|tacoma))/food/'
+        r'(?P<spot_id>[0-9]{1,5})/$',
+        'scout.views.hybrid_food_detail_view',
+        name='hybrid_food_detail_view'),
+    url(r'^h/(?P<campus>(seattle|bothell|tacoma))/food/filter/$',
+        'scout.views.hybrid_food_filter_view',
+        name='hybrid_food_filter_view'),
+
+    # hybrid study
+    url(r'^h/(?P<campus>(seattle|bothell|tacoma))/study/$',
+        'scout.views.hybrid_study_list_view',
+        name='hybrid_study_list_view'),
+    url(r'^h/(?P<campus>(seattle|bothell|tacoma))/study/'
+        r'(?P<spot_id>[0-9]{1,5})/$',
+        'scout.views.hybrid_study_detail_view',
+        name='hybrid_study_detail_view'),
+
+    # hybrid tech
+    url(r'^h/(?P<campus>(seattle|bothell|tacoma))/tech/$',
+        'scout.views.hybrid_tech_list_view',
+        name='hybrid_tech_list_view'),
 
     # hybrid components
     url(r'^h/components/$', 'scout.views.hybrid_comps_view',
