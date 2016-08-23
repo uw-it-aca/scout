@@ -70,7 +70,7 @@ var Study_Filter = {
     reset_filter: function(){
         // just makes a call to generic filter.js reset_filter with
         // the session variable as the parameter.
-        Filter.reset_filter("study_filter_params", "/study/")
+        Filter.reset_filter("study_filter_params", "/study/");
     },
 
     init_events: function(){

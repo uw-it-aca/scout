@@ -72,7 +72,7 @@ var Food_Filter = {
     reset_filter: function(){
         // just makes a call to generic filter.js reset_filter with
         // the session variable as the parameter.
-        Filter.reset_filter("food_filter_params", "/food/")
+        Filter.reset_filter("food_filter_params", "/food/");
     },
 
     init_events: function(){
