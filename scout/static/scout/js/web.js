@@ -39,6 +39,11 @@ $(document).on('ready', function(event) {
         //List.init();
         Map.init_map();
         Filter.init();
+
+        $('.sticky-header-wrap').stickyHeaders({
+            stickyElement: 'div',
+        });
+
     }
     else {
         console.log("on discover");

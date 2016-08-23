@@ -34,6 +34,7 @@
         <h2 class="scout-list-header visually-hidden">List of study places (by distance)</h2>
 
         <ol id="scout_study_list" class="scout-card scout-list sticky-header-wrap">
+
             {% for group in grouped_spots %}
 
             <li class="scout-list-building" data-building-name="{{ group.name }}" data-building-lat="{{ group.latitude }}" data-building-lng="{{ group.longitude }}">
