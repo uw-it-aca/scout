@@ -35,6 +35,12 @@ var Map = {
                 Map.load_detail_map(map_id);
             }
 
+            // discover map
+            if( $("#discover_list_map").length > 0 ) {
+                var map_id = 'discover_list_map';
+                Map.load_list_map(map_id);
+            }
+
         });
 
         // handle map stuff for window resize
@@ -71,6 +77,12 @@ var Map = {
                 Map.load_detail_map(map_id);
             }
 
+            // discover map
+            if( $("#discover_list_map").length > 0 ) {
+                var map_id = 'discover_list_map';
+                Map.load_list_map(map_id);
+            }
+
         });
     },
 
@@ -83,6 +95,9 @@ var Map = {
         var pos = Geolocation.get_client_latlng();
         var mapOptions;
         if(mapExists) {
+
+            console.log("map exists");
+
             // center map on default location OR location received from user
             mapCenter = pos;
             mapOptions = {
@@ -267,6 +282,7 @@ var Map = {
         var mapExists = document.getElementById(map_id);
         var isMobile = $("body").data("mobile");
         var myLatlng, mapOptions;
+        var pos = Geolocation.get_client_latlng();
 
         if (mapExists) {
 
@@ -334,6 +350,49 @@ var Map = {
             ];
 
             var map = new google.maps.Map(document.getElementById(map_id), mapOptions);
+
+            // show user location marker if user is sharing
+            if (Geolocation.get_location_type() !== "default") {
+                // create a marker for user location
+                var locationMarker = new google.maps.Marker({
+                    position: pos,
+                    map: map,
+                    icon: {
+                        path: google.maps.SymbolPath.CIRCLE,
+                        fillColor: '#ffffff',
+                        fillOpacity: 1,
+                        strokeColor: '#c0392b',
+                        scale: 5,
+                        strokeWeight: 5
+                    },
+                });
+
+                // add radius overlay and bind to user location marker
+                var circle = new google.maps.Circle({
+                    map: map,
+                    radius: 40,    // meters
+                    fillColor: '#c0392b',
+                    fillOpacity: 0.15,
+                    strokeWeight: 0
+                });
+                circle.bindTo('center', locationMarker, 'position');
+
+                // pulsate the radius overlay
+                var direction = 1;
+                var rmin = 20, rmax = 30;
+                setInterval(function() {
+                    var radius = circle.getRadius();
+                    if ((radius > rmax) || (radius < rmin)) {
+                        direction *= -1;
+                    }
+                    circle.setRadius(radius + direction * 10);
+                }, 500);
+
+                // add user location marker to map
+                window.user_location_marker = locationMarker;
+
+            }
+
             map.setOptions({styles: styles});
 
             // create and open InfoWindow.
@@ -363,6 +422,23 @@ var Map = {
             marker.addListener('click', function() {
                 infowindow.open(map, marker);
             });
+
+            if (Geolocation.get_location_type() !== "default") {
+
+                var bounds = new google.maps.LatLngBounds();
+                // zoom the map automatically using the bounds of all markers
+
+                // add the marker position to boundary
+                bounds.extend(marker.position);
+
+                window.map_bounds = bounds;
+
+                // Don't store user marker in bounds as it can change
+                bounds.extend(locationMarker.position);
+                // fit all spots (include user location) onto map
+                map.fitBounds(bounds);
+            }
+
 
         }
 

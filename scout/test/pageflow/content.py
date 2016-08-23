@@ -6,6 +6,8 @@ necessary selectors are present
 
 import bs4
 from scout.test import ScoutTestCase
+from scout.dao.space import get_spot_list
+baseUrl = '/seattle/'
 
 
 class ContentTest(ScoutTestCase):
@@ -34,30 +36,15 @@ class ContentTest(ScoutTestCase):
 
     def test_home_content(self):
         """SCOUT-52 Test that the content on the home page is correct"""
-        bs = self.get_soup('')
+        bs = self.get_soup(baseUrl)
         self.assertOneExists(bs, "#page_discover")
 
     def test_food_content(self):
         """SCOUT-53 Test that the content on the food page is correct"""
-        bs = self.get_soup('/food/')
+        bs = self.get_soup(baseUrl + 'food/')
         self.assertOneExists(bs, "#page_food")
-
-    def test_detail_content(self):
-        """SCOUT-58 Test that the content on the detail page is correct"""
-        bs = self.get_soup('/food/')
-        places = bs.select('ol li a')
-        # basically clicking the first place on the list
-        tempHref = places[0].get('href')
-        bs = self.get_soup(tempHref)
-        tempUrl = tempHref.split('/')
-        # grabbing the id number from the URL (ex. /detail/5106/)
-        expUrl = 'page_' + tempUrl[len(tempUrl) - 2]
-        # grabbing the actual id on the page
-        scoutContent = bs.select('.scout-content')
-        # asserting that they are equal
-        self.assertEqual(expUrl, scoutContent[0].get('id'))
 
     def test_filter_content(self):
         """SCOUT-54 Test that the content on the filter page is correct"""
-        bs = self.get_soup('/food/filter/')
+        bs = self.get_soup(baseUrl + 'food/filter/')
         self.assertOneExists(bs, "#page_filter")

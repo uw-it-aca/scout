@@ -14,10 +14,8 @@ class ItemDAOTest(TestCase):
         spot = get_spot_by_id(1)
         spot_no_item = copy.deepcopy(spot)
 
-        self.assertEqual("true", "true")
-        # item has yet to be completely implemented
-        # spot = _filter_spot_items(796, spot)
-        # self.assertEqual(spot.filtered_item.item_id, 796)
+        spot = _filter_spot_items(796, spot)
+        self.assertEqual(spot.filtered_item.item_id, 796)
 
-        # spot_no_item = _filter_spot_items(7961, spot_no_item)
-        # self.assertFalse(hasattr(spot_no_item, 'filtered_item'))
+        spot_no_item = _filter_spot_items(7961, spot_no_item)
+        self.assertFalse(hasattr(spot_no_item, 'filtered_item'))
