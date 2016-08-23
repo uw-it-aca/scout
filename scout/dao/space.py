@@ -87,8 +87,6 @@ def get_filtered_spots(request, campus, app_type=None):
 def _get_spot_filters(request):
     params = []
     for param in request.GET:
-        # if "campus" in param:
-        #    params.append(("extended_info:campus", request.GET[param]))
         if "type" in param:
             params.append(("type", request.GET[param]))
         if "food" in param:
