@@ -3,7 +3,7 @@
 
 $(document).on('turbolinks:load', function() {
 
-    console.log("turbolinks fired!");
+    console.log("turbolinks ios fired!");
 
     /// async load css by flipping the media attribute to all
     $('link[rel="stylesheet"]').attr('media', 'all');
