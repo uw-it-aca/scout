@@ -31,32 +31,92 @@
 
                     <div class="scout-spot-name">{% if spot.filtered_item.name %}{{spot.filtered_item.name}}{% else %}item name missing{% endif %}</div>
                     <div class="scout-spot-type">
-                        {% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}
-</span>{% endfor %}
-                        <span>{{ item.subcategory }}</span>
+                        {{ spot.filtered_item.subcategory }}
                     </div>
 
-                    <div class="scout-spot-food-served">
-                        <label>Has stuff...</label>
-                        {% if spot.foodtype_names %}
-                            {% for foodtype in spot.foodtype_names %}
-                                <span>{{ foodtype }}</span>
-                            {% endfor %}
-                        {% else %} <span style="color:red;">missing has items</span> {% endif %}
+                    <div class="scout-spot-resources">
+                        <label>Resources</label>
+
+                        <span style="color:red;">missing resources</span>
+
                     </div>
+
+                    <div class="scout-spot-extra scope">
+                        <span>Available  4/5</span>
+                    </div>
+
 
                 </div>
             </div>
 
-            <div class="scout-spot-contact-info">
+            <div class="scout-spot-info">
 
-                replace with item specific information
+                <h4 class="visually-hidden">Space Information</h4>
+
+                <div class="scout-spot-info-item">
+                    <div>
+                        <span class="visually-hidden">asdfasf:</span>
+                        <span class="fa-stack fa-lg">
+                          <i class="fa fa-circle fa-stack-2x"></i>
+                          <i class="fa fa-meh-o fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <span class="scout-spot-action-text scope" style="text-transform:capitalize;">
+                            asdfsadfsfd
+                        </span>
+                    </div>
+                </div>
+
+                <div class="scout-spot-info-item">
+                    <div>
+                        <span class="visually-hidden">asdfas:</span>
+                        <span class="fa-stack fa-lg">
+                          <i class="fa fa-circle fa-stack-2x"></i>
+                          <i class="fa fa-meh-o fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <span class="scout-spot-action-text scope">asdfasdfas</span>
+                    </div>
+                </div>
+
+                <div class="scout-spot-info-item">
+                    <div>
+                        <span class="visually-hidden">asdf:</span>
+                        <span class="fa-stack fa-lg">
+                          <i class="fa fa-circle fa-stack-2x"></i>
+                          <i class="fa fa-meh-o fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <span class="scout-spot-action-text scope">
+                            asdfasfasdfsadf
+                        </span>
+                    </div>
+                </div>
+
+                <div class="scout-spot-info-item">
+                    <div style="overflow:visible; line-height:20px; white-space:normal;">
+                        <span class="visually-hidden">sdfdafs:</span>
+                        <span class="fa-stack fa-lg" style="float:left; width: 28px; margin-right:3px;">
+                          <i class="fa fa-circle fa-stack-2x"></i>
+                          <i class="fa fa-meh-o fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <span class="scout-spot-action-text scope" style="white-space:normal;float:left; width: 80%; ">
+                            asfddasf
+                        </span>
+                    </div>
+                </div>
 
             </div>
+
 
         </div>
 
         <div class="scout-spot-content">
+
+            <div class="scout-card">
+                <h3>Details</h3>
+
+                <h4 class="visually-hidden">Description</h4>
+                <div class="scout-spot-description scope">Our newest 13.3” macbook runs Mac OS X (Yosemite), weighing three pounds less than its 2011-2013 counterparts. It has Microsoft office 2011 as well as iWork 2009. With an 2.6GHz i5 dual core processor and 8 GB of RAM, this computer is faster and lighter than previous models. Excluded from this model are a CD/DVD drive and an Ethernet port. If you are in need of an Ethernet port, please ask for an adapter upon checkout. This item includes a charger and case, but Ethernet cables, Ethernet adapters, Apple remotes, and Mini DisplayPort to VGA adapters are available by request. </div>
+
+            </div>
 
             <div class="scout-card">
 
@@ -65,10 +125,12 @@
                     <h4 class="visually-hidden">Building information</h4>
                     <div class="scout-spot-building-info">
                         <ul>
-                            {% if spot.building_name %}<li>{{ spot.building_name }}</li>{% endif %}
-                            {% if spot.floor %}<li>{{ spot.floor }}</li>{% endif %}
-                            {% if spot.room_number %}<li>{{ spot.room_number }}</li>{% endif %}
+                            <li>spot building name: {{ spot.building_name }}</li>
+                            <li>spot name: {{spot.name}}</li>
+                            <li>floor: {{ spot.floor }}</li>
+                            <li>room: {{ spot.room_number }}</li>
                         </ul>
+                        <p class="scope">spot is missing a bunch of data</p>
                     </div>
                 </div>
 
@@ -99,11 +161,6 @@
                     {% endif %}
                 </div>
 
-            </div>
-
-            <div class="scout-card">
-                <h3>Details</h3>
-                asjdflka alsdkfj
             </div>
 
         </div>
