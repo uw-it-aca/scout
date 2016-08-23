@@ -3,7 +3,6 @@ from spotseeker_restclient.exceptions import DataFailureException
 import datetime
 import pytz
 
-
 OPEN_PERIODS = {
         # 5am - 10:59am
         'morning': {
@@ -119,6 +118,14 @@ def _get_spot_filters(request):
         if "lighting" in param:
             params.append(
                 ("extended_info:or_group:lighting", request.GET[param])
+            )
+        if "category" in param:
+            params.append(("item:category", request.GET[param]))
+        if "subcategory" in param:
+            params.append(("item:subcategory", request.GET[param]))
+        if "brand" in param:
+            params.append(
+                ("item:extended_info:i_brand", request.GET[param])
             )
     return params
 

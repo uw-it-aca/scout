@@ -253,7 +253,7 @@ def hybrid_study_detail_view(request, campus, spot_id):
                               context_instance=RequestContext(request))
 
 
-def hybrid_tech_list_view(reques, campus):
+def hybrid_tech_list_view(request, campus):
     spots = get_spots_by_filter([('has_items', 'true')])
     context = {"spots": spots,
                "campus": campus,

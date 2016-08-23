@@ -2,7 +2,10 @@ from scout.dao.space import get_spots_by_filter
 
 
 def get_item_by_id(item_id):
-    spot = get_spots_by_filter([('item:id', item_id)])
+    spot = get_spots_by_filter([
+            ('item:id', item_id),
+            ('extended_info:app_type', 'tech')
+    ])
     filtered_spot = _filter_spot_items(item_id, spot[0])
     return filtered_spot
 
