@@ -14,6 +14,7 @@ from scout.dao.item import get_item_by_id
 DEFAULT_LAT = 47.6558539
 DEFAULT_LON = -122.3094925
 
+
 def validate_campus_selection(function):
     def wrap(request, *args, **kwargs):
         if settings.CAMPUS_URL_LIST and isinstance(settings.CAMPUS_URL_LIST,
@@ -27,6 +28,7 @@ def validate_campus_selection(function):
         else:
             raise Http404
     return wrap
+
 
 @validate_campus_selection
 def discover_view(request, campus):
@@ -135,6 +137,7 @@ def food_list_view(request, campus):
     return render_to_response('scout/food/list.html', context,
                               context_instance=RequestContext(request))
 
+
 @validate_campus_selection
 def food_detail_view(request, campus, spot_id):
     spot = get_spot_by_id(spot_id)
@@ -146,6 +149,7 @@ def food_detail_view(request, campus, spot_id):
                "app_type": 'food'}
     return render_to_response('scout/food/detail.html', context,
                               context_instance=RequestContext(request))
+
 
 @validate_campus_selection
 def food_filter_view(request, campus):
