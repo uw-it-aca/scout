@@ -61,6 +61,31 @@ var default_selections = {
     ],
 };
 
+var study_selections1 = {
+    type_select: [
+        { value: "study_area", checked: false, text: "Study area"},
+        { value: "lounge", checked: false, text: 'Lounge'},
+    ],
+    resources_select: [
+        { value: 'has_outlets', checked: false, text: "Outlets"},
+        { value: "has_printing", checked: false, text: "Printing"},
+    ],
+    lighting_select: [
+        { value: "has_natural_light", checked: false, text: "Natural Light"},
+    ],
+};
+
+var tech_selections1 = {
+    brand_select: [
+        { value: "Sony", checked: false, text: "Sony"},
+        { value: "Vello", checked: false, text: "Vello"},
+    ],
+    subcategory_select: [
+        { value: "Calculator", checked: false, text: "Calculator"},
+        { value: "Tripod", checked: false, text: "Tripod"},
+    ],
+};
+
 // Generates a html div element with given id, creates the
 // filters (labels with checkboxes) modeled by the given data
 var generateSection = function generateSection(id, data){
@@ -103,11 +128,12 @@ var getDefaultJquery = function(filters) {
 // test a specific method and the potential cases that the
 // method may face
 describe("Filter Tests", function() {
-    describe("Initialization", function() {
+    describe("Food Initialization", function() {
         beforeEach(function() {
             global.$ = getDefaultJquery(filter_selections1);
+            // We need this because we get the type from the URL
+            global.window = new fakeWindow("/seattle/food/filter/");
         });
-        global.window = new fakeWindow("/seattle/food/filter/");
         it('should do nothing when the food filter_params is null', function() {
             var sessVars = new fakeSess();
             global.sessionStorage = sessVars;
@@ -148,27 +174,130 @@ describe("Filter Tests", function() {
             assert.equal(($(filter_item[0]).prop("checked")), true );
             assert.equal(($(filter_item2[0]).prop("checked")), true );
             assert.equal(($(filter_item3[0]).prop("checked")), false );
+        });
+    });
+    describe("Study Initialization", function() {
+        beforeEach(function() {
+            global.$ = getDefaultJquery(study_selections1);
+            // We need this because we get the type from the URL
+            global.window = new fakeWindow("/seattle/study/filter/");
+        });
+        it('should do nothing when the study filter_params is null', function() {
+            var sessVars = new fakeSess();
+            global.sessionStorage = sessVars;
+            Filter.init();
+            // Check to see if the filter checkboxes are still unchecked
+            filter_item = $("#type_select").find("input[value='study_area']");
+            filter_item2 = $("#resources_select").find("input[value='has_outlets']");
+            filter_item3 = $("#lighting_select").find("input[value='has_natural_light']");
+            assert.equal(($(filter_item[0]).prop("checked")), false );
+            assert.equal(($(filter_item2[0]).prop("checked")), false );
+            assert.equal(($(filter_item3[0]).prop("checked")), false );
+        });
+        it('should check off two checkboxes based on the study filter_params', function() {
+            var sessVars = new fakeSess(
+                {study_filter_params: '{"resources0":"has_outlets", "resources1":"has_printing"}'}
+            );
+            global.sessionStorage = sessVars;
+            Filter.init();
+            // Check to see if the intended filters are checked off
+            filter_item = $("#type_select").find("input[value='study_area']");
+            filter_item1 = $("#resources_select").find("input[value='has_outlets']");
+            filter_item2 = $("#resources_select").find("input[value='has_printing']");
+            filter_item3 = $("#lighting_select").find("input[value='has_natural_light']");
+            assert.equal(($(filter_item[0]).prop("checked")), false );
+            assert.equal(($(filter_item1[0]).prop("checked")), true );
+            assert.equal(($(filter_item2[0]).prop("checked")), true );
+            assert.equal(($(filter_item3[0]).prop("checked")), false );
+        });
+        it('should be able to check off checkboxes in different sections', function() {
+            var sessVars = new fakeSess(
+                {study_filter_params: '{"type0":"study_area", ' +  
+                                      '"resources0":"has_printing", ' + 
+                                      '"lighting0":"has_natural_light"}'
+            });
+            global.sessionStorage = sessVars;
+            Filter.init();
+            // Check to see if the intended filters are checked off
+            filter_item = $("#type_select").find("input[value='study_area']");
+            filter_item1 = $("#resources_select").find("input[value='has_outlets']");
+            filter_item2 = $("#resources_select").find("input[value='has_printing']");
+            filter_item3 = $("#lighting_select").find("input[value='has_natural_light']");
+            assert.equal(($(filter_item[0]).prop("checked")), true );
+            assert.equal(($(filter_item1[0]).prop("checked")), false );
+            assert.equal(($(filter_item2[0]).prop("checked")), true );
+            assert.equal(($(filter_item3[0]).prop("checked")), true );
+        });
+    });
 
+    describe("Tech Initialization", function() {
+        beforeEach(function() {
+            global.$ = getDefaultJquery(tech_selections1);
+            // We need this because we get the type from the URL
+            global.window = new fakeWindow("/seattle/tech/filter/");
+        });
+        it('should do nothing when the tech filter_params is null', function() {
+            var sessVars = new fakeSess();
+            global.sessionStorage = sessVars;
+            Filter.init();
+            // Check to see if the filter checkboxes are still unchecked
+            filter_item = $("#brand_select").find("input[value='Sony']");
+            filter_item2 = $("#brand_select").find("input[value='Vello']");
+            filter_item3 = $("#subcategory_select").find("input[value='Calculator']");
+            filter_item4 = $("#subcategory_select").find("input[value='Tripod']");
+            assert.equal(($(filter_item[0]).prop("checked")), false );
+            assert.equal(($(filter_item2[0]).prop("checked")), false );
+            assert.equal(($(filter_item3[0]).prop("checked")), false );
+            assert.equal(($(filter_item4[0]).prop("checked")), false );
+        });
+        it('should check off two checkboxes based on the tech filter_params', function() {
+            var sessVars = new fakeSess(
+                {tech_filter_params: '{"brand0":"Vello", "subcategory0":"Tripod"}'}
+            );
+            global.sessionStorage = sessVars;
+            Filter.init();
+            // Check to see if the intended filters are checked off
+            filter_item = $("#brand_select").find("input[value='Sony']");
+            filter_item2 = $("#brand_select").find("input[value='Vello']");
+            filter_item3 = $("#subcategory_select").find("input[value='Calculator']");
+            filter_item4 = $("#subcategory_select").find("input[value='Tripod']");
+            assert.equal(($(filter_item[0]).prop("checked")), false );
+            assert.equal(($(filter_item2[0]).prop("checked")), true );
+            assert.equal(($(filter_item3[0]).prop("checked")), false );
+            assert.equal(($(filter_item4[0]).prop("checked")), true );
+        });
+        it('should be able to check off checkboxes in different sections', function() {
+            var sessVars = new fakeSess(
+                {tech_filter_params: '{"brand0":"Sony", "brand1":"Vello", "subcategory0":"Tripod"}'}
+            );
+            global.sessionStorage = sessVars;
+            Filter.init();
+            // Check to see if the intended filters are checked off
+            filter_item = $("#brand_select").find("input[value='Sony']");
+            filter_item2 = $("#brand_select").find("input[value='Vello']");
+            filter_item3 = $("#subcategory_select").find("input[value='Calculator']");
+            filter_item4 = $("#subcategory_select").find("input[value='Tripod']");
+            assert.equal(($(filter_item[0]).prop("checked")), true );
+            assert.equal(($(filter_item2[0]).prop("checked")), true );
+            assert.equal(($(filter_item3[0]).prop("checked")), false );
+            assert.equal(($(filter_item4[0]).prop("checked")), true );
         });
     });
 
     describe("Get Params For Select", function() {
         global.$ = getDefaultJquery();
-
         it('should return formatted parameters correctly for one filter', function() {
             var selectedFilters = ["s_cuisine_hawaiian"];
             var exp = {cuisine0: 's_cuisine_hawaiian'};
             var actual = Filter._get_params_for_select(selectedFilters, "cuisine");
             assert.deepEqual(exp, actual);
         });
-
         it('should return multiple formatted parameters correctly', function() {
             var selectedFilters = ["food_court", "market", "restaurant"];
             var exp = {type0: "food_court", type1: "market", type2: "restaurant"};
             var actual = Filter._get_params_for_select(selectedFilters, "type");
             assert.deepEqual(exp, actual);
         });
-
         it('should return empty parameters for no filters', function() {
             var data = [];
             var exp = {};
@@ -185,7 +314,6 @@ describe("Filter Tests", function() {
             Food_Filter.set_filter_params();
             var exp = {};
             assert.deepEqual(JSON.parse(sessionVars.getItem("food_filter_params")), exp);
-
         });
         it('returns the right params for varied filters', function() {
             global.$ = getDefaultJquery(filter_selections);
@@ -197,6 +325,7 @@ describe("Filter Tests", function() {
             assert.deepEqual(JSON.parse(sessionVars.getItem("food_filter_params")), exp);
         });
         it('returns the right params after page is init with previous filters', function() {
+            global.window = new fakeWindow("/seattle/food/filter/");
             global.$ = getDefaultJquery(filter_selections1);
             var sessionVars = new fakeSess({ food_filter_params: '{"payment0":"s_pay_cash"}'});
             global.sessionStorage = sessionVars;
@@ -263,6 +392,7 @@ describe("Filter Tests", function() {
     });
 
     describe("Replace Food Href", function() {
+        // Seeing if the right href gets attached to the button based on the params
         beforeEach(function() {
             global.$ = tools.jqueryFromHtml('<a href="" id="link_food">Places</a>');
         });
@@ -302,6 +432,87 @@ describe("Filter Tests", function() {
         });
     });
 
+    describe("Replace Study Href", function() {
+        // Seeing if the right href gets attached to the button based on the params
+        beforeEach(function() {
+            global.$ = tools.jqueryFromHtml('<a href="" id="link_study">Places</a>');
+        });
+        it('the link_study is replaced with the href of no filters', function() {
+            var sessionVars = new fakeSess();
+            global.sessionStorage = sessionVars;
+            Filter.replace_navigation_href();
+            var study_anchor = $("#link_study");
+            var value = $(study_anchor).attr('href');
+            var exp = "/" + default_campus + "/study/"
+            assert.deepEqual(value, exp);
+        });
+        it('the link_study is replaced with the expected href of one filter', function() {
+            var sessionVars = new fakeSess(
+                { study_filter_params: '{"resources0": "has_outlets"}'}
+            );
+            global.sessionStorage = sessionVars;
+            Filter.replace_navigation_href();
+            var study_anchor = $("#link_study");
+            var value = $(study_anchor).attr('href');
+            var exp = "/" + default_campus + "/study/?resources0=has_outlets";
+            assert.deepEqual(value, exp);
+        });
+        it('the link_study is replaced with the expected href of multiple filters', function() {
+            var sessionVars = new fakeSess({ study_filter_params: JSON.stringify({
+                resources0: "has_outlets",
+                type0: "study_area",
+                food0: "building",
+                })
+            });
+            global.sessionStorage = sessionVars;
+            Filter.replace_navigation_href();
+            var study_anchor = $("#link_study");
+            var value = $(study_anchor).attr('href');
+            var exp = "/" + default_campus + "/study/?resources0=has_outlets&type0=study_area&food0=building";
+            assert.deepEqual(value, exp);
+        });
+    });
+    describe("Replace Tech Href", function() {
+        // Seeing if the right href gets attached to the button based on the params
+        beforeEach(function() {
+            global.$ = tools.jqueryFromHtml('<a href="" id="link_tech">Places</a>');
+        });
+        it('the link_tech is replaced with the href of no filters', function() {
+            var sessionVars = new fakeSess();
+            global.sessionStorage = sessionVars;
+            Filter.replace_navigation_href();
+            var tech_anchor = $("#link_tech");
+            var value = $(tech_anchor).attr('href');
+            var exp = "/" + default_campus + "/tech/"
+            assert.deepEqual(value, exp);
+        });
+        it('the link_tech is replaced with the expected href of one filter', function() {
+            var sessionVars = new fakeSess(
+                { tech_filter_params: '{"brand0": "Sony"}'}
+            );
+            global.sessionStorage = sessionVars;
+            Filter.replace_navigation_href();
+            var tech_anchor = $("#link_tech");
+            var value = $(tech_anchor).attr('href');
+            var exp = "/" + default_campus + "/tech/?brand0=Sony";
+            assert.deepEqual(value, exp);
+        });
+        it('the link_tech is replaced with the expected href of multiple filters', function() {
+            var sessionVars = new fakeSess({ tech_filter_params: JSON.stringify({
+                brand0: "LG",
+                brand1: "Sony",
+                subcategory0: "Calculator",
+                })
+            });
+            global.sessionStorage = sessionVars;
+            Filter.replace_navigation_href();
+            var tech_anchor = $("#link_tech");
+            var value = $(tech_anchor).attr('href');
+            var exp = "/" + default_campus + "/tech/?brand0=LG&brand1=Sony&subcategory0=Calculator";
+            assert.deepEqual(value, exp);
+        });
+    });
+
     describe("Reset Filter", function() {
         var sessionVars;
         before(function() {
@@ -309,13 +520,21 @@ describe("Filter Tests", function() {
             sessionVars = new fakeSess(
                 { food_filter_params: '{"payment0": "s_pay_cash"}'}
             );
+            sessionVars = new fakeSess(
+                { study_filter_params: '{"type0": "study_area"}'}
+            );
             global.sessionStorage = sessionVars;
             global.window = new fakeWindow("/seattle/food/");
+            // Should remove food params, should link to default food
             Filter.reset_filter('food_filter_params', 'food');
         });
-        it('should remove the session variables ("filter_params")', function() {
-            // Testing that the filter params are removed from session storage
+        it('should remove the food session variables ("food_filter_params")', function() {
+            // Testing that the food filter params are removed from session storage
             assert.deepEqual(global.sessionStorage.sessionVars.food_filter_params, undefined);
+        });
+        it('should not remove the study session variables ("study_filter_params")', function() {
+            // Testing that the study filter params are not removed from session storage
+            assert.deepEqual(global.sessionStorage.sessionVars.study_filter_params, '{"type0": "study_area"}');
         });
         it('should change the window location', function() {
             // Testing that the window's href has changed back to the default campus
@@ -324,7 +543,7 @@ describe("Filter Tests", function() {
     });
 
     describe("Get Filter Label Text", function() {
-        it('should return the right text with a URL with three different categories', function() {
+        it('should return the right text with a FOOD URL with three different categories', function() {
             global.window = new fakeWindow(
                 "/food/?payment0=s_pay_visa" +
                 "&type0=food_truck&open_now=true"
@@ -333,16 +552,7 @@ describe("Filter Tests", function() {
             var exp = "Payment Accepted, Restaurant Type, Open Now";
             assert.equal(result, exp);
         });
-        it('should return the right text with a URL containing filters from same category', function() {
-            global.window = new fakeWindow(
-                "/food/?period0=breakfast" +
-                "&period1=lunch&period2=dinner"
-            );
-            var result = Filter._get_filter_label_text();
-            var exp = "Open Period";
-            assert.equal(result, exp);
-        });
-        it('should return the right text with a URL containing multiple filters from same/different categories', function() {
+        it('should return the right text with a FOOD URL containing multiple filters from same/different categories', function() {
             global.window = new fakeWindow(
                 "/food/?campus0=tacoma" +
                 "&period0=breakfast&period1=lunch" +
@@ -352,10 +562,58 @@ describe("Filter Tests", function() {
             var exp = "Open Period, Open Now";
             assert.equal(result, exp);
         });
-        it('should return an empty string if the URL doesnt contain any filters', function() {
+        it('should return an empty string if the FOOD URL doesnt contain any filters', function() {
             global.window = new fakeWindow("/food/");
             var result = Filter._get_filter_label_text();
             var exp = "";
+            assert.equal(result, exp);
+        });
+        it('should return the right text with a STUDY URL with three different categories', function() {
+            global.window = new fakeWindow(
+                '/study/?resources0=has_outlets' + 
+                '&noise0=quiet&food0=space'
+            );
+            var result = Filter._get_filter_label_text();
+            var exp = "Refreshments, Noise Level, Resources";
+            assert.equal(result, exp);
+        });
+        it('should return empty string if the STUDY URL doesnt contain any filters', function() {
+            global.window = new fakeWindow('/study/');
+            var result = Filter._get_filter_label_text();
+            var exp = "";
+            assert.equal(result, exp);
+        });
+        it('should return the right text with a STUDY URL containing multiple filters from same/different categories', function() {
+            global.window = new fakeWindow(
+                '/study/?resources0=has_computers&resources1=has_printing' +
+                '&type0=lounge&type1=outdoor_area&noise0=quiet'
+            );
+            var result = Filter._get_filter_label_text();
+            var exp = "Study Type, Noise Level, Resources";
+            assert.equal(result, exp);
+        });
+        it('should return the right text with a TECH URL with two different categories', function() {
+            global.window = new fakeWindow(
+                '/tech/?brand0=Panasonic&' + 
+                'subcategory0=Laptop+Computer+(short+term)'
+            );
+            var result = Filter._get_filter_label_text();
+            var exp = "Brand, Type Sub-Category";
+            assert.equal(result, exp);
+        });
+        it('should return empty string if the TECH URL doesnt contain any filters', function() {
+            global.window = new fakeWindow('/tech/');
+            var result = Filter._get_filter_label_text();
+            var exp = "";
+            assert.equal(result, exp);
+        });
+        it('should return the right text with a TECH URL containing multiple filters from same/different categories', function() {
+            global.window = new fakeWindow(
+                '/tech/?brand0=Panasonic&brand1=Sony&' + 
+                'subcategory0=Calculator&subcategory1=Data+Projector'
+            );
+            var result = Filter._get_filter_label_text();
+            var exp = "Brand, Type Sub-Category";
             assert.equal(result, exp);
         });
     });
@@ -373,9 +631,9 @@ describe("Filter Tests", function() {
             assert.equal($("#filter_label_text").html(), "--");
         });
         it('should change the filter text, if the URL contains a filter', function() {
-            global.window = new fakeWindow("/food/?campus0=tacoma");
+            global.window = new fakeWindow("/food/?type0=cafeteria");
             Filter.set_filter_text();
-            assert.equal($("#filter_label_text").html(), "--");
+            assert.equal($("#filter_label_text").html(), "Restaurant Type");
         });
     });
 
@@ -385,19 +643,45 @@ describe("Filter Tests", function() {
                 '<input id="reset_food_button" type="button"' +
                 ' value="Reset"> <input id="run_food_search"' +
                 ' type="button" value="View Results"> ' +
-                '<a id="reset_food_filter"> <input id="noevents">'
+                '<input id="reset_tech_button" type="button"' +
+                ' value="Reset"> <input id="run_tech_search"' +
+                ' type="button" value="View Results"> ' +
+                '<input id="reset_study_button" type="button"' +
+                ' value="Reset"> <input id="run_study_search"' +
+                ' type="button" value="View Results"> ' +
+                '<input id="noevents">'
             );
             Filter.init_events();
         });
         // These methods check to see if the css selectors
         // have/don't have events attached to them
-        it('should attach an event to run_search', function() {
+        it('should attach an event to food run_search', function() {
             var elem = "#run_food_search";
             var events = $._data($(elem).get(0), "events");
             assert.notEqual(events, undefined);
         });
-        it('should attach an event to reset_button', function() {
+        it('should attach an event to food reset_button', function() {
             var elem = "#reset_food_button";
+            var events = $._data($(elem).get(0), "events");
+            assert.notEqual(events, undefined);
+        });
+        it('should attach an event to study run_search', function() {
+            var elem = "#run_study_search";
+            var events = $._data($(elem).get(0), "events");
+            assert.notEqual(events, undefined);
+        });
+        it('should attach an event to study reset_button', function() {
+            var elem = "#reset_study_button";
+            var events = $._data($(elem).get(0), "events");
+            assert.notEqual(events, undefined);
+        });
+        it('should attach an event to tech run_search', function() {
+            var elem = "#run_tech_search";
+            var events = $._data($(elem).get(0), "events");
+            assert.notEqual(events, undefined);
+        });
+        it('should attach an event to tech reset_button', function() {
+            var elem = "#reset_tech_button";
             var events = $._data($(elem).get(0), "events");
             assert.notEqual(events, undefined);
         });
