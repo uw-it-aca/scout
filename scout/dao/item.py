@@ -84,7 +84,7 @@ def get_filtered_items(spots, request):
             else:
                 for item_ei in item.extended_info:
                     if item_ei.key == "i_brand":
-                        if item.brand in brand:
+                        if item_ei.value in brand:
                             newSpot.items.append(item)
         newSpots.append(newSpot)
     return newSpots
