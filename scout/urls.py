@@ -100,7 +100,7 @@ urlpatterns = patterns(
         views.image_view),
 
     # discover card
-    url(r'^discover_card/(?P<discover_category>[a-zA-Z]+)/$',
+    url(r'^(?P<campus>[^/]+)/discover_card/(?P<discover_category>[a-zA-Z]+)/$',
         'scout.views.discover_card_view',
         name='discover_card_view'),
 

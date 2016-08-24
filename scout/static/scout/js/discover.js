@@ -17,7 +17,8 @@ Discover = {
     },
 
     fetch_cards: function (card_id, latlng) {
-        var url = "/discover_card/" + card_id + "/";
+        var campus = Navigation.get_campus_selection();
+        var url = "/" + campus + "/discover_card/" + card_id + "/";
         var pos_data = {"latitude": latlng.lat(),
             "longitude": latlng.lng()};
         $.ajax({

@@ -40,7 +40,8 @@ def discover_view(request, campus):
                               context_instance=RequestContext(request))
 
 
-def discover_card_view(request, discover_category):
+@validate_campus_selection
+def discover_card_view(request, campus, discover_category):
     # Will figure this out later
     lat = request.GET.get('latitude', None)
     lon = request.GET.get('longitude', None)
@@ -112,6 +113,8 @@ def discover_card_view(request, discover_category):
         discover_data = discover_categories[discover_category]
     except KeyError:
         raise Http404("Discover card does not exist")
+
+    discover_data["filter"].append(('extended_info:campus', campus))
 
     spots = get_spots_by_filter(discover_data["filter"])
     if len(spots) == 0:
