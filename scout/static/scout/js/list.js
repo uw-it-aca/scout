@@ -54,13 +54,13 @@ var List = {
     },
 
 
-    add_geodata_to_study_list: function () {
+    add_geodata_to_other_list: function () {
         List.add_spot_distances();
         List.add_building_distances();
         List.sort_buildings();
     },
 
-    add_geodata_to_other_list: function () {
+    add_geodata_to_food_list: function () {
         List.add_spot_distances();
         List.order_spot_list();
     },
@@ -68,10 +68,9 @@ var List = {
 
     init: function () {
         $(document).on("location_changed", function() {
-            //Geolocation.display_location_status();
             var page_path = window.location.pathname;
-            if (page_path.indexOf("study") !== -1){
-                List.add_geodata_to_study_list();
+            if (page_path.indexOf("food") !== -1){
+                List.add_geodata_to_food_list();
             } else {
                 List.add_geodata_to_other_list();
             }

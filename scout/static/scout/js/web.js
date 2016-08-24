@@ -36,7 +36,7 @@ $(document).on('ready', function(event) {
     else if (page_path.indexOf("tech") !== -1){
         console.log("on tech");
         Geolocation.display_location_status();
-        //List.init();
+        List.init();
         Map.init_map();
         Filter.init();
 
