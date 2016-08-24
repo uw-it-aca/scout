@@ -1,4 +1,5 @@
-from scout.dao.space import get_spots_by_filter, _get_spot_filters
+from scout.dao.space import get_spots_by_filter, _get_spot_filters, \
+    _get_extended_info_by_key
 import copy
 
 
@@ -15,6 +16,47 @@ def _filter_spot_items(item_id, spot):
     for item in spot.items:
         if item.item_id == item_id:
             spot.item = item
+    return spot
+
+
+def add_item_info(spot):
+    for item in spot.items:
+        item.model = _get_extended_info_by_key("i_model",
+                                               item.extended_info)
+        item.brand = _get_extended_info_by_key("i_brand",
+                                               item.extended_info)
+        item.checkout_period = _get_extended_info_by_key(
+            "i_checkout_period",
+            item.extended_info
+        )
+        item.has_access_restriction = _get_extended_info_by_key(
+            "i_has_access_restriction",
+            item.extended_info
+        )
+        item.access_limit_role = _get_extended_info_by_key(
+            "i_access_limit_role",
+            item.extended_info
+        )
+        item.access_role_students = _get_extended_info_by_key(
+            "i_access_role_students",
+            item.extended_info
+        )
+        item.reservation_required = _get_extended_info_by_key(
+            "i_reservation_required",
+            item.extended_info
+        )
+        item.is_active = _get_extended_info_by_key(
+            "i_is_active",
+            item.extended_info
+        )
+        item.quantity = _get_extended_info_by_key(
+            "i_quantity",
+            item.extended_info
+        )
+        item.description = _get_extended_info_by_key(
+            "i_description",
+            item.extended_info
+        )
     return spot
 
 
@@ -42,7 +84,7 @@ def get_filtered_items(spots, request):
             else:
                 for item_ei in item.extended_info:
                     if item_ei.key == "i_brand":
-                        if item_ei.value in brand:
+                        if item.brand in brand:
                             newSpot.items.append(item)
         newSpots.append(newSpot)
     return newSpots
