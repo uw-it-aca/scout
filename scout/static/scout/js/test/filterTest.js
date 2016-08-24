@@ -370,6 +370,84 @@ describe("Filter Tests", function() {
             assert.deepEqual(value, exp);
         });
     });
+    describe("Replace Study Href", function() {
+        beforeEach(function() {
+            global.$ = tools.jqueryFromHtml('<a href="" id="link_study">Places</a>');
+        });
+        it('the link_study is replaced with the href of no filters', function() {
+            var sessionVars = new fakeSess();
+            global.sessionStorage = sessionVars;
+            Filter.replace_navigation_href();
+            var study_anchor = $("#link_study");
+            var value = $(study_anchor).attr('href');
+            var exp = "/" + default_campus + "/study/"
+            assert.deepEqual(value, exp);
+        });
+        it('the link_study is replaced with the expected href of one filter', function() {
+            var sessionVars = new fakeSess(
+                { study_filter_params: '{"resources0": "has_outlets"}'}
+            );
+            global.sessionStorage = sessionVars;
+            Filter.replace_navigation_href();
+            var study_anchor = $("#link_study");
+            var value = $(study_anchor).attr('href');
+            var exp = "/" + default_campus + "/study/?resources0=has_outlets";
+            assert.deepEqual(value, exp);
+        });
+        it('the link_study is replaced with the expected href of multiple filters', function() {
+            var sessionVars = new fakeSess({ study_filter_params: JSON.stringify({
+                resources0: "has_outlets",
+                type0: "study_area",
+                food0: "building",
+                })
+            });
+            global.sessionStorage = sessionVars;
+            Filter.replace_navigation_href();
+            var study_anchor = $("#link_study");
+            var value = $(study_anchor).attr('href');
+            var exp = "/" + default_campus + "/study/?resources0=has_outlets&type0=study_area&food0=building";
+            assert.deepEqual(value, exp);
+        });
+    });
+    describe("Replace Tech Href", function() {
+        beforeEach(function() {
+            global.$ = tools.jqueryFromHtml('<a href="" id="link_tech">Places</a>');
+        });
+        it('the link_tech is replaced with the href of no filters', function() {
+            var sessionVars = new fakeSess();
+            global.sessionStorage = sessionVars;
+            Filter.replace_navigation_href();
+            var tech_anchor = $("#link_tech");
+            var value = $(tech_anchor).attr('href');
+            var exp = "/" + default_campus + "/tech/"
+            assert.deepEqual(value, exp);
+        });
+        it('the link_tech is replaced with the expected href of one filter', function() {
+            var sessionVars = new fakeSess(
+                { tech_filter_params: '{"brand0": "Sony"}'}
+            );
+            global.sessionStorage = sessionVars;
+            Filter.replace_navigation_href();
+            var tech_anchor = $("#link_tech");
+            var value = $(tech_anchor).attr('href');
+            var exp = "/" + default_campus + "/tech/?brand0=Sony";
+            assert.deepEqual(value, exp);
+        });
+        it('the link_tech is replaced with the expected href of multiple filters', function() {
+            var sessionVars = new fakeSess({ tech_filter_params: JSON.stringify({
+                brand0: "LG",
+                brand1: "Sony",
+                subcategory0: "Calculator",
+                })
+            });
+            global.sessionStorage = sessionVars;
+            Filter.replace_navigation_href();
+            var tech_anchor = $("#link_tech");
+            var value = $(tech_anchor).attr('href');
+            var exp = "/" + default_campus + "/tech/?brand0=LG&brand1=Sony&subcategory0=Calculator";
+            assert.deepEqual(value, exp);
+        });
+    });
 
     describe("Reset Filter", function() {
         var sessionVars;
@@ -378,13 +456,20 @@ describe("Filter Tests", function() {
             sessionVars = new fakeSess(
                 { food_filter_params: '{"payment0": "s_pay_cash"}'}
             );
+            sessionVars = new fakeSess(
+                { study_filter_params: '{"type0": "study_area"}'}
+            );
             global.sessionStorage = sessionVars;
             global.window = new fakeWindow("/seattle/food/");
             Filter.reset_filter('food_filter_params', 'food');
         });
-        it('should remove the session variables ("filter_params")', function() {
+        it('should remove the food session variables ("food_filter_params")', function() {
             // Testing that the filter params are removed from session storage
             assert.deepEqual(global.sessionStorage.sessionVars.food_filter_params, undefined);
+        });
+        it('should not remove the study session variables ("study_filter_params")', function() {
+            // Testing that the filter params are removed from session storage
+            assert.deepEqual(global.sessionStorage.sessionVars.study_filter_params, '{"type0": "study_area"}');
         });
         it('should change the window location', function() {
             // Testing that the window's href has changed back to the default campus
@@ -480,9 +565,9 @@ describe("Filter Tests", function() {
             assert.equal($("#filter_label_text").html(), "--");
         });
         it('should change the filter text, if the URL contains a filter', function() {
-            global.window = new fakeWindow("/food/?campus0=tacoma");
+            global.window = new fakeWindow("/food/?type0=cafeteria");
             Filter.set_filter_text();
-            assert.equal($("#filter_label_text").html(), "--");
+            assert.equal($("#filter_label_text").html(), "Restaurant Type");
         });
     });
 
@@ -492,19 +577,45 @@ describe("Filter Tests", function() {
                 '<input id="reset_food_button" type="button"' +
                 ' value="Reset"> <input id="run_food_search"' +
                 ' type="button" value="View Results"> ' +
-                '<a id="reset_food_filter"> <input id="noevents">'
+                '<input id="reset_tech_button" type="button"' +
+                ' value="Reset"> <input id="run_tech_search"' +
+                ' type="button" value="View Results"> ' +
+                '<input id="reset_study_button" type="button"' +
+                ' value="Reset"> <input id="run_study_search"' +
+                ' type="button" value="View Results"> ' +
+                '<input id="noevents">'
             );
             Filter.init_events();
         });
         // These methods check to see if the css selectors
         // have/don't have events attached to them
-        it('should attach an event to run_search', function() {
+        it('should attach an event to food run_search', function() {
             var elem = "#run_food_search";
             var events = $._data($(elem).get(0), "events");
             assert.notEqual(events, undefined);
         });
-        it('should attach an event to reset_button', function() {
+        it('should attach an event to food reset_button', function() {
             var elem = "#reset_food_button";
+            var events = $._data($(elem).get(0), "events");
+            assert.notEqual(events, undefined);
+        });
+        it('should attach an event to study run_search', function() {
+            var elem = "#run_study_search";
+            var events = $._data($(elem).get(0), "events");
+            assert.notEqual(events, undefined);
+        });
+        it('should attach an event to study reset_button', function() {
+            var elem = "#reset_study_button";
+            var events = $._data($(elem).get(0), "events");
+            assert.notEqual(events, undefined);
+        });
+        it('should attach an event to tech run_search', function() {
+            var elem = "#run_tech_search";
+            var events = $._data($(elem).get(0), "events");
+            assert.notEqual(events, undefined);
+        });
+        it('should attach an event to tech reset_button', function() {
+            var elem = "#reset_tech_button";
             var events = $._data($(elem).get(0), "events");
             assert.notEqual(events, undefined);
         });
