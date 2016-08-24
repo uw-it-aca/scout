@@ -229,6 +229,7 @@ describe("Filter Tests", function() {
             assert.equal(($(filter_item3[0]).prop("checked")), true );
         });
     });
+
     describe("Tech Initialization", function() {
         beforeEach(function() {
             global.$ = getDefaultJquery(tech_selections1);
@@ -391,6 +392,7 @@ describe("Filter Tests", function() {
     });
 
     describe("Replace Food Href", function() {
+        // Seeing if the right href gets attached to the button based on the params
         beforeEach(function() {
             global.$ = tools.jqueryFromHtml('<a href="" id="link_food">Places</a>');
         });
@@ -429,7 +431,9 @@ describe("Filter Tests", function() {
             assert.deepEqual(value, exp);
         });
     });
+
     describe("Replace Study Href", function() {
+        // Seeing if the right href gets attached to the button based on the params
         beforeEach(function() {
             global.$ = tools.jqueryFromHtml('<a href="" id="link_study">Places</a>');
         });
@@ -469,6 +473,7 @@ describe("Filter Tests", function() {
         });
     });
     describe("Replace Tech Href", function() {
+        // Seeing if the right href gets attached to the button based on the params
         beforeEach(function() {
             global.$ = tools.jqueryFromHtml('<a href="" id="link_tech">Places</a>');
         });
@@ -520,14 +525,15 @@ describe("Filter Tests", function() {
             );
             global.sessionStorage = sessionVars;
             global.window = new fakeWindow("/seattle/food/");
+            // Should remove food params, should link to default food
             Filter.reset_filter('food_filter_params', 'food');
         });
         it('should remove the food session variables ("food_filter_params")', function() {
-            // Testing that the filter params are removed from session storage
+            // Testing that the food filter params are removed from session storage
             assert.deepEqual(global.sessionStorage.sessionVars.food_filter_params, undefined);
         });
         it('should not remove the study session variables ("study_filter_params")', function() {
-            // Testing that the filter params are removed from session storage
+            // Testing that the study filter params are not removed from session storage
             assert.deepEqual(global.sessionStorage.sessionVars.study_filter_params, '{"type0": "study_area"}');
         });
         it('should change the window location', function() {
