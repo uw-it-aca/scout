@@ -2,15 +2,15 @@
 {% load staticfiles %}
 {% load scout_filters %}
 
-{% block title %}{{spot.filtered_item.name}}{% endblock %}
+{% block title %}{{spot.item.name}}{% endblock %}
 
 {% block web_content %}
 
-<div id="page_{{spot.filtered_item.item_id}}" class="scout-content">
+<div id="page_{{spot.item.item_id}}" class="scout-content">
 
     <div class="scout-details-container" role="main">
 
-        <h2 class="visually-hidden">{{spot.filtered_item.name}}</h2>
+        <h2 class="visually-hidden">{{spot.item.name}}</h2>
 
         <div class="scout-card scout-details-card" data-latitude="{{ spot.latitude }}" data-longitude="{{ spot.longitude }}" data-spotname="{{ spot.name }}" data-building="{{ spot.building_name }}">
 
@@ -29,9 +29,9 @@
             <div class="sticky">
                 <div class="scout-spot-meta clearfix">
 
-                    <div class="scout-spot-name">{% if spot.filtered_item.name %}{{ spot.filtered_item.name }}{% else %}item name missing{% endif %}</div>
+                    <div class="scout-spot-name">{% if spot.item.name %}{{ spot.item.name }}{% else %}item name missing{% endif %}</div>
                     <div class="scout-spot-type">
-                        {{ spot.filtered_item.subcategory }}
+                        {{ spot.item.subcategory }}
                     </div>
 
                     <div class="scout-spot-resources">
@@ -113,12 +113,12 @@
 
                 <p>full list of item attributes...</p>
                 <ul style="margin-bottom:2em;">
-                    <li>id: {{ spot.filtered_item.item_id }}</li>
-                    <li>name: {{ spot.filtered_item.name }}</li>
-                    <li>category: {{ spot.filtered_item.category }}</li>
-                    <li>subcategory: {{ spot.filtered_item.subcategory }}</li>
+                    <li>id: {{ spot.item.item_id }}</li>
+                    <li>name: {{ spot.item.name }}</li>
+                    <li>category: {{ spot.item.category }}</li>
+                    <li>subcategory: {{ spot.item.subcategory }}</li>
 
-                    {% for item in spot.filtered_item.extended_info %}
+                    {% for item in spot.item.extended_info %}
                         <li>{{item.key}}: {{ item.value }}<li>
                     {% endfor %}
 
