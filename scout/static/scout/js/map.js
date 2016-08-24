@@ -207,9 +207,10 @@ var Map = {
                 (function (marker, data) {
 
                     google.maps.event.addListener(marker, "click", function (e) {
+                        var campus = Navigation.get_campus_selection();
 
                         //Wrap the content inside an HTML DIV in order to set height and width of InfoWindow.
-                        infoWindow.setContent("<div><strong>"+data.spot_name+"</strong><br>"+data.building+"<br><a href='/food/"+data.id+"'>View details</a></div>");
+                        infoWindow.setContent("<div><strong>"+data.spot_name+"</strong><br>"+data.building+"<br><a href='/" + campus + "/food/"+data.id+"'>View details</a></div>");
                         infoWindow.open(map, marker);
 
                         $('li').css('background', 'none'); // clear any highlighted spots first
