@@ -54,13 +54,13 @@ var List = {
     },
 
 
-    add_geodata_to_study_list: function () {
+    add_geodata_to_other_list: function () {
         List.add_spot_distances();
         List.add_building_distances();
         List.sort_buildings();
     },
 
-    add_geodata_to_other_list: function () {
+    add_geodata_to_food_list: function () {
         List.add_spot_distances();
         List.order_spot_list();
     },
@@ -68,28 +68,14 @@ var List = {
 
     init: function () {
         $(document).on("location_changed", function() {
-            //Geolocation.display_location_status();
             var page_path = window.location.pathname;
-            if (page_path.indexOf("study") !== -1){
-                List.add_geodata_to_study_list();
+            if (page_path.indexOf("food") !== -1){
+                List.add_geodata_to_food_list();
             } else {
                 List.add_geodata_to_other_list();
             }
-            List.set_list_is_visible(true);
-        });
-        $(document).on("location_updating", function() {
-            List.set_list_is_visible(false);
-
         });
         Geolocation.init_location_toggles();
-    },
-
-    set_list_is_visible: function(is_visible) {
-        if(is_visible){
-            $("#scout_food_list").show();
-        } else {
-            $("#scout_food_list").hide();
-        }
     },
 
     scroll_to_spot: function(target, options, callback) {
