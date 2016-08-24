@@ -1,5 +1,6 @@
 from spotseeker_restclient.spotseeker import Spotseeker
 from spotseeker_restclient.exceptions import DataFailureException
+# from scout.dao.item import add_item_info
 import datetime
 import pytz
 
@@ -87,8 +88,6 @@ def get_filtered_spots(request, campus, app_type=None):
 def _get_spot_filters(request):
     params = []
     for param in request.GET:
-        # if "campus" in param:
-        #    params.append(("extended_info:campus", request.GET[param]))
         if "type" in param:
             params.append(("type", request.GET[param]))
         if "food" in param:
@@ -163,6 +162,7 @@ def process_extended_info(spot):
     spot = add_additional_info(spot)
     spot = add_study_info(spot)
     spot = organize_hours(spot)
+    # spot = add_item_info(spot)
 
     now = datetime.datetime.now(pytz.timezone('America/Los_Angeles'))
     spot.is_open = get_is_spot_open(spot, now)

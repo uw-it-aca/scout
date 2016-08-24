@@ -15,7 +15,7 @@ class ItemDAOTest(TestCase):
         spot_no_item = copy.deepcopy(spot)
 
         spot = _filter_spot_items(796, spot)
-        self.assertEqual(spot.filtered_item.item_id, 796)
+        self.assertEqual(spot.item.item_id, 796)
 
         spot_no_item = _filter_spot_items(7961, spot_no_item)
         self.assertFalse(hasattr(spot_no_item, 'filtered_item'))
