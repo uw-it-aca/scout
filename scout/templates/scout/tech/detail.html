@@ -40,7 +40,7 @@
                     </div>
 
                     <div class="scout-spot-extra scope">
-                        <span>Available  4/5</span>
+                        <span>Availble 5</span>
                     </div>
 
 
@@ -113,10 +113,20 @@
 
                 <p>full list of item attributes...</p>
                 <ul style="margin-bottom:2em;">
-                    <li>id: {{ spot.item.item_id }}</li>
+                    <li>item_id: {{ spot.item.item_id }}</li>
                     <li>name: {{ spot.item.name }}</li>
                     <li>category: {{ spot.item.category }}</li>
                     <li>subcategory: {{ spot.item.subcategory }}</li>
+                    <li>quantity: {{ spot.item.quantity }}</li>
+                    <li>brand: {{ spot.item.brand }}</li>
+                    <li>model: {{ spot.item.model }}</li>
+                    <li>description: {{ spot.item.description }}</li>
+                    <li>checkout_period: {{ spot.item.checkout_period }}</li>
+                    <li>has_access_restrictions: {{ spot.item.has_access_restrictions }}</li>
+                    <li>access_limit_role: {{ spot.item.access_limit_role }}</li>
+                    <li>access_role_students: {{ spot.item.access_role_students }}</li>
+                    <li>reservation_required: {{ spot.item.reservation_required }}</li>
+                    <li>is_active: {{ spot.item.is_active }}</li>
 
                     {% for item in spot.item.extended_info %}
                         <li>{{item.key}}: {{ item.value }}<li>
