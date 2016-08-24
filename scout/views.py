@@ -8,7 +8,7 @@ from scout.dao.space import get_period_filter, \
     get_spots_by_filter, group_spots_by_building
 from scout.dao.image import get_image
 from scout.dao.item import get_item_by_id, get_filtered_items, \
-    get_item_count
+    get_item_count, add_item_info
 
 
 # using red square as the default center
@@ -196,7 +196,6 @@ def study_filter_view(request, campus):
 
 
 # tech
-# not completely implemented
 @validate_campus_selection
 def tech_list_view(request, campus):
     # spots = get_spots_by_filter([('has_items', 'true')])
@@ -213,8 +212,9 @@ def tech_list_view(request, campus):
 
 @validate_campus_selection
 def tech_detail_view(request, campus, item_id):
-    spot_filtered_items = get_item_by_id(int(item_id))
-    context = {"spot": spot_filtered_items,
+    spot = get_item_by_id(int(item_id))
+    spot = add_item_info(spot)
+    context = {"spot": spot,
                "campus": campus,
                "app_type": 'tech'}
     return render_to_response('scout/tech/detail.html', context,
