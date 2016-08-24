@@ -74,21 +74,8 @@ var List = {
             } else {
                 List.add_geodata_to_other_list();
             }
-            List.set_list_is_visible(true);
-        });
-        $(document).on("location_updating", function() {
-            List.set_list_is_visible(false);
-
         });
         Geolocation.init_location_toggles();
-    },
-
-    set_list_is_visible: function(is_visible) {
-        if(is_visible){
-            $("#scout_food_list").show();
-        } else {
-            $("#scout_food_list").hide();
-        }
     },
 
     scroll_to_spot: function(target, options, callback) {
