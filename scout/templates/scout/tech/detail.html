@@ -35,12 +35,12 @@
                     </div>
 
                     <div class="scout-spot-resources">
-                        <label>Attributes</label>
-                        <span style="color:red;">list of attributes??</span>
+                        <label>Brand / Model</label>
+                        <span>{{spot.item.brand}} / {{spot.item.model}}</span>
                     </div>
 
-                    <div class="scout-spot-extra scope">
-                        <span>Availble 5</span>
+                    <div class="scout-spot-extra">
+                        {% if spot.item.quantity %}<span>Availble {{ spot.item.quantity }}</span>{% endif %}
                     </div>
 
 
@@ -49,7 +49,7 @@
 
             <div class="scout-spot-info">
 
-                <h4 class="visually-hidden">Space Information</h4>
+                <h4 class="visually-hidden">Item Information</h4>
 
                 <div class="scout-spot-info-item">
                     <div>
@@ -58,8 +58,8 @@
                           <i class="fa fa-circle fa-stack-2x"></i>
                           <i class="fa fa-meh-o fa-stack-1x fa-inverse"></i>
                         </span>
-                        <span class="scout-spot-action-text">
-                            https://www.cte.uw.edu/stfequip/request
+                        <span class="scout-spot-action-text scope">
+                            reserve_url: https://www.cte.uw.edu/stfequip/request
                         </span>
                     </div>
                 </div>
@@ -71,20 +71,7 @@
                           <i class="fa fa-circle fa-stack-2x"></i>
                           <i class="fa fa-meh-o fa-stack-1x fa-inverse"></i>
                         </span>
-                        <span class="scout-spot-action-text scope">asdfasdfas</span>
-                    </div>
-                </div>
-
-                <div class="scout-spot-info-item">
-                    <div>
-                        <span class="visually-hidden">asdf:</span>
-                        <span class="fa-stack fa-lg">
-                          <i class="fa fa-circle fa-stack-2x"></i>
-                          <i class="fa fa-meh-o fa-stack-1x fa-inverse"></i>
-                        </span>
-                        <span class="scout-spot-action-text scope">
-                            asdfasfasdfsadf
-                        </span>
+                        <span class="scout-spot-action-text">checkout_period: {{ spot.item.checkout_period }} days</span>
                     </div>
                 </div>
 
@@ -96,7 +83,7 @@
                           <i class="fa fa-meh-o fa-stack-1x fa-inverse"></i>
                         </span>
                         <span class="scout-spot-action-text scope" style="white-space:normal;float:left; width: 80%; ">
-                            asfddasf
+                            Students only!!!
                         </span>
                     </div>
                 </div>
@@ -127,15 +114,14 @@
                     <li>access_role_students: {{ spot.item.access_role_students }}</li>
                     <li>reservation_required: {{ spot.item.reservation_required }}</li>
                     <li>is_active: {{ spot.item.is_active }}</li>
-
-                    {% for item in spot.item.extended_info %}
-                        <li>{{item.key}}: {{ item.value }}<li>
-                    {% endfor %}
-
+                    <li style="margin:20px 0;">... NEW FIELDS... </li>
+                    <li class="scope">reserve_url: {{ spot.item.reserve_url }}</li>
+                    <li class="scope">manual_url: {{ spot.item.manual_url }}</li>
+                    <li class="scope">description: {{ spot.item.description }}</li>
                 </ui>
 
                 <h4 class="visually-hidden">Description</h4>
-                <div class="scout-spot-description scope">Our newest 13.3” macbook runs Mac OS X (Yosemite), weighing three pounds less than its 2011-2013 counterparts. It has Microsoft office 2011 as well as iWork 2009. With an 2.6GHz i5 dual core processor and 8 GB of RAM, this computer is faster and lighter than previous models. Excluded from this model are a CD/DVD drive and an Ethernet port. If you are in need of an Ethernet port, please ask for an adapter upon checkout. This item includes a charger and case, but Ethernet cables, Ethernet adapters, Apple remotes, and Mini DisplayPort to VGA adapters are available by request. </div>
+                <div class="scout-spot-description visually-hidden">{{ spot.item.description }}</div>
 
             </div>
 
