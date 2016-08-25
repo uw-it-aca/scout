@@ -35,12 +35,12 @@
                     </div>
 
                     <div class="scout-spot-resources">
-                        <label>Brand / Model</label>
-                        <span>{{spot.item.brand}} / {{spot.item.model}}</span>
+                        <label>Brand</label>
+                        <span>{{spot.item.brand}}</span>
                     </div>
 
                     <div class="scout-spot-extra">
-                        {% if spot.item.quantity %}<span>Availble {{ spot.item.quantity }}</span>{% endif %}
+                        {% if spot.item.quantity %}<span>Available {{ spot.item.quantity }}</span>{% endif %}
                     </div>
 
 
@@ -51,42 +51,60 @@
 
                 <h4 class="visually-hidden">Item Information</h4>
 
+
                 <div class="scout-spot-info-item">
-                    <div>
-                        <span class="visually-hidden">asdfasf:</span>
+                    {% if spot.item.reserve_url %}
+                    <a href="{{ spot.item.reserve_url }}" target="_blank">
+                        <span class="visually-hidden">Reserve equipment:</span>
                         <span class="fa-stack fa-lg">
                           <i class="fa fa-circle fa-stack-2x"></i>
-                          <i class="fa fa-meh-o fa-stack-1x fa-inverse"></i>
+                          <i class="fa fa-bookmark fa-stack-1x fa-inverse"></i>
                         </span>
-                        <span class="scout-spot-action-text scope">
-                            reserve_url: https://www.cte.uw.edu/stfequip/request
+                        <span class="scout-spot-action-text">
+                            {{ spot.item.reserve_url }}
                         </span>
-                    </div>
+                    </a>
+                    {% else %}
+                    <a href="https://www.cte.uw.edu/stfequip/request" target="_blank">
+                        <span class="visually-hidden">Reserve equipment:</span>
+                        <span class="fa-stack fa-lg">
+                          <i class="fa fa-circle fa-stack-2x"></i>
+                          <i class="fa fa-bookmark fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <span class="scout-spot-action-text">
+                            https://www.cte.uw.edu/stfequip/request
+                        </span>
+                    </a>
+                    {% endif%}
                 </div>
 
                 <div class="scout-spot-info-item">
                     <div>
-                        <span class="visually-hidden">asdfas:</span>
+                        <span class="visually-hidden">Checkout period:</span>
                         <span class="fa-stack fa-lg">
                           <i class="fa fa-circle fa-stack-2x"></i>
-                          <i class="fa fa-meh-o fa-stack-1x fa-inverse"></i>
+                          <i class="fa fa-calendar-check-o fa-stack-1x fa-inverse"></i>
                         </span>
-                        <span class="scout-spot-action-text">checkout_period: {{ spot.item.checkout_period }} days</span>
+                        <span class="scout-spot-action-text">{{ spot.item.checkout_period|floatformat:"0" }} day checkout</span>
                     </div>
                 </div>
 
+                {% if spot.item.access_limit_role %}
                 <div class="scout-spot-info-item">
                     <div style="overflow:visible; line-height:20px; white-space:normal;">
-                        <span class="visually-hidden">sdfdafs:</span>
-                        <span class="fa-stack fa-lg" style="float:left; width: 28px; margin-right:3px;">
+                        <span class="visually-hidden">Role limitations:</span>
+                        <span class="fa-stack fa-lg">
                           <i class="fa fa-circle fa-stack-2x"></i>
-                          <i class="fa fa-meh-o fa-stack-1x fa-inverse"></i>
+                          <i class="fa fa-users fa-stack-1x fa-inverse"></i>
                         </span>
-                        <span class="scout-spot-action-text scope" style="white-space:normal;float:left; width: 80%; ">
-                            Students only!!!
+                        <span class="scout-spot-action-text">
+                            {% if spot.item.access_role_students %}
+                            Available only for students.
+                            {% endif %}
                         </span>
                     </div>
                 </div>
+                {% endif %}
 
             </div>
 
@@ -97,30 +115,28 @@
 
             <div class="scout-card">
                 <h3>Details</h3>
-
-                <p>full list of item attributes...</p>
-                <ul style="margin-bottom:2em;">
-                    <li>item_id: {{ spot.item.item_id }}</li>
-                    <li>name: {{ spot.item.name }}</li>
-                    <li>category: {{ spot.item.category }}</li>
-                    <li>subcategory: {{ spot.item.subcategory }}</li>
-                    <li>quantity: {{ spot.item.quantity }}</li>
-                    <li>brand: {{ spot.item.brand }}</li>
-                    <li>model: {{ spot.item.model }}</li>
-                    <li>checkout_period: {{ spot.item.checkout_period }}</li>
-                    <li>has_access_restrictions: {{ spot.item.has_access_restrictions }}</li>
-                    <li>access_limit_role: {{ spot.item.access_limit_role }}</li>
-                    <li>access_role_students: {{ spot.item.access_role_students }}</li>
-                    <li>reservation_required: {{ spot.item.reservation_required }}</li>
-                    <li>is_active: {{ spot.item.is_active }}</li>
-                    <li style="margin:20px 0;">... NEW FIELDS... </li>
-                    <li class="scope">reserve_url: {{ spot.item.reserve_url }}</li>
-                    <li class="scope">manual_url: {{ spot.item.manual_url }}</li>
-                    <li class="scope">description: {{ spot.item.description }}</li>
-                </ui>
-
                 <h4 class="visually-hidden">Description</h4>
-                <div class="scout-spot-description visually-hidden">{{ spot.item.description }}</div>
+                <div class="scout-spot-description">
+                    {% if spot.item.description %}
+                    {{ spot.item.description }}
+                    {% else %}
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate.
+                    {% endif %}
+                </div>
+
+                {% if spot.item.manual_url %}
+                <div class="scout-spot-map-link">
+                    <a href="{{ spot.item.manual_url }}" target="_blank">
+                        <span class="fa-stack fa-lg">
+                          <i class="fa fa-circle fa-stack-2x"></i>
+                          <i class="fa fa-book fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <span class="scout-map-action-text">Download user manual</span>
+                    </a>
+                </div>
+                {% else %}
+                <div class="scout-spot-notes">No user manual available for download.</div>
+                {% endif %}
 
             </div>
 
@@ -131,10 +147,10 @@
                     <h4 class="visually-hidden">Building information</h4>
                     <div class="scout-spot-building-info">
                         <ul>
-                            <li>spot name: {% if spot.name %}{{spot.name}}</li>{% endif %}
-                            <li>building_name: {% if spot.building_name %}{{ spot.building_name }}</li>{% endif %}
-                            <li>floor: {% if spot.floor %}{{ spot.floor }}</li>{% endif %}
-                            <li>room_number: {% if spot.room_number %}{{ spot.room_number }}</li>{% endif %}
+                            <li><strong>{% if spot.name %}{{spot.name}}</strong>{% endif %}</li>
+                            <li>{% if spot.building_name %}{{ spot.building_name }}{% endif %}</li>
+                            <li>Floor: {% if spot.floor %}{{ spot.floor }}{% else %}---{% endif %}</li>
+                            <li>Room: {% if spot.room_number %}{{ spot.room_number }}{% else %}---{% endif %}</li>
                         </ul>
                     </div>
                 </div>
@@ -153,7 +169,7 @@
                           <i class="fa fa-circle fa-stack-2x"></i>
                           <i class="fa fa-apple fa-stack-1x fa-inverse"></i>
                         </span>
-                        <span class="scout-map-action-text">Launch Apple Maps</span>
+                        <span class="scout-map-action-text">Get directions via Apple Maps</span>
                     </a>
                     {% else %}
                     <a href="//maps.google.com/maps?q={{ spot.latitude }},{{ spot.longitude }}" target="_blank">
@@ -161,10 +177,34 @@
                           <i class="fa fa-circle fa-stack-2x"></i>
                           <i class="fa fa-google fa-stack-1x fa-inverse"></i>
                         </span>
-                        <span class="scout-map-action-text">Launch Google Maps</span>
+                        <span class="scout-map-action-text">Get directions via Google Maps</span>
                     </a>
                     {% endif %}
                 </div>
+
+            </div>
+
+            <div class="scout-card visually-hidden">
+                <h3>Extended Info List</h3>
+
+                <ul style="margin-bottom:2em;">
+                    <li>item_id: {{ spot.item.item_id }}</li>
+                    <li>name: {{ spot.item.name }}</li>
+                    <li>category: {{ spot.item.category }}</li>
+                    <li>subcategory: {{ spot.item.subcategory }}</li>
+                    <li style="margin:20px 0;">... EXTENDED INFO... </li>
+                    <li>description: {{ spot.item.description }}</li>
+                    <li>quantity: {{ spot.item.quantity }}</li>
+                    <li>brand: {{ spot.item.brand }}</li>
+                    <li>model: {{ spot.item.model }}</li>
+                    <li>manual_url: {{ spot.item.manual_url }}</li>
+                    <li>checkout_period: {{ spot.item.checkout_period }}</li>
+                    <li>access_limit_role: {{ spot.item.access_limit_role }}</li>
+                    <li>access_role_students: {{ spot.item.access_role_students }}</li>
+                    <li>reservation_required: {{ spot.item.reservation_required }}</li>
+                    <li>reserve_url: {{ spot.item.reserve_url }}</li>
+                    <li>is_active: {{ spot.item.is_active }}</li>
+                </ui>
 
             </div>
 
