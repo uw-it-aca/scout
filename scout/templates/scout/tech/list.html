@@ -75,7 +75,7 @@
                                             <div class="scout-spot-type">{% if item.subcategory %}<span>{{ item.subcategory }}</span>{% else %} <span style="color:red;">ITEM_SUB_CATEGORY</span> {% endif %}</div>
 
                                             <div class="scout-spot-capacity">
-                                                <span></span>
+                                                {% if spot.item.quantity %}<span>Available {{ spot.item.quantity }}</span>{% endif %}
                                             </div>
 
                                         </div>
