@@ -222,7 +222,6 @@ def tech_list_view(request, campus):
 @validate_campus_selection
 def tech_detail_view(request, campus, item_id):
     spot = get_item_by_id(int(item_id))
-    spot = add_item_info(spot)
     context = {"spot": spot,
                "campus": campus,
                "app_type": 'tech'}
