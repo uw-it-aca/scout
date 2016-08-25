@@ -30,13 +30,8 @@
             </div>
         </div>
 
-        {% if campus == 'seattle' %}
-        <div style="background:url('{% static "scout/img/uw-signage.jpg" %}') no-repeat; background-size:cover; padding: 150px 20px 20px 20px; color:#fff;">
-        {% elif campus == 'bothell' %}
-        <div style="background:url('{% static "scout/img/uwb-signage.jpg" %}') no-repeat; background-size:cover; padding: 150px 20px 20px 20px; color:#fff;">
-        {% elif campus == 'tacoma' %}
-        <div style="background:url('{% static "scout/img/uwt-signage.jpg" %}') no-repeat; background-size:cover; padding: 150px 20px 20px 20px; color:#fff;">
-        {% endif %}
+
+        <div style="background:url('{% static "scout/img/seattle/IMG_3973-M.jpg" %}') no-repeat; background-size:cover; padding: 150px 20px 20px 20px; color:#fff;">
             <h2 style="color:purple">Discover {{campus}}</h2>
             <p class="scope">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas nec efficitur velit. Praesent laoreet efficitur nisl porta interdum. Aenean vel efficitur libero.</p>
         </div>
