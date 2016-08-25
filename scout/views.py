@@ -87,7 +87,7 @@ def discover_card_view(request, campus, discover_category):
                 ] + get_period_filter('late_night')
         },
         "studyoutdoors": {
-            "title": "Study in the Sun",
+            "title": "Outdoor Study Areas",
             "spot_type": "study",
             "filter_url": "type0=outdoor",
             "filter": [
@@ -99,7 +99,7 @@ def discover_card_view(request, campus, discover_category):
                 ]
         },
         "studycomputerlab": {
-            "title": "Avoid the Sun in a Computer Lab",
+            "title": "Computer Labs",
             "spot_type": "study",
             "filter_url": "type0=computer_lab",
             "filter": [
