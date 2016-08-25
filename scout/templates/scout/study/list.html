@@ -64,16 +64,18 @@
                                             {% if type.name == 'open'%}{{ type.name|remove_underscores }} space{% else %}{{ type.name|remove_underscores }}{% endif %}</span>{% endfor %}{% else %} <span style="color:red;">SPOT_TYPE</span> {% endif %}</div>
 
                                         <div class="scout-spot-capacity">
-                                            {% if spot.capacity %}<span>Seats  {{ spot.capacity }}</span>{% endif %}
-
                                             {% if spot.labstats_id %}
                                                 {% if spot.auto_labstats_total != 0 %}
                                                     {% if spot.auto_labstats_available != 0 %}
                                                         <span style="margin-left:10px;"><i class="fa fa-desktop" aria-hidden="true"></i> <span style="color:lime;">{{ spot.auto_labstats_available }}</span> / {{ spot.auto_labstats_total }}</span>
                                                     {% endif %}
                                                 {% endif %}
+
+                                            {% else %}
+                                                {% if spot.capacity %}<span>Seats  {{ spot.capacity }}</span>{% endif %}
                                             {% endif %}
                                         </div>
+
                                     </div>
 
                                     <h3 class="scout-spot-name">{{ spot.name }}</h3>
@@ -81,7 +83,7 @@
                                     <div class="scout-spot-location">
 
                                         <span class="scout-spot-distance"><span class="visually-hidden">Distance from you:</span><span class="distance-number">---</span>&nbsp;mi.</span>&nbsp;&nbsp;
-                                        {% if spot.building_name %}{{ spot.building_name }}{% else %}<span style="color:red;">missing building_name</span>{% endif %}
+                                        {% if spot.location_description %}{{ spot.location_description }}{% else %}<span style="color:red;">missing building_name</span>{% endif %}
 
                                         <!--{% if spot.location_description %}<p>{{spot.location_description|insert_newline|linebreaks}}</p>{% else %}<span style="color:red;">missing location_description</span></p>{% endif %}-->
 

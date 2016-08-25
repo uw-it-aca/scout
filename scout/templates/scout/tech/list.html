@@ -73,14 +73,16 @@
 
                                         <div class="clearfix">
                                             <div class="scout-spot-type">{% if item.subcategory %}<span>{{ item.subcategory }}</span>{% else %} <span style="color:red;">ITEM_SUB_CATEGORY</span> {% endif %}</div>
+
                                             <div class="scout-spot-capacity">
-                                                <span class="scope">Available&nbsp;&nbsp;<span style="color:lime;">4</span> / 8</span>
+                                                <span></span>
                                             </div>
+
                                         </div>
 
                                         <h3 class="scout-spot-name">{{ item.name }}</h3>
                                         <div class="scout-spot-location">
-                                            <span class="scout-spot-distance"><span class="visually-hidden">Distance from you:</span><span class="distance-number">---</span>&nbsp;mi.</span>&nbsp;&nbsp;
+                                            <span class="scout-spot-distance"><span class="visually-hidden">Distance from you:</span><span class="distance-number scope">---</span>&nbsp;mi.</span>&nbsp;&nbsp;
                                             {% if spot.building_name %}{{ spot.name }}{% else %}<span style="color:red;">missing item spot.name</span>{% endif %}
                                         </div>
 
