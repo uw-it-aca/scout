@@ -586,7 +586,7 @@ describe("Filter Tests", function() {
         it('should return the right text with a STUDY URL containing multiple filters from same/different categories', function() {
             global.window = new fakeWindow(
                 '/study/?resources0=has_computers&resources1=has_printing' +
-                '&type0=lounge&type1=outdoor_area&noise0=quiet'
+                '&type0=lounge&type1=outdoor&noise0=quiet'
             );
             var result = Filter._get_filter_label_text();
             var exp = "Study Type, Noise Level, Resources";
