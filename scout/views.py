@@ -50,6 +50,7 @@ def discover_card_view(request, campus, discover_category):
     discover_categories = {
         "open": {
             "title": "Open Near",
+            "spot_type": "food",
             "filter_url": "open_now=true",
             "filter": [
                 ('limit', 5),
@@ -60,32 +61,9 @@ def discover_card_view(request, campus, discover_category):
                 ('extended_info:app_type', 'food')
                 ]
         },
-        "coffee": {
-            "title": "Serves Coffee And Espresso",
-            "filter_url": "food0=s_food_espresso",
-            "filter": [
-                ('limit', 5),
-                ('center_latitude', lat if lat else DEFAULT_LAT),
-                ('center_longitude', lon if lon else DEFAULT_LON),
-                ('distance', 100000),
-                ('extended_info:s_food_espresso', 'true'),
-                ('extended_info:app_type', 'food')
-                ]
-        },
-        "coupon": {
-            "title": "Dine with Discounts",
-            "filter_url": "",
-            "filter": [
-                ('limit', 5),
-                ('center_latitude', lat if lat else DEFAULT_LAT),
-                ('center_longitude', lon if lon else DEFAULT_LON),
-                ('distance', 100000),
-                ('extended_info:s_has_coupon', 'true'),
-                ('extended_info:app_type', 'food')
-                ]
-        },
         "morning": {
             "title": "Open during Morning (5am - 11am)",
+            "spot_type": "food",
             "filter_url": "period0=morning",
             "filter": [
                 ('limit', 5),
@@ -98,6 +76,7 @@ def discover_card_view(request, campus, discover_category):
         },
         "late": {
             "title": "Open Late Night (10pm - 5am)",
+            "spot_type": "food",
             "filter_url": "period0=late_night",
             "filter": [
                 ('limit', 5),
@@ -106,6 +85,31 @@ def discover_card_view(request, campus, discover_category):
                 ('distance', 100000),
                 ('extended_info:app_type', 'food')
                 ] + get_period_filter('late_night')
+        },
+        "studyoutdoors": {
+            "title": "Study in the Sun",
+            "spot_type": "study",
+            "filter_url": "type0=outdoor",
+            "filter": [
+                ('limit', 5),
+                ('center_latitude', lat if lat else DEFAULT_LAT),
+                ('center_longitude', lon if lon else DEFAULT_LON),
+                ('distance', 100000),
+                ('type', 'outdoor')
+                ]
+        },
+        "studycomputerlab": {
+            "title": "Avoid the Sun in a Computer Lab",
+            "spot_type": "study",
+            "filter_url": "type0=computer_lab",
+            "filter": [
+                ('limit', 5),
+                ('center_latitude', lat if lat else DEFAULT_LAT),
+                ('center_longitude', lon if lon else DEFAULT_LON),
+                ('distance', 100000),
+                ('type', 'computer_lab')
+            ]
+
         },
     }
 
@@ -121,7 +125,9 @@ def discover_card_view(request, campus, discover_category):
         raise Http404("No spots for card")
     context = {
         "spots": spots,
+        "campus": campus,
         "card_title": discover_data["title"],
+        "spot_type": discover_data["spot_type"],
         "card_filter_url": discover_data["filter_url"]
     }
 
