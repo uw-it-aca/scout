@@ -67,12 +67,12 @@
                                             {% if spot.labstats_id %}
                                                 {% if spot.auto_labstats_total != 0 %}
                                                     {% if spot.auto_labstats_available != 0 %}
-                                                        <span style="margin-left:10px;"><i class="fa fa-desktop" aria-hidden="true"></i> <span style="color:lime;">{{ spot.auto_labstats_available }}</span> / {{ spot.auto_labstats_total }}</span>
+                                                        <span style="margin-left:10px; color:#333;"><i class="fa fa-desktop" aria-hidden="true"></i> <span style="color:#2ecc71;">{{ spot.auto_labstats_available }}</span> / {{ spot.auto_labstats_total }}</span>
                                                     {% endif %}
                                                 {% endif %}
 
                                             {% else %}
-                                                {% if spot.capacity %}<span>Seats  {{ spot.capacity }}</span>{% endif %}
+                                                {% if spot.capacity %}<span>Seats {{ spot.capacity }}</span>{% endif %}
                                             {% endif %}
                                         </div>
 
