@@ -68,6 +68,17 @@ def get_spots_by_filter(filters=[]):
     return res
 
 
+def get_building_list(campus, app_type=None):
+    spot_client = Spotseeker()
+    buildings = []
+    try:
+        buildings = spot_client.get_building_list(campus, app_type)
+    except DataFailureException:
+        pass
+        # Log the error?
+    return buildings
+
+
 def get_filtered_spots(request, campus, app_type=None):
     filters = _get_spot_filters(request)
 

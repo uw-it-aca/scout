@@ -19,14 +19,11 @@
                     <div id="building_select">
                         <!--Needs to be updated dynamically!-->
                         <select multiple style="width:100%;">
-                            <option value="">Burke Memorial-Washington State Museum (BMM)</option>
-                            <option value="">Allen Library (ALB) South</option>
-                            <option value="">Art Building (ART)</option>
-                            <option value="">Intramural Activities Building (IMA)</option>
-                            <option>Alder Hall</option>
-                            <option>Architecture Hall (ARC)</option>
-                            <option>Suzzallo Library (SUZ)</option>
-                            <option>Poplar Hall</option>
+                            {% for building_name in buildings %}
+                                {% if building_name %}
+                                    <option value="{{ building_name }}">{{ building_name }}</option>
+                                {% endif %}
+                            {% endfor %}
                         </select>
                     </div>
                 </fieldset>

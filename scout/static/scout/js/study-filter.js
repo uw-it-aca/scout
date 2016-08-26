@@ -10,14 +10,14 @@ var Study_Filter = {
 
         var params = {};
         var param_types = {
-            "building": "building_select input:checkbox:checked",
+            "building": "building_select option:selected",
             "resources": "resources_select input:checkbox:checked",
             "type": "type_select input:checkbox:checked",
             "noise": "noise_select input:checkbox:checked",
             "food": "food_select input:checkbox:checked",
             "lighting": "lighting_select input:checkbox:checked"
         };
-
+        
         $.each(param_types, function(type, param){
             var result = $("#" + param).map(function() {
                 return $(this).val();
