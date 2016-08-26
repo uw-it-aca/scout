@@ -59,14 +59,6 @@ Discover = {
 
         var campus = Navigation.get_campus_selection();
 
-        // update open near card title based on location sharing
-        if (Geolocation.get_location_type() === "default") {
-            $("#open span.scout-card-title").html("Open now, "+ campus +" Campus");
-        }
-        else {
-            $("#open span.scout-card-title").html("Open, near you!");
-        }
-
     },
 
     _add_distance_to_spots: function () {

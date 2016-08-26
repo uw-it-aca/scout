@@ -49,7 +49,7 @@ def discover_card_view(request, campus, discover_category):
     # Hardcoded for food at the moment. Change it per need basis.
     discover_categories = {
         "open": {
-            "title": "Open Near",
+            "title": "Open Now",
             "spot_type": "food",
             "filter_url": "open_now=true",
             "filter": [
@@ -62,7 +62,7 @@ def discover_card_view(request, campus, discover_category):
                 ]
         },
         "morning": {
-            "title": "Open during Morning (5am - 11am)",
+            "title": "Open Mornings (5am - 11am)",
             "spot_type": "food",
             "filter_url": "period0=morning",
             "filter": [
