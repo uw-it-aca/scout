@@ -24,8 +24,6 @@
 
             </div>
 
-            <h4 class="visually-hidden">Study stuff</h4>
-
             <div class="sticky">
                 <div class="scout-spot-meta clearfix">
 
@@ -40,7 +38,7 @@
                     </div>
 
                     <div class="scout-spot-extra">
-                        {% if spot.item.quantity %}<span>Available {{ spot.item.quantity }}</span>{% endif %}
+                        {% if spot.item.quantity %}<span>{{ spot.item.quantity }} available </span>{% endif %}
                     </div>
 
 
@@ -48,9 +46,7 @@
             </div>
 
             <div class="scout-spot-info">
-
-                <h4 class="visually-hidden">Item Information</h4>
-
+                <h4 class="visually-hidden">Reservation Info</h4>
 
                 <div class="scout-spot-info-item">
                     {% if spot.item.reserve_url %}
@@ -115,7 +111,6 @@
 
             <div class="scout-card">
                 <h3>Details</h3>
-                <h4 class="visually-hidden">Description</h4>
                 <div class="scout-spot-description">
                     {% if spot.item.description %}
                     {{ spot.item.description }}
@@ -134,8 +129,6 @@
                         <span class="scout-map-action-text">Download user manual</span>
                     </a>
                 </div>
-                {% else %}
-                <div class="scout-spot-notes">No user manual available for download.</div>
                 {% endif %}
 
             </div>
@@ -187,7 +180,6 @@
             <div class="scout-card">
                 <div class="scout-spot-hours">
                     <h3>Location Hours</h3>
-                    <h4 class="visually-hidden">Open hours</h4>
                     <ul style="margin-bottom: 15px;">
                         <li><span class="day">Monday:</span> {% for hours in spot.hours.monday %}{% if not forloop.first %}, {% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|remove_periods }}{% empty %}<span class="closed">Closed</span>{% endfor %}</li>
                         <li><span class="day">Tuesday:</span> {% for hours in spot.hours.tuesday %}{% if not forloop.first %}, {% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|remove_periods }}{% empty %}<span class="closed">Closed</span>{% endfor %}</li>

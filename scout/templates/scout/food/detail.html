@@ -22,9 +22,6 @@
             <div class="scout-spot-image spot-detail-main-image" style="background: #e5e6e9 url('{% static "scout/img/placeholder-1000.png" %}') no-repeat center center; background-size: contain;">
             {% endif %}
             </div>
-
-            <h4 class="visually-hidden">Food stuff</h4>
-
             <div class="sticky">
                 <div class="scout-spot-meta clearfix">
 
@@ -51,9 +48,7 @@
                         {% else %} <span style="color:red;">missing foodtype</span> {% endif %}
                     </div>
 
-                    <h4 class="visually-hidden">Today's statuses</h4>
-
-                    <div class="scout-spot-status" role="alert">{% if spot.is_open %}<span class="open">Open now</span>{% else %}<span class="closed">Closed</span>{% endif %}</div>
+                    <div class="scout-spot-status" role="status" aria-live="polite">{% if spot.is_open %}<span class="open">Open now</span>{% else %}<span class="closed">Closed</span>{% endif %}</div>
 
                     <div class="scout-spot-open-period">
                         <label>Open periods</label>
@@ -74,7 +69,7 @@
                 </div>
 
                 {% if spot.has_alert %}
-                <div class="scout-spot-alert">
+                <div class="scout-spot-alert" role="alert">
                     <i class="fa fa-exclamation-triangle"></i> {{ spot.alert_notes }}
                 </div>
                 {% endif %}
@@ -129,11 +124,13 @@
         </div>
 
         <div class="scout-spot-content">
-
+        {% if spot.location_description %}<div class="scout-card">
+                <h3>Description</h3>
+                <div class="scout-spot-description">{{spot.location_description}}</div>
+            </div>{% endif %}
             <div class="scout-card">
                 <div class="scout-spot-hours">
                     <h3>Hours</h3>
-                    <h4 class="visually-hidden">Open hours</h4>
                     <ul style="margin-bottom: 15px;">
                         <li><span class="day">Monday:</span> {% for hours in spot.hours.monday %}{% if not forloop.first %}, {% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|remove_periods }}{% empty %}<span class="closed">Closed</span>{% endfor %}</li>
                         <li><span class="day">Tuesday:</span> {% for hours in spot.hours.tuesday %}{% if not forloop.first %}, {% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|remove_periods }}{% empty %}<span class="closed">Closed</span>{% endfor %}</li>
@@ -207,11 +204,6 @@
             <div class="scout-card">
                 <h3>Details</h3>
 
-                {% if spot.location_description %}
-                <h4 class="visually-hidden">Description</h4>
-                <div class="scout-spot-description">{{spot.location_description}}</div>
-                {% endif %}
-
                 {% if spot.has_reservation %}
                 <h4><i class="fa fa-bookmark"></i> Reservations</h4>
                 <div class="scout-spot-reservation">{{spot.reservation_notes}}</div>
@@ -229,7 +221,6 @@
                 {% if spot.has_coupon %}
                 <h4><i class="fa fa-ticket"></i> Coupon</h4>
                 <div class="scout-spot-coupon">
-                    <div>This location is currently offering a coupon for food and dining. Use the link below to view the current offering.</div>
                     <a href="{{ spot.coupon_url }}" target="_blank" style="margin: 10px 0;">
                         <span class="fa-stack fa-lg">
                           <i class="fa fa-circle fa-stack-2x"></i>

@@ -26,8 +26,6 @@
             <div class="scout-spot-image spot-detail-main-image" style="background: #e5e6e9 url('{% static "scout/img/placeholder-1000.png" %}') no-repeat center center; background-size: cover;"></div>
             {% endif %}
 
-            <h4 class="visually-hidden">Study stuff</h4>
-
             <div class="sticky">
                 <div class="scout-spot-meta clearfix">
 
@@ -72,7 +70,7 @@
 
             <div class="scout-spot-info">
 
-                <h4 class="visually-hidden">Space Information</h4>
+                <h4 class="visually-hidden">Environment Details</h4>
 
                 {% if spot.spot_noise %}
                 <div class="scout-spot-info-item">
@@ -145,7 +143,6 @@
             <div class="scout-card">
                 <div class="scout-spot-hours">
                     <h3>Hours</h3>
-                    <h4 class="visually-hidden">Open hours</h4>
                     <ul style="margin-bottom: 15px;">
                         <li><span class="day">Monday:</span> {% for hours in spot.hours.monday %}{% if not forloop.first %}, {% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|remove_periods }}{% empty %}<span class="closed">Closed</span>{% endfor %}</li>
                         <li><span class="day">Tuesday:</span> {% for hours in spot.hours.tuesday %}{% if not forloop.first %}, {% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|remove_periods }}{% empty %}<span class="closed">Closed</span>{% endfor %}</li>
