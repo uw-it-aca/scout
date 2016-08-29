@@ -213,9 +213,6 @@ var Map = {
                         infoWindow.setContent("<div><strong>"+data.spot_name+"</strong><br>"+data.building+"<br><a href='/" + campus + "/food/"+data.id+"'>View details</a></div>");
                         infoWindow.open(map, marker);
 
-                        $('li').css('background', 'none'); // clear any highlighted spots first
-                        $('#' + data.id).css('background', '#e8eaf7');
-
                         // scroll to spot on list
                         List.scroll_to_spot('#' + data.id);
 
