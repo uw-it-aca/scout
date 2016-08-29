@@ -24,7 +24,7 @@ var List = {
         });
     },
 
-    order_list: function (className, listName, isBuilding = false) {
+    order_list: function (className, listName, isBuilding) {
         var objects = $("." + className).not(".scout-error").detach();
         if(isBuilding) {
             $.each(objects, function(idx, object){
