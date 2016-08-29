@@ -201,7 +201,7 @@ body { background: #f1f1f1; }
             .scout-list-header { }
             .scout-list { padding:0; margin: 0;
 
-                .scout-list-item { list-style:none; border-top:solid 1px #ddd; position: relative;
+                .scout-list-item, .scout-list-item-object { list-style:none; border-top:solid 1px #ddd; position: relative;
 
                     &:first-child{ border-top: none; }
 
@@ -440,7 +440,7 @@ body { background: #f1f1f1; }
 }
 
 .sticky-helper { background:#aaa !important; color: #fff; font-size:14px; width: 100%;
-    span { display: block; padding: 5px 20px; }
+    span { display: block; padding: 5px 20px; white-space: nowrap; overflow-x: hidden; text-overflow: ellipsis; }
 }
 .sticky-helper.sticky-header-hidden { display: none; }
 .sticky-helper.is-sticky { display: block; background:#aaa; color: #fff; font-size:14px; position:absolute; top: 102px !important; left: 0; right:0; z-index: 9999;
