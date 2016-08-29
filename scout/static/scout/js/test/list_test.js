@@ -50,7 +50,7 @@ describe('List Food Tests', function() {
             var $ = tools.jqueryFromHtml(init_list);
             global.$ = $;
             // Do the sorting
-            List.order_spot_list("scout_food_list");
+            List.order_list("scout-list-item", "scout_food_list");
             // Get resulting list
             var actual_list = $('#scout_food_list').html();
             // Make expected result
