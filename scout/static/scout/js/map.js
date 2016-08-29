@@ -218,10 +218,6 @@ var Map = {
 
                     });
 
-                    google.maps.event.addListener(infoWindow,'closeclick',function(){
-                        $('#' + data.id).css('background', 'none');
-                    });
-
                     // prevent google maps from being tab navigated
                     google.maps.event.addListener(map, "tilesloaded", function(){
                         $("#" + map_id +" a").attr("tabindex","-1");
