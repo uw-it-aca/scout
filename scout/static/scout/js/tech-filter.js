@@ -49,7 +49,7 @@ var Tech_Filter = {
         var filter_categories = [];
         filter_labels = {
             "brand": "Brand",
-            "subcategory": "Type Sub-Category",
+            "subcategory": "Type",
         };
         $.each(filter_labels, function(filter, label){
             if(url.indexOf("&" + filter) > -1 || url.indexOf("?" + filter) > -1){

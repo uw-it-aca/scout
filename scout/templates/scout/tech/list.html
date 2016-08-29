@@ -14,17 +14,21 @@
     <div class="scout-filter-results">
 
         <div class="scout-filter-results-by">
-
-            <label>Type: (sub_category) Most Popular 5?</label>
-            <p class="scope">loop through all subcategory</p>
-            <ul>
-                <li><a href="/{{campus}}/tech/?subcategory=digital">Digital camera</a></li>
-                <li><a href="/{{campus}}/tech/?subcategory=digital_video">Digital Video Camera</a></li>
-                <li><a href="/{{campus}}/tech/?subcategory=outdoor">Outdoor Wildlife camera</a></li>
-                <li><a href="/{{campus}}/tech/?subcategory=waterproof">Waterproof Camera</a></li>
-            </ul>
-
+            <label>Filtering by:</label>
+            <div id="filter_label_text" class="scout-filter-results-text">---</div>
         </div>
+
+        <div class="scout-filter-results-by">
+            <label>Commonly requested types:</label>
+            <ul style="list-style:none; padding:0; margin:0; line-height:20px;">
+                <li><a href="/{{campus}}/tech/?subcategory0=Digital+Camera">Digital Camera</a></li>
+                <li><a href="/{{campus}}/tech/?subcategory0=Digital+Video+Camera">Digital Video Camera</a></li>
+                <li><a href="/{{campus}}/tech/?subcategory0=Laptop+Computer">Laptop Computer</a></li>
+                <li><a href="/{{campus}}/tech/?subcategory0=Tablet+Computer">Tablet Computer</a></li>
+                <li><a href="/{{campus}}/tech/?subcategory0=Data+Projector">Data Projector</a></li>
+            </ul>
+        </div>
+
         <div class="scout-filter-results-results clearfix">
             <label>Items:</label>
             <div class="scout-filter-results-count">{{ count }}</div>

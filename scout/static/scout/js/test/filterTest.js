@@ -212,8 +212,8 @@ describe("Filter Tests", function() {
         });
         it('should be able to check off checkboxes in different sections', function() {
             var sessVars = new fakeSess(
-                {study_filter_params: '{"type0":"study_area", ' +  
-                                      '"resources0":"has_printing", ' + 
+                {study_filter_params: '{"type0":"study_area", ' +
+                                      '"resources0":"has_printing", ' +
                                       '"lighting0":"has_natural_light"}'
             });
             global.sessionStorage = sessVars;
@@ -570,7 +570,7 @@ describe("Filter Tests", function() {
         });
         it('should return the right text with a STUDY URL with three different categories', function() {
             global.window = new fakeWindow(
-                '/study/?resources0=has_outlets' + 
+                '/study/?resources0=has_outlets' +
                 '&noise0=quiet&food0=space'
             );
             var result = Filter._get_filter_label_text();
@@ -594,11 +594,11 @@ describe("Filter Tests", function() {
         });
         it('should return the right text with a TECH URL with two different categories', function() {
             global.window = new fakeWindow(
-                '/tech/?brand0=Panasonic&' + 
+                '/tech/?brand0=Panasonic&' +
                 'subcategory0=Laptop+Computer+(short+term)'
             );
             var result = Filter._get_filter_label_text();
-            var exp = "Brand, Type Sub-Category";
+            var exp = "Brand, Type";
             assert.equal(result, exp);
         });
         it('should return empty string if the TECH URL doesnt contain any filters', function() {
@@ -609,11 +609,11 @@ describe("Filter Tests", function() {
         });
         it('should return the right text with a TECH URL containing multiple filters from same/different categories', function() {
             global.window = new fakeWindow(
-                '/tech/?brand0=Panasonic&brand1=Sony&' + 
+                '/tech/?brand0=Panasonic&brand1=Sony&' +
                 'subcategory0=Calculator&subcategory1=Data+Projector'
             );
             var result = Filter._get_filter_label_text();
-            var exp = "Brand, Type Sub-Category";
+            var exp = "Brand, Type";
             assert.equal(result, exp);
         });
     });
