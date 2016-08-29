@@ -372,6 +372,8 @@ body { background: #f1f1f1; }
                 input[type="checkbox"], input[type="radio"]    { margin-right: 5px; }
             }
 
+            select[multiple] { height: auto; font-size: 14px; }
+
             .scout-filter-split { width: 100%;
                 label { display: inline-block; width: 50%; }
             }

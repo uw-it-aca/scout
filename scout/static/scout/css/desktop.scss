@@ -37,7 +37,7 @@ body { //overflow: hidden;
         // content
         .scout-content {
 
-            // filter
+            // filter results
             .scout-filter-results-container {
                 .scout-filter-results { display: block; width: 100%; }
                 .scout-filter-display {
@@ -84,6 +84,15 @@ body { //overflow: hidden;
                         span { margin-bottom: 0; }
                     }
                 }
+            }
+
+            /*** filter page ***/
+
+            // filter
+
+            .scout-filter-container {
+
+                select[multiple] { height: 200px; }
             }
 
         }
