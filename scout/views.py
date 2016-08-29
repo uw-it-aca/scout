@@ -5,7 +5,7 @@ from django.core.exceptions import ImproperlyConfigured
 from django.conf import settings
 from scout.dao.space import get_spot_list, get_spot_by_id, get_filtered_spots
 from scout.dao.space import get_period_filter, \
-    get_spots_by_filter, group_spots_by_building
+    get_spots_by_filter, group_spots_by_building, get_building_list
 from scout.dao.image import get_image
 from scout.dao.item import get_item_by_id, get_filtered_items, \
     get_item_count, add_item_info
@@ -199,6 +199,7 @@ def study_detail_view(request, campus, spot_id):
 @validate_campus_selection
 def study_filter_view(request, campus):
     context = {"campus": campus,
+               "buildings": get_building_list(campus),
                "app_type": 'study'}
     return render_to_response('scout/study/filter.html', context,
                               context_instance=RequestContext(request))
@@ -222,7 +223,6 @@ def tech_list_view(request, campus):
 @validate_campus_selection
 def tech_detail_view(request, campus, item_id):
     spot = get_item_by_id(int(item_id))
-    spot = add_item_info(spot)
     context = {"spot": spot,
                "campus": campus,
                "app_type": 'tech'}

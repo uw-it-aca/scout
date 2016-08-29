@@ -57,6 +57,14 @@ def add_item_info(spot):
             "i_description",
             item.extended_info
         )
+        item.reserve_url = _get_extended_info_by_key(
+            "i_reserve_url",
+            item.extended_info
+        )
+        item.manual_url = _get_extended_info_by_key(
+            "i_manual_url",
+            item.extended_info
+        )
     return spot
 
 
@@ -82,10 +90,8 @@ def get_filtered_items(spots, request):
             if item.subcategory in subcategory:
                 newSpot.items.append(item)
             else:
-                for item_ei in item.extended_info:
-                    if item_ei.key == "i_brand":
-                        if item_ei.value in brand:
-                            newSpot.items.append(item)
+                if item.brand in brand:
+                    newSpot.items.append(item)
         newSpots.append(newSpot)
     return newSpots
 

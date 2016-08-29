@@ -68,6 +68,17 @@ def get_spots_by_filter(filters=[]):
     return res
 
 
+def get_building_list(campus, app_type=None):
+    spot_client = Spotseeker()
+    buildings = []
+    try:
+        buildings = spot_client.get_building_list(campus, app_type)
+    except DataFailureException:
+        pass
+        # Log the error?
+    return buildings
+
+
 def get_filtered_spots(request, campus, app_type=None):
     filters = _get_spot_filters(request)
 
@@ -152,6 +163,8 @@ def get_spot_by_id(spot_id):
 
 
 def process_extended_info(spot):
+    from scout.dao.item import add_item_info
+
     is_hidden = _get_extended_info_by_key("is_hidden", spot.extended_info)
     if is_hidden:
         return None
@@ -161,6 +174,7 @@ def process_extended_info(spot):
     spot = add_additional_info(spot)
     spot = add_study_info(spot)
     spot = organize_hours(spot)
+    spot = add_item_info(spot)
 
     now = datetime.datetime.now(pytz.timezone('America/Los_Angeles'))
     spot.is_open = get_is_spot_open(spot, now)

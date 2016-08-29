@@ -13,10 +13,21 @@ var List = {
         });
     },
 
-    order_spot_list: function () {
+    add_tech_distances: function() {
+        var spots = $(".scout-list-item").not(".scout-error");
+        $.each(spots, function(idx, item){
+            var distance = $(item).attr("data-spot-distance");
+            $.each($(item).find(".scout-list-item-object"), function(idx, item_object) {
+                $(item_object).attr("data-spot-distance", distance);
+                $($(item_object).find(".distance-number")[0]).html(distance);
+            });
+        });
+    },
+
+    order_spot_list: function (list_name) {
         var spots = $(".scout-list-item").not(".scout-error").detach();
         var sorted_spots = List.sort_spots_by_distance(spots);
-        $("#scout_food_list").append(sorted_spots);
+        $("#" + list_name).append(sorted_spots);
     },
 
     sort_spots_by_distance: function(spots) {
@@ -54,7 +65,7 @@ var List = {
     },
 
 
-    add_geodata_to_other_list: function () {
+    add_geodata_to_study_list: function () {
         List.add_spot_distances();
         List.add_building_distances();
         List.sort_buildings();
@@ -62,17 +73,24 @@ var List = {
 
     add_geodata_to_food_list: function () {
         List.add_spot_distances();
-        List.order_spot_list();
+        List.order_spot_list("scout_food_list");
     },
 
+    add_geodata_to_tech_list: function () {
+        List.add_spot_distances();
+        List.order_spot_list("scout_tech_list");
+        List.add_tech_distances();
+    },
 
     init: function () {
         $(document).on("location_changed", function() {
-            var page_path = window.location.pathname;
-            if (page_path.indexOf("food") !== -1){
-                List.add_geodata_to_food_list();
+            var currentType = Filter.get_current_type();
+            if (currentType.indexOf("study") > -1) {
+                List.add_geodata_to_study_list();
+            } else if (currentType.indexOf("tech") > -1)  {
+                List.add_geodata_to_tech_list();
             } else {
-                List.add_geodata_to_other_list();
+                List.add_geodata_to_food_list();
             }
         });
         Geolocation.init_location_toggles();

@@ -58,7 +58,7 @@
                     <ol style="margin:0; padding:0;">
 
                     {% for item in spot.items %}
-                        <li class="scout-list-item">
+                        <li class="scout-list-item-object">
 
                             <a class="clearfix" href="/{{campus}}/tech/{{ item.item_id }}/">
 
@@ -75,14 +75,14 @@
                                             <div class="scout-spot-type">{% if item.subcategory %}<span>{{ item.subcategory }}</span>{% else %} <span style="color:red;">ITEM_SUB_CATEGORY</span> {% endif %}</div>
 
                                             <div class="scout-spot-capacity">
-                                                {% if spot.item.quantity %}<span>Available {{ spot.item.quantity }}</span>{% endif %}
+                                                {% if item.quantity %}<span>Available {{ item.quantity }}</span>{% endif %}
                                             </div>
 
                                         </div>
 
                                         <h3 class="scout-spot-name">{{ item.name }}</h3>
                                         <div class="scout-spot-location">
-                                            <span class="scout-spot-distance"><span class="visually-hidden">Distance from you:</span><span class="distance-number scope">---</span>&nbsp;mi</span>
+                                            <span class="scout-spot-distance"><span class="visually-hidden">Distance from you:</span><span class="distance-number">---</span>&nbsp;mi</span>
                                             {% if spot.building_name %}{{ spot.building_name }}{% else %}<span style="color:red;">missing item spot.building_name</span>{% endif %}
                                         </div>
 

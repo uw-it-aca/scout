@@ -138,8 +138,14 @@ var Filter = {
             $.each(param_types, function(type_key, type_val){
                 if(param_key.indexOf(type_key) > -1){
                     // find a better way to find out the input val!
-                    var item = $("#" + type_val).find("input[value='" + param_val + "']");
-                    $(item[0]).prop("checked", true);
+                    var type = "input";
+                    var state = "checked";
+                    if (type_key == "building") {
+                        type = "option";
+                        state = "selected";
+                    }
+                    var item = $("#" + type_val).find(type + "[value='" + param_val + "']");
+                    $(item[0]).prop(state, true);
                 }
             });
         });
