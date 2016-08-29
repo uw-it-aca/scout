@@ -46,7 +46,7 @@
                 <ol style="margin:0; padding:0;">
 
                     {% for spot in group.spots %}
-                    <li class="scout-list-item" id="{{ spot.spot_id }}" data-spot-lat="{{ spot.latitude }}" data-spot-lng="{{ spot.longitude }}" data-spot-building="{{ spot.building_name }}" data-spot-name="{{ spot.name }}">
+                    <li class="scout-list-item scout-list-hover" id="{{ spot.spot_id }}" data-spot-lat="{{ spot.latitude }}" data-spot-lng="{{ spot.longitude }}" data-spot-building="{{ spot.building_name }}" data-spot-name="{{ spot.name }}">
                         <a class="clearfix" href="/{{campus}}/study/{{ spot.spot_id }}/">
 
                             {% if spot.images %}

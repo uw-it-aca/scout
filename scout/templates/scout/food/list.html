@@ -38,7 +38,7 @@
         <ol id="scout_food_list" class="scout-card scout-list">
 
             {% for spot in spots %}
-                <li class="scout-list-item" id="{{ spot.spot_id }}"  data-spot-lat="{{ spot.latitude }}" data-spot-lng="{{ spot.longitude }}" data-spot-building="{{ spot.building_name }}" data-spot-name="{{ spot.name }}">
+                <li class="scout-list-item scout-list-hover" id="{{ spot.spot_id }}"  data-spot-lat="{{ spot.latitude }}" data-spot-lng="{{ spot.longitude }}" data-spot-building="{{ spot.building_name }}" data-spot-name="{{ spot.name }}">
                     <a class="clearfix" href="/{{campus}}/food/{{ spot.spot_id }}/">
 
                         {% if spot.images %}

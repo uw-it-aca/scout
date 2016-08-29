@@ -230,19 +230,15 @@ var Map = {
                         $("#" + map_id +" a").attr("tabindex","-1");
                     });
 
-                    // handle hover event for main list view
+                    // handle hover event for food/study list view
                     $('#' + data.id).hover(
                         function () {
-
                             //map.setCenter(marker.getPosition());
-                            $('li').css('background', 'none');
-                            $(this).css({"background":"#e8eaf7"});
                             infoWindow.setContent("<div><strong>"+data.spot_name+"</strong><br>"+data.building+"</div>");
                             infoWindow.open(map, marker);
 
                         },
                         function () {
-                            $('li').css('background', 'none');
                             infoWindow.close(map, marker);
                         }
                     );
