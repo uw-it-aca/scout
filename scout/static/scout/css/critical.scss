@@ -439,20 +439,15 @@ body { background: #f1f1f1; }
 
 .sticky-header-wrap {position:relative;}
 
-.sticky-header { background:#aaa !important; color: #fff; font-size:14px; width: 100%;
-    h3 {font-size: inherit; font-weight: normal; margin: inherit; display: block; padding: 5px 20px;}
+.sticky-header { background:#aaa !important; color: #fff; font-size:14px; width: 100%; font-weight: normal; margin: inherit;
+    span {display: block; padding: 5px 20px;}
 }
 
-.sticky-helper { background:#aaa !important; color: #fff; font-size:14px; width: 100%;
-    h3 { font-size: inherit; font-weight: normal; margin: inherit; display: block; padding: 5px 20px; white-space: nowrap; overflow-x: hidden; text-overflow: ellipsis; }
+.sticky-helper { background:#aaa !important; color: #fff; font-size:14px; width: 100%; 
+    span { display: block; padding: 5px 20px; white-space: nowrap; overflow-x: hidden; text-overflow: ellipsis; }
 }
 .sticky-helper.sticky-header-hidden { display: none; }
-.sticky-helper.is-sticky { display: block; background:#aaa; color: #fff; font-size:14px; position:absolute; top: 102px !important; left: 0; right:0; z-index: 9999;
-    h3 {
-        font-size: inherit; font-weight: normal; margin: inherit;
-        
-    }
-}
+.sticky-helper.is-sticky { display: block; background:#aaa; color: #fff; font-size:14px; position:absolute; top: 102px !important; left: 0; right:0; z-index: 9999;}
 
 // accessibility & helper classes
 
