@@ -9,8 +9,8 @@
             hiddenClass:           'sticky-header-hidden',
             stickyElement:         'h2',
             stickyClass:           'sticky-helper',
-            stickyChildren:        '<span></span>',
-            textContainerSelector: 'span',
+            stickyChildren:        '<h3></h3>',
+            textContainerSelector: 'h3',
             endOfScrollPos:        null
         };
 
@@ -134,6 +134,7 @@
             this.$sticky
                 .removeClass(this.options.hiddenClass)
                 .addClass('is-sticky')
+                .attr('aria-hidden',true)
                 .css({
                     position: 'fixed',
                     top:      0

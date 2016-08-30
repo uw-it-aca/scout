@@ -40,7 +40,7 @@
             <li class="scout-list-building" data-building-name="{{ group.name }}" data-building-lat="{{ group.latitude }}" data-building-lng="{{ group.longitude }}">
 
                 <div class="sticky-header">
-                    <span>{% if group.name %}{{ group.name }}{% else %}missing building_name{% endif %}</span>
+                    <h3>{% if group.name %}{{ group.name }}{% else %}missing building_name{% endif %}</h3>
                 </div>
 
                 <ol style="margin:0; padding:0;">
@@ -78,7 +78,7 @@
 
                                     </div>
 
-                                    <h3 class="scout-spot-name">{{ spot.name }}</h3>
+                                    <h4 class="scout-spot-name">{{ spot.name }}</h4>
 
                                     <div class="scout-spot-location">
 
