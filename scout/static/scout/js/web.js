@@ -14,8 +14,7 @@ $(document).on('ready', function(event) {
         List.init();
         Map.init_map();
         Filter.init();
-    }
-    else if (page_path.indexOf("study") !== -1){
+    } else if (page_path.indexOf("study") !== -1){
         console.log("on study");
         Geolocation.display_location_status();
         List.init();
@@ -32,8 +31,7 @@ $(document).on('ready', function(event) {
             stickyElement: 'div',
         });
 
-    }
-    else if (page_path.indexOf("tech") !== -1){
+    } else if (page_path.indexOf("tech") !== -1){
         console.log("on tech");
         Geolocation.display_location_status();
         List.init();
@@ -44,8 +42,7 @@ $(document).on('ready', function(event) {
             stickyElement: 'div',
         });
 
-    }
-    else {
+    } else {
         console.log("on discover");
         Discover.init_cards();
         Map.init_map();
