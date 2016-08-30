@@ -66,10 +66,10 @@ body { background: #f1f1f1; }
 
 .scout-filter-results { /*border-top: solid 1px #ddd;*/
 
-    label { display: block; font-size: 10px; text-transform: uppercase; color: #aaa; }
+    .filter-results-label { display: block; font-size: 10px; text-transform: uppercase; color: #aaa; }
 
     .scout-filter-results-by { padding: 15px 20px 5px 20px; font-size: 14px;
-        label { margin-bottom: 5px; }
+        .filter-results-label { margin-bottom: 5px; }
         .scout-filter-results-text { color: #333; font-size: 13px; line-height: 15px; }
     }
     .scout-filter-results-results { padding: 10px 20px 15px;
