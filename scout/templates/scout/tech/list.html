@@ -52,7 +52,7 @@
 
                 {% for spot in spots %}
 
-                <li class="scout-list-item" id="{{ spot.spot_id }}"  data-spot-lat="{{ spot.latitude }}" data-spot-lng="{{ spot.longitude }}" data-spot-name="{{ spot.name }}">
+                <li class="scout-list-item" id="{{ spot.spot_id }}" data-spot-building="{{ spot.building_name }}"  data-spot-lat="{{ spot.latitude }}" data-spot-lng="{{ spot.longitude }}" data-spot-name="{{ spot.name }}">
 
                     <div class="sticky-header">
                         <h3>{% if spot.name %}{{ spot.name }}{% else %}missing spot_name{% endif %}</h3>
