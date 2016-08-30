@@ -95,12 +95,13 @@ var Map = {
                     marker.addListener("click", function () {
                         var campus = Navigation.get_campus_selection();
                         var app_type = Filter.get_current_type();
+
                         //Wrap the content inside an HTML DIV in order to set height and width of InfoWindow.
                         infoWindow.setContent(
-                            "<div><strong>" + data.spot_name + "</strong><br>" + data.building
-                            + "<br><a href='/" + campus + app_type + data.id +
-                            "'>View details</a></div>"
+                            "<div><strong>" + data.spot_name + "</strong><br>" +
+                            data.building + "</div>"
                         );
+
                         infoWindow.open(map, marker);
 
                         // scroll to spot on list
