@@ -10,7 +10,7 @@
 
     {% include "scout/include/user_geolocation.html" %}
 
-    <div class="scout-discover-container" style="position:relative;" role="main">
+    <div class="scout-discover-container" style="position:relative;" role="main" aria-labelledby="campus_heading">
 
         {% if campus == 'seattle' %}
         <div style="background:url('{% static "scout/img/seattle/IMG_3973-M.jpg" %}') no-repeat; background-size:cover; color:#fff;">
@@ -29,7 +29,7 @@
         {% endif %}
 
             <div style="background:rgba(0,0,0,0.30); padding: 170px 20px 20px 20px;">
-                <h2 style="text-transform:capitalize;">{{campus}} Campus</h2>
+                <h2 style="text-transform:capitalize;" id="campus_heading">{{campus}} Campus</h2>
                 <p>Discover campus options for food, study spaces, and tech items.</p>
             </div>
 
