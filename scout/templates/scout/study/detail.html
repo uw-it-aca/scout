@@ -8,9 +8,9 @@
 
 <div id="page_{{spot.spot_id}}" class="scout-content">
 
-    <div class="scout-details-container" role="main">
+    <div class="scout-details-container" role="main" aria-labelledby="spot_header">
 
-        <h2 class="visually-hidden">{{spot.name}}</h2>
+        <h2 class="visually-hidden" id="spot_header">{{spot.name}}</h2>
 
         <div class="scout-card scout-details-card" data-latitude="{{ spot.latitude }}" data-longitude="{{ spot.longitude }}" data-spotname="{{ spot.name }}" data-building="{{ spot.building_name }}">
 

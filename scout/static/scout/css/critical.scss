@@ -66,10 +66,10 @@ body { background: #f1f1f1; }
 
 .scout-filter-results { /*border-top: solid 1px #ddd;*/
 
-    label { display: block; font-size: 10px; text-transform: uppercase; color: #aaa; }
+    .filter-results-label { display: block; font-size: 10px; text-transform: uppercase; color: #aaa; }
 
     .scout-filter-results-by { padding: 15px 20px 5px 20px; font-size: 14px;
-        label { margin-bottom: 5px; }
+        .filter-results-label { margin-bottom: 5px; }
         .scout-filter-results-text { color: #333; font-size: 13px; line-height: 15px; }
     }
     .scout-filter-results-results { padding: 10px 20px 15px;
@@ -439,20 +439,15 @@ body { background: #f1f1f1; }
 
 .sticky-header-wrap {position:relative;}
 
-.sticky-header { background:#aaa !important; color: #fff; font-size:14px; width: 100%;
-    h3 {font-size: inherit; font-weight: normal; margin: inherit; display: block; padding: 5px 20px;}
+.sticky-header { background:#aaa !important; color: #fff; font-size:14px; width: 100%; font-weight: normal; margin: inherit;
+    span {display: block; padding: 5px 20px;}
 }
 
-.sticky-helper { background:#aaa !important; color: #fff; font-size:14px; width: 100%;
-    h3 { font-size: inherit; font-weight: normal; margin: inherit; display: block; padding: 5px 20px; white-space: nowrap; overflow-x: hidden; text-overflow: ellipsis; }
+.sticky-helper { background:#aaa !important; color: #fff; font-size:14px; width: 100%; 
+    span { display: block; padding: 5px 20px; white-space: nowrap; overflow-x: hidden; text-overflow: ellipsis; }
 }
 .sticky-helper.sticky-header-hidden { display: none; }
-.sticky-helper.is-sticky { display: block; background:#aaa; color: #fff; font-size:14px; position:absolute; top: 102px !important; left: 0; right:0; z-index: 9999;
-    h3 {
-        font-size: inherit; font-weight: normal; margin: inherit;
-        
-    }
-}
+.sticky-helper.is-sticky { display: block; background:#aaa; color: #fff; font-size:14px; position:absolute; top: 102px !important; left: 0; right:0; z-index: 9999;}
 
 // accessibility & helper classes
 

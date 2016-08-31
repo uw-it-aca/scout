@@ -24,8 +24,8 @@
                 </h1>
 
                 <div class="scout-campus-chooser">
-                    <div aria-labelledby="location_select_heading">
-                        <label id="location_select_heading" for="location_select" class="visually-hidden">Select campus:</label>
+                    <div>
+                        <label id="location_select_heading" for="campus_select_base" class="visually-hidden">Select campus:</label>
                         <select id="campus_select_base">
                             <option value="seattle" {% if campus == 'seattle' %}selected{% endif %}>Seattle</option>
                             <option value="bothell" {% if campus == 'bothell' %}selected{% endif %}>Bothell</option>
@@ -52,7 +52,7 @@
             </div>
 
             <div id="footer" class="scout-footer" role="contentinfo">
-                <div style="padding-left:20px;">&copy; 2016 UW-IT, {% if request.is_mobile or request.is_tablet %}ACA{% else %}Academic &amp; Collaborative Applications{% endif %} <a href="http://www.washington.edu/online/privacy/">Privacy</a> <a href="http://www.washington.edu/online/terms/">Terms</a></div>
+                <div style="padding-left:20px;">&copy; 2016 UW-IT, {% if request.is_mobile or request.is_tablet %}ACA{% else %}Academic Experience Design &amp; Delivery{% endif %} <a href="http://www.washington.edu/online/privacy/">Privacy</a> <a href="http://www.washington.edu/online/terms/">Terms</a></div>
             </div>
 
         </div>

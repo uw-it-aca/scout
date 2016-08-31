@@ -14,12 +14,12 @@
     <div class="scout-filter-results">
 
         <div class="scout-filter-results-by">
-            <label>Filtering by:</label>
+            <span class="filter-results-label">Filtering by:</span>
             <div id="filter_label_text" class="scout-filter-results-text">---</div>
         </div>
 
         <div class="scout-filter-results-by">
-            <label>Commonly requested types:</label>
+            <span class="filter-results-label">Commonly requested types:</span>
             <ul style="list-style:none; padding:0; margin:0; line-height:20px;">
                 <li><a href="/{{campus}}/tech/?subcategory0=Digital+Camera">Digital Camera</a></li>
                 <li><a href="/{{campus}}/tech/?subcategory0=Digital+Video+Camera">Digital Video Camera</a></li>
@@ -30,7 +30,7 @@
         </div>
 
         <div class="scout-filter-results-results clearfix">
-            <label>Items:</label>
+            <span class="filter-results-label">Items:</span>
             <div class="scout-filter-results-count">{{ count }}</div>
 
             <div class="scout-filter-results-actions">
@@ -44,9 +44,9 @@
     </div>
 
     <!-- tech list -->
-    <div class="scout-list-container" style="position:relative;" role="main">
+    <div class="scout-list-container" style="position:relative;" role="main" aria-labelledby="list_header">
 
-        <h2 class="scout-list-header visually-hidden">List of tech (by distance)</h2>
+        <h2 class="scout-list-header visually-hidden" id="list_header">List of tech (by distance)</h2>
 
         <ol id="scout_tech_list" class="scout-card scout-list sticky-header-wrap">
 
@@ -54,9 +54,9 @@
 
                 <li class="scout-list-item" id="{{ spot.spot_id }}" data-spot-building="{{ spot.building_name }}"  data-spot-lat="{{ spot.latitude }}" data-spot-lng="{{ spot.longitude }}" data-spot-name="{{ spot.name }}">
 
-                    <div class="sticky-header">
-                        <h3>{% if spot.name %}{{ spot.name }}{% else %}missing spot_name{% endif %}</h3>
-                    </div>
+                    <h3 class="sticky-header">
+                        <span>{% if spot.name %}{{ spot.name }}{% else %}missing spot_name{% endif %}</span>
+                    </h3>
 
                     <ol style="margin:0; padding:0;">
 
