@@ -1,11 +1,14 @@
 from django.http import Http404, HttpResponse
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django.core.exceptions import ImproperlyConfigured
+from django.conf import settings
 from scout.dao.space import get_spot_list, get_spot_by_id, get_filtered_spots
 from scout.dao.space import get_period_filter, \
-    get_spots_by_filter, group_spots_by_building
+    get_spots_by_filter, group_spots_by_building, get_building_list
 from scout.dao.image import get_image
-from scout.dao.item import get_item_by_id
+from scout.dao.item import get_item_by_id, get_filtered_items, \
+    get_item_count, add_item_info
 
 
 # using red square as the default center
@@ -13,8 +16,23 @@ DEFAULT_LAT = 47.6558539
 DEFAULT_LON = -122.3094925
 
 
-def discover_view(request, campus):
+def validate_campus_selection(function):
+    def wrap(request, *args, **kwargs):
+        if settings.CAMPUS_URL_LIST and isinstance(settings.CAMPUS_URL_LIST,
+                                                   list):
+            campuses = settings.CAMPUS_URL_LIST
+        else:
+            raise ImproperlyConfigured("Must define a CAMPUS_URL_LIST"
+                                       "of type list in the settings")
+        if kwargs['campus'] in campuses:
+            return function(request, *args, **kwargs)
+        else:
+            raise Http404
+    return wrap
 
+
+@validate_campus_selection
+def discover_view(request, campus):
     context = {
         "campus": campus,
     }
@@ -22,7 +40,8 @@ def discover_view(request, campus):
                               context_instance=RequestContext(request))
 
 
-def discover_card_view(request, discover_category):
+@validate_campus_selection
+def discover_card_view(request, campus, discover_category):
     # Will figure this out later
     lat = request.GET.get('latitude', None)
     lon = request.GET.get('longitude', None)
@@ -30,7 +49,8 @@ def discover_card_view(request, discover_category):
     # Hardcoded for food at the moment. Change it per need basis.
     discover_categories = {
         "open": {
-            "title": "Open Near",
+            "title": "Open Now",
+            "spot_type": "food",
             "filter_url": "open_now=true",
             "filter": [
                 ('limit', 5),
@@ -41,32 +61,9 @@ def discover_card_view(request, discover_category):
                 ('extended_info:app_type', 'food')
                 ]
         },
-        "coffee": {
-            "title": "Serves Coffee And Espresso",
-            "filter_url": "food0=s_food_espresso",
-            "filter": [
-                ('limit', 5),
-                ('center_latitude', lat if lat else DEFAULT_LAT),
-                ('center_longitude', lon if lon else DEFAULT_LON),
-                ('distance', 100000),
-                ('extended_info:s_food_espresso', 'true'),
-                ('extended_info:app_type', 'food')
-                ]
-        },
-        "coupon": {
-            "title": "Dine with Discounts",
-            "filter_url": "",
-            "filter": [
-                ('limit', 5),
-                ('center_latitude', lat if lat else DEFAULT_LAT),
-                ('center_longitude', lon if lon else DEFAULT_LON),
-                ('distance', 100000),
-                ('extended_info:s_has_coupon', 'true'),
-                ('extended_info:app_type', 'food')
-                ]
-        },
         "morning": {
-            "title": "Open during Morning (5am - 11am)",
+            "title": "Open Mornings (5am - 11am)",
+            "spot_type": "food",
             "filter_url": "period0=morning",
             "filter": [
                 ('limit', 5),
@@ -79,6 +76,7 @@ def discover_card_view(request, discover_category):
         },
         "late": {
             "title": "Open Late Night (10pm - 5am)",
+            "spot_type": "food",
             "filter_url": "period0=late_night",
             "filter": [
                 ('limit', 5),
@@ -88,6 +86,31 @@ def discover_card_view(request, discover_category):
                 ('extended_info:app_type', 'food')
                 ] + get_period_filter('late_night')
         },
+        "studyoutdoors": {
+            "title": "Outdoor Study Areas",
+            "spot_type": "study",
+            "filter_url": "type0=outdoor",
+            "filter": [
+                ('limit', 5),
+                ('center_latitude', lat if lat else DEFAULT_LAT),
+                ('center_longitude', lon if lon else DEFAULT_LON),
+                ('distance', 100000),
+                ('type', 'outdoor')
+                ]
+        },
+        "studycomputerlab": {
+            "title": "Computer Labs",
+            "spot_type": "study",
+            "filter_url": "type0=computer_lab",
+            "filter": [
+                ('limit', 5),
+                ('center_latitude', lat if lat else DEFAULT_LAT),
+                ('center_longitude', lon if lon else DEFAULT_LON),
+                ('distance', 100000),
+                ('type', 'computer_lab')
+            ]
+
+        },
     }
 
     try:
@@ -95,12 +118,16 @@ def discover_card_view(request, discover_category):
     except KeyError:
         raise Http404("Discover card does not exist")
 
+    discover_data["filter"].append(('extended_info:campus', campus))
+
     spots = get_spots_by_filter(discover_data["filter"])
     if len(spots) == 0:
         raise Http404("No spots for card")
     context = {
         "spots": spots,
+        "campus": campus,
         "card_title": discover_data["title"],
+        "spot_type": discover_data["spot_type"],
         "card_filter_url": discover_data["filter_url"]
     }
 
@@ -110,6 +137,7 @@ def discover_card_view(request, discover_category):
 
 
 # food
+@validate_campus_selection
 def food_list_view(request, campus):
     spots = get_filtered_spots(request, campus, "food")
     context = {"spots": spots,
@@ -120,6 +148,7 @@ def food_list_view(request, campus):
                               context_instance=RequestContext(request))
 
 
+@validate_campus_selection
 def food_detail_view(request, campus, spot_id):
     spot = get_spot_by_id(spot_id)
     if not spot:
@@ -132,6 +161,7 @@ def food_detail_view(request, campus, spot_id):
                               context_instance=RequestContext(request))
 
 
+@validate_campus_selection
 def food_filter_view(request, campus):
     context = {"campus": campus,
                "app_type": 'food'}
@@ -140,6 +170,7 @@ def food_filter_view(request, campus):
 
 
 # study
+@validate_campus_selection
 def study_list_view(request, campus):
     spots = get_filtered_spots(request, campus, "study")
     grouped_spots = group_spots_by_building(spots)
@@ -152,6 +183,7 @@ def study_list_view(request, campus):
                               context_instance=RequestContext(request))
 
 
+@validate_campus_selection
 def study_detail_view(request, campus, spot_id):
     spot = get_spot_by_id(spot_id)
     if not spot:
@@ -164,35 +196,41 @@ def study_detail_view(request, campus, spot_id):
                               context_instance=RequestContext(request))
 
 
+@validate_campus_selection
 def study_filter_view(request, campus):
     context = {"campus": campus,
+               "buildings": get_building_list(campus),
                "app_type": 'study'}
     return render_to_response('scout/study/filter.html', context,
                               context_instance=RequestContext(request))
 
 
 # tech
-# not completely implemented
+@validate_campus_selection
 def tech_list_view(request, campus):
     # spots = get_spots_by_filter([('has_items', 'true')])
     spots = get_filtered_spots(request, campus, "tech")
+    spots = get_filtered_items(spots, request)
+
     context = {"spots": spots,
                "campus": campus,
-               "count": len(spots),
+               "count": get_item_count(spots),
                "app_type": 'tech'}
     return render_to_response('scout/tech/list.html', context,
                               context_instance=RequestContext(request))
 
 
+@validate_campus_selection
 def tech_detail_view(request, campus, item_id):
-    spot_filtered_items = get_item_by_id(int(item_id))
-    context = {"spot": spot_filtered_items,
+    spot = get_item_by_id(int(item_id))
+    context = {"spot": spot,
                "campus": campus,
                "app_type": 'tech'}
     return render_to_response('scout/tech/detail.html', context,
                               context_instance=RequestContext(request))
 
 
+@validate_campus_selection
 def tech_filter_view(request, campus):
     context = {"campus": campus,
                "app_type": 'tech'}
@@ -201,12 +239,14 @@ def tech_filter_view(request, campus):
 
 
 # hybrid
+@validate_campus_selection
 def hybrid_discover_view(request, campus):
     context = {"campus": campus}
     return render_to_response('hybridize/discover.html', context,
                               context_instance=RequestContext(request))
 
 
+@validate_campus_selection
 def hybrid_food_list_view(request, campus):
     spots = get_filtered_spots(request, campus, "food")
     context = {"spots": spots,
@@ -215,6 +255,7 @@ def hybrid_food_list_view(request, campus):
                               context_instance=RequestContext(request))
 
 
+@validate_campus_selection
 def hybrid_food_detail_view(request, campus, spot_id):
     spot = get_spot_by_id(spot_id)
     context = {"spot": spot,
@@ -223,12 +264,14 @@ def hybrid_food_detail_view(request, campus, spot_id):
                               context_instance=RequestContext(request))
 
 
+@validate_campus_selection
 def hybrid_food_filter_view(request, campus):
     context = {"campus": campus}
     return render_to_response('hybridize/food/filter.html', context,
                               context_instance=RequestContext(request))
 
 
+@validate_campus_selection
 def hybrid_study_list_view(request, campus):
     spots = get_filtered_spots(request, campus, "study")
     grouped_spots = group_spots_by_building(spots)
@@ -241,6 +284,7 @@ def hybrid_study_list_view(request, campus):
                               context_instance=RequestContext(request))
 
 
+@validate_campus_selection
 def hybrid_study_detail_view(request, campus, spot_id):
     spot = get_spot_by_id(spot_id)
     if not spot:
@@ -253,6 +297,7 @@ def hybrid_study_detail_view(request, campus, spot_id):
                               context_instance=RequestContext(request))
 
 
+@validate_campus_selection
 def hybrid_tech_list_view(request, campus):
     spots = get_spots_by_filter([('has_items', 'true')])
     context = {"spots": spots,

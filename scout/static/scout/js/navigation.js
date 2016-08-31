@@ -10,8 +10,12 @@ var Navigation = {
                 url = url + "?" + filter;
             }
             window.location= "/" + url;
-            console.log(url);
         });
+    },
+
+    get_campus_selection: function () {
+        var campus = $("#campus_select_base").val();
+        return campus;
     },
 
     disable_clicks: function() {

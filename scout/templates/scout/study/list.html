@@ -13,11 +13,11 @@
     <!-- food filter results -->
     <div class="scout-filter-results">
         <div class="scout-filter-results-by">
-            <label>Filtering by:</label>
+            <span class="filter-results-label">Filtering by:</span>
             <div id="filter_label_text" class="scout-filter-results-text">---</div>
         </div>
         <div class="scout-filter-results-results clearfix">
-            <label>Spaces:</label>
+            <span class="filter-results-label">Spaces:</span>
             <div class="scout-filter-results-count">{{ count }}</div>
             <div class="scout-filter-results-actions">
                 <a href="/{{campus}}/study/filter/" id="study_link_filter" title="Filter list of food places on campus">
@@ -29,23 +29,24 @@
     </div>
 
     <!-- study list -->
-    <div class="scout-list-container" style="position:relative;" role="main">
+    <div class="scout-list-container" style="position:relative;" role="main" aria-labelledby="list_header">
 
-        <h2 class="scout-list-header visually-hidden">List of study places (by distance)</h2>
+        <h2 class="scout-list-header visually-hidden" id="list_header">List of study places (by distance)</h2>
 
         <ol id="scout_study_list" class="scout-card scout-list sticky-header-wrap">
+
             {% for group in grouped_spots %}
 
             <li class="scout-list-building" data-building-name="{{ group.name }}" data-building-lat="{{ group.latitude }}" data-building-lng="{{ group.longitude }}">
 
-                <div class="sticky-header">
+                <h3 class="sticky-header">
                     <span>{% if group.name %}{{ group.name }}{% else %}missing building_name{% endif %}</span>
-                </div>
+                </h3>
 
                 <ol style="margin:0; padding:0;">
 
                     {% for spot in group.spots %}
-                    <li class="scout-list-item" id="{{ spot.spot_id }}" data-spot-lat="{{ spot.latitude }}" data-spot-lng="{{ spot.longitude }}" data-spot-building="{{ spot.building_name }}" data-spot-name="{{ spot.name }}">
+                    <li class="scout-list-item scout-list-hover" id="{{ spot.spot_id }}" data-spot-lat="{{ spot.latitude }}" data-spot-lng="{{ spot.longitude }}" data-spot-building="{{ spot.building_name }}" data-spot-name="{{ spot.name }}">
                         <a class="clearfix" href="/{{campus}}/study/{{ spot.spot_id }}/">
 
                             {% if spot.images %}
@@ -63,24 +64,26 @@
                                             {% if type.name == 'open'%}{{ type.name|remove_underscores }} space{% else %}{{ type.name|remove_underscores }}{% endif %}</span>{% endfor %}{% else %} <span style="color:red;">SPOT_TYPE</span> {% endif %}</div>
 
                                         <div class="scout-spot-capacity">
-                                            {% if spot.capacity %}<span>Seats  {{ spot.capacity }}</span>{% endif %}
-
                                             {% if spot.labstats_id %}
                                                 {% if spot.auto_labstats_total != 0 %}
                                                     {% if spot.auto_labstats_available != 0 %}
-                                                        <span style="margin-left:10px;"><i class="fa fa-desktop" aria-hidden="true"></i> <span style="color:lime;">{{ spot.auto_labstats_available }}</span> / {{ spot.auto_labstats_total }}</span>
+                                                        <span style="margin-left:10px; color:#333;"><i class="fa fa-desktop" aria-hidden="true"></i> <span style="color:#2ecc71;">{{ spot.auto_labstats_available }}</span> / {{ spot.auto_labstats_total }}</span>
                                                     {% endif %}
                                                 {% endif %}
+
+                                            {% else %}
+                                                {% if spot.capacity %}<span>Seats {{ spot.capacity }}</span>{% endif %}
                                             {% endif %}
                                         </div>
+
                                     </div>
 
-                                    <h3 class="scout-spot-name">{{ spot.name }}</h3>
+                                    <h4 class="scout-spot-name">{{ spot.name }}</h4>
 
                                     <div class="scout-spot-location">
 
-                                        <span class="scout-spot-distance"><span class="visually-hidden">Distance from you:</span><span class="distance-number">---</span>&nbsp;mi.</span>&nbsp;&nbsp;
-                                        {% if spot.building_name %}{{ spot.building_name }}{% else %}<span style="color:red;">missing building_name</span>{% endif %}
+                                        <span class="scout-spot-distance"><span class="visually-hidden">Distance from you:</span><span class="distance-number">---</span>&nbsp;mi</span>
+                                        {% if spot.location_description %}{{ spot.location_description }}{% else %}<span style="color:red;">missing building_name</span>{% endif %}
 
                                         <!--{% if spot.location_description %}<p>{{spot.location_description|insert_newline|linebreaks}}</p>{% else %}<span style="color:red;">missing location_description</span></p>{% endif %}-->
 
@@ -97,7 +100,19 @@
 
                 </ol>
             </li>
+            {% empty %}
+            <li class="scout-list-item scout-error" style="padding:20px;">
+                <p class="scout-error-msg">No results? Try updating your filters.</p>
+                <div class="scout-error-body">
+                    <p>Suggestions for improving the results:</p>
+                    <ul>
+                        <li>Try a specific campus.</li>
+                        <li>Try filtering less options.</li>
+                    </ul>
+                </div>
+            </li>
             {% endfor %}
+
 
         </ol>
 

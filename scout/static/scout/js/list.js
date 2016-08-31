@@ -1,22 +1,39 @@
 var List = {
-    add_spot_distances: function () {
-        var spots = $(".scout-list-item").not(".scout-error");
 
-        $.each(spots, function(idx, item){
-            var lat = $(item).attr("data-spot-lat");
-            var lng = $(item).attr("data-spot-lng");
+    add_distances: function (className, latAttr, lngAttr) {
+        var objects = $("." + className).not(".scout-error");
 
-            var spot_latlng = Geolocation.get_latlng_from_coords(lat, lng);
-            var distance = Geolocation.get_distance_from_position(spot_latlng);
-            $(item).attr("data-spot-distance", distance);
-            $($(item).find(".distance-number")[0]).html(distance);
+        $.each(objects, function(index, object){
+            var lat = $(object).attr(latAttr);
+            var lng = $(object).attr(lngAttr);
+            var latlng = Geolocation.get_latlng_from_coords(lat, lng);
+            var distance = Geolocation.get_distance_from_position(latlng);
+            $(object).attr("data-spot-distance", distance);
+            $($(object).find(".distance-number")[0]).html(distance);
         });
     },
 
-    order_spot_list: function () {
-        var spots = $(".scout-list-item").not(".scout-error").detach();
-        var sorted_spots = List.sort_spots_by_distance(spots);
-        $("#scout_food_list").append(sorted_spots);
+    add_additional_tech_distances: function() {
+        var spots = $(".scout-list-item").not(".scout-error");
+        $.each(spots, function(idx, item){
+            var distance = $(item).attr("data-spot-distance");
+            $.each($(item).find(".scout-list-item-object"), function(idx, item_object) {
+                $(item_object).attr("data-spot-distance", distance);
+                $($(item_object).find(".distance-number")[0]).html(distance);
+            });
+        });
+    },
+
+    order_list: function (className, listName, isBuilding) {
+        var objects = $("." + className).not(".scout-error").detach();
+        if(isBuilding) {
+            $.each(objects, function(idx, object){
+                var spots = $(object).find(".scout-list-item").detach();
+                $(object).append(List.sort_spots_by_distance(spots));
+            });
+        }
+        objects = List.sort_spots_by_distance(objects);
+        $("#" + listName).append(objects);
     },
 
     sort_spots_by_distance: function(spots) {
@@ -34,62 +51,25 @@ var List = {
         return spots;
     },
 
-    add_building_distances: function () {
-        var buildings = $(".scout-list-building");
-
-        $.each(buildings, function(idx, building){
-            var lat = $(building).attr('data-building-lat');
-            var lng = $(building).attr('data-building-lng');
-            var building_latlng = Geolocation.get_latlng_from_coords(lat, lng);
-            var distance = Geolocation.get_distance_from_position(building_latlng);
-            $(building).attr('data-spot-distance', distance);
-        });
-
-    },
-
-    sort_buildings: function () {
-        var buildings = $(".scout-list-building").detach();
-        var sorted_spots = List.sort_spots_by_distance(buildings);
-        $("#scout_study_list").append(sorted_spots);
-    },
-
-
-    add_geodata_to_study_list: function () {
-        List.add_spot_distances();
-        List.add_building_distances();
-        List.sort_buildings();
-    },
-
-    add_geodata_to_other_list: function () {
-        List.add_spot_distances();
-        List.order_spot_list();
-    },
-
-
     init: function () {
         $(document).on("location_changed", function() {
-            //Geolocation.display_location_status();
-            var page_path = window.location.pathname;
-            if (page_path.indexOf("study") !== -1){
-                List.add_geodata_to_study_list();
+
+            List.add_distances("scout-list-item", "data-spot-lat", "data-spot-lng");
+
+            // Gets the current type the page is on!
+            var currentType = Filter.get_current_type();
+            if (currentType.indexOf("study") > -1) {
+                List.add_distances("scout-list-building", "data-building-lat", "data-building-lng");
+                List.order_list("scout-list-building", "scout_study_list", true);
+            } else if (currentType.indexOf("tech") > -1)  {
+                List.add_additional_tech_distances();
+                List.order_list("scout-list-item", "scout_tech_list");
             } else {
-                List.add_geodata_to_other_list();
+                List.order_list("scout-list-item", "scout_food_list");
             }
-            List.set_list_is_visible(true);
-        });
-        $(document).on("location_updating", function() {
-            List.set_list_is_visible(false);
 
         });
         Geolocation.init_location_toggles();
-    },
-
-    set_list_is_visible: function(is_visible) {
-        if(is_visible){
-            $("#scout_food_list").show();
-        } else {
-            $("#scout_food_list").hide();
-        }
     },
 
     scroll_to_spot: function(target, options, callback) {
@@ -119,7 +99,7 @@ var List = {
     },
 
     get_spot_locations: function(){
-        var spot_data = []
+        var spot_data = [];
         var spots = $(".scout-list-item").not(".scout-error");
         $.each(spots, function (idx, spot) {
             var id = $(spot).attr("id");

@@ -10,7 +10,7 @@ var Tech_Filter = {
 
         var params = {};
         var param_types = {
-            "brand": "building_select input:checkbox:checked",
+            "brand": "brand_select input:checkbox:checked",
             "subcategory": "subcategory_select input:checkbox:checked",
         };
 
@@ -49,7 +49,7 @@ var Tech_Filter = {
         var filter_categories = [];
         filter_labels = {
             "brand": "Brand",
-            "subcategory": "Type Sub-Category",
+            "subcategory": "Type",
         };
         $.each(filter_labels, function(filter, label){
             if(url.indexOf("&" + filter) > -1 || url.indexOf("?" + filter) > -1){
@@ -85,7 +85,7 @@ var Tech_Filter = {
         // in filter.js so no tests needed on this.
 
         var param_types = {
-            "brand": "building_select",
+            "brand": "brand_select",
             "subcategory": "subcategory_select",
         };
         Filter.populate_filters_from_saved("tech_filter_params", param_types);

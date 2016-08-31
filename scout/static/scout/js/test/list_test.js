@@ -27,13 +27,13 @@ var getDistances = function(spots) {
         sorted_distances.push(distance)
     }
     return sorted_distances;
-    
+
 };
 
 describe('List Food Tests', function() {
     describe('Order Food Spot List', function() {
         it('should sort food spots that need to be sorted', function() {
-            // Generating a list of spot objects with the following distances 
+            // Generating a list of spot objects with the following distances
             var spots = makeFakeList([5, 2.3, 9, 1.1]);
             // Do the sorting
             sorted_spots = List.sort_spots_by_distance(spots);
@@ -50,7 +50,7 @@ describe('List Food Tests', function() {
             var $ = tools.jqueryFromHtml(init_list);
             global.$ = $;
             // Do the sorting
-            List.order_spot_list();
+            List.order_list("scout-list-item", "scout_food_list");
             // Get resulting list
             var actual_list = $('#scout_food_list').html();
             // Make expected result

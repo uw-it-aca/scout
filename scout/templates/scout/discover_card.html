@@ -3,13 +3,13 @@
 {% block content %}
 <div class="scout-card scout-discover-content">
     <h3>
-        <span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i> <i class="fa fa-cutlery fa-stack-1x fa-inverse"></i></span>
+        <span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i> <i class="fa {% if spot_type == "food" %} fa-cutlery {% endif %} {% if spot_type == "study" %} fa-graduation-cap {% endif %}fa-stack-1x fa-inverse"></i></span>
         <span class="scout-card-title">{{ card_title }}</span>
     </h3>
     <ol>
         {% for spot in spots %}
-        <li data-lat="{{ spot.latitude }}" data-lon="{{ spot.longitude }}">
-            <a href="/{{campus}}/food/{{ spot.spot_id }}/" class="clearfix">
+        <li id="{{ card_title|slugify }}{{ spot.spot_id }}" data-lat="{{ spot.latitude }}" data-lon="{{ spot.longitude }}" data-spot-name="{{spot.name}}" data-spot-building="{{ spot.building_name }}">
+            <a href="/{{campus}}/{{ spot_type }}/{{ spot.spot_id }}/" class="clearfix">
                 {% if spot.images %}
                 <span class="scout-spot-image" style="background-image: url('/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}/?width=100');">&nbsp;</span>
                 {% else %}
@@ -25,7 +25,7 @@
         {% endfor %}
 
         <li>
-            <a href="/{{campus}}/food/?{{ card_filter_url }}" class="scout-spot-discover-action">
+            <a href="/{{campus}}/{{ spot_type }}/?{{ card_filter_url }}" class="scout-spot-discover-action" title="{% if spot_type == "food" %}View more spaces that are {{ card_title }}{% endif %}{% if spot_type == "study" %}View more spaces that are {{ card_title }}{% endif %}{% if spot_type == "tech" %}View more items that are {{ card_title }}{% endif %}">
                 <span class="fa-stack fa-lg">
                   <i class="fa fa-circle fa-stack-2x"></i>
                   <i class="fa fa-share fa-stack-1x fa-inverse"></i>

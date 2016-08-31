@@ -2,7 +2,7 @@
 {% load staticfiles %}
 {% load scout_filters %}
 
-{% block title %}Discover places{% endblock %}
+{% block title %}Discover{% endblock %}
 
 {% block web_content %}
 
@@ -10,7 +10,30 @@
 
     {% include "scout/include/user_geolocation.html" %}
 
-    <div class="scout-discover-container" style="position:relative;">
+    <div class="scout-discover-container" style="position:relative;" role="main" aria-labelledby="campus_heading">
+
+        {% if campus == 'seattle' %}
+        <div style="background:url('{% static "scout/img/seattle/IMG_3973-M.jpg" %}') no-repeat; background-size:cover; color:#fff;">
+        {% elif campus == 'bothell' %}
+        <div style="background:url('{% static "scout/img/bothell/mascot-w.jpg" %}') no-repeat; background-size:cover; color:#fff;position:relative;">
+            <span style="position:absolute; bottom:10px; right:10px;z-index:999; font-size:11px;">
+                <a data-flickr-embed="true" style="color:#ccc;text-decoration:none;" href="https://www.flickr.com/photos/121597634@N07/13567711533/in/dateposted/" title="The Big Bronze W is unveiled by Chancellor Yeigh and Holly Husky.">
+        <i class="fa fa-flickr" aria-hidden="true"></i> photo credit</a>
+            </span>
+        {% elif campus == 'tacoma' %}
+        <div style="background:url('{% static "scout/img/tacoma/sign-w.jpg" %}') no-repeat; background-size:cover; color:#fff;position:relative;">
+            <span style="position:absolute; bottom:10px; right:10px;z-index:999; font-size:11px;">
+                <a data-flickr-embed="true" style="color:#ccc;text-decoration:none;" href="https://www.flickr.com/photos/sounderbruce/20223492896/in/photolist-wP5FS1-chU8oQ-4mgazS-oijizj-hKkXFi-hKm5rf-nFeTD2-9C2pvQ-cir8Gu-3Z66JB-5DBFMr-cBE61m-b6U5hH-dTEgwg-b6U2mP-hKmG7v-9C2psE-8y3xBk-hKjM8Z-4QrNFY-97gKtH-4kRddt-bLKeEe-aNmw2k-4QrNR7-edPXK-vUwA7B-785ZuJ-7NgZB5-a4K9nG-ycLbK-dr6BAe-hKkJ1z-dTE1Dv-5s3zBb-aNmwAZ-7fizsJ-hKkTyR-a5y1Xt-e5Qv4-f5dXVN-hKkEZy-64G2bG-84yLLo-hKm8dC-PJStW-wyHuZ7-ycJ1f-41rYJH-b6Tv3D" title="UW Tacoma sign">
+        <i class="fa fa-flickr" aria-hidden="true"></i> photo credit</a>
+            </span>
+        {% endif %}
+
+            <div style="background:rgba(0,0,0,0.30); padding: 170px 20px 20px 20px;">
+                <h2 style="text-transform:capitalize;" id="campus_heading">{{campus}} Campus</h2>
+                <p>Discover campus options for food, study spaces, and tech items.</p>
+            </div>
+
+        </div>
 
         <div id="card_loading_indicator" class="scout-discover-loading">
             <p class="visually-hidden">loading...</p>
@@ -30,42 +53,13 @@
             </div>
         </div>
 
-        {% if campus == 'seattle' %}
-        <div style="background:url('{% static "scout/img/uw-signage.jpg" %}') no-repeat; background-size:cover; padding: 150px 20px 20px 20px; color:#fff;">
-        {% elif campus == 'bothell' %}
-        <div style="background:url('{% static "scout/img/uwb-signage.jpg" %}') no-repeat; background-size:cover; padding: 150px 20px 20px 20px; color:#fff;">
-        {% elif campus == 'tacoma' %}
-        <div style="background:url('{% static "scout/img/uwt-signage.jpg" %}') no-repeat; background-size:cover; padding: 150px 20px 20px 20px; color:#fff;">
-        {% endif %}
-            <h2 style="color:purple">Discover {{campus}}</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas nec efficitur velit. Praesent laoreet efficitur nisl porta interdum. Aenean vel efficitur libero.</p>
-        </div>
-
         <div id="discover_cards">
 
             <div id="open"></div>
-            <!--<div id="coffee"></div>-->
             <div id="morning"></div>
             <div id="late"></div>
-            <!--<div id="coupon"></div>-->
-
-            <div id="study_outdoors">
-                <div class="scout-card scout-discover-content">
-                    <h3>
-                        <span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i> <i class="fa fa-graduation-cap fa-stack-1x fa-inverse"></i></span>
-                        study outdoors (summer time?)
-                    </h3>
-                </div>
-            </div>
-
-            <div id="study_computer_labs">
-                <div class="scout-card scout-discover-content">
-                    <h3>
-                        <span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i> <i class="fa fa-graduation-cap fa-stack-1x fa-inverse"></i></span>
-                        study computer labs
-                    </h3>
-                </div>
-            </div>
+            <div id="studyoutdoors"></div>
+            <div id="studycomputerlab"></div>
 
         </div>
 

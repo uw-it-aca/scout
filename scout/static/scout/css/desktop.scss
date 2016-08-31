@@ -37,7 +37,7 @@ body { //overflow: hidden;
         // content
         .scout-content {
 
-            // filter
+            // filter results
             .scout-filter-results-container {
                 .scout-filter-results { display: block; width: 100%; }
                 .scout-filter-display {
@@ -59,16 +59,10 @@ body { //overflow: hidden;
 
                             .scout-spot-image { width:23%; }
                             .scout-spot-content { width:77%; position: relative;
-
-                                /*
-                                .scout-spot-type { font-size: 10px; font-weight: normal; color: #bbb; margin-top: 5px;
-                                    position: absolute; top: 0; right: 0;
-                                    span { text-transform: uppercase; margin-left: 5px; }
-                                }
-                                */
-
-                                .scout-spot-name { /*width: 73%;*/ }
+                                .scout-spot-name { }
                                 .scout-spot-status { }
+                                .scout-spot-location { width: 83%;  }
+                                .scout-spot-distance { right: 0; }
                             }
                         }
 
@@ -90,6 +84,15 @@ body { //overflow: hidden;
                         span { margin-bottom: 0; }
                     }
                 }
+            }
+
+            /*** filter page ***/
+
+            // filter
+
+            .scout-filter-container {
+
+                select[multiple] { height: 200px; }
             }
 
         }

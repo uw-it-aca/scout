@@ -15,19 +15,18 @@
             <div class="scout-card clearfix">
 
                 <fieldset style="width:100%;">
-                    <legend>Building</legend>
+                    <legend>Building(s)</legend>
                     <div id="building_select">
                         <!--Needs to be updated dynamically!-->
                         <select multiple style="width:100%;">
-                            <option value="">Burke Memorial-Washington State Museum (BMM)</option>
-                            <option value="">Allen Library (ALB) South</option>
-                            <option value="">Art Building (ART)</option>
-                            <option value="">Intramural Activities Building (IMA)</option>
-                            <option>Alder Hall</option>
-                            <option>Architecture Hall (ARC)</option>
-                            <option>Suzzallo Library (SUZ)</option>
-                            <option>Poplar Hall</option>
+                            <optgroup disabled hidden></optgroup>
+                            {% for building_name in buildings %}
+                                {% if building_name %}
+                                    <option value="{{ building_name }}">{{ building_name }}</option>
+                                {% endif %}
+                            {% endfor %}
                         </select>
+                        <p style="color:#aaa; font-size:14px;">You may select multiple buildings.</p>
                     </div>
                 </fieldset>
 
@@ -45,7 +44,7 @@
                         <label><input type="checkbox" value="open">Open space</label>
                         <label><input type="checkbox" value="lounge">Lounge</label>
                         <label><input type="checkbox" value="cafe">Café</label>
-                        <label><input type="checkbox" value="outdoor_area">Outdoor area</label>
+                        <label><input type="checkbox" value="outdoor">Outdoor area</label>
                     </div>
                 </fieldset>
             </div>
@@ -61,7 +60,7 @@
                         <label><input type="checkbox" value="has_scanning">Scanning</label>
                         <label><input type="checkbox" value="has_displays">Large display (for laptop)</label>
                         <label><input type="checkbox" value="has_projector">Projector</label>
-                        <label><input type="checkbox" value="has_printing">Prining</label>
+                        <label><input type="checkbox" value="has_printing">Printing</label>
                     </div>
                 </fieldset>
             </div>
@@ -108,5 +107,5 @@
 {% endblock %}
 
 {% block secondary_content %}
-<div style="background:url('{% static "scout/img/huskygrind.jpg" %}') no-repeat; background-size:cover; background-position:center center; position:absolute; top:0; bottom:0; width: 100%;">&nbsp;</div>
+<div style="background:url('{% static "scout/img/seattle/RainyCampus_38-X3.jpg" %}') no-repeat; background-size:cover; background-position:center center; position:absolute; top:0; bottom:0; width: 100%;">&nbsp;</div>
 {% endblock %}

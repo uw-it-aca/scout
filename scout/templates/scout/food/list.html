@@ -15,11 +15,11 @@
     <!-- food filter results -->
     <div class="scout-filter-results">
         <div class="scout-filter-results-by">
-            <label>Filtering by:</label>
+            <span class="filter-results-label">Filtering by:</span>
             <div id="filter_label_text" class="scout-filter-results-text">---</div>
         </div>
         <div class="scout-filter-results-results clearfix">
-            <label>Spaces:</label>
+            <span class="filter-results-label">Spaces:</span>
             <div class="scout-filter-results-count">{{ spots|length }}</div>
             <div class="scout-filter-results-actions">
                 <a href="/{{campus}}/food/filter/" id="link_filter" title="Filter list of food places on campus">
@@ -31,14 +31,14 @@
     </div>
 
     <!-- food list -->
-    <div class="scout-list-container" style="position:relative;" role="main">
+    <div class="scout-list-container" style="position:relative;" role="main" aria-labelledby="list_header">
 
-        <h2 class="scout-list-header visually-hidden">List of food places (by distance)</h2>
+        <h2 class="scout-list-header visually-hidden" id="list_header">List of food places (by distance)</h2>
 
         <ol id="scout_food_list" class="scout-card scout-list">
 
             {% for spot in spots %}
-                <li class="scout-list-item" id="{{ spot.spot_id }}"  data-spot-lat="{{ spot.latitude }}" data-spot-lng="{{ spot.longitude }}" data-spot-building="{{ spot.building_name }}" data-spot-name="{{ spot.name }}">
+                <li class="scout-list-item scout-list-hover" id="{{ spot.spot_id }}"  data-spot-lat="{{ spot.latitude }}" data-spot-lng="{{ spot.longitude }}" data-spot-building="{{ spot.building_name }}" data-spot-name="{{ spot.name }}">
                     <a class="clearfix" href="/{{campus}}/food/{{ spot.spot_id }}/">
 
                         {% if spot.images %}
@@ -58,7 +58,7 @@
                                 <h3 class="scout-spot-name">{{ spot.name }}</h3>
                                 <div class="scout-spot-location">
 
-                                    <span class="scout-spot-distance"><span class="visually-hidden">Distance from you:</span><span class="distance-number">---</span>&nbsp;mi.</span>&nbsp;&nbsp;
+                                    <span class="scout-spot-distance"><span class="visually-hidden">Distance from you:</span><span class="distance-number">---</span>&nbsp;mi</span>
                                     {% if spot.building_name %}{{ spot.building_name }}{% else %}<span style="color:red;">missing building_name</span>{% endif %}
 
                                     <!--
@@ -88,8 +88,8 @@
                     <div class="scout-error-body">
                         <p>Suggestions for improving the results:</p>
                         <ul>
-                            <li>Try a speicific campus.</li>
-                            <li>Try less options for cuisine or food served.</li>
+                            <li>Try a specific campus.</li>
+                            <li>Try filtering less options.</li>
                         </ul>
                     </div>
                 </li>

@@ -66,10 +66,10 @@ body { background: #f1f1f1; }
 
 .scout-filter-results { /*border-top: solid 1px #ddd;*/
 
-    label { display: block; font-size: 10px; text-transform: uppercase; color: #aaa; }
+    .filter-results-label { display: block; font-size: 10px; text-transform: uppercase; color: #aaa; }
 
     .scout-filter-results-by { padding: 15px 20px 5px 20px; font-size: 14px;
-        label { margin-bottom: 5px; }
+        .filter-results-label { margin-bottom: 5px; }
         .scout-filter-results-text { color: #333; font-size: 13px; line-height: 15px; }
     }
     .scout-filter-results-results { padding: 10px 20px 15px;
@@ -201,7 +201,7 @@ body { background: #f1f1f1; }
             .scout-list-header { }
             .scout-list { padding:0; margin: 0;
 
-                .scout-list-item { list-style:none; border-top:solid 1px #ddd; position: relative;
+                .scout-list-item, .scout-list-item-object { list-style:none; border-top:solid 1px #ddd; position: relative;
 
                     &:first-child{ border-top: none; }
 
@@ -214,15 +214,15 @@ body { background: #f1f1f1; }
                             .scout-spot-type { font-family: sans-serif; font-size: 11px; float:left; color:#aaa;
                                 span { margin-right: 8px; text-transform: uppercase; }
                             }
-                            .scout-spot-capacity { font-family: sans-serif; font-size: 12px; float:right; }
+                            .scout-spot-capacity { font-family: sans-serif; font-size: 12px; float:right; color: #aaa;}
 
                             .scout-spot-name { margin: 0; font-family: 'ralewaybold'; font-size: 16px; margin-top: 10px; margin-bottom: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; clear: both;}
 
-                            .scout-spot-distance { font-family: sans-serif; font-size: 12px; font-weight: bold; color: #000; }
-
-                            .scout-spot-location { font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #666;
+                            .scout-spot-location { font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #666; line-height: 22px; width: 80%;
                                 .fa { color: $scout-purple; }
                             }
+
+                            .scout-spot-distance { font-family: sans-serif; font-size: 10px; font-weight: normal; color: #000; background: #2ecc71; padding: 0 5px; color: #fff; display: inline-block; border-radius: 2px; position: absolute; right: 20px;}
 
                             .scout-spot-open-period { margin-bottom: 10px; color: #666; text-transform: uppercase; font-size: 14px;
                                 span { margin-right: 10px; }
@@ -235,7 +235,11 @@ body { background: #f1f1f1; }
 
                         }
                     }
+
                 }
+
+                // hover style for list views
+                .scout-list-hover:hover { background-color: #e8eaf7; }
             }
         }
 
@@ -324,7 +328,7 @@ body { background: #f1f1f1; }
 
         .scout-discover-container { min-height: 380px;
 
-            .scout-discover-loading { position:absolute; top:50%; left:50%; margin-top: -110px; margin-left: -15px; }
+            .scout-discover-loading { position:absolute; top:70%; left:50%; margin-top: -110px; margin-left: -15px; }
             .scout-discover-content {
 
                 h3 { font-family: 'ralewaybold'; font-size: 12px; color: #bbb; text-transform: uppercase; letter-spacing: 1px; margin: 0; line-height: 35px;
@@ -341,7 +345,7 @@ body { background: #f1f1f1; }
                         &:hover { color: $scout-purple; }
                         .closed { color: #A94441; font-size: 11px; }
 
-                        .scout-spot-image { background-color: #fff; background-size:contain; background-repeat: no-repeat; background-position: center center; display: inline-block; width: 50px; height: 55px; float:left; margin-right: 10px; }
+                        .scout-spot-image { background-color: #fff; background-size:cover; background-repeat: no-repeat; background-position: center center; display: inline-block; width: 55px; height: 55px; float:left; margin-right: 10px; }
                         .scout-spot-name { display:block; line-height: 25px; font-size: 15px;}
                         .scout-spot-distance { font-family: sans-serif; font-size: 12px; color: #000; }
                         .scout-spot-location { display:block; float:left; width: 75%; white-space: nowrap; font-size: 12px; color: #666; overflow: hidden; text-overflow: ellipsis; }
@@ -371,6 +375,8 @@ body { background: #f1f1f1; }
                 span { color: #aaa; }
                 input[type="checkbox"], input[type="radio"]    { margin-right: 5px; }
             }
+
+            select[multiple] { height: auto; font-size: 14px; }
 
             .scout-filter-split { width: 100%;
                 label { display: inline-block; width: 50%; }
@@ -433,16 +439,15 @@ body { background: #f1f1f1; }
 
 .sticky-header-wrap {position:relative;}
 
-.sticky-header { background:#aaa !important; color: #fff; font-size:14px; width: 100%;
-    span { display: block; padding: 5px 20px; }
+.sticky-header { background:#aaa !important; color: #fff; font-size:14px; width: 100%; font-weight: normal; margin: inherit;
+    span {display: block; padding: 5px 20px;}
 }
 
-.sticky-helper { background:#aaa !important; color: #fff; font-size:14px; width: 100%;
-    span { display: block; padding: 5px 20px; }
+.sticky-helper { background:#aaa !important; color: #fff; font-size:14px; width: 100%; 
+    span { display: block; padding: 5px 20px; white-space: nowrap; overflow-x: hidden; text-overflow: ellipsis; }
 }
 .sticky-helper.sticky-header-hidden { display: none; }
-.sticky-helper.is-sticky { display: block; background:#aaa; color: #fff; font-size:14px; position:absolute; top: 102px !important; left: 0; right:0; z-index: 9999;
-}
+.sticky-helper.is-sticky { display: block; background:#aaa; color: #fff; font-size:14px; position:absolute; top: 102px !important; left: 0; right:0; z-index: 9999;}
 
 // accessibility & helper classes
 

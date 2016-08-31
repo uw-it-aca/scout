@@ -161,3 +161,4 @@ COMPRESS_JS_FILTERS = [
 # htmlmin
 HTML_MINIFY = True
 
+CAMPUS_URL_LIST = ['seattle', 'tacoma', 'bothell']

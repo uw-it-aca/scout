@@ -104,12 +104,8 @@ var Geolocation = {
     },
 
     set_campus_location: function() {
-
         // get the campus from the url
         var campus = window.location.pathname.split('/')[1]
-
-        var index = 0;
-        //var campus = JSON.parse(sessionStorage.getItem("filter_params"))["campus0"];
 
         Geolocation.campus_locations(campus);
         sessionStorage.setItem('lat', Geolocation.default_location.latitude);
