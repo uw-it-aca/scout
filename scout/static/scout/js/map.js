@@ -287,7 +287,7 @@ var Map = {
                     strokeColor: '#c0392b',
                     scale: 5,
                     strokeWeight: 5
-                },
+                }
             });
 
             // add radius overlay and bind to user location marker

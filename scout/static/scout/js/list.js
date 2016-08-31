@@ -103,8 +103,8 @@ var List = {
         var spots = $(".scout-list-item").not(".scout-error");
         $.each(spots, function (idx, spot) {
             var id = $(spot).attr("id");
-            var lat = $(spot).attr("data-lat");
-            var lng = $(spot).attr("data-lon");
+            var lat = $(spot).attr("data-spot-lat");
+            var lng = $(spot).attr("data-spot-lng");
             var spot_name = $(spot).attr("data-spot-name");
             var building = $(spot).attr("data-spot-building");
             spot_data.push({"id": id,
