@@ -29,6 +29,7 @@ Discover = {
                    accepts: {html: "text/html"},
                    success: function(results) {
                        Discover._attach_card(card_id, results);
+                       Discover._init_card_events(card_id);
                        Discover.add_distance_and_sort();
                        Discover.set_cards_are_visible(true);
                    },
@@ -56,9 +57,6 @@ Discover = {
     add_distance_and_sort: function() {
         Discover._add_distance_to_spots();
         Discover._sort_spots_on_cards();
-
-        var campus = Navigation.get_campus_selection();
-
     },
 
     _add_distance_to_spots: function () {
@@ -96,6 +94,39 @@ Discover = {
             });
             $(spot_parent).prepend(spots);
         });
+    },
 
+    _init_card_events: function (card_id) {
+        // clear any previous set events for card
+        $("#" + card_id).off();
+        $("#" + card_id).mouseover(function(e){
+            if (window.displayed_card !== card_id) {
+                window.displayed_card = card_id;
+                Discover.display_card_pins(this);
+            }
+        });
+    },
+
+    display_card_pins: function (card) {
+        var spots = $(card).find("li");
+        var spot_data = Discover.get_spot_locations(spots);
+        Map.load_discover_map(spot_data);
+    },
+
+    get_spot_locations: function(spots){
+        var spot_data = [];
+        $.each(spots, function (idx, spot) {
+            var id = $(spot).attr("id");
+            var lat = $(spot).attr("data-lat");
+            var lng = $(spot).attr("data-lon");
+            var spot_name = $(spot).attr("data-spot-name");
+            var building = $(spot).attr("data-spot-building");
+            spot_data.push({"id": id,
+                             "lat": lat,
+                             "lng": lng,
+                             "spot_name": spot_name,
+                             "building": building})
+        });
+        return spot_data
     }
 };

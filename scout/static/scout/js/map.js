@@ -27,7 +27,7 @@ var Map = {
         //$(window).resize(Map.initialize_resource_map());
     },
 
-    load_list_map: function (map_id) {
+    load_map_with_markers: function(map_id, locations){
         var currentMap = document.getElementById(map_id);
         var pos = Geolocation.get_client_latlng();
         var mapOptions;
@@ -62,7 +62,6 @@ var Map = {
             map.setOptions({styles: styles});
 
             // multiple pins on a single map
-            var locations = List.get_spot_locations();
             var bounds = new google.maps.LatLngBounds();
 
             // create and open InfoWindow.
@@ -153,9 +152,17 @@ var Map = {
             };
             // cluster the markers using marker clusterer
             var markerCluster = new MarkerClusterer(map, markers, mc_options);
-
-            window.map = map;
         }
+    },
+
+    load_list_map: function (map_id) {
+        var locations = List.get_spot_locations();
+        Map.load_map_with_markers(map_id, locations);
+    },
+
+    load_discover_map: function (locations) {
+        Map.load_map_with_markers("discover_list_map", locations);
+
     },
 
     load_detail_map: function(map_id) {

@@ -99,12 +99,12 @@ var List = {
     },
 
     get_spot_locations: function(){
-        var spot_data = []
+        var spot_data = [];
         var spots = $(".scout-list-item").not(".scout-error");
         $.each(spots, function (idx, spot) {
             var id = $(spot).attr("id");
-            var lat = $(spot).attr("data-spot-lat");
-            var lng = $(spot).attr("data-spot-lng");
+            var lat = $(spot).attr("data-lat");
+            var lng = $(spot).attr("data-lon");
             var spot_name = $(spot).attr("data-spot-name");
             var building = $(spot).attr("data-spot-building");
             spot_data.push({"id": id,

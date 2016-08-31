@@ -8,7 +8,7 @@
     </h3>
     <ol>
         {% for spot in spots %}
-        <li data-lat="{{ spot.latitude }}" data-lon="{{ spot.longitude }}">
+        <li id="{{ spot.spot_id }}" data-lat="{{ spot.latitude }}" data-lon="{{ spot.longitude }}" data-spot-name="{{spot.name}}" data-spot-building="{{ spot.building_name }}">
             <a href="/{{campus}}/{{ spot_type }}/{{ spot.spot_id }}/" class="clearfix">
                 {% if spot.images %}
                 <span class="scout-spot-image" style="background-image: url('/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}/?width=100');">&nbsp;</span>
