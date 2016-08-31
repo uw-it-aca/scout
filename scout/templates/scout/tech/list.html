@@ -11,11 +11,12 @@
     {% include "scout/include/user_geolocation.html" %}
 
     <!-- tech filter results -->
-    <div class="scout-filter-results">
+    <div class="scout-filter-results" aria-labelledby="filter_header">
 
         <div class="scout-filter-results-by">
+            <h2 class="visually-hidden" id="filter_header">Filters</h2>
             <span class="filter-results-label">Filtering by:</span>
-            <div id="filter_label_text" class="scout-filter-results-text">---</div>
+            <div id="filter_label_text" class="scout-filter-results-text"><span class="visually-hidden">No filter selected</span>---</div>
         </div>
 
         <div class="scout-filter-results-by">
@@ -30,7 +31,7 @@
         </div>
 
         <div class="scout-filter-results-results clearfix">
-            <span class="filter-results-label">Items:</span>
+            <span class="filter-results-label"><span class="visually-hidden">Number of </span>Items<span class="visually-hidden"> in list</span>:</span>
             <div class="scout-filter-results-count">{{ count }}</div>
 
             <div class="scout-filter-results-actions">
