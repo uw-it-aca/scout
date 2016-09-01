@@ -27,18 +27,18 @@
             <div class="sticky">
                 <div class="scout-spot-meta clearfix">
 
-                    <div class="scout-spot-name">{% if spot.item.name %}{{ spot.item.name }}{% else %}item name missing{% endif %}</div>
+                    <div class="scout-spot-name"><span class="visually-hidden">Name: </span>{% if spot.item.name %}{{ spot.item.name }}{% else %}item name missing{% endif %}</div>
                     <div class="scout-spot-type">
-                        {{ spot.item.subcategory }}
+                        <span class="visually-hidden">Item Category: </span>{{ spot.item.subcategory }}
                     </div>
 
                     <div class="scout-spot-resources">
-                        <label>Brand</label>
+                        <span class="visually-hidden">Brand</span>
                         <span>{{spot.item.brand}}</span>
                     </div>
 
                     <div class="scout-spot-extra">
-                        {% if spot.item.quantity %}<span>{{ spot.item.quantity }} available </span>{% endif %}
+                        {% if spot.item.quantity %}<span class="visually-hidden">Quantity: </span><span>{{ spot.item.quantity }} available </span>{% endif %}
                     </div>
 
 
@@ -88,7 +88,7 @@
                 {% if spot.item.access_limit_role %}
                 <div class="scout-spot-info-item">
                     <div style="overflow:visible; line-height:20px; white-space:normal;">
-                        <span class="visually-hidden">Role limitations:</span>
+                        <span class="visually-hidden">Access Limitations:</span>
                         <span class="fa-stack fa-lg">
                           <i class="fa fa-circle fa-stack-2x"></i>
                           <i class="fa fa-users fa-stack-1x fa-inverse"></i>
@@ -113,7 +113,7 @@
                 <h3>Details</h3>
                 <div class="scout-spot-description">
                     {% if spot.item.description %}
-                    {{ spot.item.description }}
+                    <span class="visually-hidden">Description: </span>{{ spot.item.description }}
                     {% else %}
                     Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate.
                     {% endif %}
@@ -139,12 +139,10 @@
                     <h3>Location</h3>
                     <h4 class="visually-hidden">Building information</h4>
                     <div class="scout-spot-building-info">
-                        <ul>
-                            <li><strong>{% if spot.name %}{{spot.name}}</strong>{% endif %}</li>
-                            <li>{% if spot.building_name %}{{ spot.building_name }}{% endif %}</li>
-                            <li>Floor: {% if spot.floor %}{{ spot.floor }}{% else %}---{% endif %}</li>
-                            <li>Room: {% if spot.room_number %}{{ spot.room_number }}{% else %}---{% endif %}</li>
-                        </ul>
+                            <div><span class="visually-hidden">Name: </span><strong>{% if spot.name %}{{spot.name}}</strong>{% endif %}</div>
+                            <div><span class="visually-hidden">Building: </span>{% if spot.building_name %}{{ spot.building_name }}{% endif %}</div>
+                            <div>Floor: {% if spot.floor %}{{ spot.floor }}{% else %}---{% endif %}</div>
+                            <div>Room: {% if spot.room_number %}{{ spot.room_number }}{% else %}---{% endif %}</div>
                     </div>
                 </div>
 
@@ -191,7 +189,7 @@
                     </ul>
 
                     {% if spot.hours_notes %}
-                    <h4><i class="fa fa-file-text"></i> Notes</h4>
+                    <h4><i class="fa fa-file-text"></i>Hour Notes</h4>
                     <div class="scout-spot-notes">{{spot.hours_notes}}</div>
                     {% endif %}
 
