@@ -35,12 +35,14 @@
                     </div>
 
                     <div class="scout-spot-resources">
-                        <label>Resources</label>
+                        <span>Resources</span>
 
                         {% if spot.spot_resources %}
+                        <ol>
                             {% for spot_resource in spot.spot_resources %}
-                                <span>{{ spot_resource }}</span>
+                                <li>{{ spot_resource }}</li>
                             {% endfor %}
+                        </ol>
                         {% else %} <span style="color:red;">missing resources</span> {% endif %}
 
                     </div>
