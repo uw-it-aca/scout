@@ -30,17 +30,8 @@
                         {% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}</span>{% endfor %}
                     </div>
 
-                    {% if spot.cuisinetype_names %}
-                    <div class="scout-spot-cuisine hidden" aria-hidden="true">
-                        <label>Cuisine</label>
-                            {% for cuisinetype in spot.cuisinetype_names %}
-                            <span>{{ cuisinetype }}</span>
-                            {% endfor %}
-                    </div>
-                    {% endif %}
-
                     <div class="scout-spot-food-served hidden" aria-hidden="true">
-                        <label>Food served</label>
+                        <span>Food served</span>
                         {% if spot.foodtype_names %}
                             {% for foodtype in spot.foodtype_names %}
                                 <span>{{ foodtype }}</span>
@@ -51,19 +42,19 @@
                     <div class="scout-spot-status" role="status" aria-live="polite">{% if spot.is_open %}<span class="open">Open now</span>{% else %}<span class="closed">Closed</span>{% endif %}</div>
 
                     <div class="scout-spot-open-period">
-                        <label>Open periods</label>
+                        <span>Open periods</span><ol>
                         {% if spot.open_periods.morning %}
-                            <span>Morning</span>
+                            <li>Morning</li>
                         {% endif %}
                         {% if spot.open_periods.afternoon %}
-                            <span>Afternoon</span>
+                            <li>Afternoon</li>
                         {% endif %}
                         {% if spot.open_periods.evening %}
-                            <span>Evening</span>
+                            <li>Evening</li>
                         {% endif %}
                         {% if spot.open_periods.late_night %}
-                            <span>Late Night</span>
-                        {% endif %}
+                            <li>Late Night</li>
+                        {% endif %}</ol>
                     </div>
 
                 </div>
@@ -95,7 +86,7 @@
                 {% if spot.website_url %}
                 <div class="scout-spot-info-item">
                     <a href="{{spot.website_url}}" target="_blank">
-                        <span class="visually-hidden">Website URL:</span>
+                        <span class="visually-hidden">Website:</span>
                         <span class="fa-stack fa-lg">
                           <i class="fa fa-circle fa-stack-2x"></i>
                           <i class="fa fa-laptop fa-stack-1x fa-inverse"></i>
@@ -142,7 +133,7 @@
                     </ul>
 
                     {% if spot.hours_notes %}
-                    <h4><i class="fa fa-file-text"></i> Notes</h4>
+                    <h4><i class="fa fa-file-text"></i>Hours Notes</h4>
                     <div class="scout-spot-notes">{{spot.hours_notes}}</div>
                     {% endif %}
 
@@ -162,12 +153,10 @@
 
                     <h4 class="visually-hidden">Building information</h4>
                     <div class="scout-spot-building-info">
-                        <ul>
-                            <li><strong>{% if spot.name %}{{spot.name}}</strong>{% endif %}</li>
-                            <li>{% if spot.building_name %}{{ spot.building_name }}{% endif %}</li>
-                            <li>Floor: {% if spot.floor %}{{ spot.floor }}{% else %}---{% endif %}</li>
-                            <li>Room: {% if spot.room_number %}{{ spot.room_number }}{% else %}---{% endif %}</li>
-                        </ul>
+                        <div><strong><span class="visually-hidden">Space name:</span>{% if spot.name %}{{spot.name}}</strong>{% endif %}</div>
+                            <div><span class="visually-hidden">Building:</span>{% if spot.building_name %}{{ spot.building_name }}{% endif %}</div>
+                            <div>Floor: {% if spot.floor %}{{ spot.floor }}{% else %}---{% endif %}</div>
+                            <div>Room: {% if spot.room_number %}{{ spot.room_number }}{% else %}---{% endif %}</div>
                     </div>
 
                 </div>

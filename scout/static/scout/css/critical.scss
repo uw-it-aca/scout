@@ -261,14 +261,10 @@ body { background: #f1f1f1; }
                     span { margin-left: 10px; }
                 }
 
-                .scout-spot-cuisine { margin: 10px 10px 5px 0; font-size: 12px; float: left; width: 25%;
-                    label { display: block; text-transform: uppercase; font-size: 10px; margin-bottom: 2px; color: #aaa; }
-                    span { margin-right: 5px; }
-                }
-
                 .scout-spot-resources { margin: 10px 0 5px 0; font-size: 12px; float: left; width: 80%;
-                    label {  display: block; text-transform: uppercase; font-size: 10px; margin-bottom: 2px; color: #aaa; }
-                    span { margin-right: 5px; white-space: nowrap; }
+                    ol {margin:0; padding:0;}
+                    span {  display: block; text-transform: uppercase; font-size: 10px; margin-bottom: 2px; color: #aaa; }
+                    li { margin-right: 5px; white-space: nowrap; list-style: none; display:inline;}
                 }
 
                 .scout-spot-extra { float:right; width: 20%; font-size: 12px; margin-top: 25px; text-align: right; }
@@ -278,8 +274,9 @@ body { background: #f1f1f1; }
                     .closed { color: #a94442; }
                 }
                 .scout-spot-open-period {color: #fff; margin: 10px 10px 5px 0; font-size: 12px; float: left; width: 70%;
-                    label {  display: block; text-transform: uppercase; font-size: 10px; margin-bottom: 2px; color: #aaa; }
-                    span { margin-right: 8px; }
+                    ol {margin:0; padding:0;}
+                    span {  display: block; text-transform: uppercase; font-size: 10px; margin-bottom: 2px; color: #aaa; }
+                    li { margin-right: 8px; list-style: none; display:inline;}
                 }
 
 
