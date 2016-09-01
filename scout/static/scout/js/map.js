@@ -273,7 +273,12 @@ var Map = {
         }
     },
 
-    add_current_position_marker: function(map, pos) {
+     add_current_position_marker: function (map, pos) {
+        var lastZoom = 18;
+        var circle;
+        var rMin = 20, rMax = 100, step = 4;
+        var intID;
+
         // show user location marker if user is sharing
         if (Geolocation.get_location_type() !== "default") {
             // create a marker for user location
@@ -287,33 +292,54 @@ var Map = {
                     strokeColor: '#c0392b',
                     scale: 5,
                     strokeWeight: 5
-                },
+                }
             });
+            window.user_location_marker = locationMarker;
 
-            // add radius overlay and bind to user location marker
-            var circle = new google.maps.Circle({
+            circle = new google.maps.Circle({
                 map: map,
-                radius: 40,    // meters
+                radius: rMax,    // meters
                 fillColor: '#c0392b',
                 fillOpacity: 0.15,
                 strokeWeight: 0
             });
             circle.bindTo('center', locationMarker, 'position');
 
-            // pulsate the radius overlay
+            setAnimation();
+
+            google.maps.event.addListener(map, 'zoom_changed', function() {
+                console.log('zoom changed');
+                clearInterval(intID);
+
+                var zoom = map.getZoom();
+
+                if (zoom > lastZoom) {
+                    rMax /= 2;
+                    rMin /= 2;
+                    step /= 2;
+                } else {
+                    rMax *= 2;
+                    rMin *= 2;
+                    step *= 2;
+                }
+                lastZoom = zoom;
+
+                circle.setRadius(rMax);
+                setAnimation();
+            });
+        }
+
+
+        function setAnimation() {
             var direction = 1;
-            var rmin = 20, rmax = 30;
-            setInterval(function() {
+            intID = setInterval(function() {
                 var radius = circle.getRadius();
-                if ((radius > rmax) || (radius < rmin)) {
+                if ((radius > rMax) || (radius < rMin)) {
                     direction *= -1;
                 }
-                circle.setRadius(radius + direction * 10);
-            }, 400);
-
-            // add user location marker to map
-            window.user_location_marker = locationMarker;
+                circle.setRadius(radius + direction * step);
+            }, 30);
         }
-    },
+    }
 
 };

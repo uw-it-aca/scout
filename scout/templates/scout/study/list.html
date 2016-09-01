@@ -11,16 +11,17 @@
     {% include "scout/include/user_geolocation.html" %}
 
     <!-- food filter results -->
-    <div class="scout-filter-results">
+    <div class="scout-filter-results" aria-labelledby="filter_header">
         <div class="scout-filter-results-by">
+            <h2 class="visually-hidden" id="filter_header">Filters</h2>
             <span class="filter-results-label">Filtering by:</span>
-            <div id="filter_label_text" class="scout-filter-results-text">---</div>
+            <div id="filter_label_text" class="scout-filter-results-text"><span class="visually-hidden">No filter selected</span>---</div>
         </div>
         <div class="scout-filter-results-results clearfix">
-            <span class="filter-results-label">Spaces:</span>
+            <span class="filter-results-label"><span class="visually-hidden">Number of </span>Spaces<span class="visually-hidden"> in list</span>:</span>
             <div class="scout-filter-results-count">{{ count }}</div>
             <div class="scout-filter-results-actions">
-                <a href="/{{campus}}/study/filter/" id="study_link_filter" title="Filter list of food places on campus">
+                <a href="/{{campus}}/study/filter/" id="study_link_filter" title="Filter list of study places on campus">
                     <i class="fa fa-sliders fa-inverse"></i>
                     <span class="scout-filter-results-action">Filter Study</span>
                 </a>
@@ -46,7 +47,7 @@
                 <ol style="margin:0; padding:0;">
 
                     {% for spot in group.spots %}
-                    <li class="scout-list-item scout-list-hover" id="{{ spot.spot_id }}" data-spot-lat="{{ spot.latitude }}" data-spot-lng="{{ spot.longitude }}" data-spot-building="{{ spot.building_name }}" data-spot-name="{{ spot.name }}">
+                    <li class="scout-list-item scout-list-hover" id="{{ spot.spot_id }}" data-spot-lat="{{ spot.latitude }}" data-spot-lng="{{ spot.longitude }}" data-spot-building="{{ spot.building_name }}" data-spot-name="{{ spot.name }}" aria-labelledby="spot_header_{{spot.spot_id}}">
                         <a class="clearfix" href="/{{campus}}/study/{{ spot.spot_id }}/">
 
                             {% if spot.images %}
@@ -60,33 +61,32 @@
                                 <div style="padding-left: 10px;">
 
                                     <div class="clearfix">
-                                        <div class="scout-spot-type">{% if spot.spot_types %}{% for type in spot.spot_types %}<span>
-                                            {% if type.name == 'open'%}{{ type.name|remove_underscores }} space{% else %}{{ type.name|remove_underscores }}{% endif %}</span>{% endfor %}{% else %} <span style="color:red;">SPOT_TYPE</span> {% endif %}</div>
+                                        <div class="scout-spot-type">{% if spot.spot_types %}{% for type in spot.spot_types %}<span><span class="visually-hidden">Type of space:</span>{% if type.name == 'open'%}{{ type.name|remove_underscores }} space{% else %}{{ type.name|remove_underscores }}{% endif %}</span>{% endfor %}{% else %} <span style="color:red;">SPOT_TYPE</span> {% endif %}</div>
 
                                         <div class="scout-spot-capacity">
                                             {% if spot.auto_labstats_total != 0 %}
                                                 {% if spot.auto_labstats_available != 0 %}
-                                                    <span style="margin-left:10px; color:#333;"><i class="fa fa-desktop" aria-hidden="true"></i> <span style="color:#2ecc71;">{{ spot.auto_labstats_available }}</span> / {{ spot.auto_labstats_total }}</span>
+                                                    <span style="margin-left:10px; color:#333;"><i class="fa fa-desktop" aria-hidden="true"></i> <span class="visually-hidden">Computer availability:</span><span style="color:#2ecc71;">{{ spot.auto_labstats_available }}</span> / {{ spot.auto_labstats_total }}</span>
                                                 {% endif %}
                                             {% else %}
-                                                {% if spot.capacity %}<span>Seats {{ spot.capacity }}</span>{% endif %}
+                                                {% if spot.capacity %}<span class="visually-hidden">Capacity: </span><span>Seats {{ spot.capacity }}</span>{% endif %}
                                             {% endif %}
                                         </div>
 
                                     </div>
 
-                                    <h4 class="scout-spot-name">{{ spot.name }}</h4>
+                                    <h4 class="scout-spot-name" id="spot_header_{{spot.spot_id}}">{{ spot.name }}</h4>
 
                                     <div class="scout-spot-location">
 
                                         <span class="scout-spot-distance"><span class="visually-hidden">Distance from you:</span><span class="distance-number">---</span>&nbsp;mi</span>
-                                        {% if spot.location_description %}{{ spot.location_description }}{% else %}<span style="color:red;">missing building_name</span>{% endif %}
+                                        <span class="visually-hidden">Building: </span>{% if spot.location_description %}{{ spot.location_description }}{% else %}<span style="color:red;">missing building_name</span>{% endif %}
 
                                         <!--{% if spot.location_description %}<p>{{spot.location_description|insert_newline|linebreaks}}</p>{% else %}<span style="color:red;">missing location_description</span></p>{% endif %}-->
 
                                     </div>
 
-                                    <div class="scout-spot-status">{% if spot.is_open %}<span class="open visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</div>
+                                    <div class="scout-spot-status"><span class="visually-hidden">Status: </span>{% if spot.is_open %}<span class="open visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</div>
 
                                 </div>
 
