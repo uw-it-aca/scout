@@ -29,9 +29,9 @@
             <div class="sticky">
                 <div class="scout-spot-meta clearfix">
 
-                    <div class="scout-spot-name">{{spot.name}}</div>
+                    <div class="scout-spot-name"><span class="visually-hidden">Name: </span>{{spot.name}}</div>
                     <div class="scout-spot-type">
-                        {% for type in spot.spot_types %}<span>{% if type.name == 'open'%}{{ type.name|remove_underscores }} space{% else %}{{ type.name|remove_underscores }}{% endif %}</span>{% endfor %}
+                        {% for type in spot.spot_types %}<span><span class="visually-hidden">Space type: </span>{% if type.name == 'open'%}{{ type.name|remove_underscores }} space{% else %}{{ type.name|remove_underscores }}{% endif %}</span>{% endfor %}
                     </div>
 
                     <div class="scout-spot-resources">
@@ -48,12 +48,12 @@
                     </div>
 
                     <div class="scout-spot-extra">
-                        {% if spot.capacity %}<span>Seats  {{ spot.capacity }}</span>{% endif %}
+                        {% if spot.capacity %}<span class="visually-hidden">Capacity: </span><span>Seats  {{ spot.capacity }}</span>{% endif %}
 
                         {% if spot.labstats_id %}
                             {% if spot.auto_labstats_total != 0 %}
                                 {% if spot.auto_labstats_available != 0 %}
-                                    <span><i class="fa fa-desktop" aria-hidden="true"></i> <span style="color:#2ecc71;">{{ spot.auto_labstats_available }}</span> / {{ spot.auto_labstats_total }}</span>
+                                    <span><i class="fa fa-desktop" aria-hidden="true"></i> <span class="visually-hidden">Computer availability: </span><span style="color:#2ecc71;">{{ spot.auto_labstats_available }}</span> / {{ spot.auto_labstats_total }}</span>
                                 {% endif %}
                             {% endif %}
                         {% endif %}
@@ -63,8 +63,8 @@
                 </div>
 
                 {% if spot.has_alert %}
-                <div class="scout-spot-alert">
-                    <i class="fa fa-exclamation-triangle"></i> {{ spot.alert_notes }}
+                <div class="scout-spot-alert" role="alert">
+                    <i class="fa fa-exclamation-triangle"></i>{{ spot.alert_notes }}
                 </div>
                 {% endif %}
 
@@ -156,7 +156,7 @@
                     </ul>
 
                     {% if spot.hours_notes %}
-                    <h4><i class="fa fa-file-text"></i> Notes</h4>
+                    <h4><i class="fa fa-file-text"></i> Hour Notes</h4>
                     <div class="scout-spot-notes">{{spot.hours_notes}}</div>
                     {% endif %}
 
@@ -176,12 +176,10 @@
 
                     <h4 class="visually-hidden">Building information</h4>
                     <div class="scout-spot-building-info">
-                        <ul>
-                            <li><strong>{% if spot.name %}{{spot.name}}</strong>{% endif %}</li>
-                            <li>{% if spot.building_name %}{{ spot.building_name }}{% endif %}</li>
-                            <li>Floor: {% if spot.floor %}{{ spot.floor }}{% else %}---{% endif %}</li>
-                            <li>Room: {% if spot.room_number %}{{ spot.room_number }}{% else %}---{% endif %}</li>
-                        </ul>
+                            <div><strong><span class="visually-hidden">Name: </span>{% if spot.name %}{{spot.name}}</strong>{% endif %}</div>
+                            <div><span class="visually-hidden">Building: </span>{% if spot.building_name %}{{ spot.building_name }}{% endif %}</div>
+                            <div>Floor: {% if spot.floor %}{{ spot.floor }}{% else %}---{% endif %}</div>
+                            <div>Room: {% if spot.room_number %}{{ spot.room_number }}{% else %}---{% endif %}</div>
                     </div>
 
                 </div>
@@ -225,5 +223,5 @@
 
 {% block secondary_content %}
 <!-- show a map on the list page -->
-<div id="study_detail_map" class="scout-spot-detail-map" style="height:100%;"></div>
+<div id="study_detail_map" class="scout-spot-detail-map" style="height:100%;" aria-hidden="true"></div>
 {% endblock %}
