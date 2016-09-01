@@ -37,8 +37,8 @@
         <ol id="scout_food_list" class="scout-card scout-list">
 
             {% for spot in spots %}
-                <li class="scout-list-item scout-list-hover" id="{{ spot.spot_id }}"  data-spot-lat="{{ spot.latitude }}" data-spot-lng="{{ spot.longitude }}" data-spot-building="{{ spot.building_name }}" data-spot-name="{{ spot.name }}">
-                    <a class="clearfix" href="/{{campus}}/food/{{ spot.spot_id }}/">
+                <li class="scout-list-item scout-list-hover" id="{{ spot.spot_id }}"  data-spot-lat="{{ spot.latitude }}" data-spot-lng="{{ spot.longitude }}" data-spot-building="{{ spot.building_name }}" data-spot-name="{{ spot.name }}" aria-labelledby="spot_header_{{spot.spot_id}}">
+                    <a class="clearfix" href="/{{campus}}/food/{{ spot.spot_id }}/" title="Details: {{ spot.name }}">
 
                         {% if spot.images %}
                         <div class="scout-spot-image" style="background-image: url('/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}/?width=200');">&nbsp;</div>
@@ -51,14 +51,14 @@
                             <div style="padding-left: 10px;">
 
                                 <div class="clearfix">
-                                    <div class="scout-spot-type">{% if spot.spot_types %}{% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}</span>{% endfor %}{% else %} <span style="color:red;">SPOT_TYPE</span> {% endif %}</div>
+                                    <div class="scout-spot-type"><span class="visually-hidden">Type of space: </span>{% if spot.spot_types %}{% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}</span>{% endfor %}{% else %} <span style="color:red;">SPOT_TYPE</span> {% endif %}</div>
                                 </div>
 
-                                <h3 class="scout-spot-name">{{ spot.name }}</h3>
+                                <h3 class="scout-spot-name" id="spot_header_{{spot.spot_id}}">{{ spot.name }}</h3>
                                 <div class="scout-spot-location">
 
                                     <span class="scout-spot-distance"><span class="visually-hidden">Distance from you:</span><span class="distance-number">---</span>&nbsp;mi</span>
-                                    {% if spot.building_name %}{{ spot.building_name }}{% else %}<span style="color:red;">missing building_name</span>{% endif %}
+                                    <span class="visually-hidden">Building: </span>{% if spot.building_name %}{{ spot.building_name }}{% else %}<span style="color:red;">missing building_name</span>{% endif %}
 
                                     <!--
                                     <div class="scout-spot-food-served hidden" aria-hidden="true">
@@ -74,7 +74,7 @@
 
                                 </div>
 
-                                <div class="scout-spot-status">{% if spot.is_open %}<span class="open visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</div>
+                                <span class="visually-hidden">Status: </span><div class="scout-spot-status">{% if spot.is_open %}<span class="open visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</div>
 
                             </div>
 
