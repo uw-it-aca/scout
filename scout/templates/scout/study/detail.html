@@ -48,10 +48,8 @@
                     <div class="scout-spot-extra">
                         {% if spot.capacity %}<span>Seats  {{ spot.capacity }}</span>{% endif %}
 
-                        {% if spot.auto_labstats_total != 0 %}
-                            {% if spot.auto_labstats_available != 0 %}
+                        {% if spot.auto_labstats_total >= 0 and spot.auto_labstats_available >= 0 %}
                                 <span><i class="fa fa-desktop" aria-hidden="true"></i> <span style="color:#2ecc71;">{{ spot.auto_labstats_available }}</span> / {{ spot.auto_labstats_total }}</span>
-                            {% endif %}
                         {% endif %}
 
                     </div>
