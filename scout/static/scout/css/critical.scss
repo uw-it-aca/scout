@@ -263,7 +263,9 @@ body { background: #f1f1f1; }
 
                 .scout-spot-resources { margin: 10px 0 5px 0; font-size: 12px; float: left; width: 80%;
                     ol {margin:0; padding:0;}
-                    span {  display: block; text-transform: uppercase; font-size: 10px; margin-bottom: 2px; color: #aaa; }
+                    span {  display: block; text-transform: uppercase; font-size: 10px; margin-bottom: 2px; color: #aaa; 
+                        &.brand-name {color:inherit; font-size:inherit; text-transform: inherit;}
+                    }
                     li { margin-right: 5px; white-space: nowrap; list-style: none; display:inline;}
                 }
 
