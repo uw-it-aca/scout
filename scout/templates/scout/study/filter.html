@@ -6,7 +6,7 @@
 {% block web_content %}
 <div id="page_filter" class="scout-content">
 
-    <h2 class="visually-hidden">Filter</h2>
+    <h2 class="visually-hidden">Study List Filter</h2>
 
     <div class="scout-filter-container">
 
@@ -34,7 +34,7 @@
 
             <div class="scout-card clearfix">
                 <fieldset class="scout-filter-split">
-                    <legend>Type</legend>
+                    <legend>Type <span class="visually-hidden">of space</span></legend>
                     <div id="type_select">
                         <label><input type="checkbox" value="study">Study room</label>
                         <label><input type="checkbox" value="study_area">Study area</label>
@@ -95,7 +95,7 @@
             </div>
 
             <div class="scout-filter-actions">
-                <button id="reset_study_button" type="button" class="action-cancel"><i class="fa fa-refresh"></i>Reset</button>&nbsp;&nbsp;
+                <button id="reset_study_button" type="button" class="action-cancel"><i class="fa fa-refresh"></i>Reset<span class="visually-hidden">filter</span></button>&nbsp;&nbsp;
                 <button id="run_study_search" type="button"><i class="fa fa-list fa-inverse"></i>View Results</button>
             </div>
 
