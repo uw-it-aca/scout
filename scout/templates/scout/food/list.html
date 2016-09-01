@@ -38,7 +38,7 @@
 
             {% for spot in spots %}
                 <li class="scout-list-item scout-list-hover" id="{{ spot.spot_id }}"  data-spot-lat="{{ spot.latitude }}" data-spot-lng="{{ spot.longitude }}" data-spot-building="{{ spot.building_name }}" data-spot-name="{{ spot.name }}">
-                    <a class="clearfix" href="/{{campus}}/food/{{ spot.spot_id }}/">
+                    <a class="clearfix" href="/{{campus}}/food/{{ spot.spot_id }}/" title="Details: {{ spot.name }}">
 
                         {% if spot.images %}
                         <div class="scout-spot-image" style="background-image: url('/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}/?width=200');">&nbsp;</div>
