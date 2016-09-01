@@ -96,7 +96,7 @@
             <div class="item-inner">
                 <div class="item-title">Computers</div>
                 <div class="item-after">
-                    {% if spot.auto_labstats_total >= 0 and spot.auto_labstats_available >= 0 %}
+                    {% if spot.auto_labstats_total > 0 and spot.auto_labstats_available > 0 %}
                         <i class="fa fa-desktop" aria-hidden="true"></i>&nbsp;<span style="color:#2ecc71;">{{ spot.auto_labstats_available }}</span>&nbsp;/&nbsp;{{ spot.auto_labstats_total }}
                     {% endif %}
                 </div>
