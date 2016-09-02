@@ -49,7 +49,7 @@ body { background: #f1f1f1; }
         .fa-stack { font-size: 12px; }
         .fa-circle { color: $scout-button; }
             .scout-geolocation-location { color:#fff; display: inline-block;
-                span { color:#ccc;}
+                span { color:#eee;}
             }
             .scout-geolocation-action {  margin-left: 5px; float: right; font-size: 25px;
                 button { position: absolute; top: 0; left:0; right:0; text-align: right; border: none; width: 100%; background: transparent; padding: 0;
@@ -326,7 +326,10 @@ body { background: #f1f1f1; }
         // discover
 
         .scout-discover-container { min-height: 380px;
-
+            .discover-heading-container {padding: 5px 20px;
+                h2 {text-shadow: 1px 2px black; text-transform: capitalize;}
+                p {text-shadow: 1px 1px black;}
+            }
             .scout-discover-loading { position:absolute; top:70%; left:50%; margin-top: -110px; margin-left: -15px; }
             .scout-discover-content {
 
@@ -354,7 +357,7 @@ body { background: #f1f1f1; }
                     .scout-spot-discover-action { display: inline-block; line-height: 30px;
                         .fa-stack { font-size: 12px; }
                         .fa-circle { color: $scout-button; }
-                        .scout-spot-action-text {  color: $scout-link; text-decoration: underline; }
+                        .scout-spot-action-text {  color: $scout-purple; text-decoration: underline; }
                     }
                 }
             }
