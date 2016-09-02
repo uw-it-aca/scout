@@ -44,20 +44,20 @@ body { background: #f1f1f1; }
 
 // geolocation bar
 
-.scout-geolocation { height: $geolocation-height; background: #999; position: relative;
+.scout-geolocation { height: $geolocation-height; background: $scout-purple; position: relative;
     .scout-geolocation-position { font-size:14px; line-height: $geolocation-height; white-space: nowrap; padding: 0 20px 0 13px;
         .fa-stack { font-size: 12px; }
         .fa-circle { color: $scout-button; }
             .scout-geolocation-location { color:#fff; display: inline-block;
-                span { color:#ccc; }
+                span { color:#ccc;}
             }
             .scout-geolocation-action {  margin-left: 5px; float: right; font-size: 25px;
                 button { position: absolute; top: 0; left:0; right:0; text-align: right; border: none; width: 100%; background: transparent; padding: 0;
-                    .fa-toggle-on { color: $scout-purple; }
-                    .fa-flip-horizontal { color: #777 !important; }
+                    .fa-toggle-on { color: #FFEEB8; }
+                    .fa-flip-horizontal { color: #444 !important; }
                 }
             }
-        .scout-geolocation-user { display:none; position:absolute; left:40px; right:20px; background:#999; }
+        .scout-geolocation-user { display:none; position:absolute; left:40px; right:20px; background:$scout-purple;}
         .scout-geolocation-loading { position:absolute; color:#fff; z-index:0; left:40px; right:20px; }
     }
 }
@@ -330,7 +330,7 @@ body { background: #f1f1f1; }
             .scout-discover-loading { position:absolute; top:70%; left:50%; margin-top: -110px; margin-left: -15px; }
             .scout-discover-content {
 
-                h3 { font-family: 'ralewaybold'; font-size: 12px; color: #bbb; text-transform: uppercase; letter-spacing: 1px; margin: 0; line-height: 35px;
+                h3 { font-family: 'ralewaybold'; font-size: 12px; color: $scout-purple; text-transform: uppercase; letter-spacing: 1px; margin: 0; line-height: 35px;
 
                     .fa-stack { color: $scout-purple; }
                 }
