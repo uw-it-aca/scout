@@ -7,7 +7,7 @@ fold styles and general helpers.
 
 $scout-purple: #6564A8;
 $scout-button: #2ecc71;
-$scout-link: #3498db;
+$scout-link: #25738F;
 $footer-height: 40px;
 
 // temporary classes (delete)
@@ -33,7 +33,7 @@ $footer-height: 40px;
 
             .scout-spot-meta { }
 
-            .scout-spot-notes { color: #aaa; font-size: 14px; line-height: 20px; }
+            .scout-spot-notes { color: #767676; font-size: 14px; line-height: 20px; }
 
             .scout-spot-contact-info { }
 
@@ -95,7 +95,7 @@ $footer-height: 40px;
                 .scout-spot-coupon { color: #333; font-size: 14px; line-height: 16px;
 
                     .scout-spot-coupon-expire { margin: 10px 0;
-                        span { color: #bbb; }
+                        span { color: #767676; }
                     }
                     a { display: block; text-decoration: none; line-height: 30px;
 

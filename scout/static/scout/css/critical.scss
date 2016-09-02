@@ -255,16 +255,16 @@ a {color: $scout-link;}
 
             .scout-spot-alert { margin: 0; padding: 15px 20px; background: #fcf8e3; color: #8a6d3b; font-size: 14px; line-height: 16px;}
 
-            .scout-spot-meta { background: $scout-purple; color: #fff; padding: 10px 20px; position: relative;
+            .scout-spot-meta { background: #444; color: #fff; padding: 10px 20px; position: relative;
 
                 .scout-spot-name { font-family: 'ralewaybold'; font-size: 18px; margin: 0; line-height: 30px; width:75%; white-space: nowrap; overflow-x: hidden; text-overflow: ellipsis; }
-                .scout-spot-type { text-transform: uppercase; font-weight: normal; font-size: 12px; margin: 0; position: absolute; top: 15px; right:20px; color: #ccc;
+                .scout-spot-type { text-transform: uppercase; font-weight: normal; font-size: 12px; margin: 0; position: absolute; top: 15px; right:20px; color: #BBB;
                     span { margin-left: 10px; }
                 }
 
                 .scout-spot-resources { margin: 10px 0 5px 0; font-size: 12px; float: left; width: 80%;
                     ol {margin:0; padding:0;}
-                    span {  display: block; text-transform: uppercase; font-size: 10px; margin-bottom: 2px; color: #767676; 
+                    span {  display: block; text-transform: uppercase; font-size: 10px; margin-bottom: 2px; color: #BBB; 
                         &.brand-name {color:inherit; font-size:inherit; text-transform: inherit;}
                     }
                     li { margin-right: 5px; white-space: nowrap; list-style: none; display:inline;}
@@ -274,11 +274,11 @@ a {color: $scout-link;}
 
                 .scout-spot-status { position: absolute; bottom: 15px; right: 20px; font-size: 12px; text-transform: uppercase;
                     .open { color: #2ecc71; }
-                    .closed { color: #a94442; }
+                    .closed { color: #F29D94; }
                 }
                 .scout-spot-open-period {color: #fff; margin: 10px 10px 5px 0; font-size: 12px; float: left; width: 70%;
                     ol {margin:0; padding:0;}
-                    span {  display: block; text-transform: uppercase; font-size: 10px; margin-bottom: 2px; color: #767676; }
+                    span {  display: block; text-transform: uppercase; font-size: 10px; margin-bottom: 2px; color: #BBB; }
                     li { margin-right: 8px; list-style: none; display:inline;}
                 }
 
@@ -313,7 +313,7 @@ a {color: $scout-link;}
 
             .scout-spot-content {
 
-                h3 { font-family: 'ralewaybold'; font-size: 13px; color: #bbb; text-transform: uppercase; letter-spacing: 1px; margin: 0; line-height: 35px; }
+                h3 { font-family: 'ralewaybold'; font-size: 13px; color: $scout-purple; text-transform: uppercase; letter-spacing: 1px; margin: 0; line-height: 35px; }
 
                 h4 { font-family: 'ralewaybold'; font-size: 10px; color: #666; text-transform: uppercase; letter-spacing: 1px; margin: 0; line-height: 35px;
                     .fa { color: $scout-purple; }
