@@ -66,7 +66,7 @@ body { background: #f1f1f1; }
 
 .scout-filter-results { /*border-top: solid 1px #ddd;*/
 
-    .filter-results-label { display: block; font-size: 10px; text-transform: uppercase; color: #aaa; }
+    .filter-results-label { display: block; font-size: 10px; text-transform: uppercase; color: #767676; }
 
     .scout-filter-results-by { padding: 15px 20px 5px 20px; font-size: 14px;
         .filter-results-label { margin-bottom: 5px; }
@@ -368,10 +368,10 @@ body { background: #f1f1f1; }
         .scout-filter-container {
 
             fieldset { border: none; padding: 0; margin:0;  margin-bottom: 20px; float: left; width: 50%;
-                legend { font-family: 'ralewaybold'; font-size: 12px; text-transform: uppercase; margin-bottom: 8px; color: #bbb; padding: 5px 0; letter-spacing: 1px; }
+                legend { font-family: 'ralewaybold'; font-size: 12px; text-transform: uppercase; margin-bottom: 8px; color: #6564a8; padding: 5px 0; letter-spacing: 1px; }
             }
             label { display: block; line-height: 25px; font-size: 14px; white-space: nowrap;
-                span { color: #aaa; }
+                span { color: #767676; }
                 input[type="checkbox"], input[type="radio"]    { margin-right: 5px; }
             }
 
@@ -392,7 +392,7 @@ body { background: #f1f1f1; }
                         .fa { color: #777; }
                     }
 
-                    &.action-cancel { background: #ddd; color:#666; }
+                    &.action-cancel { background: #ddd; color:#555; }
                 }
 
             }
