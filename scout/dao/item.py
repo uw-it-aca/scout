@@ -3,6 +3,7 @@ from scout.dao.space import get_spots_by_filter, _get_spot_filters, \
 import copy
 import urllib2
 
+
 def get_item_by_id(item_id):
     spot = get_spots_by_filter([
             ('item:id', item_id),
