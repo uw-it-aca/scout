@@ -13,26 +13,6 @@
         <form>
 
             <div class="scout-card clearfix">
-
-                <fieldset style="width:100%;">
-                    <legend>Building(s)</legend>
-                    <div id="building_select">
-                        <!--Needs to be updated dynamically!-->
-                        <select multiple style="width:100%;">
-                            <optgroup disabled hidden></optgroup>
-                            {% for building_name in buildings %}
-                                {% if building_name %}
-                                    <option value="{{ building_name }}">{{ building_name }}</option>
-                                {% endif %}
-                            {% endfor %}
-                        </select>
-                        <p style="color:#aaa; font-size:14px;">You may select multiple buildings.</p>
-                    </div>
-                </fieldset>
-
-            </div>
-
-            <div class="scout-card clearfix">
                 <fieldset class="scout-filter-split">
                     <legend>Type <span class="visually-hidden">of space</span></legend>
                     <div id="type_select">
@@ -89,6 +69,25 @@
                     <legend>Lighting</legend>
                     <div id="lighting_select">
                         <label><input type="checkbox" value="has_natural_light" />Natural Light</label>
+                    </div>
+                </fieldset>
+
+            </div>
+            <div class="scout-card clearfix">
+
+                <fieldset style="width:100%;">
+                    <legend>Building(s)</legend>
+                    <div id="building_select">
+                        <!--Needs to be updated dynamically!-->
+                        <select multiple style="width:100%;">
+                            <optgroup disabled hidden></optgroup>
+                            {% for building_name in buildings %}
+                                {% if building_name %}
+                                    <option value="{{ building_name }}">{{ building_name }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                        <p style="color:#aaa; font-size:14px;">You may select multiple buildings.</p>
                     </div>
                 </fieldset>
 
