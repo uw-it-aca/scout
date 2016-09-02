@@ -49,6 +49,7 @@
 
                     <div class="scout-spot-extra">
                         {% if spot.capacity %}<span class="visually-hidden">Capacity: </span><span>Seats  {{ spot.capacity }}</span>{% endif %}
+
                         {% if spot.labstats_id %}
                             {% if spot.auto_labstats_total != 0 %}
                                 {% if spot.auto_labstats_available != 0 %}
