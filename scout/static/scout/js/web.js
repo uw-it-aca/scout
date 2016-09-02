@@ -8,14 +8,12 @@ $(document).on('ready', function(event) {
     var page_path = window.location.pathname;
 
     if (page_path.indexOf("food") !== -1) {
-        console.log("on food");
         // food
         Geolocation.display_location_status();
         List.init();
         Map.init_map();
         Filter.init();
     } else if (page_path.indexOf("study") !== -1){
-        console.log("on study");
         Geolocation.display_location_status();
         List.init();
         Map.init_map();
@@ -28,22 +26,20 @@ $(document).on('ready', function(event) {
         });
 
         $('.sticky-header-wrap').stickyHeaders({
-            stickyElement: 'div',
+            stickyElement: 'div aria-hidden="true"',
         });
 
     } else if (page_path.indexOf("tech") !== -1){
-        console.log("on tech");
         Geolocation.display_location_status();
         List.init();
         Map.init_map();
         Filter.init();
 
         $('.sticky-header-wrap').stickyHeaders({
-            stickyElement: 'div',
+            stickyElement: 'div aria-hidden="true"',
         });
 
     } else {
-        console.log("on discover");
         Discover.init_cards();
         Map.init_map();
     }

@@ -308,7 +308,6 @@ var Map = {
             setAnimation();
 
             google.maps.event.addListener(map, 'zoom_changed', function() {
-                console.log('zoom changed');
                 clearInterval(intID);
 
                 var zoom = map.getZoom();
