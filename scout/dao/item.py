@@ -8,8 +8,9 @@ def get_item_by_id(item_id):
             ('item:id', item_id),
             ('extended_info:app_type', 'tech')
     ])
-    filtered_spot = _filter_spot_items(item_id, spot[0])
-    return filtered_spot
+    if spot:
+        spot = _filter_spot_items(item_id, spot[0])
+    return spot
 
 
 def _filter_spot_items(item_id, spot):
