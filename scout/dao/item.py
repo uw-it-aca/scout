@@ -1,7 +1,6 @@
 from scout.dao.space import get_spots_by_filter, _get_spot_filters, \
     _get_extended_info_by_key
 import copy
-import urllib2
 
 
 def get_item_by_id(item_id):
@@ -9,8 +8,9 @@ def get_item_by_id(item_id):
             ('item:id', item_id),
             ('extended_info:app_type', 'tech')
     ])
-    filtered_spot = _filter_spot_items(item_id, spot[0])
-    return filtered_spot
+    if spot:
+        spot = _filter_spot_items(item_id, spot[0])
+    return spot
 
 
 def _filter_spot_items(item_id, spot):
@@ -66,12 +66,6 @@ def add_item_info(spot):
             "i_manual_url",
             item.extended_info
         )
-
-        if item.reserve_url:
-            item.reserve_url = urllib2.unquote(item.reserve_url)
-        if item.manual_url:
-            item.manual_url = urllib2.unquote(item.manual_url)
-
     return spot
 
 

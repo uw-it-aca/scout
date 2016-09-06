@@ -63,9 +63,9 @@ var List = {
                 List.order_list("scout-list-building", "scout_study_list", true);
             } else if (currentType.indexOf("tech") > -1)  {
                 List.add_additional_tech_distances();
-                List.order_list("scout-list-item", "scout_tech_list");
+                List.order_list("scout-list-item", "scout_tech_list", false);
             } else {
-                List.order_list("scout-list-item", "scout_food_list");
+                List.order_list("scout-list-item", "scout_food_list", false);
             }
 
         });
@@ -108,10 +108,10 @@ var List = {
             var spot_name = $(spot).attr("data-spot-name");
             var building = $(spot).attr("data-spot-building");
             spot_data.push({"id": id,
-                             "lat": lat,
-                             "lng": lng,
-                             "spot_name": spot_name,
-                             "building": building})
+                            "lat": lat,
+                            "lng": lng,
+                            "spot_name": spot_name,
+                            "building": building})
         });
         return spot_data
     }

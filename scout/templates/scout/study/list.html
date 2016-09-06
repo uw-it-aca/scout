@@ -64,13 +64,8 @@
                                         <div class="scout-spot-type">{% if spot.spot_types %}{% for type in spot.spot_types %}<span><span class="visually-hidden">Type of space:</span>{% if type.name == 'open'%}{{ type.name|remove_underscores }} space{% else %}{{ type.name|remove_underscores }}{% endif %}</span>{% endfor %}{% else %} <span style="color:red;">SPOT_TYPE</span> {% endif %}</div>
 
                                         <div class="scout-spot-capacity">
-                                            {% if spot.labstats_id %}
-                                                {% if spot.auto_labstats_total != 0 %}
-                                                    {% if spot.auto_labstats_available != 0 %}
-                                                        <span style="margin-left:10px; color:#333;"><i class="fa fa-desktop" aria-hidden="true"></i> <span class="visually-hidden">Computer availability:</span><span style="color:#2ecc71;">{{ spot.auto_labstats_available }}</span> / {{ spot.auto_labstats_total }}</span>
-                                                    {% endif %}
-                                                {% endif %}
-
+                                            {% if spot.auto_labstats_total > 0 and spot.auto_labstats_available > 0 %}
+                                                <span style="margin-left:10px; color:#333;"><i class="fa fa-desktop" aria-hidden="true"></i> <span class="visually-hidden">Computer availability:</span><span style="color:#2ecc71;">{{ spot.auto_labstats_available }}</span> / {{ spot.auto_labstats_total }}</span>
                                             {% else %}
                                                 {% if spot.capacity %}<span class="visually-hidden">Capacity: </span><span>Seats {{ spot.capacity }}</span>{% endif %}
                                             {% endif %}

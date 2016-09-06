@@ -144,6 +144,9 @@ var Filter = {
                         type = "option";
                         state = "selected";
                     }
+                    if (param_key == "open_now") {
+                        param_val = "open_now";
+                    }
                     var item = $("#" + type_val).find(type + "[value='" + param_val + "']");
                     $(item[0]).prop(state, true);
                 }

@@ -363,20 +363,18 @@ def add_study_info(spot):
     spot.reservation_notes = _get_extended_info_by_key("reservation_notes",
                                                        spot.extended_info)
 
-    if _get_extended_info_by_key("has_labstats", spot.extended_info) == "true":
-        spot.labstats = True
-        spot.labstats_id = _get_extended_info_by_key("labstats_id",
-                                                     spot.extended_info)
-        spot.auto_labstats_total = _get_extended_info_by_key(
-                                                     "auto_labstats_total",
-                                                     spot.extended_info)
-        spot.auto_labstats_available = _get_extended_info_by_key(
-                                                     "auto_labstats_available",
-                                                     spot.extended_info)
-        if spot.auto_labstats_available is None\
-           or spot.auto_labstats_total is None:
-            spot.auto_labstats_total = 0
-            spot.auto_labstats_available = 0
+    spot.labstats_id = _get_extended_info_by_key("labstats_id",
+                                                 spot.extended_info)
+    spot.auto_labstats_total = _get_extended_info_by_key(
+                                                 "auto_labstats_total",
+                                                 spot.extended_info)
+    spot.auto_labstats_available = _get_extended_info_by_key(
+                                                 "auto_labstats_available",
+                                                 spot.extended_info)
+    if spot.auto_labstats_available is None\
+       or spot.auto_labstats_total is None:
+        spot.auto_labstats_total = 0
+        spot.auto_labstats_available = 0
 
     return spot
 
