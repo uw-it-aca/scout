@@ -211,10 +211,13 @@ def tech_list_view(request, campus):
     # spots = get_spots_by_filter([('has_items', 'true')])
     spots = get_filtered_spots(request, campus, "tech")
     spots = get_filtered_items(spots, request)
+    count = get_item_count(spots)
+    if count <= 0:
+        spots = []
 
     context = {"spots": spots,
                "campus": campus,
-               "count": get_item_count(spots),
+               "count": count,
                "app_type": 'tech'}
     return render_to_response('scout/tech/list.html', context,
                               context_instance=RequestContext(request))
@@ -223,6 +226,9 @@ def tech_list_view(request, campus):
 @validate_campus_selection
 def tech_detail_view(request, campus, item_id):
     spot = get_item_by_id(int(item_id))
+    if not spot:
+        raise Http404("Spot does not exist")
+
     context = {"spot": spot,
                "campus": campus,
                "app_type": 'tech'}
