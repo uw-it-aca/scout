@@ -27,15 +27,13 @@ def validate_campus_selection(function):
         if kwargs['campus'] in campuses:
             return function(request, *args, **kwargs)
         else:
-            raise Http404
+            return custom_404_response(request)
     return wrap
 
 
 @validate_campus_selection
 def discover_view(request, campus):
-    context = {
-        "campus": campus,
-    }
+    context = {"campus": campus}
     return render_to_response('scout/discover.html', context,
                               context_instance=RequestContext(request))
 
@@ -116,13 +114,13 @@ def discover_card_view(request, campus, discover_category):
     try:
         discover_data = discover_categories[discover_category]
     except KeyError:
-        raise Http404("Discover card does not exist")
+        return custom_404_response(request)
 
     discover_data["filter"].append(('extended_info:campus', campus))
 
     spots = get_spots_by_filter(discover_data["filter"])
     if len(spots) == 0:
-        raise Http404("No spots for card")
+        return custom_404_response(request)
     context = {
         "spots": spots,
         "campus": campus,
@@ -152,7 +150,7 @@ def food_list_view(request, campus):
 def food_detail_view(request, campus, spot_id):
     spot = get_spot_by_id(spot_id)
     if not spot:
-        raise Http404("Spot does not exist")
+        return custom_404_response(request)
 
     context = {"spot": spot,
                "campus": campus,
@@ -187,7 +185,7 @@ def study_list_view(request, campus):
 def study_detail_view(request, campus, spot_id):
     spot = get_spot_by_id(spot_id)
     if not spot:
-        raise Http404("Spot does not exist")
+        return custom_404_response(request)
 
     context = {"spot": spot,
                "campus": campus,
@@ -288,7 +286,7 @@ def hybrid_study_list_view(request, campus):
 def hybrid_study_detail_view(request, campus, spot_id):
     spot = get_spot_by_id(spot_id)
     if not spot:
-        raise Http404("Spot does not exist")
+        return custom_404_response(request)
 
     context = {"spot": spot,
                "campus": campus,
@@ -323,4 +321,13 @@ def image_view(request, image_id, spot_id):
         response['etag'] = etag
         return response
     except Exception:
-        raise Http404()
+        return custom_404_response(request)
+
+
+# Custom 404 page
+def custom_404_response(request):
+    context = {"campus": "seattle"}
+    response = render_to_response('404.html', context,
+                                  context_instance=RequestContext(request))
+    response.status_code = 404
+    return response
