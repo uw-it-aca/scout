@@ -394,15 +394,15 @@ describe("Filter Tests", function() {
     describe("Replace Food Href", function() {
         // Seeing if the right href gets attached to the button based on the params
         beforeEach(function() {
-            global.$ = tools.jqueryFromHtml('<a href="" id="link_food">Places</a>');
+            global.$ = tools.jqueryFromHtml('<a href="/seattle/food/" id="link_food">Places</a>');
         });
         it('the link_food is replaced with the href of no filters', function() {
             var sessionVars = new fakeSess();
             global.sessionStorage = sessionVars;
             Filter.replace_navigation_href();
             var food_anchor = $("#link_food");
-            var value = $(food_anchor).attr('href');
-            var exp = "/" + default_campus + "/food/"
+            var value = $(food_anchor).attr("href");
+            var exp = "/" + default_campus + "/food/";
             assert.deepEqual(value, exp);
         });
         it('the link_food is replaced with the expected href of one filter', function() {
@@ -435,7 +435,7 @@ describe("Filter Tests", function() {
     describe("Replace Study Href", function() {
         // Seeing if the right href gets attached to the button based on the params
         beforeEach(function() {
-            global.$ = tools.jqueryFromHtml('<a href="" id="link_study">Places</a>');
+            global.$ = tools.jqueryFromHtml('<a href="/seattle/study/" id="link_study">Places</a>');
         });
         it('the link_study is replaced with the href of no filters', function() {
             var sessionVars = new fakeSess();
@@ -475,7 +475,7 @@ describe("Filter Tests", function() {
     describe("Replace Tech Href", function() {
         // Seeing if the right href gets attached to the button based on the params
         beforeEach(function() {
-            global.$ = tools.jqueryFromHtml('<a href="" id="link_tech">Places</a>');
+            global.$ = tools.jqueryFromHtml('<a href="/seattle/tech/" id="link_tech">Places</a>');
         });
         it('the link_tech is replaced with the href of no filters', function() {
             var sessionVars = new fakeSess();

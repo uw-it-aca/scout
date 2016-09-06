@@ -168,9 +168,7 @@ var Filter = {
             if (filter !== undefined){
                 filter = anchor_id.attr("href") + "?" + filter;
             }
-            if(anchor_id !== undefined){
-                anchor_id.attr("href", filter);
-            }
+            anchor_id.attr("href", filter);
         }
     },
 
