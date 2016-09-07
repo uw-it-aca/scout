@@ -225,7 +225,11 @@ def tech_list_view(request, campus):
 def tech_detail_view(request, campus, item_id):
     spot = get_item_by_id(int(item_id))
     if not spot:
+<<<<<<< HEAD
         return custom_404_response(request)
+=======
+        raise custom_404_response(request)
+>>>>>>> 2c3ab4b324a85c2d2ce6a9be19512f29e2782c4f
 
     context = {"spot": spot,
                "campus": campus,
