@@ -106,7 +106,9 @@
 {% endif %}
 <script src="{% static 'vendor/js/markerwithlabel.js' %}"></script>
 <script src="{% static 'vendor/js/markerclusterer.js' %}"></script>
-
+<script type="text/javascript">
+    window.staticPath="{% static "" %}"
+</script>
 {% if google_analytics %}
 <!-- google analytics -->
 <script type="text/javascript">
