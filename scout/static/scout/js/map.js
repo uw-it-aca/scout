@@ -32,7 +32,6 @@ var Map = {
         var pos = Geolocation.get_client_latlng();
         var mapOptions;
         if(currentMap) {
-            console.log("map exists");
 
             // center map on default location OR location received from user
             mapOptions = {
