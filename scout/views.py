@@ -225,7 +225,7 @@ def tech_list_view(request, campus):
 def tech_detail_view(request, campus, item_id):
     spot = get_item_by_id(int(item_id))
     if not spot:
-        raise Http404("Spot does not exist")
+        raise custom_404_response(request)
 
     context = {"spot": spot,
                "campus": campus,
