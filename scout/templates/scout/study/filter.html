@@ -6,35 +6,15 @@
 {% block web_content %}
 <div id="page_filter" class="scout-content">
 
-    <h2 class="visually-hidden">Filter</h2>
+    <h2 class="visually-hidden" id="filter_header">Study List Filter</h2>
 
-    <div class="scout-filter-container">
+    <div class="scout-filter-container" role="main" aria-labelledby="filter_header">
 
         <form>
 
             <div class="scout-card clearfix">
-
-                <fieldset style="width:100%;">
-                    <legend>Building(s)</legend>
-                    <div id="building_select">
-                        <!--Needs to be updated dynamically!-->
-                        <select multiple style="width:100%;">
-                            <optgroup disabled hidden></optgroup>
-                            {% for building_name in buildings %}
-                                {% if building_name %}
-                                    <option value="{{ building_name }}">{{ building_name }}</option>
-                                {% endif %}
-                            {% endfor %}
-                        </select>
-                        <p style="color:#aaa; font-size:14px;">You may select multiple buildings.</p>
-                    </div>
-                </fieldset>
-
-            </div>
-
-            <div class="scout-card clearfix">
                 <fieldset class="scout-filter-split">
-                    <legend>Type</legend>
+                    <legend>Type <span class="visually-hidden">of space</span></legend>
                     <div id="type_select">
                         <label><input type="checkbox" value="study">Study room</label>
                         <label><input type="checkbox" value="study_area">Study area</label>
@@ -93,9 +73,28 @@
                 </fieldset>
 
             </div>
+            <div class="scout-card clearfix">
+
+                <fieldset style="width:100%;">
+                    <legend>Building(s)</legend>
+                    <div id="building_select">
+                        <!--Needs to be updated dynamically!-->
+                        <select multiple style="width:100%;">
+                            <optgroup disabled hidden></optgroup>
+                            {% for building_name in buildings %}
+                                {% if building_name %}
+                                    <option value="{{ building_name }}">{{ building_name }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                        <p style="color:#767676; font-size:14px;">You may select multiple buildings.</p>
+                    </div>
+                </fieldset>
+
+            </div>
 
             <div class="scout-filter-actions">
-                <button id="reset_study_button" type="button" class="action-cancel"><i class="fa fa-refresh"></i>Reset</button>&nbsp;&nbsp;
+                <button id="reset_study_button" type="button" class="action-cancel"><i class="fa fa-refresh"></i>Reset<span class="visually-hidden">filter</span></button>&nbsp;&nbsp;
                 <button id="run_study_search" type="button"><i class="fa fa-list fa-inverse"></i>View Results</button>
             </div>
 

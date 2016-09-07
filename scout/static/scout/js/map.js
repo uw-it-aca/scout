@@ -116,12 +116,12 @@ var Map = {
                     // handle hover event for main list view
                     $('#' + data.id).hover(
                         function () {
-                            //map.setCenter(marker.getPosition());
                             infoWindow.setContent(
                                 "<div><strong>" + data.spot_name + "</strong><br>" +
                                 data.building + "</div>"
                             );
-                            infoWindow.open(map, marker);
+                            infoWindow.open(map);
+                            infoWindow.setPosition(marker.position);
                         },
                         function () {
                             infoWindow.close(map, marker);
@@ -145,7 +145,7 @@ var Map = {
 
             // marker clusterer options
             var mc_options = {
-                imagePath: '/static/vendor/img/m',
+                imagePath: window.staticPath + '/vendor/img/m',
                 gridSize: 30,
                 minimumClusterSize: 3,
                 maxZoom: 20
@@ -308,7 +308,6 @@ var Map = {
             setAnimation();
 
             google.maps.event.addListener(map, 'zoom_changed', function() {
-                console.log('zoom changed');
                 clearInterval(intID);
 
                 var zoom = map.getZoom();

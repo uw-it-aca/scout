@@ -11,11 +11,12 @@
     {% include "scout/include/user_geolocation.html" %}
 
     <!-- tech filter results -->
-    <div class="scout-filter-results">
+    <div class="scout-filter-results" aria-labelledby="filter_header">
 
         <div class="scout-filter-results-by">
+            <h2 class="visually-hidden" id="filter_header">Filters</h2>
             <span class="filter-results-label">Filtering by:</span>
-            <div id="filter_label_text" class="scout-filter-results-text">---</div>
+            <div id="filter_label_text" class="scout-filter-results-text"><span class="visually-hidden">No filter selected</span>---</div>
         </div>
 
         <div class="scout-filter-results-by">
@@ -30,11 +31,11 @@
         </div>
 
         <div class="scout-filter-results-results clearfix">
-            <span class="filter-results-label">Items:</span>
+            <span class="filter-results-label"><span class="visually-hidden">Number of </span>Items<span class="visually-hidden"> in list</span>:</span>
             <div class="scout-filter-results-count">{{ count }}</div>
 
             <div class="scout-filter-results-actions">
-                <a href="/{{ campus }}/tech/filter/" id="tech_link_filter" title="Filter list of food places on campus">
+                <a href="/{{ campus }}/tech/filter/" id="tech_link_filter" title="Filter list of tech items on campus">
                     <i class="fa fa-sliders fa-inverse"></i>
                     <span class="scout-filter-results-action">Filter Tech</span>
                 </a>
@@ -61,9 +62,9 @@
                     <ol style="margin:0; padding:0;">
 
                     {% for item in spot.items %}
-                    <li class="scout-list-item-object scout-list-hover">
+                    <li class="scout-list-item-object scout-list-hover" aria-labelledby="item_header_{{item.item_id}}">
 
-                            <a class="clearfix" href="/{{campus}}/tech/{{ item.item_id }}/">
+                            <a class="clearfix" href="/{{campus}}/tech/{{ item.item_id }}/" title="Item Details: {{ item.name }}">
 
                                 {% if spot.item_images %}
                                 <div class="scout-spot-image" style="background-image: url('/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}/?width=200'); background-size:cover;">&nbsp;</div>
@@ -75,21 +76,21 @@
                                     <div style="padding-left: 10px;">
 
                                         <div class="clearfix">
-                                            <div class="scout-spot-type">{% if item.subcategory %}<span>{{ item.subcategory }}</span>{% else %} <span style="color:red;">ITEM_SUB_CATEGORY</span> {% endif %}</div>
+                                            <div class="scout-spot-type"><span class="visually-hidden">Item Category:</span>{% if item.subcategory %}<span>{{ item.subcategory }}</span>{% else %} <span style="color:red;">ITEM_SUB_CATEGORY</span> {% endif %}</div>
 
                                             <div class="scout-spot-capacity">
-                                                {% if item.quantity %}<span>Available {{ item.quantity }}</span>{% endif %}
+                                                {% if item.quantity %}<span><span class="visually-hidden">Number of items </span>Available {{ item.quantity }}</span>{% endif %}
                                             </div>
 
                                         </div>
 
-                                        <h4 class="scout-spot-name">{{ item.name }}</h4>
+                                        <h4 class="scout-spot-name" id="item_header_{{item.item_id}}">{{ item.name }}</h4>
                                         <div class="scout-spot-location">
                                             <span class="scout-spot-distance"><span class="visually-hidden">Distance from you:</span><span class="distance-number">---</span>&nbsp;mi</span>
-                                            {% if spot.building_name %}{{ spot.building_name }}{% else %}<span style="color:red;">missing item spot.building_name</span>{% endif %}
+                                           <span class="visually-hidden">Location: </span> {% if spot.building_name %}{{ spot.building_name }}{% else %}<span style="color:red;">missing item spot.building_name</span>{% endif %}
                                         </div>
 
-                                        <span class="scout-spot-status">{% if spot.is_open %}<span class="open visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</span>
+                                        <span class="scout-spot-status"><span class="visually-hidden">Location status:</span>{% if spot.is_open %}<span class="open visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</span>
 
                                     </div>
                                 </div>
@@ -125,7 +126,7 @@
 {% block secondary_content %}
 
 <!-- show a map on the list page -->
-<div id="tech_list_map" class="scout-spot-list-map" style="height:100%; background: #ddd !important;">
+<div id="tech_list_map" class="scout-spot-list-map" style="height:100%; background: #ddd !important;" aria-hidden="true">
     <div class="scout-spot-list-map-loading" style="position:absolute; top: 50%; left: 50%; margin-left:-15px; margin-top: -110px; z-index:9999;">
         <p class="visually-hidden">loading...</p>
         <div class="sk-fading-circle" aria-hidden="true">

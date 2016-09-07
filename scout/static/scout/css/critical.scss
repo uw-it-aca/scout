@@ -8,7 +8,7 @@ file.
 
 $scout-purple: #6564A8;
 $scout-button: #2ecc71;
-$scout-link: #3498db;
+$scout-link: #25738F;
 $geolocation-height: 45px;
 $footer-height: 40px;
 
@@ -41,23 +41,24 @@ $footer-height: 40px;
 // global
 
 body { background: #f1f1f1; }
+a {color: $scout-link;}
 
 // geolocation bar
 
-.scout-geolocation { height: $geolocation-height; background: #999; position: relative;
+.scout-geolocation { height: $geolocation-height; background: $scout-purple; position: relative;
     .scout-geolocation-position { font-size:14px; line-height: $geolocation-height; white-space: nowrap; padding: 0 20px 0 13px;
         .fa-stack { font-size: 12px; }
         .fa-circle { color: $scout-button; }
             .scout-geolocation-location { color:#fff; display: inline-block;
-                span { color:#ccc; }
+                span { color:#eee;}
             }
             .scout-geolocation-action {  margin-left: 5px; float: right; font-size: 25px;
                 button { position: absolute; top: 0; left:0; right:0; text-align: right; border: none; width: 100%; background: transparent; padding: 0;
-                    .fa-toggle-on { color: $scout-purple; }
-                    .fa-flip-horizontal { color: #777 !important; }
+                    .fa-toggle-on { color: #FFEEB8; }
+                    .fa-flip-horizontal { color: #444 !important; }
                 }
             }
-        .scout-geolocation-user { display:none; position:absolute; left:40px; right:20px; background:#999; }
+        .scout-geolocation-user { display:none; position:absolute; left:40px; right:20px; background:$scout-purple;}
         .scout-geolocation-loading { position:absolute; color:#fff; z-index:0; left:40px; right:20px; }
     }
 }
@@ -66,7 +67,7 @@ body { background: #f1f1f1; }
 
 .scout-filter-results { /*border-top: solid 1px #ddd;*/
 
-    .filter-results-label { display: block; font-size: 10px; text-transform: uppercase; color: #aaa; }
+    .filter-results-label { display: block; font-size: 10px; text-transform: uppercase; color: #666666; }
 
     .scout-filter-results-by { padding: 15px 20px 5px 20px; font-size: 14px;
         .filter-results-label { margin-bottom: 5px; }
@@ -79,7 +80,7 @@ body { background: #f1f1f1; }
         .scout-filter-results-actions { float:right; display:inline-block; line-height: 28px;
 
             a { display: inline-block; text-decoration: none; font-size: 14px; white-space: nowrap; background: $scout-purple; border: none; padding: 0 10px; border-radius: 2px;
-                .scout-filter-results-action { color: #ddd; text-transform: uppercase; text-decoration: none; font-size: 11px; margin-left: 5px;}
+                .scout-filter-results-action { color: #ededed; text-transform: uppercase; text-decoration: none; font-size: 11px; margin-left: 5px;}
             }
         }
     }
@@ -104,7 +105,6 @@ body { background: #f1f1f1; }
             color: #111;
             text-decoration: none;
             line-height: 60px;
-            display: block;
             padding-left: 55px;
         }
     }
@@ -123,7 +123,10 @@ body { background: #f1f1f1; }
             padding-left: 30px;
             left: 0;
             background: transparent;
-            width: 150px
+            width: 150px;
+            &:hover {
+                cursor: pointer;
+            }
         }
 
         .scout-campus-display {
@@ -211,10 +214,10 @@ body { background: #f1f1f1; }
                         .scout-spot-content { display:inline-block; float:left; width:70%; margin:0;
 
                             // spot details
-                            .scout-spot-type { font-family: sans-serif; font-size: 11px; float:left; color:#aaa;
+                            .scout-spot-type { font-family: sans-serif; font-size: 11px; float:left; color:#767676;
                                 span { margin-right: 8px; text-transform: uppercase; }
                             }
-                            .scout-spot-capacity { font-family: sans-serif; font-size: 12px; float:right; color: #aaa;}
+                            .scout-spot-capacity { font-family: sans-serif; font-size: 12px; float:right; color: #767676;}
 
                             .scout-spot-name { margin: 0; font-family: 'ralewaybold'; font-size: 16px; margin-top: 10px; margin-bottom: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; clear: both;}
 
@@ -222,7 +225,7 @@ body { background: #f1f1f1; }
                                 .fa { color: $scout-purple; }
                             }
 
-                            .scout-spot-distance { font-family: sans-serif; font-size: 10px; font-weight: normal; color: #000; background: #2ecc71; padding: 0 5px; color: #fff; display: inline-block; border-radius: 2px; position: absolute; right: 20px;}
+                            .scout-spot-distance { font-family: sans-serif; font-size: 10px; font-weight: normal; color: #000; background: #088086; padding: 0 5px; color: #fff; display: inline-block; border-radius: 2px; position: absolute; right: 20px;}
 
                             .scout-spot-open-period { margin-bottom: 10px; color: #666; text-transform: uppercase; font-size: 14px;
                                 span { margin-right: 10px; }
@@ -254,32 +257,31 @@ body { background: #f1f1f1; }
 
             .scout-spot-alert { margin: 0; padding: 15px 20px; background: #fcf8e3; color: #8a6d3b; font-size: 14px; line-height: 16px;}
 
-            .scout-spot-meta { background: $scout-purple; color: #fff; padding: 10px 20px; position: relative;
+            .scout-spot-meta { background: #444; color: #fff; padding: 10px 20px; position: relative;
 
                 .scout-spot-name { font-family: 'ralewaybold'; font-size: 18px; margin: 0; line-height: 30px; width:75%; white-space: nowrap; overflow-x: hidden; text-overflow: ellipsis; }
-                .scout-spot-type { text-transform: uppercase; font-weight: normal; font-size: 12px; margin: 0; position: absolute; top: 15px; right:20px; color: #ccc;
+                .scout-spot-type { text-transform: uppercase; font-weight: normal; font-size: 12px; margin: 0; position: absolute; top: 15px; right:20px; color: #BBB;
                     span { margin-left: 10px; }
                 }
 
-                .scout-spot-cuisine { margin: 10px 10px 5px 0; font-size: 12px; float: left; width: 25%;
-                    label { display: block; text-transform: uppercase; font-size: 10px; margin-bottom: 2px; color: #aaa; }
-                    span { margin-right: 5px; }
-                }
-
                 .scout-spot-resources { margin: 10px 0 5px 0; font-size: 12px; float: left; width: 80%;
-                    label {  display: block; text-transform: uppercase; font-size: 10px; margin-bottom: 2px; color: #aaa; }
-                    span { margin-right: 5px; white-space: nowrap; }
+                    ol {margin:0; padding:0;}
+                    span {  display: block; text-transform: uppercase; font-size: 10px; margin-bottom: 2px; color: #BBB; 
+                        &.brand-name {color:inherit; font-size:inherit; text-transform: inherit;}
+                    }
+                    li { margin-right: 5px; white-space: nowrap; list-style: none; display:inline;}
                 }
 
                 .scout-spot-extra { float:right; width: 20%; font-size: 12px; margin-top: 25px; text-align: right; }
 
                 .scout-spot-status { position: absolute; bottom: 15px; right: 20px; font-size: 12px; text-transform: uppercase;
                     .open { color: #2ecc71; }
-                    .closed { color: #a94442; }
+                    .closed { color: #F29D94; }
                 }
                 .scout-spot-open-period {color: #fff; margin: 10px 10px 5px 0; font-size: 12px; float: left; width: 70%;
-                    label {  display: block; text-transform: uppercase; font-size: 10px; margin-bottom: 2px; color: #aaa; }
-                    span { margin-right: 8px; }
+                    ol {margin:0; padding:0;}
+                    span {  display: block; text-transform: uppercase; font-size: 10px; margin-bottom: 2px; color: #BBB; }
+                    li { margin-right: 8px; list-style: none; display:inline;}
                 }
 
 
@@ -313,7 +315,7 @@ body { background: #f1f1f1; }
 
             .scout-spot-content {
 
-                h3 { font-family: 'ralewaybold'; font-size: 13px; color: #bbb; text-transform: uppercase; letter-spacing: 1px; margin: 0; line-height: 35px; }
+                h3 { font-family: 'ralewaybold'; font-size: 13px; color: $scout-purple; text-transform: uppercase; letter-spacing: 1px; margin: 0; line-height: 35px; }
 
                 h4 { font-family: 'ralewaybold'; font-size: 10px; color: #666; text-transform: uppercase; letter-spacing: 1px; margin: 0; line-height: 35px;
                     .fa { color: $scout-purple; }
@@ -327,11 +329,14 @@ body { background: #f1f1f1; }
         // discover
 
         .scout-discover-container { min-height: 380px;
-
+            .discover-heading-container {padding: 5px 20px;
+                h2 {text-shadow: 1px 2px black; text-transform: capitalize;}
+                p {text-shadow: 1px 1px black;}
+            }
             .scout-discover-loading { position:absolute; top:70%; left:50%; margin-top: -110px; margin-left: -15px; }
             .scout-discover-content {
 
-                h3 { font-family: 'ralewaybold'; font-size: 12px; color: #bbb; text-transform: uppercase; letter-spacing: 1px; margin: 0; line-height: 35px;
+                h3 { font-family: 'ralewaybold'; font-size: 12px; color: $scout-purple; text-transform: uppercase; letter-spacing: 1px; margin: 0; line-height: 35px;
 
                     .fa-stack { color: $scout-purple; }
                 }
@@ -346,7 +351,7 @@ body { background: #f1f1f1; }
                         .closed { color: #A94441; font-size: 11px; }
 
                         .scout-spot-image { background-color: #fff; background-size:cover; background-repeat: no-repeat; background-position: center center; display: inline-block; width: 55px; height: 55px; float:left; margin-right: 10px; }
-                        .scout-spot-name { display:block; line-height: 25px; font-size: 15px;}
+                        .scout-spot-name { display:block; line-height: 25px; font-size: 15px; margin:inherit; font-weight:normal;}
                         .scout-spot-distance { font-family: sans-serif; font-size: 12px; color: #000; }
                         .scout-spot-location { display:block; float:left; width: 75%; white-space: nowrap; font-size: 12px; color: #666; overflow: hidden; text-overflow: ellipsis; }
 
@@ -355,7 +360,7 @@ body { background: #f1f1f1; }
                     .scout-spot-discover-action { display: inline-block; line-height: 30px;
                         .fa-stack { font-size: 12px; }
                         .fa-circle { color: $scout-button; }
-                        .scout-spot-action-text {  color: $scout-link; text-decoration: underline; }
+                        .scout-spot-action-text {  color: $scout-purple; text-decoration: underline; }
                     }
                 }
             }
@@ -369,10 +374,10 @@ body { background: #f1f1f1; }
         .scout-filter-container {
 
             fieldset { border: none; padding: 0; margin:0;  margin-bottom: 20px; float: left; width: 50%;
-                legend { font-family: 'ralewaybold'; font-size: 12px; text-transform: uppercase; margin-bottom: 8px; color: #bbb; padding: 5px 0; letter-spacing: 1px; }
+                legend { font-family: 'ralewaybold'; font-size: 12px; text-transform: uppercase; margin-bottom: 8px; color: #6564a8; padding: 5px 0; letter-spacing: 1px; }
             }
             label { display: block; line-height: 25px; font-size: 14px; white-space: nowrap;
-                span { color: #aaa; }
+                span { color: #767676; }
                 input[type="checkbox"], input[type="radio"]    { margin-right: 5px; }
             }
 
@@ -386,14 +391,14 @@ body { background: #f1f1f1; }
 
             .scout-filter-actions { margin-top:-5px; padding: 20px; text-align: right;
 
-                button { background: $scout-purple; color: #ddd; border: none; text-transform: uppercase; padding: 10px 20px; font-size: 12px; border-radius: 2px;
+                button { background: $scout-purple; color: #ededed; border: none; text-transform: uppercase; padding: 10px 20px; font-size: 12px; border-radius: 2px;
                     .fa { margin-right: 8px; }
 
                     &:disabled { background: #999; color: #888;
                         .fa { color: #777; }
                     }
 
-                    &.action-cancel { background: #ddd; color:#666; }
+                    &.action-cancel { background: #ddd; color:#555; }
                 }
 
             }
@@ -414,7 +419,7 @@ body { background: #f1f1f1; }
     .scout-error-msg { color: red; }
     .scout-error-body { font-size: 14px; color: #222;
         ul { list-style: circle !important; padding-left: 30px !important;
-            li { margin-bottom: 5px; color: #777; }
+            li { margin-bottom: 5px; color: #767676; }
         }
         a { color: $scout-link; }
     }
@@ -439,15 +444,15 @@ body { background: #f1f1f1; }
 
 .sticky-header-wrap {position:relative;}
 
-.sticky-header { background:#aaa !important; color: #fff; font-size:14px; width: 100%; font-weight: normal; margin: inherit;
+.sticky-header { background:#767676 !important; color: #fff; font-size:14px; width: 100%; font-weight: normal; margin: inherit;
     span {display: block; padding: 5px 20px;}
 }
 
-.sticky-helper { background:#aaa !important; color: #fff; font-size:14px; width: 100%; 
+.sticky-helper { background:#767676 !important; color: #fff; font-size:14px; width: 100%; 
     span { display: block; padding: 5px 20px; white-space: nowrap; overflow-x: hidden; text-overflow: ellipsis; }
 }
 .sticky-helper.sticky-header-hidden { display: none; }
-.sticky-helper.is-sticky { display: block; background:#aaa; color: #fff; font-size:14px; position:absolute; top: 102px !important; left: 0; right:0; z-index: 9999;}
+.sticky-helper.is-sticky { display: block; background:#767676; color: #fff; font-size:14px; position:absolute; top: 102px !important; left: 0; right:0; z-index: 9999;}
 
 // accessibility & helper classes
 
