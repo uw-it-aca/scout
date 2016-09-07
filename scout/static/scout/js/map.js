@@ -145,7 +145,7 @@ var Map = {
 
             // marker clusterer options
             var mc_options = {
-                imagePath: '/static/vendor/img/m',
+                imagePath: window.staticPath + '/vendor/img/m',
                 gridSize: 30,
                 minimumClusterSize: 3,
                 maxZoom: 20
