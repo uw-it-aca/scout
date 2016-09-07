@@ -51,24 +51,22 @@
                 <div class="scout-spot-info-item">
                     {% if spot.item.reserve_url %}
                     <a href="{{ spot.item.reserve_url }}" target="_blank">
-                        <span class="visually-hidden">Reserve equipment:</span>
                         <span class="fa-stack fa-lg">
                           <i class="fa fa-circle fa-stack-2x"></i>
                           <i class="fa fa-bookmark fa-stack-1x fa-inverse"></i>
                         </span>
                         <span class="scout-spot-action-text">
-                            {{ spot.item.reserve_url }}
+                            Reserve Item
                         </span>
                     </a>
                     {% else %}
                     <a href="https://www.cte.uw.edu/stfequip/request" target="_blank">
-                        <span class="visually-hidden">Reserve equipment:</span>
                         <span class="fa-stack fa-lg">
                           <i class="fa fa-circle fa-stack-2x"></i>
                           <i class="fa fa-bookmark fa-stack-1x fa-inverse"></i>
                         </span>
                         <span class="scout-spot-action-text">
-                            https://www.cte.uw.edu/stfequip/request
+                            Reserve Item
                         </span>
                     </a>
                     {% endif%}
