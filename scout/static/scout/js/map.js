@@ -116,12 +116,12 @@ var Map = {
                     // handle hover event for main list view
                     $('#' + data.id).hover(
                         function () {
-                            //map.setCenter(marker.getPosition());
                             infoWindow.setContent(
                                 "<div><strong>" + data.spot_name + "</strong><br>" +
                                 data.building + "</div>"
                             );
-                            infoWindow.open(map, marker);
+                            infoWindow.open(map);
+                            infoWindow.setPosition(marker.position);
                         },
                         function () {
                             infoWindow.close(map, marker);
