@@ -40,6 +40,7 @@ $(document).on('ready', function(event) {
         });
 
     } else {
+        console.log("on discover");
         Discover.init_cards();
         Map.init_map();
     }
