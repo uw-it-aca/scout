@@ -34,6 +34,10 @@ var List = {
         }
         objects = List.sort_spots_by_distance(objects);
         $("#" + listName).append(objects);
+
+        // Rebuilds sticky headers as the incorrect titles get cached when
+        // scrolling during a list sort
+        $(window).trigger('stickyHeadersRebuildCache');
     },
 
     sort_spots_by_distance: function(spots) {
