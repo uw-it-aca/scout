@@ -13,18 +13,18 @@
     <div class="scout-discover-container" style="position:relative;" role="main" aria-labelledby="campus_heading">
 
         {% if campus == 'seattle' %}
-        <div style="background:url('{% static "scout/img/seattle/IMG_3973-M.jpg" %}') no-repeat; background-size:cover; color:#fff;">
+        <div class="scout-discover-image" style="background-image:url('{% static "scout/img/seattle/IMG_3973-M.jpg" %}'); background-size:cover; color:#fff;">
         {% elif campus == 'bothell' %}
-        <div style="background:url('{% static "scout/img/bothell/mascot-w.jpg" %}') no-repeat; background-size:cover; color:#fff;position:relative;">
+        <div class="scout-discover-image" style="background-image:url('{% static "scout/img/bothell/mascot-w.jpg" %}'); background-size:cover; color:#fff;position:relative;">
             <span style="position:absolute; bottom:10px; right:10px;z-index:999; font-size:11px;">
                 <a data-flickr-embed="true" style="color:#ccc;text-decoration:none;" href="https://www.flickr.com/photos/121597634@N07/13567711533/in/dateposted/" title="The Big Bronze W is unveiled by Chancellor Yeigh and Holly Husky.">
-        <i class="fa fa-flickr" aria-hidden="true"></i> photo credit</a>
+        <i class="fa fa-flickr" aria-hidden="true"></i> uw bothell</a>
             </span>
         {% elif campus == 'tacoma' %}
-        <div style="background:url('{% static "scout/img/tacoma/sign-w.jpg" %}') no-repeat; background-size:cover; color:#fff;position:relative;">
+        <div class="scout-discover-image" style="background-image:url('{% static "scout/img/tacoma/sign-w.jpg" %}'); background-size:cover; color:#fff;position:relative;">
             <span style="position:absolute; bottom:10px; right:10px;z-index:999; font-size:11px;">
                 <a data-flickr-embed="true" style="color:#ccc;text-decoration:none;" href="https://www.flickr.com/photos/sounderbruce/20223492896/in/photolist-wP5FS1-chU8oQ-4mgazS-oijizj-hKkXFi-hKm5rf-nFeTD2-9C2pvQ-cir8Gu-3Z66JB-5DBFMr-cBE61m-b6U5hH-dTEgwg-b6U2mP-hKmG7v-9C2psE-8y3xBk-hKjM8Z-4QrNFY-97gKtH-4kRddt-bLKeEe-aNmw2k-4QrNR7-edPXK-vUwA7B-785ZuJ-7NgZB5-a4K9nG-ycLbK-dr6BAe-hKkJ1z-dTE1Dv-5s3zBb-aNmwAZ-7fizsJ-hKkTyR-a5y1Xt-e5Qv4-f5dXVN-hKkEZy-64G2bG-84yLLo-hKm8dC-PJStW-wyHuZ7-ycJ1f-41rYJH-b6Tv3D" title="UW Tacoma sign">
-        <i class="fa fa-flickr" aria-hidden="true"></i> photo credit</a>
+        <i class="fa fa-flickr" aria-hidden="true"></i> sounderbruce</a>
             </span>
         {% endif %}
 

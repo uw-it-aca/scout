@@ -333,6 +333,9 @@ a {color: $scout-link;}
                 h2 {text-shadow: 1px 2px black; text-transform: capitalize;}
                 p {text-shadow: 1px 1px black;}
             }
+
+            .scout-discover-image { background-repeat: no-repeat; }
+            
             .scout-discover-loading { position:absolute; top:70%; left:50%; margin-top: -110px; margin-left: -15px; }
             .scout-discover-content {
 
