@@ -275,7 +275,7 @@ var Map = {
      add_current_position_marker: function (map, pos) {
         var lastZoom = 18;
         var circle;
-        var rMin = 20, rMax = 100, step = 4;
+        var rMin = 1, rMax = 30, step = 1;
         var intID;
 
         // show user location marker if user is sharing
