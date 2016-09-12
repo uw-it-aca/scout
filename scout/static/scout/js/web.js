@@ -25,19 +25,11 @@ $(document).on('ready', function(event) {
             arrows: false,
         });
 
-        $('.sticky-header-wrap').stickyHeaders({
-            stickyElement: 'div aria-hidden="true"',
-        });
-
     } else if (page_path.indexOf("tech") !== -1){
         Geolocation.display_location_status();
         List.init();
         Map.init_map();
         Filter.init();
-
-        $('.sticky-header-wrap').stickyHeaders({
-            stickyElement: 'div aria-hidden="true"',
-        });
 
     } else {
         Discover.init_cards();
@@ -56,13 +48,5 @@ $(document).on('ready', function(event) {
 $(window).scroll(function(){
 
     var isMobile = $("body").data("mobile");
-
-    if (isMobile) {
-        var sticky = $('.sticky'),
-            scroll = $(window).scrollTop();
-
-        if (scroll >= 250) sticky.addClass('fixed');
-        else sticky.removeClass('fixed');
-    }
 
 });
