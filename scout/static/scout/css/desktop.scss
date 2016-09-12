@@ -103,6 +103,10 @@ body { overflow: hidden; }
 
 }
 
+// native browser sticky headers (safari/ios and firefox only)
+
+.sticky-header { top: 0; }
+
 // map sidebar container
 .scout-secondary { position: fixed; top:0; right:0; bottom:0; left:$view-panel-width; z-index:0; }
 
