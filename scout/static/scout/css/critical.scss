@@ -221,7 +221,7 @@ a {color: $scout-link;}
 
                             .scout-spot-name { margin: 0; font-family: 'ralewaybold'; font-size: 16px; margin-top: 10px; margin-bottom: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; clear: both;}
 
-                            .scout-spot-location { font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #666; line-height: 22px; width: 80%;
+                            .scout-spot-location { font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #666; line-height: 22px; width: 75%;
                                 .fa { color: $scout-purple; }
                             }
 
@@ -335,7 +335,7 @@ a {color: $scout-link;}
             }
 
             .scout-discover-image { background-repeat: no-repeat; }
-            
+
             .scout-discover-loading { position:absolute; top:70%; left:50%; margin-top: -110px; margin-left: -15px; }
             .scout-discover-content {
 
