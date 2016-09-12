@@ -7,8 +7,7 @@ $image-height: 278px;
 
 // desktop styles
 
-body { //overflow: hidden;
-}
+body { overflow: hidden; }
 
 // global overrides for action links
 
@@ -18,7 +17,7 @@ body { //overflow: hidden;
 }
 
 // main container
-.scout-primary { /*position:absolute;*/ width: $view-panel-width; top:0; bottom:0;
+.scout-primary { position:absolute; width: $view-panel-width; top:0; bottom:0;
     //-webkit-box-shadow: 5px 0 20px 0 rgba(0,0,0,0.3); box-shadow: 5px 0 20px 0 rgba(0,0,0,0.3);
     box-shadow: 0 0 5px rgba(57,70,78,.2);
 
@@ -32,7 +31,7 @@ body { //overflow: hidden;
     }
 
     // scrolling body
-    .scout-scroll { /*position: fixed;*/ top: $header-height; bottom: $footer-height; width: $view-panel-width; left:0; /*overflow: scroll;*/ margin-top: 0; z-index: -1;
+    .scout-scroll { position: fixed; top: $header-height; bottom: $footer-height; width: $view-panel-width; left:0; overflow: scroll; margin-top: 0; z-index: -1;
 
         // content
         .scout-content {
@@ -100,7 +99,7 @@ body { //overflow: hidden;
     }
 
     // footer
-    .scout-footer { width: $view-panel-width; /*position: absolute;*/ bottom: 0; text-align: left; }
+    .scout-footer { width: $view-panel-width; position: absolute; bottom: 0; text-align: left; }
 
 }
 
