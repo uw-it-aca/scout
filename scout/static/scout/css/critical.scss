@@ -384,7 +384,7 @@ a {color: $scout-link;}
             select[multiple] { height: auto; font-size: 14px; }
 
             .scout-filter-split { width: 100%;
-                label { display: inline-block; width: 50%; }
+                label { display: inline-block; width: 49%; overflow: hidden; text-overflow: ellipsis; }
             }
 
             .scout-card:first-child { margin-top:10px; }
