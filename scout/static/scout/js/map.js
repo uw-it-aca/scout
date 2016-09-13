@@ -146,8 +146,8 @@ var Map = {
             var mc_options = {
                 imagePath: window.staticPath + '/vendor/img/m',
                 gridSize: 30,
-                minimumClusterSize: 3,
-                maxZoom: 20
+                minimumClusterSize: 2,
+                maxZoom: 18
             };
             // cluster the markers using marker clusterer
             var markerCluster = new MarkerClusterer(map, markers, mc_options);
