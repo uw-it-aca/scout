@@ -97,7 +97,10 @@ var Geolocation = {
                     Geolocation.handle_watch_position,
                     function(){
                         $("#forget_location").trigger("click");
-                        window.alert("There seems to be an error sharing your location.");
+
+                        //window.alert("There seems to be an error sharing your location.");
+                        $("#geolocation_error").addClass("open");
+                        $("#geolocation_error").removeClass("closed");
                     }
                 );
         }
@@ -166,6 +169,13 @@ var Geolocation = {
             Geolocation.stop_watching_location();
             Geolocation.display_location_status();
         });
+
+        $("#geolocation_error").click(function(e) {
+            e.preventDefault();
+            $(this).removeClass("open");
+            $(this).addClass("closed");
+        });
+
     }
 
 };

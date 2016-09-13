@@ -45,7 +45,7 @@ a {color: $scout-link;}
 
 // geolocation bar
 
-.scout-geolocation { height: $geolocation-height; background: $scout-purple; position: relative;
+.scout-geolocation { min-height: $geolocation-height; background: $scout-purple; position: relative;
     .scout-geolocation-position { font-size:14px; line-height: $geolocation-height; white-space: nowrap; padding: 0 20px 0 13px;
         .fa-stack { font-size: 12px; }
         .fa-circle { color: $scout-button; }
@@ -61,6 +61,32 @@ a {color: $scout-link;}
         .scout-geolocation-user { display:none; position:absolute; left:40px; right:20px; background:$scout-purple;}
         .scout-geolocation-loading { position:absolute; color:#fff; z-index:0; left:40px; right:20px; }
     }
+
+    .scout-geolocation-error {
+        background: red;
+        max-height: 0;
+        overflow-y: hidden;
+        -webkit-transition:-webkit-transform .5s ease;
+        -moz-transition:   -moz-transform .5s ease;
+        -ms-transition:    -ms-transform .5s ease;
+        transition:        transform .5s ease;
+    }
+
+    .scout-geolocation-error.open {
+        max-height: 100px;
+        -webkit-transform: translate(0, 0%);
+        -moz-transform: translate(0, 0%);
+        -ms-transform: translate(0, 0%);
+        transform: translate(0, 0%);
+    }
+
+    .scout-geolocation-error.closed {
+        -webkit-transform: translate(0, -100%);
+        -moz-transform: translate(0, -100%);
+        -ms-transform: translate(0, -100%);
+        transform: translate(0, -100%);
+    }
+
 }
 
 // filter results bar
