@@ -73,29 +73,19 @@ var List = {
         Geolocation.init_location_toggles();
     },
 
-    scroll_to_spot: function(target, options, callback) {
-
-        if (typeof options == 'function' && arguments.length == 2) {
-            callback = options;
-            options = target;
-        }
-        var settings = $.extend({
+    scroll_to_spot: function(target) {
+        var settings = {
             scrollTarget: target,
             offsetTop: 130,
-            duration: 400,
-            //easing: 'swing'
-        }, options);
+            duration: 400
+        };
 
-        var scrollPane = $('html, body');
-        var scrollTarget = (typeof settings.scrollTarget == "number") ? settings.scrollTarget : $(settings.scrollTarget);
-        var scrollY = (typeof scrollTarget == "number") ? scrollTarget : scrollTarget.offset().top + scrollPane.scrollTop() - parseInt(settings.offsetTop);
+        var scrollPane = $('#scroll');
+        var scrollTarget = $(settings.scrollTarget);
+        var scrollY = scrollTarget.offset().top + scrollPane.scrollTop() - parseInt(settings.offsetTop);
         scrollPane.animate({
             scrollTop: scrollY
-        }, parseInt(settings.duration), settings.easing, function() {
-            if (typeof callback == 'function') {
-                callback.call(this);
-            }
-        });
+        }, parseInt(settings.duration), settings.easing, function() {});
 
     },
 
