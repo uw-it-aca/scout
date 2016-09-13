@@ -121,6 +121,7 @@ var Map = {
                             );
                             infoWindow.open(map);
                             infoWindow.setPosition(marker.position);
+                            map.setZoom(16); //default zoom level
                         },
                         function () {
                             infoWindow.close(map, marker);
