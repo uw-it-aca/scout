@@ -445,7 +445,7 @@ a {color: $scout-link;}
     top: 102px;
     z-index: 9998;
 
-    span {display: block; margin: 5px 20px; line-height: 30px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    span { display: block; padding: 0 20px; line-height: 30px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
 }
 
