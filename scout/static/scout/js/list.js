@@ -29,15 +29,12 @@ var List = {
         if(isBuilding) {
             $.each(objects, function(idx, object){
                 var spots = $(object).find(".scout-list-item").detach();
-                $(object).append(List.sort_spots_by_distance(spots));
+                var spot_ol = $(object).find(".scout_study_spot_list");
+                $(spot_ol[0]).append(List.sort_spots_by_distance(spots));
             });
         }
         objects = List.sort_spots_by_distance(objects);
         $("#" + listName).append(objects);
-
-        // Rebuilds sticky headers as the incorrect titles get cached when
-        // scrolling during a list sort
-        $(window).trigger('stickyHeadersRebuildCache');
     },
 
     sort_spots_by_distance: function(spots) {
