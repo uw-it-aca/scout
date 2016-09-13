@@ -52,7 +52,7 @@
                         {% if spot.auto_labstats_total > 0 and spot.auto_labstats_available > 0 %}
                             <span><i class="fa fa-desktop" aria-hidden="true"></i> <span class="visually-hidden">Computer availability: </span><span style="color:#2ecc71;">{{ spot.auto_labstats_available }}</span> / {{ spot.auto_labstats_total }}</span>
                         {% elif spot.capacity %}
-                            <span class="visually-hidden">Capacity: </span><span>Seats  {{ spot.capacity }}</span>
+                            <span class="visually-hidden">Capacity: </span><span>Seats: {{ spot.capacity }}</span>
                         {% endif %}
 
                     </div>
