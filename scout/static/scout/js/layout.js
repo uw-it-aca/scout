@@ -39,6 +39,7 @@ var Layout = {
         if (isMobile !== undefined ) {
             var aspectHeight = Math.round(( $(".spot-detail-main-image").width() /100)*67); //(i.e. 16:9 or 100:67)
             $(".spot-detail-main-image").height(aspectHeight);
+            $(".scout-spot-gallery").css('max-height', aspectHeight);
         }
 
     },

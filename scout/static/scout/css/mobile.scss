@@ -44,14 +44,6 @@ $footer-height: 40px;
 
                 .scout-spot-description { margin-bottom: 20px; color: #333; font-size: 14px; line-height: 20px; }
 
-                .scout-spot-gallery { overflow-x: scroll; -webkit-overflow-scrolling: touch; overflow-y: hidden; white-space: nowrap; height: 100px; margin-bottom: 15px;
-                    ul {
-                        li { display: inline-block; margin-right: 8px;
-                            img { cursor: pointer; }
-                        }
-                    }
-                }
-
                 .scout-spot-hours { margin-bottom: 20px; color: #333; font-size: 14px; line-height: 16px;
 
                     ul { margin: 0; padding: 0;

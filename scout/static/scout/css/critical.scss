@@ -210,7 +210,7 @@ a {color: $scout-link;}
 
                     a { display:block; text-decoration:none; padding:20px; color:#000; min-height: 100px; overflow: hidden;
 
-                        .scout-spot-image {  background-color: #fff; background-size:cover; background-position: center center; background-repeat: no-repeat; width:30%; height:100px; float:left; position: relative; }
+                        .scout-spot-image {  background-color: #e5e6e9; background-size:cover; background-position: center center; background-repeat: no-repeat; width:30%; height:100px; float:left; position: relative; }
                         .scout-spot-content { display:inline-block; float:left; width:70%; margin:0;
 
                             // spot details
@@ -251,9 +251,11 @@ a {color: $scout-link;}
         // details
         .scout-details-container {
 
-            .scout-details-card { padding: 0; margin-top: 0; }
+            .scout-details-card { padding: 0; margin-top: 0;
+                .scout-spot-gallery {  overflow-x: scroll; -webkit-overflow-scrolling: touch; overflow-y: hidden; }
+            }
 
-            .scout-spot-image { background-color: #fff; background-size: cover; background-repeat: no-repeat; background-position: center center; min-height: 200px; position: relative; }
+            .scout-spot-image { background-color: #e5e6e9; background-size: cover; background-repeat: no-repeat; background-position: center center; min-height: 200px; position: relative; }
 
             .scout-spot-alert { margin: 0; padding: 15px 20px; background: #fcf8e3; color: #8a6d3b; font-size: 14px; line-height: 16px;}
 
@@ -353,7 +355,7 @@ a {color: $scout-link;}
                         &:hover { color: $scout-purple; }
                         .closed { color: #A94441; font-size: 11px; }
 
-                        .scout-spot-image { background-color: #fff; background-size:cover; background-repeat: no-repeat; background-position: center center; display: inline-block; width: 55px; height: 55px; float:left; margin-right: 10px; }
+                        .scout-spot-image { background-color: #e5e6e9; background-size:cover; background-repeat: no-repeat; background-position: center center; display: inline-block; width: 55px; height: 55px; float:left; margin-right: 10px; }
                         .scout-spot-name { display:block; line-height: 25px; font-size: 15px; margin:inherit; font-weight:normal;}
                         .scout-spot-distance { font-family: sans-serif; font-size: 12px; color: #000; }
                         .scout-spot-location { display:block; float:left; width: 75%; white-space: nowrap; font-size: 12px; color: #666; overflow: hidden; text-overflow: ellipsis; }
