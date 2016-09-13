@@ -273,10 +273,7 @@ var Map = {
     },
 
      add_current_position_marker: function (map, pos) {
-        var lastZoom = 18;
         var circle;
-        var rMin = 1, rMax = 30, step = 1;
-        var intID;
 
         // show user location marker if user is sharing
         if (Geolocation.get_location_type() !== "default") {
@@ -297,7 +294,7 @@ var Map = {
 
             circle = new google.maps.Circle({
                 map: map,
-                radius: rMax,    // meters
+                radius: 20,    // meters
                 fillColor: '#c0392b',
                 fillOpacity: 0.15,
                 strokeWeight: 0
