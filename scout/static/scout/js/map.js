@@ -304,40 +304,8 @@ var Map = {
             });
             circle.bindTo('center', locationMarker, 'position');
 
-            setAnimation();
-
-            google.maps.event.addListener(map, 'zoom_changed', function() {
-                clearInterval(intID);
-
-                var zoom = map.getZoom();
-
-                if (zoom > lastZoom) {
-                    rMax /= 2;
-                    rMin /= 2;
-                    step /= 2;
-                } else {
-                    rMax *= 2;
-                    rMin *= 2;
-                    step *= 2;
-                }
-                lastZoom = zoom;
-
-                circle.setRadius(rMax);
-                setAnimation();
-            });
         }
 
-
-        function setAnimation() {
-            var direction = 1;
-            intID = setInterval(function() {
-                var radius = circle.getRadius();
-                if ((radius > rMax) || (radius < rMin)) {
-                    direction *= -1;
-                }
-                circle.setRadius(radius + direction * step);
-            }, 30);
-        }
     }
 
 };
