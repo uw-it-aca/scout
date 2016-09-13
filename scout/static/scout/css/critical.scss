@@ -12,32 +12,6 @@ $scout-link: #25738F;
 $geolocation-height: 45px;
 $footer-height: 40px;
 
-// webfonts
-
-@font-face {
-    font-family: 'ralewaybold';
-    src: url('../fonts/raleway.bold-webfont.eot');
-    src: url('../fonts/raleway.bold-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/raleway.bold-webfont.woff2') format('woff2'),
-         url('../fonts/raleway.bold-webfont.woff') format('woff'),
-         url('../fonts/raleway.bold-webfont.ttf') format('truetype'),
-         url('../fonts/raleway.bold-webfont.svg#ralewaybold') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'ralewayheavy';
-    src: url('../fonts/raleway.heavy-webfont.eot');
-    src: url('../fonts/raleway.heavy-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/raleway.heavy-webfont.woff2') format('woff2'),
-         url('../fonts/raleway.heavy-webfont.woff') format('woff'),
-         url('../fonts/raleway.heavy-webfont.ttf') format('truetype'),
-         url('../fonts/raleway.heavy-webfont.svg#ralewayheavy') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-
 // global
 
 body { background: #f1f1f1; }
@@ -124,7 +98,8 @@ a {color: $scout-link;}
         height: 60px;
         color: $scout-purple;
         text-transform: uppercase;
-        font-family: 'ralewayheavy';
+        font-family: 'Raleway', sans-serif;
+        font-weight: 900;
         font-size: 30px;
         text-align: left;
         a {
@@ -245,7 +220,8 @@ a {color: $scout-link;}
                             }
                             .scout-spot-capacity { font-family: sans-serif; font-size: 11px; float:right; color: #767676;}
 
-                            .scout-spot-name { margin: 0; font-family: 'ralewaybold'; font-size: 16px; margin-top: 10px; margin-bottom: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; clear: both;}
+                            .scout-spot-name { margin: 0; font-family: 'Raleway', sans-serif;
+                            font-weight: 700; font-size: 16px; margin-top: 10px; margin-bottom: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; clear: both;}
 
                             .scout-spot-location { font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #666; line-height: 22px; width: 75%;
                                 .fa { color: $scout-purple; }
@@ -287,7 +263,7 @@ a {color: $scout-link;}
 
             .scout-spot-meta { background: #444; color: #fff; padding: 10px 20px; position: relative;
 
-                .scout-spot-name { font-family: 'ralewaybold'; font-size: 18px; margin: 0; line-height: 30px; width:70%; white-space: nowrap; overflow-x: hidden; text-overflow: ellipsis; }
+                .scout-spot-name { font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 18px; margin: 0; line-height: 30px; width:70%; white-space: nowrap; overflow-x: hidden; text-overflow: ellipsis; }
                 .scout-spot-type { text-transform: uppercase; font-weight: normal; font-size: 12px; margin: 0; position: absolute; top: 15px; right:20px; color: #BBB;
                     span { margin-left: 10px; }
                 }
@@ -343,9 +319,9 @@ a {color: $scout-link;}
 
             .scout-spot-content {
 
-                h3 { font-family: 'ralewaybold'; font-size: 13px; color: $scout-purple; text-transform: uppercase; letter-spacing: 1px; margin: 0; line-height: 35px; }
+                h3 { font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 13px; color: $scout-purple; text-transform: uppercase; letter-spacing: 1px; margin: 0; line-height: 35px; }
 
-                h4 { font-family: 'ralewaybold'; font-size: 10px; color: #666; text-transform: uppercase; letter-spacing: 1px; margin: 0; line-height: 35px;
+                h4 { font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 10px; color: #666; text-transform: uppercase; letter-spacing: 1px; margin: 0; line-height: 35px;
                     .fa { color: $scout-purple; }
                 }
 
@@ -367,7 +343,7 @@ a {color: $scout-link;}
             .scout-discover-loading { position:absolute; top:70%; left:50%; margin-top: -110px; margin-left: -15px; }
             .scout-discover-content {
 
-                h3 { font-family: 'ralewaybold'; font-size: 12px; color: $scout-purple; text-transform: uppercase; letter-spacing: 1px; margin: 0; line-height: 35px;
+                h3 { font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 12px; color: $scout-purple; text-transform: uppercase; letter-spacing: 1px; margin: 0; line-height: 35px;
 
                     .fa-stack { color: $scout-purple; }
                 }
@@ -405,7 +381,7 @@ a {color: $scout-link;}
         .scout-filter-container {
 
             fieldset { border: none; padding: 0; margin:0;  margin-bottom: 20px; float: left; width: 50%;
-                legend { font-family: 'ralewaybold'; font-size: 12px; text-transform: uppercase; margin-bottom: 8px; color: #6564a8; padding: 5px 0; letter-spacing: 1px; }
+                legend { font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 12px; text-transform: uppercase; margin-bottom: 8px; color: #6564a8; padding: 5px 0; letter-spacing: 1px; }
             }
             label { display: block; line-height: 25px; font-size: 14px; white-space: nowrap;
                 span { color: #767676; }
