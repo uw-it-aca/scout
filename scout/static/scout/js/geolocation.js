@@ -92,14 +92,22 @@ var Geolocation = {
     query_client_location: function() {
         // deal w/ error state
         if (navigator.geolocation) {
-            Geolocation.geolocation_status.watchid = navigator.geolocation.watchPosition(Geolocation.handle_watch_position);
+            Geolocation.geolocation_status.watchid =
+                navigator.geolocation.watchPosition(
+                    Geolocation.handle_watch_position,
+                    function(){
+                        $("#forget_location").trigger("click");
+                        window.alert("There seems to be an error sharing your location.");
+                    }
+                );
         }
     },
 
     stop_watching_location: function(){
         var watchid = Geolocation.geolocation_status.watchid;
-        if(watchid){
+        if(watchid !== undefined){
             navigator.geolocation.clearWatch(watchid);
+            Geolocation.geolocation_status.watchid = undefined;
         }
     },
 
@@ -128,55 +136,37 @@ var Geolocation = {
     display_location_status: function () {
 
         if (Geolocation.get_location_type() === "default") {
-
             $("#default_position").show();
             $("#default_position").attr("aria-hidden", "false");
 
             $("#shared_position").hide();
             $("#shared_position").attr("aria-hidden", "true");
-
         } else {
-
             $("#default_position").hide();
             $("#default_position").attr("aria-hidden", "true");
 
             $("#shared_position").show();
             $("#shared_position").attr("aria-hidden", "false");
-
         }
     },
 
     init_location_toggles: function() {
         $("#use_location").click(function(e) {
-
             e.preventDefault();
             $.event.trigger(Geolocation.location_updating);
             Geolocation.set_is_using_location(true);
-
-            $("#shared_position").show();
-            $("#shared_position").attr("aria-hidden", "false");
-
-            $("#default_position").hide();
-            $("#default_position").attr("aria-hidden", "true");
-
+            Geolocation.display_location_status();
         });
 
         $("#forget_location").click(function(e) {
-
+            console.log("forget_location");
             e.preventDefault();
             $.event.trigger(Geolocation.location_updating);
             Geolocation.set_is_using_location(false);
             Geolocation.stop_watching_location();
-
-            $("#shared_position").hide();
-            $("#shared_position").attr("aria-hidden", "true");
-
-            $("#default_position").show();
-            $("#default_position").attr("aria-hidden", "false");
-
+            Geolocation.display_location_status();
         });
     }
-
 
 };
 
