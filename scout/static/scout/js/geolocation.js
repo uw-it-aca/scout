@@ -97,8 +97,6 @@ var Geolocation = {
                     Geolocation.handle_watch_position,
                     function(){
                         $("#forget_location").trigger("click");
-
-                        //window.alert("There seems to be an error sharing your location.");
                         $("#geolocation_error").addClass("open");
                         $("#geolocation_error").removeClass("closed");
                     }
@@ -158,16 +156,23 @@ var Geolocation = {
             e.preventDefault();
             $.event.trigger(Geolocation.location_updating);
             Geolocation.set_is_using_location(true);
-            Geolocation.display_location_status();
+            $("#default_position").hide();
+            $("#default_position").attr("aria-hidden", "true");
+
+            $("#shared_position").show();
+            $("#shared_position").attr("aria-hidden", "false");
         });
 
         $("#forget_location").click(function(e) {
-            console.log("forget_location");
             e.preventDefault();
             $.event.trigger(Geolocation.location_updating);
             Geolocation.set_is_using_location(false);
             Geolocation.stop_watching_location();
-            Geolocation.display_location_status();
+            $("#default_position").show();
+            $("#default_position").attr("aria-hidden", "false");
+
+            $("#shared_position").hide();
+            $("#shared_position").attr("aria-hidden", "true");
         });
 
         $("#geolocation_error").click(function(e) {
