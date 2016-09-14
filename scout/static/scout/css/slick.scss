@@ -102,10 +102,10 @@
 $slick-dot-color: #ffffff !default;
 $slick-dot-color-active: #6564a8 !default;
 $slick-dot-character: "\2022" !default;
-$slick-dot-size: 30px !default;
+$slick-dot-size: 40px !default;
 $slick-opacity-default: 1 !default;
 $slick-opacity-on-hover: 1 !default;
-$slick-opacity-not-active: 0.75 !default;
+$slick-opacity-not-active: 0.85 !default;
 
 .slick-dotted.slick-slider {
     margin-bottom: 0;
@@ -139,6 +139,7 @@ $slick-opacity-not-active: 0.75 !default;
             color: transparent;
             padding: 5px;
             cursor: pointer;
+            -webkit-text-stroke: 2px #fff;
             &:hover, &:focus {
                 outline: none;
                 &:before {
