@@ -113,7 +113,8 @@ def _get_spot_filters(request):
                 ("extended_info:or_group:payment", request.GET[param])
             )
         if "period" in param:
-            params += get_period_filter(request.GET[param])
+            now = datetime.datetime.now()
+            params += get_period_filter(request.GET[param], now)
         if "open_now" in param:
             params.append(("open_now", "true"))
         if "building" in param:
@@ -137,20 +138,37 @@ def _get_spot_filters(request):
     return params
 
 
-def get_period_filter(param):
-    today = datetime.datetime.today().strftime("%A")
-    tomorrow = (datetime.datetime.today() +
+def get_period_filter(param, now):
+    today = now.strftime("%A")
+    tomorrow = (now +
                 datetime.timedelta(days=1)).strftime("%A")
-    start_time = OPEN_PERIODS[param]["start"].strftime("%H:%M")
-    start_string = "%s,%s" % (today, start_time)
-    end_time = OPEN_PERIODS[param]["end"].strftime("%H:%M")
+    """
+    adding 1 minute to start and subtracting 1 from end to prevent returning
+    spots where spot closes at filter open time or opens at filter close time
+    """
+    end = OPEN_PERIODS[param]["end"]
+    end_time = adjust_time_by_offset(end, -1)
+    end_time_string = end_time.strftime("%H:%M")
+
+    start = OPEN_PERIODS[param]["start"]
+    start_time = adjust_time_by_offset(start, 1)
+    start_time_string = start_time.strftime("%H:%M")
+
+    start_string = "%s,%s" % (today, start_time_string)
+
     if param == "late_night":
-        end_string = "%s,%s" % (tomorrow, end_time)
+        end_string = "%s,%s" % (tomorrow, end_time_string)
     else:
-        end_string = "%s,%s" % (today, end_time)
+        end_string = "%s,%s" % (today, end_time_string)
 
     return [("fuzzy_hours_start", start_string),
             ("fuzzy_hours_end", end_string)]
+
+
+def adjust_time_by_offset(time, minutes):
+    converted_dt = datetime.datetime.combine(datetime.date(1, 1, 1), time)
+    converted_dt += datetime.timedelta(minutes=minutes)
+    return converted_dt.time()
 
 
 def get_spot_by_id(spot_id):
