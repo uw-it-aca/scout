@@ -24,7 +24,7 @@
 
             </div>
 
-            <div class="sticky">
+            <div>
                 <div class="scout-spot-meta clearfix">
 
                     <div class="scout-spot-name"><span class="visually-hidden">Name: </span>{% if spot.item.name %}{{ spot.item.name }}{% else %}item name missing{% endif %}</div>
@@ -38,7 +38,7 @@
                     </div>
 
                     <div class="scout-spot-extra">
-                        {% if spot.item.quantity %}<span class="visually-hidden">Quantity: </span><span>{{ spot.item.quantity }} available </span>{% endif %}
+                        {% if spot.item.quantity %}<span class="visually-hidden">Quantity available: </span><span>Available: {{ spot.item.quantity }}</span>{% endif %}
                     </div>
 
 
@@ -51,24 +51,22 @@
                 <div class="scout-spot-info-item">
                     {% if spot.item.reserve_url %}
                     <a href="{{ spot.item.reserve_url }}" target="_blank">
-                        <span class="visually-hidden">Reserve equipment:</span>
                         <span class="fa-stack fa-lg">
                           <i class="fa fa-circle fa-stack-2x"></i>
                           <i class="fa fa-bookmark fa-stack-1x fa-inverse"></i>
                         </span>
                         <span class="scout-spot-action-text">
-                            {{ spot.item.reserve_url }}
+                            Reserve Item
                         </span>
                     </a>
                     {% else %}
                     <a href="https://www.cte.uw.edu/stfequip/request" target="_blank">
-                        <span class="visually-hidden">Reserve equipment:</span>
                         <span class="fa-stack fa-lg">
                           <i class="fa fa-circle fa-stack-2x"></i>
                           <i class="fa fa-bookmark fa-stack-1x fa-inverse"></i>
                         </span>
                         <span class="scout-spot-action-text">
-                            https://www.cte.uw.edu/stfequip/request
+                            Reserve Item
                         </span>
                     </a>
                     {% endif%}
@@ -189,13 +187,13 @@
                     </ul>
 
                     {% if spot.hours_notes %}
-                    <h4><i class="fa fa-file-text"></i>Hour Notes</h4>
-                    <div class="scout-spot-notes">{{spot.hours_notes}}</div>
+                    <h4><i class="fa fa-file-text"></i> Hour Notes</h4>
+                    <div class="scout-spot-notes">{{spot.hours_notes|linebreaksbr}}</div>
                     {% endif %}
 
                     {% if spot.display_access_restrictions %}
                     <h4><i class="fa fa-file-text"></i> Access Notes</h4>
-                    <div class="scout-spot-notes">{{spot.access_notes}}</div>
+                    <div class="scout-spot-notes">{{spot.access_notes|linebreaksbr}}</div>
                     {% endif %}
 
                 </div>

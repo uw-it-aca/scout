@@ -22,7 +22,7 @@
             <div class="scout-spot-image spot-detail-main-image" style="background: #e5e6e9 url('{% static "scout/img/placeholder-1000.png" %}') no-repeat center center; background-size: contain;">
             {% endif %}
             </div>
-            <div class="sticky">
+            <div>
                 <div class="scout-spot-meta clearfix">
 
                     <div class="scout-spot-name">{{spot.name}}</div>
@@ -41,8 +41,9 @@
 
                     <div class="scout-spot-status" role="status" aria-live="polite">{% if spot.is_open %}<span class="open">Open now</span>{% else %}<span class="closed">Closed</span>{% endif %}</div>
 
+                    {% if spot.open_periods %}
                     <div class="scout-spot-open-period">
-                        <span>Open periods</span><ol>
+                        <span>Today's Open periods</span><ol>
                         {% if spot.open_periods.morning %}
                             <li>Morning</li>
                         {% endif %}
@@ -56,6 +57,7 @@
                             <li>Late Night</li>
                         {% endif %}</ol>
                     </div>
+                    {% endif %}
 
                 </div>
 
@@ -91,7 +93,7 @@
                           <i class="fa fa-circle fa-stack-2x"></i>
                           <i class="fa fa-laptop fa-stack-1x fa-inverse"></i>
                         </span>
-                        <span class="scout-spot-action-text">{{spot.website_url}}</span>
+                        <span class="scout-spot-action-text">View website</span>
                     </a>
                 </div>
                 {% endif %}
@@ -105,7 +107,7 @@
                           <i class="fa fa-circle fa-stack-2x"></i>
                           <i class="fa fa-cutlery fa-stack-1x fa-inverse"></i>
                         </span>
-                        <span class="scout-spot-action-text">{{spot.menu_url}}</span>
+                        <span class="scout-spot-action-text">View menu</span>
                     </a>
                 </div>
                 {% endif %}
@@ -133,13 +135,13 @@
                     </ul>
 
                     {% if spot.hours_notes %}
-                    <h4><i class="fa fa-file-text"></i>Hours Notes</h4>
-                    <div class="scout-spot-notes">{{spot.hours_notes}}</div>
+                    <h4><i class="fa fa-file-text"></i> Hours Notes</h4>
+                    <div class="scout-spot-notes">{{spot.hours_notes|linebreaksbr}}</div>
                     {% endif %}
 
                     {% if spot.display_access_restrictions %}
                     <h4><i class="fa fa-file-text"></i> Access Notes</h4>
-                    <div class="scout-spot-notes">{{spot.access_notes}}</div>
+                    <div class="scout-spot-notes">{{spot.access_notes|linebreaksbr}}</div>
                     {% endif %}
 
                 </div>

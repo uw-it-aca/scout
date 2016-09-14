@@ -8,8 +8,6 @@ var Filter = {
             filter = Study_Filter.get_filter_url();
         } else if(type.indexOf("tech") > -1) {
             filter = Tech_Filter.get_filter_url();
-        } else {
-            console.log(type + "at get_filter_url");
         }
 
         if(filter === undefined || $.isEmptyObject(filter)){
@@ -41,8 +39,6 @@ var Filter = {
             specific_categories = Study_Filter._get_filter_label_text(url);
         } else if(type.indexOf("tech") > -1) {
             specific_categories = Tech_Filter._get_filter_label_text(url);
-        } else {
-            console.log(type + "at _get_filter_label_text");
         }
         $.merge(filter_categories, specific_categories);
 
@@ -122,8 +118,6 @@ var Filter = {
             Study_Filter.populate_filters_from_saved();
         } else if(type.indexOf("tech") > -1) {
             Tech_Filter.populate_filters_from_saved();
-        } else {
-            console.log(type + "at init");
         }
     },
 

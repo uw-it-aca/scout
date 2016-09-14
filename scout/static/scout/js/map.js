@@ -32,7 +32,6 @@ var Map = {
         var pos = Geolocation.get_client_latlng();
         var mapOptions;
         if(currentMap) {
-            console.log("map exists");
 
             // center map on default location OR location received from user
             mapOptions = {
@@ -122,6 +121,7 @@ var Map = {
                             );
                             infoWindow.open(map);
                             infoWindow.setPosition(marker.position);
+                            map.setZoom(16); //default zoom level
                         },
                         function () {
                             infoWindow.close(map, marker);
@@ -147,8 +147,8 @@ var Map = {
             var mc_options = {
                 imagePath: window.staticPath + '/vendor/img/m',
                 gridSize: 30,
-                minimumClusterSize: 3,
-                maxZoom: 20
+                minimumClusterSize: 2,
+                maxZoom: 18
             };
             // cluster the markers using marker clusterer
             var markerCluster = new MarkerClusterer(map, markers, mc_options);
@@ -274,10 +274,7 @@ var Map = {
     },
 
      add_current_position_marker: function (map, pos) {
-        var lastZoom = 18;
         var circle;
-        var rMin = 20, rMax = 100, step = 4;
-        var intID;
 
         // show user location marker if user is sharing
         if (Geolocation.get_location_type() !== "default") {
@@ -298,47 +295,15 @@ var Map = {
 
             circle = new google.maps.Circle({
                 map: map,
-                radius: rMax,    // meters
+                radius: 20,    // meters
                 fillColor: '#c0392b',
                 fillOpacity: 0.15,
                 strokeWeight: 0
             });
             circle.bindTo('center', locationMarker, 'position');
 
-            setAnimation();
-
-            google.maps.event.addListener(map, 'zoom_changed', function() {
-                clearInterval(intID);
-
-                var zoom = map.getZoom();
-
-                if (zoom > lastZoom) {
-                    rMax /= 2;
-                    rMin /= 2;
-                    step /= 2;
-                } else {
-                    rMax *= 2;
-                    rMin *= 2;
-                    step *= 2;
-                }
-                lastZoom = zoom;
-
-                circle.setRadius(rMax);
-                setAnimation();
-            });
         }
 
-
-        function setAnimation() {
-            var direction = 1;
-            intID = setInterval(function() {
-                var radius = circle.getRadius();
-                if ((radius > rMax) || (radius < rMin)) {
-                    direction *= -1;
-                }
-                circle.setRadius(radius + direction * step);
-            }, 30);
-        }
     }
 
 };

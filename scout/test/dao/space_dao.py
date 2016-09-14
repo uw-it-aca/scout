@@ -7,7 +7,8 @@ from scout.dao.space import add_foodtype_names_to_spot, add_cuisine_names, \
     add_payment_names, add_additional_info, get_is_spot_open, organize_hours, \
     get_open_periods_by_day, get_spot_list, _get_spot_filters, OPEN_PERIODS,\
     get_spot_by_id, group_spots_by_building, get_avg_latlng_for_spots,\
-    add_latlng_to_building, get_spots_by_filter
+    add_latlng_to_building, get_spots_by_filter, adjust_time_by_offset, \
+    get_period_filter
 from spotseeker_restclient.spotseeker import Spotseeker
 from scout.dao import space
 from spotseeker_restclient.exceptions import DataFailureException
@@ -113,7 +114,6 @@ class SpaceDAOTest(TestCase):
         current_time = datetime.datetime(*time_tuple)
         periods = get_open_periods_by_day(spot, current_time)
 
-        exp_closed = []
         exp_open = []
         for period_name in OPEN_PERIODS.keys():
             if period_name in open_periods:
@@ -272,6 +272,25 @@ class SpaceDAOTest(TestCase):
         organize_hours(spot)
 
         self.assertEqual(hours_expected, spot.hours)
+
+    def test_period_filter(self):
+        period = "morning"
+        dt = datetime.datetime(2016, 4, 20, 0, 0, 0)
+        period_filter = get_period_filter(period, dt)
+
+        expected_response = [('fuzzy_hours_start', 'Wednesday,05:01'),
+                             ('fuzzy_hours_end', 'Wednesday,10:59')]
+
+        self.assertEqual(period_filter, expected_response)
+
+    def test_time_offset(self):
+        time = datetime.time(10, 0, 0)
+        # adding
+        new_time = adjust_time_by_offset(time, 1)
+        self.assertEqual(new_time, datetime.time(10, 1, 0))
+        # subtracting
+        new_time = adjust_time_by_offset(time, -1)
+        self.assertEqual(new_time, datetime.time(9, 59, 0))
 
 
 class FakeClient(object):

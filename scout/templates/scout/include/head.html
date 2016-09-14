@@ -36,7 +36,7 @@
     <!-- critical (above the fold styles) -->
     {% compress css inline %}
     <link rel="stylesheet" href="{% static "vendor/css/normalize-3.0.1.min.css" %}">
-    <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.5.0.min.css" %}">
+    <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.6.3.min.css" %}">
     <link rel="stylesheet" href="{% static "scout/css/slick.scss" %}" type="text/x-scss">
     <link rel="stylesheet" href="{% static "scout/css/critical.scss" %}" type="text/x-scss">
     {% endcompress %}
@@ -51,7 +51,7 @@
     {% compress css inline %}
     <!-- inline -->
     <link rel="stylesheet" href="{% static "vendor/css/normalize-3.0.1.min.css" %}">
-    <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.5.0.min.css" %}">
+    <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.6.3.min.css" %}">
     <link rel="stylesheet" href="{% static "scout/css/slick.scss" %}" type="text/x-scss">
     <link rel="stylesheet" href="{% static "scout/css/critical.scss" %}" type="text/x-scss">
     {% endcompress %}
@@ -66,11 +66,10 @@
     <!-- critical (above the fold styles) -->
     {% compress css inline %}
     <link rel="stylesheet" href="{% static "vendor/css/normalize-3.0.1.min.css" %}">
-    <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.5.0.min.css" %}">
+    <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.6.3.min.css" %}">
     <link rel="stylesheet" href="{% static "scout/css/slick.scss" %}" type="text/x-scss">
     <link rel="stylesheet" href="{% static "scout/css/critical.scss" %}" type="text/x-scss">
     <link rel="stylesheet" href="{% static "scout/css/mobile.scss" %}" type="text/x-scss">
-    <link rel="stylesheet" href="{% static "scout/css/tablet.scss" %}" type="text/x-scss">
     <link rel="stylesheet" href="{% static "scout/css/desktop.scss" %}" type="text/x-scss">
     {% endcompress %}
     <!-- async (mobile + tablet + desktop) -->
@@ -84,7 +83,6 @@
 <script async="async" src="{% static "vendor/js/jquery-1.11.0.min.js" %}"></script>
 <script async="async" src="{% static "vendor/js/js.cookie-2.1.0.min.js" %}"></script>
 <script async="async" src="{% static "vendor/js/slick.min.js" %}"></script>
-<script async="async" src="{% static "vendor/js/jquery-sticky-headers.js" %}"></script>
 <script async="async" src="{% static "scout/js/web.js" %}"></script>
 <script async="async" src="{% static "scout/js/layout.js" %}"></script>
 <script async="async" src="{% static "scout/js/map.js" %}"></script>
@@ -97,6 +95,9 @@
 <script async="async" src="{% static "scout/js/discover.js" %}"></script>
 <script async="async" src="{% static "scout/js/geolocation.js" %}"></script>
 {% endcompress %}
+
+<!-- google fonts -->
+<link href="//fonts.googleapis.com/css?family=Raleway:700,900" rel="stylesheet">
 
 <!-- googlme maps -->
 {% if google_maps %}

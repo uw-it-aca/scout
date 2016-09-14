@@ -44,7 +44,7 @@
                     <span>{% if group.name %}{{ group.name }}{% else %}missing building_name{% endif %}</span>
                 </h3>
 
-                <ol style="margin:0; padding:0;">
+                <ol class="scout_study_spot_list" style="margin:0; padding:0;">
 
                     {% for spot in group.spots %}
                     <li class="scout-list-item scout-list-hover" id="{{ spot.spot_id }}" data-spot-lat="{{ spot.latitude }}" data-spot-lng="{{ spot.longitude }}" data-spot-building="{{ spot.building_name }}" data-spot-name="{{ spot.name }}" aria-labelledby="spot_header_{{spot.spot_id}}">
@@ -67,7 +67,7 @@
                                             {% if spot.auto_labstats_total > 0 and spot.auto_labstats_available > 0 %}
                                                 <span style="margin-left:10px; color:#333;"><i class="fa fa-desktop" aria-hidden="true"></i> <span class="visually-hidden">Computer availability:</span><span style="color:#2ecc71;">{{ spot.auto_labstats_available }}</span> / {{ spot.auto_labstats_total }}</span>
                                             {% else %}
-                                                {% if spot.capacity %}<span class="visually-hidden">Capacity: </span><span>Seats {{ spot.capacity }}</span>{% endif %}
+                                                {% if spot.capacity %}<span class="visually-hidden">Seating capacity: </span><span>Seats: {{ spot.capacity }}</span>{% endif %}
                                             {% endif %}
                                         </div>
 
@@ -75,13 +75,9 @@
 
                                     <h4 class="scout-spot-name" id="spot_header_{{spot.spot_id}}">{{ spot.name }}</h4>
 
-                                    <div class="scout-spot-location">
-
-                                        <span class="scout-spot-distance"><span class="visually-hidden">Distance from you:</span><span class="distance-number">---</span>&nbsp;mi</span>
+                                    <div class="scout-spot-location" style="white-space:normal; line-height: initial;">
+                                        <span class="scout-spot-distance" style="display:inline-block;line-height:22px;"><span class="visually-hidden">Distance from you:</span><span class="distance-number">---</span>&nbsp;mi</span>
                                         <span class="visually-hidden">Building: </span>{% if spot.location_description %}{{ spot.location_description }}{% else %}<span style="color:red;">missing building_name</span>{% endif %}
-
-                                        <!--{% if spot.location_description %}<p>{{spot.location_description|insert_newline|linebreaks}}</p>{% else %}<span style="color:red;">missing location_description</span></p>{% endif %}-->
-
                                     </div>
 
                                     <div class="scout-spot-status"><span class="visually-hidden">Status: </span>{% if spot.is_open %}<span class="open visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</div>
@@ -102,7 +98,7 @@
                     <p>Suggestions for improving the results:</p>
                     <ul>
                         <li>Try a specific campus.</li>
-                        <li>Try filtering less options.</li>
+                        <li>Try using fewer filters.</li>
                     </ul>
                 </div>
             </li>

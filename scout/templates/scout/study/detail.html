@@ -26,7 +26,7 @@
             <div class="scout-spot-image spot-detail-main-image" style="background: #e5e6e9 url('{% static "scout/img/placeholder-1000.png" %}') no-repeat center center; background-size: cover;"></div>
             {% endif %}
 
-            <div class="sticky">
+            <div>
                 <div class="scout-spot-meta clearfix">
 
                     <div class="scout-spot-name"><span class="visually-hidden">Name: </span>{{spot.name}}</div>
@@ -52,7 +52,7 @@
                         {% if spot.auto_labstats_total > 0 and spot.auto_labstats_available > 0 %}
                             <span><i class="fa fa-desktop" aria-hidden="true"></i> <span class="visually-hidden">Computer availability: </span><span style="color:#2ecc71;">{{ spot.auto_labstats_available }}</span> / {{ spot.auto_labstats_total }}</span>
                         {% elif spot.capacity %}
-                            <span class="visually-hidden">Capacity: </span><span>Seats  {{ spot.capacity }}</span>
+                            <span class="visually-hidden">Capacity: </span><span>Seats: {{ spot.capacity }}</span>
                         {% endif %}
 
                     </div>
@@ -128,7 +128,7 @@
                           <i class="fa fa-circle fa-stack-2x"></i>
                           <i class="fa fa-bookmark fa-stack-1x fa-inverse"></i>
                         </span>
-                        <span class="scout-spot-action-text" style="white-space:normal;float:left; width: 80%; ">{{ spot.reservation_notes }}</span>
+                        <span class="scout-spot-action-text" style="white-space:normal;float:left; width: 80%; ">{{ spot.reservation_notes|urlize }}</span>
                     </div>
                 </div>
                 {% endif %}
@@ -154,12 +154,12 @@
 
                     {% if spot.hours_notes %}
                     <h4><i class="fa fa-file-text"></i> Hour Notes</h4>
-                    <div class="scout-spot-notes">{{spot.hours_notes}}</div>
+                    <div class="scout-spot-notes">{{ spot.hours_notes|urlize|linebreaksbr }}</div>
                     {% endif %}
 
                     {% if spot.display_access_restrictions %}
                     <h4><i class="fa fa-file-text"></i> Access Notes</h4>
-                    <div class="scout-spot-notes">{{spot.access_notes}}</div>
+                    <div class="scout-spot-notes">{{ spot.access_notes|urlize|linebreaksbr }}</div>
                     {% endif %}
 
                 </div>
@@ -173,10 +173,7 @@
 
                     <h4 class="visually-hidden">Building information</h4>
                     <div class="scout-spot-building-info">
-                            <div><strong><span class="visually-hidden">Name: </span>{% if spot.name %}{{spot.name}}</strong>{% endif %}</div>
-                            <div><span class="visually-hidden">Building: </span>{% if spot.building_name %}{{ spot.building_name }}{% endif %}</div>
-                            <div>Floor: {% if spot.floor %}{{ spot.floor }}{% else %}---{% endif %}</div>
-                            <div>Room: {% if spot.room_number %}{{ spot.room_number }}{% else %}---{% endif %}</div>
+                        <div>{{ spot.location_description}}</div>
                     </div>
 
                 </div>
