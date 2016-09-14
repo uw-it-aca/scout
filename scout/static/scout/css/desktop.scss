@@ -71,8 +71,6 @@ body { overflow: hidden; }
             }
 
             /*** details page ***/
-
-            // details
             .scout-details-container {
 
                 .scout-spot-image { height: $image-height;
@@ -86,12 +84,14 @@ body { overflow: hidden; }
             }
 
             /*** filter page ***/
-
-            // filter
-
             .scout-filter-container {
 
                 select[multiple] { height: 200px; }
+            }
+
+            /*** discover page ***/
+            .scout-discover-container {
+
             }
 
         }
@@ -120,4 +120,9 @@ body { overflow: hidden; }
     a { color: #427fed; text-decoration: none;
         &:hover { text-decoration: underline; }
     }
+}
+
+// loading spinner
+.sk-fading-circle {
+    margin: 90px auto;
 }

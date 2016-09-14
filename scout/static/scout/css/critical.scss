@@ -340,7 +340,9 @@ a {color: $scout-link;}
 
             .scout-discover-image { background-repeat: no-repeat; }
 
-            .scout-discover-loading { position:absolute; top:70%; left:50%; margin-top: -110px; margin-left: -15px; }
+            .scout-discover-loading {
+                    //position:absolute; top:70%; left:50%; margin-top: -110px; margin-left: -15px;
+            }
             .scout-discover-content {
 
                 h3 { font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 12px; color: $scout-purple; text-transform: uppercase; letter-spacing: 1px; margin: 0; line-height: 35px;
@@ -480,7 +482,7 @@ hr { border: 0; height: 0; border-bottom: 1px solid #ddd; margin: 0 -20px 20px -
 // loading spinner
 
 .sk-fading-circle {
-  margin: 100px auto;
+  margin: 25px auto;
   width: 20px;
   height: 20px;
   position: relative;
