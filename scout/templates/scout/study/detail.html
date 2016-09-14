@@ -173,9 +173,7 @@
 
                     <h4 class="visually-hidden">Building information</h4>
                     <div class="scout-spot-building-info">
-                        <div><strong><span class="visually-hidden">Building: </span>{% if spot.building_name %}{{ spot.building_name }}</strong>{% endif %}</div>
-                        {% if spot.floor %}<div>Floor: {{ spot.floor }}</div>{% endif %}
-                        {% if spot.room_number %}<div>Room: {{ spot.room_number }}</div>{% endif %}
+                        <div>{{ spot.location_description}}</div>
                     </div>
 
                 </div>
