@@ -135,13 +135,13 @@
                     </ul>
 
                     {% if spot.hours_notes %}
-                    <h4><i class="fa fa-file-text"></i>Hours Notes</h4>
-                    <div class="scout-spot-notes">{{spot.hours_notes}}</div>
+                    <h4><i class="fa fa-file-text"></i> Hours Notes</h4>
+                    <div class="scout-spot-notes">{{spot.hours_notes|linebreaksbr}}</div>
                     {% endif %}
 
                     {% if spot.display_access_restrictions %}
                     <h4><i class="fa fa-file-text"></i> Access Notes</h4>
-                    <div class="scout-spot-notes">{{spot.access_notes}}</div>
+                    <div class="scout-spot-notes">{{spot.access_notes|linebreaksbr}}</div>
                     {% endif %}
 
                 </div>
