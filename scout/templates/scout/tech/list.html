@@ -10,6 +10,7 @@
 
     {% include "scout/include/user_geolocation.html" %}
 
+    {% if spots %}
     <!-- tech filter results -->
     <div class="scout-filter-results" aria-labelledby="filter_header">
 
@@ -120,6 +121,11 @@
         </ol>
 
     </div>
+    {% else %}
+    <div style="padding:20px;">
+        Unfortunately, this campus does not currently offer any technology items for use/checkout! Please contact someone or visit the Seattle Campus!
+    </div>
+    {% endif %}
 
 </div>
 
