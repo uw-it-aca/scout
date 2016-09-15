@@ -8,7 +8,7 @@
 
 <div id="page_discover" class="scout-content">
 
-    {% include "scout/include/user_geolocation.html" %}
+    {% if request.is_mobile or request.is_tablet %}{% include "scout/include/user_geolocation.html" %}{% endif %}
 
     <div class="scout-discover-container" style="position:relative;" role="main" aria-labelledby="campus_heading">
 

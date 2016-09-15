@@ -8,7 +8,7 @@
 
 <div id="page_food" class="scout-content">
 
-    {% include "scout/include/user_geolocation.html" %}
+    {% if request.is_mobile or request.is_tablet %}{% include "scout/include/user_geolocation.html" %}{% endif %}
 
     <!-- food filter results -->
     <div class="scout-filter-results" aria-labelledby="filter_header">
