@@ -114,7 +114,7 @@ def _get_spot_filters(request):
             )
         if "period" in param:
             now = datetime.datetime.now()
-            params += get_period_filter(request.GET[param], now)
+            params += get_period_filter(request.GET[param])
         if "open_now" in param:
             params.append(("open_now", "true"))
         if "building" in param:
@@ -138,7 +138,12 @@ def _get_spot_filters(request):
     return params
 
 
-def get_period_filter(param, now):
+def get_period_filter(param):
+    now = datetime.datetime.now()
+    return _get_period_filter(param, now)
+
+
+def _get_period_filter(param, now):
     today = now.strftime("%A")
     tomorrow = (now +
                 datetime.timedelta(days=1)).strftime("%A")

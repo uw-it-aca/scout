@@ -8,7 +8,7 @@ from scout.dao.space import add_foodtype_names_to_spot, add_cuisine_names, \
     get_open_periods_by_day, get_spot_list, _get_spot_filters, OPEN_PERIODS,\
     get_spot_by_id, group_spots_by_building, get_avg_latlng_for_spots,\
     add_latlng_to_building, get_spots_by_filter, adjust_time_by_offset, \
-    get_period_filter
+    _get_period_filter
 from spotseeker_restclient.spotseeker import Spotseeker
 from scout.dao import space
 from spotseeker_restclient.exceptions import DataFailureException
@@ -276,7 +276,7 @@ class SpaceDAOTest(TestCase):
     def test_period_filter(self):
         period = "morning"
         dt = datetime.datetime(2016, 4, 20, 0, 0, 0)
-        period_filter = get_period_filter(period, dt)
+        period_filter = _get_period_filter(period, dt)
 
         expected_response = [('fuzzy_hours_start', 'Wednesday,05:01'),
                              ('fuzzy_hours_end', 'Wednesday,10:59')]
