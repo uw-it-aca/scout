@@ -275,7 +275,7 @@ a {color: $scout-link;}
                     span {  display: block; text-transform: uppercase; font-size: 10px; margin-bottom: 2px; color: #BBB;
                         &.brand-name {color:inherit; font-size:inherit; text-transform: inherit;}
                     }
-                    li { margin-right: 5px; white-space: nowrap; list-style: none; display:inline;}
+                    li {white-space: nowrap; list-style: none; display:inline;}
                 }
 
                 .scout-spot-extra { float:right; width: 25%; font-size: 12px; margin-top: 25px; text-align: right; white-space: nowrap; }

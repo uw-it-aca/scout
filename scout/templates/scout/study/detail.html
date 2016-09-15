@@ -38,7 +38,7 @@
                         <span>Resources</span>
                         <ol>
                             {% for spot_resource in spot.spot_resources %}
-                                <li>{{ spot_resource }}</li>
+                            <li>{% if not forloop.first %}, {% endif %}{{ spot_resource }}</li>
                             {% endfor %}
                         </ol>
                     </div>
