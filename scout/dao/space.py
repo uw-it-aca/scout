@@ -129,6 +129,14 @@ def _get_spot_filters(request):
             params.append(
                 ("extended_info:or_group:lighting", request.GET[param])
             )
+        if "reservation" in param:
+            params.append(
+                ("extended_info:reservable", "true")
+            )
+        if "capacity" in param:
+            params.append(
+                ("capacity", request.GET[param])
+            )
         if "subcategory" in param:
             params.append(("item:subcategory", request.GET[param]))
         if "brand" in param:

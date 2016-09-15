@@ -134,7 +134,7 @@ var Filter = {
                     // find a better way to find out the input val!
                     var type = "input";
                     var state = "checked";
-                    if (type_key == "building") {
+                    if (type_key == "building" || type_key == "capacity") {
                         type = "option";
                         state = "selected";
                     }

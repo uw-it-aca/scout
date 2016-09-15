@@ -15,13 +15,21 @@ var Study_Filter = {
             "type": "type_select input:checkbox:checked",
             "noise": "noise_select input:checkbox:checked",
             "food": "food_select input:checkbox:checked",
-            "lighting": "lighting_select input:checkbox:checked"
+            "lighting": "lighting_select input:checkbox:checked",
+            "reservation": "reserve_select input:checkbox:checked",
+            "capacity": "capacity_select option:selected"
         };
-        
+
         $.each(param_types, function(type, param){
             var result = $("#" + param).map(function() {
-                return $(this).val();
+                var val = $(this).val();
+                // case to handle default none selected!
+                if(type == "capacity" && val == "0") {
+                    val = null;
+                }
+                return val;
             }).get();
+
             params = $.extend(params, Filter._get_params_for_select(result, type));
         });
 
@@ -57,7 +65,9 @@ var Study_Filter = {
             "food": "Refreshments",
             "lighting": "Lighting",
             "noise": "Noise Level",
-            "resources": "Resources"
+            "resources": "Resources",
+            "reservation": "Reservability",
+            "capacity": "Capacity"
         };
         $.each(filter_labels, function(filter, label){
             if(url.indexOf("&" + filter) > -1 || url.indexOf("?" + filter) > -1){
@@ -98,7 +108,9 @@ var Study_Filter = {
             "type": "type_select",
             "noise": "noise_select",
             "food": "food_select",
-            "lighting": "lighting_select"
+            "lighting": "lighting_select",
+            "reservation": "reserve_select",
+            "capacity": "capacity_select"
         };
         Filter.populate_filters_from_saved("study_filter_params", param_types);
     },
