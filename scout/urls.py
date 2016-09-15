@@ -1,9 +1,9 @@
 from django.conf import settings
-from django.conf.urls import patterns, include, url
+from django.conf.urls import patterns, include, url, handler404
 from django.views.generic import TemplateView
 from django.views.generic.base import RedirectView
-
 from scout import views
+
 
 urlpatterns = patterns(
     '',
@@ -105,14 +105,15 @@ urlpatterns = patterns(
         name='discover_card_view'),
 
 
-
-
 )
+
 
 # debug routes for developing error pages
 if settings.DEBUG:
     urlpatterns += patterns(
         '',
         url(r'^500/$', TemplateView.as_view(template_name='500.html')),
-        url(r'^404/$', TemplateView.as_view(template_name='404.html')),
+        url(r'^404/$',
+            'scout.views.custom_404_response',
+            name='custom_404_response'),
     )

@@ -511,3 +511,12 @@ def get_avg_latlng_for_spots(spots):
         avg_lng += spot.longitude
 
     return avg_lat/count, avg_lng/count
+
+
+def validate_detail_info(spot, campus, app_type):
+    if spot:
+        if not spot.app_type:
+            spot.app_type = "study"
+        if spot.campus != campus or spot.app_type != app_type:
+            spot = []
+    return spot

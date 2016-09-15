@@ -3,9 +3,9 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.core.exceptions import ImproperlyConfigured
 from django.conf import settings
-from scout.dao.space import get_spot_list, get_spot_by_id, get_filtered_spots
-from scout.dao.space import get_period_filter, \
-    get_spots_by_filter, group_spots_by_building, get_building_list
+from scout.dao.space import get_spot_list, get_spot_by_id, get_filtered_spots,\
+    get_period_filter, get_spots_by_filter, group_spots_by_building,\
+    get_building_list, validate_detail_info
 from scout.dao.image import get_image
 from scout.dao.item import get_item_by_id, get_filtered_items, \
     get_item_count, add_item_info
@@ -149,8 +149,9 @@ def food_list_view(request, campus):
 @validate_campus_selection
 def food_detail_view(request, campus, spot_id):
     spot = get_spot_by_id(spot_id)
+    spot = validate_detail_info(spot, campus, "food")
     if not spot:
-        return custom_404_response(request)
+        return custom_404_response(request, campus)
 
     context = {"spot": spot,
                "campus": campus,
@@ -184,8 +185,9 @@ def study_list_view(request, campus):
 @validate_campus_selection
 def study_detail_view(request, campus, spot_id):
     spot = get_spot_by_id(spot_id)
+    spot = validate_detail_info(spot, campus, "study")
     if not spot:
-        return custom_404_response(request)
+        return custom_404_response(request, campus)
 
     context = {"spot": spot,
                "campus": campus,
@@ -224,8 +226,9 @@ def tech_list_view(request, campus):
 @validate_campus_selection
 def tech_detail_view(request, campus, item_id):
     spot = get_item_by_id(int(item_id))
+    spot = validate_detail_info(spot, campus, "tech")
     if not spot:
-        return custom_404_response(request)
+        return custom_404_response(request, campus)
 
     context = {"spot": spot,
                "campus": campus,
@@ -292,7 +295,7 @@ def hybrid_study_list_view(request, campus):
 def hybrid_study_detail_view(request, campus, spot_id):
     spot = get_spot_by_id(spot_id)
     if not spot:
-        return custom_404_response(request)
+        return custom_404_response(request, campus)
 
     context = {"spot": spot,
                "campus": campus,
@@ -331,8 +334,8 @@ def image_view(request, image_id, spot_id):
 
 
 # Custom 404 page
-def custom_404_response(request):
-    context = {"campus": "seattle"}
+def custom_404_response(request, campus="seattle"):
+    context = {"campus": campus}
     response = render_to_response('404.html', context,
                                   context_instance=RequestContext(request))
     response.status_code = 404
