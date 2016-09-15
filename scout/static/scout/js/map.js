@@ -97,7 +97,9 @@ var Map = {
                         //Wrap the content inside an HTML DIV in order to set height and width of InfoWindow.
                         infoWindow.setContent(
                             "<div><strong>" + data.spot_name + "</strong><br>" +
-                            data.building + "</div>"
+                            data.building + "<br>" +
+                            "<a href='/" + campus + app_type + data.id + "/'>View details</a>" +
+                            "</div>"
                         );
 
                         infoWindow.open(map, marker);
