@@ -8,7 +8,6 @@ file.
 
 $scout-purple: #6564A8;
 $scout-blue: #25738f;
-$scout-button: #2ecc71;
 $scout-link: #25738f;
 $geolocation-height: 45px;
 $footer-height: 40px;
@@ -371,8 +370,8 @@ a {color: $scout-link;}
 
                     .scout-spot-discover-action { display: inline-block; line-height: 30px;
                         .fa-stack { font-size: 12px; }
-                        .fa-circle { color: $scout-button; }
-                        .scout-spot-action-text {  color: $scout-purple; text-decoration: underline; }
+                        .fa-circle { color: $scout-blue; }
+                        .scout-spot-action-text {  color: $scout-blue; text-decoration: underline; }
                     }
                 }
             }
