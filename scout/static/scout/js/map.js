@@ -54,13 +54,13 @@ var Map = {
                     "visibility": "off"
                 }]
             },
-            {
-                "featureType": "poi.business",
-                "elementType": "labels.icon",
-                "stylers": [{
-                    "visibility": "off"
-                }]
-            }];
+                {
+                    "featureType": "poi.business",
+                    "elementType": "labels.icon",
+                    "stylers": [{
+                        "visibility": "off"
+                    }]
+                }];
 
             var map = new google.maps.Map(currentMap, mapOptions);
 
@@ -218,20 +218,20 @@ var Map = {
                     "visibility": "off"
                 }]
             },
-            {
-                "featureType": "poi.business",
-                "elementType": "labels.icon",
-                "stylers": [{
-                    "visibility": "off"
-                }]
-            },
-            {
-                "featureType": "poi.school",
-                "elementType": "labels",
-                "stylers": [{
-                    "visibility": "off"
-                }]
-            }];
+                {
+                    "featureType": "poi.business",
+                    "elementType": "labels.icon",
+                    "stylers": [{
+                        "visibility": "off"
+                    }]
+                },
+                {
+                    "featureType": "poi.school",
+                    "elementType": "labels",
+                    "stylers": [{
+                        "visibility": "off"
+                    }]
+                }];
 
             var map = new google.maps.Map(currentMap, mapOptions);
 
