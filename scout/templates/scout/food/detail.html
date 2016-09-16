@@ -69,19 +69,6 @@
 
                 <h4 class="visually-hidden">Contact information</h4>
 
-                {% if spot.phone %}
-                <div class="scout-spot-info-item">
-                    <a href="tel:+1{{ spot.phone }}">
-                        <span class="visually-hidden">Restaurant phone:</span>
-                        <span class="fa-stack fa-lg">
-                          <i class="fa fa-circle fa-stack-2x"></i>
-                          <i class="fa fa-phone fa-stack-1x fa-inverse"></i>
-                        </span>
-                        <span class="scout-spot-action-text">{{ spot.phone | format_phone }}</span>
-                    </a>
-                </div>
-                {% endif %}
-
                 {% if spot.website_url %}
                 <div class="scout-spot-info-item">
                     <a href="{{spot.website_url}}" target="_blank">
@@ -105,6 +92,19 @@
                           <i class="fa fa-cutlery fa-stack-1x fa-inverse"></i>
                         </span>
                         <span class="scout-spot-action-text">View menu</span>
+                    </a>
+                </div>
+                {% endif %}
+
+                {% if spot.phone %}
+                <div class="scout-spot-info-item">
+                    <a href="tel:+1{{ spot.phone }}">
+                        <span class="visually-hidden">Restaurant phone:</span>
+                        <span class="fa-stack fa-lg">
+                          <i class="fa fa-circle fa-stack-2x"></i>
+                          <i class="fa fa-phone fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <span class="scout-spot-action-text">{{ spot.phone | format_phone }}</span>
                     </a>
                 </div>
                 {% endif %}
