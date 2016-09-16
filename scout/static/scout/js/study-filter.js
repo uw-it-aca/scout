@@ -17,7 +17,7 @@ var Study_Filter = {
             "food": "food_select input:checkbox:checked",
             "lighting": "lighting_select input:checkbox:checked"
         };
-        
+
         $.each(param_types, function(type, param){
             var result = $("#" + param).map(function() {
                 return $(this).val();
@@ -83,6 +83,10 @@ var Study_Filter = {
         });
 
         $("#reset_study_button").click(function() {
+            Study_Filter.reset_filter();
+        });
+
+        $("#reset_study_list").click(function() {
             Study_Filter.reset_filter();
         });
     },

@@ -35,7 +35,9 @@
             <div class="scout-filter-results-count">{{ count }}</div>
 
             <div class="scout-filter-results-actions">
-                <a href="#" class="action-cancel" role="button"><i class="fa fa-refresh"></i>Reset <span class="visually-hidden">filter</span></a>
+                <a id="reset_tech_list" class="action-cancel visually-hidden" aria-hidden="true" role="button" title="Clear filters">
+                    <i class="fa fa-refresh"></i>Reset<span class="visually-hidden"> filter</span>
+                </a>
                 <a href="/{{ campus }}/tech/filter/" id="tech_link_filter" title="Filter list of tech items on campus">
                     <i class="fa fa-sliders fa-inverse"></i>
                     <span class="scout-filter-results-action">Filter Tech</span>
