@@ -199,7 +199,7 @@ var Map = {
             } else {
                 mapOptions = {
                     center: spotPosition,
-                    zoom: 19,
+                    zoom: 18,
                     streetViewControl: false,
                 };
             }
