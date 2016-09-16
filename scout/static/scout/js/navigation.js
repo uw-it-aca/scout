@@ -5,13 +5,12 @@ var Navigation = {
         $("#campus_select_base").change(function(){
             // get the campus value from select menu
             var new_campus = $(this).val();
-            var url = new_campus + Filter.get_current_type();
-            var filter = Filter.get_filter_url(url);
-            if (filter !== undefined) {
-                url = url + "?" + filter;
-            }
+            var type = Filter.get_current_type();
+            sessionStorage.removeItem("study_filter_params");
+            sessionStorage.removeItem("food_filter_params");
+            sessionStorage.removeItem("tech_filter_params");
             Navigation.swap_campus_urls(new_campus);
-            window.location= "/" + url;
+            window.location= "/" + new_campus + type;
         });
     },
 
