@@ -69,11 +69,11 @@
     <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.6.3.min.css" %}">
     <link rel="stylesheet" href="{% static "scout/css/slick.scss" %}" type="text/x-scss">
     <link rel="stylesheet" href="{% static "scout/css/critical.scss" %}" type="text/x-scss">
-    <link rel="stylesheet" href="{% static "scout/css/mobile.scss" %}" type="text/x-scss">
-    <link rel="stylesheet" href="{% static "scout/css/desktop.scss" %}" type="text/x-scss">
     {% endcompress %}
     <!-- async (mobile + tablet + desktop) -->
     {% compress css %}
+    <link rel="stylesheet" href="{% static "scout/css/mobile.scss" %}" type="text/x-scss">
+    <link rel="stylesheet" href="{% static "scout/css/desktop.scss" %}" type="text/x-scss">
     {% endcompress %}
 
 {% endif %}
