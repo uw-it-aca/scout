@@ -64,7 +64,7 @@
                         {% for item in spot.items %}
                         <li class="scout-list-item-object scout-list-hover" aria-labelledby="item_header_{{item.item_id}}">
 
-                                <a class="clearfix" href="/{{campus}}/tech/{{ item.item_id }}/" title="Item Details: {{ item.name }}">
+                                <a class="clearfix" href="/{{campus}}/tech/{{ item.item_id }}/" title="Get details about {{ item.name }}">
 
                                     {% if spot.item_images %}
                                     <div class="scout-spot-image" style="background-image: url('/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}/?width=200'); background-size:cover;">&nbsp;</div>

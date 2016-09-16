@@ -23,7 +23,7 @@
             <div class="scout-filter-results-actions">
                 <a href="/{{campus}}/study/filter/" id="study_link_filter" title="Filter list of study places on campus">
                     <i class="fa fa-sliders fa-inverse"></i>
-                    <span class="scout-filter-results-action">Filter Study</span>
+                    <span class="scout-filter-results-action">Filter Spaces</span>
                 </a>
             </div>
         </div>
@@ -48,7 +48,7 @@
 
                     {% for spot in group.spots %}
                     <li class="scout-list-item scout-list-hover" id="{{ spot.spot_id }}" data-spot-lat="{{ spot.latitude }}" data-spot-lng="{{ spot.longitude }}" data-spot-building="{{ spot.building_name }}" data-spot-name="{{ spot.name }}" aria-labelledby="spot_header_{{spot.spot_id}}">
-                        <a class="clearfix" href="/{{campus}}/study/{{ spot.spot_id }}/" title="Space Details: {{ spot.name }}">
+                        <a class="clearfix" href="/{{campus}}/study/{{ spot.spot_id }}/" title="Get details about {{ spot.name }}">
 
                             {% if spot.images %}
                             <div class="scout-spot-image" style="background-image: url('/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}/?width=200'); background-size:cover;">&nbsp;</div>

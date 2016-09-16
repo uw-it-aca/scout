@@ -33,28 +33,28 @@
                         {% for type in spot.spot_types %}<span><span class="visually-hidden">Space type: </span>{% if type.name == 'open'%}{{ type.name|remove_underscores }} space{% else %}{{ type.name|remove_underscores }}{% endif %}</span>{% endfor %}
                     </div>
 
-                    <div class="scout-spot-resources">
+                   {% if spot.spot_resources %}
+                   <div class="scout-spot-resources">
                         <span>Resources</span>
-
-                        {% if spot.spot_resources %}
                         <ol>
                             {% for spot_resource in spot.spot_resources %}
-                                <li>{{ spot_resource }}</li>
+                            <li>{% if not forloop.first %}, {% endif %}{{ spot_resource }}</li>
                             {% endfor %}
                         </ol>
-                        {% else %} <span style="color:red;">missing resources</span> {% endif %}
-
                     </div>
+                    {% endif %}
 
+
+                    {% if spot.auto_labstats_total > 0 and spot.auto_labstats_available > 0 %}
                     <div class="scout-spot-extra">
-
-                        {% if spot.auto_labstats_total > 0 and spot.auto_labstats_available > 0 %}
-                            <span><i class="fa fa-desktop" aria-hidden="true"></i> <span class="visually-hidden">Computer availability: </span><span style="color:#2ecc71;">{{ spot.auto_labstats_available }}</span> / {{ spot.auto_labstats_total }}</span>
-                        {% elif spot.capacity %}
-                            <span class="visually-hidden">Capacity: </span><span>Seats: {{ spot.capacity }}</span>
-                        {% endif %}
-
+                        <span><i class="fa fa-desktop" aria-hidden="true"></i> <span class="visually-hidden">Computer availability: </span>
+                        <span style="color:#2ecc71;">{{ spot.auto_labstats_available }}</span> / {{ spot.auto_labstats_total }}</span>
                     </div>
+                    {% elif spot.capacity %}
+                    <div class="scout-spot-extra">
+                        <span class="visually-hidden">Capacity: </span><span>Seats: {{ spot.capacity }}</span>
+                    </div>
+                    {% endif %}
 
                 </div>
 
