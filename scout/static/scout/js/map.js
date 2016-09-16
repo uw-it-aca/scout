@@ -87,7 +87,8 @@ var Map = {
                     spot: {
                         id: data.id,
                         name: data.spot_name,
-                        building: data.building
+                        building: data.building,
+                        items: data.items
                     }
                 });
 
@@ -130,10 +131,21 @@ var Map = {
                 var app_type = Filter.get_current_type();
 
                 //Wrap the   content inside an HTML DIV in order to set height and width of InfoWindow.
-                infoWindow.setContent(
-                    "<div><strong>" + marker.spot.name + "</strong><br>" +
-                    marker.spot.building + "</div>"
-                );
+                if (app_type !== "/tech/"){
+                    infoWindow.setContent(
+                        "<div><strong>" + marker.spot.name + "</strong><br>" +
+                        marker.spot.building + "<br>" +
+                        "<a href='/" + campus + app_type + marker.spot.id + "/'>View details</a>" +
+                        "</div>"
+                    );
+                } else {
+                    infoWindow.setContent(
+                        "<div><strong>" + marker.spot.spot_name + "</strong><br>" +
+                        marker.spot.building + "<br>" +
+                        marker.spot.items + " items <br>" +
+                        "</div>"
+                    );
+                }
 
                 infoWindow.open(map, marker);
 
