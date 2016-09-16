@@ -23,8 +23,10 @@ var Navigation = {
         $(anchor_ids_to_swap).each(function (idx, val){
             var anchor = $("#" + val);
             var url = $(anchor).attr('href');
-            var new_url = url.replace(/seattle|tacoma|bothell/, new_campus);
-            $(anchor).attr('href', new_url);
+            if (url !== undefined){
+                var new_url = url.replace(/seattle|tacoma|bothell/, new_campus);
+                $(anchor).attr('href', new_url);
+            }
         });
     },
 
