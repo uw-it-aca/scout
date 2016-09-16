@@ -140,7 +140,7 @@ var Map = {
                     );
                 } else {
                     infoWindow.setContent(
-                        "<div><strong>" + marker.spot.spot_name + "</strong><br>" +
+                        "<div><strong>" + marker.spot.name + "</strong><br>" +
                         marker.spot.building + "<br>" +
                         marker.spot.items + " items <br>" +
                         "</div>"
@@ -259,11 +259,22 @@ var Map = {
                 content: contentString
             });
 
+            var app_type = Filter.get_current_type();
+            var labelContent;
+
+            if (app_type == '/food/'){
+                labelContent = "<i class='fa fa-cutlery'></i><span class='marker-text' style='margin-left:15px;font-size:12px;'>" + spot_name + "</span>";
+            } else if(app_type == '/study/'){
+                labelContent = "<i class='fa fa-graduation-cap'></i><span class='marker-text' style='margin-left:15px;font-size:12px;'>" + spot_name + "</span>";
+            } else if(app_type == '/tech/'){
+                labelContent = "<i class='fa fa-laptop'></i><span class='marker-text' style='margin-left:15px;font-size:12px;'>" + spot_name + "</span>";
+            }
+
             var marker = new MarkerWithLabel({
                 position: spotPosition,
                 map: map,
                 title: spot_name,
-                labelContent: "<i class='fa fa-cutlery'></i><span class='marker-text' style='margin-left:15px;font-size:12px;'>" + spot_name + "</span>",
+                labelContent: labelContent,
                 labelAnchor: new google.maps.Point(6, 6),
                 labelClass: "map-label", // the CSS class for the label
                 icon: {
