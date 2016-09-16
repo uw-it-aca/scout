@@ -29,21 +29,17 @@
                 <div class="scout-spot-meta clearfix">
 
                     <div class="scout-spot-name"><span class="visually-hidden">Name: </span>{{spot.name}}</div>
-                    <div class="scout-spot-type">
-                        {% for type in spot.spot_types %}<span><span class="visually-hidden">Space type: </span>{% if type.name == 'open'%}{{ type.name|remove_underscores }} space{% else %}{{ type.name|remove_underscores }}{% endif %}</span>{% endfor %}
-                    </div>
 
                    {% if spot.spot_resources %}
                    <div class="scout-spot-resources">
                         <span>Resources</span>
                         <ol>
                             {% for spot_resource in spot.spot_resources %}
-                            <li>{% if not forloop.first %}, {% endif %}{{ spot_resource }}</li>
+                            <li>{{ spot_resource }}{% if not forloop.last %}, {% endif %}</li>
                             {% endfor %}
                         </ol>
                     </div>
                     {% endif %}
-
 
                     {% if spot.auto_labstats_total > 0 and spot.auto_labstats_available > 0 %}
                     <div class="scout-spot-extra">
@@ -68,7 +64,31 @@
 
             <div class="scout-spot-info">
 
-                <h4 class="visually-hidden">Environment Details</h4>
+                <h4 class="visually-hidden">Space Details</h4>
+
+                {% if spot.spot_types %}
+                <div class="scout-spot-info-item">
+                    <div style="overflow:visible; line-height:20px; white-space:normal;">
+                        <span class="visually-hidden">Type:</span>
+                        <span class="fa-stack fa-lg" style="float:left; width: 28px; margin-right:3px;">
+                          <i class="fa fa-circle fa-stack-2x"></i>
+                          <i class="fa fa-graduation-cap fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <span class="scout-spot-action-text" style="white-space:normal;float:left; width: 80%; text-transform: capitalize; margin-top: 3px; ">
+                            <span class="visually-hidden">Space type: </span>
+                            {% for type in spot.spot_types %}
+                            <span>
+                                {% if type.name == 'open'%}
+                                {{ type.name|remove_underscores }} space{% if not forloop.last %}, {% endif %}
+                                {% else %}
+                                {{ type.name|remove_underscores }}{% if not forloop.last %}, {% endif %}
+                                {% endif %}
+                            </span>
+                            {% endfor %}
+                        </span>
+                    </div>
+                </div>
+                {% endif %}
 
                 {% if spot.spot_noise %}
                 <div class="scout-spot-info-item">
@@ -78,7 +98,7 @@
                           <i class="fa fa-circle fa-stack-2x"></i>
                           <i class="fa fa-volume-up fa-stack-1x fa-inverse"></i>
                         </span>
-                        <span class="scout-spot-action-text" style="text-transform:capitalize;">
+                        <span class="scout-spot-action-text" style="text-transform:capitalize; margin-top: 3px;">
                             {% if spot.spot_noise == 'quiet' %}Low hum
                             {% elif spot.spot_noise == 'moderate' %}Chatter
                             {% elif spot.spot_noise == 'variable' %}Chatter
@@ -96,7 +116,7 @@
                           <i class="fa fa-circle fa-stack-2x"></i>
                           <i class="fa fa-lightbulb-o fa-stack-1x fa-inverse"></i>
                         </span>
-                        <span class="scout-spot-action-text">Natural lighting</span>
+                        <span class="scout-spot-action-text" style="margin-top: 3px;">Natural lighting</span>
                     </div>
                 </div>
                 {% endif %}
@@ -109,7 +129,7 @@
                           <i class="fa fa-circle fa-stack-2x"></i>
                           <i class="fa fa-coffee fa-stack-1x fa-inverse"></i>
                         </span>
-                        <span class="scout-spot-action-text">
+                        <span class="scout-spot-action-text" style="margin-top: 3px;">
                             {% if spot.food_nearby == 'building' %}Available in building
                             {% elif spot.food_nearby == 'neighboring' %}Available in neighboring building
                             {% elif spot.food_nearby == 'space' %}Available in the space
@@ -127,7 +147,7 @@
                           <i class="fa fa-circle fa-stack-2x"></i>
                           <i class="fa fa-bookmark fa-stack-1x fa-inverse"></i>
                         </span>
-                        <span class="scout-spot-action-text" style="white-space:normal;float:left; width: 80%; ">{{ spot.reservation_notes|urlize }}</span>
+                        <span class="scout-spot-action-text" style="white-space:normal;float:left; width: 80%; margin-top: 3px;">{{ spot.reservation_notes|urlize }}</span>
                     </div>
                 </div>
                 {% endif %}
