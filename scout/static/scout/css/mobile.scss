@@ -44,10 +44,10 @@ $footer-height: 40px;
 
                 .scout-spot-description { margin-bottom: 20px; color: #333; font-size: 14px; line-height: 20px; }
 
-                .scout-spot-hours { margin-bottom: 20px; color: #333; font-size: 14px; line-height: 16px;
+                .scout-spot-hours { margin-bottom: 20px; color: #333; font-size: 14px;
 
                     ul { margin: 0; padding: 0;
-                        li { list-style: none; white-space: nowrap; color: #666;
+                        li { list-style: none; white-space: nowrap; color: #666; line-height: 20px;
 
                             span { display: inline-block;
                                 &.day { width: 110px;  text-transform: capitalize; color: #222; }
@@ -55,7 +55,7 @@ $footer-height: 40px;
                             }
                         }
                     }
-                    span { display: inline-block; margin-top: 10px; }
+                    span { display: inline-block; }
                 }
 
                 .scout-spot-building-info { color: #333; font-size: 14px; line-height: 20px; }
@@ -76,10 +76,10 @@ $footer-height: 40px;
 
                 .scout-spot-reservation { margin-bottom: 20px; color: #333; font-size: 14px; line-height: 16px; }
 
-                .scout-spot-payment { margin-bottom: 20px; color: #333; font-size: 14px; line-height: 16px;
+                .scout-spot-payment { margin-bottom: 20px; color: #333; font-size: 14px;
 
                     ul { margin: 0; padding: 0;
-                        li { list-style: none; }
+                        li { list-style: none; line-height: 20px; }
                     }
                     span { margin-right: 10px; }
                 }
