@@ -1,7 +1,6 @@
 $(document).on('ready', function(event) {
 
     Layout.init_layout();
-
     Navigation.set_campus_selection();
 
     // page based JS calls
@@ -35,12 +34,9 @@ $(document).on('ready', function(event) {
         Discover.init_cards();
         Map.init_map();
     }
-
     Filter.replace_navigation_href();
-
     // call this last so all page level location event listeners have been declared
     Geolocation.update_location();
-
     Filter.init_events();
 
 });
