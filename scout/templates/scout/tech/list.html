@@ -35,6 +35,7 @@
             <div class="scout-filter-results-count">{{ count }}</div>
 
             <div class="scout-filter-results-actions">
+                <a href="#" class="action-cancel" role="button"><i class="fa fa-refresh"></i>Reset <span class="visually-hidden">filter</span></a>
                 <a href="/{{ campus }}/tech/filter/" id="tech_link_filter" title="Filter list of tech items on campus">
                     <i class="fa fa-sliders fa-inverse"></i>
                     <span class="scout-filter-results-action">Filter Tech</span>
@@ -64,7 +65,7 @@
                         {% for item in spot.items %}
                         <li class="scout-list-item-object scout-list-hover" aria-labelledby="item_header_{{item.item_id}}">
 
-                                <a class="clearfix" href="/{{campus}}/tech/{{ item.item_id }}/" title="Item Details: {{ item.name }}">
+                                <a class="clearfix" href="/{{campus}}/tech/{{ item.item_id }}/" title="Get details about {{ item.name }}">
 
                                     {% if spot.item_images %}
                                     <div class="scout-spot-image" style="background-image: url('/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}/?width=200'); background-size:cover;">&nbsp;</div>

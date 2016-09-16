@@ -51,6 +51,9 @@ Discover = {
     },
 
     _attach_card: function (card_id, card_html) {
+        if(card_id === 'open'){
+            Discover.display_card_pins(card_html);
+        }
         $("#" + card_id).html(card_html);
     },
 

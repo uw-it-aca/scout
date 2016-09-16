@@ -66,6 +66,7 @@ var Map = {
             // create and open InfoWindow.
             var infoWindow = new google.maps.InfoWindow();
             var markers = [];
+            var oms = new OverlappingMarkerSpiderfier(map, {keepSpiderfied: true});
 
             $.each(locations, function (key, data){
                 var marker = new MarkerWithLabel({
@@ -83,68 +84,74 @@ var Map = {
                         scale: 5,
                         strokeWeight: 5
                     },
+                    spot: {
+                        id: data.id,
+                        name: data.spot_name,
+                        building: data.building,
+                        items: data.items
+                    }
                 });
 
                 markers.push(marker);
+                oms.addMarker(marker);
 
-                // attach events to markers
-                (function (marker, data) {
+                // prevent google maps from being tab navigated
+                map.addListener("tilesloaded", function() {
+                    $("#" + map_id +" a").attr("tabindex","-1");
+                });
 
-                    marker.addListener("click", function () {
-                        var campus = Navigation.get_campus_selection();
-                        var app_type = Filter.get_current_type();
-
-                        console.log(app_type)
-                        if (app_type !== "/tech/"){
-                            //Wrap the content inside an HTML DIV in order to set height and width of InfoWindow.
-                            infoWindow.setContent(
-                                "<div><strong>" + data.spot_name + "</strong><br>" +
-                                data.building + "<br>" +
-                                "<a href='/" + campus + app_type + data.id + "/'>View details</a>" +
-                                "</div>"
-                            );
-                        } else {
-                            console.log(data)
-                            //Wrap the content inside an HTML DIV in order to set height and width of InfoWindow.
-                            infoWindow.setContent(
-                                "<div><strong>" + data.spot_name + "</strong><br>" +
-                                data.building + "<br>" +
-                                data.items + " items <br>" +
-                                "</div>"
-                            );
-                        }
-
-                        infoWindow.open(map, marker);
-
-                        // scroll to spot on list
-                        List.scroll_to_spot('#' + data.id);
-
-                    });
-
-                    // prevent google maps from being tab navigated
-                    map.addListener("tilesloaded", function() {
-                        $("#" + map_id +" a").attr("tabindex","-1");
-                    });
-
-                    // handle hover event for main list view
-                    $('#' + data.id).hover(
-                        function () {
-                            infoWindow.setContent(
-                                "<div><strong>" + data.spot_name + "</strong><br>" +
-                                data.building + "</div>"
-                            );
-                            infoWindow.open(map);
-                            infoWindow.setPosition(marker.position);
+                // handle hover event for main list view
+                $('#' + data.id).hover(
+                    function () {
+                        // hover IN
+                        infoWindow.setContent(
+                            "<div><strong>" + data.spot_name + "</strong><br>" +
+                            data.building + "</div>"
+                        );
+                        infoWindow.open(map);
+                        infoWindow.setPosition(marker.position);
+                        if (map.getZoom() != 16){
                             map.setZoom(16); //default zoom level
-                        },
-                        function () {
-                            infoWindow.close(map, marker);
                         }
-                    );
-                })(marker, data);
+                        map.setCenter(marker.getPosition());
+                    },
+                    function () {
+                        // hover OUT
+                        infoWindow.close(map, marker);
+                    }
+                );
 
                 // add the marker position to boundary
                 bounds.extend(marker.position);
+
+            });
+            // attach events to markers
+            oms.addListener("click", function (marker, event) {
+                var campus = Navigation.get_campus_selection();
+                var app_type = Filter.get_current_type();
+
+                //Wrap the   content inside an HTML DIV in order to set height and width of InfoWindow.
+                if (app_type !== "/tech/"){
+                    infoWindow.setContent(
+                        "<div><strong>" + marker.spot.name + "</strong><br>" +
+                        marker.spot.building + "<br>" +
+                        "<a href='/" + campus + app_type + marker.spot.id + "/'>View details</a>" +
+                        "</div>"
+                    );
+                } else {
+                    infoWindow.setContent(
+                        "<div><strong>" + marker.spot.spot_name + "</strong><br>" +
+                        marker.spot.building + "<br>" +
+                        marker.spot.items + " items <br>" +
+                        "</div>"
+                    );
+                }
+
+                infoWindow.open(map, marker);
+
+                // scroll to spot on list
+                //console.log('scroll to ' + data.id);
+                List.scroll_to_spot('#' + marker.spot.id);
 
             });
 
@@ -209,7 +216,7 @@ var Map = {
             } else {
                 mapOptions = {
                     center: spotPosition,
-                    zoom: 19,
+                    zoom: 18,
                     streetViewControl: false,
                 };
             }

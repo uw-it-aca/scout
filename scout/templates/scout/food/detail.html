@@ -24,10 +24,8 @@
                 <div class="scout-spot-meta clearfix">
 
                     <div class="scout-spot-name">{{spot.name}}</div>
-                    <div class="scout-spot-type">
-                        {% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}</span>{% endfor %}
-                    </div>
 
+                    <!--
                     <div class="scout-spot-food-served hidden" aria-hidden="true">
                         <span>Food served</span>
                         {% if spot.foodtype_names %}
@@ -36,6 +34,7 @@
                             {% endfor %}
                         {% else %} <span style="color:red;">missing foodtype</span> {% endif %}
                     </div>
+                    -->
 
                     <div class="scout-spot-status" role="status" aria-live="polite">{% if spot.is_open %}<span class="open">Open now</span>{% else %}<span class="closed">Closed</span>{% endif %}</div>
 
@@ -70,19 +69,6 @@
 
                 <h4 class="visually-hidden">Contact information</h4>
 
-                {% if spot.phone %}
-                <div class="scout-spot-info-item">
-                    <a href="tel:+1{{ spot.phone }}">
-                        <span class="visually-hidden">Restaurant phone:</span>
-                        <span class="fa-stack fa-lg">
-                          <i class="fa fa-circle fa-stack-2x"></i>
-                          <i class="fa fa-phone fa-stack-1x fa-inverse"></i>
-                        </span>
-                        <span class="scout-spot-action-text">{{ spot.phone | format_phone }}</span>
-                    </a>
-                </div>
-                {% endif %}
-
                 {% if spot.website_url %}
                 <div class="scout-spot-info-item">
                     <a href="{{spot.website_url}}" target="_blank">
@@ -110,15 +96,38 @@
                 </div>
                 {% endif %}
 
+                {% if spot.phone %}
+                <div class="scout-spot-info-item">
+                    <a href="tel:+1{{ spot.phone }}">
+                        <span class="visually-hidden">Restaurant phone:</span>
+                        <span class="fa-stack fa-lg">
+                          <i class="fa fa-circle fa-stack-2x"></i>
+                          <i class="fa fa-phone fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <span class="scout-spot-action-text">{{ spot.phone | format_phone }}</span>
+                    </a>
+                </div>
+                {% endif %}
+
             </div>
 
         </div>
 
         <div class="scout-spot-content">
-        {% if spot.location_description %}<div class="scout-card">
-                <h3>Description</h3>
-                <div class="scout-spot-description">{{spot.location_description}}</div>
-            </div>{% endif %}
+        {% if spot.location_description %}
+        <div class="scout-card">
+
+            <h3>Type</h3>
+            <div style="font-size:14px;text-transform:capitalize;margin-bottom:20px;">
+                {% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}{% if not forloop.last %}, {% endif %}</span>{% endfor %}
+            </div>
+
+            <h3>Description</h3>
+            <div class="scout-spot-description">{{spot.location_description}}</div>
+
+        </div>
+        {% endif %}
+
             <div class="scout-card">
                 <div class="scout-spot-hours">
                     <h3>Hours</h3>

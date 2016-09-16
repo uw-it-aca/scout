@@ -25,9 +25,6 @@
                 <div class="scout-spot-meta clearfix">
 
                     <div class="scout-spot-name"><span class="visually-hidden">Name: </span>{% if spot.item.name %}{{ spot.item.name }}{% else %}item name missing{% endif %}</div>
-                    <div class="scout-spot-type">
-                        <span class="visually-hidden">Item Category: </span>{{ spot.item.subcategory }}
-                    </div>
 
                     <div class="scout-spot-resources brand-info">
                         <span >Brand</span>
@@ -38,12 +35,30 @@
                         {% if spot.item.quantity %}<span class="visually-hidden">Quantity available: </span><span>Available: {{ spot.item.quantity }}</span>{% endif %}
                     </div>
 
-
                 </div>
             </div>
 
             <div class="scout-spot-info">
+
                 <h4 class="visually-hidden">Reservation Info</h4>
+
+                {% if spot.item.subcategory %}
+                <div class="scout-spot-info-item">
+                    <div style="overflow:visible; line-height:20px; white-space:normal;">
+                        <span class="visually-hidden">Type:</span>
+                        <span class="fa-stack fa-lg" style="float:left; width: 28px; margin-right:3px;">
+                          <i class="fa fa-circle fa-stack-2x"></i>
+                          <i class="fa fa-laptop fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <span class="scout-spot-action-text" style="white-space:normal;float:left; width: 80%; text-transform: capitalize; margin-top: 3px; ">
+                            <span class="visually-hidden">Item category: </span>
+                            <span>
+                                {{ spot.item.subcategory }}
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                {% endif %}
 
                 <div class="scout-spot-info-item">
                     {% if spot.item.reserve_url %}
