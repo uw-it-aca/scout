@@ -1,3 +1,4 @@
+var Navigation = require('./navigation').Navigation;
 var Filter = {
 
     get_filter_url: function(type) {
