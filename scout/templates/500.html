@@ -14,15 +14,15 @@
 
     <!-- mobile & tablet -->
     <style type="text/css">
-        @media (min-width:320px) {
+        @media (min-width:200px) {
             /*! normalize.css v3.0.1 | MIT License | git.io/normalize */
             html {
                 font-family: sans-serif;
                 -ms-text-size-adjust: 100%;
-                -webkit-text-size-adjust: 100%
+                -webkit-text-size-adjust: 100%;
             }
             body {
-                margin: 0
+                margin: 0;
             }
             article,
             aside,
@@ -36,87 +36,88 @@
             nav,
             section,
             summary {
-                display: block
+                display: block;
             }
             audio,
             canvas,
             progress,
             video {
                 display: inline-block;
-                vertical-align: baseline
+                vertical-align: baseline;
             }
             audio:not([controls]) {
                 display: none;
-                height: 0
+                height: 0;
             }
             [hidden],
             template {
-                display: none
+                display: none;
             }
             a {
-                background: transparent
+                background: transparent;
             }
             a:active,
             a:hover {
-                outline: 0
+                outline: 0;
             }
             abbr[title] {
-                border-bottom: 1px dotted
+                border-bottom: 1px dotted;
             }
             b,
             strong {
-                font-weight: bold
+                font-weight: bold;
             }
             dfn {
-                font-style: italic
+                font-style: italic;
             }
             h1 {
                 font-size: 2em;
-                margin: .67em 0
+                margin: .67em 0;
+                font-family: 'Raleway', sans-serif;
             }
             mark {
                 background: #ff0;
-                color: #000
+                color: #000;
             }
             small {
-                font-size: 80%
+                font-size: 80%;
             }
             sub,
             sup {
                 font-size: 75%;
                 line-height: 0;
                 position: relative;
-                vertical-align: baseline
+                vertical-align: baseline;
             }
             sup {
-                top: -0.5em
+                top: -0.5em;
             }
             sub {
-                bottom: -0.25em
+                bottom: -0.25em;
             }
             img {
-                border: 0
+                border: 0;
             }
             svg:not(:root) {
-                overflow: hidden
+                overflow: hidden;
             }
             figure {
-                margin: 1em 40px
+                margin: 1em 40px;
             }
             hr {
                 -moz-box-sizing: content-box;
                 box-sizing: content-box;
-                height: 0
+                height: 0;
             }
             pre {
-                overflow: auto
+                overflow: auto;
             }
             code,
             kbd,
             pre,
             samp {
                 font-family: monospace, monospace;
-                font-size: 1em
+                font-size: 1em;
             }
             button,
             input,
@@ -125,80 +126,80 @@
             textarea {
                 color: inherit;
                 font: inherit;
-                margin: 0
+                margin: 0;
             }
             button {
-                overflow: visible
+                overflow: visible;
             }
             button,
             select {
-                text-transform: none
+                text-transform: none;
             }
             button,
             html input[type="button"],
             input[type="reset"],
             input[type="submit"] {
                 -webkit-appearance: button;
-                cursor: pointer
+                cursor: pointer;
             }
             button[disabled],
             html input[disabled] {
-                cursor: default
+                cursor: default;
             }
             button::-moz-focus-inner,
             input::-moz-focus-inner {
                 border: 0;
-                padding: 0
+                padding: 0;
             }
             input {
-                line-height: normal
+                line-height: normal;
             }
             input[type="checkbox"],
             input[type="radio"] {
                 box-sizing: border-box;
-                padding: 0
+                padding: 0;
             }
             input[type="number"]::-webkit-inner-spin-button,
             input[type="number"]::-webkit-outer-spin-button {
-                height: auto
+                height: auto;
             }
             input[type="search"] {
                 -webkit-appearance: textfield;
                 -moz-box-sizing: content-box;
                 -webkit-box-sizing: content-box;
-                box-sizing: content-box
+                box-sizing: content-box;
             }
             input[type="search"]::-webkit-search-cancel-button,
             input[type="search"]::-webkit-search-decoration {
-                -webkit-appearance: none
+                -webkit-appearance: none;
             }
             fieldset {
                 border: 1px solid #c0c0c0;
                 margin: 0 2px;
-                padding: .35em .625em .75em
+                padding: .35em .625em .75em;
             }
             legend {
                 border: 0;
-                padding: 0
+                padding: 0;
             }
             textarea {
-                overflow: auto
+                overflow: auto;
             }
             optgroup {
-                font-weight: bold
+                font-weight: bold;
             }
             table {
                 border-collapse: collapse;
-                border-spacing: 0
+                border-spacing: 0;
             }
             td,
             th {
-                padding: 0
+                padding: 0;
             }
             .scout-header {
                 background: #fafafa;
                 border-bottom: solid 1px #d0d1d5;
-                position: relative
+                position: relative;
             }
             .scout-header h1 {
                 margin: 0;
@@ -209,14 +210,14 @@
                 font-family: 'Raleway', sans-serif;
                 font-weight: 900;
                 font-size: 30px;
-                text-align: left
+                text-align: left;
             }
             .scout-header h1 a {
                 color: #111;
                 text-decoration: none;
                 line-height: 60px;
                 display: inline-block;
-                padding-left: 55px
+                padding-left: 20px;
             }
             .scout-header .scout-navigation {
                 position: relative;
@@ -224,7 +225,7 @@
                 line-height: 41px;
                 color: #fff;
                 margin: 0;
-                padding: 0
+                padding: 0;
             }
             .scout-header .scout-navigation .scout-navigation-items {
                 line-height: 37px;
@@ -234,29 +235,29 @@
                 list-style: none;
                 padding: 0;
                 display: flex;
-                flex-flow: row wrap
+                flex-flow: row wrap;
             }
             .scout-header .scout-navigation .scout-navigation-items li {
                 margin: 0;
                 padding: 0;
-                flex: 1 0
+                flex: 1 0;
             }
             .scout-header .scout-navigation .scout-navigation-items li a {
                 display: block;
                 color: #666;
                 text-decoration: none;
                 text-align: center;
-                border-bottom: solid 4px #fafafa
+                border-bottom: solid 4px #fafafa;
             }
             .scout-header .scout-navigation .scout-navigation-items li a:hover {
-                color: #6564A8
+                color: #6564A8;
             }
             .scout-header .scout-navigation .scout-navigation-items li a[disabled="disabled"] {
-                cursor: default
+                cursor: default;
             }
             .scout-scroll {
-                background: #f1f1f1;
-                padding-bottom: 1px
+                background: transparent;
+                padding-bottom: 1px;
             }
             .scout-scroll .scout-card {
                 margin: 0 0 10px 0;
@@ -272,26 +273,26 @@
                 border: 0!important;
                 height: 1px!important;
                 width: 1px!important;
-                overflow: hidden
+                overflow: hidden;
             }
 
             .scout-error-msg {
-                color: red
+                color: red;
             }
             .scout-error-body {
                 font-size: 14px;
-                color: #222
+                color: #222;
             }
             .scout-error-body ul {
                 list-style: circle!important;
-                padding-left: 30px!important
+                padding-left: 30px!important;
             }
             .scout-error-body ul li {
                 margin-bottom: 5px;
-                color: #777
+                color: #777;
             }
             .scout-error-body a {
-                color: #3498db
+                color: #3498db;
             }
 
             .scout-footer {
@@ -301,12 +302,12 @@
                 font-size: 75%;
                 text-align: center;
                 line-height: 40px;
-                border-top: solid 1px #ddd
+                border-top: solid 1px #ddd;
             }
             .scout-footer a {
                 color: #3498db;
                 display: inline-block;
-                margin-left: 8px
+                margin-left: 8px;
             }
             .scout-secondary {
                 display: none;
@@ -339,28 +340,26 @@
                 bottom: 0;
                 -webkit-box-shadow: 5px 0 20px 0 rgba(0, 0, 0, 0.3);
                 box-shadow: 5px 0 20px 0 rgba(0, 0, 0, 0.3);
-                z-index: 1
+                z-index: 1;
             }
             .scout-primary .scout-header {
-                width: 415px
+                width: 415px;
             }
-            .scout-primary .scout-header h1 a {
-                padding-left: 58px
-            }
+
             .scout-primary .scout-scroll {
                 position: fixed;
-                top: 102px;
+                top: 62px;
                 bottom: 30px;
                 width: 415px;
                 left: 0;
                 overflow: scroll;
-                margin-top: 0
+                margin-top: 0;
             }
             .scout-primary .scout-footer {
                 width: 415px;
                 position: absolute;
                 bottom: 0;
-                text-align: left
+                text-align: left;
             }
             .scout-secondary {
                 position: fixed;
@@ -368,7 +367,7 @@
                 right: 0;
                 bottom: 0;
                 left: 415px;
-                z-index: 0
+                z-index: 0;
             }
             .scout-secondary {
                 display: block;
@@ -403,20 +402,13 @@
 
         <div id="header" class="scout-header">
 
-            <h1 class="mobile" style="background: url('/static/scout/img/scout.png') no-repeat 5px; background-size:50px;">
-                    <a href="/" id="link_home" title="List of food places on campus">FoodScout</a>
+            <h1 class="mobile">
+                    <a href="http://scout.uw.edu" id="link_home" title="Discover UW places and items">Scout</a>
                 </h1>
 
-            <h1 class="desktop" style="background: url('/static/scout/img/scout.png') no-repeat 0px; background-size:13%;">
-                    <a id="link_home" href="/" title="List of food places on campus">FoodScout</a>
+            <h1 class="desktop">
+                    <a id="link_home" href="http://scout.uw.edu" title="Discover UW places and items">Scout</a>
                 </h1>
-
-            <div class="scout-navigation" role="navigation" aria-label="main navigation">
-                <ul class="scout-navigation-items">
-                    <li><a id="link_discover" href="/" title="Discover places to eat on campus">Discover</a></li>
-                    <li><a id="link_food" href="/food/" title="List of food places on campus">Places</a></li>
-                </ul>
-            </div>
 
         </div>
 
@@ -426,10 +418,10 @@
                     <h2 class="visually-hidden">500 error</h2>
                     <p class="scout-error-msg">There was a problem on our end.</p>
                     <div class="scout-error-body">
-                        <p>Our developers have been alerted of this issue and are working fix the problem.</p>
+                        <p>Our developers have been alerted of this issue and are working to fix the problem.</p>
                         <p>In the meantime:</pp>
                         <ul>
-                            <li>Relax, give as a little time, and try back later.</li>
+                            <li>Relax, give us a little time, and try back later.</li>
                             <li>Drop us an email at help@uw.edu and let us know that this has been taking awhile.</li>
                         </ul>
                     </div>
@@ -439,14 +431,10 @@
         </div>
 
         <div id="footer" class="scout-footer" role="contentinfo">
-            <div class="mobile" style="padding-left:20px;">&copy; 2016 UW-IT, ACA. <a href="http://www.washington.edu/online/privacy/">Privacy</a> <a href="http://www.washington.edu/online/terms/">Terms</a></div>
-            <div class="desktop" style="padding-left:20px;">&copy; 2016 UW-IT, Academic &amp; Collaborative Appliations. <a href="http://www.washington.edu/online/privacy/">Privacy</a> <a href="http://www.washington.edu/online/terms/">Terms</a></div>
+            <div class="mobile" style="padding-left:10px;">&copy; 2016 UW-IT, AXDD. <a href="http://www.washington.edu/online/privacy/">Privacy</a> <a href="http://www.washington.edu/online/terms/">Terms</a></div>
+            <div class="desktop" style="padding-left:10px;">&copy; 2016 UW-IT, Academic Experience Design & Delivery. <a href="http://www.washington.edu/online/privacy/">Privacy</a> <a href="http://www.washington.edu/online/terms/">Terms</a></div>
         </div>
 
-    </div>
-
-    <div aria-hidden="true" class="scout-secondary">
-        <div style="background:url('/static/scout/img/huskygrind.jpg') no-repeat; background-size:cover; background-position:center center; position:absolute; top:0; bottom:0; width: 100%;">&nbsp;</div>
     </div>
 
 </body>
