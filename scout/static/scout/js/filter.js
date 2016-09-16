@@ -1,3 +1,4 @@
+var Navigation = require('./navigation').Navigation;
 var Filter = {
 
     get_filter_url: function(type) {
@@ -81,7 +82,7 @@ var Filter = {
     },
 
     redirect_to_page: function(type) {
-        var campus = window.location.pathname.split('/')[1];
+        var campus = Navigation.get_campus_selection();
         var filter_url = Filter.get_filter_url(type);
 
         if (filter_url !== undefined){
