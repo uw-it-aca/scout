@@ -87,7 +87,8 @@ var Map = {
                     spot: {
                         id: data.id,
                         name: data.spot_name,
-                        building: data.building
+                        building: data.building,
+                        items: data.items
                     }
                 });
 
@@ -130,10 +131,21 @@ var Map = {
                 var app_type = Filter.get_current_type();
 
                 //Wrap the   content inside an HTML DIV in order to set height and width of InfoWindow.
-                infoWindow.setContent(
-                    "<div><strong>" + marker.spot.name + "</strong><br>" +
-                    marker.spot.building + "</div>"
-                );
+                if (app_type !== "/tech/"){
+                    infoWindow.setContent(
+                        "<div><strong>" + marker.spot.name + "</strong><br>" +
+                        marker.spot.building + "<br>" +
+                        "<a href='/" + campus + app_type + marker.spot.id + "/'>View details</a>" +
+                        "</div>"
+                    );
+                } else {
+                    infoWindow.setContent(
+                        "<div><strong>" + marker.spot.name + "</strong><br>" +
+                        marker.spot.building + "<br>" +
+                        marker.spot.items + " items <br>" +
+                        "</div>"
+                    );
+                }
 
                 infoWindow.open(map, marker);
 
@@ -247,11 +259,22 @@ var Map = {
                 content: contentString
             });
 
+            var app_type = Filter.get_current_type();
+            var labelContent;
+
+            if (app_type == '/food/'){
+                labelContent = "<i class='fa fa-cutlery'></i><span class='marker-text' style='margin-left:15px;font-size:12px;'>" + spot_name + "</span>";
+            } else if(app_type == '/study/'){
+                labelContent = "<i class='fa fa-graduation-cap'></i><span class='marker-text' style='margin-left:15px;font-size:12px;'>" + spot_name + "</span>";
+            } else if(app_type == '/tech/'){
+                labelContent = "<i class='fa fa-laptop'></i><span class='marker-text' style='margin-left:15px;font-size:12px;'>" + spot_name + "</span>";
+            }
+
             var marker = new MarkerWithLabel({
                 position: spotPosition,
                 map: map,
                 title: spot_name,
-                labelContent: "<i class='fa fa-cutlery'></i><span class='marker-text' style='margin-left:15px;font-size:12px;'>" + spot_name + "</span>",
+                labelContent: labelContent,
                 labelAnchor: new google.maps.Point(6, 6),
                 labelClass: "map-label", // the CSS class for the label
                 icon: {

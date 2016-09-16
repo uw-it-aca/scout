@@ -57,7 +57,7 @@
 
         </div>
 
-        {% if not request.is_mobile and not request.is_tablet %}
+        {% if not request.is_mobile %}
         <!-- desktop only extra container -->
         <div class="scout-secondary" aria-hidden="true">
             {% block secondary_content %}{% endblock %}
