@@ -102,7 +102,7 @@ def _get_spot_filters(request):
             params.append(("type", request.GET[param]))
         if "food" in param:
             params.append(
-                ("extended_info:or_group:food", request.GET[param])
+                ("extended_info:food_nearby", request.GET[param])
             )
         if "cuisine" in param:
             params.append(
