@@ -260,6 +260,7 @@ var Map = {
             });
 
             var app_type = Filter.get_current_type();
+            var labelContent;
 
             if (app_type == '/food/'){
                 labelContent = "<i class='fa fa-cutlery'></i><span class='marker-text' style='margin-left:15px;font-size:12px;'>" + spot_name + "</span>";
