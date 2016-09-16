@@ -94,13 +94,25 @@ var Map = {
                         var campus = Navigation.get_campus_selection();
                         var app_type = Filter.get_current_type();
 
-                        //Wrap the content inside an HTML DIV in order to set height and width of InfoWindow.
-                        infoWindow.setContent(
-                            "<div><strong>" + data.spot_name + "</strong><br>" +
-                            data.building + "<br>" +
-                            "<a href='/" + campus + app_type + data.id + "/'>View details</a>" +
-                            "</div>"
-                        );
+                        console.log(app_type)
+                        if (app_type !== "/tech/"){
+                            //Wrap the content inside an HTML DIV in order to set height and width of InfoWindow.
+                            infoWindow.setContent(
+                                "<div><strong>" + data.spot_name + "</strong><br>" +
+                                data.building + "<br>" +
+                                "<a href='/" + campus + app_type + data.id + "/'>View details</a>" +
+                                "</div>"
+                            );
+                        } else {
+                            console.log(data)
+                            //Wrap the content inside an HTML DIV in order to set height and width of InfoWindow.
+                            infoWindow.setContent(
+                                "<div><strong>" + data.spot_name + "</strong><br>" +
+                                data.building + "<br>" +
+                                data.items + " items <br>" +
+                                "</div>"
+                            );
+                        }
 
                         infoWindow.open(map, marker);
 
