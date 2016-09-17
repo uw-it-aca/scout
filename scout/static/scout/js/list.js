@@ -98,11 +98,16 @@ var List = {
             var lng = $(spot).attr("data-spot-lng");
             var spot_name = $(spot).attr("data-spot-name");
             var building = $(spot).attr("data-spot-building");
+            var items = 0;
+            if ($(spot).attr("data-items")){
+                items = $(spot).attr("data-items");
+            }
             spot_data.push({"id": id,
                             "lat": lat,
                             "lng": lng,
                             "spot_name": spot_name,
-                            "building": building})
+                            "building": building,
+                            "items" : items})
         });
         return spot_data
     }
