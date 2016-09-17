@@ -148,11 +148,11 @@ var Map = {
             // zoom the map automatically using the bounds of all markers
             window.map_bounds = bounds;
             if (Geolocation.get_location_type() !== "default") {
-                // Don't store user marker in bounds as it can change
-                bounds.extend(window.user_location_marker.position);
-                // fit all spots (include user location) onto map
+                Map.add_current_position_marker(map, pos);
+            } else {
                 map.fitBounds(bounds);
             }
+            window.map_object = map;
 
             // marker clusterer options
             var mc_options = {
@@ -302,12 +302,12 @@ var Map = {
                 });
                 window.user_location_marker = locationMarker;
             }
-
+            // Resize bounds to include user location
+            var bounds = window.map_bounds;
+            bounds.extend(window.user_location_marker.position);
+            map.fitBounds(bounds);
         }
-        // Resize bounds to include user location
-        var bounds = window.map_bounds;
-        bounds.extend(window.user_location_marker.position);
-        map.fitBounds(bounds);
+
 
     }
 
