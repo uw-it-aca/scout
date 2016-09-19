@@ -73,7 +73,7 @@ var Map = {
             // create and open InfoWindow.
             var infoWindow = new google.maps.InfoWindow();
             var markers = [];
-            var oms = new OverlappingMarkerSpiderfier(map, {keepSpiderfied: true});
+            var oms = new OverlappingMarkerSpiderfier(map, {keepSpiderfied: true, circleFootSeparation: 46});
 
             $.each(locations, function (key, data){
                 var marker = new MarkerWithLabel({
