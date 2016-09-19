@@ -39,13 +39,17 @@ a {color: $scout-link;}
     }
 
     .scout-geolocation-error {
-        background: red;
+        background: #f2dede;
         max-height: 0;
+        color: #a94442;
         overflow-y: hidden;
         -webkit-transition:-webkit-transform .5s ease;
         -moz-transition:   -moz-transform .5s ease;
         -ms-transition:    -ms-transform .5s ease;
         transition:        transform .5s ease;
+
+        div { padding:10px 20px; font-size:13px; padding-right: 70px; position: relative; }
+        span { text-transform: uppercase; position:absolute; right: 20px; top:50%; margin-top: -8px; color:#333; font-size: 11px; display: inline-block; height: 16px; }
     }
 
     .scout-geolocation-error.open {
@@ -86,7 +90,7 @@ a {color: $scout-link;}
                     &:hover,&:focus {background-color:#bbb; cursor:pointer;}
                     i.fa-refresh {margin-right: 8px;}
                 }
-                .scout-filter-results-action { color: #ededed; text-transform: uppercase; text-decoration: none; font-size: 11px; margin-left: 5px;}    
+                .scout-filter-results-action { color: #ededed; text-transform: uppercase; text-decoration: none; font-size: 11px; margin-left: 5px;}
             }
         }
     }
