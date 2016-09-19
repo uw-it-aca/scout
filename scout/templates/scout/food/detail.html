@@ -162,10 +162,9 @@
 
                     <h4 class="visually-hidden">Building information</h4>
                     <div class="scout-spot-building-info">
-                        <div><strong><span class="visually-hidden">Space name:</span>{% if spot.name %}{{spot.name}}</strong>{% endif %}</div>
-                            <div><span class="visually-hidden">Building:</span>{% if spot.building_name %}{{ spot.building_name }}{% endif %}</div>
-                            <div>Floor: {% if spot.floor %}{{ spot.floor }}{% else %}---{% endif %}</div>
-                            <div>Room: {% if spot.room_number %}{{ spot.room_number }}{% else %}---{% endif %}</div>
+                        <div><strong><span class="visually-hidden">Building:</span>{% if spot.building_name %}{{ spot.building_name }}</strong>{% endif %}</div>
+                        <div>Floor: {% if spot.floor %}{{ spot.floor }}{% else %}---{% endif %}</div>
+                        <div>Room: {% if spot.room_number %}{{ spot.room_number }}{% else %}---{% endif %}</div>
                     </div>
 
                 </div>
@@ -179,20 +178,20 @@
 
                 <div class="scout-spot-map-link">
                     {% if request.is_ios %}
-                    <a href="maps://maps.apple.com/maps?q={{ spot.latitude }},{{ spot.longitude }}" target="_blank">
+                    <a href="maps://maps.apple.com/maps?daddr={{ spot.latitude }},{{ spot.longitude }}&dirflg=w" target="_blank">
                         <span class="fa-stack fa-lg">
                           <i class="fa fa-circle fa-stack-2x"></i>
                           <i class="fa fa-apple fa-stack-1x fa-inverse"></i>
                         </span>
-                        <span class="scout-map-action-text">View in Apple Maps</span>
+                        <span class="scout-map-action-text">Get Directions in Apple Maps</span>
                     </a>
                     {% else %}
-                    <a href="//maps.google.com/maps?q={{ spot.latitude }},{{ spot.longitude }}" target="_blank">
+                    <a href="//maps.google.com/maps?daddr={{ spot.latitude }},{{ spot.longitude }}&dirflg=w" target="_blank">
                         <span class="fa-stack fa-lg">
                           <i class="fa fa-circle fa-stack-2x"></i>
                           <i class="fa fa-google fa-stack-1x fa-inverse"></i>
                         </span>
-                        <span class="scout-map-action-text">View in Google Maps</span>
+                        <span class="scout-map-action-text">Get Directions in Google Maps</span>
                     </a>
                     {% endif %}
                 </div>
