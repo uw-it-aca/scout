@@ -113,7 +113,9 @@ Discover = {
     display_card_pins: function (card) {
         var spots = $(card).find("li");
         // remove the li that contains the View More button
-        spots.splice(spots.length - 1, 1)
+        if(spots.length > 0 && $(spots[spots.length -1]).attr("id") == undefined){
+            spots.splice(spots.length - 1, 1)
+        }
         var spot_data = Discover.get_spot_locations(spots);
         Map.load_discover_map(spot_data);
     },
