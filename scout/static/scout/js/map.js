@@ -258,7 +258,6 @@ var Map = {
             var contentString =
                 "<div><strong>" + spot_name + "</strong><br>" + spot_building +
                 "<br/><a href='//maps.google.com/maps?daddr=" + spot_lat + "," + spot_lng +
-                "&saddr=" + pos.lat() + "," + pos.lng() +
                 "&dirflg=w' target='_blank'>Get walking directions</a></div>";
 
             var infowindow = new google.maps.InfoWindow({
