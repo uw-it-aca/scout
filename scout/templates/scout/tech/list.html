@@ -10,6 +10,7 @@
 
     {% if request.is_mobile or request.is_tablet %}{% include "scout/include/user_geolocation.html" %}{% endif %}
 
+    {% if spots %}
     <!-- tech filter results -->
     <div class="scout-filter-results" aria-labelledby="filter_header">
 
@@ -123,6 +124,33 @@
         </ol>
 
     </div>
+    {% else %}
+    <div style="padding:20px; line-height:20px;">
+
+        <p>This feature is currently not available for <strong style="text-transform:capitalize;">{{ campus }} campus</strong>. We are working hard to make this data available for you in the near future.</p>
+
+        {% if campus == "bothell" %}
+        <p>In the meantime, please visit the Information Technologies <a href="http://www.uwb.edu/it/services/articles/equipment-checkout" target="_blank">Equipment Checkout</a> service to see what is available for you.</p>
+        {% endif %}
+
+        {% if campus == "tacoma" %}
+        <p>In the meantime, please visit the <a href="https://www.tacoma.uw.edu/learning-research-commons/learning-research-commons" target="_blank">Learning and Resource Commons (LARC)</a>, to see what is available for you.</p>
+        {% endif %}
+
+        <hr>
+
+        <p style="font-size:14px; color:#666;">If you'd like to visit <strong>Seattle Campus</strong>, here are a list of popular technology items available for you to checkout.</p>
+
+        <ul style="list-style:none; padding:0; margin:0; line-height:20px; font-size:14px;">
+            <li><a href="/seattle/tech/?subcategory0=Digital+Camera">Digital Camera</a></li>
+            <li><a href="/seattle/tech/?subcategory0=Digital+Video+Camera">Digital Video Camera</a></li>
+            <li><a href="/seattle/tech/?subcategory0=Laptop+Computer">Laptop Computer</a></li>
+            <li><a href="/seattle/tech/?subcategory0=Tablet+Computer">Tablet Computer</a></li>
+            <li><a href="/seattle/tech/?subcategory0=Data+Projector">Data Projector</a></li>
+        </ul>
+
+    </div>
+    {% endif %}
 
 </div>
 
@@ -130,6 +158,7 @@
 
 {% block secondary_content %}
 
+{% if spots %}
 <!-- show a map on the list page -->
 <div id="tech_list_map" class="scout-spot-list-map" style="height:100%; background: #ddd !important;" aria-hidden="true">
     <div class="scout-spot-list-map-loading" style="position:absolute; top: 50%; left: 50%; margin-left:-15px; margin-top: -110px; z-index:9999;">
@@ -150,5 +179,9 @@
         </div>
     </div>
 </div>
+{% else %}
+<div style="background:url('{% static "scout/img/seattle/IMG_1758-X3.jpg" %}') no-repeat; background-size:cover; background-position:center center; position:absolute; top:0; bottom:0; width: 100%;">&nbsp;</div>
+
+{% endif %}
 
 {% endblock %}
