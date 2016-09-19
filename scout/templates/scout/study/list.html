@@ -9,7 +9,7 @@
 <div id="page_study" class="scout-content">
 
     {% if request.is_mobile or request.is_tablet %}{% include "scout/include/user_geolocation.html" %}{% endif %}
-    
+
     <!-- food filter results -->
     <div class="scout-filter-results" aria-labelledby="filter_header">
         <div class="scout-filter-results-by">
@@ -21,7 +21,9 @@
             <span class="filter-results-label"><span class="visually-hidden">Number of </span>Spaces<span class="visually-hidden"> in list</span>:</span>
             <div class="scout-filter-results-count">{{ count }}</div>
             <div class="scout-filter-results-actions">
-                <a href="#" class="action-cancel" role="button"><i class="fa fa-refresh"></i>Reset <span class="visually-hidden">filter</span></a>
+                <a id="reset_study_list" class="action-cancel visually-hidden" aria-hidden="true" role="button" title="Clear filters">
+                    <i class="fa fa-refresh"></i>Reset<span class="visually-hidden"> filter</span>
+                </a>
                 <a href="/{{campus}}/study/filter/" id="study_link_filter" title="Filter list of study places on campus">
                     <i class="fa fa-sliders fa-inverse"></i>
                     <span class="scout-filter-results-action">Filter Spaces</span>

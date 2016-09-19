@@ -95,6 +95,10 @@ var Study_Filter = {
         $("#reset_study_button").click(function() {
             Study_Filter.reset_filter();
         });
+
+        $("#reset_study_list").click(function() {
+            Study_Filter.reset_filter();
+        });
     },
 
     populate_filters_from_saved: function(){

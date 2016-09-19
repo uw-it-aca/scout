@@ -20,11 +20,18 @@ var Map = {
 
     init_map: function () {
         // handle map stuff for location change
+        Map.initialize_resource_map();
+
         $(document).ready().on("location_changed", function(){
-            Map.initialize_resource_map();
+            Map.handle_location_update();
         });
         // handle map stuff for window resize
         //$(window).resize(Map.initialize_resource_map());
+    },
+
+    handle_location_update: function() {
+        Map.add_current_position_marker(window.map_object,
+                                        Geolocation.get_client_latlng());
     },
 
     load_map_with_markers: function(map_id, locations){
@@ -47,13 +54,13 @@ var Map = {
                     "visibility": "off"
                 }]
             },
-            {
-                "featureType": "poi.business",
-                "elementType": "labels.icon",
-                "stylers": [{
-                    "visibility": "off"
-                }]
-            }];
+                {
+                    "featureType": "poi.business",
+                    "elementType": "labels.icon",
+                    "stylers": [{
+                        "visibility": "off"
+                    }]
+                }];
 
             var map = new google.maps.Map(currentMap, mapOptions);
 
@@ -158,11 +165,11 @@ var Map = {
             // zoom the map automatically using the bounds of all markers
             window.map_bounds = bounds;
             if (Geolocation.get_location_type() !== "default") {
-                // Don't store user marker in bounds as it can change
-                bounds.extend(window.user_location_marker.position);
-                // fit all spots (include user location) onto map
+                Map.add_current_position_marker(map, pos);
+            } else {
                 map.fitBounds(bounds);
             }
+            window.map_object = map;
 
             // marker clusterer options
             var mc_options = {
@@ -228,31 +235,29 @@ var Map = {
                     "visibility": "off"
                 }]
             },
-            {
-                "featureType": "poi.business",
-                "elementType": "labels.icon",
-                "stylers": [{
-                    "visibility": "off"
-                }]
-            },
-            {
-                "featureType": "poi.school",
-                "elementType": "labels",
-                "stylers": [{
-                    "visibility": "off"
-                }]
-            }];
+                {
+                    "featureType": "poi.business",
+                    "elementType": "labels.icon",
+                    "stylers": [{
+                        "visibility": "off"
+                    }]
+                },
+                {
+                    "featureType": "poi.school",
+                    "elementType": "labels",
+                    "stylers": [{
+                        "visibility": "off"
+                    }]
+                }];
 
             var map = new google.maps.Map(currentMap, mapOptions);
 
-            Map.add_current_position_marker(map, pos);
             map.setOptions({styles: styles});
 
             // create and open InfoWindow... links to google maps walking directions
             var contentString =
                 "<div><strong>" + spot_name + "</strong><br>" + spot_building +
                 "<br/><a href='//maps.google.com/maps?daddr=" + spot_lat + "," + spot_lng +
-                "&saddr=" + pos.lat() + "," + pos.lng() +
                 "&dirflg=w' target='_blank'>Get walking directions</a></div>";
 
             var infowindow = new google.maps.InfoWindow({
@@ -290,51 +295,46 @@ var Map = {
             marker.addListener('click', function() {
                 infowindow.open(map, marker);
             });
+            // add the marker position to boundary
+            var bounds = new google.maps.LatLngBounds();
+            bounds.extend(marker.position);
+            window.map_bounds = bounds;
+            map.fitBounds(bounds);
 
             if (Geolocation.get_location_type() !== "default") {
-                // zoom the map automatically using the bounds of all markers
-                var bounds = new google.maps.LatLngBounds();
-                // add the marker position to boundary
-                bounds.extend(marker.position);
-                window.map_bounds = bounds;
-                // Don't store user marker in bounds as it can change
-                bounds.extend(window.user_location_marker.position);
-                // fit all spots (include user location) onto map
-                map.fitBounds(bounds);
+                Map.add_current_position_marker(map, pos);
             }
+            window.map_object = map;
         }
     },
 
-     add_current_position_marker: function (map, pos) {
-        var circle;
-
+    add_current_position_marker: function (map, pos) {
         // show user location marker if user is sharing
         if (Geolocation.get_location_type() !== "default") {
-            // create a marker for user location
-            var locationMarker = new google.maps.Marker({
-                position: pos,
-                map: map,
-                icon: {
-                    path: google.maps.SymbolPath.CIRCLE,
-                    fillColor: '#ffffff',
-                    fillOpacity: 1,
-                    strokeColor: '#c0392b',
-                    scale: 5,
-                    strokeWeight: 5
-                }
-            });
-            window.user_location_marker = locationMarker;
-
-            circle = new google.maps.Circle({
-                map: map,
-                radius: 20,    // meters
-                fillColor: '#c0392b',
-                fillOpacity: 0.15,
-                strokeWeight: 0
-            });
-            circle.bindTo('center', locationMarker, 'position');
-
+            // create or update position of marker for user location
+            if (window.user_location_marker !== undefined){
+                window.user_location_marker.setPosition(pos);
+            } else {
+                var locationMarker = new google.maps.Marker({
+                    position: pos,
+                    map: map,
+                    icon: {
+                        path: google.maps.SymbolPath.CIRCLE,
+                        fillColor: '#ffffff',
+                        fillOpacity: 1,
+                        strokeColor: '#c0392b',
+                        scale: 5,
+                        strokeWeight: 5
+                    }
+                });
+                window.user_location_marker = locationMarker;
+            }
+            // Resize bounds to include user location
+            var bounds = window.map_bounds;
+            bounds.extend(window.user_location_marker.position);
+            map.fitBounds(bounds);
         }
+
 
     }
 
