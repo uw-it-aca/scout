@@ -83,7 +83,7 @@ a {color: $scout-link;}
 
             a { display: inline-block; text-decoration: none; font-size: 14px; white-space: nowrap; background: $scout-purple; border: none; padding: 0 10px; border-radius: 2px;
                 &.action-cancel {padding: 1px 10px;font-size: 12px;margin-right: 8px;border-radius: 2px;background: #ddd;color: #555; text-transform:uppercase;
-                    &:hover,&:focus {background-color:#bbb;}
+                    &:hover,&:focus {background-color:#bbb; cursor:pointer;}
                     i.fa-refresh {margin-right: 8px;}
                 }
                 .scout-filter-results-action { color: #ededed; text-transform: uppercase; text-decoration: none; font-size: 11px; margin-left: 5px;}    
