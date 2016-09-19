@@ -7,8 +7,8 @@ file.
 // sass variables
 
 $scout-purple: #6564A8;
-$scout-button: #2ecc71;
-$scout-link: #25738F;
+$scout-blue: #25738f;
+$scout-link: #25738f;
 $geolocation-height: 45px;
 $footer-height: 40px;
 
@@ -19,10 +19,12 @@ a {color: $scout-link;}
 
 // geolocation bar
 
-.scout-geolocation { min-height: $geolocation-height; background: $scout-purple; position: relative;
+.scout-geolocation { min-height: $geolocation-height; background: $scout-blue; position: relative;
     .scout-geolocation-position { font-size:14px; line-height: $geolocation-height; white-space: nowrap; padding: 0 20px 0 13px;
-        .fa-stack { font-size: 12px; }
-        .fa-circle { color: $scout-button; }
+        .fa-stack { font-size: 12px; color:$scout-blue;
+            .fa-inverse {color:$scout-blue;}
+        }
+        .fa-circle { color: #fff; }
             .scout-geolocation-location { color:#fff; display: inline-block;
                 span { color:#eee;}
             }
@@ -32,7 +34,7 @@ a {color: $scout-link;}
                     .fa-flip-horizontal { color: #444 !important; }
                 }
             }
-        .scout-geolocation-user { display:none; position:absolute; left:40px; right:20px; background:$scout-purple;}
+        .scout-geolocation-user { display:none; position:absolute; left:40px; right:20px; background-color:$scout-blue;}
         .scout-geolocation-loading { position:absolute; color:#fff; z-index:0; left:40px; right:20px; }
     }
 
@@ -80,7 +82,11 @@ a {color: $scout-link;}
         .scout-filter-results-actions { float:right; display:inline-block; line-height: 28px;
 
             a { display: inline-block; text-decoration: none; font-size: 14px; white-space: nowrap; background: $scout-purple; border: none; padding: 0 10px; border-radius: 2px;
-                .scout-filter-results-action { color: #ededed; text-transform: uppercase; text-decoration: none; font-size: 11px; margin-left: 5px;}
+                &.action-cancel {padding: 1px 10px;font-size: 12px;margin-right: 8px;border-radius: 2px;background: #ddd;color: #555; text-transform:uppercase;
+                    &:hover,&:focus {background-color:#bbb; cursor:pointer;}
+                    i.fa-refresh {margin-right: 8px;}
+                }
+                .scout-filter-results-action { color: #ededed; text-transform: uppercase; text-decoration: none; font-size: 11px; margin-left: 5px;}    
             }
         }
     }
@@ -227,7 +233,7 @@ a {color: $scout-link;}
                                 .fa { color: $scout-purple; }
                             }
 
-                            .scout-spot-distance { font-family: sans-serif; font-size: 10px; font-weight: normal; color: #000; background: #088086; padding: 0 5px; color: #fff; display: inline-block; border-radius: 2px; position: absolute; right: 20px;}
+                            .scout-spot-distance { font-family: sans-serif; font-size: 10px; font-weight: normal; color: #000; background: $scout-blue; padding: 0 5px; color: #fff; display: inline-block; border-radius: 2px; position: absolute; right: 20px;}
 
                             .scout-spot-open-period { margin-bottom: 10px; color: #666; text-transform: uppercase; font-size: 14px;
                                 span { margin-right: 10px; }
@@ -263,7 +269,7 @@ a {color: $scout-link;}
 
             .scout-spot-meta { background: #444; color: #fff; padding: 10px 20px; position: relative;
 
-                .scout-spot-name { font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 18px; margin: 0; line-height: 30px; width:70%; white-space: nowrap; overflow-x: hidden; text-overflow: ellipsis; }
+                .scout-spot-name { font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 18px; margin: 0; line-height: 30px; width:100%; white-space: nowrap; overflow-x: hidden; text-overflow: ellipsis; }
                 .scout-spot-type { text-transform: uppercase; font-weight: normal; font-size: 12px; margin: 0; position: absolute; top: 15px; right:20px; color: #BBB;
                     span { margin-left: 10px; }
                 }
@@ -273,7 +279,7 @@ a {color: $scout-link;}
                     span {  display: block; text-transform: uppercase; font-size: 10px; margin-bottom: 2px; color: #BBB;
                         &.brand-name {color:inherit; font-size:inherit; text-transform: inherit;}
                     }
-                    li { margin-right: 5px; white-space: nowrap; list-style: none; display:inline;}
+                    li {white-space: nowrap; list-style: none; display:inline;}
                 }
 
                 .scout-spot-extra { float:right; width: 25%; font-size: 12px; margin-top: 25px; text-align: right; white-space: nowrap; }
@@ -285,7 +291,9 @@ a {color: $scout-link;}
                 .scout-spot-open-period {color: #fff; margin: 10px 10px 5px 0; font-size: 12px; float: left; width: 70%;
                     ol {margin:0; padding:0;}
                     span {  display: block; text-transform: uppercase; font-size: 10px; margin-bottom: 2px; color: #BBB; }
-                    li { margin-right: 8px; list-style: none; display:inline;}
+                    li {list-style: none; display:inline; }
+                    li:after { content: ", "; }
+                    li:last-child:after { content: ""; }
                 }
 
 
@@ -299,7 +307,7 @@ a {color: $scout-link;}
 
                         .fa { margin-right: 10px; }
                         .fa-stack { font-size: 14px; }
-                        .fa-circle { color: $scout-button; }
+                        .fa-circle { color: $scout-blue;}
 
                         .scout-spot-action-text { text-decoration: underline; }
                     }
@@ -308,7 +316,7 @@ a {color: $scout-link;}
 
                         .fa { margin-right: 10px; }
                         .fa-stack { font-size: 14px; }
-                        .fa-circle { color: $scout-button; }
+                        .fa-circle { color: $scout-blue; }
 
                         .scout-spot-action-text { text-decoration: none !important; }
                     }
@@ -368,8 +376,8 @@ a {color: $scout-link;}
 
                     .scout-spot-discover-action { display: inline-block; line-height: 30px;
                         .fa-stack { font-size: 12px; }
-                        .fa-circle { color: $scout-button; }
-                        .scout-spot-action-text {  color: $scout-purple; text-decoration: underline; }
+                        .fa-circle { color: $scout-blue; }
+                        .scout-spot-action-text {  color: $scout-blue; text-decoration: underline; }
                     }
                 }
             }

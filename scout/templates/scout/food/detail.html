@@ -17,19 +17,15 @@
             <h3 class="visually-hidden">Overview</h3>
 
             {% if spot.images %}
-            <div class="scout-spot-image spot-detail-main-image" style="background-image: linear-gradient(rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0)), url('/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}/?width=500');">
+            <div class="scout-spot-image spot-detail-main-image" style="background-image: linear-gradient(rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0)), url('/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}/?width=500');"></div>
             {% else %}
-            <div class="scout-spot-image spot-detail-main-image" style="background: #e5e6e9 url('{% static "scout/img/placeholder-1000.png" %}') no-repeat center center; background-size: contain;">
             {% endif %}
-            </div>
             <div>
                 <div class="scout-spot-meta clearfix">
 
                     <div class="scout-spot-name">{{spot.name}}</div>
-                    <div class="scout-spot-type">
-                        {% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}</span>{% endfor %}
-                    </div>
 
+                    <!--
                     <div class="scout-spot-food-served hidden" aria-hidden="true">
                         <span>Food served</span>
                         {% if spot.foodtype_names %}
@@ -38,6 +34,7 @@
                             {% endfor %}
                         {% else %} <span style="color:red;">missing foodtype</span> {% endif %}
                     </div>
+                    -->
 
                     <div class="scout-spot-status" role="status" aria-live="polite">{% if spot.is_open %}<span class="open">Open now</span>{% else %}<span class="closed">Closed</span>{% endif %}</div>
 
@@ -72,19 +69,6 @@
 
                 <h4 class="visually-hidden">Contact information</h4>
 
-                {% if spot.phone %}
-                <div class="scout-spot-info-item">
-                    <a href="tel:+1{{ spot.phone }}">
-                        <span class="visually-hidden">Restaurant phone:</span>
-                        <span class="fa-stack fa-lg">
-                          <i class="fa fa-circle fa-stack-2x"></i>
-                          <i class="fa fa-phone fa-stack-1x fa-inverse"></i>
-                        </span>
-                        <span class="scout-spot-action-text">{{ spot.phone | format_phone }}</span>
-                    </a>
-                </div>
-                {% endif %}
-
                 {% if spot.website_url %}
                 <div class="scout-spot-info-item">
                     <a href="{{spot.website_url}}" target="_blank">
@@ -112,26 +96,49 @@
                 </div>
                 {% endif %}
 
+                {% if spot.phone %}
+                <div class="scout-spot-info-item">
+                    <a href="tel:+1{{ spot.phone }}">
+                        <span class="visually-hidden">Restaurant phone:</span>
+                        <span class="fa-stack fa-lg">
+                          <i class="fa fa-circle fa-stack-2x"></i>
+                          <i class="fa fa-phone fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <span class="scout-spot-action-text">{{ spot.phone | format_phone }}</span>
+                    </a>
+                </div>
+                {% endif %}
+
             </div>
 
         </div>
 
         <div class="scout-spot-content">
-        {% if spot.location_description %}<div class="scout-card">
-                <h3>Description</h3>
-                <div class="scout-spot-description">{{spot.location_description}}</div>
-            </div>{% endif %}
+        {% if spot.location_description %}
+        <div class="scout-card">
+
+            <h3>Type</h3>
+            <div style="font-size:14px;text-transform:capitalize;margin-bottom:20px;">
+                {% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}{% if not forloop.last %}, {% endif %}</span>{% endfor %}
+            </div>
+
+            <h3>Description</h3>
+            <div class="scout-spot-description">{{spot.location_description}}</div>
+
+        </div>
+        {% endif %}
+
             <div class="scout-card">
                 <div class="scout-spot-hours">
                     <h3>Hours</h3>
                     <ul style="margin-bottom: 15px;">
-                        <li><span class="day">Monday:</span> {% for hours in spot.hours.monday %}{% if not forloop.first %}, {% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|remove_periods }}{% empty %}<span class="closed">Closed</span>{% endfor %}</li>
-                        <li><span class="day">Tuesday:</span> {% for hours in spot.hours.tuesday %}{% if not forloop.first %}, {% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|remove_periods }}{% empty %}<span class="closed">Closed</span>{% endfor %}</li>
-                        <li><span class="day">Wednesday:</span> {% for hours in spot.hours.wednesday %}{% if not forloop.first %}, {% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|remove_periods }}{% empty %}<span class="closed">Closed</span>{% endfor %}</li>
-                        <li><span class="day">Thursday:</span> {% for hours in spot.hours.thursday %}{% if not forloop.first %}, {% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|remove_periods }}{% empty %}<span class="closed">Closed</span>{% endfor %}</li>
-                        <li><span class="day">Friday:</span> {% for hours in spot.hours.friday %}{% if not forloop.first %}, {% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|remove_periods }}{% empty %}<span class="closed">Closed</span>{% endfor %}</li>
-                        <li><span class="day">Saturday:</span> {% for hours in spot.hours.saturday %}{% if not forloop.first %}, {% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|remove_periods }}{% empty %}<span class="closed">Closed</span>{% endfor %}</li>
-                        <li><span class="day">Sunday:</span> {% for hours in spot.hours.sunday %}{% if not forloop.first %}, {% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|remove_periods }}{% empty %}<span class="closed">Closed</span>{% endfor %}</li>
+                        <li><span class="day">Monday:</span> {% for hours in spot.hours.monday %}{% if not forloop.first %}, {% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|display_midnight|remove_periods }}{% empty %}<span class="closed">Closed</span>{% endfor %}</li>
+                        <li><span class="day">Tuesday:</span> {% for hours in spot.hours.tuesday %}{% if not forloop.first %}, {% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|display_midnight|remove_periods }}{% empty %}<span class="closed">Closed</span>{% endfor %}</li>
+                        <li><span class="day">Wednesday:</span> {% for hours in spot.hours.wednesday %}{% if not forloop.first %}, {% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|display_midnight|remove_periods }}{% empty %}<span class="closed">Closed</span>{% endfor %}</li>
+                        <li><span class="day">Thursday:</span> {% for hours in spot.hours.thursday %}{% if not forloop.first %}, {% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|display_midnight|remove_periods }}{% empty %}<span class="closed">Closed</span>{% endfor %}</li>
+                        <li><span class="day">Friday:</span> {% for hours in spot.hours.friday %}{% if not forloop.first %}, {% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|display_midnight|remove_periods }}{% empty %}<span class="closed">Closed</span>{% endfor %}</li>
+                        <li><span class="day">Saturday:</span> {% for hours in spot.hours.saturday %}{% if not forloop.first %}, {% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|display_midnight|remove_periods }}{% empty %}<span class="closed">Closed</span>{% endfor %}</li>
+                        <li><span class="day">Sunday:</span> {% for hours in spot.hours.sunday %}{% if not forloop.first %}, {% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|display_midnight|remove_periods }}{% empty %}<span class="closed">Closed</span>{% endfor %}</li>
                     </ul>
 
                     {% if spot.hours_notes %}
@@ -155,10 +162,9 @@
 
                     <h4 class="visually-hidden">Building information</h4>
                     <div class="scout-spot-building-info">
-                        <div><strong><span class="visually-hidden">Space name:</span>{% if spot.name %}{{spot.name}}</strong>{% endif %}</div>
-                            <div><span class="visually-hidden">Building:</span>{% if spot.building_name %}{{ spot.building_name }}{% endif %}</div>
-                            <div>Floor: {% if spot.floor %}{{ spot.floor }}{% else %}---{% endif %}</div>
-                            <div>Room: {% if spot.room_number %}{{ spot.room_number }}{% else %}---{% endif %}</div>
+                        <div><strong><span class="visually-hidden">Building:</span>{% if spot.building_name %}{{ spot.building_name }}</strong>{% endif %}</div>
+                        <div>Floor: {% if spot.floor %}{{ spot.floor }}{% else %}---{% endif %}</div>
+                        <div>Room: {% if spot.room_number %}{{ spot.room_number }}{% else %}---{% endif %}</div>
                     </div>
 
                 </div>
@@ -172,20 +178,20 @@
 
                 <div class="scout-spot-map-link">
                     {% if request.is_ios %}
-                    <a href="maps://maps.apple.com/maps?q={{ spot.latitude }},{{ spot.longitude }}" target="_blank">
+                    <a href="maps://maps.apple.com/maps?daddr={{ spot.latitude }},{{ spot.longitude }}&dirflg=w" target="_blank">
                         <span class="fa-stack fa-lg">
                           <i class="fa fa-circle fa-stack-2x"></i>
                           <i class="fa fa-apple fa-stack-1x fa-inverse"></i>
                         </span>
-                        <span class="scout-map-action-text">View in Apple Maps</span>
+                        <span class="scout-map-action-text">Get Directions in Apple Maps</span>
                     </a>
                     {% else %}
-                    <a href="//maps.google.com/maps?q={{ spot.latitude }},{{ spot.longitude }}" target="_blank">
+                    <a href="//maps.google.com/maps?daddr={{ spot.latitude }},{{ spot.longitude }}&dirflg=w" target="_blank">
                         <span class="fa-stack fa-lg">
                           <i class="fa fa-circle fa-stack-2x"></i>
                           <i class="fa fa-google fa-stack-1x fa-inverse"></i>
                         </span>
-                        <span class="scout-map-action-text">View in Google Maps</span>
+                        <span class="scout-map-action-text">Get Directions in Google Maps</span>
                     </a>
                     {% endif %}
                 </div>

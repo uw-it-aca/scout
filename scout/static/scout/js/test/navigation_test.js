@@ -44,7 +44,7 @@ describe("Navigation Tests", function() {
 
             assert.equal(global.window.location, '/seattle/');
         });
-        it ("The URL preserves the params when changing campuses", function() {
+        it ("The URL removes the params when changing campuses", function() {
             global.window = new fakeWindowPath('/seattle/food/?payment0=s_pay_husky');
             var sessVars = new fakeSess(
                 {food_filter_params: '{"payment0":"s_pay_husky"}'}
@@ -54,7 +54,7 @@ describe("Navigation Tests", function() {
             campus.val("tacoma");
             campus.trigger("change");
 
-            assert.equal(global.window.location, '/tacoma/food/?payment0=s_pay_husky');
+            assert.equal(global.window.location, '/tacoma/food/');
         });
     });
 });

@@ -1,4 +1,5 @@
 from django import template
+import datetime
 register = template.Library()
 
 
@@ -10,6 +11,14 @@ def remove_underscores(value):
 @register.filter
 def remove_periods(value):
     return value.replace('.', '')
+
+
+@register.filter
+def display_midnight(value):
+    if value == '11:59 P.M.':
+        return 'MIDNIGHT'
+
+    return value
 
 
 @register.filter
