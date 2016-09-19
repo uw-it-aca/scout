@@ -60,6 +60,9 @@ var Filter = {
         var filter_text = Filter._get_filter_label_text();
         if(filter_text.length > 0){
             $("#filter_label_text").html(filter_text);
+            $("#reset_food_list").removeClass("visually-hidden");
+            $("#reset_study_list").removeClass("visually-hidden");
+            $("#reset_tech_list").removeClass("visually-hidden");
         }
     },
 
