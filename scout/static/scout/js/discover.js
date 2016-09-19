@@ -112,6 +112,10 @@ Discover = {
 
     display_card_pins: function (card) {
         var spots = $(card).find("li");
+        // remove the li that contains the View More button
+        if(spots.length > 0 && $(spots[spots.length -1]).attr("id") == undefined){
+            spots.splice(spots.length - 1, 1)
+        }
         var spot_data = Discover.get_spot_locations(spots);
         Map.load_discover_map(spot_data);
     },
@@ -124,6 +128,13 @@ Discover = {
             var lng = $(spot).attr("data-lon");
             var spot_name = $(spot).attr("data-spot-name");
             var building = $(spot).attr("data-spot-building");
+
+            // validate the spot data
+            if(typeof id === "undefined" || typeof lat === "undefined" ||
+                typeof lng === "undefined" || typeof spot_name === "undefined" ||
+                typeof building === "undefined" )
+                throw "Bad spot data!"
+
             spot_data.push({"id": id,
                              "lat": lat,
                              "lng": lng,
