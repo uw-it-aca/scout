@@ -32,6 +32,8 @@ var Study_Filter = {
 
             params = $.extend(params, Filter._get_params_for_select(result, type));
         });
+        // gets the parameter for start and stop hours
+        params = $.extend(params, Study_Filter.get_processed_hours());
 
         // Store these study_filter_params
         sessionStorage.setItem("study_filter_params", JSON.stringify(params));
@@ -67,10 +69,11 @@ var Study_Filter = {
             "noise": "Noise Level",
             "resources": "Resources",
             "reservation": "Reservability",
-            "capacity": "Capacity"
+            "capacity": "Capacity",
+            "fuzzy_hours": "Hours"
         };
         $.each(filter_labels, function(filter, label){
-            if(url.indexOf("&" + filter) > -1 || url.indexOf("?" + filter) > -1){
+            if(url.indexOf(filter) > -1){
                 filter_categories.push(label);
             }
         });
@@ -117,6 +120,102 @@ var Study_Filter = {
             "capacity": "capacity_select"
         };
         Filter.populate_filters_from_saved("study_filter_params", param_types);
+    },
+
+    get_processed_hours: function(){
+        var params = {};
+
+        // calculates and stores fuzzy_hours_start
+        var day = $("#day-from option:selected").val();
+        var hours = $("#hour-from option:selected").val();
+        var period = $("#ampm-from option:selected").val();
+        params["fuzzy_hours_start"] = Study_Filter.process_hours_into_fuzzy(day, hours, period);
+
+        // calculates and stores fuzzy_hours_end
+        var day = $("#day-until option:selected").val();
+        var hours = $("#hour-until option:selected").val();
+        var period = $("#ampm-until option:selected").val();
+        params["fuzzy_hours_end"] = Study_Filter.process_hours_into_fuzzy(day, hours, period);
+
+        // checks if start and stop are not the same.
+        if (params["fuzzy_hours_start"] == params["fuzzy_hours_end"]) {
+            params = {};
+        }
+
+        return params;
+    },
+
+    process_hours_into_fuzzy: function(day, hours, period){
+        var result = day + ",";
+        if (period == "AM") {
+            if(hours.indexOf("12:") > -1) {
+                hours = hours.replace(/12/, "00");
+            }
+        } else if (period == "PM") {
+            if(!(hours.indexOf("12:") > -1)) {
+                var tempHour = hours.split(":");
+                hours = (parseInt(tempHour[0]) + 12) + ":" + tempHour[1];
+            }
+        }
+        result += hours + ":00";
+        return result;
+    },
+
+    populate_hour_filters: function() {
+        var params = JSON.parse(sessionStorage.getItem("study_filter_params"));
+        if(params == undefined){
+            return;
+        }
+
+        // check if fuzzy_hours_start and fuzzy_hours_end exist
+        if (params["fuzzy_hours_start"] !== undefined && params["fuzzy_hours_end"] !== undefined) {
+            var result = [];
+
+            // populate hour from filters
+            result = Study_Filter.process_hours_from_fuzzy(params["fuzzy_hours_start"]);
+            $("#day-from").val(result[0]).prop("checked", true);
+            $("#hour-from").val(result[1]).prop("checked", true);
+            $("#ampm-from").val(result[2]).prop("checked", true);
+
+            // populate hour until filters
+            result = Study_Filter.process_hours_from_fuzzy(params["fuzzy_hours_end"]);
+            $("#day-until").val(result[0]).prop("checked", true);
+            $("#hour-until").val(result[1]).prop("checked", true);
+            $("#ampm-until").val(result[2]).prop("checked", true);
+        }
+    },
+
+    // method takes in one parameter, the fuzzy hours and returns a list with day,
+    // hour and period in order
+    process_hours_from_fuzzy: function(fuzzy) {
+        var result = [];
+        fuzzy = fuzzy.split(",");
+
+        var day = "";
+        var hours = "";
+        // default value to prevent adding this case.
+        var period = "AM";
+
+        // add the day to the list
+        day = fuzzy[0];
+        result.push(day);
+
+        // add the hours to the list
+        hours = fuzzy[1].split(":");
+        hours[0] = parseInt(hours[0]);
+        if (hours[0] >= 12) {
+            period = "PM";
+            hours[0] = hours[0] - 12;
+        }
+        hours[0] = hours[0] == 0 ? 12 : hours[0];
+        hours[0] = hours[0] > 9 ? "" + hours[0] : "0" + hours[0];
+        hours = hours[0] + ":" + hours[1];
+        result.push(hours);
+
+        // add period to list
+        result.push(period);
+
+        return result;
     },
 
 };

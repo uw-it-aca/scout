@@ -130,13 +130,13 @@ def _get_spot_filters(request):
                 ("extended_info:or_group:lighting", request.GET[param])
             )
         if "reservation" in param:
-            params.append(
-                ("extended_info:reservable", "true")
-            )
+            params.append(("extended_info:reservable", "true"))
         if "capacity" in param:
-            params.append(
-                ("capacity", request.GET[param])
-            )
+            params.append(("capacity", request.GET[param]))
+        if "fuzzy_hours_start" in param:
+            params.append(("fuzzy_hours_start", request.GET[param]))
+        if "fuzzy_hours_end" in param:
+            params.append(("fuzzy_hours_end", request.GET[param]))
         if "subcategory" in param:
             params.append(("item:subcategory", request.GET[param]))
         if "brand" in param:

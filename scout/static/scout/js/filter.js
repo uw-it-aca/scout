@@ -119,6 +119,7 @@ var Filter = {
             Food_Filter.populate_filters_from_saved();
         } else if(type.indexOf("study") > -1) {
             Study_Filter.populate_filters_from_saved();
+            Study_Filter.populate_hour_filters();
         } else if(type.indexOf("tech") > -1) {
             Tech_Filter.populate_filters_from_saved();
         }
