@@ -23,39 +23,34 @@
                 {% endfor %}
             </div>
             {% else %}
-            <div class="scout-spot-image spot-detail-main-image" style="background: #e5e6e9 url('{% static "scout/img/placeholder-1000.png" %}') no-repeat center center; background-size: cover;"></div>
             {% endif %}
 
             <div>
                 <div class="scout-spot-meta clearfix">
 
                     <div class="scout-spot-name"><span class="visually-hidden">Name: </span>{{spot.name}}</div>
-                    <div class="scout-spot-type">
-                        {% for type in spot.spot_types %}<span><span class="visually-hidden">Space type: </span>{% if type.name == 'open'%}{{ type.name|remove_underscores }} space{% else %}{{ type.name|remove_underscores }}{% endif %}</span>{% endfor %}
-                    </div>
 
-                    <div class="scout-spot-resources">
+                   {% if spot.spot_resources %}
+                   <div class="scout-spot-resources">
                         <span>Resources</span>
-
-                        {% if spot.spot_resources %}
                         <ol>
                             {% for spot_resource in spot.spot_resources %}
-                                <li>{{ spot_resource }}</li>
+                            <li>{{ spot_resource }}{% if not forloop.last %}, {% endif %}</li>
                             {% endfor %}
                         </ol>
-                        {% else %} <span style="color:red;">missing resources</span> {% endif %}
-
                     </div>
+                    {% endif %}
 
+                    {% if spot.auto_labstats_total > 0 and spot.auto_labstats_available > 0 %}
                     <div class="scout-spot-extra">
-
-                        {% if spot.auto_labstats_total > 0 and spot.auto_labstats_available > 0 %}
-                            <span><i class="fa fa-desktop" aria-hidden="true"></i> <span class="visually-hidden">Computer availability: </span><span style="color:#2ecc71;">{{ spot.auto_labstats_available }}</span> / {{ spot.auto_labstats_total }}</span>
-                        {% elif spot.capacity %}
-                            <span class="visually-hidden">Capacity: </span><span>Seats: {{ spot.capacity }}</span>
-                        {% endif %}
-
+                        <span><i class="fa fa-desktop" aria-hidden="true"></i> <span class="visually-hidden">Computer availability: </span>
+                        <span style="color:#2ecc71;">{{ spot.auto_labstats_available }}</span> / {{ spot.auto_labstats_total }}</span>
                     </div>
+                    {% elif spot.capacity %}
+                    <div class="scout-spot-extra">
+                        <span class="visually-hidden">Capacity: </span><span>Seats: {{ spot.capacity }}</span>
+                    </div>
+                    {% endif %}
 
                 </div>
 
@@ -69,7 +64,31 @@
 
             <div class="scout-spot-info">
 
-                <h4 class="visually-hidden">Environment Details</h4>
+                <h4 class="visually-hidden">Space Details</h4>
+
+                {% if spot.spot_types %}
+                <div class="scout-spot-info-item">
+                    <div style="overflow:visible; line-height:20px; white-space:normal;">
+                        <span class="visually-hidden">Type:</span>
+                        <span class="fa-stack fa-lg" style="float:left; width: 28px; margin-right:3px;">
+                          <i class="fa fa-circle fa-stack-2x"></i>
+                          <i class="fa fa-graduation-cap fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <span class="scout-spot-action-text" style="white-space:normal;float:left; width: 80%; text-transform: capitalize; margin-top: 3px; ">
+                            <span class="visually-hidden">Space type: </span>
+                            {% for type in spot.spot_types %}
+                            <span>
+                                {% if type.name == 'open'%}
+                                {{ type.name|remove_underscores }} space{% if not forloop.last %}, {% endif %}
+                                {% else %}
+                                {{ type.name|remove_underscores }}{% if not forloop.last %}, {% endif %}
+                                {% endif %}
+                            </span>
+                            {% endfor %}
+                        </span>
+                    </div>
+                </div>
+                {% endif %}
 
                 {% if spot.spot_noise %}
                 <div class="scout-spot-info-item">
@@ -79,7 +98,7 @@
                           <i class="fa fa-circle fa-stack-2x"></i>
                           <i class="fa fa-volume-up fa-stack-1x fa-inverse"></i>
                         </span>
-                        <span class="scout-spot-action-text" style="text-transform:capitalize;">
+                        <span class="scout-spot-action-text" style="text-transform:capitalize; margin-top: 3px;">
                             {% if spot.spot_noise == 'quiet' %}Low hum
                             {% elif spot.spot_noise == 'moderate' %}Chatter
                             {% elif spot.spot_noise == 'variable' %}Chatter
@@ -97,7 +116,7 @@
                           <i class="fa fa-circle fa-stack-2x"></i>
                           <i class="fa fa-lightbulb-o fa-stack-1x fa-inverse"></i>
                         </span>
-                        <span class="scout-spot-action-text">Natural lighting</span>
+                        <span class="scout-spot-action-text" style="margin-top: 3px;">Natural lighting</span>
                     </div>
                 </div>
                 {% endif %}
@@ -110,7 +129,7 @@
                           <i class="fa fa-circle fa-stack-2x"></i>
                           <i class="fa fa-coffee fa-stack-1x fa-inverse"></i>
                         </span>
-                        <span class="scout-spot-action-text">
+                        <span class="scout-spot-action-text" style="margin-top: 3px;">
                             {% if spot.food_nearby == 'building' %}Available in building
                             {% elif spot.food_nearby == 'neighboring' %}Available in neighboring building
                             {% elif spot.food_nearby == 'space' %}Available in the space
@@ -128,7 +147,7 @@
                           <i class="fa fa-circle fa-stack-2x"></i>
                           <i class="fa fa-bookmark fa-stack-1x fa-inverse"></i>
                         </span>
-                        <span class="scout-spot-action-text" style="white-space:normal;float:left; width: 80%; ">{{ spot.reservation_notes|urlize }}</span>
+                        <span class="scout-spot-action-text" style="white-space:normal;float:left; width: 80%; margin-top: 3px;">{{ spot.reservation_notes|urlize }}</span>
                     </div>
                 </div>
                 {% endif %}
@@ -154,12 +173,12 @@
 
                     {% if spot.hours_notes %}
                     <h4><i class="fa fa-file-text"></i> Hour Notes</h4>
-                    <div class="scout-spot-notes">{{ spot.hours_notes|urlize }}</div>
+                    <div class="scout-spot-notes">{{ spot.hours_notes|urlize|linebreaksbr }}</div>
                     {% endif %}
 
                     {% if spot.display_access_restrictions %}
                     <h4><i class="fa fa-file-text"></i> Access Notes</h4>
-                    <div class="scout-spot-notes">{{ spot.access_notes|urlize }}</div>
+                    <div class="scout-spot-notes">{{ spot.access_notes|urlize|linebreaksbr }}</div>
                     {% endif %}
 
                 </div>
@@ -173,9 +192,7 @@
 
                     <h4 class="visually-hidden">Building information</h4>
                     <div class="scout-spot-building-info">
-                        <div><strong><span class="visually-hidden">Building: </span>{% if spot.building_name %}{{ spot.building_name }}</strong>{% endif %}</div>
-                        {% if spot.floor %}<div>Floor: {{ spot.floor }}</div>{% endif %}
-                        {% if spot.room_number %}<div>Room: {{ spot.room_number }}</div>{% endif %}
+                        <div>{{ spot.location_description}}</div>
                     </div>
 
                 </div>
@@ -189,20 +206,20 @@
 
                 <div class="scout-spot-map-link">
                     {% if request.is_ios %}
-                    <a href="maps://maps.apple.com/maps?q={{ spot.latitude }},{{ spot.longitude }}" target="_blank">
+                    <a href="maps://maps.apple.com/maps?daddr={{ spot.latitude }},{{ spot.longitude }}&dirflg=w" target="_blank">
                         <span class="fa-stack fa-lg">
                           <i class="fa fa-circle fa-stack-2x"></i>
                           <i class="fa fa-apple fa-stack-1x fa-inverse"></i>
                         </span>
-                        <span class="scout-map-action-text">View in Apple Maps</span>
+                        <span class="scout-map-action-text">Get Directions in Apple Maps</span>
                     </a>
                     {% else %}
-                    <a href="//maps.google.com/maps?q={{ spot.latitude }},{{ spot.longitude }}" target="_blank">
+                    <a href="//maps.google.com/maps?daddr={{ spot.latitude }},{{ spot.longitude }}&dirflg=w" target="_blank">
                         <span class="fa-stack fa-lg">
                           <i class="fa fa-circle fa-stack-2x"></i>
                           <i class="fa fa-google fa-stack-1x fa-inverse"></i>
                         </span>
-                        <span class="scout-map-action-text">View in Google Maps</span>
+                        <span class="scout-map-action-text">Get Directions in Google Maps</span>
                     </a>
                     {% endif %}
                 </div>

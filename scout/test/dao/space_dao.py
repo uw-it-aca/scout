@@ -8,7 +8,7 @@ from scout.dao.space import add_foodtype_names_to_spot, add_cuisine_names, \
     get_open_periods_by_day, get_spot_list, _get_spot_filters, OPEN_PERIODS,\
     get_spot_by_id, group_spots_by_building, get_avg_latlng_for_spots,\
     add_latlng_to_building, get_spots_by_filter, adjust_time_by_offset, \
-    get_period_filter
+    _get_period_filter
 from spotseeker_restclient.spotseeker import Spotseeker
 from scout.dao import space
 from spotseeker_restclient.exceptions import DataFailureException
@@ -238,45 +238,10 @@ class SpaceDAOTest(TestCase):
         self.assertEqual(grouped_spots[1]['latitude'], 47.656462)
         self.assertEqual(grouped_spots[1]['longitude'], -122.3125347)
 
-    def test_organize_hours(self):
-        """
-        Tests the organize_hours function. Includes cases for overnight
-        and extremely long time periods.
-        """
-        spot = Spot()
-        time = datetime.time
-        hours_before = {'monday': [((23, 0), (23, 59))],
-                        'tuesday': [((0, 0), (2, 0)), ((22, 0), (23, 59))],
-                        'wednesday': [((0, 0), (3, 0))],
-                        # Test 24h+
-                        'friday': [((19, 0), (23, 59))],
-                        'saturday': [((0, 0), (23, 59))],
-                        'sunday': [((0, 0), (2, 30))]}
-
-        hours_expected = {'monday': [(time(23, 0), time(2, 0))],
-                          'tuesday': [(time(22, 0), time(3, 0))],
-                          'wednesday': [],
-                          'thursday': [],
-                          'friday': [(time(19, 0), time(23, 59))],
-                          'saturday': [(time(0, 0), time(23, 59))],
-                          'sunday': [(time(0, 0), time(2, 30))]}
-
-        avail = []
-        for day, hours in hours_before.items():
-            for start, end in hours:
-                avail.append(SpotAvailableHours(day=day,
-                                                start_time=time(*start),
-                                                end_time=time(*end)))
-
-        spot.spot_availability = avail
-        organize_hours(spot)
-
-        self.assertEqual(hours_expected, spot.hours)
-
     def test_period_filter(self):
         period = "morning"
         dt = datetime.datetime(2016, 4, 20, 0, 0, 0)
-        period_filter = get_period_filter(period, dt)
+        period_filter = _get_period_filter(period, dt)
 
         expected_response = [('fuzzy_hours_start', 'Wednesday,05:01'),
                              ('fuzzy_hours_end', 'Wednesday,10:59')]

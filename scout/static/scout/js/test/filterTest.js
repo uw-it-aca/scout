@@ -2,6 +2,7 @@ var Filter = require('../filter').Filter;
 var Food_Filter = require('../food-filter').Food_Filter;
 var Study_Filter = require('../study-filter').Study_Filter;
 var Tech_Filter = require('../tech-filter').Tech_Filter;
+var Navigation = require('../navigation').Navigation;
 
 var jsdom = require('jsdom');
 var assert = require('assert');
@@ -14,6 +15,7 @@ var default_campus = 'seattle'
 global.Food_Filter = Food_Filter
 global.Study_Filter = Study_Filter
 global.Tech_Filter = Tech_Filter
+global.Navigation = Navigation
 global.Filter = Filter
 
 /*

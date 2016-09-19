@@ -6,8 +6,8 @@ fold styles and general helpers.
 // sass variables
 
 $scout-purple: #6564A8;
-$scout-button: #2ecc71;
-$scout-link: #25738F;
+$scout-blue: #25738f;
+$scout-link: #25738f;
 $footer-height: 40px;
 
 // temporary classes (delete)
@@ -44,10 +44,10 @@ $footer-height: 40px;
 
                 .scout-spot-description { margin-bottom: 20px; color: #333; font-size: 14px; line-height: 20px; }
 
-                .scout-spot-hours { margin-bottom: 20px; color: #333; font-size: 14px; line-height: 16px;
+                .scout-spot-hours { margin-bottom: 20px; color: #333; font-size: 14px;
 
                     ul { margin: 0; padding: 0;
-                        li { list-style: none; white-space: nowrap; color: #666;
+                        li { list-style: none; white-space: nowrap; color: #666; line-height: 20px;
 
                             span { display: inline-block;
                                 &.day { width: 110px;  text-transform: capitalize; color: #222; }
@@ -55,7 +55,7 @@ $footer-height: 40px;
                             }
                         }
                     }
-                    span { display: inline-block; margin-top: 10px; }
+                    span { display: inline-block; }
                 }
 
                 .scout-spot-building-info { color: #333; font-size: 14px; line-height: 20px; }
@@ -66,7 +66,7 @@ $footer-height: 40px;
                     a { display: block; text-decoration: none; line-height: 30px;
 
                         .fa-stack { font-size: 12px; }
-                        .fa-circle { color: $scout-button; }
+                        .fa-circle { color: $scout-blue; }
 
                         .scout-map-action-text { color: $scout-link; text-decoration: underline; }
 
@@ -76,10 +76,10 @@ $footer-height: 40px;
 
                 .scout-spot-reservation { margin-bottom: 20px; color: #333; font-size: 14px; line-height: 16px; }
 
-                .scout-spot-payment { margin-bottom: 20px; color: #333; font-size: 14px; line-height: 16px;
+                .scout-spot-payment { margin-bottom: 20px; color: #333; font-size: 14px;
 
                     ul { margin: 0; padding: 0;
-                        li { list-style: none; }
+                        li { list-style: none; line-height: 20px; }
                     }
                     span { margin-right: 10px; }
                 }
@@ -92,7 +92,7 @@ $footer-height: 40px;
                     a { display: block; text-decoration: none; line-height: 30px;
 
                         .fa-stack { font-size: 12px; }
-                        .fa-circle { color: $scout-button; }
+                        .fa-circle { color: $scout-blue; }
 
                         .scout-coupon-action-text { color: $scout-link; text-decoration: underline; }
 

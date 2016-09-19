@@ -8,7 +8,7 @@
 
 <div id="page_study" class="scout-content">
 
-    {% include "scout/include/user_geolocation.html" %}
+    {% if request.is_mobile or request.is_tablet %}{% include "scout/include/user_geolocation.html" %}{% endif %}
 
     <!-- food filter results -->
     <div class="scout-filter-results" aria-labelledby="filter_header">
@@ -21,9 +21,12 @@
             <span class="filter-results-label"><span class="visually-hidden">Number of </span>Spaces<span class="visually-hidden"> in list</span>:</span>
             <div class="scout-filter-results-count">{{ count }}</div>
             <div class="scout-filter-results-actions">
+                <a id="reset_study_list" class="action-cancel visually-hidden" aria-hidden="true" role="button" title="Clear filters">
+                    <i class="fa fa-refresh"></i>Reset<span class="visually-hidden"> filter</span>
+                </a>
                 <a href="/{{campus}}/study/filter/" id="study_link_filter" title="Filter list of study places on campus">
                     <i class="fa fa-sliders fa-inverse"></i>
-                    <span class="scout-filter-results-action">Filter Study</span>
+                    <span class="scout-filter-results-action">Filter Spaces</span>
                 </a>
             </div>
         </div>
@@ -48,7 +51,7 @@
 
                     {% for spot in group.spots %}
                     <li class="scout-list-item scout-list-hover" id="{{ spot.spot_id }}" data-spot-lat="{{ spot.latitude }}" data-spot-lng="{{ spot.longitude }}" data-spot-building="{{ spot.building_name }}" data-spot-name="{{ spot.name }}" aria-labelledby="spot_header_{{spot.spot_id}}">
-                        <a class="clearfix" href="/{{campus}}/study/{{ spot.spot_id }}/" title="Space Details: {{ spot.name }}">
+                        <a class="clearfix" href="/{{campus}}/study/{{ spot.spot_id }}/" title="Get details about {{ spot.name }}">
 
                             {% if spot.images %}
                             <div class="scout-spot-image" style="background-image: url('/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}/?width=200'); background-size:cover;">&nbsp;</div>
@@ -75,13 +78,9 @@
 
                                     <h4 class="scout-spot-name" id="spot_header_{{spot.spot_id}}">{{ spot.name }}</h4>
 
-                                    <div class="scout-spot-location">
-
-                                        <span class="scout-spot-distance"><span class="visually-hidden">Distance from you:</span><span class="distance-number">---</span>&nbsp;mi</span>
+                                    <div class="scout-spot-location" style="white-space:normal; line-height: initial;">
+                                        <span class="scout-spot-distance" style="display:inline-block;line-height:22px;"><span class="visually-hidden">Distance from you:</span><span class="distance-number">---</span>&nbsp;mi</span>
                                         <span class="visually-hidden">Building: </span>{% if spot.location_description %}{{ spot.location_description }}{% else %}<span style="color:red;">missing building_name</span>{% endif %}
-
-                                        <!--{% if spot.location_description %}<p>{{spot.location_description|insert_newline|linebreaks}}</p>{% else %}<span style="color:red;">missing location_description</span></p>{% endif %}-->
-
                                     </div>
 
                                     <div class="scout-spot-status"><span class="visually-hidden">Status: </span>{% if spot.is_open %}<span class="open visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</div>

@@ -39,11 +39,12 @@
     <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.6.3.min.css" %}">
     <link rel="stylesheet" href="{% static "scout/css/slick.scss" %}" type="text/x-scss">
     <link rel="stylesheet" href="{% static "scout/css/critical.scss" %}" type="text/x-scss">
+    <link rel="stylesheet" href="{% static "scout/css/mobile.scss" %}" type="text/x-scss">
     {% endcompress %}
     <!-- async (mobile) -->
     {% compress css %}
-    <link rel="stylesheet" href="{% static "scout/css/mobile.scss" %}" type="text/x-scss">
     {% endcompress %}
+    
 {% endif %}
 
 {% if request.is_tablet %}
@@ -54,11 +55,11 @@
     <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.6.3.min.css" %}">
     <link rel="stylesheet" href="{% static "scout/css/slick.scss" %}" type="text/x-scss">
     <link rel="stylesheet" href="{% static "scout/css/critical.scss" %}" type="text/x-scss">
+    <link rel="stylesheet" href="{% static "scout/css/mobile.scss" %}" type="text/x-scss">
+    <link rel="stylesheet" href="{% static "scout/css/tablet.scss" %}" type="text/x-scss">
     {% endcompress %}
     <!-- async (mobile + tablet) -->
     {% compress css %}
-    <link rel="stylesheet" href="{% static "scout/css/mobile.scss" %}" type="text/x-scss">
-    <link rel="stylesheet" href="{% static "scout/css/tablet.scss" %}" type="text/x-scss">
     {% endcompress %}
 {% endif %}
 
@@ -72,7 +73,7 @@
     <link rel="stylesheet" href="{% static "scout/css/mobile.scss" %}" type="text/x-scss">
     <link rel="stylesheet" href="{% static "scout/css/desktop.scss" %}" type="text/x-scss">
     {% endcompress %}
-    <!-- async (mobile + tablet + desktop) -->
+    <!-- async (mobile + desktop) -->
     {% compress css %}
     {% endcompress %}
 
@@ -107,6 +108,7 @@
 {% endif %}
 <script src="{% static 'vendor/js/markerwithlabel.js' %}"></script>
 <script src="{% static 'vendor/js/markerclusterer.js' %}"></script>
+<script src="{% static 'vendor/js/OverlappingMarkerSpiderfier.js' %}"></script>
 <script type="text/javascript">
     window.staticPath="{% static "" %}"
 </script>

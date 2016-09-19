@@ -88,6 +88,9 @@ var Food_Filter = {
             Food_Filter.reset_filter();
         });
 
+        $("#reset_food_list").click(function() {
+            Food_Filter.reset_filter();
+        });
     },
 
     populate_filters_from_saved: function(){

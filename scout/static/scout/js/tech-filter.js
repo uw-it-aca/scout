@@ -77,6 +77,10 @@ var Tech_Filter = {
         $("#reset_tech_button").click(function() {
             Tech_Filter.reset_filter();
         });
+
+        $("#reset_tech_list").click(function() {
+            Tech_Filter.reset_filter();
+        });
     },
 
     populate_filters_from_saved: function(){

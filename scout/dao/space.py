@@ -102,7 +102,7 @@ def _get_spot_filters(request):
             params.append(("type", request.GET[param]))
         if "food" in param:
             params.append(
-                ("extended_info:or_group:food", request.GET[param])
+                ("extended_info:food_nearby", request.GET[param])
             )
         if "cuisine" in param:
             params.append(
@@ -114,7 +114,7 @@ def _get_spot_filters(request):
             )
         if "period" in param:
             now = datetime.datetime.now()
-            params += get_period_filter(request.GET[param], now)
+            params += get_period_filter(request.GET[param])
         if "open_now" in param:
             params.append(("open_now", "true"))
         if "building" in param:
@@ -138,7 +138,12 @@ def _get_spot_filters(request):
     return params
 
 
-def get_period_filter(param, now):
+def get_period_filter(param):
+    now = datetime.datetime.now()
+    return _get_period_filter(param, now)
+
+
+def _get_period_filter(param, now):
     today = now.strftime("%A")
     tomorrow = (now +
                 datetime.timedelta(days=1)).strftime("%A")
@@ -214,28 +219,8 @@ def organize_hours(spot):
         today_hours = []
         start_of_day = datetime.time(0, 0)
         end_of_day = datetime.time(23, 59)
+
         day_hours = [h for h in raw_hours if h.day == day]
-        # Try to find an hours object that spans to end of day, excluding
-        # anything that spans the entire day
-        overnight_today = [h for h in day_hours
-                           if h.end_time == end_of_day and
-                           h.start_time != start_of_day]
-        # Try to find an hours object that starts at 0:00 tomorrow
-        next_day = days_list[(idx + 1) % len(days_list)]
-        overnight_next_day = [h for h in raw_hours if h.day == next_day and
-                              h.start_time == start_of_day and
-                              h.end_time != end_of_day]
-        # If we have a period today that extends to 23:59 and a period
-        # tomorrow that starts at 0:00, combine them and remove originals.
-        if overnight_today and overnight_next_day:
-            today_hours.append((overnight_today[0].start_time,
-                                overnight_next_day[0].end_time))
-            raw_hours.remove(overnight_next_day[0])
-            day_hours.remove(overnight_today[0])
-            # Preserving SCOUT-238 behavior for now. If we want to change
-            # that behavior, delete the following two lines.
-            if day == 'sunday':
-                del hours_object['monday'][0]
 
         # Add all the non-special-case hours
         for hours in day_hours:
@@ -506,3 +491,12 @@ def get_avg_latlng_for_spots(spots):
         avg_lng += spot.longitude
 
     return avg_lat/count, avg_lng/count
+
+
+def validate_detail_info(spot, campus, app_type):
+    if spot:
+        if not spot.app_type:
+            spot.app_type = "study"
+        if spot.campus != campus or spot.app_type != app_type:
+            spot = []
+    return spot
