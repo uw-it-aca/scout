@@ -93,6 +93,7 @@ var List = {
         var spot_data = [];
         var spots = $(".scout-list-item").not(".scout-error");
         $.each(spots, function (idx, spot) {
+            var url = $(spot).find("a").attr("href");
             var id = $(spot).attr("id");
             var lat = $(spot).attr("data-spot-lat");
             var lng = $(spot).attr("data-spot-lng");
@@ -102,7 +103,8 @@ var List = {
             if ($(spot).attr("data-items")){
                 items = $(spot).attr("data-items");
             }
-            spot_data.push({"id": id,
+            spot_data.push({"url": url,
+                            "id": id,
                             "lat": lat,
                             "lng": lng,
                             "spot_name": spot_name,

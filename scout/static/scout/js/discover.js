@@ -117,12 +117,14 @@ Discover = {
             spots.splice(spots.length - 1, 1)
         }
         var spot_data = Discover.get_spot_locations(spots);
+        console.log(spot_data);
         Map.load_discover_map(spot_data);
     },
 
     get_spot_locations: function(spots){
         var spot_data = [];
         $.each(spots, function (idx, spot) {
+            var url = $(spot).find("a").attr("href");
             var id = $(spot).attr("id");
             var lat = $(spot).attr("data-lat");
             var lng = $(spot).attr("data-lon");
@@ -133,14 +135,15 @@ Discover = {
             if(typeof id === "undefined" || typeof lat === "undefined" ||
                 typeof lng === "undefined" || typeof spot_name === "undefined" ||
                 typeof building === "undefined" )
-                throw "Bad spot data!"
+                throw "Bad spot data!";
 
-            spot_data.push({"id": id,
-                             "lat": lat,
-                             "lng": lng,
-                             "spot_name": spot_name,
-                             "building": building})
+            spot_data.push({"url": url,
+                            "id": id,
+                            "lat": lat,
+                            "lng": lng,
+                            "spot_name": spot_name,
+                            "building": building});
         });
-        return spot_data
+        return spot_data;
     }
 };
