@@ -34,9 +34,7 @@
                    <div class="scout-spot-resources">
                         <span>Resources</span>
                         <ol>
-                            {% for spot_resource in spot.spot_resources %}
-                            <li>{{ spot_resource }}{% if not forloop.last %}, {% endif %}</li>
-                            {% endfor %}
+                            {% for spot_resource in spot.spot_resources %}<li>{{ spot_resource }}{% if not forloop.last %},&nbsp;{% endif %}</li>{% endfor %}
                         </ol>
                     </div>
                     {% endif %}
