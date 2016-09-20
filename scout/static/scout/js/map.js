@@ -272,7 +272,7 @@ var Map = {
             } else {
                 mapOptions = {
                     center: spotPosition,
-                    zoom: 18,
+                    zoom: 19,
                     streetViewControl: false,
                 };
             }
@@ -347,10 +347,10 @@ var Map = {
             // add the marker position to boundary
             var bounds = new google.maps.LatLngBounds();
             bounds.extend(marker.position);
-            window.map_bounds = bounds;
-            map.fitBounds(bounds);
 
             if (Geolocation.get_location_type() !== "default") {
+                window.map_bounds = bounds;
+                map.fitBounds(bounds);
                 Map.add_current_position_marker(map, pos);
             }
             window.map_object = map;
