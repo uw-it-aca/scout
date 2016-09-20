@@ -80,7 +80,7 @@ var Map = {
                     position: new google.maps.LatLng(data.lat, data.lng),
                     map: map,
                     //animation: google.maps.Animation.DROP,
-                    labelAnchor: new google.maps.Point(6, 6),
+                    labelAnchor: new google.maps.Point(0, 0),
                     labelClass: "map-label",
                     // basic google symbol markers
                     icon: {
