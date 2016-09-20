@@ -173,15 +173,15 @@ var Study_Filter = {
 
             // populate hour from filters
             result = Study_Filter.process_hours_from_fuzzy(params["fuzzy_hours_start"]);
-            $("#day-from").val(result[0]).prop("checked", true);
-            $("#hour-from").val(result[1]).prop("checked", true);
-            $("#ampm-from").val(result[2]).prop("checked", true);
+            $("#day-from").val(result[0]);
+            $("#hour-from").val(result[1]);
+            $("#ampm-from").val(result[2]);
 
             // populate hour until filters
             result = Study_Filter.process_hours_from_fuzzy(params["fuzzy_hours_end"]);
-            $("#day-until").val(result[0]).prop("checked", true);
-            $("#hour-until").val(result[1]).prop("checked", true);
-            $("#ampm-until").val(result[2]).prop("checked", true);
+            $("#day-until").val(result[0]);
+            $("#hour-until").val(result[1]);
+            $("#ampm-until").val(result[2]);
         }
     },
 
