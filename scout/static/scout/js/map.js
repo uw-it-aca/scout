@@ -217,8 +217,8 @@ var Map = {
         var icon = marker.getIcon();
         icon.fillColor = "#6564A8";
         icon.strokeColor = "#ffffff";
-        icon.strokeWeight = 3
-        icon.scale = 10;
+        icon.strokeWeight = 5
+        icon.scale = 6;
         marker.setIcon(icon);
     },
 
