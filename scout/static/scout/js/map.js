@@ -120,7 +120,7 @@ var Map = {
                         if (map.getZoom() != 16){
                             map.setZoom(16); //default zoom level
                         }
-                        map.setCenter(marker.getPosition());
+                        // map.setCenter(marker.getPosition());
                     },
                     function () {
                         // hover OUT
