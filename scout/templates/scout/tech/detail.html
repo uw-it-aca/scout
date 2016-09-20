@@ -151,8 +151,8 @@
                     <div class="scout-spot-building-info">
                             <div><span class="visually-hidden">Name: </span><strong>{% if spot.name %}{{spot.name}}</strong>{% endif %}</div>
                             <div><span class="visually-hidden">Building: </span>{% if spot.building_name %}{{ spot.building_name }}{% endif %}</div>
-                            <div>Floor: {% if spot.floor %}{{ spot.floor }}{% else %}---{% endif %}</div>
-                            <div>Room: {% if spot.room_number %}{{ spot.room_number }}{% else %}---{% endif %}</div>
+                            {% if spot.floor %}<div>Floor: {{ spot.floor }}</div>{% endif %}
+                            {% if spot.room_number %}<div>Room: {{ spot.room_number }}</div>{% endif %}
                     </div>
                 </div>
 
