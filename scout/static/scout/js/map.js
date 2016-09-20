@@ -157,7 +157,6 @@ var Map = {
                 infoWindow.open(map, marker);
 
                 // scroll to spot on list
-                //console.log('scroll to ' + data.id);
                 List.scroll_to_spot('#' + marker.spot.id);
 
             });
@@ -180,7 +179,57 @@ var Map = {
             };
             // cluster the markers using marker clusterer
             var markerCluster = new MarkerClusterer(map, markers, mc_options);
+
+            // events to handle spider icons
+
+            // Only way to determine spidered spots requires a map idle event first,
+            // thankfully due to MC people must zoom to find spidered spots,
+            // thus triggering an idle event
+
+            map.addListener("idle", function(){
+                //Timeout gives MarkerClusterer enough time to update
+                window.setTimeout(function () {
+                    var spidered = oms.markersNearAnyOtherMarker();
+                    // Change the icons of spots that are spidered
+                    $(spidered).each(function(idx, marker){
+                        Map._set_spidered_icon(marker);
+                    });
+                }, 1);
+            });
+
+            oms.addListener('spiderfy', function (markers) {
+                $(markers).each(function(idx, marker){
+                    Map._set_unspidered_icon(marker);
+                });
+            });
+
+            oms.addListener('unspiderfy', function (markers) {
+                $(markers).each(function(idx, marker){
+                    Map._set_spidered_icon(marker);
+
+                });
+            });
         }
+    },
+
+    _set_spidered_icon: function (marker) {
+        // The icon you want displayed on markers that are spidered
+        var icon = marker.getIcon();
+        icon.fillColor = "#6564A8";
+        icon.strokeColor = "#ffffff";
+        icon.strokeWeight = 5
+        icon.scale = 6;
+        marker.setIcon(icon);
+    },
+
+    _set_unspidered_icon: function (marker) {
+        // The icon you want displayed on markers that are not spidered (eg single spot or expanded)
+        var icon = marker.getIcon();
+        icon.fillColor = "#ffffff";
+        icon.strokeColor = '#6564A8';
+        icon.strokeWeight = 5;
+        icon.scale = 5;
+        marker.setIcon(icon);
     },
 
     load_list_map: function (map_id) {
