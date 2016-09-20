@@ -215,14 +215,20 @@ var Map = {
     _set_spidered_icon: function (marker) {
         // The icon you want displayed on markers that are spidered
         var icon = marker.getIcon();
-        icon.fillColor = "#FF0000";
+        icon.fillColor = "#6564A8";
+        icon.strokeColor = "#ffffff";
+        icon.strokeWeight = 3
+        icon.scale = 10;
         marker.setIcon(icon);
     },
 
     _set_unspidered_icon: function (marker) {
         // The icon you want displayed on markers that are not spidered (eg single spot or expanded)
         var icon = marker.getIcon();
-        icon.fillColor = "#FFFFFF";
+        icon.fillColor = "#ffffff";
+        icon.strokeColor = '#6564A8';
+        icon.strokeWeight = 5;
+        icon.scale = 5;
         marker.setIcon(icon);
     },
 
