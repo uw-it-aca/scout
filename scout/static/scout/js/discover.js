@@ -117,7 +117,6 @@ Discover = {
             spots.splice(spots.length - 1, 1)
         }
         var spot_data = Discover.get_spot_locations(spots);
-        console.log(spot_data);
         Map.load_discover_map(spot_data);
     },
 

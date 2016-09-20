@@ -145,7 +145,6 @@ var Map = {
                         "<a href='" + marker.spot.url + "'>View details</a>" +
                         "</div>"
                     );
-                    console.log(marker);
                 } else {
                     infoWindow.setContent(
                         "<div><strong>" + marker.spot.name + "</strong><br>" +
