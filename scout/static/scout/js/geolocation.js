@@ -44,13 +44,13 @@ var Geolocation = {
     },
 
     get_is_using_location: function () {
-        return (localStorage.getItem("using_location") === 'true');
+        return (localStorage.getItem("is_using_location") === 'true');
     },
 
     set_is_using_location: function (is_using_location) {
         // Setting should be bool
         // Persists between sessions
-        localStorage.setItem("using_location", is_using_location);
+        localStorage.setItem("is_using_location", is_using_location);
         Geolocation.update_location();
     },
 

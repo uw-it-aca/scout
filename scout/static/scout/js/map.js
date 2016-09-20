@@ -80,7 +80,7 @@ var Map = {
                     position: new google.maps.LatLng(data.lat, data.lng),
                     map: map,
                     //animation: google.maps.Animation.DROP,
-                    labelAnchor: new google.maps.Point(6, 6),
+                    labelAnchor: new google.maps.Point(0, 0),
                     labelClass: "map-label",
                     // basic google symbol markers
                     icon: {
@@ -120,7 +120,7 @@ var Map = {
                         if (map.getZoom() != 16){
                             map.setZoom(16); //default zoom level
                         }
-                        map.setCenter(marker.getPosition());
+                        // map.setCenter(marker.getPosition());
                     },
                     function () {
                         // hover OUT
@@ -157,7 +157,6 @@ var Map = {
                 infoWindow.open(map, marker);
 
                 // scroll to spot on list
-                //console.log('scroll to ' + data.id);
                 List.scroll_to_spot('#' + marker.spot.id);
 
             });
@@ -180,7 +179,57 @@ var Map = {
             };
             // cluster the markers using marker clusterer
             var markerCluster = new MarkerClusterer(map, markers, mc_options);
+
+            // events to handle spider icons
+
+            // Only way to determine spidered spots requires a map idle event first,
+            // thankfully due to MC people must zoom to find spidered spots,
+            // thus triggering an idle event
+
+            map.addListener("idle", function(){
+                //Timeout gives MarkerClusterer enough time to update
+                window.setTimeout(function () {
+                    var spidered = oms.markersNearAnyOtherMarker();
+                    // Change the icons of spots that are spidered
+                    $(spidered).each(function(idx, marker){
+                        Map._set_spidered_icon(marker);
+                    });
+                }, 1);
+            });
+
+            oms.addListener('spiderfy', function (markers) {
+                $(markers).each(function(idx, marker){
+                    Map._set_unspidered_icon(marker);
+                });
+            });
+
+            oms.addListener('unspiderfy', function (markers) {
+                $(markers).each(function(idx, marker){
+                    Map._set_spidered_icon(marker);
+
+                });
+            });
         }
+    },
+
+    _set_spidered_icon: function (marker) {
+        // The icon you want displayed on markers that are spidered
+        var icon = marker.getIcon();
+        icon.fillColor = "#6564A8";
+        icon.strokeColor = "#ffffff";
+        icon.strokeWeight = 5
+        icon.scale = 6;
+        marker.setIcon(icon);
+    },
+
+    _set_unspidered_icon: function (marker) {
+        // The icon you want displayed on markers that are not spidered (eg single spot or expanded)
+        var icon = marker.getIcon();
+        icon.fillColor = "#ffffff";
+        icon.strokeColor = '#6564A8';
+        icon.strokeWeight = 5;
+        icon.scale = 5;
+        marker.setIcon(icon);
     },
 
     load_list_map: function (map_id) {
@@ -223,7 +272,7 @@ var Map = {
             } else {
                 mapOptions = {
                     center: spotPosition,
-                    zoom: 18,
+                    zoom: 19,
                     streetViewControl: false,
                 };
             }
@@ -298,10 +347,10 @@ var Map = {
             // add the marker position to boundary
             var bounds = new google.maps.LatLngBounds();
             bounds.extend(marker.position);
-            window.map_bounds = bounds;
-            map.fitBounds(bounds);
 
             if (Geolocation.get_location_type() !== "default") {
+                window.map_bounds = bounds;
+                map.fitBounds(bounds);
                 Map.add_current_position_marker(map, pos);
             }
             window.map_object = map;
