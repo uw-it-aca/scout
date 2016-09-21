@@ -110,7 +110,16 @@ var List = {
                             "items" : items})
         });
         return spot_data
-    }
+    },
+
+    filter_visible_spots: function(spot_ids){
+        var list_items = $("li.scout-list-item");
+        $.each(list_items, function(idx, item){
+            var spot_id = $(item).attr('id');
+
+        });
+
+    },
 
 };
 
