@@ -102,6 +102,25 @@ var Study_Filter = {
         $("#reset_study_list").click(function() {
             Study_Filter.reset_filter();
         });
+
+        $("input[name$='optionsHours']").click(function() {
+            if ($(this).val() == "hours_list") {
+                $("#hours_list").show();
+            }
+            else {
+                $("#hours_list").hide();
+            }
+        });
+
+        $("input[name$='optionsLocations']").click(function() {
+            if ($(this).val() == "building_list") {
+                $("#building_select").show();
+            }
+            else {
+                $("#building_select").hide();
+            }
+        });
+
     },
 
     populate_filters_from_saved: function(){
