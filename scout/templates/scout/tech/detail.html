@@ -123,9 +123,9 @@
                 <h3>Details</h3>
                 <div class="scout-spot-description">
                     {% if spot.item.description %}
-                    <span class="visually-hidden">Description: </span>{{ spot.item.description }}
+                    <span class="visually-hidden">Description: </span>{{ spot.item.description|safe }}
                     {% else %}
-                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate.
+                    No description available.
                     {% endif %}
                 </div>
 
