@@ -77,6 +77,12 @@ var Study_Filter = {
                 filter_categories.push(label);
             }
         });
+
+        // Temporary fix for adding Open Now as a filter text.
+        if (!(filter_categories.indexOf("Hours") > -1)) {
+            filter_categories.push("Open Now");
+        }
+
         return filter_categories;
     },
 
