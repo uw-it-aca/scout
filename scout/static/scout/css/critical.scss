@@ -394,12 +394,13 @@ a {color: $scout-link;}
 
         .scout-filter-container {
 
-            fieldset { border: none; padding: 0; margin:0;  margin-bottom: 20px; float: left; width: 50%;
+            fieldset { border: none; padding: 0; margin:0;  margin-bottom: 20px; float: left; width: 50%; font-size: 14px;
                 legend { font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 12px; text-transform: uppercase; margin-bottom: 8px; color: #6564a8; padding: 5px 0; letter-spacing: 1px; }
             }
+
             label { display: block; line-height: 20px; font-size: 14px; white-space: nowrap;
                 span { color: #767676; }
-                input[type="checkbox"], input[type="radio"]    { margin-right: 5px; }
+                input[type="checkbox"], input[type="radio"] { margin-right: 5px; vertical-align: middle; }
             }
 
             select[multiple] { height: auto; font-size: 14px; }
@@ -422,6 +423,17 @@ a {color: $scout-link;}
                     &.action-cancel { background: #ddd; color:#555; }
                 }
 
+            }
+
+            .scout-filter-toggle {
+                label { display: inline-block;
+                    &:last-child { margin-left: 10px; }
+                }
+            }
+
+            .scout-filter-toggle-options { margin-top: 15px;
+                line-height: 25px;
+                span, select { display:inline-block; }
             }
 
         }

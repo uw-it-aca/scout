@@ -106,23 +106,18 @@
 
                 <fieldset id="hours_select" style="width:100%;">
                     <legend>Hours</legend>
-                    <p><small><em>Select open hours (defaults to open now if nothing chosen)</em></small></p>
 
-                    <div id="hours_toggle">
-                        <span>
-                            <input type="radio" name="optionsHours" id="open_now" value="open_now" checked="">
-                            <label style="display:inline-block;" for="open_now">Open now</label>
-                        </span>
-                        <span>
-                            <input type="radio" name="optionsHours" id="hours_list_input" value="hours_list">
-                            <label style="display:inline-block;" for="hours_list_input">Specify day &amp; time</label>
-                        </span>
+                    <small style="margin-bottom:10px;display:block;"><em>Select open hours (defaults to open now if nothing chosen)</em></small>
+
+                    <div id="hours_toggle" class="scout-filter-toggle">
+                        <label><input type="radio" name="optionsHours" id="open_now" value="open_now" checked="">Open now</label>
+                        <label><input type="radio" name="optionsHours" id="hours_list_input" value="hours_list">Specify day &amp; time</label>
                     </div>
 
-                    <div style="display:none; margin-top:20px;" id="hours_list">
+                    <div class="scout-filter-toggle-options" style="display:none;" id="hours_list">
                         <div>
-                            <span class="hours-from">Start: </span>
-                            <select id="day-from">
+                            <span class="hours-from" style="width:40px;">Start: </span>
+                            <select id="day-from" style="width:100px;">
                                 <option value="Monday">Monday</option>
                                 <option value="Tuesday">Tuesday</option>
                                 <option value="Wednesday">Wednesday</option>
@@ -131,7 +126,7 @@
                                 <option value="Saturday">Saturday</option>
                                 <option value="Sunday">Sunday</option>
                             </select>
-                            <select id="hour-from">
+                            <select id="hour-from" style="width:60px;">
                                 <option value="12:00">12:00</option>
                                 <option value="12:30">12:30</option>
                                 <option value="01:00">1:00</option>
@@ -157,15 +152,15 @@
                                 <option value="11:00">11:00</option>
                                 <option value="11:30">11:30</option>
                             </select>
-                            <select id="ampm-from" class="ampm">
+                            <select id="ampm-from" class="ampm" style="width:50px;">
                                 <option value="AM">AM</option>
                                 <option value="PM">PM</option>
                             </select>
                         </div>
 
                         <div>
-                            <span class="hours-from" id="until-time-heading">End:  </span>
-                            <select id="day-until">
+                            <span class="hours-from" id="until-time-heading" style="width:40px;">End:</span>
+                            <select id="day-until" style="width:100px;">
                                 <option value="Monday">Monday</option>
                                 <option value="Tuesday">Tuesday</option>
                                 <option value="Wednesday">Wednesday</option>
@@ -174,7 +169,7 @@
                                 <option value="Saturday">Saturday</option>
                                 <option value="Sunday">Sunday</option>
                             </select>
-                            <select id="hour-until">
+                            <select id="hour-until" style="width:60px;">
                                 <option value="12:00">12:00</option>
                                 <option value="12:30">12:30</option>
                                 <option value="01:00">1:00</option>
@@ -200,7 +195,7 @@
                                 <option value="11:00">11:00</option>
                                 <option value="11:30">11:30</option>
                             </select>
-                            <select class="ampm" id="ampm-until">
+                            <select class="ampm" id="ampm-until" style="width:50px;">
                                 <option value="AM">AM</option>
                                 <option value="PM">PM</option>
                             </select>
@@ -214,18 +209,12 @@
                 <fieldset style="width:100%;">
                     <legend>Building(s)</legend>
 
-                    <div id="buildings_toggle">
-                        <span class="radio inline">
-                            <input type="radio" name="optionsLocations" id="entire_campus" value="entire_campus" checked="">
-                            <label style="display:inline-block;" for="entire_campus">Entire campus</label>
-                        </span>
-                        <span class="radio inline">
-                            <input type="radio" name="optionsLocations" id="building_list_input" value="building_list">
-                            <label style="display:inline-block;" for="building_list_input">Specific buildings</label>
-                        </span>
+                    <div id="buildings_toggle" class="scout-filter-toggle">
+                        <label><input type="radio" name="optionsLocations" id="entire_campus" value="entire_campus" checked="">Entire campus</label>
+                        <label><input type="radio" name="optionsLocations" id="building_list_input" value="building_list">Specific buildings</label>
                     </div>
 
-                    <div id="building_select" style="display:none; margin-top:20px;">
+                    <div id="building_select" class="scout-filter-toggle-options" style="display:none;">
                         <!--Needs to be updated dynamically!-->
                         <select multiple style="width:100%;">
                             <optgroup disabled hidden></optgroup>
