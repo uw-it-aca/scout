@@ -38,7 +38,7 @@
 
                     <div class="scout-spot-status" role="status" aria-live="polite">{% if spot.is_open %}<span class="open">Open now</span>{% else %}<span class="closed">Closed</span>{% endif %}</div>
 
-                    {% if spot.open_periods %}
+                    {% if spot.is_open %}
                     <div class="scout-spot-open-period">
                         <span>Today's Open periods</span><ol>
                         {% if spot.open_periods.morning %}
