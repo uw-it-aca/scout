@@ -80,7 +80,7 @@ var Map = {
                     position: new google.maps.LatLng(data.lat, data.lng),
                     map: map,
                     //animation: google.maps.Animation.DROP,
-                    labelAnchor: new google.maps.Point(6, 6),
+                    labelAnchor: new google.maps.Point(0, 0),
                     labelClass: "map-label",
                     // basic google symbol markers
                     icon: {
@@ -120,7 +120,7 @@ var Map = {
                         if (map.getZoom() != 16){
                             map.setZoom(16); //default zoom level
                         }
-                        map.setCenter(marker.getPosition());
+                        // map.setCenter(marker.getPosition());
                     },
                     function () {
                         // hover OUT
@@ -242,14 +242,20 @@ var Map = {
     _set_spidered_icon: function (marker) {
         // The icon you want displayed on markers that are spidered
         var icon = marker.getIcon();
-        icon.fillColor = "#FF0000";
+        icon.fillColor = "#6564A8";
+        icon.strokeColor = "#ffffff";
+        icon.strokeWeight = 5
+        icon.scale = 6;
         marker.setIcon(icon);
     },
 
     _set_unspidered_icon: function (marker) {
         // The icon you want displayed on markers that are not spidered (eg single spot or expanded)
         var icon = marker.getIcon();
-        icon.fillColor = "#FFFFFF";
+        icon.fillColor = "#ffffff";
+        icon.strokeColor = '#6564A8';
+        icon.strokeWeight = 5;
+        icon.scale = 5;
         marker.setIcon(icon);
     },
 
@@ -293,7 +299,7 @@ var Map = {
             } else {
                 mapOptions = {
                     center: spotPosition,
-                    zoom: 18,
+                    zoom: 19,
                     streetViewControl: false,
                 };
             }
@@ -368,10 +374,10 @@ var Map = {
             // add the marker position to boundary
             var bounds = new google.maps.LatLngBounds();
             bounds.extend(marker.position);
-            window.map_bounds = bounds;
-            map.fitBounds(bounds);
 
             if (Geolocation.get_location_type() !== "default") {
+                window.map_bounds = bounds;
+                map.fitBounds(bounds);
                 Map.add_current_position_marker(map, pos);
             }
             window.map_object = map;
