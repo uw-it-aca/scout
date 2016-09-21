@@ -638,7 +638,7 @@ describe("Filter Tests", function() {
             assert.equal($("#filter_label_text").html(), "Restaurant Type");
         });
     });
-
+    
     describe("Init Events", function() {
         before(function() {
             global.$ = tools.jqueryFromHtml(
@@ -691,6 +691,124 @@ describe("Filter Tests", function() {
             var elem = "#noevents";
             var events = $._data($(elem).get(0), "events");
             assert.equal(events, undefined);
+        });
+    });
+    
+    describe("Hours_To_Fuzzy", function() {
+        it('should turn hours into Fuzzy Format Pt.1', function() {
+            var result = Study_Filter.process_hours_into_fuzzy("Tuesday", "12:00", "AM");
+            var exp = "Tuesday,00:00:00"
+            assert.equal(result, exp);
+        });
+        it('should turn hours into Fuzzy Format Pt.2', function() {
+            var result = Study_Filter.process_hours_into_fuzzy("Tuesday", "4:30", "PM");
+            var exp = "Tuesday,16:30:00"
+            assert.equal(result, exp);
+        }); 
+        it('should turn hours into Fuzzy Format Pt.3', function() {
+            var result = Study_Filter.process_hours_into_fuzzy("Sunday", "12:30", "PM");
+            var exp = "Sunday,12:30:00"
+            assert.equal(result, exp);
+        });
+        it('should turn hours into Fuzzy Format Pt.4', function() {
+            var result = Study_Filter.process_hours_into_fuzzy("Friday", "08:30", "AM");
+            var exp = "Friday,08:30:00"
+            assert.equal(result, exp);
+        });
+    });
+
+    describe("Fuzzy_To_Hours", function() {
+        it('should turn fuzzy into Hours Format Pt.1', function() {
+            var result = Study_Filter.process_hours_from_fuzzy("Tuesday,00:00:00");
+            var exp = ["Tuesday", "12:00", "AM"];
+            assert.deepEqual(result, exp);
+        });
+        it('should turn fuzzy into Hours Format Pt.2', function() {
+            var result = Study_Filter.process_hours_from_fuzzy("Tuesday,16:30:00");
+            var exp = ["Tuesday", "04:30", "PM"];
+            assert.deepEqual(result, exp);
+        }); 
+        it('should turn fuzzy into Hours Format Pt.3', function() {
+            var result = Study_Filter.process_hours_from_fuzzy("Sunday,12:30:00");
+            var exp = ["Sunday", "12:30", "PM"];
+            assert.deepEqual(result, exp);
+        });
+        it('should turn fuzzy into Hours Format Pt.4', function() {
+            var result = Study_Filter.process_hours_from_fuzzy("Friday,08:30:00");
+            var exp = ["Friday", "08:30", "AM"];
+            assert.deepEqual(result, exp);
+        });
+    });
+    
+    describe("Populate Hours", function() {
+        it('should populate the hours correctly', function() {
+            // see if a set of filter params will accurately populate the options for hours
+            global.$ = tools.jqueryFromHtml(
+                '<select id="day-from"><option value="Monday"></option>' +
+                '<option value="Tuesday"></option></select>' +
+                '<select id="hour-from">' + 
+                '<option value="04:30"></option>' + 
+                '<option value="02:00"></option>' +
+                '</select>' + 
+                '<select id="ampm-from">' + 
+                '<option value="AM"></option>' +
+                '<option value="PM"></option>' +
+                '</select>' +
+                '<select id="day-until">' + 
+                '<option value="Monday"></option>' + 
+                '<option value="Tuesday"></option>' +
+                '</select>' +
+                '<select id="hour-until">' + 
+                '<option value="03:00"></option>' +
+                '<option value="05:30"></option>' +
+                '</select>' + 
+                '<select id="ampm-until">' + 
+                '<option value="AM"></option>' +
+                '<option value="PM"></option>' + 
+                '</select>'
+            );
+            // before the value should be the first option
+            assert.equal($("#day-from").val(), 'Monday');
+            var sessionVars = new fakeSess(
+                { study_filter_params: '{"fuzzy_hours_start":"Tuesday,04:30:00", "fuzzy_hours_end":"Tuesday,05:30:00"}'}
+            );
+            global.sessionStorage = sessionVars;
+            Study_Filter.populate_hour_filters();
+            // all the corresponding values need to be populated!
+            assert.equal($("#day-from").val(), "Tuesday");
+            assert.equal($("#hour-from").val(), "04:30");
+            assert.equal($("#ampm-from").val(), "AM");
+            assert.equal($("#day-until").val(), "Tuesday");
+            assert.equal($("#hour-until").val(), "05:30");
+            assert.equal($("#ampm-until").val(), "AM");
+        });
+    });
+
+    describe("Get Hours", function() {
+        it('should populate the hours correctly', function() {
+            // see if the accurate hours are pulled from the HTML
+            global.$ = tools.jqueryFromHtml(
+                '<select id="day-from">' +
+                '<option value="Tuesday" checked="true"></option></select>' +
+                '<select id="hour-from">' + 
+                '<option value="02:00" checked="true"></option>' +
+                '</select>' + 
+                '<select id="ampm-from">' + 
+                '<option value="AM" checked="true"></option>' +
+                '</select>' +
+                '<select id="day-until">' + 
+                '<option value="Tuesday" checked="true"></option>' +
+                '</select>' +
+                '<select id="hour-until">' + 
+                '<option value="03:00" checked="true"></option>' +
+                '</select>' + 
+                '<select id="ampm-until">' + 
+                '<option value="PM" checked="true"></option>' +
+                '</select>'
+            );
+            var sessionVars = new fakeSess();
+            var result = Study_Filter.get_processed_hours();
+            assert.deepEqual(result, { fuzzy_hours_start: 'Tuesday,02:00:00', fuzzy_hours_end: 'Tuesday,15:00:00' });
         });
     });
 });

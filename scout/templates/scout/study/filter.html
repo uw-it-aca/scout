@@ -80,10 +80,9 @@
                 </fieldset>
 
                 <fieldset class="">
-                    <legend>Seats atleast</legend>
+                    <legend>Seats at least</legend>
                     <div id="capacity_select">
-                        <select style="width:60px;">
-                            <option selected value="0"> -- </option>
+                        <select>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -109,91 +108,103 @@
                     <legend>Hours</legend>
                     <p><small><em>Select open hours (defaults to open now if nothing chosen)</em></small></p>
 
-                    <div>
-                        <span class="hours-from">Start: </span>
-                        <select id="day-from">
-                            <option value="Monday">Monday</option>
-                            <option value="Tuesday">Tuesday</option>
-                            <option value="Wednesday">Wednesday</option>
-                            <option value="Thursday">Thursday</option>
-                            <option value="Friday">Friday</option>
-                            <option value="Saturday">Saturday</option>
-                            <option value="Sunday">Sunday</option>
-                        </select>
-                        <select id="hour-from">
-                            <option value="12:00">12:00</option>
-                            <option value="12:30">12:30</option>
-                            <option value="01:00">1:00</option>
-                            <option value="01:30">1:30</option>
-                            <option value="02:00">2:00</option>
-                            <option value="02:30">2:30</option>
-                            <option value="03:00">3:00</option>
-                            <option value="03:30">3:30</option>
-                            <option value="04:00">4:00</option>
-                            <option value="04:30">4:30</option>
-                            <option value="05:00">5:00</option>
-                            <option value="05:30">5:30</option>
-                            <option value="06:00">6:00</option>
-                            <option value="06:30">6:30</option>
-                            <option value="07:00">7:00</option>
-                            <option value="07:30">7:30</option>
-                            <option value="08:00">8:00</option>
-                            <option value="08:30">8:30</option>
-                            <option value="09:00">9:00</option>
-                            <option value="09:30">9:30</option>
-                            <option value="10:00">10:00</option>
-                            <option value="10:30">10:30</option>
-                            <option value="11:00">11:00</option>
-                            <option value="11:30">11:30</option>
-                        </select>
-                        <select id="ampm-from" class="ampm">
-                            <option value="AM">AM</option>
-                            <option value="PM">PM</option>
-                        </select>
+                    <div id="hours_toggle">
+                        <span>
+                            <input type="radio" name="optionsHours" id="open_now" value="open_now" checked="">
+                            <label style="display:inline-block;" for="open_now">Open now</label>
+                        </span>
+                        <span>
+                            <input type="radio" name="optionsHours" id="hours_list_input" value="hours_list">
+                            <label style="display:inline-block;" for="hours_list_input">Specify day &amp; time</label>
+                        </span>
                     </div>
 
+                    <div style="display:none; margin-top:20px;" id="hours_list">
+                        <div>
+                            <span class="hours-from">Start: </span>
+                            <select id="day-from">
+                                <option value="Monday">Monday</option>
+                                <option value="Tuesday">Tuesday</option>
+                                <option value="Wednesday">Wednesday</option>
+                                <option value="Thursday">Thursday</option>
+                                <option value="Friday">Friday</option>
+                                <option value="Saturday">Saturday</option>
+                                <option value="Sunday">Sunday</option>
+                            </select>
+                            <select id="hour-from">
+                                <option value="12:00">12:00</option>
+                                <option value="12:30">12:30</option>
+                                <option value="01:00">1:00</option>
+                                <option value="01:30">1:30</option>
+                                <option value="02:00">2:00</option>
+                                <option value="02:30">2:30</option>
+                                <option value="03:00">3:00</option>
+                                <option value="03:30">3:30</option>
+                                <option value="04:00">4:00</option>
+                                <option value="04:30">4:30</option>
+                                <option value="05:00">5:00</option>
+                                <option value="05:30">5:30</option>
+                                <option value="06:00">6:00</option>
+                                <option value="06:30">6:30</option>
+                                <option value="07:00">7:00</option>
+                                <option value="07:30">7:30</option>
+                                <option value="08:00">8:00</option>
+                                <option value="08:30">8:30</option>
+                                <option value="09:00">9:00</option>
+                                <option value="09:30">9:30</option>
+                                <option value="10:00">10:00</option>
+                                <option value="10:30">10:30</option>
+                                <option value="11:00">11:00</option>
+                                <option value="11:30">11:30</option>
+                            </select>
+                            <select id="ampm-from" class="ampm">
+                                <option value="AM">AM</option>
+                                <option value="PM">PM</option>
+                            </select>
+                        </div>
 
-                    <div>
-                        <span class="hours-from" id="until-time-heading">End:  </span>
-                        <select id="day-until">
-                            <option value="Monday">Monday</option>
-                            <option value="Tuesday">Tuesday</option>
-                            <option value="Wednesday">Wednesday</option>
-                            <option value="Thursday">Thursday</option>
-                            <option value="Friday">Friday</option>
-                            <option value="Saturday">Saturday</option>
-                            <option value="Sunday">Sunday</option>
-                        </select>
-                        <select id="hour-until">
-                            <option value="12:00">12:00</option>
-                            <option value="12:30">12:30</option>
-                            <option value="01:00">1:00</option>
-                            <option value="01:30">1:30</option>
-                            <option value="02:00">2:00</option>
-                            <option value="02:30">2:30</option>
-                            <option value="03:00">3:00</option>
-                            <option value="03:30">3:30</option>
-                            <option value="04:00">4:00</option>
-                            <option value="04:30">4:30</option>
-                            <option value="05:00">5:00</option>
-                            <option value="05:30">5:30</option>
-                            <option value="06:00">6:00</option>
-                            <option value="06:30">6:30</option>
-                            <option value="07:00">7:00</option>
-                            <option value="07:30">7:30</option>
-                            <option value="08:00">8:00</option>
-                            <option value="08:30">8:30</option>
-                            <option value="09:00">9:00</option>
-                            <option value="09:30">9:30</option>
-                            <option value="10:00">10:00</option>
-                            <option value="10:30">10:30</option>
-                            <option value="11:00">11:00</option>
-                            <option value="11:30">11:30</option>
-                        </select>
-                        <select class="ampm" id="ampm-until">
-                            <option value="AM">AM</option>
-                            <option value="PM">PM</option>
-                        </select>
+                        <div>
+                            <span class="hours-from" id="until-time-heading">End:  </span>
+                            <select id="day-until">
+                                <option value="Monday">Monday</option>
+                                <option value="Tuesday">Tuesday</option>
+                                <option value="Wednesday">Wednesday</option>
+                                <option value="Thursday">Thursday</option>
+                                <option value="Friday">Friday</option>
+                                <option value="Saturday">Saturday</option>
+                                <option value="Sunday">Sunday</option>
+                            </select>
+                            <select id="hour-until">
+                                <option value="12:00">12:00</option>
+                                <option value="12:30">12:30</option>
+                                <option value="01:00">1:00</option>
+                                <option value="01:30">1:30</option>
+                                <option value="02:00">2:00</option>
+                                <option value="02:30">2:30</option>
+                                <option value="03:00">3:00</option>
+                                <option value="03:30">3:30</option>
+                                <option value="04:00">4:00</option>
+                                <option value="04:30">4:30</option>
+                                <option value="05:00">5:00</option>
+                                <option value="05:30">5:30</option>
+                                <option value="06:00">6:00</option>
+                                <option value="06:30">6:30</option>
+                                <option value="07:00">7:00</option>
+                                <option value="07:30">7:30</option>
+                                <option value="08:00">8:00</option>
+                                <option value="08:30">8:30</option>
+                                <option value="09:00">9:00</option>
+                                <option value="09:30">9:30</option>
+                                <option value="10:00">10:00</option>
+                                <option value="10:30">10:30</option>
+                                <option value="11:00">11:00</option>
+                                <option value="11:30">11:30</option>
+                            </select>
+                            <select class="ampm" id="ampm-until">
+                                <option value="AM">AM</option>
+                                <option value="PM">PM</option>
+                            </select>
+                        </div>
                     </div>
                 </fieldset>
             </div>
@@ -202,7 +213,19 @@
 
                 <fieldset style="width:100%;">
                     <legend>Building(s)</legend>
-                    <div id="building_select">
+
+                    <div id="buildings_toggle">
+                        <span class="radio inline">
+                            <input type="radio" name="optionsLocations" id="entire_campus" value="entire_campus" checked="">
+                            <label style="display:inline-block;" for="entire_campus">Entire campus</label>
+                        </span>
+                        <span class="radio inline">
+                            <input type="radio" name="optionsLocations" id="building_list_input" value="building_list">
+                            <label style="display:inline-block;" for="building_list_input">Specific buildings</label>
+                        </span>
+                    </div>
+
+                    <div id="building_select" style="display:none; margin-top:20px;">
                         <!--Needs to be updated dynamically!-->
                         <select multiple style="width:100%;">
                             <optgroup disabled hidden></optgroup>
