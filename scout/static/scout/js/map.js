@@ -11,8 +11,6 @@ var Map = {
             "tech_detail_map": Map.load_detail_map
         };
 
-        console.log("Hi!")
-        console.log(Geolocation.get_client_latlng().lat() + " , " + Geolocation.get_client_latlng().lng() )
         $.each(app_type, function(resource, map_init){
             if($("#" + resource).length > 0) {
                 map_init(resource);
@@ -166,12 +164,16 @@ var Map = {
             });
 
             // zoom the map automatically using the bounds of all markers
-            window.map_bounds = bounds;
             if (Geolocation.get_location_type() !== "default") {
                 Map.add_current_position_marker(map, pos);
+            } else if(markers.length == 0){
+                bounds.extend(pos);
+                map.setZoom(16);
             } else {
                 map.fitBounds(bounds);
             }
+
+            window.map_bounds = bounds;
             window.map_object = map;
 
             // marker clusterer options
@@ -438,6 +440,7 @@ var Map = {
 
         Map.markerCluster.redraw_()
 
+
     },
 
     clear_markers: function(){
@@ -454,6 +457,8 @@ var Map = {
         }
 
         Map.markerCluster.redraw_()
+
+        console.log(Map.markerCluster)
     }
 
 };
