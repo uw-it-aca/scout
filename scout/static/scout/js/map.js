@@ -119,10 +119,6 @@ var Map = {
                         );
                         infoWindow.open(map);
                         infoWindow.setPosition(marker.position);
-                        if (map.getZoom() != 16){
-                            map.setZoom(16); //default zoom level
-                        }
-                        // map.setCenter(marker.getPosition());
                     },
                     function () {
                         // hover OUT
@@ -134,6 +130,9 @@ var Map = {
                 bounds.extend(marker.position);
 
             });
+
+            window.markers = markers;
+
             // attach events to markers
             oms.addListener("click", function (marker, event) {
                 var campus = Navigation.get_campus_selection();
@@ -201,6 +200,8 @@ var Map = {
                         Map._set_spidered_icon(marker);
                     });
                 }, 1);
+
+                Map.update_displayed_spots();
             });
 
             oms.addListener('spiderfy', function (markers) {
@@ -218,6 +219,28 @@ var Map = {
 
             Map.markerCluster = markerCluster;
         }
+    },
+
+    update_displayed_spots: function () {
+        var visible_markers = Map._get_visible_markers(window.map_object, window.markers);
+        var visible_spot_ids = [];
+        $.each(visible_markers, function(idx, marker){
+            visible_spot_ids.push(marker.spot.id);
+        });
+        List.filter_visible_spots(visible_spot_ids);
+    },
+
+    _get_visible_markers: function (map, markers) {
+        var visible_markers = [];
+        if (map !== undefined) {
+            var bounds = map.getBounds();
+            $.each(markers, function (idx, marker) {
+                if(bounds.contains(marker.getPosition())){
+                    visible_markers.push(marker);
+                }
+            });
+        }
+        return visible_markers;
     },
 
     _set_spidered_icon: function (marker) {
@@ -266,11 +289,13 @@ var Map = {
 
             // center map direction on spot location
             spotPosition = new google.maps.LatLng(spot_lat, spot_lng);
+
             // set map options based on mobile or desktop
             if (isMobile !== undefined ) {
+                // mobile
                 mapOptions = {
                     center: spotPosition,
-                    zoom: 18,
+                    zoom: 17,
                     scrollwheel: false,
                     draggable: false,
                     disableDefaultUI: true,
@@ -278,6 +303,7 @@ var Map = {
                     disableDoubleClickZoom: true
                 };
             } else {
+                // desktop
                 mapOptions = {
                     center: spotPosition,
                     zoom: 18,
@@ -354,13 +380,17 @@ var Map = {
             });
             // add the marker position to boundary
             var bounds = new google.maps.LatLngBounds();
-            bounds.extend(marker.position);
-            window.map_bounds = bounds;
-            map.fitBounds(bounds);
 
             if (Geolocation.get_location_type() !== "default") {
+                // fit user location and spot on map
+                bounds.extend(marker.position);
+                window.map_bounds = bounds;
+                map.fitBounds(bounds);
+
+                // adds user location to map
                 Map.add_current_position_marker(map, pos);
             }
+            // update map object
             window.map_object = map;
         }
     },
