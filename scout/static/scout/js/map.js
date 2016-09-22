@@ -487,8 +487,6 @@ var Map = {
         }
 
         Map.markerCluster.redraw_()
-
-        console.log(Map.markerCluster)
     }
 
 };
