@@ -95,6 +95,7 @@ var Map = {
                         strokeWeight: 5
                     },
                     spot: {
+                        url: data.url,
                         id: data.id,
                         name: data.spot_name,
                         building: data.building,
@@ -136,7 +137,6 @@ var Map = {
 
             // attach events to markers
             oms.addListener("click", function (marker, event) {
-                var campus = Navigation.get_campus_selection();
                 var app_type = Filter.get_current_type();
 
                 //Wrap the   content inside an HTML DIV in order to set height and width of InfoWindow.
@@ -144,7 +144,7 @@ var Map = {
                     infoWindow.setContent(
                         "<div><strong>" + marker.spot.name + "</strong><br>" +
                         marker.spot.building + "<br>" +
-                        "<a href='/" + campus + app_type + marker.spot.id + "/'>View details</a>" +
+                        "<a href='" + marker.spot.url + "'>View details</a>" +
                         "</div>"
                     );
                 } else {
@@ -450,6 +450,7 @@ var Map = {
                     strokeWeight: 5
                 },
                 spot: {
+                    url: data.url,
                     id: data.id,
                     name: data.spot_name,
                     building: data.building,
@@ -471,7 +472,7 @@ var Map = {
                 },
                 function () {
                     // hover OUT
-                    Map.infoWindow.close(map, marker);
+                    Map.infoWindow.close(window.map_object, marker);
                 }
             );
 
