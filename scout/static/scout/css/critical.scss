@@ -196,7 +196,7 @@ a {color: $scout-link;}
 .scout-scroll { background: #f1f1f1; padding-bottom: 1px;
 
     // generic card
-    .scout-card { margin: 0 0 10px 0; background: #fff; padding: 20px; min-height: 100px;
+    .scout-card { margin: 0 0 10px 0; background: #fff; padding: 20px; min-height: 50px;
 
         // general list styles
         ul { list-style: none; margin: 0; padding: 0;
@@ -443,7 +443,7 @@ a {color: $scout-link;}
 }
 
 // footer
-.scout-footer { background: #fafafa; color:#555; width: 100%; font-size: 75%; text-align:center; line-height: $footer-height; border-top: solid 1px #ddd; white-space: nowrap;
+.scout-footer { background: #fafafa; color:#555; width: 100%; font-size: 75%; line-height: $footer-height; border-top: solid 1px #ddd; white-space: nowrap;
     a { color: $scout-link; display: inline-block;  }
     a:first-child { margin-left: 10px; }
 }
