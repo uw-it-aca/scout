@@ -38,6 +38,7 @@ var Map = {
         var currentMap = document.getElementById(map_id);
         var pos = Geolocation.get_client_latlng();
         var mapOptions;
+
         if(currentMap) {
 
             // center map on default location OR location received from user
@@ -74,13 +75,14 @@ var Map = {
             var infoWindow = new google.maps.InfoWindow();
             var markers = [];
             var oms = new OverlappingMarkerSpiderfier(map, {keepSpiderfied: true, circleFootSeparation: 46});
+            Map.oms = oms;
 
             $.each(locations, function (key, data){
                 var marker = new MarkerWithLabel({
                     position: new google.maps.LatLng(data.lat, data.lng),
                     map: map,
                     //animation: google.maps.Animation.DROP,
-                    labelAnchor: new google.maps.Point(0, 0),
+                    labelAnchor: new google.maps.Point(6, 6),
                     labelClass: "map-label",
                     // basic google symbol markers
                     icon: {
@@ -92,7 +94,6 @@ var Map = {
                         strokeWeight: 5
                     },
                     spot: {
-                        url: data.url,
                         id: data.id,
                         name: data.spot_name,
                         building: data.building,
@@ -135,14 +136,15 @@ var Map = {
             });
             // attach events to markers
             oms.addListener("click", function (marker, event) {
+                var campus = Navigation.get_campus_selection();
                 var app_type = Filter.get_current_type();
 
-                //Wrap the content inside an HTML DIV in order to set height and width of InfoWindow.
+                //Wrap the   content inside an HTML DIV in order to set height and width of InfoWindow.
                 if (app_type !== "/tech/"){
                     infoWindow.setContent(
                         "<div><strong>" + marker.spot.name + "</strong><br>" +
                         marker.spot.building + "<br>" +
-                        "<a href='" + marker.spot.url + "'>View details</a>" +
+                        "<a href='/" + campus + app_type + marker.spot.id + "/'>View details</a>" +
                         "</div>"
                     );
                 } else {
@@ -162,12 +164,16 @@ var Map = {
             });
 
             // zoom the map automatically using the bounds of all markers
-            window.map_bounds = bounds;
             if (Geolocation.get_location_type() !== "default") {
                 Map.add_current_position_marker(map, pos);
+            } else if(markers.length == 0){
+                bounds.extend(pos);
+                map.setZoom(16);
             } else {
                 map.fitBounds(bounds);
             }
+
+            window.map_bounds = bounds;
             window.map_object = map;
 
             // marker clusterer options
@@ -209,6 +215,8 @@ var Map = {
 
                 });
             });
+
+            Map.markerCluster = markerCluster;
         }
     },
 
@@ -272,7 +280,7 @@ var Map = {
             } else {
                 mapOptions = {
                     center: spotPosition,
-                    zoom: 19,
+                    zoom: 18,
                     streetViewControl: false,
                 };
             }
@@ -347,10 +355,10 @@ var Map = {
             // add the marker position to boundary
             var bounds = new google.maps.LatLngBounds();
             bounds.extend(marker.position);
+            window.map_bounds = bounds;
+            map.fitBounds(bounds);
 
             if (Geolocation.get_location_type() !== "default") {
-                window.map_bounds = bounds;
-                map.fitBounds(bounds);
                 Map.add_current_position_marker(map, pos);
             }
             window.map_object = map;
@@ -384,7 +392,73 @@ var Map = {
             map.fitBounds(bounds);
         }
 
+    },
 
+    update_discover_map: function(locations) {
+        Map.clear_markers();
+
+        var markers = [];
+        $.each(locations, function (key, data){
+            var marker = new MarkerWithLabel({
+                position: new google.maps.LatLng(data.lat, data.lng),
+                map: window.map_object,
+                //animation: google.maps.Animation.DROP,
+                labelAnchor: new google.maps.Point(6, 6),
+                labelClass: "map-label",
+                // basic google symbol markers
+                icon: {
+                    path: google.maps.SymbolPath.CIRCLE,
+                    fillColor: '#ffffff',
+                    fillOpacity: 1,
+                    strokeColor: '#6564A8',
+                    scale: 5,
+                    strokeWeight: 5
+                },
+                spot: {
+                    id: data.id,
+                    name: data.spot_name,
+                    building: data.building,
+                    items: data.items
+                }
+            });
+            markers.push(marker);
+        });
+
+        var mc_options = {
+            imagePath: window.staticPath + '/vendor/img/m',
+            gridSize: 30,
+            minimumClusterSize: 2,
+            maxZoom: 18
+        };
+
+        Map.markerCluster = new MarkerClusterer(map_object, markers, mc_options);
+
+        for(var i = 0; i < markers.length; i++){
+            Map.markerCluster.addMarker(markers[i])
+            Map.oms.addMarker(markers[i]);
+        }
+
+        Map.markerCluster.redraw_()
+
+
+    },
+
+    clear_markers: function(){
+        var markers = Map.markerCluster.markers_;
+
+        while(Map.markerCluster.markers_.length > 0){
+            marker = Map.markerCluster.markers_[0];
+            Map.markerCluster.removeMarker(marker);
+        }
+
+        while(Map.oms.getMarkers().length > 0){
+            marker = Map.oms.getMarkers()[0];
+            Map.oms.removeMarker(marker);
+        }
+
+        Map.markerCluster.redraw_()
+
+        console.log(Map.markerCluster)
     }
 
 };
