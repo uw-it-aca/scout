@@ -128,6 +128,12 @@ var List = {
                 list_count += 1;
             }
         });
+
+        // use item count rather than spot count for tech items
+        if (window.location.pathname.indexOf("tech") !== -1) {
+            list_count = $(".scout-list-item-object:visible").length;
+        }
+
         $("#scout_filter_results_count").html(list_count);
         List._hide_show_building_headers();
     },
