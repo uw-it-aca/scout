@@ -91,7 +91,8 @@ def get_filtered_spots(request, campus, app_type=None):
     elif(app_type == "tech"):
         filters.append(('extended_info:app_type', 'tech'))
     elif(app_type == "study"):
-        filters.append(('open_now', 'true'))
+        if "open_at" not in dict(filters):
+            filters.append(('open_now', 'true'))
     return get_spots_by_filter(filters)
 
 
@@ -129,6 +130,14 @@ def _get_spot_filters(request):
             params.append(
                 ("extended_info:or_group:lighting", request.GET[param])
             )
+        if "reservation" in param:
+            params.append(("extended_info:reservable", "true"))
+        if "capacity" in param:
+            params.append(("capacity", request.GET[param]))
+        if "open_at" in param:
+            params.append(("open_at", request.GET[param]))
+        if "open_until" in param:
+            params.append(("open_until", request.GET[param]))
         if "subcategory" in param:
             params.append(("item:subcategory", request.GET[param]))
         if "brand" in param:

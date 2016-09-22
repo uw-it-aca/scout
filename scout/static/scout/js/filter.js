@@ -120,6 +120,7 @@ var Filter = {
             Food_Filter.populate_filters_from_saved();
         } else if(type.indexOf("study") > -1) {
             Study_Filter.populate_filters_from_saved();
+            Study_Filter.populate_hour_filters();
         } else if(type.indexOf("tech") > -1) {
             Tech_Filter.populate_filters_from_saved();
         }
@@ -138,9 +139,14 @@ var Filter = {
                     // find a better way to find out the input val!
                     var type = "input";
                     var state = "checked";
-                    if (type_key == "building") {
+                    if (type_key == "building" || type_key == "capacity") {
                         type = "option";
                         state = "selected";
+                        // need better way to handle when building is selected
+                        if (type_key == "building") {
+                            $("#buildings_toggle").find("input[value=building_list]").prop("checked", true);
+                            $("#building_select").removeClass("visually-hidden");
+                        }
                     }
                     if (param_key == "open_now") {
                         param_val = "open_now";
