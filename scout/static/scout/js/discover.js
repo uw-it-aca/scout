@@ -123,6 +123,7 @@ Discover = {
     get_spot_locations: function(spots){
         var spot_data = [];
         $.each(spots, function (idx, spot) {
+            var url = $(spot).find("a").attr("href");
             var id = $(spot).attr("id");
             var lat = $(spot).attr("data-lat");
             var lng = $(spot).attr("data-lon");
@@ -135,11 +136,12 @@ Discover = {
                 typeof building === "undefined" )
                 throw "Bad spot data!";
 
-            spot_data.push({"id": id,
-                             "lat": lat,
-                             "lng": lng,
-                             "spot_name": spot_name,
-                             "building": building});
+            spot_data.push({"url": url,
+                            "id": id,
+                            "lat": lat,
+                            "lng": lng,
+                            "spot_name": spot_name,
+                            "building": building});
         });
         return spot_data;
     },
