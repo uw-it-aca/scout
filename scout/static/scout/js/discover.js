@@ -51,10 +51,10 @@ Discover = {
     },
 
     _attach_card: function (card_id, card_html) {
-        if(card_id === 'open'){
-            Discover.display_card_pins(card_html);
-        }
         $("#" + card_id).html(card_html);
+        if(card_id === 'open'){
+            Discover.initialize_map(card_id);
+        }
     },
 
     add_distance_and_sort: function() {
@@ -117,13 +117,12 @@ Discover = {
             spots.splice(spots.length - 1, 1)
         }
         var spot_data = Discover.get_spot_locations(spots);
-        Map.load_discover_map(spot_data);
+        Map.update_discover_map(spot_data);
     },
 
     get_spot_locations: function(spots){
         var spot_data = [];
         $.each(spots, function (idx, spot) {
-            var url = $(spot).find("a").attr("href");
             var id = $(spot).attr("id");
             var lat = $(spot).attr("data-lat");
             var lng = $(spot).attr("data-lon");
@@ -136,13 +135,22 @@ Discover = {
                 typeof building === "undefined" )
                 throw "Bad spot data!";
 
-            spot_data.push({"url": url,
-                            "id": id,
-                            "lat": lat,
-                            "lng": lng,
-                            "spot_name": spot_name,
-                            "building": building});
+            spot_data.push({"id": id,
+                             "lat": lat,
+                             "lng": lng,
+                             "spot_name": spot_name,
+                             "building": building});
         });
         return spot_data;
+    },
+
+    initialize_map: function(card_id){
+        var spots = $("#" + card_id).find("li");
+        // remove the li that contains the View More button
+        if(spots.length > 0 && $(spots[spots.length -1]).attr("id") == undefined){
+            spots.splice(spots.length - 1, 1);
+        }
+        var spot_data = Discover.get_spot_locations(spots);
+        Map.load_discover_map(spot_data);
     }
 };
