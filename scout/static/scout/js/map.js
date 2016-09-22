@@ -390,6 +390,7 @@ var Map = {
                 // adds user location to map
                 Map.add_current_position_marker(map, pos);
             }
+            // update map object
             window.map_object = map;
         }
     },
