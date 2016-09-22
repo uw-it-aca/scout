@@ -73,6 +73,7 @@ var Map = {
 
             // create and open InfoWindow.
             var infoWindow = new google.maps.InfoWindow();
+            Map.infoWindow = infoWindow;
             var markers = [];
             var oms = new OverlappingMarkerSpiderfier(map, {keepSpiderfied: true, circleFootSeparation: 46});
             Map.oms = oms;
@@ -427,6 +428,10 @@ var Map = {
     update_discover_map: function(locations) {
         Map.clear_markers();
 
+
+        // multiple pins on a single map
+        var bounds = new google.maps.LatLngBounds();
+
         var markers = [];
         $.each(locations, function (key, data){
             var marker = new MarkerWithLabel({
@@ -452,6 +457,25 @@ var Map = {
                 }
             });
             markers.push(marker);
+
+            // handle hover event for main list view
+            $('#' + data.id).hover(
+                function () {
+                    // hover IN
+                    Map.infoWindow.setContent(
+                        "<div><strong>" + data.spot_name + "</strong><br>" +
+                        data.building + "</div>"
+                    );
+                    Map.infoWindow.open(window.map_object);
+                    Map.infoWindow.setPosition(marker.position);
+                },
+                function () {
+                    // hover OUT
+                    Map.infoWindow.close(map, marker);
+                }
+            );
+
+            bounds.extend(marker.position);
         });
 
         var mc_options = {
@@ -468,8 +492,9 @@ var Map = {
             Map.oms.addMarker(markers[i]);
         }
 
-        Map.markerCluster.redraw_()
-
+        Map.markerCluster.redraw_();
+        window.map_object.fitBounds(bounds);
+        window.map_object.setZoom(16);
 
     },
 
