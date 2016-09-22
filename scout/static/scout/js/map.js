@@ -134,6 +134,9 @@ var Map = {
                 bounds.extend(marker.position);
 
             });
+
+            window.markers = markers;
+
             // attach events to markers
             oms.addListener("click", function (marker, event) {
                 var campus = Navigation.get_campus_selection();
@@ -201,6 +204,8 @@ var Map = {
                         Map._set_spidered_icon(marker);
                     });
                 }, 1);
+
+                Map.update_displayed_spots();
             });
 
             oms.addListener('spiderfy', function (markers) {
@@ -218,6 +223,28 @@ var Map = {
 
             Map.markerCluster = markerCluster;
         }
+    },
+
+    update_displayed_spots: function () {
+        var visible_markers = Map._get_visible_markers(window.map_object, window.markers);
+        var visible_spot_ids = [];
+        $.each(visible_markers, function(idx, marker){
+            visible_spot_ids.push(marker.spot.id);
+        });
+        List.filter_visible_spots(visible_spot_ids);
+    },
+
+    _get_visible_markers: function (map, markers) {
+        var visible_markers = [];
+        if (map !== undefined) {
+            var bounds = map.getBounds();
+            $.each(markers, function (idx, marker) {
+                if(bounds.contains(marker.getPosition())){
+                    visible_markers.push(marker);
+                }
+            });
+        }
+        return visible_markers;
     },
 
     _set_spidered_icon: function (marker) {
