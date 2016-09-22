@@ -289,11 +289,13 @@ var Map = {
 
             // center map direction on spot location
             spotPosition = new google.maps.LatLng(spot_lat, spot_lng);
+
             // set map options based on mobile or desktop
             if (isMobile !== undefined ) {
+                // mobile
                 mapOptions = {
                     center: spotPosition,
-                    zoom: 18,
+                    zoom: 17,
                     scrollwheel: false,
                     draggable: false,
                     disableDefaultUI: true,
@@ -301,6 +303,7 @@ var Map = {
                     disableDoubleClickZoom: true
                 };
             } else {
+                // desktop
                 mapOptions = {
                     center: spotPosition,
                     zoom: 18,
@@ -377,11 +380,14 @@ var Map = {
             });
             // add the marker position to boundary
             var bounds = new google.maps.LatLngBounds();
-            bounds.extend(marker.position);
-            window.map_bounds = bounds;
-            map.fitBounds(bounds);
 
             if (Geolocation.get_location_type() !== "default") {
+                // fit user location and spot on map
+                bounds.extend(marker.position);
+                window.map_bounds = bounds;
+                map.fitBounds(bounds);
+
+                // adds user location to map
                 Map.add_current_position_marker(map, pos);
             }
             window.map_object = map;
