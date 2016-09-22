@@ -141,6 +141,11 @@ var Filter = {
                     if (type_key == "building" || type_key == "capacity") {
                         type = "option";
                         state = "selected";
+                        // need better way to handle when building is selected
+                        if (type_key == "building") {
+                            $("#buildings_toggle").find("input[value=building_list]").prop("checked", true);
+                            $("#building_select").removeClass("visually-hidden");
+                        }
                     }
                     if (param_key == "open_now") {
                         param_val = "open_now";

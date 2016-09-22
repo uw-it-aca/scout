@@ -570,19 +570,19 @@ describe("Filter Tests", function() {
             var exp = "";
             assert.equal(result, exp);
         });
-        it('should return the right text with a STUDY URL with three different categories', function() {
+        it('should return the right text with a STUDY URL with four different categories', function() {
             global.window = new fakeWindow(
                 '/study/?resources0=has_outlets' +
                 '&noise0=quiet&food0=space'
             );
             var result = Filter._get_filter_label_text();
-            var exp = "Refreshments, Noise Level, Resources";
+            var exp = "Refreshments, Noise Level, Resources, Open Now";
             assert.equal(result, exp);
         });
         it('should return empty string if the STUDY URL doesnt contain any filters', function() {
             global.window = new fakeWindow('/study/');
             var result = Filter._get_filter_label_text();
-            var exp = "";
+            var exp = "Open Now";
             assert.equal(result, exp);
         });
         it('should return the right text with a STUDY URL containing multiple filters from same/different categories', function() {
@@ -591,7 +591,7 @@ describe("Filter Tests", function() {
                 '&type0=lounge&type1=outdoor&noise0=quiet'
             );
             var result = Filter._get_filter_label_text();
-            var exp = "Study Type, Noise Level, Resources";
+            var exp = "Study Type, Noise Level, Resources, Open Now";
             assert.equal(result, exp);
         });
         it('should return the right text with a TECH URL with two different categories', function() {
@@ -638,7 +638,7 @@ describe("Filter Tests", function() {
             assert.equal($("#filter_label_text").html(), "Restaurant Type");
         });
     });
-    
+
     describe("Init Events", function() {
         before(function() {
             global.$ = tools.jqueryFromHtml(
@@ -693,7 +693,7 @@ describe("Filter Tests", function() {
             assert.equal(events, undefined);
         });
     });
-    
+
     describe("Hours_To_Fuzzy", function() {
         it('should turn hours into Fuzzy Format Pt.1', function() {
             var result = Study_Filter.process_hours_into_fuzzy("Tuesday", "12:00", "AM");
@@ -704,7 +704,7 @@ describe("Filter Tests", function() {
             var result = Study_Filter.process_hours_into_fuzzy("Tuesday", "4:30", "PM");
             var exp = "Tuesday,16:30:00"
             assert.equal(result, exp);
-        }); 
+        });
         it('should turn hours into Fuzzy Format Pt.3', function() {
             var result = Study_Filter.process_hours_into_fuzzy("Sunday", "12:30", "PM");
             var exp = "Sunday,12:30:00"
@@ -727,7 +727,7 @@ describe("Filter Tests", function() {
             var result = Study_Filter.process_hours_from_fuzzy("Tuesday,16:30:00");
             var exp = ["Tuesday", "04:30", "PM"];
             assert.deepEqual(result, exp);
-        }); 
+        });
         it('should turn fuzzy into Hours Format Pt.3', function() {
             var result = Study_Filter.process_hours_from_fuzzy("Sunday,12:30:00");
             var exp = ["Sunday", "12:30", "PM"];
@@ -739,32 +739,32 @@ describe("Filter Tests", function() {
             assert.deepEqual(result, exp);
         });
     });
-    
+
     describe("Populate Hours", function() {
         it('should populate the hours correctly', function() {
             // see if a set of filter params will accurately populate the options for hours
             global.$ = tools.jqueryFromHtml(
                 '<select id="day-from"><option value="Monday"></option>' +
                 '<option value="Tuesday"></option></select>' +
-                '<select id="hour-from">' + 
-                '<option value="04:30"></option>' + 
+                '<select id="hour-from">' +
+                '<option value="04:30"></option>' +
                 '<option value="02:00"></option>' +
-                '</select>' + 
-                '<select id="ampm-from">' + 
+                '</select>' +
+                '<select id="ampm-from">' +
                 '<option value="AM"></option>' +
                 '<option value="PM"></option>' +
                 '</select>' +
-                '<select id="day-until">' + 
-                '<option value="Monday"></option>' + 
+                '<select id="day-until">' +
+                '<option value="Monday"></option>' +
                 '<option value="Tuesday"></option>' +
                 '</select>' +
-                '<select id="hour-until">' + 
+                '<select id="hour-until">' +
                 '<option value="03:00"></option>' +
                 '<option value="05:30"></option>' +
-                '</select>' + 
-                '<select id="ampm-until">' + 
+                '</select>' +
+                '<select id="ampm-until">' +
                 '<option value="AM"></option>' +
-                '<option value="PM"></option>' + 
+                '<option value="PM"></option>' +
                 '</select>'
             );
             // before the value should be the first option
@@ -790,19 +790,19 @@ describe("Filter Tests", function() {
             global.$ = tools.jqueryFromHtml(
                 '<select id="day-from">' +
                 '<option value="Tuesday" checked="true"></option></select>' +
-                '<select id="hour-from">' + 
+                '<select id="hour-from">' +
                 '<option value="02:00" checked="true"></option>' +
-                '</select>' + 
-                '<select id="ampm-from">' + 
+                '</select>' +
+                '<select id="ampm-from">' +
                 '<option value="AM" checked="true"></option>' +
                 '</select>' +
-                '<select id="day-until">' + 
+                '<select id="day-until">' +
                 '<option value="Tuesday" checked="true"></option>' +
                 '</select>' +
-                '<select id="hour-until">' + 
+                '<select id="hour-until">' +
                 '<option value="03:00" checked="true"></option>' +
-                '</select>' + 
-                '<select id="ampm-until">' + 
+                '</select>' +
+                '<select id="ampm-until">' +
                 '<option value="PM" checked="true"></option>' +
                 '</select>'
             );

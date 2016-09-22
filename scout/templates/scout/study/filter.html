@@ -107,14 +107,14 @@
                 <fieldset id="hours_select" style="width:100%;">
                     <legend>Hours</legend>
 
-                    <small style="margin-bottom:10px;display:block;"><em>Select open hours (defaults to open now if nothing chosen)</em></small>
+                    <small style="margin-bottom:10px;display:block;"><em>Select open hours (defaults to open now)</em></small>
 
                     <div id="hours_toggle" class="scout-filter-toggle">
-                        <label><input type="radio" name="optionsHours" id="open_now" value="open_now" checked="">Open now</label>
-                        <label><input type="radio" name="optionsHours" id="hours_list_input" value="hours_list">Specify day &amp; time</label>
+                        <label><input type="radio" name="optionsHours" value="open_now" checked>Open now</label>
+                        <label><input type="radio" name="optionsHours" value="hours_list">Specify day &amp; time</label>
                     </div>
 
-                    <div class="scout-filter-toggle-options" style="display:none;" id="hours_list">
+                    <div class="scout-filter-toggle-options visually-hidden" id="hours_list">
                         <div>
                             <span class="hours-from" style="width:40px;">Start: </span>
                             <select id="day-from" style="width:100px;">
@@ -210,11 +210,11 @@
                     <legend>Building(s)</legend>
 
                     <div id="buildings_toggle" class="scout-filter-toggle">
-                        <label><input type="radio" name="optionsLocations" id="entire_campus" value="entire_campus" checked="">Entire campus</label>
-                        <label><input type="radio" name="optionsLocations" id="building_list_input" value="building_list">Specific buildings</label>
+                        <label><input type="radio" name="optionsLocations" value="entire_campus" checked>Entire campus</label>
+                        <label><input type="radio" name="optionsLocations" value="building_list">Specific buildings</label>
                     </div>
 
-                    <div id="building_select" class="scout-filter-toggle-options" style="display:none;">
+                    <div id="building_select" class="scout-filter-toggle-options visually-hidden">
                         <!--Needs to be updated dynamically!-->
                         <select multiple style="width:100%;">
                             <optgroup disabled hidden></optgroup>

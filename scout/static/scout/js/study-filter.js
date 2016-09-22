@@ -23,8 +23,13 @@ var Study_Filter = {
         $.each(param_types, function(type, param){
             var result = $("#" + param).map(function() {
                 var val = $(this).val();
-                // case to handle default none selected!
-                if(type == "capacity" && val == "0") {
+                // First case to handle default selected for capacity. Second case
+                // to handle when entire campus is selected in buildings.
+                // Instead of manually treating cases, need a better way to handle
+                // this.
+                if(type == "capacity" && val == "1") {
+                    val = null;
+                } else if (type == "building" && $("#buildings_toggle input:checked").val() == "entire_campus") {
                     val = null;
                 }
                 return val;
@@ -32,8 +37,12 @@ var Study_Filter = {
 
             params = $.extend(params, Filter._get_params_for_select(result, type));
         });
-        // gets the parameter for start and stop hours
-        params = $.extend(params, Study_Filter.get_processed_hours());
+
+        // Only populates hours if specify day and time is selected
+        if ($("#hours_toggle input:checked").val() == "hours_list") {
+            // gets the parameter for start and stop hours
+            params = $.extend(params, Study_Filter.get_processed_hours());
+        }
 
         // Store these study_filter_params
         sessionStorage.setItem("study_filter_params", JSON.stringify(params));
@@ -109,21 +118,19 @@ var Study_Filter = {
             Study_Filter.reset_filter();
         });
 
-        $("input[name$='optionsHours']").click(function() {
+        $("#hours_toggle input").click(function(){
             if ($(this).val() == "hours_list") {
-                $("#hours_list").show();
-            }
-            else {
-                $("#hours_list").hide();
+                $("#hours_list").removeClass("visually-hidden");
+            } else {
+                $("#hours_list").addClass("visually-hidden");
             }
         });
 
-        $("input[name$='optionsLocations']").click(function() {
+        $("#buildings_toggle input").click(function() {
             if ($(this).val() == "building_list") {
-                $("#building_select").show();
-            }
-            else {
-                $("#building_select").hide();
+                $("#building_select").removeClass("visually-hidden");
+            } else {
+                $("#building_select").addClass("visually-hidden");
             }
         });
 
@@ -207,6 +214,11 @@ var Study_Filter = {
             $("#day-until").val(result[0]);
             $("#hour-until").val(result[1]);
             $("#ampm-until").val(result[2]);
+
+            // Find a better way of selecting input and displaying the hours_list
+            $("#hours_toggle").find("input[value=hours_list]").prop("checked", true);
+            $("#hours_list").removeClass("visually-hidden");
+
         }
     },
 
