@@ -119,10 +119,6 @@ var Map = {
                         );
                         infoWindow.open(map);
                         infoWindow.setPosition(marker.position);
-                        if (map.getZoom() != 16){
-                            map.setZoom(16); //default zoom level
-                        }
-                        // map.setCenter(marker.getPosition());
                     },
                     function () {
                         // hover OUT
