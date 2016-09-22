@@ -79,7 +79,7 @@ var Study_Filter = {
             "resources": "Resources",
             "reservation": "Reservability",
             "capacity": "Capacity",
-            "fuzzy_hours": "Hours"
+            "open_at": "Hours"
         };
         $.each(filter_labels, function(filter, label){
             if(url.indexOf(filter) > -1){
@@ -157,27 +157,27 @@ var Study_Filter = {
     get_processed_hours: function(){
         var params = {};
 
-        // calculates and stores fuzzy_hours_start
+        // calculates and stores open_at
         var day = $("#day-from option:selected").val();
         var hours = $("#hour-from option:selected").val();
         var period = $("#ampm-from option:selected").val();
-        params["fuzzy_hours_start"] = Study_Filter.process_hours_into_fuzzy(day, hours, period);
+        params["open_at"] = Study_Filter.process_hours_into_server_hours(day, hours, period);
 
-        // calculates and stores fuzzy_hours_end
+        // calculates and stores open_until
         var day = $("#day-until option:selected").val();
         var hours = $("#hour-until option:selected").val();
         var period = $("#ampm-until option:selected").val();
-        params["fuzzy_hours_end"] = Study_Filter.process_hours_into_fuzzy(day, hours, period);
+        params["open_until"] = Study_Filter.process_hours_into_server_hours(day, hours, period);
 
         // checks if start and stop are not the same.
-        if (params["fuzzy_hours_start"] == params["fuzzy_hours_end"]) {
+        if (params["open_at"] == params["open_until"]) {
             params = {};
         }
 
         return params;
     },
 
-    process_hours_into_fuzzy: function(day, hours, period){
+    process_hours_into_server_hours: function(day, hours, period){
         var result = day + ",";
         if (period == "AM") {
             if(hours.indexOf("12:") > -1) {
@@ -189,7 +189,7 @@ var Study_Filter = {
                 hours = (parseInt(tempHour[0]) + 12) + ":" + tempHour[1];
             }
         }
-        result += hours + ":00";
+        result += hours;
         return result;
     },
 
@@ -199,18 +199,18 @@ var Study_Filter = {
             return;
         }
 
-        // check if fuzzy_hours_start and fuzzy_hours_end exist
-        if (params["fuzzy_hours_start"] !== undefined && params["fuzzy_hours_end"] !== undefined) {
+        // check if open_at and open_until exist
+        if (params["open_at"] !== undefined && params["open_until"] !== undefined) {
             var result = [];
 
             // populate hour from filters
-            result = Study_Filter.process_hours_from_fuzzy(params["fuzzy_hours_start"]);
+            result = Study_Filter.process_hours_from_server_hours(params["open_at"]);
             $("#day-from").val(result[0]);
             $("#hour-from").val(result[1]);
             $("#ampm-from").val(result[2]);
 
             // populate hour until filters
-            result = Study_Filter.process_hours_from_fuzzy(params["fuzzy_hours_end"]);
+            result = Study_Filter.process_hours_from_server_hours(params["open_until"]);
             $("#day-until").val(result[0]);
             $("#hour-until").val(result[1]);
             $("#ampm-until").val(result[2]);
@@ -222,11 +222,11 @@ var Study_Filter = {
         }
     },
 
-    // method takes in one parameter, the fuzzy hours and returns a list with day,
+    // method takes in one parameter, the server_hours and returns a list with day,
     // hour and period in order
-    process_hours_from_fuzzy: function(fuzzy) {
+    process_hours_from_server_hours: function(server_hours) {
         var result = [];
-        fuzzy = fuzzy.split(",");
+        server_hours = server_hours.split(",");
 
         var day = "";
         var hours = "";
@@ -234,11 +234,11 @@ var Study_Filter = {
         var period = "AM";
 
         // add the day to the list
-        day = fuzzy[0];
+        day = server_hours[0];
         result.push(day);
 
         // add the hours to the list
-        hours = fuzzy[1].split(":");
+        hours = server_hours[1].split(":");
         hours[0] = parseInt(hours[0]);
         if (hours[0] >= 12) {
             period = "PM";

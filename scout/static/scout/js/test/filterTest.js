@@ -694,47 +694,47 @@ describe("Filter Tests", function() {
         });
     });
 
-    describe("Hours_To_Fuzzy", function() {
-        it('should turn hours into Fuzzy Format Pt.1', function() {
-            var result = Study_Filter.process_hours_into_fuzzy("Tuesday", "12:00", "AM");
-            var exp = "Tuesday,00:00:00"
+    describe("Hours_To_Server_Hours", function() {
+        it('should turn hours into server_hours Format Pt.1', function() {
+            var result = Study_Filter.process_hours_into_server_hours("Tuesday", "12:00", "AM");
+            var exp = "Tuesday,00:00"
             assert.equal(result, exp);
         });
-        it('should turn hours into Fuzzy Format Pt.2', function() {
-            var result = Study_Filter.process_hours_into_fuzzy("Tuesday", "4:30", "PM");
-            var exp = "Tuesday,16:30:00"
+        it('should turn hours into server_hours Format Pt.2', function() {
+            var result = Study_Filter.process_hours_into_server_hours("Tuesday", "4:30", "PM");
+            var exp = "Tuesday,16:30"
             assert.equal(result, exp);
         });
-        it('should turn hours into Fuzzy Format Pt.3', function() {
-            var result = Study_Filter.process_hours_into_fuzzy("Sunday", "12:30", "PM");
-            var exp = "Sunday,12:30:00"
+        it('should turn hours into server_hours Format Pt.3', function() {
+            var result = Study_Filter.process_hours_into_server_hours("Sunday", "12:30", "PM");
+            var exp = "Sunday,12:30"
             assert.equal(result, exp);
         });
-        it('should turn hours into Fuzzy Format Pt.4', function() {
-            var result = Study_Filter.process_hours_into_fuzzy("Friday", "08:30", "AM");
-            var exp = "Friday,08:30:00"
+        it('should turn hours into server_hours Format Pt.4', function() {
+            var result = Study_Filter.process_hours_into_server_hours("Friday", "08:30", "AM");
+            var exp = "Friday,08:30"
             assert.equal(result, exp);
         });
     });
 
-    describe("Fuzzy_To_Hours", function() {
-        it('should turn fuzzy into Hours Format Pt.1', function() {
-            var result = Study_Filter.process_hours_from_fuzzy("Tuesday,00:00:00");
+    describe("Server_Hours_To_Hours", function() {
+        it('should turn server_hours into Hours Format Pt.1', function() {
+            var result = Study_Filter.process_hours_from_server_hours("Tuesday,00:00");
             var exp = ["Tuesday", "12:00", "AM"];
             assert.deepEqual(result, exp);
         });
-        it('should turn fuzzy into Hours Format Pt.2', function() {
-            var result = Study_Filter.process_hours_from_fuzzy("Tuesday,16:30:00");
+        it('should turn server_hours into Hours Format Pt.2', function() {
+            var result = Study_Filter.process_hours_from_server_hours("Tuesday,16:30");
             var exp = ["Tuesday", "04:30", "PM"];
             assert.deepEqual(result, exp);
         });
-        it('should turn fuzzy into Hours Format Pt.3', function() {
-            var result = Study_Filter.process_hours_from_fuzzy("Sunday,12:30:00");
+        it('should turn server_hours into Hours Format Pt.3', function() {
+            var result = Study_Filter.process_hours_from_server_hours("Sunday,12:30");
             var exp = ["Sunday", "12:30", "PM"];
             assert.deepEqual(result, exp);
         });
-        it('should turn fuzzy into Hours Format Pt.4', function() {
-            var result = Study_Filter.process_hours_from_fuzzy("Friday,08:30:00");
+        it('should turn server_hours into Hours Format Pt.4', function() {
+            var result = Study_Filter.process_hours_from_server_hours("Friday,08:30");
             var exp = ["Friday", "08:30", "AM"];
             assert.deepEqual(result, exp);
         });
@@ -770,7 +770,7 @@ describe("Filter Tests", function() {
             // before the value should be the first option
             assert.equal($("#day-from").val(), 'Monday');
             var sessionVars = new fakeSess(
-                { study_filter_params: '{"fuzzy_hours_start":"Tuesday,04:30:00", "fuzzy_hours_end":"Tuesday,05:30:00"}'}
+                { study_filter_params: '{"open_at":"Tuesday,04:30", "open_until":"Tuesday,05:30"}'}
             );
             global.sessionStorage = sessionVars;
             Study_Filter.populate_hour_filters();
@@ -808,7 +808,7 @@ describe("Filter Tests", function() {
             );
             var sessionVars = new fakeSess();
             var result = Study_Filter.get_processed_hours();
-            assert.deepEqual(result, { fuzzy_hours_start: 'Tuesday,02:00:00', fuzzy_hours_end: 'Tuesday,15:00:00' });
+            assert.deepEqual(result, { open_at: 'Tuesday,02:00', open_until: 'Tuesday,15:00' });
         });
     });
 });
