@@ -12,14 +12,14 @@
 
     <!-- food filter results -->
     <div class="scout-filter-results" aria-labelledby="filter_header">
-        <div class="scout-filter-results-by">
+        <div class="scout-filter-results-by visually-hidden" id="filter_text_holder">
             <h2 class="visually-hidden" id="filter_header">Filters</h2>
             <span class="filter-results-label">Filtering by:</span>
             <div id="filter_label_text" class="scout-filter-results-text"><span class="visually-hidden">No filter selected</span>---</div>
         </div>
         <div class="scout-filter-results-results clearfix">
             <span class="filter-results-label"><span class="visually-hidden">Number of </span>Spaces<span class="visually-hidden"> in list</span>:</span>
-            <div class="scout-filter-results-count">{{ spots|length }}</div>
+            <div id="scout_filter_results_count" class="scout-filter-results-count">{{ spots|length }}</div>
             <div class="scout-filter-results-actions">
                 <a id="reset_food_list" class="action-cancel visually-hidden" role="button" title="Clear filters">
                     <i class="fa fa-refresh"></i>Reset<span class="visually-hidden"> filter</span>

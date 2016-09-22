@@ -112,6 +112,50 @@ var List = {
                             "items" : items})
         });
         return spot_data
+    },
+
+    filter_visible_spots: function(spot_ids){
+        var list_items = $("li.scout-list-item");
+        var list_count = 0;
+        $.each(list_items, function(idx, item){
+            var list_spot_id = $(item).attr('id');
+            if ($.inArray(list_spot_id, spot_ids) === -1){
+                // Spot not visible, hide it
+                $(item).hide();
+            } else {
+                //Spot visible, show it
+                $(item).show();
+                list_count += 1;
+            }
+        });
+
+        // use item count rather than spot count for tech items
+        if (window.location.pathname.indexOf("tech") !== -1) {
+            list_count = $(".scout-list-item-object:visible").length;
+        }
+
+        $("#scout_filter_results_count").html(list_count);
+        List._hide_show_building_headers();
+    },
+
+    _hide_show_building_headers: function(){
+        // Hides orphaned building headers/shows them when spots are unhidden
+        var buildings = $("li.scout-list-building");
+        $.each(buildings, function(idx, building) {
+            // Not using jquery visibility selector as it checks if ancestor is hidden
+            var building_spots = $(building).find("li.scout-list-item");
+            var visible_spots = [];
+            $.each(building_spots, function(idx, spot){
+                if($(spot).css('display') != "none"){
+                    visible_spots.push(spot);
+                }
+            });
+            if (visible_spots.length === 0) {
+                $(building).hide();
+            } else {
+                $(building).show();
+            }
+        });
     }
 
 };
