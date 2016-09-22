@@ -116,6 +116,7 @@ var List = {
 
     filter_visible_spots: function(spot_ids){
         var list_items = $("li.scout-list-item");
+        var list_count = 0;
         $.each(list_items, function(idx, item){
             var list_spot_id = $(item).attr('id');
             if ($.inArray(list_spot_id, spot_ids) === -1){
@@ -124,8 +125,10 @@ var List = {
             } else {
                 //Spot visible, show it
                 $(item).show();
+                list_count += 1;
             }
         });
+        $("#scout_filter_results_count").html(list_count);
         List._hide_show_building_headers();
     },
 
