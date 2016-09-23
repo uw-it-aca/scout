@@ -103,10 +103,11 @@ class MainNavigationTest(ScoutTestCase):
         soup = self.get_soup(path)
         self.check_footer_links(soup)
 
+
     def check_footer_links(self, soup):
         """Checks the footer links at the given soup"""
         footerLinks = soup.select('div#footer a')
-        privacyLink, termsLink = footerLinks
+        privacyLink, termsLink, mailtoLink = footerLinks
         self.assertEqual(
             privacyLink.get('href'),
             'http://www.washington.edu/online/privacy/'
@@ -114,4 +115,8 @@ class MainNavigationTest(ScoutTestCase):
         self.assertEqual(
             termsLink.get('href'),
             'http://www.washington.edu/online/terms/'
+        )
+        self.assertEqual(
+            mailtoLink.get('href'),
+            'mailto:help@uw.edu?subject=Scout:%20Help%20needed'
         )
