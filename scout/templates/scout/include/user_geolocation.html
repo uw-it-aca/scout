@@ -1,0 +1,33 @@
+<div class="scout-geolocation">
+    <h2 class=" visually-hidden">Your location information</h2>
+    <div class="scout-geolocation-position">
+
+        <span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-map-marker fa-stack-1x fa-inverse"></i>
+        </span>
+
+        <span class="scout-geolocation-loading" style="" aria-hidden="true">Loading...</span>
+
+        <span class="scout-geolocation-user" id="default_position">
+
+            <span class="scout-geolocation-location">{{campus|title}} Campus <span>(default location)</span></span>
+            <span class="scout-geolocation-action">
+               <button id="use_location" aria-label="Turn on Location Sharing"><i class="fa fa-toggle-on fa-flip-horizontal" aria-hidden="true"></i></button>
+            </span>
+        </span>
+
+        <span class="scout-geolocation-user" id="shared_position">
+            <span class="scout-geolocation-location">Your location <span>(shared)</span></span>
+            <span class="scout-geolocation-action">
+               <button id="forget_location" aria-label="Turn off Location Sharing"><i class="fa fa-toggle-on" aria-hidden="true"></i></button>
+            </span>
+        </span>
+
+    </div>
+
+    <div class="scout-geolocation-error closed" id="geolocation_error">
+        <div>We were unable to get your current location. The default location will be used instead. <span>Close</span></div>
+    </div>
+
+</div>

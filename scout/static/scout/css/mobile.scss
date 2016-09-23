@@ -1,36 +1,117 @@
-// turbolinks
+/***
+Mobile styles not needed in the critical loading. These are mostly the below the
+fold styles and general helpers.
+***/
 
-html.turbolinks-progress-bar::before {
-  background-color: red !important;
-  height: 5px !important;
+// sass variables
+
+$scout-purple: #6564A8;
+$scout-blue: #25738f;
+$scout-link: #25738f;
+$footer-height: 40px;
+
+// temporary classes (delete)
+
+.dummy {
+    color: #bdc3c7 !important;
+    * { color: #bdc3c7 !important; }
 }
 
+.scope {
+    color: #e74c3c !important;
+    * { color: #e74c3c !important; }
+}
 
-// scout mobile
+// scrolling body
 
-.scout-scroll { margin-top: 110px; }
+.scout-scroll {
 
-.scout-content { margin: 20px;
-    
-    .scout-pjax-loading { line-height: 300px; text-align: center; color: #ccc; }
-    
-    h3 { font-family: 'Oswald', sans-serif; font-weight: 300; }
-    
-    .scout-list { 
-        h4 { color: #aaa; }
-        p { color: #333; }
-        a { text-decoration: none; }
+    .scout-content {
+
+        // details
+        .scout-details-container {
+
+            .scout-spot-meta { }
+
+            .scout-spot-notes { color: #767676; font-size: 14px; line-height: 20px; }
+
+            .scout-spot-contact-info { }
+
+            .scout-spot-content {
+
+                // spot details
+                .scout-spot-location { margin-bottom: 20px; }
+
+                .scout-spot-description { margin-bottom: 20px; color: #333; font-size: 14px; line-height: 20px; }
+
+                .scout-spot-hours { margin-bottom: 20px; color: #333; font-size: 14px;
+
+                    ul { margin: 0; padding: 0;
+                        li { list-style: none; white-space: nowrap; color: #666; line-height: 20px;
+
+                            span { display: inline-block;
+                                &.day { width: 110px;  text-transform: capitalize; color: #222; }
+                                &.closed { color: #a94442; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; }
+                            }
+                        }
+                    }
+                    span { display: inline-block; }
+                }
+
+                .scout-spot-building-info { color: #333; font-size: 14px; line-height: 20px; }
+
+                .scout-spot-map { height:200px; margin-bottom: 10px; }
+                .scout-spot-map-link { margin-bottom: 15px; font-size: 14px;
+
+                    a { display: block; text-decoration: none; line-height: 30px;
+
+                        .fa-stack { font-size: 12px; }
+                        .fa-circle { color: $scout-blue; }
+
+                        .scout-map-action-text { color: $scout-link; text-decoration: underline; }
+
+                    }
+
+                }
+
+                .scout-spot-reservation { margin-bottom: 20px; color: #333; font-size: 14px; line-height: 16px; }
+
+                .scout-spot-payment { margin-bottom: 20px; color: #333; font-size: 14px;
+
+                    ul { margin: 0; padding: 0;
+                        li { list-style: none; line-height: 20px; }
+                    }
+                    span { margin-right: 10px; }
+                }
+
+                .scout-spot-coupon { color: #333; font-size: 14px; line-height: 16px;
+
+                    .scout-spot-coupon-expire { margin: 10px 0;
+                        span { color: #767676; }
+                    }
+                    a { display: block; text-decoration: none; line-height: 30px;
+
+                        .fa-stack { font-size: 12px; }
+                        .fa-circle { color: $scout-blue; }
+
+                        .scout-coupon-action-text { color: $scout-link; text-decoration: underline; }
+
+                    }
+
+                }
+
+            }
+        }
+
     }
+
 }
 
-.scout-map-canvas { height: 100%; margin: 0px; padding: 0px; }
+// google maps
 
-.overlay {
-  position:absolute;
-  top:0;
-  left:0;    
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,.5);
+.map-label { background: none; color: #f9f9f9; /*cursor: default !important;*/
+    .marker-text { color: #000; margin-left: 8px; text-shadow: 0 0 2px #fff, 0 0 2px #fff; font-weight: bold; display: inline-block; white-space: nowrap;}
+    .fa-cutlery:before { margin-left: 1.8px; }
 }
 
+.cluster div { color: #fff !important; font-weight: normal !important; }

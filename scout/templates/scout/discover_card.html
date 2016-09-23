@@ -1,0 +1,39 @@
+{% load staticfiles %}
+
+{% block content %}
+<div class="scout-card scout-discover-content">
+    <h3>
+        <span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i> <i class="fa {% if spot_type == "food" %} fa-cutlery {% endif %} {% if spot_type == "study" %} fa-graduation-cap {% endif %}fa-stack-1x fa-inverse"></i></span>
+        <span class="scout-card-title">{{ card_title }}</span>
+    </h3>
+    <ol aria-label="{{ card_title }}">
+        {% for spot in spots %}
+        <li id="{{ card_title|slugify }}{{ spot.spot_id }}" data-lat="{{ spot.latitude }}" data-lon="{{ spot.longitude }}" data-spot-name="{{spot.name}}" data-spot-building="{{ spot.building_name }}" aria-labelledby="spot_header_{{spot.spot_id}}">
+            <a href="/{{campus}}/{{ spot_type }}/{{ spot.spot_id }}/" class="clearfix" title="Details: {{spot.name}}">
+                {% if spot.images %}
+                <span class="scout-spot-image" style="background-image: url('/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}/?width=100');">&nbsp;</span>
+                {% else %}
+                <span class="scout-spot-image" style="background: #e5e6e9 url('{% static "scout/img/placeholder-200.png" %}') no-repeat center center; background-size: contain;">&nbsp;</span>
+                {% endif %}
+                <h4 class="scout-spot-name" id="spot_header_{{spot.spot_id}}">{{spot.name}}</h4>
+
+                <div class="scout-spot-location"><span class="visually-hidden">Distance from you: </span><span class="scout-spot-distance"></span>&nbsp;mi.&nbsp;&nbsp; <span class="visually-hidden">Building: </span>{% if spot.building_name %}{{ spot.building_name }}{% else %}<span style="color:red;">missing building_name</span>{% endif %}</div>
+
+                <span>{% if not spot.is_open %}<span class="visually-hidden">Status: </span><span class="closed">Currently closed</span>{% endif %}</span>
+            </a>
+        </li>
+        {% endfor %}
+
+        <li>
+            <a href="/{{campus}}/{{ spot_type }}/?{{ card_filter_url }}" class="scout-spot-discover-action" title="{% if spot_type == "food" %}View more spaces that are {{ card_title }}{% endif %}{% if spot_type == "study" %}View more spaces that are {{ card_title }}{% endif %}{% if spot_type == "tech" %}View more items that are {{ card_title }}{% endif %}">
+                <span class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-share fa-stack-1x fa-inverse"></i>
+                </span>
+                <span class="scout-spot-action-text">View more...</span>
+            </a>
+        </li>
+
+    </ol>
+</div>
+{% endblock %}

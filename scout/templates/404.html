@@ -1,0 +1,28 @@
+{% extends "scout/base.html" %}
+{% load staticfiles %}
+
+{% block title %}Page not found{% endblock %}
+
+{% block web_content %}
+
+<div id="page_404" class="scout-content">
+    <div class="scout-card scout-error" style="margin:0;">
+        <h2 class="visually-hidden">404 error</h2>
+        <p class="scout-error-msg">We can't find the page you're looking for.</p>
+
+        <div class="scout-error-body">
+            <p>You may want to:</pp>
+            <ul>
+                <li>Check the URL to see if something was mistyped.</li>
+                <li>Go to the <a href="/">homepage</a> and attempt to find the place you are looking for.</p>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
+
+{% block secondary_content %}
+<div style="background:url('{% static "scout/img/seattle/WinterCampus_1-X3.jpg" %}') no-repeat; background-size:cover; background-position:center center; position:absolute; top:0; bottom:0; width: 100%;">&nbsp;</div>
+{% endblock %}

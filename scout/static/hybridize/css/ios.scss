@@ -1,0 +1,79 @@
+/*** framework 7 overrides ***/
+
+.views { overflow: hidden !important; overflow-x: hidden !important; overflow-y: auto !important; }
+
+.pages { position: relative; background: none !important;
+    .page {
+        .page-content { overflow-x: hidden !important; }
+    }
+}
+
+.list-block { margin: 0;
+
+	ul:before { height: 0; }
+
+	ul {
+		li { }
+	}
+
+    .item-inner { overflow: hidden;
+
+        .item-title-row { background-image: none !important; }
+
+        .item-title {
+            span { color: #666; font-size: 80%; display: block; overflow: hidden; text-overflow: ellipsis; }
+        }
+
+        .item-after {
+            .fa-desktop { line-height: 23px; }
+        }
+
+    }
+
+    // group lists styling
+    .list-group {
+        .list-group-title {
+            text-transform: uppercase;;
+            font-size: 13px;
+            color: #555;
+            line-height: 28px;
+            padding-left: 15px;
+        }
+    }
+
+}
+
+.item-input { text-align: right;
+	input, select { text-align: right; }
+
+	/*select { width: auto; margin-right: 0; display: inline-block; }*/
+}
+
+/** cards not really in ios.. flat and full width **/
+.card {  margin: 0 !important; border-radius: 0; box-shadow: none;
+    .card-header { border-radius: 0; color: #fff; }
+    .card-content {
+        h4 {  }
+    }
+}
+
+/*** ios hybrid reset ***/
+
+body { background: #efeff4 !important; padding: 0 !important; margin: 0 !important; overflow-x: hidden; }
+
+.scout-list {
+
+
+
+}
+
+// webkit sticky header on scroll
+.stuck {
+  position: -webkit-sticky;
+  position: -moz-sticky;
+  position: -ms-sticky;
+  position: -o-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+}

@@ -1,0 +1,67 @@
+{% extends "hybridize/base.html" %}
+{% load staticfiles %}
+{% load scout_filters %}
+
+{% block title %}Food{% endblock %}
+
+{% block hybrid_content %}
+
+<div class="card">
+    <div class="card-content">
+        <div class="card-content-inner">
+
+            <div><a href="/h/food/filter/">Filter</a> (handle natively)</div>
+
+            <div class="row no-gutter">
+                <div class="col-66">
+                    Filtering by: sadfkjasdjf lk
+                </div>
+                <div class="col-33" style="text-align:right;">
+                    {{ spots|length }} spaces
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="list-block media-list scout-list">
+
+    <div class="list-group">
+    <ul>
+
+        <li class="list-group-title">Spaces</li>
+        {% for spot in spots %}
+        <li>
+            <a href="/h/{{campus}}/food/{{ spot.spot_id }}/" class="item-link item-content">
+                <div class="item-media">
+
+                    {% if spot.images %}
+                    <div class="scout-spot-image" style="background: url('/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}/?width=100') no-repeat center center; background-size: cover !important; width:80px; height:80px">&nbsp;</div>
+                    {% else %}
+                    <div class="scout-spot-image" style="background: #e5e6e9 url('{% static "scout/img/placeholder-200.png" %}') no-repeat center center; background-size: cover !important; width:80px; height:80px">&nbsp;</div>
+                    {% endif %}
+
+                </div>
+                <div class="item-inner">
+                    <div class="item-title-row">
+                        <div class="item-title">{{ spot.name }}</div>
+                    </div>
+                    <div class="item-subtitle">
+                        <div style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{% if spot.building_name %}{{ spot.building_name }}{% else %} <span style="color:red;">missing building_name</span> {% endif %}</div>
+
+                    </div>
+                    <div class="item-text">
+                        {% if spot.spot_types %}{% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}</span>{% endfor %}{% else %} <span style="color:red;">SPOT_TYPE</span> {% endif %}
+                        <div style="font-size:12px;">{% if spot.is_open %}<span class="open">Open now</span>{% else %}<span class="closed" style="color:#A94441;">Currently closed</span>{% endif %}</span></div>
+                    </div>
+                </div>
+            </a>
+        </li>
+        {% endfor %}
+
+    </ul>
+</div>
+
+</div>
+{% endblock %}

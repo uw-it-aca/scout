@@ -1,224 +1,92 @@
-{% extends is_hybrid|yesno:"hybridize/base.html,scout/app.html" %}
+{% extends "scout/base.html" %}
 {% load staticfiles %}
+{% load scout_filters %}
 
 {% block title %}Discover{% endblock %}
 
 {% block web_content %}
 
-<h2>Discover</h2>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non urna et lorem venenatis varius quis sit amet dui. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur a nisi odio.</p>
+<div id="page_discover" class="scout-content">
 
-<p>Donec et nulla auctor massa pharetra adipiscing ut sit amet sem. Suspendisse molestie velit vitae mattis tincidunt. Ut sit amet quam mollis, vulputate turpis vel, sagittis felis. </p>   
+    {% if request.is_mobile or request.is_tablet %}{% include "scout/include/user_geolocation.html" %}{% endif %}
 
-<!--
-<h4>Restaurant types:</h4>
-<div>
-    <ul>
-        <li><a href="/?type=cafe">Cafes</a></li>
-        <li><a href="/?type=fine_dining">Fine Dining</a></li>
-        <li><a href="/?type=cafeteria">Cafeteria</a></li>
-        <li><a href="/?type=food_truck">Food Trucks</a></li>
-        <li><a href="/?type=market">Markets</a></li>
-    </ul>
+    <div class="scout-discover-container" style="position:relative;" role="main" aria-labelledby="campus_heading">
+
+        {% if campus == 'seattle' %}
+        <div class="scout-discover-image" style="background-image:url('{% static "scout/img/seattle/IMG_3973-M.jpg" %}'); background-size:cover; color:#fff;">
+        {% elif campus == 'bothell' %}
+        <div class="scout-discover-image" style="background-image:url('{% static "scout/img/bothell/mascot-w.jpg" %}'); background-size:cover; color:#fff;position:relative;">
+            <span style="position:absolute; bottom:10px; right:10px;z-index:999; font-size:11px;">
+                <a data-flickr-embed="true" style="color:#ccc;text-decoration:none;" href="https://www.flickr.com/photos/121597634@N07/13567711533/in/dateposted/" title="The Big Bronze W is unveiled by Chancellor Yeigh and Holly Husky.">
+        <i class="fa fa-flickr" aria-hidden="true"></i> uw bothell</a>
+            </span>
+        {% elif campus == 'tacoma' %}
+        <div class="scout-discover-image" style="background-image:url('{% static "scout/img/tacoma/sign-w.jpg" %}'); background-size:cover; color:#fff;position:relative;">
+            <span style="position:absolute; bottom:10px; right:10px;z-index:999; font-size:11px;">
+                <a data-flickr-embed="true" style="color:#ccc;text-decoration:none;" href="https://www.flickr.com/photos/sounderbruce/20223492896/in/photolist-wP5FS1-chU8oQ-4mgazS-oijizj-hKkXFi-hKm5rf-nFeTD2-9C2pvQ-cir8Gu-3Z66JB-5DBFMr-cBE61m-b6U5hH-dTEgwg-b6U2mP-hKmG7v-9C2psE-8y3xBk-hKjM8Z-4QrNFY-97gKtH-4kRddt-bLKeEe-aNmw2k-4QrNR7-edPXK-vUwA7B-785ZuJ-7NgZB5-a4K9nG-ycLbK-dr6BAe-hKkJ1z-dTE1Dv-5s3zBb-aNmwAZ-7fizsJ-hKkTyR-a5y1Xt-e5Qv4-f5dXVN-hKkEZy-64G2bG-84yLLo-hKm8dC-PJStW-wyHuZ7-ycJ1f-41rYJH-b6Tv3D" title="UW Tacoma sign">
+        <i class="fa fa-flickr" aria-hidden="true"></i> sounderbruce</a>
+            </span>
+        {% endif %}
+
+            <div style="background:rgba(0,0,0,0.30); padding: 170px 0 20px 0;">
+                <div class="discover-heading-container"><h2 id="campus_heading">{{campus}} Campus</h2>
+                <p>Discover campus options for food, study spaces, and tech items.</p></div>
+            </div>
+
+        </div>
+
+        <div id="card_loading_indicator" class="scout-discover-loading">
+            <p class="visually-hidden">loading...</p>
+            <div class="sk-fading-circle" aria-hidden="true">
+                <div class="sk-circle1 sk-circle"></div>
+                <div class="sk-circle2 sk-circle"></div>
+                <div class="sk-circle3 sk-circle"></div>
+                <div class="sk-circle4 sk-circle"></div>
+                <div class="sk-circle5 sk-circle"></div>
+                <div class="sk-circle6 sk-circle"></div>
+                <div class="sk-circle7 sk-circle"></div>
+                <div class="sk-circle8 sk-circle"></div>
+                <div class="sk-circle9 sk-circle"></div>
+                <div class="sk-circle10 sk-circle"></div>
+                <div class="sk-circle11 sk-circle"></div>
+                <div class="sk-circle12 sk-circle"></div>
+            </div>
+        </div>
+
+        <div id="discover_cards">
+
+            <div id="open"></div>
+            <div id="morning"></div>
+            <div id="late"></div>
+            <div id="studyoutdoors"></div>
+            <div id="studycomputerlab"></div>
+
+        </div>
+
+    </div>
+
 </div>
-
-<h4>Food types:</h4>
-<div>
-    <ul>
-        <li><a href="/?food=pizza">Pizza</a></li>
-        <li><a href="/?food=burgers">Burgers</a></li>
-        <li><a href="/?food=salads">Salads</a></li>
-        <li><a href="/?food=coffee">Coffee/Espresso</a></li>
-        <li><a href="/?food=sandwiches">Sandwiches</a></li>
-    </ul>
-</div>
-
-<h4>Cuisine:</h4>
-<div>
-    <ul>
-        <li><a href="/?cuisine=itallian">Itallian</a></li>
-        <li><a href="/?cuisine=hawaiian">Hawaiian</a></li>
-        <li><a href="/?cuisine=bbq">BBQ</a></li>
-        <li><a href="/?cuisine=american">American</a></li>
-        <li><a href="/?cuisine=chinese">Chinese</a></li>
-    </ul>
-</div>
--->
-
-<h4>Most popular</h4>
-<ul>
-	<li><a href="/detail/56874">Cultivate</a></li>
-	<li><a href="/detail/56874">The 8</a></li>
-	<li><a href="/detail/56874">By George</a></li>
-	<li><a href="/detail/56874">The Rotunda</a></li>
-	<li><a href="/detail/56874">Red Square BBQ</a></li>
-</ul>
-
-<h4>Coffee near you [[type 'cafe, espresso' ]]</h4>
-<ul>
-	<li><a href="/detail/56874">Burke Cafe</a></li>
-	<li><a href="/detail/56874">Husky Grind</a></li>
-	<li><a href="/detail/56874">Parnassus</a></li>
-	<li><a href="/detail/56874">Public Grounds</a></li>
-	<li><a href="/detail/56874">Overpass Espresso</a></li>
-</ul>
-
-<h4>Breakfast before class [[extended_info:open_period 'breakfast' ]]</h4>
-<ul>
-	<li><a href="/detail/56874">Cultivate</a></li>
-	<li><a href="/detail/56874">The 8</a></li>
-	<li><a href="/detail/56874">By George</a></li>
-	<li><a href="/detail/56874">The Rotunda</a></li>
-	<li><a href="/detail/56874">Bob's Burgers</a></li>
-</ul>
-
-<h4>Evening class muchies [[extended_info:open_period 'late_night' ]]</h4>
-<ul>
-	<li><a href="/detail/56874">Cultivate</a></li>
-	<li><a href="/detail/56874">The 8</a></li>
-	<li><a href="/detail/56874">By George</a></li>
-	<li><a href="/detail/56874">The Rotunda</a></li>
-	<li><a href="/detail/56874">Bob's Burgers</a></li>
-</ul>
-
 {% endblock %}
 
-{% block sidebar %}
-<div style="background:url('{% static "scout/img/huskygrind.jpg" %}') no-repeat; background-size:cover; background-position:center center; position:absolute; top:0; bottom:0; width: 100%;">&nbsp;</div>
-{% endblock %}
-
-
-{% block hybrid_content %}
-
-<div class="content-block-title">Welcome</div>
-<!-- Inset content block -->
-<div class="content-block">
-  <div class="content-block-inner">
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non urna et lorem venenatis varius quis sit amet dui. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur a nisi odio.</p>
-
-<p>Donec et nulla auctor massa pharetra adipiscing ut sit amet sem. Suspendisse molestie velit vitae mattis tincidunt. Ut sit amet quam mollis, vulputate turpis vel, sagittis felis. </p>     
-  </div>
+{% block secondary_content %}
+<!-- show a map on the list page -->
+<div id="discover_list_map" class="scout-spot-list-map" style="height:100%; background: #ddd !important;">
+    <div class="scout-spot-list-map-loading" style="position:absolute; top: 50%; left: 50%; margin-left:-15px; margin-top: -110px; z-index:9999;">
+        <p class="visually-hidden">loading...</p>
+        <div class="sk-fading-circle" aria-hidden="true">
+            <div class="sk-circle1 sk-circle"></div>
+            <div class="sk-circle2 sk-circle"></div>
+            <div class="sk-circle3 sk-circle"></div>
+            <div class="sk-circle4 sk-circle"></div>
+            <div class="sk-circle5 sk-circle"></div>
+            <div class="sk-circle6 sk-circle"></div>
+            <div class="sk-circle7 sk-circle"></div>
+            <div class="sk-circle8 sk-circle"></div>
+            <div class="sk-circle9 sk-circle"></div>
+            <div class="sk-circle10 sk-circle"></div>
+            <div class="sk-circle11 sk-circle"></div>
+            <div class="sk-circle12 sk-circle"></div>
+        </div>
+    </div>
 </div>
-
-<!--
-<div class="content-block-title">Restaurant types:</div>
-<div class="list-block">
-  <ul>
-    <li>
-	    <a href="/?hybrid=true&x_push_page=true&x_page_title=Cafes" class="item-link">
-		  <div class="item-content">
-		    <div class="item-inner">
-			    <div class="item-title">Cafes</div>
-		    </div>
-		  </div>
-		</a>          
-    </li>
-    <li>
-	    <a href="/?hybrid=true&x_push_page=true&x_page_title=Fine+Dining" class="item-link">
-		  <div class="item-content">
-		    <div class="item-inner">
-			    <div class="item-title">Fine Dining</div>
-		    </div>
-		  </div>
-		</a>          
-    </li>
-    <li>
-	    <a href="/?hybrid=true&x_push_page=true&x_page_title=Cafeteria" class="item-link">
-		  <div class="item-content">
-		    <div class="item-inner">
-			    <div class="item-title">Cafeteria</div>
-		    </div>
-		  </div>
-		</a>          
-    </li>
-    <li>
-	    <a href="/?hybrid=true&x_push_page=true&x_page_title=Food+Trucks" class="item-link">
-		  <div class="item-content">
-		    <div class="item-inner">
-			    <div class="item-title">Food Trucks</div>
-		    </div>
-		  </div>
-		</a>          
-    </li>
-    <li>
-	    <a href="/?hybrid=true&x_push_page=true&x_page_title=Markets" class="item-link">
-		  <div class="item-content">
-		    <div class="item-inner">
-			    <div class="item-title">Markets</div>
-		    </div>
-		  </div>
-		</a>          
-    </li>
-  </ul>
-</div>
-
-
-<div class="content-block-title">Food types:</div>
-<div class="list-block">
-  <ul>
-    <li>
-	    <a href="/?hybrid=true&x_push_page=true&x_page_title=Pizza" class="item-link">
-		  <div class="item-content">
-		    <div class="item-inner">
-			    <div class="item-title">Pizza</div>
-		    </div>
-		  </div>
-		</a>          
-    </li>
-    <li>
-	    <a href="/?hybrid=true&x_push_page=true&x_page_title=Burgers" class="item-link">
-		  <div class="item-content">
-		    <div class="item-inner">
-			    <div class="item-title">Burgers</div>
-		    </div>
-		  </div>
-		</a>          
-    </li>
-    <li>
-	    <a href="/?hybrid=true&x_push_page=true&x_page_title=Salads" class="item-link">
-		  <div class="item-content">
-		    <div class="item-inner">
-			    <div class="item-title">Salads</div>
-		    </div>
-		  </div>
-		</a>          
-    </li>
-    <li>
-	    <a href="/?hybrid=true&x_push_page=true&x_page_title=Coffee/Espresso" class="item-link">
-		  <div class="item-content">
-		    <div class="item-inner">
-			    <div class="item-title">Coffee/Espresso</div>
-		    </div>
-		  </div>
-		</a>          
-    </li>
-    <li>
-	    <a href="/?hybrid=true&x_push_page=true&x_page_title=Sandwiches" class="item-link">
-		  <div class="item-content">
-		    <div class="item-inner">
-			    <div class="item-title">Sandwiches</div>
-		    </div>
-		  </div>
-		</a>          
-    </li>
-  </ul>
-</div>
-
-<div class="content-block-title">Hybrid stuff</div>
-<div class="list-block">
-  <ul>
-    <li>
-	    <a href="/components/?hybrid=true&x_push_page=true&x_page_title=Framework7+Forms" class="item-link">
-		  <div class="item-content">
-		    <div class="item-inner">
-			    <div class="item-title">Components Example</div>
-		    </div>
-		  </div>
-		</a>          
-    </li>
-   </ul>
-</div>
--->
-
-
 {% endblock %}

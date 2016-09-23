@@ -1,0 +1,144 @@
+{% extends "scout/base.html" %}
+{% load staticfiles %}
+{% load scout_filters %}
+
+{% block title %}Places to Study{% endblock %}
+
+{% block web_content %}
+
+<div id="page_study" class="scout-content">
+
+    {% if request.is_mobile or request.is_tablet %}{% include "scout/include/user_geolocation.html" %}{% endif %}
+
+    <!-- food filter results -->
+    <div class="scout-filter-results" aria-labelledby="filter_header">
+        <div class="scout-filter-results-by visually-hidden" id="filter_text_holder">
+            <h2 class="visually-hidden" id="filter_header">Filters</h2>
+            <span class="filter-results-label">Filtering by:</span>
+            <div id="filter_label_text" class="scout-filter-results-text"><span class="visually-hidden">No filter selected</span>---</div>
+        </div>
+        <div class="scout-filter-results-results clearfix">
+            <span class="filter-results-label"><span class="visually-hidden">Number of </span>Spaces<span class="visually-hidden"> in list</span>:</span>
+            <div id="scout_filter_results_count" class="scout-filter-results-count">{{ count }}</div>
+            <div class="scout-filter-results-actions">
+                <a id="reset_study_list" class="action-cancel visually-hidden" aria-hidden="true" role="button" title="Clear filters">
+                    <i class="fa fa-refresh"></i>Reset<span class="visually-hidden"> filter</span>
+                </a>
+                <a href="/{{campus}}/study/filter/" id="study_link_filter" title="Filter list of study places on campus">
+                    <i class="fa fa-sliders fa-inverse"></i>
+                    <span class="scout-filter-results-action">Filter Spaces</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- study list -->
+    <div class="scout-list-container" style="position:relative;" role="main" aria-labelledby="list_header">
+
+        <h2 class="scout-list-header visually-hidden" id="list_header">List of study places (by distance)</h2>
+
+        <ol id="scout_study_list" class="scout-card scout-list sticky-header-wrap">
+
+            {% for group in grouped_spots %}
+
+            <li class="scout-list-building" data-building-name="{{ group.name }}" data-building-lat="{{ group.latitude }}" data-building-lng="{{ group.longitude }}">
+
+                <h3 class="sticky-header">
+                    <span>{% if group.name %}{{ group.name }}{% else %}missing building_name{% endif %}</span>
+                </h3>
+
+                <ol class="scout_study_spot_list" style="margin:0; padding:0;">
+
+                    {% for spot in group.spots %}
+                    <li class="scout-list-item scout-list-hover" id="{{ spot.spot_id }}" data-spot-lat="{{ spot.latitude }}" data-spot-lng="{{ spot.longitude }}" data-spot-building="{{ spot.building_name }}" data-spot-name="{{ spot.name }}" aria-labelledby="spot_header_{{spot.spot_id}}">
+                        <a class="clearfix" href="/{{campus}}/study/{{ spot.spot_id }}/" title="Get details about {{ spot.name }}">
+
+                            {% if spot.images %}
+                            <div class="scout-spot-image" style="background-image: url('/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}/?width=200'); background-size:cover;">&nbsp;</div>
+                            {% else %}
+                            <div class="scout-spot-image" style="background: #e5e6e9 url('{% static "scout/img/placeholder-200.png" %}') no-repeat center center; background-size: contain;">&nbsp;</div>
+                            {% endif %}
+
+                            <div class="scout-spot-content">
+
+                                <div style="padding-left: 10px;">
+
+                                    <div class="clearfix">
+                                        <div class="scout-spot-type">{% if spot.spot_types %}{% for type in spot.spot_types %}<span><span class="visually-hidden">Type of space:</span>{% if type.name == 'open'%}{{ type.name|remove_underscores }} space{% else %}{{ type.name|remove_underscores }}{% endif %}</span>{% endfor %}{% else %} <span style="color:red;">SPOT_TYPE</span> {% endif %}</div>
+
+                                        <div class="scout-spot-capacity">
+                                            {% if spot.auto_labstats_total > 0 and spot.auto_labstats_available > 0 %}
+                                                <span style="margin-left:10px; color:#333;"><i class="fa fa-desktop" aria-hidden="true"></i> <span class="visually-hidden">Computer availability:</span><span style="color:#2ecc71;">{{ spot.auto_labstats_available }}</span> / {{ spot.auto_labstats_total }}</span>
+                                            {% else %}
+                                                {% if spot.capacity %}<span class="visually-hidden">Seating capacity: </span><span>Seats: {{ spot.capacity }}</span>{% endif %}
+                                            {% endif %}
+                                        </div>
+
+                                    </div>
+
+                                    <h4 class="scout-spot-name" id="spot_header_{{spot.spot_id}}">{{ spot.name }}</h4>
+
+                                    <div class="scout-spot-location" style="white-space:normal; line-height: initial;">
+                                        <span class="scout-spot-distance" style="display:inline-block;line-height:22px;"><span class="visually-hidden">Distance from you:</span><span class="distance-number">---</span>&nbsp;mi</span>
+                                        <span class="visually-hidden">Building: </span>{% if spot.location_description %}{{ spot.location_description }}{% else %}<span style="color:red;">missing building_name</span>{% endif %}
+                                    </div>
+
+                                    <div class="scout-spot-status"><span class="visually-hidden">Status: </span>{% if spot.is_open %}<span class="open visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</div>
+
+                                </div>
+
+                            </div>
+                        </a>
+                    </li>
+                    {% endfor %}
+
+                </ol>
+            </li>
+            {% empty %}
+            <li class="scout-list-item scout-error" style="padding:20px;">
+                <p class="scout-error-msg">No results? Try updating your filters.</p>
+                <div class="scout-error-body">
+                    <p>Suggestions for improving the results:</p>
+                    <ul>
+                        <li>Try a specific campus.</li>
+                        <li>Try using fewer filters.</li>
+                    </ul>
+                </div>
+            </li>
+            {% endfor %}
+
+
+        </ol>
+
+        <div style="padding:20px; font-size:13px;">Have a space to add? <a title="Suggest a space via email" href="mailto:help@uw.edu?subject=Scout:%20{{ app_type|title }}%20space%20suggestion">Suggest it</a></div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block secondary_content %}
+
+<!-- show a map on the list page -->
+<div id="study_list_map" class="scout-spot-list-map" style="height:100%; background: #ddd !important;" aria-hidden="true">
+    <div class="scout-spot-list-map-loading" style="position:absolute; top: 50%; left: 50%; margin-left:-15px; margin-top: -110px; z-index:0;">
+        <p class="visually-hidden">loading...</p>
+        <div class="sk-fading-circle" aria-hidden="true">
+            <div class="sk-circle1 sk-circle"></div>
+            <div class="sk-circle2 sk-circle"></div>
+            <div class="sk-circle3 sk-circle"></div>
+            <div class="sk-circle4 sk-circle"></div>
+            <div class="sk-circle5 sk-circle"></div>
+            <div class="sk-circle6 sk-circle"></div>
+            <div class="sk-circle7 sk-circle"></div>
+            <div class="sk-circle8 sk-circle"></div>
+            <div class="sk-circle9 sk-circle"></div>
+            <div class="sk-circle10 sk-circle"></div>
+            <div class="sk-circle11 sk-circle"></div>
+            <div class="sk-circle12 sk-circle"></div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

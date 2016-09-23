@@ -1,0 +1,188 @@
+{% extends "scout/base.html" %}
+{% load staticfiles %}
+{% load scout_filters %}
+
+{% block title %}Tech Items{% endblock %}
+
+{% block web_content %}
+
+<div id="page_study" class="scout-content">
+
+    {% if request.is_mobile or request.is_tablet %}{% include "scout/include/user_geolocation.html" %}{% endif %}
+
+    {% if campus != "seattle" %}
+
+    <div style="padding:20px; line-height:20px;">
+
+        <p>This feature is currently not available for the <strong style="text-transform:capitalize;">{{ campus }} campus</strong>. We are working hard to make this data available for you in the near future.</p>
+
+        {% if campus == "bothell" %}
+        <p>In the meantime, please visit the Information Technologies <a href="http://www.uwb.edu/it/services/articles/equipment-checkout" target="_blank">Equipment Checkout</a> service to see what is available for you.</p>
+        {% endif %}
+
+        {% if campus == "tacoma" %}
+        <p>In the meantime, please visit the <a href="https://www.tacoma.uw.edu/learning-research-commons/learning-research-commons" target="_blank">Learning and Resource Commons (LARC)</a>, to see what is available for you.</p>
+        {% endif %}
+
+        <hr>
+
+        <p style="font-size:14px; color:#666;">If you'd like to visit the <strong>Seattle Campus</strong>, here are a list of popular technology items available for you to checkout.</p>
+
+        <ul style="list-style:none; padding:0; margin:0; line-height:20px; font-size:14px;">
+            <li><a href="/seattle/tech/?subcategory0=Digital+Camera">Digital Camera</a></li>
+            <li><a href="/seattle/tech/?subcategory0=Digital+Video+Camera">Digital Video Camera</a></li>
+            <li><a href="/seattle/tech/?subcategory0=Laptop+Computer">Laptop Computer</a></li>
+            <li><a href="/seattle/tech/?subcategory0=Tablet+Computer">Tablet Computer</a></li>
+            <li><a href="/seattle/tech/?subcategory0=Data+Projector">Data Projector</a></li>
+        </ul>
+
+    </div>
+    {% else %}
+    <!-- tech filter results -->
+    <div class="scout-filter-results" aria-labelledby="filter_header">
+
+        <div class="scout-filter-results-by visually-hidden" id="filter_text_holder">
+            <h2 class="visually-hidden" id="filter_header">Filters</h2>
+            <span class="filter-results-label">Filtering by:</span>
+            <div id="filter_label_text" class="scout-filter-results-text"><span class="visually-hidden">No filter selected</span>---</div>
+        </div>
+
+        <div class="scout-filter-results-by">
+            <span class="filter-results-label">Commonly requested types:</span>
+            <ul style="list-style:none; padding:0; margin:0; line-height:20px;">
+                <li><a href="/{{campus}}/tech/?subcategory0=Digital+Camera">Digital Camera</a></li>
+                <li><a href="/{{campus}}/tech/?subcategory0=Digital+Video+Camera">Digital Video Camera</a></li>
+                <li><a href="/{{campus}}/tech/?subcategory0=Laptop+Computer">Laptop Computer</a></li>
+                <li><a href="/{{campus}}/tech/?subcategory0=Tablet+Computer">Tablet Computer</a></li>
+                <li><a href="/{{campus}}/tech/?subcategory0=Data+Projector">Data Projector</a></li>
+            </ul>
+        </div>
+
+        <div class="scout-filter-results-results clearfix">
+            <span class="filter-results-label"><span class="visually-hidden">Number of </span>Tech<span class="visually-hidden"> in list</span>:</span>
+            <div id="scout_filter_results_count" class="scout-filter-results-count">{{ count }}</div>
+
+            <div class="scout-filter-results-actions">
+                <a id="reset_tech_list" class="action-cancel visually-hidden" aria-hidden="true" role="button" title="Clear filters">
+                    <i class="fa fa-refresh"></i>Reset<span class="visually-hidden"> filter</span>
+                </a>
+                <a href="/{{ campus }}/tech/filter/" id="tech_link_filter" title="Filter list of tech items on campus">
+                    <i class="fa fa-sliders fa-inverse"></i>
+                    <span class="scout-filter-results-action">Filter Tech</span>
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- tech list -->
+    <div class="scout-list-container" style="position:relative;" role="main" aria-labelledby="list_header">
+
+        <h2 class="scout-list-header visually-hidden" id="list_header">List of tech (by distance)</h2>
+
+        <ol id="scout_tech_list" class="scout-card scout-list sticky-header-wrap">
+
+                {% for spot in spots %}
+                    {% if spot.items %}
+                    <li class="scout-list-item" id="{{ spot.spot_id }}" data-spot-building="{{ spot.building_name }}"  data-spot-lat="{{ spot.latitude }}" data-spot-lng="{{ spot.longitude }}" data-spot-name="{{ spot.name }}" data-items="{{ spot.items|length }}">
+
+                        <h3 class="sticky-header">
+                            <span>{% if spot.name %}{{ spot.name }}{% else %}missing spot_name{% endif %}</span>
+                        </h3>
+
+                        <ol style="margin:0; padding:0;">
+
+                        {% for item in spot.items %}
+                        <li class="scout-list-item-object scout-list-hover" aria-labelledby="item_header_{{item.item_id}}">
+
+                                <a class="clearfix" href="/{{campus}}/tech/{{ item.item_id }}/" title="Get details about {{ item.name }}">
+
+                                    {% if spot.item_images %}
+                                    <div class="scout-spot-image" style="background-image: url('/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}/?width=200'); background-size:cover;">&nbsp;</div>
+                                    {% else %}
+                                    <div class="scout-spot-image" style="background: #e5e6e9 url('{% static "scout/img/placeholder-200.png" %}') no-repeat center center; background-size: contain;">&nbsp;</div>
+                                    {% endif %}
+
+                                    <div class="scout-spot-content">
+                                        <div style="padding-left: 10px;">
+
+                                            <div class="clearfix">
+                                                <div class="scout-spot-type"><span class="visually-hidden">Item Category:</span>{% if item.subcategory %}<span>{{ item.subcategory }}</span>{% else %} <span style="color:red;">ITEM_SUB_CATEGORY</span> {% endif %}</div>
+
+                                                <div class="scout-spot-capacity">
+                                                    {% if item.quantity %}<span><span class="visually-hidden">Number of items </span>Available: {{ item.quantity }}</span>{% endif %}
+                                                </div>
+
+                                            </div>
+
+                                            <h4 class="scout-spot-name" id="item_header_{{item.item_id}}">{{ item.name }}</h4>
+                                            <div class="scout-spot-location">
+                                                <span class="scout-spot-distance"><span class="visually-hidden">Distance from you:</span><span class="distance-number">---</span>&nbsp;mi</span>
+                                               <span class="visually-hidden">Location: </span> {% if spot.building_name %}{{ spot.building_name }}{% else %}<span style="color:red;">missing item spot.building_name</span>{% endif %}
+                                            </div>
+
+                                            <span class="scout-spot-status"><span class="visually-hidden">Location status:</span>{% if spot.is_open %}<span class="open visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</span>
+
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+
+                        {% endfor %}
+
+                        </ol>
+
+                    </li>
+                    {% endif %}
+                {% empty %}
+                <li class="scout-list-item scout-error" style="padding:20px;">
+                    <p class="scout-error-msg">No results? Try updating your filters.</p>
+                    <div class="scout-error-body">
+                        <p>Suggestions for improving the results:</p>
+                        <ul>
+                            <li>Try a specific campus.</li>
+                            <li>Try using fewer filters.</li>
+                        </ul>
+                    </div>
+                </li>
+
+                {% endfor %}
+
+        </ol>
+
+    </div>
+    {% endif %}
+
+</div>
+
+{% endblock %}
+
+{% block secondary_content %}
+
+{% if spots %}
+<!-- show a map on the list page -->
+<div id="tech_list_map" class="scout-spot-list-map" style="height:100%; background: #ddd !important;" aria-hidden="true">
+    <div class="scout-spot-list-map-loading" style="position:absolute; top: 50%; left: 50%; margin-left:-15px; margin-top: -110px; z-index:9999;">
+        <p class="visually-hidden">loading...</p>
+        <div class="sk-fading-circle" aria-hidden="true">
+            <div class="sk-circle1 sk-circle"></div>
+            <div class="sk-circle2 sk-circle"></div>
+            <div class="sk-circle3 sk-circle"></div>
+            <div class="sk-circle4 sk-circle"></div>
+            <div class="sk-circle5 sk-circle"></div>
+            <div class="sk-circle6 sk-circle"></div>
+            <div class="sk-circle7 sk-circle"></div>
+            <div class="sk-circle8 sk-circle"></div>
+            <div class="sk-circle9 sk-circle"></div>
+            <div class="sk-circle10 sk-circle"></div>
+            <div class="sk-circle11 sk-circle"></div>
+            <div class="sk-circle12 sk-circle"></div>
+        </div>
+    </div>
+</div>
+{% else %}
+<div style="background:url('{% static "scout/img/seattle/IMG_1758-X3.jpg" %}') no-repeat; background-size:cover; background-position:center center; position:absolute; top:0; bottom:0; width: 100%;">&nbsp;</div>
+
+{% endif %}
+
+{% endblock %}
