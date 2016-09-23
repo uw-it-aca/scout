@@ -103,7 +103,6 @@ class MainNavigationTest(ScoutTestCase):
         soup = self.get_soup(path)
         self.check_footer_links(soup)
 
-
     def check_footer_links(self, soup):
         """Checks the footer links at the given soup"""
         footerLinks = soup.select('div#footer a')
