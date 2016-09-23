@@ -20,7 +20,7 @@ def get_client():
     return client
 
 
-def get_image(spot_id, image_id, width=None):
+def get_spot_image(spot_id, image_id, width=None):
     client = get_client()
     if width is not None:
         url = "%s/api/v1/spot/%s/image/%s/thumb/constrain/width:%s" % (
@@ -31,5 +31,20 @@ def get_image(spot_id, image_id, width=None):
     else:
         url = "%s/api/v1/spot/%s/image/%s" % (settings.SPOTSEEKER_HOST,
                                               spot_id,
+                                              image_id)
+    return client.request(url, 'GET')
+
+
+def get_item_image(item_id, image_id, width=None):
+    client = get_client()
+    if width is not None:
+        url = "%s/api/v1/item/%s/image/%s/thumb/constrain/width:%s" % (
+            settings.SPOTSEEKER_HOST,
+            item_id,
+            image_id,
+            width)
+    else:
+        url = "%s/api/v1/item/%s/image/%s" % (settings.SPOTSEEKER_HOST,
+                                              item_id,
                                               image_id)
     return client.request(url, 'GET')
