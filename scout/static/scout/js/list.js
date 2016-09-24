@@ -115,7 +115,7 @@ var List = {
     },
 
     filter_visible_spots: function(spot_ids){
-        var list_items = $("li.scout-list-item");
+        var list_items = $("li.scout-list-item").not(".scout-error");
         var list_count = 0;
         $.each(list_items, function(idx, item){
             var list_spot_id = $(item).attr('id');

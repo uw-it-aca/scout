@@ -2,6 +2,8 @@ $(document).on('ready', function(event) {
 
     Layout.init_layout();
     Navigation.set_campus_selection();
+    // Set location first so map knows default position when it initializes
+    Geolocation.update_location();
 
     // page based JS calls
     var page_path = window.location.pathname;
