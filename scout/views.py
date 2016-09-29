@@ -6,7 +6,7 @@ from django.conf import settings
 from scout.dao.space import get_spot_list, get_spot_by_id, get_filtered_spots,\
     get_period_filter, get_spots_by_filter, group_spots_by_building,\
     get_building_list, validate_detail_info
-from scout.dao.image import get_image
+from scout.dao.image import get_spot_image, get_item_image
 from scout.dao.item import get_item_by_id, get_filtered_items, \
     get_item_count, add_item_info
 
@@ -320,11 +320,23 @@ def hybrid_comps_view(request):
                               context_instance=RequestContext(request))
 
 
-# generic views
-def image_view(request, image_id, spot_id):
+# image views
+def spot_image_view(request, image_id, spot_id):
     width = request.GET.get('width', None)
     try:
-        resp, content = get_image(spot_id, image_id, width)
+        resp, content = get_spot_image(spot_id, image_id, width)
+        etag = resp.get('etag', None)
+        response = HttpResponse(content, content_type=resp['content-type'])
+        response['etag'] = etag
+        return response
+    except Exception:
+        return custom_404_response(request)
+
+
+def item_image_view(request, image_id, item_id):
+    width = request.GET.get('width', None)
+    try:
+        resp, content = get_item_image(item_id, image_id, width)
         etag = resp.get('etag', None)
         response = HttpResponse(content, content_type=resp['content-type'])
         response['etag'] = etag
