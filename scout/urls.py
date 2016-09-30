@@ -97,7 +97,9 @@ urlpatterns = patterns(
 
     # images
     url(r'^images/(?P<spot_id>\d+)/image/(?P<image_id>\d+)/$',
-        views.image_view),
+        views.spot_image_view),
+    url(r'^item/images/(?P<item_id>\d+)/image/(?P<image_id>\d+)/$',
+        views.item_image_view),
 
     # discover card
     url(r'^(?P<campus>[^/]+)/discover_card/(?P<discover_category>[a-zA-Z]+)/$',
