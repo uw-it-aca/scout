@@ -167,7 +167,7 @@ var Map = {
             if (Geolocation.get_location_type() !== "default") {
                 Map.add_current_position_marker(map, pos);
             } else if(markers.length == 0){
-                bounds.extend(pos);
+                map.setCenter(pos);
                 map.setZoom(16);
             } else {
                 map.fitBounds(bounds);
