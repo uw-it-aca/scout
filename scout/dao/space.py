@@ -302,6 +302,9 @@ def get_is_spot_open(spot, now):
 def add_additional_info(spot):
     # global extended_info (study & food)
     spot.app_type = _get_extended_info_by_key("app_type", spot.extended_info)
+    spot.description = \
+        _get_extended_info_by_key("description",
+                                  spot.extended_info)
     spot.location_description = \
         _get_extended_info_by_key("location_description",
                                   spot.extended_info)
