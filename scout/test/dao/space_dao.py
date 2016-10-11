@@ -64,8 +64,8 @@ class SpaceDAOTest(TestCase):
         spot = add_additional_info(spot)
         self.assertEqual(spot.has_alert, None)
         self.assertEqual(spot.alert_notes, None)
-        self.assertEqual(spot.has_reservation, None)
-        self.assertEqual(spot.reservation_notes, None)
+        self.assertEqual(spot.s_has_reservation, None)
+        self.assertEqual(spot.s_reservation_notes, None)
         self.assertEqual(
             spot.menu_url,
             "https://www.hfs.washington.edu/uploadedFiles/Dining/"
