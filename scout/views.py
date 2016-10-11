@@ -9,11 +9,20 @@ from scout.dao.space import get_spot_list, get_spot_by_id, get_filtered_spots,\
 from scout.dao.image import get_spot_image, get_item_image
 from scout.dao.item import get_item_by_id, get_filtered_items, \
     get_item_count, add_item_info
+import simplejson
 
 
 # using red square as the default center
 DEFAULT_LAT = 47.6558539
 DEFAULT_LON = -122.3094925
+
+
+CAMPUS_LOCATIONS = simplejson.dumps({
+    "seattle": {"latitude": 47.653811, "longitude": -122.307815},
+    "south_lake_union": {"latitude": 47.62456939, "longitude": -122.34105337},
+    "bothell": {"latitude": 47.75907121, "longitude": -122.19103843},
+    "tacoma": {"latitude": 47.24458187, "longitude": -122.43763134},
+})
 
 
 def validate_campus_selection(function):
@@ -33,7 +42,8 @@ def validate_campus_selection(function):
 
 @validate_campus_selection
 def discover_view(request, campus):
-    context = {"campus": campus}
+    context = {"campus": campus,
+               "campus_locations": CAMPUS_LOCATIONS}
     return render_to_response('scout/discover.html', context,
                               context_instance=RequestContext(request))
 
@@ -141,7 +151,8 @@ def food_list_view(request, campus):
     context = {"spots": spots,
                "campus": campus,
                "count": len(spots),
-               "app_type": 'food'}
+               "app_type": 'food',
+               "campus_locations": CAMPUS_LOCATIONS}
     return render_to_response('scout/food/list.html', context,
                               context_instance=RequestContext(request))
 
@@ -155,7 +166,8 @@ def food_detail_view(request, campus, spot_id):
 
     context = {"spot": spot,
                "campus": campus,
-               "app_type": 'food'}
+               "app_type": 'food',
+               "campus_locations": CAMPUS_LOCATIONS}
     return render_to_response('scout/food/detail.html', context,
                               context_instance=RequestContext(request))
 
@@ -163,7 +175,8 @@ def food_detail_view(request, campus, spot_id):
 @validate_campus_selection
 def food_filter_view(request, campus):
     context = {"campus": campus,
-               "app_type": 'food'}
+               "app_type": 'food',
+               "campus_locations": CAMPUS_LOCATIONS}
     return render_to_response('scout/food/filter.html', context,
                               context_instance=RequestContext(request))
 
@@ -177,7 +190,8 @@ def study_list_view(request, campus):
                "campus": campus,
                "grouped_spots": grouped_spots,
                "count": len(spots),
-               "app_type": 'study'}
+               "app_type": 'study',
+               "campus_locations": CAMPUS_LOCATIONS}
     return render_to_response('scout/study/list.html', context,
                               context_instance=RequestContext(request))
 
@@ -191,7 +205,8 @@ def study_detail_view(request, campus, spot_id):
 
     context = {"spot": spot,
                "campus": campus,
-               "app_type": 'study'}
+               "app_type": 'study',
+               "campus_locations": CAMPUS_LOCATIONS}
     return render_to_response('scout/study/detail.html', context,
                               context_instance=RequestContext(request))
 
@@ -200,7 +215,8 @@ def study_detail_view(request, campus, spot_id):
 def study_filter_view(request, campus):
     context = {"campus": campus,
                "buildings": get_building_list(campus),
-               "app_type": 'study'}
+               "app_type": 'study',
+               "campus_locations": CAMPUS_LOCATIONS}
     return render_to_response('scout/study/filter.html', context,
                               context_instance=RequestContext(request))
 
@@ -218,7 +234,8 @@ def tech_list_view(request, campus):
     context = {"spots": spots,
                "campus": campus,
                "count": count,
-               "app_type": 'tech'}
+               "app_type": 'tech',
+               "campus_locations": CAMPUS_LOCATIONS}
     return render_to_response('scout/tech/list.html', context,
                               context_instance=RequestContext(request))
 
@@ -232,7 +249,8 @@ def tech_detail_view(request, campus, item_id):
 
     context = {"spot": spot,
                "campus": campus,
-               "app_type": 'tech'}
+               "app_type": 'tech',
+               "campus_locations": CAMPUS_LOCATIONS}
     return render_to_response('scout/tech/detail.html', context,
                               context_instance=RequestContext(request))
 
@@ -240,7 +258,8 @@ def tech_detail_view(request, campus, item_id):
 @validate_campus_selection
 def tech_filter_view(request, campus):
     context = {"campus": campus,
-               "app_type": 'tech'}
+               "app_type": 'tech',
+               "campus_locations": CAMPUS_LOCATIONS}
     return render_to_response('scout/tech/filter.html', context,
                               context_instance=RequestContext(request))
 

@@ -110,7 +110,8 @@
 <script src="{% static 'vendor/js/markerclusterer.js' %}"></script>
 <script src="{% static 'vendor/js/OverlappingMarkerSpiderfier.js' %}"></script>
 <script type="text/javascript">
-    window.staticPath="{% static "" %}"
+    window.staticPath="{% static "" %}";
+    window.campus_locations = "{{ campus_locations }}";
 </script>
 {% if google_analytics %}
 <!-- google analytics -->
