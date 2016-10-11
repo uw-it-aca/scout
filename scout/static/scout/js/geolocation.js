@@ -5,7 +5,7 @@ var Geolocation = {
     campus_locations: function(campus){
         var locations = window.campus_locations;
         $.event.trigger(Geolocation.location_updating);
-        if(locations[campus] !== undefined){
+        if(locations !== undefined && locations[campus] !== undefined){
             Geolocation.default_location.latitude = locations[campus]["latitude"];
             Geolocation.default_location.longitude = locations[campus]["longitude"];
         }
