@@ -30,35 +30,17 @@ urlpatterns = patterns(
     url(r'^h/(?P<campus>[^/]+)/study/'
         '(?P<spot_id>[0-9]{1,5})/$', 'scout.views.hybrid_study_detail_view',
         name='hybrid_study_detail_view'),
+    url(r'^h/(?P<campus>[^/]+)/study/filter/$',
+        'scout.views.hybrid_study_filter_view', name='hybrid_study_filter_view'),
 
     # hybrid tech
     url(r'^h/(?P<campus>[^/]+)/tech/$',
         'scout.views.hybrid_tech_list_view', name='hybrid_tech_list_view'),
-    url(r'^h/(?P<campus>[^/]+)/food/$',
-        'scout.views.hybrid_food_list_view',
-        name='hybrid_food_list_view'),
-
-    url(r'^h/(?P<campus>[^/]+)/food/'
-        r'(?P<spot_id>[0-9]{1,5})/$',
-        'scout.views.hybrid_food_detail_view',
-        name='hybrid_food_detail_view'),
-    url(r'^h/(?P<campus>[^/]+)/food/filter/$',
-        'scout.views.hybrid_food_filter_view',
-        name='hybrid_food_filter_view'),
-
-    # hybrid study
-    url(r'^h/(?P<campus>[^/]+)/study/$',
-        'scout.views.hybrid_study_list_view',
-        name='hybrid_study_list_view'),
-    url(r'^h/(?P<campus>[^/]+)/study/'
-        r'(?P<spot_id>[0-9]{1,5})/$',
-        'scout.views.hybrid_study_detail_view',
-        name='hybrid_study_detail_view'),
-
-    # hybrid tech
-    url(r'^h/(?P<campus>[^/]+)/tech/$',
-        'scout.views.hybrid_tech_list_view',
-        name='hybrid_tech_list_view'),
+    url(r'^h/(?P<campus>[^/]+)/tech/'
+        '(?P<spot_id>[0-9]{1,5})/$', 'scout.views.hybrid_tech_detail_view',
+        name='hybrid_tech_detail_view'),
+    url(r'^h/(?P<campus>[^/]+)/tech/filter/$',
+        'scout.views.hybrid_tech_filter_view', name='hybrid_techh_filter_view'),
 
     # hybrid components
     url(r'^h/components/$', 'scout.views.hybrid_comps_view',

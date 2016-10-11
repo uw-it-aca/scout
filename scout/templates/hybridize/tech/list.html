@@ -6,12 +6,23 @@
 
 {% block hybrid_content %}
 
-<div style="height:100px;">
-    <div>
-        <p>Filtering by:</p>
-        <p>Results: {{ spots|length }}</p>
+<div class="card">
+    <div class="card-content">
+        <div class="card-content-inner">
+
+            <div><a href="/h/{{campus}}/tech/filter/">Filter</a></div>
+
+            <div class="row no-gutter">
+                <div class="col-66">
+                    Filtering by: sadfkjasdjf lk
+                </div>
+                <div class="col-33" style="text-align:right;">
+                    {{ count }} items
+                </div>
+            </div>
+
+        </div>
     </div>
-    <p><a style="display:block;" href="/h/tech/filter/">Filter</a></p>
 </div>
 
 <div class="list-block media-list scout-list">
