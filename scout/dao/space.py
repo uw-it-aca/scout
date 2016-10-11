@@ -319,9 +319,9 @@ def add_additional_info(spot):
                                                  spot.extended_info)
     # new extended_info (food only)
     spot.s_has_reservation = _get_extended_info_by_key("s_has_reservation",
-                                                     spot.extended_info)
-    spot.s_reservation_notes = _get_extended_info_by_key("s_reservation_notes",
                                                        spot.extended_info)
+    spot.s_reservation_notes = _get_extended_info_by_key("s_reservation_notes",
+                                                         spot.extended_info)
     spot.menu_url = _get_extended_info_by_key("s_menu_url",
                                               spot.extended_info)
     spot.has_coupon = _get_extended_info_by_key("s_has_coupon",
@@ -373,7 +373,7 @@ def add_study_info(spot):
                                                  spot.extended_info)
 
     spot.reservable = _get_extended_info_by_key("reservable",
-                                                       spot.extended_info)
+                                                spot.extended_info)
 
     spot.reservation_notes = _get_extended_info_by_key("reservation_notes",
                                                        spot.extended_info)
