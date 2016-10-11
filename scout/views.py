@@ -9,7 +9,7 @@ from scout.dao.space import get_spot_list, get_spot_by_id, get_filtered_spots,\
 from scout.dao.image import get_spot_image, get_item_image
 from scout.dao.item import get_item_by_id, get_filtered_items, \
     get_item_count, add_item_info
-import simplejson
+import json
 
 
 # using red square as the default center
@@ -17,7 +17,7 @@ DEFAULT_LAT = 47.6558539
 DEFAULT_LON = -122.3094925
 
 
-CAMPUS_LOCATIONS = simplejson.dumps({
+CAMPUS_LOCATIONS = json.dumps({
     "seattle": {"latitude": 47.653811, "longitude": -122.307815},
     "south_lake_union": {"latitude": 47.62456939, "longitude": -122.34105337},
     "bothell": {"latitude": 47.75907121, "longitude": -122.19103843},
