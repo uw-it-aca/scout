@@ -66,6 +66,11 @@ def add_item_info(spot):
             "i_manual_url",
             item.extended_info
         )
+        item.owner = _get_extended_info_by_key("i_owner", item.extended_info)
+        item.manager = _get_extended_info_by_key("i_manager",
+                                                 item.extended_info)
+        item.email = _get_extended_info_by_key("i_email", item.extended_info)
+        item.phone = _get_extended_info_by_key("i_phone", item.extended_info)
     return spot
 
 
