@@ -111,7 +111,7 @@
 <script src="{% static 'vendor/js/OverlappingMarkerSpiderfier.js' %}"></script>
 <script type="text/javascript">
     window.staticPath="{% static "" %}";
-    window.campus_locations = "{{ campus_locations }}";
+    window.campus_locations = {{ campus_locations | safe}};
 </script>
 {% if google_analytics %}
 <!-- google analytics -->
