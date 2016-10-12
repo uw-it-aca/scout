@@ -30,8 +30,14 @@ $(document).on('turbolinks:load', function() {
     // handle food filter submit
     $("#food_filter_submit").click(function(e) {
         e.preventDefault();
-        history.back(1);
-        Turbolinks.clearCache();
+        $.ajax({type: "GET",
+            url: "/h/seattle/food/",
+            //data: { id: $("#Shareitem").val(), access_token: $("#access_token").val() },
+            success:function(result){
+                Turbolinks.clearCache();
+                Turbolinks.visit("/h/seattle/food/", { action: 'replace' });
+            }
+        });
     });
 
     // initialize slick image slider
