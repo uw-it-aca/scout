@@ -35,7 +35,7 @@ $(document).on('turbolinks:load', function() {
             //data: { id: $("#Shareitem").val(), access_token: $("#access_token").val() },
             success:function(result){
                 Turbolinks.clearCache();
-                Turbolinks.visit("/h/seattle/food/", { action: 'replace' });
+                Turbolinks.visit("/h/seattle/food/?open_now=true", { action: 'replace' });
             }
         });
     });
