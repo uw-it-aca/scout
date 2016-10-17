@@ -30,20 +30,8 @@ def add_item_info(spot):
             "i_checkout_period",
             item.extended_info
         )
-        item.has_access_restriction = _get_extended_info_by_key(
-            "i_has_access_restriction",
-            item.extended_info
-        )
-        item.access_limit_role = _get_extended_info_by_key(
-            "i_access_limit_role",
-            item.extended_info
-        )
-        item.access_role_students = _get_extended_info_by_key(
-            "i_access_role_students",
-            item.extended_info
-        )
-        item.reservation_required = _get_extended_info_by_key(
-            "i_reservation_required",
+        item.reservation_notes = _get_extended_info_by_key(
+            "i_reservation_notes",
             item.extended_info
         )
         item.is_active = _get_extended_info_by_key(
@@ -64,6 +52,14 @@ def add_item_info(spot):
         )
         item.manual_url = _get_extended_info_by_key(
             "i_manual_url",
+            item.extended_info
+        )
+        item.owner = _get_extended_info_by_key(
+            "i_owner",
+            item.extended_info
+        )
+        item.is_stf = _get_extended_info_by_key(
+            "i_is_stf",
             item.extended_info
         )
     return spot

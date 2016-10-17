@@ -1,23 +1,11 @@
 var Geolocation = {
-
-    // campus default_locations (center)
-    // seattle: { latitude: 47.653811, longitude: -122.307815 },
-    // slu: { latitude: 47.62456939, longitude: -122.34105337 },
-    // bothell: { latitude: 47.75907121, longitude: -122.19103843 },
-    // tacoma: { latitude: 47.24458187, longitude: -122.43763134 },
-
     // drumheller fountain
     default_location: { latitude: 47.653811, longitude: -122.307815 },
 
     campus_locations: function(campus){
-        var locations = {
-            "seattle": { "latitude": 47.653811, "longitude": -122.307815 },
-            "south_lake_union": { "latitude": 47.62456939, "longitude": -122.34105337 },
-            "bothell": { "latitude": 47.75907121, "longitude": -122.19103843 },
-            "tacoma": { "latitude": 47.24458187, "longitude": -122.43763134 },
-        };
+        var locations = window.campus_locations;
         $.event.trigger(Geolocation.location_updating);
-        if(locations[campus] !== undefined){
+        if(locations !== undefined && locations[campus] !== undefined){
             Geolocation.default_location.latitude = locations[campus]["latitude"];
             Geolocation.default_location.longitude = locations[campus]["longitude"];
         }
