@@ -32,10 +32,9 @@ $(document).on('turbolinks:load', function() {
         e.preventDefault();
         $.ajax({type: "GET",
             url: "/h/seattle/food/",
-            //data: { id: $("#Shareitem").val(), access_token: $("#access_token").val() },
             success:function(result){
                 Turbolinks.clearCache();
-                Turbolinks.visit("/h/seattle/food/?open_now=true", { action: 'advance' });
+                Turbolinks.visit("/h/seattle/food/results/?period0=late_night", { action: 'advance' });
             }
         });
     });
