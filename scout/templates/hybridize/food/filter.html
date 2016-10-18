@@ -6,26 +6,6 @@
 
 {% block hybrid_content %}
 
-{% if request.is_and %}
-<div class="content-block" style="position: sticky; top:0;">
-	<div class="content-block-inner">
-        <p class="buttons-row">
-            <a href="javascript:void(0)" class="button button-raised">Reset</a>&nbsp;&nbsp;
-            <a href="javascript:void(0)" id="food_filter_submit" class="button button-fill button-raised">Submit</a>
-        </p>
-	</div>
-</div>
-{% endif %}
-
-{% if request.is_ios %}
-<div class="content-block" style="position: sticky; position: -webkit-sticky; top:0; z-index:999; background:#bbb; margin:0;">
-    <div class="row">
-        <div class="col-50"><a href="javascript:void(0)" id="food_filter_submit" class="button button-big button-fill">Submit</a></div>
-        <div class="col-50"><a href="javascript:void(0)" class="button button-big">Reset</a></div>
-    </div>
-</div>
-{% endif %}
-
 <div class="content-block-title">Hours / Open for:</div>
 <div class="list-block">
 	<ul>
@@ -281,6 +261,24 @@
 	</ul>
 </div>
 
+{% if request.is_and %}
+<div class="content-block">
+	<div class="content-block-inner">
+        <p class="buttons-row">
+            <a href="javascript:void(0)" class="button button-raised">Reset</a>&nbsp;&nbsp;
+            <a href="javascript:void(0)" id="food_filter_submit" class="button button-fill button-raised">Submit</a>
+        </p>
+	</div>
+</div>
+{% endif %}
 
+{% if request.is_ios %}
+<div class="content-block">
+    <div class="row">
+        <div class="col-50"><a href="javascript:void(0)" id="food_filter_submit" class="button button-big button-fill">Submit</a></div>
+        <div class="col-50"><a href="javascript:void(0)" class="button button-big">Reset</a></div>
+    </div>
+</div>
+{% endif %}
 
 {% endblock %}
