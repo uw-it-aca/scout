@@ -18,6 +18,8 @@ $(document).on('turbolinks:load', function() {
     // Include filter js if on filter page
 	if(window.location.href.indexOf("/filter/") > -1){
 		$.getScript('/static/scout/js/filter.js');
+
+        callNativeApp();
 	}
 
     // handle closing notifcation banners
@@ -44,5 +46,15 @@ $(document).on('turbolinks:load', function() {
         dots: true,
         arrows: false,
     });
+
+    // testing JS bridge to ios native
+
+    function callNativeApp () {
+        try {
+            webkit.messageHandlers.ScoutMessageBridge.postMessage("Hello from Javascript!")
+        } catch(err) {
+            console.log('The native context does not exist yet');
+        }
+    }
 
 });
