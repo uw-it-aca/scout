@@ -281,15 +281,6 @@ def hybrid_food_list_view(request, campus):
 
 
 @validate_campus_selection
-def hybrid_food_results_view(request, campus):
-    spots = get_filtered_spots(request, campus, "food")
-    context = {"spots": spots,
-               "campus": campus}
-    return render_to_response('hybridize/food/results.html', context,
-                              context_instance=RequestContext(request))
-
-
-@validate_campus_selection
 def hybrid_food_detail_view(request, campus, spot_id):
     spot = get_spot_by_id(spot_id)
     context = {"spot": spot,

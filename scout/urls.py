@@ -23,8 +23,6 @@ urlpatterns = patterns(
         name='hybrid_food_detail_view'),
     url(r'^h/(?P<campus>[^/]+)/food/filter/$',
         'scout.views.hybrid_food_filter_view', name='hybrid_food_filter_view'),
-    url(r'^h/(?P<campus>[^/]+)/food/results/$',
-        'scout.views.hybrid_food_results_view', name='hybrid_food_results_view'),
 
     # hybrid study
     url(r'^h/(?P<campus>[^/]+)/study/$',
