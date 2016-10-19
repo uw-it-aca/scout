@@ -262,10 +262,10 @@
 </div>
 
 {% if request.is_and %}
-<div class="content-block">
+<div class="content-block" style="display:none;">
 	<div class="content-block-inner">
         <p class="buttons-row">
-            <a href="javascript:void(0)" class="button button-raised">Reset</a>&nbsp;&nbsp;
+            This button will be hidden eventually!
             <a href="javascript:void(0)" id="food_filter_submit" class="button button-fill button-raised">Submit</a>
         </p>
 	</div>
@@ -273,10 +273,10 @@
 {% endif %}
 
 {% if request.is_ios %}
-<div class="content-block">
+<div class="content-block" style="display:none;">
     <div class="row">
+        This button will be hidden eventually!
         <div class="col-50"><a href="javascript:void(0)" id="food_filter_submit" class="button button-big button-fill">Submit</a></div>
-        <div class="col-50"><a href="javascript:void(0)" class="button button-big">Reset</a></div>
     </div>
 </div>
 {% endif %}
