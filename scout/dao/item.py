@@ -62,6 +62,11 @@ def add_item_info(spot):
             "i_is_stf",
             item.extended_info
         )
+        item.cte_type_id = _get_extended_info_by_key(
+            "cte_type_id",
+            item.extended_info
+        )
+
     return spot
 
 
