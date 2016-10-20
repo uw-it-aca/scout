@@ -331,12 +331,34 @@ def hybrid_study_filter_view(request, campus):
 
 @validate_campus_selection
 def hybrid_tech_list_view(request, campus):
-    spots = get_spots_by_filter([('has_items', 'true')])
+    # spots = get_spots_by_filter([('has_items', 'true')])
+    spots = get_filtered_spots(request, campus, "tech")
+    spots = get_filtered_items(spots, request)
+    count = get_item_count(spots)
+    if count <= 0:
+        spots = []
+
     context = {"spots": spots,
                "campus": campus,
-               "count": len(spots),
-               "app_type": 'tech'}
+               "count": count,
+               "app_type": 'tech',
+               "campus_locations": CAMPUS_LOCATIONS}
     return render_to_response('hybridize/tech/list.html', context,
+                              context_instance=RequestContext(request))
+
+
+@validate_campus_selection
+def hybrid_tech_detail_view(request, campus, item_id):
+    spot = get_item_by_id(int(item_id))
+    spot = validate_detail_info(spot, campus, "tech")
+    if not spot:
+        return custom_404_response(request, campus)
+
+    context = {"spot": spot,
+               "campus": campus,
+               "app_type": 'tech',
+               "campus_locations": CAMPUS_LOCATIONS}
+    return render_to_response('hybridize/tech/detail.html', context,
                               context_instance=RequestContext(request))
 
 

@@ -6,15 +6,48 @@
 
 {% block hybrid_content %}
 
+<p><button onclick="geoFindMe()">Show my location</button></p>
+<div id="out"></div>
+
+<script>
+function geoFindMe() {
+  var output = document.getElementById("out");
+
+  if (!navigator.geolocation){
+    output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
+    return;
+  }
+
+  function success(position) {
+    var latitude  = position.coords.latitude;
+    var longitude = position.coords.longitude;
+
+    output.innerHTML = '<p>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°</p>';
+
+    var img = new Image();
+    img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," + longitude + "&zoom=13&size=300x300&sensor=false";
+
+    output.appendChild(img);
+  };
+
+  function error() {
+    output.innerHTML = "Unable to retrieve your location";
+  };
+
+  output.innerHTML = "<p>Locating…</p>";
+
+  navigator.geolocation.getCurrentPosition(success, error);
+}
+
+</script>
+
 <div class="card">
     <div class="card-content">
         <div class="card-content-inner">
 
-            <div><a href="/h/{{campus}}/tech/filter/">Filter</a></div>
-
             <div class="row no-gutter">
                 <div class="col-66">
-                    Filtering by: sadfkjasdjf lk
+                    Filtering by: ---
                 </div>
                 <div class="col-33" style="text-align:right;">
                     {{ count }} items
@@ -35,14 +68,17 @@
             <li class="list-group-title">{{ spot.name }}</li>
 
             {% for item in spot.items %}
-            <li>
+            {% if spot.items %}
+
+            <li id="{{ spot.spot_id }}">
+
                 <a href="/h/{{campus}}/tech/{{ item.item_id }}/" class="item-link item-content">
 
                     <div class="item-media">
-                        {% if spot.images %}
-                        <div class="scout-spot-image" style="background: url('/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}/?width=100') no-repeat center center; background-size: cover !important; width:80px; height:80px">&nbsp;</div>
+                        {% if item.images %}
+                        <div class="scout-spot-image" style="background: url('/item/images/{{ item.item_id }}/image/{{ item.images.0.image_id }}/?width=200') no-repeat center center; background-size: cover !important; width:80px; height:80px;">&nbsp;</div>
                         {% else %}
-                        <div class="scout-spot-image" style="background: #e5e6e9 url('{% static "scout/img/solidoodle.jp" %}') no-repeat center center; background-size: cover !important; width:80px; height:80px">&nbsp;</div>
+                        <div class="scout-spot-image" style="background: #e5e6e9 url('{% static "scout/img/placeholder-200.png" %}') no-repeat center center; background-size: cover !important; width:80px; height:80px;">&nbsp;</div>
                         {% endif %}
                     </div>
                     <div class="item-inner">
@@ -59,13 +95,16 @@
 
                 </a>
             </li>
+            {% endif %}
             {% endfor %}
 
         </ul>
     </div>
-    {% empty %}
-    empty list
+
     {% endfor %}
 
 </div>
+
+
+
 {% endblock %}
