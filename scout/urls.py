@@ -38,7 +38,7 @@ urlpatterns = patterns(
     url(r'^h/(?P<campus>[^/]+)/tech/$',
         'scout.views.hybrid_tech_list_view', name='hybrid_tech_list_view'),
     url(r'^h/(?P<campus>[^/]+)/tech/'
-        '(?P<spot_id>[0-9]{1,5})/$', 'scout.views.hybrid_tech_detail_view',
+        '(?P<item_id>[0-9]{1,5})/$', 'scout.views.hybrid_tech_detail_view',
         name='hybrid_tech_detail_view'),
     url(r'^h/(?P<campus>[^/]+)/tech/filter/$',
         'scout.views.hybrid_tech_filter_view',
