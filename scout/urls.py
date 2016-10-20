@@ -42,7 +42,7 @@ urlpatterns = patterns(
         name='hybrid_tech_detail_view'),
     url(r'^h/(?P<campus>[^/]+)/tech/filter/$',
         'scout.views.hybrid_tech_filter_view',
-        name='hybrid_techh_filter_view'),
+        name='hybrid_tech_filter_view'),
 
     # hybrid components
     url(r'^h/components/$', 'scout.views.hybrid_comps_view',
