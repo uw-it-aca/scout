@@ -43,10 +43,8 @@ $(document).on('turbolinks:load', function() {
 
     // handle native submit click from native
     $("#food_filter_submit").click(function(e) {
-
-        // process the form and generate the filtered URL in the form of a message
-
-        // send the message to native app
+        // 1. process the web form and generate the query param
+        // 2. call the native app and pose the query param as a "message"
         callNativeApp();
     });
 
