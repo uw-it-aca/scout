@@ -29,14 +29,18 @@ $(document).on('turbolinks:load', function() {
         myApp.closeNotification(".notification-item")
     });
 
-    $("#food_filter_submit").click(function(e) {
-        callNativeApp();
-    });
+
 
     // initialize slick image slider
     $('.photo-gallery').slick({
         dots: true,
         arrows: false,
+    });
+
+    $("#food_filter_submit").click(function(e) {
+        // 1. process the web form and generate the query param
+        // 2. call the native app and pose the query param as a "message"
+        callNativeApp();
     });
 
     // testing JS bridge to ios native
