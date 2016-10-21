@@ -29,16 +29,8 @@ $(document).on('turbolinks:load', function() {
         myApp.closeNotification(".notification-item")
     });
 
-    // handle food filter submit
     $("#food_filter_submit").click(function(e) {
-        e.preventDefault();
-        $.ajax({type: "GET",
-            url: "/h/seattle/food/",
-            success:function(result){
-                Turbolinks.clearCache();
-                Turbolinks.visit("/h/seattle/food/results/?period0=late_night", { action: 'advance' });
-            }
-        });
+        callNativeApp();
     });
 
     // initialize slick image slider
@@ -47,5 +39,13 @@ $(document).on('turbolinks:load', function() {
         arrows: false,
     });
 
+    // testing JS bridge to ios native
+    function callNativeApp () {
+        try {
+            webkit.messageHandlers.foodJsBridge.postMessage("Hello from curry!")
+        } catch(err) {
+            console.log('The native context does not exist yet');
+        }
+    }
 
 });
