@@ -5,20 +5,19 @@
 {% block title %}{{spot.name}}{% endblock %}
 
 {% block hybrid_notification %}
-
-{% if request.is_ios %}
+{% if request.is_ios and spot.has_alert %}
 <div class="notifications list-block media-list" style="display: block; transform: translate3d(0px, 0px, 0px);">
     <ul>
         <li class="notification-item" style="margin-top: 0px;">
             <div class="item-content">
                 <div class="item-inner">
                     <div class="item-title-row">
-                        <div class="item-title">Alert: {{spot.has_alert}}</div>
+                        <div class="item-title">Just thought you should know...</div>
                         <div class="item-after">
                             <a href="#" class="close-notification" data-turbolinks="false"><span></span></a>
                         </div>
                     </div>
-                    <div class="item-text">{{ spot.alert_notes }}: Multi-line message. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc in magna nisi.</div>
+                    <div class="item-text">{{ spot.alert_notes }}</div>
                 </div>
             </div>
         </li>
@@ -26,13 +25,13 @@
 </div>
 {% endif %}
 
-{% if request.is_and %}
+{% if request.is_and and spot.has_alert %}
 <div class="notifications list-block" style="display: block; transform: translate3d(0px, 0px, 0px);">
     <ul>
         <li class="notification-item">
             <div class="item-content">
                 <div class="item-inner">
-                    <div class="item-title">{{ spot.alert_notes }}: Multi-line message. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc in magna nisi.</div>
+                    <div class="item-title">{{ spot.alert_notes }}</div>
                     <div class="item-after">
                         <a href="#" class="button close-notification" data-turbolinks="false">Close</a>
                     </div>
@@ -42,7 +41,6 @@
     </ul>
 </div>
 {% endif %}
-
 {% endblock %}
 
 {% block hybrid_content %}
@@ -77,14 +75,10 @@
 
 <div class="list-block" style="margin-top:1em;">
     <ul>
-        <li>
-            <a href="maps://maps.apple.com/maps?q={{ spot.latitude }},{{ spot.longitude }}" class="item-link">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">Location <span>{{ spot.location_description }}</span></div>
-                    </div>
-                </div>
-            </a>
+        <li class="item-content">
+            <div class="item-inner">
+                <div class="item-title">Location <span>{{ spot.location_description }}</span></div>
+            </div>
         </li>
         <li class="item-content">
             <div class="item-inner">
@@ -102,12 +96,20 @@
                 </div>
             </div>
         </li>
+        {% if spot.reservable %}
+        <li class="item-content">
+            <div class="item-inner">
+                <div class="item-title">{% if spot.reservable == 'reservations' %}Reservations required{% else %}Reservable{% endif %}</div>
+                <div class="item-after">see below</div>
+            </div>
+        </li>
+        {% endif %}
     </ul>
     <div class="list-block-label" style="margin-bottom:1em;">
-        <i class="fa fa-bookmark" aria-hidden="true"></i> reservaable: {{ spot.reservable }}, {{ spot.reservation_notes }}
+        <i class="fa fa-bookmark" aria-hidden="true"></i> {{ spot.reservation_notes|urlize }}
     </div>
     <div class="list-block-label" style="margin-bottom:1em;">
-        <i class="fa fa-sign-in" aria-hidden="true"></i> access notes: {{ spot.display_access_restrictions }}, {{spot.access_notes}}
+        <i class="fa fa-sign-in" aria-hidden="true"></i> {{spot.access_notes}}
     </div>
 </div>
 
@@ -218,6 +220,21 @@
                 <div class="item-content">
                     <div class="item-inner">
                         <div class="item-title">Get directions to building in Maps</div>
+                    </div>
+                </div>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<div class="content-block-title">Contact Us</div>
+<div class="list-block">
+    <ul>
+        <li>
+            <a href="#" class="item-link">
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">Report a problem</div>
                     </div>
                 </div>
             </a>
