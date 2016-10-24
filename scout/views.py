@@ -42,8 +42,9 @@ def validate_campus_selection(function):
 
 class DiscoverView(TemplateView):
     @validate_campus_selection
-    def get_context_data(request, campus):
-        context = {"campus": campus,
+    def get_context_data(self, **kwargs):
+        #import pdb; pdb.set_trace()
+        context = {"campus": kwargs['campus'],
                    "campus_locations": CAMPUS_LOCATIONS}
         return context
 
@@ -56,6 +57,100 @@ def discover_view(request, campus):
                               context_instance=RequestContext(request))
 """
 
+class DiscoverCardView(TemplateView):
+    @validate_campus_selection
+    def get_context_data(self, request, campus, discover_category):
+        # Will figure this out later
+        lat = request.GET.get('latitude', None)
+        lon = request.GET.get('longitude', None)
+
+        # Hardcoded for food at the moment. Change it per need basis.
+        discover_categories = {
+            "open": {
+                "title": "Open Now",
+                "spot_type": "food",
+                "filter_url": "open_now=true",
+                "filter": [
+                    ('limit', 5),
+                    ('open_now', True),
+                    ('center_latitude', lat if lat else DEFAULT_LAT),
+                    ('center_longitude', lon if lon else DEFAULT_LON),
+                    ('distance', 100000),
+                    ('extended_info:app_type', 'food')
+                    ]
+            },
+            "morning": {
+                "title": "Open Mornings (5am - 11am)",
+                "spot_type": "food",
+                "filter_url": "period0=morning",
+                "filter": [
+                    ('limit', 5),
+                    ('center_latitude', lat if lat else DEFAULT_LAT),
+                    ('center_longitude', lon if lon else DEFAULT_LON),
+                    ('distance', 100000),
+                    ('extended_info:app_type', 'food')
+                    ] + get_period_filter('morning')
+
+            },
+            "late": {
+                "title": "Open Late Night (10pm - 5am)",
+                "spot_type": "food",
+                "filter_url": "period0=late_night",
+                "filter": [
+                    ('limit', 5),
+                    ('center_latitude', lat if lat else DEFAULT_LAT),
+                    ('center_longitude', lon if lon else DEFAULT_LON),
+                    ('distance', 100000),
+                    ('extended_info:app_type', 'food')
+                    ] + get_period_filter('late_night')
+            },
+            "studyoutdoors": {
+                "title": "Outdoor Study Areas",
+                "spot_type": "study",
+                "filter_url": "type0=outdoor",
+                "filter": [
+                    ('limit', 5),
+                    ('center_latitude', lat if lat else DEFAULT_LAT),
+                    ('center_longitude', lon if lon else DEFAULT_LON),
+                    ('distance', 100000),
+                    ('type', 'outdoor')
+                    ]
+            },
+            "studycomputerlab": {
+                "title": "Computer Labs",
+                "spot_type": "study",
+                "filter_url": "type0=computer_lab",
+                "filter": [
+                    ('limit', 5),
+                    ('center_latitude', lat if lat else DEFAULT_LAT),
+                    ('center_longitude', lon if lon else DEFAULT_LON),
+                    ('distance', 100000),
+                    ('type', 'computer_lab')
+                ]
+
+            },
+        }
+
+        try:
+            discover_data = discover_categories[discover_category]
+        except KeyError:
+            return custom_404_response(request)
+
+        discover_data["filter"].append(('extended_info:campus', campus))
+
+        spots = get_spots_by_filter(discover_data["filter"])
+        if len(spots) == 0:
+            return custom_404_response(request)
+        context = {
+            "spots": spots,
+            "campus": campus,
+            "card_title": discover_data["title"],
+            "spot_type": discover_data["spot_type"],
+            "card_filter_url": discover_data["filter_url"]
+        }
+        return context
+
+"""
 @validate_campus_selection
 def discover_card_view(request, campus, discover_category):
     # Will figure this out later
@@ -151,8 +246,21 @@ def discover_card_view(request, campus, discover_category):
                               context,
                               context_instance=RequestContext(request))
 
+"""
+
+class FoodListView(TemplateView):
+    @validate_campus_selection
+    def get_context_data(self, **kwargs):
+        spots = get_filtered_spots(self.request, kwargs['campus'], "food")
+        context = {"spots": spots,
+                   "campus": kwargs['campus'],
+                   "count": len(spots),
+                   "app_type": 'food',
+                   "campus_locations": CAMPUS_LOCATIONS}
+        return context
 
 # food
+"""
 @validate_campus_selection
 def food_list_view(request, campus):
     spots = get_filtered_spots(request, campus, "food")
@@ -163,8 +271,27 @@ def food_list_view(request, campus):
                "campus_locations": CAMPUS_LOCATIONS}
     return render_to_response('scout/food/list.html', context,
                               context_instance=RequestContext(request))
+"""
 
+class FoodDetailView(TemplateView):
+    #@validate_campus_selection
+    def get_context_data(self, **kwargs):
+        context = super(FoodDetailView, self).get_context_data(**kwargs)
 
+        import pdb; pdb.set_trace()
+
+        spot = get_spot_by_id(spot_id)
+        spot = validate_detail_info(spot, campus, "food")
+        if not spot:
+            return custom_404_response(request, campus)
+
+        context = {"spot": spot,
+                   "campus": campus,
+                   "app_type": 'food',
+                   "campus_locations": CAMPUS_LOCATIONS}
+        return context
+
+"""
 @validate_campus_selection
 def food_detail_view(request, campus, spot_id):
     spot = get_spot_by_id(spot_id)
@@ -178,7 +305,7 @@ def food_detail_view(request, campus, spot_id):
                "campus_locations": CAMPUS_LOCATIONS}
     return render_to_response('scout/food/detail.html', context,
                               context_instance=RequestContext(request))
-
+"""
 
 @validate_campus_selection
 def food_filter_view(request, campus):
