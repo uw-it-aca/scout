@@ -16,59 +16,71 @@
     <div style="background:url('{% static "scout/img/tacoma/sign-w.jpg" %}') no-repeat center center; background-size:cover; height:270px;" valign="bottom" class="content-header">Discover {{campus}}</div>
     {% endif %}
 
-    <div class="content-content">
-        <!--<div class="content-content-inner" style="padding:20px;">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non urna et lorem venenatis varius quis sit amet dui. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur a nisi odio.
-        </div>-->
-    </div>
+    <div class="content-content"></div>
+
 </div>
 
+<div id="discover_cards">
 
-<div class="card" style="margin-bottom:20px !important; background:none !important;">
-    <div class="card-header" style="color:#666; text-transform:uppercase; font-size:14px;">Open Mornings</div>
-    <div class="card-content" style="background:#fff; padding: 10px 0;">
-        <div class="list-block">
-            <ul>
-                <li>
-                    <a href="#" class="item-link item-content">
-                        <div class="item-media">
-                            <div style="background: #e5e6e9 url('{% static "scout/img/placeholder-200.png" %}') no-repeat center center; background-size: cover !important; width:44px; height:44px">&nbsp;</div>
-                        </div>
-                        <div class="item-inner">
-                            <div class="item-title">Link 1
-                                <div class="item-subtitle">asldfj</div>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="item-link item-content">
-                        <div class="item-media">
-                            <div style="background: #e5e6e9 url('{% static "scout/img/placeholder-200.png" %}') no-repeat center center; background-size: cover !important; width:44px; height:44px">&nbsp;</div>
-                        </div>
-                        <div class="item-inner">
-                            <div class="item-title">Link 2
-                                <div class="item-subtitle">asldfj</div>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="item-link item-content">
-                        <div class="item-media">
-                            <div style="background: #e5e6e9 url('{% static "scout/img/placeholder-200.png" %}') no-repeat center center; background-size: cover !important; width:44px; height:44px">&nbsp;</div>
-                        </div>
-                        <div class="item-inner">
-                            <div class="item-title">Link 2
-                                <div class="item-subtitle">asldfj</div>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-            </ul>
+    <div id="blah">
+        <div class="card" style="margin-bottom:20px !important; background:none !important;">
+            <div class="card-header" style="color:#666; text-transform:uppercase; font-size:14px;">Test Template</div>
+            <div class="card-content" style="background:#fff; padding: 10px 0;">
+                <div class="list-block">
+                    <ul>
+
+                        <!-- loop spaces -->
+                        <li>
+                            <a href="#" class="item-link item-content">
+                                <div class="item-media">
+                                    <div style="background: #e5e6e9 url('{% static "scout/img/placeholder-200.png" %}') no-repeat center center; background-size: cover !important; width:44px; height:44px">&nbsp;</div>
+                                </div>
+                                <div class="item-inner">
+                                    <div class="item-title">Space Name 1
+                                        <div class="item-subtitle">building_name, open now</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="item-link item-content">
+                                <div class="item-media">
+                                    <div style="background: #e5e6e9 url('{% static "scout/img/placeholder-200.png" %}') no-repeat center center; background-size: cover !important; width:44px; height:44px">&nbsp;</div>
+                                </div>
+                                <div class="item-inner">
+                                    <div class="item-title">Space Name 2
+                                        <div class="item-subtitle">building_name, currently closed</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="item-link item-content">
+                                <div class="item-media">
+                                    <div style="background: #e5e6e9 url('{% static "scout/img/placeholder-200.png" %}') no-repeat center center; background-size: cover !important; width:44px; height:44px">&nbsp;</div>
+                                </div>
+                                <div class="item-inner">
+                                    <div class="item-title">Space Name 2
+                                        <div class="item-subtitle">building_name, Open now</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card-footer"> <span>&nbsp;</span><span><a href="/h/seattle/food/?h_title=Open Mornings&open_now=true" style="text-transform:capitalize;float:right;">View more</a></span></div>
         </div>
     </div>
-    <div class="card-footer"> <span>&nbsp;</span><span><a href="/h/seattle/food/?h_title=Open Mornings&open_now=true" style="text-transform:capitalize;float:right;">See more</a></span></div>
+
+    <!-- containers for displaying cards -->
+    <div id="open"></div>
+    <div id="morning"></div>
+    <div id="late"></div>
+    <div id="studyoutdoors"></div>
+    <div id="studycomputerlab"></div>
+
 </div>
+
 
 {% endblock %}

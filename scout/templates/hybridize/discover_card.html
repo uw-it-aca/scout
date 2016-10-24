@@ -1,0 +1,46 @@
+{% load staticfiles %}
+
+{% block content %}
+
+<div class="card" style="margin-bottom:20px !important; background:none !important;">
+    <div class="card-header" style="color:#666; text-transform:uppercase; font-size:14px;">{{ card_title }}</div>
+    <div class="card-content" style="background:#fff; padding: 10px 0;">
+        <div class="list-block">
+
+            <ul aria-label="{{ card_title }}">
+
+                {% for spot in spots %}
+                <li id="{{ card_title|slugify }}{{ spot.spot_id }}" data-lat="{{ spot.latitude }}" data-lon="{{ spot.longitude }}" data-spot-name="{{spot.name}}" data-spot-building="{{ spot.building_name }}" aria-labelledby="spot_header_{{spot.spot_id}}">
+
+                    <a href="/{{campus}}/{{ spot_type }}/{{ spot.spot_id }}/" class="item-link item-content" title="Details: {{spot.name}}">
+                        <div class="item-media">
+
+                            {% if spot.images %}
+                            <div style="background: #e5e6e9 url('/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}/?width=100') no-repeat center center; background-size: cover !important; width:44px; height:44px">&nbsp;</div>
+                            {% else %}
+                            <div style="background: #e5e6e9 url('{% static "scout/img/placeholder-200.png" %}') no-repeat center center; background-size: cover !important; width:44px; height:44px">&nbsp;</div>
+                            {% endif %}
+
+                        </div>
+                        <div class="item-inner">
+                            <div class="item-title">{{spot.name}}
+                                <div class="item-subtitle">{{ spot.building_name }} {{spot.is_open}}</div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                {% endfor %}
+
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="card-footer">
+        <span>&nbsp;</span>
+        <span><a href="/h/{{campus}}/{{ spot_type }}/?h_title={{card_title}}&{{ card_filter_url }}" style="text-transform:capitalize;float:right;">View more</a></span>
+    </div>
+
+</div>
+
+{% endblock %}
