@@ -3,7 +3,7 @@ from django.conf.urls import patterns, include, url, handler404
 from django.views.generic import TemplateView
 from django.views.generic.base import RedirectView
 from scout import views
-
+from scout.views import DiscoverView
 
 urlpatterns = patterns(
     '',
@@ -12,8 +12,10 @@ urlpatterns = patterns(
 
     # hybrid home
     url(r'^h/$', RedirectView.as_view(url='/h/seattle')),
-    url(r'^h/(?P<campus>[^/]+)/$',
-        'scout.views.hybrid_discover_view', name='hybrid_discover_view'),
+    #url(r'^h/(?P<campus>[^/]+)/$',
+    #    'scout.views.hybrid_discover_view', name='hybrid_discover_view'),
+
+    url(r'^h/(?P<campus>[^/]+)/$', DiscoverView.as_view(template_name="hybridize/discover.html")),
 
     # hybrid food
     url(r'^h/(?P<campus>[^/]+)/food/$',
@@ -49,8 +51,7 @@ urlpatterns = patterns(
         name='hybrid_comps_view'),
 
     # campus discovery
-    url(r'^(?P<campus>[^/]+)/$',
-        'scout.views.discover_view', name='discover_view'),
+    url(r'^(?P<campus>[^/]+)/$', DiscoverView.as_view(template_name="scout/discover.html")),
 
     # food
     url(r'^(?P<campus>[^/]+)/food/$',

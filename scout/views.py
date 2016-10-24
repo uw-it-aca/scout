@@ -10,6 +10,7 @@ from scout.dao.image import get_spot_image, get_item_image
 from scout.dao.item import get_item_by_id, get_filtered_items, \
     get_item_count, add_item_info
 
+from django.views.generic.base import TemplateView
 
 # using red square as the default center
 DEFAULT_LAT = 47.6558539
@@ -39,13 +40,21 @@ def validate_campus_selection(function):
     return wrap
 
 
+class DiscoverView(TemplateView):
+    @validate_campus_selection
+    def get_context_data(request, campus):
+        context = {"campus": campus,
+                   "campus_locations": CAMPUS_LOCATIONS}
+        return context
+
+"""
 @validate_campus_selection
 def discover_view(request, campus):
     context = {"campus": campus,
                "campus_locations": CAMPUS_LOCATIONS}
     return render_to_response('scout/discover.html', context,
                               context_instance=RequestContext(request))
-
+"""
 
 @validate_campus_selection
 def discover_card_view(request, campus, discover_category):
