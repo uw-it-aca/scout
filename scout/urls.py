@@ -4,6 +4,9 @@ from django.views.generic import TemplateView
 from django.views.generic.base import RedirectView
 from scout import views
 from scout.views import DiscoverView
+from scout.views import DiscoverCardView
+from scout.views import FoodListView
+from scout.views import FoodDetailView
 
 urlpatterns = patterns(
     '',
@@ -18,11 +21,10 @@ urlpatterns = patterns(
     url(r'^h/(?P<campus>[^/]+)/$', DiscoverView.as_view(template_name="hybridize/discover.html")),
 
     # hybrid food
-    url(r'^h/(?P<campus>[^/]+)/food/$',
-        'scout.views.hybrid_food_list_view', name='hybrid_food_list_view'),
-    url(r'^h/(?P<campus>[^/]+)/food/'
-        '(?P<spot_id>[0-9]{1,5})/$', 'scout.views.hybrid_food_detail_view',
-        name='hybrid_food_detail_view'),
+    url(r'^h/(?P<campus>[^/]+)/food/$', FoodListView.as_view(template_name="hybridize/food/list.html")),
+
+    url(r'^h/(?P<campus>[^/]+)/food/(?P<spot_id>[0-9]{1,5})/$', FoodDetailView.as_view(template_name="hybridize/food/detail.html")),
+
     url(r'^h/(?P<campus>[^/]+)/food/filter/$',
         'scout.views.hybrid_food_filter_view', name='hybrid_food_filter_view'),
 
@@ -54,11 +56,10 @@ urlpatterns = patterns(
     url(r'^(?P<campus>[^/]+)/$', DiscoverView.as_view(template_name="scout/discover.html")),
 
     # food
-    url(r'^(?P<campus>[^/]+)/food/$',
-        'scout.views.food_list_view', name='food_list_view'),
-    url(r'^(?P<campus>[^/]+)/food/'
-        '(?P<spot_id>[0-9]{1,5})/$', 'scout.views.food_detail_view',
-        name='food_detail_view'),
+    url(r'^(?P<campus>[^/]+)/food/$', FoodListView.as_view(template_name="scout/food/list.html")),
+
+    url(r'^(?P<campus>[^/]+)/food/', FoodDetailView.as_view(template_name="scout/food/detail.html")),
+
     url(r'^(?P<campus>[^/]+)/food/filter/$',
         'scout.views.food_filter_view', name='food_filter_view'),
 
@@ -86,11 +87,8 @@ urlpatterns = patterns(
     url(r'^item/images/(?P<item_id>\d+)/image/(?P<image_id>\d+)/$',
         views.item_image_view),
 
-    # discover card
-    url(r'^(?P<campus>[^/]+)/discover_card/(?P<discover_category>[a-zA-Z]+)/$',
-        'scout.views.discover_card_view',
-        name='discover_card_view'),
-
+    # discover card template
+    url(r'^(?P<campus>[^/]+)/discover_card/(?P<discover_category>[a-zA-Z]+)/$', DiscoverCardView.as_view(template_name="scout/discover_card.html")),
 
 )
 
