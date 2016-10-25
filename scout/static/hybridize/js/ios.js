@@ -8,6 +8,9 @@ $(document).on('turbolinks:load', function() {
     /// async load css by flipping the media attribute to all
     $('link[rel="stylesheet"]').attr('media', 'all');
 
+    // discover cards
+    Discover.init_cards();
+
     // initialize framework7
     var myApp = new Framework7({
 		router: false,
