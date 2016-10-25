@@ -40,29 +40,22 @@ def validate_campus_selection(function):
     return wrap
 
 
+# discover
 class DiscoverView(TemplateView):
     @validate_campus_selection
     def get_context_data(self, **kwargs):
-        #import pdb; pdb.set_trace()
+        # import pdb; pdb.set_trace()
         context = {"campus": kwargs['campus'],
                    "campus_locations": CAMPUS_LOCATIONS}
         return context
 
-"""
-@validate_campus_selection
-def discover_view(request, campus):
-    context = {"campus": campus,
-               "campus_locations": CAMPUS_LOCATIONS}
-    return render_to_response('scout/discover.html', context,
-                              context_instance=RequestContext(request))
-"""
 
 class DiscoverCardView(TemplateView):
     @validate_campus_selection
-    def get_context_data(self, request, campus, discover_category):
+    def get_context_data(self, **kwargs):
         # Will figure this out later
-        lat = request.GET.get('latitude', None)
-        lon = request.GET.get('longitude', None)
+        lat = self.request.GET.get('latitude', None)
+        lon = self.request.GET.get('longitude', None)
 
         # Hardcoded for food at the moment. Change it per need basis.
         discover_categories = {
@@ -132,122 +125,27 @@ class DiscoverCardView(TemplateView):
         }
 
         try:
-            discover_data = discover_categories[discover_category]
+            discover_data = discover_categories[kwargs['discover_category']]
         except KeyError:
-            return custom_404_response(request)
+            return custom_404_response(self.request)
 
-        discover_data["filter"].append(('extended_info:campus', campus))
+        discover_data["filter"].append(('extended_info:campus',
+                                        kwargs['campus']))
 
         spots = get_spots_by_filter(discover_data["filter"])
         if len(spots) == 0:
-            return custom_404_response(request)
+            return custom_404_response(self.request)
         context = {
             "spots": spots,
-            "campus": campus,
+            "campus": kwargs['campus'],
             "card_title": discover_data["title"],
             "spot_type": discover_data["spot_type"],
             "card_filter_url": discover_data["filter_url"]
         }
         return context
 
-"""
-@validate_campus_selection
-def discover_card_view(request, campus, discover_category):
-    # Will figure this out later
-    lat = request.GET.get('latitude', None)
-    lon = request.GET.get('longitude', None)
 
-    # Hardcoded for food at the moment. Change it per need basis.
-    discover_categories = {
-        "open": {
-            "title": "Open Now",
-            "spot_type": "food",
-            "filter_url": "open_now=true",
-            "filter": [
-                ('limit', 5),
-                ('open_now', True),
-                ('center_latitude', lat if lat else DEFAULT_LAT),
-                ('center_longitude', lon if lon else DEFAULT_LON),
-                ('distance', 100000),
-                ('extended_info:app_type', 'food')
-                ]
-        },
-        "morning": {
-            "title": "Open Mornings (5am - 11am)",
-            "spot_type": "food",
-            "filter_url": "period0=morning",
-            "filter": [
-                ('limit', 5),
-                ('center_latitude', lat if lat else DEFAULT_LAT),
-                ('center_longitude', lon if lon else DEFAULT_LON),
-                ('distance', 100000),
-                ('extended_info:app_type', 'food')
-                ] + get_period_filter('morning')
-
-        },
-        "late": {
-            "title": "Open Late Night (10pm - 5am)",
-            "spot_type": "food",
-            "filter_url": "period0=late_night",
-            "filter": [
-                ('limit', 5),
-                ('center_latitude', lat if lat else DEFAULT_LAT),
-                ('center_longitude', lon if lon else DEFAULT_LON),
-                ('distance', 100000),
-                ('extended_info:app_type', 'food')
-                ] + get_period_filter('late_night')
-        },
-        "studyoutdoors": {
-            "title": "Outdoor Study Areas",
-            "spot_type": "study",
-            "filter_url": "type0=outdoor",
-            "filter": [
-                ('limit', 5),
-                ('center_latitude', lat if lat else DEFAULT_LAT),
-                ('center_longitude', lon if lon else DEFAULT_LON),
-                ('distance', 100000),
-                ('type', 'outdoor')
-                ]
-        },
-        "studycomputerlab": {
-            "title": "Computer Labs",
-            "spot_type": "study",
-            "filter_url": "type0=computer_lab",
-            "filter": [
-                ('limit', 5),
-                ('center_latitude', lat if lat else DEFAULT_LAT),
-                ('center_longitude', lon if lon else DEFAULT_LON),
-                ('distance', 100000),
-                ('type', 'computer_lab')
-            ]
-
-        },
-    }
-
-    try:
-        discover_data = discover_categories[discover_category]
-    except KeyError:
-        return custom_404_response(request)
-
-    discover_data["filter"].append(('extended_info:campus', campus))
-
-    spots = get_spots_by_filter(discover_data["filter"])
-    if len(spots) == 0:
-        return custom_404_response(request)
-    context = {
-        "spots": spots,
-        "campus": campus,
-        "card_title": discover_data["title"],
-        "spot_type": discover_data["spot_type"],
-        "card_filter_url": discover_data["filter_url"]
-    }
-
-    return render_to_response('scout/discover_card.html',
-                              context,
-                              context_instance=RequestContext(request))
-
-"""
-
+# food
 class FoodListView(TemplateView):
     @validate_campus_selection
     def get_context_data(self, **kwargs):
@@ -259,250 +157,112 @@ class FoodListView(TemplateView):
                    "campus_locations": CAMPUS_LOCATIONS}
         return context
 
-# food
-"""
-@validate_campus_selection
-def food_list_view(request, campus):
-    spots = get_filtered_spots(request, campus, "food")
-    context = {"spots": spots,
-               "campus": campus,
-               "count": len(spots),
-               "app_type": 'food',
-               "campus_locations": CAMPUS_LOCATIONS}
-    return render_to_response('scout/food/list.html', context,
-                              context_instance=RequestContext(request))
-"""
 
 class FoodDetailView(TemplateView):
-    #@validate_campus_selection
+    @validate_campus_selection
     def get_context_data(self, **kwargs):
-        context = super(FoodDetailView, self).get_context_data(**kwargs)
-
-        import pdb; pdb.set_trace()
-
-        spot = get_spot_by_id(spot_id)
-        spot = validate_detail_info(spot, campus, "food")
+        spot = get_spot_by_id(kwargs['spot_id'])
+        spot = validate_detail_info(spot, kwargs['campus'], "food")
         if not spot:
-            return custom_404_response(request, campus)
+            return custom_404_response(self.request, kwargs['campus'])
 
         context = {"spot": spot,
-                   "campus": campus,
+                   "campus": kwargs['campus'],
                    "app_type": 'food',
                    "campus_locations": CAMPUS_LOCATIONS}
         return context
 
-"""
-@validate_campus_selection
-def food_detail_view(request, campus, spot_id):
-    spot = get_spot_by_id(spot_id)
-    spot = validate_detail_info(spot, campus, "food")
-    if not spot:
-        return custom_404_response(request, campus)
 
-    context = {"spot": spot,
-               "campus": campus,
-               "app_type": 'food',
-               "campus_locations": CAMPUS_LOCATIONS}
-    return render_to_response('scout/food/detail.html', context,
-                              context_instance=RequestContext(request))
-"""
-
-@validate_campus_selection
-def food_filter_view(request, campus):
-    context = {"campus": campus,
-               "app_type": 'food',
-               "campus_locations": CAMPUS_LOCATIONS}
-    return render_to_response('scout/food/filter.html', context,
-                              context_instance=RequestContext(request))
+class FoodFilterView(TemplateView):
+    @validate_campus_selection
+    def get_context_data(self, **kwargs):
+        context = {"campus": kwargs['campus'],
+                   "app_type": 'food',
+                   "campus_locations": CAMPUS_LOCATIONS}
+        return context
 
 
 # study
-@validate_campus_selection
-def study_list_view(request, campus):
-    spots = get_filtered_spots(request, campus, "study")
-    grouped_spots = group_spots_by_building(spots)
-    context = {"spots": spots,
-               "campus": campus,
-               "grouped_spots": grouped_spots,
-               "count": len(spots),
-               "app_type": 'study',
-               "campus_locations": CAMPUS_LOCATIONS}
-    return render_to_response('scout/study/list.html', context,
-                              context_instance=RequestContext(request))
+class StudyListView(TemplateView):
+    @validate_campus_selection
+    def get_context_data(self, **kwargs):
+        spots = get_filtered_spots(self.request, kwargs['campus'], "study")
+        grouped_spots = group_spots_by_building(spots)
+        context = {"spots": spots,
+                   "campus": kwargs['campus'],
+                   "grouped_spots": grouped_spots,
+                   "count": len(spots),
+                   "app_type": 'study',
+                   "campus_locations": CAMPUS_LOCATIONS}
+        return context
 
 
-@validate_campus_selection
-def study_detail_view(request, campus, spot_id):
-    spot = get_spot_by_id(spot_id)
-    spot = validate_detail_info(spot, campus, "study")
-    if not spot:
-        return custom_404_response(request, campus)
+class StudyDetailView(TemplateView):
+    @validate_campus_selection
+    def get_context_data(self, **kwargs):
+        spot = get_spot_by_id(kwargs['spot_id'])
+        spot = validate_detail_info(spot, kwargs['campus'], "study")
+        if not spot:
+            return custom_404_response(self.request, kwargs['campus'])
 
-    context = {"spot": spot,
-               "campus": campus,
-               "app_type": 'study',
-               "campus_locations": CAMPUS_LOCATIONS}
-    return render_to_response('scout/study/detail.html', context,
-                              context_instance=RequestContext(request))
+        context = {"spot": spot,
+                   "campus": kwargs['campus'],
+                   "app_type": 'study',
+                   "campus_locations": CAMPUS_LOCATIONS}
+        return context
 
 
-@validate_campus_selection
-def study_filter_view(request, campus):
-    context = {"campus": campus,
-               "buildings": get_building_list(campus),
-               "app_type": 'study',
-               "campus_locations": CAMPUS_LOCATIONS}
-    return render_to_response('scout/study/filter.html', context,
-                              context_instance=RequestContext(request))
+class StudyFilterView(TemplateView):
+    @validate_campus_selection
+    def get_context_data(self, **kwargs):
+        context = {"campus": kwargs['campus'],
+                   "buildings": get_building_list(kwargs['campus']),
+                   "app_type": 'study',
+                   "campus_locations": CAMPUS_LOCATIONS}
+        return context
 
 
 # tech
-@validate_campus_selection
-def tech_list_view(request, campus):
-    # spots = get_spots_by_filter([('has_items', 'true')])
-    spots = get_filtered_spots(request, campus, "tech")
-    spots = get_filtered_items(spots, request)
-    count = get_item_count(spots)
-    if count <= 0:
-        spots = []
+class TechListView(TemplateView):
+    @validate_campus_selection
+    def get_context_data(self, **kwargs):
+        # spots = get_spots_by_filter([('has_items', 'true')])
+        spots = get_filtered_spots(self.request, kwargs['campus'], "tech")
+        spots = get_filtered_items(spots, self.request)
+        count = get_item_count(spots)
+        if count <= 0:
+            spots = []
 
-    context = {"spots": spots,
-               "campus": campus,
-               "count": count,
-               "app_type": 'tech',
-               "campus_locations": CAMPUS_LOCATIONS}
-    return render_to_response('scout/tech/list.html', context,
-                              context_instance=RequestContext(request))
-
-
-@validate_campus_selection
-def tech_detail_view(request, campus, item_id):
-    spot = get_item_by_id(int(item_id))
-    spot = validate_detail_info(spot, campus, "tech")
-    if not spot:
-        return custom_404_response(request, campus)
-
-    context = {"spot": spot,
-               "campus": campus,
-               "app_type": 'tech',
-               "campus_locations": CAMPUS_LOCATIONS}
-    return render_to_response('scout/tech/detail.html', context,
-                              context_instance=RequestContext(request))
+        context = {"spots": spots,
+                   "campus": kwargs['campus'],
+                   "count": count,
+                   "app_type": 'tech',
+                   "campus_locations": CAMPUS_LOCATIONS}
+        return context
 
 
-@validate_campus_selection
-def tech_filter_view(request, campus):
-    context = {"campus": campus,
-               "app_type": 'tech',
-               "campus_locations": CAMPUS_LOCATIONS}
-    return render_to_response('scout/tech/filter.html', context,
-                              context_instance=RequestContext(request))
+class TechDetailView(TemplateView):
+    @validate_campus_selection
+    def get_context_data(self, **kwargs):
+        spot = get_item_by_id(int(kwargs['item_id']))
+        spot = validate_detail_info(spot, kwargs['campus'], "tech")
+        if not spot:
+            return custom_404_response(self.request, kwargs['campus'])
+
+        context = {"spot": spot,
+                   "campus": kwargs['campus'],
+                   "app_type": 'tech',
+                   "campus_locations": CAMPUS_LOCATIONS}
+        return context
 
 
-# hybrid
-@validate_campus_selection
-def hybrid_discover_view(request, campus):
-    context = {"campus": campus}
-    return render_to_response('hybridize/discover.html', context,
-                              context_instance=RequestContext(request))
-
-
-@validate_campus_selection
-def hybrid_food_list_view(request, campus):
-    spots = get_filtered_spots(request, campus, "food")
-    context = {"spots": spots,
-               "campus": campus}
-    return render_to_response('hybridize/food/list.html', context,
-                              context_instance=RequestContext(request))
-
-
-@validate_campus_selection
-def hybrid_food_detail_view(request, campus, spot_id):
-    spot = get_spot_by_id(spot_id)
-    context = {"spot": spot,
-               "campus": campus}
-    return render_to_response('hybridize/food/detail.html', context,
-                              context_instance=RequestContext(request))
-
-
-@validate_campus_selection
-def hybrid_food_filter_view(request, campus):
-    context = {"campus": campus}
-    return render_to_response('hybridize/food/filter.html', context,
-                              context_instance=RequestContext(request))
-
-
-@validate_campus_selection
-def hybrid_study_list_view(request, campus):
-    spots = get_filtered_spots(request, campus, "study")
-    grouped_spots = group_spots_by_building(spots)
-    context = {"spots": spots,
-               "campus": campus,
-               "grouped_spots": grouped_spots,
-               "count": len(spots),
-               "app_type": 'study'}
-    return render_to_response('hybridize/study/list.html', context,
-                              context_instance=RequestContext(request))
-
-
-@validate_campus_selection
-def hybrid_study_detail_view(request, campus, spot_id):
-    spot = get_spot_by_id(spot_id)
-    if not spot:
-        return custom_404_response(request, campus)
-
-    context = {"spot": spot,
-               "campus": campus,
-               "app_type": 'study'}
-    return render_to_response('hybridize/study/detail.html', context,
-                              context_instance=RequestContext(request))
-
-
-@validate_campus_selection
-def hybrid_study_filter_view(request, campus):
-    context = {"campus": campus}
-    return render_to_response('hybridize/study/filter.html', context,
-                              context_instance=RequestContext(request))
-
-
-@validate_campus_selection
-def hybrid_tech_list_view(request, campus):
-    # spots = get_spots_by_filter([('has_items', 'true')])
-    spots = get_filtered_spots(request, campus, "tech")
-    spots = get_filtered_items(spots, request)
-    count = get_item_count(spots)
-    if count <= 0:
-        spots = []
-
-    context = {"spots": spots,
-               "campus": campus,
-               "count": count,
-               "app_type": 'tech',
-               "campus_locations": CAMPUS_LOCATIONS}
-    return render_to_response('hybridize/tech/list.html', context,
-                              context_instance=RequestContext(request))
-
-
-@validate_campus_selection
-def hybrid_tech_detail_view(request, campus, item_id):
-    spot = get_item_by_id(int(item_id))
-    spot = validate_detail_info(spot, campus, "tech")
-    if not spot:
-        return custom_404_response(request, campus)
-
-    context = {"spot": spot,
-               "campus": campus,
-               "app_type": 'tech',
-               "campus_locations": CAMPUS_LOCATIONS}
-    return render_to_response('hybridize/tech/detail.html', context,
-                              context_instance=RequestContext(request))
-
-
-@validate_campus_selection
-def hybrid_tech_filter_view(request, campus):
-    context = {"campus": campus}
-    return render_to_response('hybridize/tech/filter.html', context,
-                              context_instance=RequestContext(request))
+class TechFilterView(TemplateView):
+    @validate_campus_selection
+    def get_context_data(self, **kwargs):
+        context = {"campus": kwargs['campus'],
+                   "app_type": 'tech',
+                   "campus_locations": CAMPUS_LOCATIONS}
+        return context
 
 
 def hybrid_comps_view(request):
