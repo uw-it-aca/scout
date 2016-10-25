@@ -82,11 +82,11 @@ urlpatterns = patterns(
 
     # hybrid tech
     url(r'^h/(?P<campus>[^/]+)/tech/$',
-        TechListView.as_view(template_name="scout/tech/list.html")),
+        TechListView.as_view(template_name="hybridize/tech/list.html")),
     url(r'^h/(?P<campus>[^/]+)/tech/(?P<item_id>[0-9]{1,5})/$',
-        TechDetailView.as_view(template_name="scout/tech/detail.html")),
+        TechDetailView.as_view(template_name="hybridize/tech/detail.html")),
     url(r'^h/(?P<campus>[^/]+)/tech/filter/$',
-        TechFilterView.as_view(template_name="scout/tech/filter.html")),
+        TechFilterView.as_view(template_name="hybridize/tech/filter.html")),
 
     # hybrid components
     url(r'^h/components/$', 'scout.views.hybrid_comps_view',
