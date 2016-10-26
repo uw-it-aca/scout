@@ -6,6 +6,7 @@
 
 {% block hybrid_content %}
 
+<form id="food_filter">
 <div class="content-block-title">Hours / Open for:</div>
 <div class="list-block">
 	<ul>
@@ -277,8 +278,11 @@
     <div class="row">
         This button will be hidden eventually!
         <div class="col-50"><a href="javascript:void(0)" id="food_filter_submit" class="button button-big button-fill">Submit</a></div>
+        <div class="col-50"><a href="javascript:void(0)" id="food_filter_clear" class="button button-big button-fill">Clear</a></div>
     </div>
 </div>
 {% endif %}
+
+</form>
 
 {% endblock %}

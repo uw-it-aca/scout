@@ -39,6 +39,11 @@ $(document).on('turbolinks:load', function() {
         callNativeApp();
     });
 
+    // reset form
+    $("#food_filter_clear").click(function(e) {
+        $('#food_filter').trigger("reset");
+    });
+
     // testing JS bridge to ios native
     function callNativeApp () {
         try {
