@@ -40,8 +40,18 @@ $(document).on('turbolinks:load', function() {
     });
 
     // reset form
-    $("#food_filter_clear").click(function(e) {
+    $('#food_filter_clear').click(function(e) {
         $('#food_filter').trigger("reset");
+    });
+
+    $('#food_filter li').each(function () {
+        $(this).click(function () {
+
+            // TODO: process the input and rebuild the query param
+
+            // pass the query param to the native app
+            callNativeApp();
+        })
     });
 
     // testing JS bridge to ios native

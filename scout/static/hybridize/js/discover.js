@@ -27,8 +27,8 @@ Discover = {
                    accepts: {html: "text/html"},
                    success: function(results) {
                        Discover._attach_card(card_id, results);
-                       Discover._init_card_events(card_id);
-                       Discover.add_distance_and_sort();
+                       //Discover._init_card_events(card_id);
+                       //Discover.add_distance_and_sort();
                        Discover.set_cards_are_visible(true);
                    },
                    error: function(xhr, status, error) {
