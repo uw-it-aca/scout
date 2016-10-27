@@ -18,7 +18,7 @@
 
     .item-inner { overflow: hidden;
 
-        .item-title-row { background-image: none !important; }
+        .item-title-row { /*background-image: none !important;*/ }
 
         .item-title {
             span { color: #666; font-size: 80%; display: block; overflow: hidden; text-overflow: ellipsis; }
