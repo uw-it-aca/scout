@@ -14,7 +14,8 @@ Discover = {
 
     fetch_cards: function (card_id /*, latln*/) {
         //var campus = Navigation.get_campus_selection();
-        var campus = 'seattle';
+        var campus = $("#discover_cards").data("campus")
+
         var url = "/h/" + campus + "/discover_card/" + card_id + "/";
         var pos_data = {"latitude": 47.653811,
             "longitude": -122.307815};
@@ -92,60 +93,4 @@ Discover = {
         });
     },
 
-    _init_card_events: function (card_id) {
-        // clear any previous set events for card
-        $("#" + card_id).off();
-        $("#" + card_id).mouseover(function(e){
-            if (window.displayed_card !== card_id) {
-                window.displayed_card = card_id;
-                Discover.display_card_pins(this);
-            }
-        });
-    },
-
-    display_card_pins: function (card) {
-        var spots = $(card).find("li");
-        // remove the li that contains the View More button
-        if(spots.length > 0 && $(spots[spots.length -1]).attr("id") == undefined){
-            spots.splice(spots.length - 1, 1)
-        }
-        var spot_data = Discover.get_spot_locations(spots);
-        Map.update_discover_map(spot_data);
-    },
-
-    get_spot_locations: function(spots){
-        var spot_data = [];
-        $.each(spots, function (idx, spot) {
-            var url = $(spot).find("a").attr("href");
-            var id = $(spot).attr("id");
-            var lat = $(spot).attr("data-lat");
-            var lng = $(spot).attr("data-lon");
-            var spot_name = $(spot).attr("data-spot-name");
-            var building = $(spot).attr("data-spot-building");
-
-            // validate the spot data
-            if(typeof id === "undefined" || typeof lat === "undefined" ||
-                typeof lng === "undefined" || typeof spot_name === "undefined" ||
-                typeof building === "undefined" )
-                throw "Bad spot data!";
-
-            spot_data.push({"url": url,
-                            "id": id,
-                            "lat": lat,
-                            "lng": lng,
-                            "spot_name": spot_name,
-                            "building": building});
-        });
-        return spot_data;
-    },
-
-    initialize_map: function(card_id){
-        var spots = $("#" + card_id).find("li");
-        // remove the li that contains the View More button
-        if(spots.length > 0 && $(spots[spots.length -1]).attr("id") == undefined){
-            spots.splice(spots.length - 1, 1);
-        }
-        var spot_data = Discover.get_spot_locations(spots);
-        Map.load_discover_map(spot_data);
-    }
 };

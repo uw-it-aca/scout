@@ -24,7 +24,7 @@
                         </div>
                         <div class="item-inner">
                             <div class="item-title">{{spot.name}}
-                                <div class="item-subtitle">{{ spot.building_name }} {{spot.is_open}}</div>
+                                <div class="item-subtitle">{{ spot.building_name }} {% if not spot.is_open %}<span style="color:red;">Currently closed</span>{% endif %}</div>
                             </div>
                         </div>
                     </a>
