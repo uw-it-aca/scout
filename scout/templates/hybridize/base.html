@@ -31,6 +31,8 @@
             <script type="text/javascript" src="{% static "vendor/js/slick.min.js" %}"></script>
             <!-- local override files -->
 		    <script type="text/javascript" src="{% static "hybridize/js/android.js" %}"></script>
+            <script type="text/javascript" src="{% static "hybridize/js/discover.js" %}"></script>
+            <script type="text/javascript" src="{% static "hybridize/js/filter.js" %}"></script>
 		    {% endcompress %}
 
         {% endif %}
@@ -58,15 +60,14 @@
 		    <!-- local override files -->
 		    <script type="text/javascript" src="{% static "hybridize/js/ios.js" %}"></script>
             <script type="text/javascript" src="{% static "hybridize/js/discover.js" %}"></script>
-
-
+            <script type="text/javascript" src="{% static "hybridize/js/filter.js" %}"></script>
 		    {% endcompress %}
 
         {% endif %}
 
     </head>
 
-    <body class="theme-custom">
+    <body class="theme-custom" {% if request.is_and %}data-device="android"{% else %}data-device="ios"{% endif %}>
 
         {% block hybrid_notification %}{% endblock %}
 

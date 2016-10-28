@@ -1,4 +1,5 @@
 Discover = {
+    
     init_cards: function () {
 
         //Geolocation.display_location_status();
