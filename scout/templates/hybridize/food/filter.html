@@ -2,13 +2,13 @@
 {% load staticfiles %}
 {% load scout_filters %}
 
-{% block title %}Filter{% endblock %}
+{% block title %}Filter Food{% endblock %}
 
 {% block hybrid_content %}
 
-<form id="food_filter">
+<form id="scout_filter">
 
-    <div class="content-block-title">Hours //// Open for:</div>
+    <div class="content-block-title">Hours / Open for:</div>
     <div class="list-block">
     	<ul>
     		<li>
@@ -267,8 +267,8 @@
     <div class="content-block" style="display:none;">
     	<div class="content-block-inner">
             <p class="buttons-row">
-                This button will be hidden eventually!
-                <a href="javascript:void(0)" id="food_filter_submit" class="button button-fill button-raised">Submit</a>
+                <a href="javascript:void(0)" id="filter_submit" class="button button-fill button-raised">Submit</a>
+                <a href="javascript:void(0)" id="filter_clear" class="button button-fill button-raised">Clear</a>
             </p>
     	</div>
     </div>
@@ -277,9 +277,8 @@
     {% if request.is_ios %}
     <div class="content-block" style="display:none;">
         <div class="row">
-            This button will be hidden eventually!
-            <div class="col-50"><a href="javascript:void(0)" id="food_filter_submit" class="button button-big button-fill">Submit</a></div>
-            <div class="col-50"><a href="javascript:void(0)" id="food_filter_clear" class="button button-big button-fill">Clear</a></div>
+            <div class="col-50"><a href="javascript:void(0)" id="filter_submit" class="button button-big button-fill">Submit</a></div>
+            <div class="col-50"><a href="javascript:void(0)" id="filter_clear" class="button button-big button-fill">Clear</a></div>
         </div>
     </div>
     {% endif %}

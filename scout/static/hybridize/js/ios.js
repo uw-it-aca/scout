@@ -18,6 +18,8 @@ $(document).on('turbolinks:load', function() {
 		activeState: true,
 	});
 
+    var query;
+
     // handle closing notifcation banners
     $(".close-notification").click(function(e) {
         e.preventDefault();
@@ -32,32 +34,41 @@ $(document).on('turbolinks:load', function() {
     });
 
 
+    /***** JS Bridge Handling ******/
+
     // handle native submit click from native
-    $("#food_filter_submit").click(function(e) {
+    $("#filter_submit").click(function(e) {
         // 1. process the web form and generate the query param
         // 2. call the native app and pose the query param as a "message"
-        callNativeApp();
+        query = "?period0=late_night"
+        callScoutBridge(query);
     });
 
     // reset form
-    $('#food_filter_clear').click(function(e) {
-        $('#food_filter').trigger("reset");
+    $('#filter_clear').click(function(e) {
+        $('#scout_filter').trigger("reset");
+        $('#scout_filter input:checkbox').removeAttr('checked');
+        $('#scout_filter input:radio').removeAttr('checked');
+
+        // TODO: make sure query param is cleared out before
+        query = ""
+        callScoutBridge(query);
+
     });
 
-    $('#food_filter li').each(function () {
+    $('#scout_filter li').each(function () {
         $(this).click(function () {
-
             // TODO: process the input and rebuild the query param
+            query = "?period0=late_night"
+            callScoutBridge(query);
 
-            // pass the query param to the native app
-            callNativeApp();
         })
     });
 
     // testing JS bridge to ios native
-    function callNativeApp () {
+    function callScoutBridge(query_param) {
         try {
-            webkit.messageHandlers.foodJsBridge.postMessage("?period0=late_night")
+            webkit.messageHandlers.scoutBridge.postMessage(query)
         } catch(err) {
             console.log('The native context does not exist yet');
         }

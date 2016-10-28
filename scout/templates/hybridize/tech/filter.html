@@ -2,283 +2,287 @@
 {% load staticfiles %}
 {% load scout_filters %}
 
-{% block title %}Filter{% endblock %}
+{% block title %}Filter Tech{% endblock %}
 
 {% block hybrid_content %}
 
-<div class="content-block-title">Hours / Open for:</div>
-<div class="list-block">
-	<ul>
-		<li>
-			<label class="label-checkbox item-content">
-				<input type="checkbox" name="xx" value="xx" checked="checked">
-				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-				<div class="item-inner">
-					<div class="item-title">Morning</div>
-				</div>
-			</label>
-		</li>
-		<li>
-			<label class="label-checkbox item-content">
-				<input type="checkbox" name="xx" value="xx">
-				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-				<div class="item-inner">
-					<div class="item-title">Afternoon</div>
-				</div>
-			</label>
-		</li>
-		<li>
-			<label class="label-checkbox item-content">
-				<input type="checkbox" name="xx" value="xx">
-				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-				<div class="item-inner">
-					<div class="item-title">Evening</div>
-				</div>
-			</label>
-		</li>
-		<li>
-			<label class="label-checkbox item-content">
-				<input type="checkbox" name="xx" value="xx">
-				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-				<div class="item-inner">
-					<div class="item-title">Late Night</div>
-				</div>
-			</label>
-		</li>
-	</ul>
-</div>
+<form id="scout_filter">
 
-<div class="content-block-title">Payment:</div>
-<div class="list-block">
-	<ul>
-		<li>
-			<label class="label-checkbox item-content">
-				<input type="checkbox" name="xx" value="xx" checked="checked">
-				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-				<div class="item-inner">
-					<div class="item-title">Cash</div>
-				</div>
-			</label>
-		</li>
-		<li>
-			<label class="label-checkbox item-content">
-				<input type="checkbox" name="xx" value="xx">
-				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-				<div class="item-inner">
-					<div class="item-title">Husky Card</div>
-				</div>
-			</label>
-		</li>
-		<li>
-			<label class="label-checkbox item-content">
-				<input type="checkbox" name="xx" value="xx">
-				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-				<div class="item-inner">
-					<div class="item-title">Dining Card</div>
-				</div>
-			</label>
-		</li>
-		<li>
-			<label class="label-checkbox item-content">
-				<input type="checkbox" name="xx" value="xx">
-				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-				<div class="item-inner">
-					<div class="item-title">Visa</div>
-				</div>
-			</label>
-		</li>
-        <li>
-			<label class="label-checkbox item-content">
-				<input type="checkbox" name="xx" value="xx">
-				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-				<div class="item-inner">
-					<div class="item-title">Mastercard</div>
-				</div>
-			</label>
-		</li>
-	</ul>
-</div>
-
-<div class="content-block-title">Restaurant type</div>
-<div class="list-block">
-	<ul>
-		<li>
-			<label class="label-checkbox item-content">
-				<input type="checkbox" name="xx" value="xx" checked="checked">
-				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-				<div class="item-inner">
-					<div class="item-title">Cafes</div>
-				</div>
-			</label>
-		</li>
-        <li>
-			<label class="label-checkbox item-content">
-				<input type="checkbox" name="xx" value="xx">
-				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-				<div class="item-inner">
-					<div class="item-title">Restaurant</div>
-				</div>
-			</label>
-		</li>
-        <li>
-			<label class="label-checkbox item-content">
-				<input type="checkbox" name="xx" value="xx">
-				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-				<div class="item-inner">
-					<div class="item-title">Fine Dining</div>
-				</div>
-			</label>
-		</li>
-		<li>
-			<label class="label-checkbox item-content">
-				<input type="checkbox" name="xx" value="xx">
-				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-				<div class="item-inner">
-					<div class="item-title">Food Court</div>
-				</div>
-			</label>
-		</li>
-		<li>
-			<label class="label-checkbox item-content">
-				<input type="checkbox" name="xx" value="xx">
-				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-				<div class="item-inner">
-					<div class="item-title">Food Truck</div>
-				</div>
-			</label>
-		</li>
-		<li>
-			<label class="label-checkbox item-content">
-				<input type="checkbox" name="xx" value="xx">
-				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-				<div class="item-inner">
-					<div class="item-title">Market</div>
-				</div>
-			</label>
-		</li>
-	</ul>
-</div>
-
-<div class="content-block-title">Food served</div>
-<div class="list-block">
-	<ul>
-		<li>
-			<label class="label-checkbox item-content">
-				<input type="checkbox" name="xx" value="xx" checked="checked">
-				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-				<div class="item-inner">
-					<div class="item-title">Pizza</div>
-				</div>
-			</label>
-		</li>
-		<li>
-			<label class="label-checkbox item-content">
-				<input type="checkbox" name="xx" value="xx">
-				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-				<div class="item-inner">
-					<div class="item-title">Burgers</div>
-				</div>
-			</label>
-		</li>
-		<li>
-			<label class="label-checkbox item-content">
-				<input type="checkbox" name="xx" value="xx">
-				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-				<div class="item-inner">
-					<div class="item-title">Salads</div>
-				</div>
-			</label>
-		</li>
-		<li>
-			<label class="label-checkbox item-content">
-				<input type="checkbox" name="xx" value="xx">
-				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-				<div class="item-inner">
-					<div class="item-title">Coffee/Espresso</div>
-				</div>
-			</label>
-		</li>
-		<li>
-			<label class="label-checkbox item-content">
-				<input type="checkbox" name="xx" value="xx">
-				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-				<div class="item-inner">
-					<div class="item-title">Sandwiches</div>
-				</div>
-			</label>
-		</li>
-	</ul>
-</div>
-
-<div class="content-block-title">Cuisine</div>
-<div class="list-block">
-	<ul>
-		<li>
-			<label class="label-checkbox item-content">
-				<input type="checkbox" name="xx" value="xx" checked="checked">
-				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-				<div class="item-inner">
-					<div class="item-title">American</div>
-				</div>
-			</label>
-		</li>
-		<li>
-			<label class="label-checkbox item-content">
-				<input type="checkbox" name="xx" value="xx">
-				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-				<div class="item-inner">
-					<div class="item-title">BBQ</div>
-				</div>
-			</label>
-		</li>
-		<li>
-			<label class="label-checkbox item-content">
-				<input type="checkbox" name="xx" value="xx">
-				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-				<div class="item-inner">
-					<div class="item-title">Chinese</div>
-				</div>
-			</label>
-		</li>
-		<li>
-			<label class="label-checkbox item-content">
-				<input type="checkbox" name="xx" value="xx">
-				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-				<div class="item-inner">
-					<div class="item-title">Hawaiian</div>
-				</div>
-			</label>
-		</li>
-		<li>
-			<label class="label-checkbox item-content">
-				<input type="checkbox" name="xx" value="xx">
-				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-				<div class="item-inner">
-					<div class="item-title">Itallian</div>
-				</div>
-			</label>
-		</li>
-	</ul>
-</div>
-
-{% if request.is_and %}
-<div class="content-block">
-	<div class="content-block-inner">
-        <p class="buttons-row">
-            <a href="javascript:void(0)" class="button button-raised">Reset</a>&nbsp;&nbsp;
-            <a href="javascript:void(0)" id="food_filter_submit" class="button button-fill button-raised">Submit</a>
-        </p>
-	</div>
-</div>
-{% endif %}
-
-{% if request.is_ios %}
-<div class="content-block">
-    <div class="row">
-        <div class="col-50"><a href="javascript:void(0)" id="food_filter_submit" class="button button-big button-fill">Submit</a></div>
-        <div class="col-50"><a href="javascript:void(0)" class="button button-big">Reset</a></div>
+    <div class="content-block-title">Hours / Open for:</div>
+    <div class="list-block">
+    	<ul>
+    		<li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" name="xx" value="xx" checked="checked">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Morning</div>
+    				</div>
+    			</label>
+    		</li>
+    		<li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" name="xx" value="xx">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Afternoon</div>
+    				</div>
+    			</label>
+    		</li>
+    		<li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" name="xx" value="xx">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Evening</div>
+    				</div>
+    			</label>
+    		</li>
+    		<li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" name="xx" value="xx">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Late Night</div>
+    				</div>
+    			</label>
+    		</li>
+    	</ul>
     </div>
-</div>
-{% endif %}
+
+    <div class="content-block-title">Payment:</div>
+    <div class="list-block">
+    	<ul>
+    		<li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" name="xx" value="xx" checked="checked">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Cash</div>
+    				</div>
+    			</label>
+    		</li>
+    		<li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" name="xx" value="xx">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Husky Card</div>
+    				</div>
+    			</label>
+    		</li>
+    		<li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" name="xx" value="xx">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Dining Card</div>
+    				</div>
+    			</label>
+    		</li>
+    		<li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" name="xx" value="xx">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Visa</div>
+    				</div>
+    			</label>
+    		</li>
+            <li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" name="xx" value="xx">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Mastercard</div>
+    				</div>
+    			</label>
+    		</li>
+    	</ul>
+    </div>
+
+    <div class="content-block-title">Restaurant type</div>
+    <div class="list-block">
+    	<ul>
+    		<li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" name="xx" value="xx" checked="checked">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Cafes</div>
+    				</div>
+    			</label>
+    		</li>
+            <li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" name="xx" value="xx">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Restaurant</div>
+    				</div>
+    			</label>
+    		</li>
+            <li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" name="xx" value="xx">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Fine Dining</div>
+    				</div>
+    			</label>
+    		</li>
+    		<li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" name="xx" value="xx">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Food Court</div>
+    				</div>
+    			</label>
+    		</li>
+    		<li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" name="xx" value="xx">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Food Truck</div>
+    				</div>
+    			</label>
+    		</li>
+    		<li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" name="xx" value="xx">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Market</div>
+    				</div>
+    			</label>
+    		</li>
+    	</ul>
+    </div>
+
+    <div class="content-block-title">Food served</div>
+    <div class="list-block">
+    	<ul>
+    		<li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" name="xx" value="xx" checked="checked">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Pizza</div>
+    				</div>
+    			</label>
+    		</li>
+    		<li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" name="xx" value="xx">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Burgers</div>
+    				</div>
+    			</label>
+    		</li>
+    		<li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" name="xx" value="xx">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Salads</div>
+    				</div>
+    			</label>
+    		</li>
+    		<li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" name="xx" value="xx">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Coffee/Espresso</div>
+    				</div>
+    			</label>
+    		</li>
+    		<li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" name="xx" value="xx">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Sandwiches</div>
+    				</div>
+    			</label>
+    		</li>
+    	</ul>
+    </div>
+
+    <div class="content-block-title">Cuisine</div>
+    <div class="list-block">
+    	<ul>
+    		<li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" name="xx" value="xx" checked="checked">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">American</div>
+    				</div>
+    			</label>
+    		</li>
+    		<li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" name="xx" value="xx">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">BBQ</div>
+    				</div>
+    			</label>
+    		</li>
+    		<li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" name="xx" value="xx">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Chinese</div>
+    				</div>
+    			</label>
+    		</li>
+    		<li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" name="xx" value="xx">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Hawaiian</div>
+    				</div>
+    			</label>
+    		</li>
+    		<li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" name="xx" value="xx">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Itallian</div>
+    				</div>
+    			</label>
+    		</li>
+    	</ul>
+    </div>
+
+    {% if request.is_and %}
+    <div class="content-block" style="display:none;">
+        <div class="content-block-inner">
+            <p class="buttons-row">
+                <a href="javascript:void(0)" id="filter_submit" class="button button-fill button-raised">Submit</a>
+                <a href="javascript:void(0)" id="filter_clear" class="button button-fill button-raised">Clear</a>
+            </p>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if request.is_ios %}
+    <div class="content-block" style="display:block;">
+        <div class="row">
+            <div class="col-50"><a href="javascript:void(0)" id="filter_submit" class="button button-big button-fill">Submit</a></div>
+            <div class="col-50"><a href="javascript:void(0)" id="filter_clear" class="button button-big button-fill">Clear</a></div>
+        </div>
+    </div>
+    {% endif %}
+
+</form>
 
 {% endblock %}
