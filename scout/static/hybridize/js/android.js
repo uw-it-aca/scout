@@ -16,12 +16,6 @@ $(document).on('turbolinks:load', function() {
 		activeState: true,
 	});
 
-    // Include filter js if on filter page
-    /**
-	if(window.location.href.indexOf("/filter/") > -1){
-		$.getScript('/static/scout/js/filter.js');
-	}**/
-
     // handle closing notifcation banners
     $(".close-notification").click(function(e) {
         e.preventDefault();
@@ -29,24 +23,51 @@ $(document).on('turbolinks:load', function() {
         myApp.closeNotification(".notification-item")
     });
 
-
-
     // initialize slick image slider
     $('.photo-gallery').slick({
         dots: true,
         arrows: false,
     });
 
-    $("#food_filter_submit").click(function(e) {
+    /***** JS Bridge Handling ******/
+
+    // handle native submit click from native
+    $("#filter_submit").click(function(e) {
         // 1. process the web form and generate the query param
         // 2. call the native app and pose the query param as a "message"
-        callNativeApp();
+        query = "?period0=late_night"
+        callScoutBridge(query);
+    });
+
+    // reset form
+    $('#filter_clear').click(function(e) {
+        $('#scout_filter').trigger("reset");
+        $('#scout_filter input:checkbox').removeAttr('checked');
+        $('#scout_filter input:radio').removeAttr('checked');
+
+        // TODO: make sure query param is cleared out before
+        query = ""
+        callScoutBridge(query);
+
+    });
+
+    $('#scout_filter li').each(function(e) {
+        $(this).click(function () {
+            
+            // TODO: process the input and rebuild the query param
+            query = "?period0=late_night"
+            callScoutBridge(query);
+
+        })
     });
 
     // testing JS bridge to ios native
-    function callNativeApp () {
+    function callScoutBridge(query) {
         try {
-            webkit.messageHandlers.foodJsBridge.postMessage("Hello from curry!")
+
+            //webkit.messageHandlers.scoutBridge.postMessage(query)
+            // TODO: implement Android js bridge handler
+
         } catch(err) {
             console.log('The native context does not exist yet');
         }

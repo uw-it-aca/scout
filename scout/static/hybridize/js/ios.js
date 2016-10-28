@@ -56,7 +56,7 @@ $(document).on('turbolinks:load', function() {
 
     });
 
-    $('#scout_filter li').each(function () {
+    $('#scout_filter li').each(function(e) {
         $(this).click(function () {
             // TODO: process the input and rebuild the query param
             query = "?period0=late_night"
@@ -66,7 +66,7 @@ $(document).on('turbolinks:load', function() {
     });
 
     // testing JS bridge to ios native
-    function callScoutBridge(query_param) {
+    function callScoutBridge(query) {
         try {
             webkit.messageHandlers.scoutBridge.postMessage(query)
         } catch(err) {
