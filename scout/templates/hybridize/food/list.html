@@ -53,8 +53,8 @@
                         <div style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{% if spot.building_name %}{{ spot.building_name }}{% else %} <span style="color:red;">missing building_name</span> {% endif %}</div>
 
                     </div>
-                    <div class="item-text">
-                        {% if spot.spot_types %}{% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}</span>{% endfor %}{% else %} <span style="color:red;">SPOT_TYPE</span> {% endif %}
+                    <div class="item-text" style="text-transform:capitalize;">
+                        {% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}{% if not forloop.last %}, {% endif %}</span>{% endfor %}
                         <div style="font-size:12px;">{% if spot.is_open %}<span class="open">Open now</span>{% else %}<span class="closed" style="color:#A94441;">Currently closed</span>{% endif %}</span></div>
                     </div>
                 </div>
