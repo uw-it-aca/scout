@@ -205,6 +205,7 @@ def process_extended_info(spot):
     spot = add_payment_names(spot)
     spot = add_additional_info(spot)
     spot = add_study_info(spot)
+    spot = add_tech_info(spot)
     spot = organize_hours(spot)
     spot = add_item_info(spot)
 
@@ -390,6 +391,15 @@ def add_study_info(spot):
        or spot.auto_labstats_total is None:
         spot.auto_labstats_total = 0
         spot.auto_labstats_available = 0
+
+    return spot
+
+
+def add_tech_info(spot):
+    spot.has_cte_techloan = _get_extended_info_by_key("has_cte_techloan",
+                                                      spot.extended_info)
+    spot.cte_techloan_id = _get_extended_info_by_key("cte_techloan_id",
+                                                     spot.extended_info)
 
     return spot
 
