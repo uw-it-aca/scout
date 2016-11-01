@@ -33,5 +33,6 @@ $(document).on('turbolinks:load', function() {
 
     // filter
     Filter.init_filter();
+    Filter.set_filter_text();
 
 });

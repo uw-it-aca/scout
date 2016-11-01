@@ -75,7 +75,57 @@ Filter = {
             });
         }
         return params;
+    },
 
+    set_filter_text: function(){
+        // this will now have a paramater, so it can set the filter text
+        // based on what it recieves as a parameter.
+
+        var filter_text = Filter._get_filter_label_text();
+        if(filter_text.length > 0){
+            $("#filter_label_text").html(filter_text);
+        }
+    },
+
+    _get_filter_label_text: function(){
+        var url = window.location.href;
+        //var type = Filter.get_current_type();
+        var filter_categories = [];
+        var specific_categories = [];
+
+        specific_categories = Filter._get_food_filter_label_text(url);
+
+        $.merge(filter_categories, specific_categories);
+
+        var filter_string = "";
+        for(var i = 0; i < filter_categories.length; i++){
+            filter_string += filter_categories[i];
+            if (i < filter_categories.length - 1){
+                filter_string += ", ";
+            }
+        }
+
+        return filter_string;
+    },
+
+    _get_food_filter_label_text: function(url){
+        // similar implementation as the current filter.js for
+        // this method. More food specific.
+
+        var filter_categories = [];
+        filter_labels = {
+            "payment": "Payment Accepted",
+            "type": "Restaurant Type",
+            "period": "Open Period",
+            "open_now": "Open Now",
+
+        };
+        $.each(filter_labels, function(filter, label){
+            if(url.indexOf("&" + filter) > -1 || url.indexOf("?" + filter) > -1){
+                filter_categories.push(label);
+            }
+        });
+        return filter_categories;
     },
 
     call_js_bridge: function(params) {
