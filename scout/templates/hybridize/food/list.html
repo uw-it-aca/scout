@@ -55,7 +55,7 @@
                     </div>
                     <div class="item-text" style="text-transform:capitalize;">
                         {% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}{% if not forloop.last %}, {% endif %}</span>{% endfor %}
-                        <div style="font-size:12px;">{% if spot.is_open %}<span class="open">Open now</span>{% else %}<span class="closed" style="color:#A94441;">Currently closed</span>{% endif %}</span></div>
+                        <div style="font-size:12px;">{% if not spot.is_open %}<span class="closed" style="color:#A94441;">Currently closed</span>{% endif %}</div>
                     </div>
                 </div>
             </a>
