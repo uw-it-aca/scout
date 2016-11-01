@@ -29,7 +29,7 @@ Filter = {
         });
 
         $('#scout_filter li').each(function(e) {
-            $(this).click(function () {
+            $(this).change(function () {
 
                 // set filter params and call native bridge
                 Filter.set_filter_params();
@@ -61,6 +61,7 @@ Filter = {
             params = $.extend(params, {"open_now": true});
         }
 
+        console.log($.param(params));
 
         // pass the params to native apps via bridge
         Filter.call_js_bridge($.param(params));
