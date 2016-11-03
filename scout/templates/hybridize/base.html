@@ -79,7 +79,7 @@
     </head>
 
     {% if campus == 'seattle' %}
-    <body class="theme-custom" data-campus="{{campus}}" data-campus-latitude="{{ campus_locations.seattle.latitude }}" data-campus-longitude="{{ campus_locations.seattle.longitude }}" {% if request.is_and %}data-device="android"{% else %}data-device="ios"{% endif %}>
+    <body class="theme-custom" data-app-type="{{ app_type }}" data-campus="{{campus}}" data-campus-latitude="{{ campus_locations.seattle.latitude }}" data-campus-longitude="{{ campus_locations.seattle.longitude }}" {% if request.is_and %}data-device="android"{% else %}data-device="ios"{% endif %}>
     {% elif campus == 'bothell' %}
     <body class="theme-custom" data-campus="{{campus}}" data-campus-latitude="{{ campus_locations.bothell.latitude }}" data-campus-longitude="{{ campus_locations.bothell.longitude }}" {% if request.is_and %}data-device="android"{% else %}data-device="ios"{% endif %}>
     {% elif campus == 'tacoma' %}
@@ -99,8 +99,6 @@
                 </div>
             </div>
         </div>
-
-
 
     </body>
 

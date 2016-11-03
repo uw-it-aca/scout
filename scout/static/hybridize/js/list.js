@@ -6,9 +6,7 @@ var List = {
         List.add_distances("scout-list-item", "data-spot-lat", "data-spot-lng");
 
         // Gets the current type the page is on!
-        var currentType = $(".list-group").data("app-type")
-
-        console.log(currentType);
+        var currentType = $("body").data("app-type")
 
         if (currentType.indexOf("study") > -1) {
 
