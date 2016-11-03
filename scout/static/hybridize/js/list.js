@@ -15,7 +15,7 @@ var List = {
 
         } else if (currentType.indexOf("tech") > -1)  {
 
-            List.add_additional_tech_distances();
+            //List.add_additional_tech_distances();
             List.order_list("scout-list-item", "scout_tech_list", false);
 
         } else {
@@ -40,6 +40,17 @@ var List = {
 
             $(object).attr("data-spot-distance", distance);
             $($(object).find(".distance-number")[0]).html(distance);
+        });
+    },
+
+    add_additional_tech_distances: function() {
+        var spots = $(".scout-list-item").not(".scout-error");
+        $.each(spots, function(idx, item){
+            var distance = $(item).attr("data-spot-distance");
+            $.each($(item).find(".scout-list-item-object"), function(idx, item_object) {
+                $(item_object).attr("data-spot-distance", distance);
+                $($(item_object).find(".distance-number")[0]).html(distance);
+            });
         });
     },
 
