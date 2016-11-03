@@ -20,9 +20,13 @@
 
 </div>
 
-<div id="user_location">Geting your location...</div>
-
-<div id="discover_cards" data-campus="{{campus}}">
+{% if campus == 'seattle' %}
+<div id="discover_cards" data-campus="{{campus}}" data-campus-latitude="{{ campus_locations.seattle.latitude }}" data-campus-longitude="{{ campus_locations.seattle.longitude }}">
+{% elif campus == 'bothell' %}
+<div id="discover_cards" data-campus="{{campus}}" data-campus-latitude="{{ campus_locations.bothell.latitude }}" data-campus-longitude="{{ campus_locations.bothell.longitude }}">
+{% elif campus == 'tacoma' %}
+<div id="discover_cards" data-campus="{{campus}}" data-campus-latitude="{{ campus_locations.tacoma.latitude }}" data-campus-longitude="{{ campus_locations.tacoma.longitude }}">
+{% endif %}
 
     <!-- containers for displaying cards -->
     <div id="open"></div>

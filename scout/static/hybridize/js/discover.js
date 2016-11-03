@@ -1,10 +1,11 @@
 Discover = {
-    
+
     init_cards: function () {
 
         //Geolocation.display_location_status();
         var discover_divs = $("#discover_cards").children();
-        //var latlng = Geolocation.get_client_latlng();
+        var latlng = Geolocation.get_client_latlng();
+
         $(discover_divs).each(function (idx, div){
             var card_id = $(div).attr('id');
             Discover.fetch_cards(card_id/*, latlng*/);
@@ -16,10 +17,12 @@ Discover = {
     fetch_cards: function (card_id /*, latln*/) {
         //var campus = Navigation.get_campus_selection();
         var campus = $("#discover_cards").data("campus")
+        var latitude = $("#discover_cards").data("campus-latitude")
+        var longitude = $("#discover_cards").data("campus-longitude")
 
         var url = "/h/" + campus + "/discover_card/" + card_id + "/";
-        var pos_data = {"latitude": 47.653811,
-            "longitude": -122.307815};
+        var pos_data = {"latitude": latitude,
+            "longitude": longitude};
         $.ajax({
                    url: url,
                    dataType: "html",
@@ -29,7 +32,7 @@ Discover = {
                    success: function(results) {
                        Discover._attach_card(card_id, results);
                        //Discover._init_card_events(card_id);
-                       //Discover.add_distance_and_sort();
+                       Discover.add_distance_and_sort();
                        Discover.set_cards_are_visible(true);
                    },
                    error: function(xhr, status, error) {
@@ -63,8 +66,10 @@ Discover = {
         $.each(cards, function(idx, card){
             spots = $(card).find("li");
             $.each(spots, function(idx, spot){
+
                 var latitude = $(spot).attr("data-lat");
                 var longitude = $(spot).attr("data-lon");
+
                 var spot_latlng = Geolocation.get_latlng_from_coords(latitude, longitude);
                 var distance = Geolocation.get_distance_from_position(spot_latlng);
                 $(spot).find(".scout-spot-distance").html(distance);
