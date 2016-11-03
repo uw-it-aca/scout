@@ -15,7 +15,7 @@ var List = {
 
         } else if (currentType.indexOf("tech") > -1)  {
 
-            //List.add_additional_tech_distances();
+            List.add_additional_tech_distances();
             List.order_list("scout-list-item", "scout_tech_list", false);
 
         } else {

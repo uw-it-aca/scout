@@ -36,10 +36,13 @@
             {% for spot in spots %}
             {% if spot.items %}
 
-            <li class="list-group-title">{{ spot.name }}</li>
 
+            <li class="scout-list-item" style="padding:0;" data-spot-building="{{ spot.building_name }}"  data-spot-lat="{{ spot.latitude }}" data-spot-lng="{{ spot.longitude }}" data-spot-name="{{ spot.name }}" data-items="{{ spot.items|length }}">
+                <div class="list-group-title">{{ spot.name }}</div>
+
+            <ul style="padding-left:0;">
             {% for item in spot.items %}
-            <li class="scout-list-item" id="{{ spot.spot_id }}" data-spot-building="{{ spot.building_name }}"  data-spot-lat="{{ spot.latitude }}" data-spot-lng="{{ spot.longitude }}" data-spot-name="{{ spot.name }}" data-items="{{ spot.items|length }}">
+            <li class="scout-list-item-object">
 
                 <a href="/h/{{campus}}/tech/{{ item.item_id }}/" class="item-link item-content">
 
@@ -66,7 +69,9 @@
                 </a>
             </li>
             {% endfor %}
+            </ul>
 
+            </li>
             {% endif %}
             {% endfor %}
 
