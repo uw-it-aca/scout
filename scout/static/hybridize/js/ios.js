@@ -11,6 +11,8 @@ $(document).on('turbolinks:load', function() {
     // discover cards
     Discover.init_cards();
 
+    List.init();
+
     // initialize framework7
     var myApp = new Framework7({
 		router: false,

@@ -6,12 +6,12 @@ var Geolocation = {
         sessionStorage.setItem("lng", lng);
     },
     */
-    
+
     get_client_latlng: function () {
 
         // get latlng to default campus center
-        var lat = $("#discover_cards").data("campus-latitude")
-        var lng = $("#discover_cards").data("campus-longitude")
+        var lat = $("body").data("campus-latitude")
+        var lng = $("body").data("campus-longitude")
 
         return Geolocation.get_latlng_from_coords(lat, lng);
     },

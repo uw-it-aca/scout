@@ -34,6 +34,7 @@
             <script type="text/javascript" src="{% static "hybridize/js/discover.js" %}"></script>
             <script type="text/javascript" src="{% static "hybridize/js/filter.js" %}"></script>
             <script type="text/javascript" src="{% static "hybridize/js/geolocation.js" %}"></script>
+            <script type="text/javascript" src="{% static "hybridize/js/list.js" %}"></script>
 		    {% endcompress %}
 
         {% endif %}
@@ -63,6 +64,7 @@
             <script type="text/javascript" src="{% static "hybridize/js/discover.js" %}"></script>
             <script type="text/javascript" src="{% static "hybridize/js/filter.js" %}"></script>
             <script type="text/javascript" src="{% static "hybridize/js/geolocation.js" %}"></script>
+            <script type="text/javascript" src="{% static "hybridize/js/list.js" %}"></script>
 		    {% endcompress %}
 
         {% endif %}
@@ -76,7 +78,13 @@
 
     </head>
 
-    <body class="theme-custom" {% if request.is_and %}data-device="android"{% else %}data-device="ios"{% endif %}>
+    {% if campus == 'seattle' %}
+    <body class="theme-custom" data-campus="{{campus}}" data-campus-latitude="{{ campus_locations.seattle.latitude }}" data-campus-longitude="{{ campus_locations.seattle.longitude }}" {% if request.is_and %}data-device="android"{% else %}data-device="ios"{% endif %}>
+    {% elif campus == 'bothell' %}
+    <body class="theme-custom" data-campus="{{campus}}" data-campus-latitude="{{ campus_locations.bothell.latitude }}" data-campus-longitude="{{ campus_locations.bothell.longitude }}" {% if request.is_and %}data-device="android"{% else %}data-device="ios"{% endif %}>
+    {% elif campus == 'tacoma' %}
+    <body class="theme-custom" data-campus="{{campus}}" data-campus-latitude="{{ campus_locations.tacoma.latitude }}" data-campus-longitude="{{ campus_locations.tacoma.longitude }}" {% if request.is_and %}data-device="android"{% else %}data-device="ios"{% endif %}>
+    {% endif %}
 
         {% block hybrid_notification %}{% endblock %}
 
