@@ -36,40 +36,40 @@
             {% for spot in spots %}
             {% if spot.items %}
 
-
             <li class="scout-list-item" style="padding:0;" data-spot-building="{{ spot.building_name }}"  data-spot-lat="{{ spot.latitude }}" data-spot-lng="{{ spot.longitude }}" data-spot-name="{{ spot.name }}" data-items="{{ spot.items|length }}">
+
                 <div class="list-group-title">{{ spot.name }}</div>
 
-            <ul style="padding-left:0;">
-            {% for item in spot.items %}
-            <li class="scout-list-item-object">
+                <ul style="padding-left:0;">
+                {% for item in spot.items %}
+                <li class="scout-list-item-object">
 
-                <a href="/h/{{campus}}/tech/{{ item.item_id }}/" class="item-link item-content">
+                    <a href="/h/{{campus}}/tech/{{ item.item_id }}/" class="item-link item-content">
 
-                    <div class="item-media">
-                        {% if item.images %}
-                        <div class="scout-spot-image" style="background: url('/item/images/{{ item.item_id }}/image/{{ item.images.0.image_id }}/?width=200') no-repeat center center; background-size: cover !important; width:80px; height:80px;">&nbsp;</div>
-                        {% else %}
-                        <div class="scout-spot-image" style="background: #e5e6e9 url('{% static "scout/img/placeholder-200.png" %}') no-repeat center center; background-size: cover !important; width:80px; height:80px;">&nbsp;</div>
-                        {% endif %}
-                    </div>
-                    <div class="item-inner">
-                        <div class="item-title-row">
-                            <div class="item-title">{{ item.name }}</div>
+                        <div class="item-media">
+                            {% if item.images %}
+                            <div class="scout-spot-image" style="background: url('/item/images/{{ item.item_id }}/image/{{ item.images.0.image_id }}/?width=200') no-repeat center center; background-size: cover !important; width:80px; height:80px;">&nbsp;</div>
+                            {% else %}
+                            <div class="scout-spot-image" style="background: #e5e6e9 url('{% static "scout/img/placeholder-200.png" %}') no-repeat center center; background-size: cover !important; width:80px; height:80px;">&nbsp;</div>
+                            {% endif %}
                         </div>
-                        <div class="item-subtitle">
-                            <div style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{% if spot.building_name %}{{ spot.building_name }}{% else %} <span style="color:red;">missing building_name</span> {% endif %}</div>
+                        <div class="item-inner">
+                            <div class="item-title-row">
+                                <div class="item-title">{{ item.name }}</div>
+                            </div>
+                            <div class="item-subtitle">
+                                <div style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{% if spot.building_name %}{{ spot.building_name }}{% else %} <span style="color:red;">missing building_name</span> {% endif %}</div>
+                            </div>
+                            <div class="item-text">
+                                {{ item.subcategory }}
+                                <div style="font-size:12px;color:#000;"><span class="scout-spot-distance"><span class="distance-number">---</span>&nbsp;mi&nbsp;&nbsp;</span>{% if not spot.is_open %}<span class="closed" style="color:#A94441;">Currently closed</span>{% endif %}</div>
+                            </div>
                         </div>
-                        <div class="item-text">
-                            {{ item.subcategory }}
-                            <div style="font-size:12px;color:#000;"><span class="scout-spot-distance"><span class="distance-number">---</span>&nbsp;mi&nbsp;&nbsp;</span>{% if not spot.is_open %}<span class="closed" style="color:#A94441;">Currently closed</span>{% endif %}</div>
-                        </div>
-                    </div>
 
-                </a>
-            </li>
-            {% endfor %}
-            </ul>
+                    </a>
+                </li>
+                {% endfor %}
+                </ul>
 
             </li>
             {% endif %}
