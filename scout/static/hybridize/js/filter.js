@@ -11,7 +11,7 @@ Filter = {
             //params = "?period0=late_night"
             //Filter.call_js_bridge(params);
 
-            //Filter.set_filter_params();
+            Filter.set_filter_params();
 
         });
 
@@ -136,8 +136,12 @@ Filter = {
         try {
             // check device and handle js bridge accordingly
             if (device == "android") {
-                console.log("android");
+
+                console.log("hello android");
                 // TODO: implement Android js bridge handler
+
+                scoutBridge.showToast(params);
+
             } else if (device == 'ios') {
 
                 console.log(params);
