@@ -7,6 +7,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="cleartype" content="on">
 
+        {% load staticfiles %}
+        {% load compress %}
+
         <!-- http://realfavicongenerator.net/ -->
         <link rel="apple-touch-icon" sizes="57x57" href="{% static "scout/ico/apple-touch-icon-57x57.png" %}">
         <link rel="apple-touch-icon" sizes="60x60" href="{% static "scout/ico/apple-touch-icon-60x60.png" %}">
@@ -30,9 +33,6 @@
         <meta name="msapplication-TileImage" content="{% static "scout/ico/mstile-144x144.png" %}">
         <meta name="theme-color" content="#ffffff">
         
-        {% load staticfiles %}
-        {% load compress %}
-
         {% if request.is_and %}
 
             <!-- framework7 material -->
