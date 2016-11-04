@@ -14,6 +14,7 @@ $(document).on('turbolinks:load', function() {
 	    router: false,
 		material: true,
 		fastClicks: true,
+        materialRipple: false,
 		activeState: true,
 	});
 
