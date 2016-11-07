@@ -2,261 +2,228 @@
 {% load staticfiles %}
 {% load scout_filters %}
 
-{% block title %}Filter Study{% endblock %}
+{% block title %}Filter{% endblock %}
 
 {% block hybrid_content %}
 
 <form id="scout_filter">
 
-    <div class="content-block-title">Hours / Open for:</div>
+    <div class="content-block-title">Type:</div>
     <div class="list-block">
-    	<ul>
+    	<ul id="type_select">
     		<li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" name="xx" value="xx" checked="checked">
+    				<input type="checkbox" value="study_room">
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
-    					<div class="item-title">Morning</div>
-    				</div>
-    			</label>
-    		</li>
-    		<li>
-    			<label class="label-checkbox item-content">
-    				<input type="checkbox" name="xx" value="xx">
-    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-    				<div class="item-inner">
-    					<div class="item-title">Afternoon</div>
-    				</div>
-    			</label>
-    		</li>
-    		<li>
-    			<label class="label-checkbox item-content">
-    				<input type="checkbox" name="xx" value="xx">
-    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-    				<div class="item-inner">
-    					<div class="item-title">Evening</div>
-    				</div>
-    			</label>
-    		</li>
-    		<li>
-    			<label class="label-checkbox item-content">
-    				<input type="checkbox" name="xx" value="xx">
-    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-    				<div class="item-inner">
-    					<div class="item-title">Late Night</div>
-    				</div>
-    			</label>
-    		</li>
-    	</ul>
-    </div>
-
-    <div class="content-block-title">Payment:</div>
-    <div class="list-block">
-    	<ul>
-    		<li>
-    			<label class="label-checkbox item-content">
-    				<input type="checkbox" name="xx" value="xx" checked="checked">
-    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-    				<div class="item-inner">
-    					<div class="item-title">Cash</div>
-    				</div>
-    			</label>
-    		</li>
-    		<li>
-    			<label class="label-checkbox item-content">
-    				<input type="checkbox" name="xx" value="xx">
-    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-    				<div class="item-inner">
-    					<div class="item-title">Husky Card</div>
-    				</div>
-    			</label>
-    		</li>
-    		<li>
-    			<label class="label-checkbox item-content">
-    				<input type="checkbox" name="xx" value="xx">
-    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-    				<div class="item-inner">
-    					<div class="item-title">Dining Card</div>
-    				</div>
-    			</label>
-    		</li>
-    		<li>
-    			<label class="label-checkbox item-content">
-    				<input type="checkbox" name="xx" value="xx">
-    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-    				<div class="item-inner">
-    					<div class="item-title">Visa</div>
+    					<div class="item-title">Study room</div>
     				</div>
     			</label>
     		</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" name="xx" value="xx">
+    				<input type="checkbox" value="study_area">
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
-    					<div class="item-title">Mastercard</div>
-    				</div>
-    			</label>
-    		</li>
-    	</ul>
-    </div>
-
-    <div class="content-block-title">Restaurant type</div>
-    <div class="list-block">
-    	<ul>
-    		<li>
-    			<label class="label-checkbox item-content">
-    				<input type="checkbox" name="xx" value="xx" checked="checked">
-    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-    				<div class="item-inner">
-    					<div class="item-title">Cafes</div>
+    					<div class="item-title">Study area</div>
     				</div>
     			</label>
     		</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" name="xx" value="xx">
+    				<input type="checkbox" value="computer_lab">
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
-    					<div class="item-title">Restaurant</div>
+    					<div class="item-title">Computer lab</div>
+    				</div>
+    			</label>
+    		</li>
+    		<li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="studio">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Production studio</div>
+    				</div>
+    			</label>
+    		</li>
+    		<li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="conference">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Conference/Classroom</div>
+    				</div>
+    			</label>
+    		</li>
+    		<li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="open">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Open space</div>
     				</div>
     			</label>
     		</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" name="xx" value="xx">
+    				<input type="checkbox" value="lounge">
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
-    					<div class="item-title">Fine Dining</div>
+    					<div class="item-title">Lounge</div>
     				</div>
     			</label>
     		</li>
-    		<li>
+            <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" name="xx" value="xx">
+    				<input type="checkbox" value="cafe">
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
-    					<div class="item-title">Food Court</div>
+    					<div class="item-title">Café</div>
     				</div>
     			</label>
     		</li>
-    		<li>
+            <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" name="xx" value="xx">
+    				<input type="checkbox" value="outdoor">
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
-    					<div class="item-title">Food Truck</div>
-    				</div>
-    			</label>
-    		</li>
-    		<li>
-    			<label class="label-checkbox item-content">
-    				<input type="checkbox" name="xx" value="xx">
-    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-    				<div class="item-inner">
-    					<div class="item-title">Market</div>
+    					<div class="item-title">Outdoor area</div>
     				</div>
     			</label>
     		</li>
     	</ul>
     </div>
 
-    <div class="content-block-title">Food served</div>
+    <div class="content-block-title">Resources:</div>
     <div class="list-block">
-    	<ul>
+    	<ul id="resources_select">
     		<li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" name="xx" value="xx" checked="checked">
+    				<input type="checkbox" value="has_whiteboards">
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
-    					<div class="item-title">Pizza</div>
+    					<div class="item-title">Whiteboard</div>
     				</div>
     			</label>
     		</li>
     		<li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" name="xx" value="xx">
+    				<input type="checkbox" value="has_outlets">
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
-    					<div class="item-title">Burgers</div>
+    					<div class="item-title">Outlets</div>
     				</div>
     			</label>
     		</li>
     		<li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" name="xx" value="xx">
+    				<input type="checkbox" value="has_computers">
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
-    					<div class="item-title">Salads</div>
+    					<div class="item-title">Computer</div>
     				</div>
     			</label>
     		</li>
     		<li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" name="xx" value="xx">
+    				<input type="checkbox" value="has_scanning">
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
-    					<div class="item-title">Coffee/Espresso</div>
+    					<div class="item-title">Scanning</div>
     				</div>
     			</label>
     		</li>
     		<li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" name="xx" value="xx">
+    				<input type="checkbox" value="has_displays">
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
-    					<div class="item-title">Sandwiches</div>
+    					<div class="item-title">Large displays (for laptop)</div>
+    				</div>
+    			</label>
+    		</li>
+            <li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="has_projector">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Projector</div>
+    				</div>
+    			</label>
+    		</li>
+            <li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="has_printing">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Printing</div>
     				</div>
     			</label>
     		</li>
     	</ul>
     </div>
 
-    <div class="content-block-title">Cuisine</div>
+    <div class="content-block-title">Noise Level</div>
     <div class="list-block">
-    	<ul>
+    	<ul id="noise_select">
     		<li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" name="xx" value="xx" checked="checked">
+    				<input type="checkbox" value="silent">
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
-    					<div class="item-title">American</div>
+    					<div class="item-title">Silent</div>
     				</div>
     			</label>
     		</li>
     		<li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" name="xx" value="xx">
+    				<input type="checkbox" value="quiet">
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
-    					<div class="item-title">BBQ</div>
+    					<div class="item-title">Low hum</div>
     				</div>
     			</label>
     		</li>
     		<li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" name="xx" value="xx">
+    				<input type="checkbox" value="moderate">
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
-    					<div class="item-title">Chinese</div>
+    					<div class="item-title">Chatter</div>
+    				</div>
+    			</label>
+    		</li>
+    	</ul>
+    </div>
+
+    <div class="content-block-title">Food/Coffee</div>
+    <div class="list-block">
+    	<ul id="food_select">
+    		<li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="space">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">In space</div>
     				</div>
     			</label>
     		</li>
     		<li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" name="xx" value="xx">
+    				<input type="checkbox" value="building">
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
-    					<div class="item-title">Hawaiian</div>
+    					<div class="item-title">In building</div>
     				</div>
     			</label>
     		</li>
     		<li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" name="xx" value="xx">
+    				<input type="checkbox" value="neighboring">
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
-    					<div class="item-title">Itallian</div>
+    					<div class="item-title">In neighboring building</div>
     				</div>
     			</label>
     		</li>

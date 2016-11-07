@@ -45,13 +45,37 @@ Filter = {
 
         var params = {};
         var param_types = {
-            "payment": "payment_select input:checkbox:checked",
+
+            //global
             "type": "type_select input:checkbox:checked",
-            "period": "period_select input:checkbox:checked"
+
+            // food
+            "payment": "payment_select input:checkbox:checked",
+            "period": "period_select input:checkbox:checked",
+
+            // study
+            "building": "building_select option:selected",
+            "resources": "resources_select input:checkbox:checked",
+            "noise": "noise_select input:checkbox:checked",
+            "food": "food_select input:checkbox:checked",
+            "lighting": "lighting_select input:checkbox:checked",
+            "reservation": "reserve_select input:checkbox:checked",
+            "capacity": "capacity_select option:selected",
+
+            // tech
+            "brand": "brand_select input:checkbox:checked",
+            "subcategory": "subcategory_select input:checkbox:checked",
         };
 
         $.each(param_types, function(type, param){
             var result = $("#" + param).map(function() {
+
+                if(type == "capacity" && val == "1") {
+                    val = null;
+                } else if (type == "building" && $("#buildings_toggle input:checked").val() == "entire_campus") {
+                    val = null;
+                }
+
                 return $(this).val();
             }).get();
             params = $.extend(params, Filter._get_params_for_select(result, type));
@@ -93,7 +117,16 @@ Filter = {
         var filter_categories = [];
         var specific_categories = [];
 
-        specific_categories = Filter._get_food_filter_label_text(url);
+        // Gets the current type the page is on!
+        var currentType = $("body").data("app-type")
+
+        if(currentType.indexOf("food") > -1) {
+            specific_categories = Filter._get_food_filter_label_text(url);
+        } else if(currentType.indexOf("study") > -1) {
+            specific_categories = Filter._get_study_filter_label_text(url);
+        } else if(currentType.indexOf("tech") > -1) {
+            specific_categories = Filter._get_tech_filter_label_text(url);
+        }
 
         $.merge(filter_categories, specific_categories);
 
@@ -128,6 +161,53 @@ Filter = {
         return filter_categories;
     },
 
+    _get_study_filter_label_text: function(url){
+        // similar implementation as the current filter.js for
+        // this method. More study specific.
+
+        var filter_categories = [];
+        filter_labels = {
+            "building": "Building",
+            "type": "Study Type",
+            "food": "Refreshments",
+            "lighting": "Lighting",
+            "noise": "Noise Level",
+            "resources": "Resources",
+            "reservation": "Reservability",
+            "capacity": "Capacity",
+            "open_at": "Hours"
+        };
+        $.each(filter_labels, function(filter, label){
+            if(url.indexOf(filter) > -1){
+                filter_categories.push(label);
+            }
+        });
+
+        // Temporary fix for adding Open Now as a filter text.
+        if (!(filter_categories.indexOf("Hours") > -1)) {
+            filter_categories.push("Open Now");
+        }
+
+        return filter_categories;
+    },
+
+    _get_tech_filter_label_text: function(url){
+        // similar implementation as the current filter.js for
+        // this method. More tech specific.
+
+        var filter_categories = [];
+        filter_labels = {
+            "brand": "Brand",
+            "subcategory": "Type",
+        };
+        $.each(filter_labels, function(filter, label){
+            if(url.indexOf("&" + filter) > -1 || url.indexOf("?" + filter) > -1){
+                filter_categories.push(label);
+            }
+        });
+        return filter_categories;
+    },
+
     call_js_bridge: function(params) {
 
         // get the device type
@@ -136,16 +216,8 @@ Filter = {
         try {
             // check device and handle js bridge accordingly
             if (device == "android") {
-
-                console.log("hello android");
-                // TODO: implement Android js bridge handler
-
                 scoutBridge.showToast(params);
-
             } else if (device == 'ios') {
-
-                console.log(params);
-
                 webkit.messageHandlers.scoutBridge.postMessage(params)
             }
 
