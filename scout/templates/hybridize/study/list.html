@@ -12,7 +12,7 @@
 
             <div class="row no-gutter">
                 <div class="col-66">
-                    Filtering by: <span id="filter_label_text"></span>                    
+                    Filtering by: <span id="filter_label_text"></span>
                 </div>
                 <div class="col-33" style="text-align:right;">
                     {{ spots|length }} spaces
@@ -68,6 +68,20 @@
 
                 </ul>
 
+            </li>
+            {% empty %}
+            <li class="scout-list-item">
+                <div class="list-group-title">no found</div>
+            </li>
+            <li class="scout-list-item scout-error" style="padding:20px;">
+                <p class="scout-error-msg">No results? Try updating your filters.</p>
+                <div class="scout-error-body">
+                    <p>Suggestions for improving the results:</p>
+                    <ul>
+                        <li>Try a specific campus.</li>
+                        <li>Try using fewer filters.</li>
+                    </ul>
+                </div>
             </li>
             {% endfor %}
 
