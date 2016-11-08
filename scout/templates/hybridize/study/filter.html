@@ -8,7 +8,7 @@
 
 <form id="scout_filter">
 
-    <div class="content-block-title">Type:</div>
+    <div class="content-block-title">Type</div>
     <div class="list-block">
     	<ul id="type_select">
     		<li>
@@ -95,7 +95,7 @@
     	</ul>
     </div>
 
-    <div class="content-block-title">Resources:</div>
+    <div class="content-block-title">Resources</div>
     <div class="list-block">
     	<ul id="resources_select">
     		<li>
@@ -228,6 +228,114 @@
     			</label>
     		</li>
     	</ul>
+    </div>
+
+    <div class="content-block-title">Lighting</div>
+    <div class="list-block">
+    	<ul id="lighting_select">
+    		<li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="has_natural_light">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Natural Light</div>
+    				</div>
+    			</label>
+    		</li>
+        </ul>
+    </div>
+
+    <div class="content-block-title">Reservability</div>
+    <div class="list-block">
+    	<ul id="reserve_select">
+    		<li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="reservable">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Show reservable spaces only</div>
+    				</div>
+    			</label>
+    		</li>
+        </ul>
+    </div>
+
+    <div class="content-block-title">Capacity</div>
+    <div class="list-block">
+    	<ul id="capacity_select">
+            <li>
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title label">Seats at least</div>
+                        <div class="item-input">
+                            <select>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
+                                <option value="25">25+</option>
+                           </select>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="content-block-title">Hours</div>
+    <div class="list-block">
+        <ul id="hours_toggle">
+            <li>
+                <label class="label-radio item-content">
+                    <input type="radio" name="optionsHours" value="open_now" checked>
+                    {% if request.is_and %}<div class="item-media"><i class="icon icon-form-radio"></i></div>{% endif %}
+                    <div class="item-inner">
+                        <div class="item-title">Open now</div>
+                    </div>
+                </label>
+            </li>
+            <li>
+                <label class="label-radio item-content">
+                    <input type="radio" name="optionsHours" value="hours_list">
+                    {% if request.is_and %}<div class="item-media"><i class="icon icon-form-radio"></i></div>{% endif %}
+                    <div class="item-inner">
+                        <div class="item-title">Specify day &amp; time</div>
+                    </div>
+                </label>
+            </li>
+        </ul>
+    </div>
+
+    <div class="content-block-title">Building(s)</div>
+    <div class="list-block">
+        <ul id="buildings_toggle">
+            <li>
+                <label class="label-radio item-content">
+                    <input type="radio" name="optionsLocations" value="entire_campus" checked>
+                    {% if request.is_and %}<div class="item-media"><i class="icon icon-form-radio"></i></div>{% endif %}
+                    <div class="item-inner">
+                        <div class="item-title">Entire campus</div>
+                    </div>
+                </label>
+            </li>
+            <li>
+                <label class="label-radio item-content">
+                    <input type="radio" name="optionsLocations" value="building_list">
+                    {% if request.is_and %}<div class="item-media"><i class="icon icon-form-radio"></i></div>{% endif %}
+                    <div class="item-inner">
+                        <div class="item-title">Specific buildings</div>
+                    </div>
+                </label>
+            </li>
+        </ul>
     </div>
 
     {% if request.is_and %}

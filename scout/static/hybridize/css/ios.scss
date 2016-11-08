@@ -45,6 +45,16 @@
 
 }
 
+label.label-radio input[type=checkbox]~.item-inner, label.label-radio input[type=radio]~.item-inner {
+    padding-right: 10px;
+    padding-left: 38px;
+}
+
+label.label-radio input[type=checkbox]:checked~.item-inner, label.label-radio input[type=radio]:checked~.item-inner {
+    background-position: calc(2%) center;
+    padding-left: 38px;
+}
+
 .item-input { text-align: right;
 	input, select { text-align: right; }
 

@@ -70,6 +70,8 @@ Filter = {
         $.each(param_types, function(type, param){
             var result = $("#" + param).map(function() {
 
+                var val = $(this).val();
+
                 if(type == "capacity" && val == "1") {
                     val = null;
                 } else if (type == "building" && $("#buildings_toggle input:checked").val() == "entire_campus") {
@@ -80,6 +82,12 @@ Filter = {
             }).get();
             params = $.extend(params, Filter._get_params_for_select(result, type));
         });
+
+        // Only populates hours if specify day and time is selected
+        if ($("#hours_toggle input:checked").val() == "hours_list") {
+            // gets the parameter for start and stop hours
+            //params = $.extend(params, Study_Filter.get_processed_hours());
+        }
 
         if($("#open_now input").is(":checked")){
             params = $.extend(params, {"open_now": true});
