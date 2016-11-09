@@ -32,7 +32,7 @@
         <meta name="msapplication-TileColor" content="#ffc40d">
         <meta name="msapplication-TileImage" content="{% static "scout/ico/mstile-144x144.png" %}">
         <meta name="theme-color" content="#ffffff">
-        
+
         {% if request.is_and %}
 
             <!-- framework7 material -->
@@ -56,6 +56,9 @@
 		    <script type="text/javascript" src="{% static "hybridize/js/android.js" %}"></script>
             <script type="text/javascript" src="{% static "hybridize/js/discover.js" %}"></script>
             <script type="text/javascript" src="{% static "hybridize/js/filter.js" %}"></script>
+            <script type="text/javascript" src="{% static "hybridize/js/filter-food.js" %}"></script>
+            <script type="text/javascript" src="{% static "hybridize/js/filter-study.js" %}"></script>
+            <script type="text/javascript" src="{% static "hybridize/js/filter-tech.js" %}"></script>
             <script type="text/javascript" src="{% static "hybridize/js/geolocation.js" %}"></script>
             <script type="text/javascript" src="{% static "hybridize/js/list.js" %}"></script>
 		    {% endcompress %}
@@ -70,10 +73,10 @@
 
 
             {% compress css %}
-            <link rel="stylesheet" href="{% static "scout/css/slick.scss" %}" type="text/x-scss">
             <!-- local override files -->
             <link rel="stylesheet" href="{% static "hybridize/css/ios-theme.scss" %}" type="text/x-scss">
             <link rel="stylesheet" href="{% static "hybridize/css/ios.scss" %}" type="text/x-scss">
+            <link rel="stylesheet" href="{% static "scout/css/slick.scss" %}" type="text/x-scss">
             {% endcompress %}
 
             {% compress js %}
@@ -86,6 +89,9 @@
 		    <script type="text/javascript" src="{% static "hybridize/js/ios.js" %}"></script>
             <script type="text/javascript" src="{% static "hybridize/js/discover.js" %}"></script>
             <script type="text/javascript" src="{% static "hybridize/js/filter.js" %}"></script>
+            <script type="text/javascript" src="{% static "hybridize/js/filter-food.js" %}"></script>
+            <script type="text/javascript" src="{% static "hybridize/js/filter-study.js" %}"></script>
+            <script type="text/javascript" src="{% static "hybridize/js/filter-tech.js" %}"></script>
             <script type="text/javascript" src="{% static "hybridize/js/geolocation.js" %}"></script>
             <script type="text/javascript" src="{% static "hybridize/js/list.js" %}"></script>
 		    {% endcompress %}
