@@ -15,8 +15,11 @@ Discover = {
     },
 
     fetch_cards: function (card_id /*, latln*/) {
+
         //var campus = Navigation.get_campus_selection();
         var campus = $("body").data("campus")
+
+        
         var latitude = $("body").data("campus-latitude")
         var longitude = $("body").data("campus-longitude")
 

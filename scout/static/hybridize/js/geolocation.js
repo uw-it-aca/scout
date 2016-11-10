@@ -1,18 +1,30 @@
 var Geolocation = {
 
-    /*
-    set_client_location: function(lat, lng) {
+
+    // native calls this function.. and passes user lat/lng to be stored in
+    // session storage... overrides campus lat/lng
+    set_user_location: function(lat, lng) {
         sessionStorage.setItem("lat", lat);
         sessionStorage.setItem("lng", lng);
+        //Geolocation.set_location_type("user");
     },
-    */
+
+    set_campus_location: function() {
+
+        // get the campus from the url
+        var campus_lat = $("body").data("campus-latitude")
+        var campus_lng = $("body").data("campus-longitude")
+
+        sessionStorage.setItem('lat', campus_lat);
+        sessionStorage.setItem('lng', campus_lng);
+        //Geolocation.set_location_type("default");
+    },
 
     get_client_latlng: function () {
 
-        // get latlng to default campus center
-        var lat = $("body").data("campus-latitude")
-        var lng = $("body").data("campus-longitude")
-
+        // user whaterver lat/lng is stored in sessi
+        var lat = sessionStorage.getItem("lat");
+        var lng = sessionStorage.getItem("lng");
         return Geolocation.get_latlng_from_coords(lat, lng);
     },
 
@@ -30,5 +42,23 @@ var Geolocation = {
         return distance;
 
     },
+
+    /**
+    set_location_type: function (type) {
+        // Values: 'default', 'supplied', 'user'
+        // Session only
+        sessionStorage.setItem("location_type", type);
+    },
+
+    get_location_type: function () {
+         return sessionStorage.getItem("location_type") || 'default';
+     },
+     **/
+
+    update_location: function () {
+        // set campus lat/lng in session storage by default
+        Geolocation.set_campus_location();
+    },
+
 
 };
