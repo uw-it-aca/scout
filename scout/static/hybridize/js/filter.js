@@ -1,102 +1,19 @@
-Filter = {
+var Filter = {
 
-    init_filter: function () {
-
-        var params = {};
-
-        // handle native submit click from native
-        $("#filter_submit").click(function(e) {
-            // 1. process the web form and generate the query param
-            // 2. call the native app and pose the query param as a "message"
-            //params = "?period0=late_night"
-            //Filter.call_js_bridge(params);
-
-            Filter.set_filter_params();
-
-        });
-
-        // reset form
-        $('#filter_clear').click(function(e) {
-
-            // clear params
-            $('#scout_filter').trigger("reset");
-            $('#scout_filter input:checkbox').removeAttr('checked');
-            $('#scout_filter input:radio').removeAttr('checked');
-
-            // set emptied filter params and call native bridge
-            Filter.set_filter_params();
-
-        });
-
-        $('#scout_filter li').each(function(e) {
-            $(this).change(function () {
-
-                // set filter params and call native bridge
-                Filter.set_filter_params();
-            })
-        });
-
-    },
-
-    set_filter_params: function(){
-        // similar implementation as the current filter.js for this
-        // method. This just specifically gets params set for
-        // food filters.html.
-
-        var params = {};
-        var param_types = {
-
-            //global
-            "type": "type_select input:checkbox:checked",
-
-            // food
-            "payment": "payment_select input:checkbox:checked",
-            "period": "period_select input:checkbox:checked",
-
-            // study
-            "building": "building_select option:selected",
-            "resources": "resources_select input:checkbox:checked",
-            "noise": "noise_select input:checkbox:checked",
-            "food": "food_select input:checkbox:checked",
-            "lighting": "lighting_select input:checkbox:checked",
-            "reservation": "reserve_select input:checkbox:checked",
-            "capacity": "capacity_select option:selected",
-
-            // tech
-            "brand": "brand_select input:checkbox:checked",
-            "subcategory": "subcategory_select input:checkbox:checked",
-        };
-
-        $.each(param_types, function(type, param){
-            var result = $("#" + param).map(function() {
-
-                var val = $(this).val();
-
-                if(type == "capacity" && val == "1") {
-                    val = null;
-                } else if (type == "building" && $("#buildings_toggle input:checked").val() == "entire_campus") {
-                    val = null;
-                }
-
-                return $(this).val();
-            }).get();
-            params = $.extend(params, Filter._get_params_for_select(result, type));
-        });
-
-        // Only populates hours if specify day and time is selected
-        if ($("#hours_toggle input:checked").val() == "hours_list") {
-            // gets the parameter for start and stop hours
-            //params = $.extend(params, Study_Filter.get_processed_hours());
+    get_filter_url: function(type) {
+        var filter = {};
+        if(type.indexOf("food") > -1) {
+            filter = Food_Filter.get_filter_url();
+        } else if(type.indexOf("study") > -1) {
+            filter = Study_Filter.get_filter_url();
+        } else if(type.indexOf("tech") > -1) {
+            filter = Tech_Filter.get_filter_url();
         }
 
-        if($("#open_now input").is(":checked")){
-            params = $.extend(params, {"open_now": true});
+        if(filter === undefined || $.isEmptyObject(filter)){
+            return undefined;
         }
-
-        console.log($.param(params));
-
-        // pass the params to native apps via bridge
-        Filter.call_js_bridge($.param(params));
+        return $.param(filter);
     },
 
     _get_params_for_select: function(select_results, prefix) {
@@ -107,35 +24,23 @@ Filter = {
             });
         }
         return params;
-    },
 
-    set_filter_text: function(){
-        // this will now have a paramater, so it can set the filter text
-        // based on what it recieves as a parameter.
-
-        var filter_text = Filter._get_filter_label_text();
-        if(filter_text.length > 0){
-            $("#filter_label_text").html(filter_text);
-        }
     },
 
     _get_filter_label_text: function(){
         var url = window.location.href;
-        //var type = Filter.get_current_type();
         var filter_categories = [];
         var specific_categories = [];
 
-        // Gets the current type the page is on!
-        var currentType = $("body").data("app-type")
+        var type = $("body").data("app-type")
 
-        if(currentType.indexOf("food") > -1) {
-            specific_categories = Filter._get_food_filter_label_text(url);
-        } else if(currentType.indexOf("study") > -1) {
-            specific_categories = Filter._get_study_filter_label_text(url);
-        } else if(currentType.indexOf("tech") > -1) {
-            specific_categories = Filter._get_tech_filter_label_text(url);
+        if(type.indexOf("food") > -1) {
+            specific_categories = Food_Filter._get_filter_label_text(url);
+        } else if(type.indexOf("study") > -1) {
+            specific_categories = Study_Filter._get_filter_label_text(url);
+        } else if(type.indexOf("tech") > -1) {
+            specific_categories = Tech_Filter._get_filter_label_text(url);
         }
-
         $.merge(filter_categories, specific_categories);
 
         var filter_string = "";
@@ -149,71 +54,192 @@ Filter = {
         return filter_string;
     },
 
-    _get_food_filter_label_text: function(url){
-        // similar implementation as the current filter.js for
-        // this method. More food specific.
+    set_filter_text: function(){
+        // this will now have a paramater, so it can set the filter text
+        // based on what it recieves as a parameter.
 
-        var filter_categories = [];
-        filter_labels = {
-            "payment": "Payment Accepted",
-            "type": "Restaurant Type",
-            "period": "Open Period",
-            "open_now": "Open Now",
-
-        };
-        $.each(filter_labels, function(filter, label){
-            if(url.indexOf("&" + filter) > -1 || url.indexOf("?" + filter) > -1){
-                filter_categories.push(label);
-            }
-        });
-        return filter_categories;
+        var filter_text = Filter._get_filter_label_text();
+        if(filter_text.length > 0){
+            $("#filter_label_text").html(filter_text);
+            $("#filter_text_holder").removeClass("visually-hidden");
+            $("#reset_food_list").removeClass("visually-hidden");
+            $("#reset_study_list").removeClass("visually-hidden");
+            $("#reset_tech_list").removeClass("visually-hidden");
+        }
     },
 
-    _get_study_filter_label_text: function(url){
-        // similar implementation as the current filter.js for
-        // this method. More study specific.
+    reset_filter: function(sessionVar, type) {
+        // this will now have a paramater, so it can set the delete app type
+        // specific filters.
+        sessionStorage.removeItem(sessionVar);
+        Filter.replace_navigation_href();
+        Filter.redirect_to_page(type);
+    },
 
-        var filter_categories = [];
-        filter_labels = {
-            "building": "Building",
-            "type": "Study Type",
-            "food": "Refreshments",
-            "lighting": "Lighting",
-            "noise": "Noise Level",
-            "resources": "Resources",
-            "reservation": "Reservability",
-            "capacity": "Capacity",
-            "open_at": "Hours"
-        };
-        $.each(filter_labels, function(filter, label){
-            if(url.indexOf(filter) > -1){
-                filter_categories.push(label);
-            }
-        });
+    init_events: function() {
 
-        // Temporary fix for adding Open Now as a filter text.
-        if (!(filter_categories.indexOf("Hours") > -1)) {
-            filter_categories.push("Open Now");
+        Filter.set_filter_text();
+        Filter.init_hybrid_events();
+        Food_Filter.init_events();
+        Study_Filter.init_events();
+        Tech_Filter.init_events();
+
+    },
+
+    redirect_to_page: function(type) {
+        var campus = Navigation.get_campus_selection();
+        var filter_url = Filter.get_filter_url(type);
+
+        if (filter_url !== undefined){
+            window.location.href = "/"+ campus + type + "?" + filter_url;
+        } else {
+            window.location.href = "/" + campus + type;
+        }
+    },
+
+    /**
+    get_current_type: function() {
+
+        var current_page = window.location.pathname;
+
+        if (current_page.indexOf("study") > -1){
+            return "/study/";
+        } else if (current_page.indexOf("tech") > -1){
+            return "/tech/";
+        } else if (current_page.indexOf("food") > -1){
+            return "/food/";
+        } else {
+            return "/";
         }
 
-        return filter_categories;
+        return current_page;
+    },
+    **/
+
+    init: function() {
+        // we can include type as a parameter and web.js
+        // pas that!
+        var type = $("body").data("app-type")
+
+        if(type.indexOf("food") > -1) {
+            Food_Filter.populate_filters_from_saved();
+        } else if(type.indexOf("study") > -1) {
+            Study_Filter.populate_filters_from_saved();
+            Study_Filter.populate_hour_filters();
+        } else if(type.indexOf("tech") > -1) {
+            Tech_Filter.populate_filters_from_saved();
+        }
     },
 
-    _get_tech_filter_label_text: function(url){
-        // similar implementation as the current filter.js for
-        // this method. More tech specific.
+    populate_filters_from_saved: function(sessionVar, param_types) {
 
-        var filter_categories = [];
-        filter_labels = {
-            "brand": "Brand",
-            "subcategory": "Type",
-        };
-        $.each(filter_labels, function(filter, label){
-            if(url.indexOf("&" + filter) > -1 || url.indexOf("?" + filter) > -1){
-                filter_categories.push(label);
-            }
+        var params = JSON.parse(sessionStorage.getItem(sessionVar));
+
+        if(params == undefined){
+            return;
+        }
+
+        $.each(params, function(param_key, param_val){
+            $.each(param_types, function(type_key, type_val){
+                if(param_key.indexOf(type_key) > -1){
+                    // find a better way to find out the input val!
+                    var type = "input";
+                    var state = "checked";
+                    if (type_key == "building" || type_key == "capacity") {
+                        type = "option";
+                        state = "selected";
+                        // need better way to handle when building is selected
+                        if (type_key == "building") {
+                            $("#buildings_toggle").find("input[value=building_list]").prop("checked", true);
+                            $("#building_select").removeClass("visually-hidden");
+                        }
+                    }
+                    if (param_key == "open_now") {
+                        param_val = "open_now";
+                    }
+                    var item = $("#" + type_val).find(type + "[value='" + param_val + "']");
+                    $(item[0]).prop(state, true);
+                }
+            });
         });
-        return filter_categories;
+    },
+
+    replace_navigation_href: function(){
+        var anchors = {
+            "/food/" : "#link_food",
+            "/study/" : "#link_study",
+            "/tech/" : "#link_tech",
+        };
+
+        for (anchor in anchors){
+            // build the url with filtered params
+            var filter = Filter.get_filter_url(anchor);
+            var anchor_id = $(anchors[anchor]);
+            if (filter !== undefined){
+                filter = anchor_id.attr("href") + "?" + filter;
+            }
+            anchor_id.attr("href", filter);
+        }
+    },
+
+    /**** new hybrid only ***/
+    init_hybrid_events: function () {
+
+        var type = $("body").data("app-type")
+
+        var params = {};
+
+        // handle native submit click from native
+        $("#filter_submit").click(function(e) {
+            // 1. process the web form and generate the query param
+            // 2. call the native app and pose the query param as a "message"
+            //params = "?period0=late_night"
+            //Filter.call_js_bridge(params);
+
+            if(type.indexOf("food") > -1) {
+                Food_Filter.set_filter_params();
+            } else if(type.indexOf("study") > -1) {
+                Study_Filter.set_filter_params();
+            } else if(type.indexOf("tech") > -1) {
+                Tech_Filter.set_filter_params();
+            }
+
+        });
+
+        // reset form
+        $('#filter_clear').click(function(e) {
+
+            // clear params
+            $('#scout_filter').trigger("reset");
+            $('#scout_filter input:checkbox').removeAttr('checked');
+            $('#scout_filter input:radio').removeAttr('checked');
+
+            // set emptied filter params and call native bridge
+            if(type.indexOf("food") > -1) {
+                Food_Filter.set_filter_params();
+            } else if(type.indexOf("study") > -1) {
+                Study_Filter.set_filter_params();
+            } else if(type.indexOf("tech") > -1) {
+                Tech_Filter.set_filter_params();
+            }
+
+        });
+
+        $('#scout_filter li').each(function(e) {
+            $(this).change(function () {
+
+                // set filter params and call native bridge
+                if(type.indexOf("food") > -1) {
+                    Food_Filter.set_filter_params();
+                } else if(type.indexOf("study") > -1) {
+                    Study_Filter.set_filter_params();
+                } else if(type.indexOf("tech") > -1) {
+                    Tech_Filter.set_filter_params();
+                }
+
+            })
+        });
+
     },
 
     call_js_bridge: function(params) {
@@ -224,7 +250,7 @@ Filter = {
         try {
             // check device and handle js bridge accordingly
             if (device == "android") {
-                scoutBridge.showToast(params);
+                scoutBridge.setParams(params);
             } else if (device == 'ios') {
                 webkit.messageHandlers.scoutBridge.postMessage(params)
             }
