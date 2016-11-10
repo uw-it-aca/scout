@@ -13,6 +13,9 @@ var Geolocation = {
         sessionStorage.setItem("lat", lat);
         sessionStorage.setItem("lng", lng);
         //Geolocation.set_location_type("user");
+
+        // TODO: trigger a location change every time this is called by native
+        // so that distances will update on the web client
     },
 
     set_campus_location: function() {
@@ -23,7 +26,7 @@ var Geolocation = {
 
         sessionStorage.setItem("lat", "");
         sessionStorage.setItem("lng", "");
-        
+
         sessionStorage.setItem('lat', campus_lat);
         sessionStorage.setItem('lng', campus_lng);
         //Geolocation.set_location_type("default");
