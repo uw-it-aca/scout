@@ -74,13 +74,11 @@
     </div>
     <ul>
         <li>
-            <a href="maps://maps.apple.com/maps?q={{ spot.latitude }},{{ spot.longitude }}" class="item-link">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">Location <span>{{ spot.building_name }}</span></div>
-                    </div>
+            <div class="item-content">
+                <div class="item-inner">
+                    <div class="item-title">Location <span>{{ spot.building_name }}</span></div>
                 </div>
-            </a>
+            </div>
         </li>
         {% if spot.phone %}
         <li>
