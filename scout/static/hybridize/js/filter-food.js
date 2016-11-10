@@ -74,16 +74,20 @@ var Food_Filter = {
         return filter_categories;
     },
 
+    /**
     reset_filter: function(){
         // just makes a call to generic filter.js reset_filter with
         // the session variable as the parameter.
         Filter.reset_filter("food_filter_params", "/food/");
     },
+    **/
+
 
     init_events: function(){
         // Very similar to the current implementation in fllter.js
         // No tests required for this, I guess?
 
+        /***
         $("#run_food_search").click(function(){
             Food_Filter.set_filter_params();
             Filter.redirect_to_page("/food/");
@@ -96,7 +100,9 @@ var Food_Filter = {
         $("#reset_food_list").click(function() {
             Food_Filter.reset_filter();
         });
+        **/
     },
+
 
     populate_filters_from_saved: function(){
         // This method is similar to the current implementation
@@ -111,6 +117,7 @@ var Food_Filter = {
             "period": "period_select",
             "open_now": "open_now"
         };
+
         Filter.populate_filters_from_saved("food_filter_params", param_types);
 
     },

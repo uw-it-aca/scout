@@ -68,6 +68,7 @@ var Filter = {
         }
     },
 
+    /**
     reset_filter: function(sessionVar, type) {
         // this will now have a paramater, so it can set the delete app type
         // specific filters.
@@ -75,17 +76,21 @@ var Filter = {
         Filter.replace_navigation_href();
         Filter.redirect_to_page(type);
     },
+    **/
 
     init_events: function() {
 
         Filter.set_filter_text();
         Filter.init_hybrid_events();
-        Food_Filter.init_events();
-        Study_Filter.init_events();
-        Tech_Filter.init_events();
+
+        // initial app_type specific events (if needed)
+        Food_Filter.init_events(); // empty
+        Study_Filter.init_events(); // handles building and hours toggle
+        Tech_Filter.init_events(); // empty
 
     },
 
+    /**
     redirect_to_page: function(type) {
         var campus = Navigation.get_campus_selection();
         var filter_url = Filter.get_filter_url(type);
@@ -96,6 +101,7 @@ var Filter = {
             window.location.href = "/" + campus + type;
         }
     },
+    **/
 
     /**
     get_current_type: function() {
@@ -164,6 +170,7 @@ var Filter = {
         });
     },
 
+    /**
     replace_navigation_href: function(){
         var anchors = {
             "/food/" : "#link_food",
@@ -181,8 +188,10 @@ var Filter = {
             anchor_id.attr("href", filter);
         }
     },
+    **/
 
-    /**** new hybrid only ***/
+    /**** NEW STUFF... HYBRID ONLY ***/
+
     init_hybrid_events: function () {
 
         var type = $("body").data("app-type")
@@ -191,10 +200,8 @@ var Filter = {
 
         // handle native submit click from native
         $("#filter_submit").click(function(e) {
-            // 1. process the web form and generate the query param
-            // 2. call the native app and pose the query param as a "message"
-            //params = "?period0=late_night"
-            //Filter.call_js_bridge(params);
+
+            // set filter params and call native bridge (on back button click)
 
             if(type.indexOf("food") > -1) {
                 Food_Filter.set_filter_params();
@@ -228,7 +235,7 @@ var Filter = {
         $('#scout_filter li').each(function(e) {
             $(this).change(function () {
 
-                // set filter params and call native bridge
+                // set filter params and call native bridge (on every click)
                 if(type.indexOf("food") > -1) {
                     Food_Filter.set_filter_params();
                 } else if(type.indexOf("study") > -1) {
