@@ -107,7 +107,7 @@ var Study_Filter = {
         Filter.reset_filter("study_filter_params", "/study/");
     },
     **/
-    
+
     init_events: function(){
         // Very similar to the current implementation in fllter.js
         // No tests required for this, I guess?
@@ -127,7 +127,7 @@ var Study_Filter = {
         });
         **/
 
-        $("#hours_toggle input").click(function(){
+        $("#hours_toggle input").change(function(){
             if ($(this).val() == "hours_list") {
                 $("#hours_list").removeClass("visually-hidden");
             } else {
@@ -135,13 +135,25 @@ var Study_Filter = {
             }
         });
 
-        $("#buildings_toggle input").click(function() {
+        $("#buildings_toggle input").change(function() {
+
             if ($(this).val() == "building_list") {
+                console.log("building_list clicked")
                 $("#building_select").removeClass("visually-hidden");
             } else {
                 $("#building_select").addClass("visually-hidden");
             }
         });
+
+        // set filter params when selecting building(s)
+        $("#building_select select").change(function() {
+            Study_Filter.set_filter_params();
+        })
+
+        // set filter params when selecting hours
+        $("#hours_list select").change(function() {
+            Study_Filter.set_filter_params();
+        })
 
     },
 

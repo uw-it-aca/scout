@@ -73,10 +73,17 @@ label.label-radio input[type=checkbox]:checked~.item-inner, label.label-radio in
 
 body { background: #efeff4 !important; padding: 0 !important; margin: 0 !important; overflow-x: hidden; }
 
-.scout-list {
+.scout-list { }
 
+.scout-filter-toggle {
+    label { display: inline-block;
+        &:last-child { margin-left: 10px; }
+    }
+}
 
-
+.scout-filter-toggle-options {
+    line-height: 25px;
+    span, select { display:inline-block; }
 }
 
 // webkit sticky header on scroll
@@ -88,4 +95,17 @@ body { background: #efeff4 !important; padding: 0 !important; margin: 0 !importa
   position: sticky;
   top: 0;
   z-index: 9999;
+}
+
+// helpers
+
+.visually-hidden {
+    position: absolute!important;
+    clip: rect(1px 1px 1px 1px);
+    clip: rect(1px,1px,1px,1px);
+    padding: 0!important;
+    border: 0!important;
+    height: 1px!important;
+    width: 1px!important;
+    overflow: hidden;
 }

@@ -225,6 +225,9 @@ var Filter = {
             if(type.indexOf("food") > -1) {
                 Food_Filter.set_filter_params();
             } else if(type.indexOf("study") > -1) {
+                // reset the following radio buttons when clearing
+                $('#hours_toggle input:radio[value="open_now"]').prop("checked", true)
+                $('#buildings_toggle input:radio[value="entire_campus"]').prop("checked", true)
                 Study_Filter.set_filter_params();
             } else if(type.indexOf("tech") > -1) {
                 Tech_Filter.set_filter_params();
