@@ -53,7 +53,7 @@ $(document).on('turbolinks:load', function() {
         // discover
         Discover.init_cards();
     }
-
+        
     // filter
     Filter.init_events();
 
