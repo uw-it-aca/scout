@@ -174,10 +174,17 @@
 <div class="list-block">
     <ul>
         <li>
+
+            {% if request.is_ios %}
             <a href="maps://maps.apple.com/maps?q={{ spot.latitude }},{{ spot.longitude }}" class="item-link">
+            {% endif %}
+            {% if request.is_and %}
+            <a href="comgooglemaps://?q={{ spot.latitude }},{{ spot.longitude }}" class="item-link">
+            {% endif %}
+
                 <div class="item-content">
                     <div class="item-inner">
-                        <div class="item-title">Open in Google Maps</div>
+                        <div class="item-title">Directions in {% if request.is_ios %}Apple{% endif %}{% if request.is_and %}Google{% endif %} Maps</div>
                     </div>
                 </div>
             </a>
@@ -185,6 +192,7 @@
     </ul>
 </div>
 
+{% if spot.item.is_stf %}
 <div class="content-block-title">Funding</div>
 <div class="list-block">
     <ul>
@@ -192,19 +200,27 @@
             <a href="https://uwstf.org" class="item-link" data-turbolinks="false">
                 <div class="item-content">
                     <div class="item-inner">
-                        <div class="item-title">STF Funded {{spot.item.is_stf }}<span>https://uwstf.org/</span></div>
+                        <div class="item-title">STF Funded <span>https://uwstf.org/</span></div>
                     </div>
                 </div>
             </a>
         </li>
     </ul>
 </div>
+{% endif %}
 
 <div class="content-block-title">Contact Us</div>
 <div class="list-block">
     <ul>
         <li>
-            <a href="#" class="item-link">
+
+            {% if request.is_ios %}
+            <a class="item-link" href="mailto:help@uw.edu?subject=Scout%20iOS:%20Problem%20with%20{{app_type}}%20space%20{{spot.name}}">
+            {% endif %}
+            {% if request.is_and %}
+            <a class="item-link" href="mailto:help@uw.edu?subject=Scout%20Android:%20Problem%20with%20{{app_type}}%20space%20{{spot.name}}">
+            {% endif %}
+
                 <div class="item-content">
                     <div class="item-inner">
                         <div class="item-title">Report a problem</div>

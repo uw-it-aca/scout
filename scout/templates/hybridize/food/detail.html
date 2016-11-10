@@ -193,33 +193,6 @@
     </div>
 </div>
 
-<!--
-<div class="content-block-title">Cuisine:</div>
-<div class="list-block">
-    <ul>
-        {% for cuisinetype in spot.cuisinetype_names %}
-        <li class="item-content">
-            <div class="item-inner">
-                <div class="item-title">{{ cuisinetype }}</div>
-            </div>
-        </li>
-        {% endfor %}
-    </ul>
-</div>
-<div class="content-block-title">Food Served:</div>
-<div class="list-block">
-    <ul>
-        {% for foodtype in spot.foodtype_names %}
-        <li class="item-content">
-            <div class="item-inner">
-                <div class="item-title">{{ foodtype }}</div>
-            </div>
-        </li>
-        {% endfor %}
-    </ul>
-</div>
--->
-
 <div class="content-block-title">Payment Accepted</div>
 <div class="list-block">
     <ul>
@@ -237,10 +210,17 @@
 <div class="list-block">
     <ul>
         <li>
+
+            {% if request.is_ios %}
             <a href="maps://maps.apple.com/maps?q={{ spot.latitude }},{{ spot.longitude }}" class="item-link">
+            {% endif %}
+            {% if request.is_and %}
+            <a href="comgooglemaps://?q={{ spot.latitude }},{{ spot.longitude }}" class="item-link">
+            {% endif %}
+
                 <div class="item-content">
                     <div class="item-inner">
-                        <div class="item-title">Open in Google Maps</div>
+                        <div class="item-title">Directions in {% if request.is_ios %}Apple{% endif %}{% if request.is_and %}Google{% endif %} Maps</div>
                     </div>
                 </div>
             </a>
@@ -252,7 +232,14 @@
 <div class="list-block">
     <ul>
         <li>
-            <a href="#" class="item-link">
+
+            {% if request.is_ios %}
+            <a class="item-link" href="mailto:help@uw.edu?subject=Scout%20iOS:%20Problem%20with%20{{app_type}}%20space%20{{spot.name}}">
+            {% endif %}
+            {% if request.is_and %}
+            <a class="item-link" href="mailto:help@uw.edu?subject=Scout%20Android:%20Problem%20with%20{{app_type}}%20space%20{{spot.name}}">
+            {% endif %}
+
                 <div class="item-content">
                     <div class="item-inner">
                         <div class="item-title">Report a problem</div>
