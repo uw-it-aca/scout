@@ -50,7 +50,7 @@ var Study_Filter = {
         // pass the params to native apps via bridge
         console.log($.param(params));
         Filter.call_js_bridge($.param(params));
-        
+
     },
 
     get_filter_url: function(){
@@ -261,9 +261,3 @@ var Study_Filter = {
     },
 
 };
-
-/* node.js exports */
-if (typeof exports == "undefined") {
-    var exports = {};
-}
-exports.Study_Filter = Study_Filter;

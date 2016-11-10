@@ -34,15 +34,18 @@ $(document).on('turbolinks:load', function() {
     // page based JS calls
     var page_path = window.location.pathname;
 
-    if (page_path.indexOf("food") !== -1) {
+    var type = $("body").data("app-type")
+
+
+    if (type.indexOf("food") !== -1) {
         // food
         List.init();
         Filter.init();
-    } else if (page_path.indexOf("study") !== -1){
+    } else if (type.indexOf("study") !== -1){
         // study
         List.init();
         Filter.init();
-    } else if (page_path.indexOf("tech") !== -1){
+    } else if (type.indexOf("tech") !== -1){
         // tech
         List.init();
         Filter.init();

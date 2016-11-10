@@ -116,9 +116,3 @@ var Food_Filter = {
     },
 
 };
-
-/* node.js exports */
-if (typeof exports == "undefined") {
-    var exports = {};
-}
-exports.Food_Filter = Food_Filter;
