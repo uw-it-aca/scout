@@ -43,6 +43,12 @@
         }
     }
 
+    // radio button group override
+    .label-radio {
+        .item-inner:after { left: 37px; }
+    }
+
+
 }
 
 label.label-radio input[type=checkbox]~.item-inner, label.label-radio input[type=radio]~.item-inner {
