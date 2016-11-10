@@ -15,13 +15,6 @@ $(document).on('turbolinks:load', function() {
 		activeState: true,
 	});
 
-    // initialize slick image slider
-    $('.photo-gallery').slick({
-        dots: true,
-        arrows: false,
-    });
-
-
     // handle closing notifcation banners
     $(".close-notification").click(function(e) {
         e.preventDefault();
@@ -29,27 +22,30 @@ $(document).on('turbolinks:load', function() {
         myApp.closeNotification(".notification-item")
     });
 
-
-
-    // page based JS calls
-    var page_path = window.location.pathname;
-
+    // get the app_type
     var type = $("body").data("app-type")
-
 
     if (type.indexOf("food") !== -1) {
         // food
         List.init();
         Filter.init();
+
     } else if (type.indexOf("study") !== -1){
+
         // study
         List.init();
         Filter.init();
+
+        // study detail image slider
+        $('.photo-gallery').slick({
+            dots: true,
+            arrows: false,
+        });
+
     } else if (type.indexOf("tech") !== -1){
         // tech
         List.init();
         Filter.init();
-
     } else {
         // discover
         Discover.init_cards();
