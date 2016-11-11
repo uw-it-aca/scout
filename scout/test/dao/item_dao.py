@@ -41,8 +41,8 @@ class ItemDAOTest(TestCase):
         spots = get_spots_by_filter(query_tuple)
         filtered_spots = get_filtered_items(spots, request)
         self.assertNotEqual(
-            spots,
-            filtered_spots,
+            get_item_count(spots),
+            get_item_count(filtered_spots),
             "Filters weren't applied. All items were returned!"
         )
         self.assertEqual(
@@ -74,8 +74,8 @@ class ItemDAOTest(TestCase):
         spots = get_spots_by_filter(query_tuple)
         filtered_spots = get_filtered_items(spots, request)
         self.assertEqual(
-            spots,
-            filtered_spots,
+            get_item_count(spots),
+            get_item_count(filtered_spots),
             "Filters weren't applied. All items weren't returned!"
         )
         self.assertEqual(
