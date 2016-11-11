@@ -33,6 +33,8 @@ var Geolocation = {
         sessionStorage.setItem('lat', campus_lat);
         sessionStorage.setItem('lng', campus_lng);
         //Geolocation.set_location_type("default");
+        
+        $.event.trigger(Geolocation.location_changed);
     },
 
     get_client_latlng: function () {
