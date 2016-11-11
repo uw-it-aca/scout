@@ -1,5 +1,6 @@
 var Geolocation = {
 
+    location_changed:  {"type": "location_changed"},
 
     // native calls this function.. and passes user lat/lng to be stored in
     // session storage... overrides campus lat/lng
@@ -16,6 +17,8 @@ var Geolocation = {
 
         // TODO: trigger a location change every time this is called by native
         // so that distances will update on the web client
+
+        $.event.trigger(Geolocation.location_changed);
     },
 
     set_campus_location: function() {
@@ -70,6 +73,12 @@ var Geolocation = {
     update_location: function () {
         // set campus lat/lng in session storage by default
         Geolocation.set_campus_location();
+
+        if(!window.has_set_loc){
+            // Fire this event so pages can handle location on page load
+            $.event.trigger(Geolocation.location_changed);
+        }
+        window.has_set_loc = true;
     },
 
 
