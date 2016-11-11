@@ -59,6 +59,49 @@ class ItemDAOTest(TestCase):
                     "filters." % (spot.name, item.name)
                 )
 
+    def test_item_filter_more(self):
+        """
+        Test the result when a few filters are applied to the results.
+        """
+        query_tuple = [
+            ('limit', 0),
+            ('item:extended_info:i_brand', 'Apple'),
+            ('item:subcategory', 'Laptop Computer'),
+            ('extended_info:app_type', 'tech')
+        ]
+        request = RequestFactory().get(
+            '/?limit=0&item:extended_info:i_brand=Apple&'
+            'item:subcategory=Laptop+Computer&'
+            'extended_info:app_type=tech'
+        )
+
+        spots = get_spots_by_filter(query_tuple)
+        filtered_spots = get_filtered_items(spots, request)
+        self.assertNotEqual(
+            get_item_count(spots),
+            get_item_count(filtered_spots),
+            "Filters weren't applied. All items were returned!"
+        )
+        self.assertEqual(
+            get_item_count(filtered_spots),
+            8,
+            "Invalid number of filtered items returned"
+        )
+        for spot in filtered_spots:
+            for item in spot.items:
+                self.assertEqual(
+                    item.brand,
+                    "Apple",
+                    "Invalid brand for spot %s item %s made through the "
+                    "filters." % (spot.name, item.name)
+                )
+                self.assertEqual(
+                    item.subcategory,
+                    "Laptop Computer",
+                    "Invalid category for spot %s item %s made through the "
+                    "filters." % (spot.name, item.name)
+                )
+
     def test_item_nofilter(self):
         """
         Test the result when no filters are applied to the results.
