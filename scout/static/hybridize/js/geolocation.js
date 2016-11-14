@@ -23,7 +23,9 @@ var Geolocation = {
         if (!Geolocation.get_is_using_location()) {
             Geolocation.set_campus_location();
         } else {
-            Geolocation.query_client_location();
+
+            // this will be called directly from native
+            //Geolocation.query_client_location();
         }
         if(!window.has_set_loc){
             // Fire this event so pages can handle location on page load
@@ -78,19 +80,16 @@ var Geolocation = {
        }
     },
 
-    query_client_location: function() {
-        // deal w/ error state
-        if (navigator.geolocation) {
-            Geolocation.geolocation_status.watchid =
-                navigator.geolocation.watchPosition(
-                    Geolocation.handle_watch_position,
-                    function(){
-                        $("#forget_location").trigger("click");
-                        $("#geolocation_error").addClass("open");
-                        $("#geolocation_error").removeClass("closed");
-                    }
-                );
-        }
+    query_client_location: function(user_lat, user_lng) {
+
+        var position =  { coords:
+            {
+                latitude: user_lat,
+                longitude: user_lng
+            }
+        };
+
+        Geolocation.handle_watch_position(position);
     },
 
     stop_watching_location: function(){

@@ -53,6 +53,9 @@ $(document).on('turbolinks:load', function() {
         Discover.init_cards();
     }
 
+    // Geolocation
+    Geolocation.update_location();
+
     // filter
     Filter.init_events();
 

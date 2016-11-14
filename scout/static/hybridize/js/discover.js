@@ -24,6 +24,7 @@ Discover = {
         var campus = $("body").data("campus")
 
         var url = "/h/" + campus + "/discover_card/" + card_id + "/";
+
         var pos_data = {"latitude": latlng.lat(),
             "longitude": latlng.lng()};
         $.ajax({
