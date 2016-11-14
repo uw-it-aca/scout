@@ -13,7 +13,7 @@ var Geolocation = {
         // user lat/lng
         sessionStorage.setItem("lat", lat);
         sessionStorage.setItem("lng", lng);
-        //Geolocation.set_location_type("user");
+        Geolocation.set_location_type("user");
 
         // TODO: trigger a location change every time this is called by native
         // so that distances will update on the web client
@@ -32,9 +32,8 @@ var Geolocation = {
 
         sessionStorage.setItem('lat', campus_lat);
         sessionStorage.setItem('lng', campus_lng);
-        //Geolocation.set_location_type("default");
-        
-        $.event.trigger(Geolocation.location_changed);
+        Geolocation.set_location_type("default");
+
     },
 
     get_client_latlng: function () {
@@ -60,7 +59,6 @@ var Geolocation = {
 
     },
 
-    /**
     set_location_type: function (type) {
         // Values: 'default', 'supplied', 'user'
         // Session only
@@ -70,7 +68,6 @@ var Geolocation = {
     get_location_type: function () {
          return sessionStorage.getItem("location_type") || 'default';
      },
-     **/
 
     update_location: function () {
         // set campus lat/lng in session storage by default
