@@ -1,74 +1,46 @@
 var Geolocation = {
+    // drumheller fountain
+    default_location: { latitude: 47.653811, longitude: -122.307815 },
+
+    campus_locations: function(campus){
+
+        var locations = window.campus_locations;
+        $.event.trigger(Geolocation.location_updating);
+        if(locations !== undefined && locations[campus] !== undefined){
+            Geolocation.default_location.latitude = locations[campus]["latitude"];
+            Geolocation.default_location.longitude = locations[campus]["longitude"];
+        }
+    },
 
     location_changed:  {"type": "location_changed"},
 
-    // native calls this function.. and passes user lat/lng to be stored in
-    // session storage... overrides campus lat/lng
-    set_user_location: function(lat, lng) {
+    location_updating:  {"type": "location_updating"},
 
-        // clear any existing lat/lng before setting user's
-        sessionStorage.setItem("lat", "");
-        sessionStorage.setItem("lng", "");
+    geolocation_status: { watchid: undefined },
 
-        // user lat/lng
-        sessionStorage.setItem("lat", lat);
-        sessionStorage.setItem("lng", lng);
-
-        Geolocation.set_location_type("user");
-
-        // TODO: trigger a location change every time this is called by native
-        // so that distances will update on the web client
-
-    },
-
-    set_campus_location: function() {
-
-        // get the campus from the url
-        var campus_lat = $("body").data("campus-latitude")
-        var campus_lng = $("body").data("campus-longitude")
-
-        sessionStorage.setItem("lat", "");
-        sessionStorage.setItem("lng", "");
-
-        sessionStorage.setItem('lat', campus_lat);
-        sessionStorage.setItem('lng', campus_lng);
-        Geolocation.set_location_type("default");
-
-    },
-
-    get_client_latlng: function () {
-
-        if (Geolocation.get_location_type() === "default") {
-
-            console.log("using default location")
-            // default campus location
-            var lat = $("body").data("campus-latitude")
-            var lng = $("body").data("campus-longitude")
-
+    update_location: function () {
+        // current user location is given more precedence over campus location.
+        if (!Geolocation.get_is_using_location()) {
+            Geolocation.set_campus_location();
         } else {
-
-            // user whaterver lat/lng is stored in session
-            var lat = sessionStorage.getItem("lat");
-            var lng = sessionStorage.getItem("lng");
-
+            Geolocation.query_client_location();
         }
-
-        return Geolocation.get_latlng_from_coords(lat, lng);
+        if(!window.has_set_loc){
+            // Fire this event so pages can handle location on page load
+            $.event.trigger(Geolocation.location_changed);
+        }
+        window.has_set_loc = true;
     },
 
-    get_latlng_from_coords: function(lat, lng) {
-        return new google.maps.LatLng(lat, lng);
+    get_is_using_location: function () {
+        return (localStorage.getItem("is_using_location") === 'true');
     },
 
-    get_distance_from_position: function (item_latlng) {
-
-        // Returns distance in miles, rounded to 2 decimals
-        var current_latlng = Geolocation.get_client_latlng();
-        var distance = google.maps.geometry.spherical.computeDistanceBetween(current_latlng, item_latlng);
-        var miles_per_meter = 0.000621371;
-        distance = (distance * miles_per_meter).toFixed(2);
-        return distance;
-
+    set_is_using_location: function (is_using_location) {
+        // Setting should be bool
+        // Persists between sessions
+        localStorage.setItem("is_using_location", is_using_location);
+        Geolocation.update_location();
     },
 
     set_location_type: function (type) {
@@ -81,10 +53,126 @@ var Geolocation = {
          return sessionStorage.getItem("location_type") || 'default';
      },
 
-    update_location: function () {
-        // set campus lat/lng in session storage by default
-        Geolocation.set_campus_location();
+    set_client_location: function(position) {
+        sessionStorage.setItem("lat", position.coords.latitude);
+        sessionStorage.setItem("lng", position.coords.longitude);
+        Geolocation.set_location_type("user");
+        $.event.trigger(Geolocation.location_changed);
     },
 
+    get_latlng_from_coords: function(lat, lng) {
+        return new google.maps.LatLng(lat, lng);
+    },
+
+    get_client_latlng: function () {
+        var lat = sessionStorage.getItem("lat");
+        var lng = sessionStorage.getItem("lng");
+        return Geolocation.get_latlng_from_coords(lat, lng);
+    },
+
+    handle_watch_position: function (position) {
+       if(Geolocation.get_is_using_location()){
+           var new_position = Geolocation.get_latlng_from_coords(position.coords.latitude, position.coords.longitude);
+           var distance = Geolocation.get_distance_from_position(new_position);
+           Geolocation.set_client_location(position);
+       }
+    },
+
+    query_client_location: function() {
+        // deal w/ error state
+        if (navigator.geolocation) {
+            Geolocation.geolocation_status.watchid =
+                navigator.geolocation.watchPosition(
+                    Geolocation.handle_watch_position,
+                    function(){
+                        $("#forget_location").trigger("click");
+                        $("#geolocation_error").addClass("open");
+                        $("#geolocation_error").removeClass("closed");
+                    }
+                );
+        }
+    },
+
+    stop_watching_location: function(){
+        var watchid = Geolocation.geolocation_status.watchid;
+        if(watchid !== undefined){
+            navigator.geolocation.clearWatch(watchid);
+            Geolocation.geolocation_status.watchid = undefined;
+        }
+    },
+
+    set_campus_location: function() {
+
+        // get the campus from the url
+        //var campus = window.location.pathname.split('/')[1]
+        var campus = $("body").data("campus");
+
+        Geolocation.campus_locations(campus);
+        sessionStorage.setItem('lat', Geolocation.default_location.latitude);
+        sessionStorage.setItem('lng', Geolocation.default_location.longitude);
+        Geolocation.set_location_type("default");
+        $.event.trigger(Geolocation.location_changed);
+    },
+
+    get_distance_from_position: function (item_latlng) {
+        // Returns distance in miles, rounded to 2 decimals
+        var current_latlng = Geolocation.get_client_latlng();
+        var distance = google.maps.geometry.spherical.computeDistanceBetween(current_latlng, item_latlng);
+        var miles_per_meter = 0.000621371;
+        distance = (distance * miles_per_meter).toFixed(2);
+        return distance;
+
+    },
+
+    /***
+    display_location_status: function () {
+
+        if (Geolocation.get_location_type() === "default") {
+            $("#default_position").show();
+            $("#default_position").attr("aria-hidden", "false");
+
+            $("#shared_position").hide();
+            $("#shared_position").attr("aria-hidden", "true");
+        } else {
+            $("#default_position").hide();
+            $("#default_position").attr("aria-hidden", "true");
+
+            $("#shared_position").show();
+            $("#shared_position").attr("aria-hidden", "false");
+        }
+    },
+
+    init_location_toggles: function() {
+        $("#use_location").click(function(e) {
+            e.preventDefault();
+            $.event.trigger(Geolocation.location_updating);
+            Geolocation.set_is_using_location(true);
+            $("#default_position").hide();
+            $("#default_position").attr("aria-hidden", "true");
+
+            $("#shared_position").show();
+            $("#shared_position").attr("aria-hidden", "false");
+        });
+
+        $("#forget_location").click(function(e) {
+            e.preventDefault();
+            $.event.trigger(Geolocation.location_updating);
+            Geolocation.set_is_using_location(false);
+            Geolocation.stop_watching_location();
+            $("#default_position").show();
+            $("#default_position").attr("aria-hidden", "false");
+
+            $("#shared_position").hide();
+            $("#shared_position").attr("aria-hidden", "true");
+        });
+
+        $("#geolocation_error").click(function(e) {
+            e.preventDefault();
+            $(this).removeClass("open");
+            $(this).addClass("closed");
+        });
+
+    }
+    **/
 
 };

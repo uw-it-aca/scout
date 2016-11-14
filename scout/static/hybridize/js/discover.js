@@ -2,16 +2,18 @@ Discover = {
 
     init_cards: function () {
 
-        //Geolocation.display_location_status();
-        var discover_divs = $("#discover_cards").children();
+        $(document).on("location_changed", function() {
 
-        var latlng = Geolocation.get_client_latlng();
+            //Geolocation.display_location_status();
+            var discover_divs = $("#discover_cards").children();
 
-        $(discover_divs).each(function (idx, div){
-            var card_id = $(div).attr('id');
-            Discover.fetch_cards(card_id, latlng);
+            var latlng = Geolocation.get_client_latlng();
+
+            $(discover_divs).each(function (idx, div){
+                var card_id = $(div).attr('id');
+                Discover.fetch_cards(card_id, latlng);
+            });
         });
-
         //Geolocation.init_location_toggles();
 
     },
