@@ -24,6 +24,9 @@ $(document).on('turbolinks:load', function() {
         myApp.closeNotification(".notification-item")
     });
 
+    // Geolocation
+    Geolocation.update_location();
+    
     // get the app_type
     var type = $("body").data("app-type")
 
