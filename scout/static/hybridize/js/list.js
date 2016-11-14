@@ -2,29 +2,25 @@ var List = {
 
     init: function () {
 
+        List.add_distances("scout-list-item", "data-spot-lat", "data-spot-lng");
 
+        // Gets the current type the page is on!
+        var currentType = $("body").data("app-type")
 
-            List.add_distances("scout-list-item", "data-spot-lat", "data-spot-lng");
+        if (currentType.indexOf("study") > -1) {
 
-            // Gets the current type the page is on!
-            var currentType = $("body").data("app-type")
+            List.add_distances("scout-list-building", "data-building-lat", "data-building-lng");
+            List.order_list("scout-list-building", "scout_study_list", true);
 
-            if (currentType.indexOf("study") > -1) {
+        } else if (currentType.indexOf("tech") > -1)  {
 
-                List.add_distances("scout-list-building", "data-building-lat", "data-building-lng");
-                List.order_list("scout-list-building", "scout_study_list", true);
+            List.add_additional_tech_distances();
+            List.order_list("scout-list-item", "scout_tech_list", false);
 
-            } else if (currentType.indexOf("tech") > -1)  {
+        } else {
 
-                List.add_additional_tech_distances();
-                List.order_list("scout-list-item", "scout_tech_list", false);
-
-            } else {
-
-                List.order_list("scout-list-item", "scout_food_list", false);
-            }
-
-
+            List.order_list("scout-list-item", "scout_food_list", false);
+        }
 
         //Geolocation.init_location_toggles();
     },

@@ -2,35 +2,28 @@ Discover = {
 
     init_cards: function () {
 
-       
+        //Geolocation.display_location_status();
+        var discover_divs = $("#discover_cards").children();
 
-            //Geolocation.display_location_status();
-            var discover_divs = $("#discover_cards").children();
-            var latlng = Geolocation.get_client_latlng();
+        var latlng = Geolocation.get_client_latlng();
 
-            $(discover_divs).each(function (idx, div){
-                var card_id = $(div).attr('id');
-                Discover.fetch_cards(card_id/*, latlng*/);
-            });
-
-        
+        $(discover_divs).each(function (idx, div){
+            var card_id = $(div).attr('id');
+            Discover.fetch_cards(card_id, latlng);
+        });
 
         //Geolocation.init_location_toggles();
 
     },
 
-    fetch_cards: function (card_id /*, latln*/) {
+    fetch_cards: function (card_id , latlng) {
 
         //var campus = Navigation.get_campus_selection();
         var campus = $("body").data("campus")
 
-
-        var latitude = $("body").data("campus-latitude")
-        var longitude = $("body").data("campus-longitude")
-
         var url = "/h/" + campus + "/discover_card/" + card_id + "/";
-        var pos_data = {"latitude": latitude,
-            "longitude": longitude};
+        var pos_data = {"latitude": latlng.lat(),
+            "longitude": latlng.lng()};
         $.ajax({
                    url: url,
                    dataType: "html",
