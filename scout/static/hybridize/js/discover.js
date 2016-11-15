@@ -13,6 +13,10 @@ Discover = {
                 var card_id = $(div).attr('id');
                 Discover.fetch_cards(card_id, latlng);
             });
+
+            // mimic console.log for debugging hybrid
+            //Filter.call_js_bridge("init cards called with " + latlng);
+
         });
         //Geolocation.init_location_toggles();
 

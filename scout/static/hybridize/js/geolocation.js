@@ -1,4 +1,5 @@
 var Geolocation = {
+
     // drumheller fountain
     default_location: { latitude: 47.653811, longitude: -122.307815 },
 
@@ -94,6 +95,8 @@ var Geolocation = {
                 longitude: user_lng
             }
         };
+
+        //Filter.call_js_bridge("send_client_location called: " + position);
 
         Geolocation.set_client_location(position);
     },

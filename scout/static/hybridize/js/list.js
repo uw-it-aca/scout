@@ -1,7 +1,7 @@
 var List = {
 
     init: function () {
-        
+
         $(document).on("location_changed", function() {
 
             List.add_distances("scout-list-item", "data-spot-lat", "data-spot-lng");
@@ -24,7 +24,7 @@ var List = {
                 List.order_list("scout-list-item", "scout_food_list", false);
             }
         });
-        //Geolocation.init_location_toggles();
+        
     },
 
     add_distances: function (className, latAttr, lngAttr) {
