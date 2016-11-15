@@ -1,7 +1,7 @@
 var List = {
 
     init: function () {
-
+        
         $(document).on("location_changed", function() {
 
             List.add_distances("scout-list-item", "data-spot-lat", "data-spot-lng");

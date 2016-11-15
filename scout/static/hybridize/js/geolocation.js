@@ -19,6 +19,7 @@ var Geolocation = {
     geolocation_status: { watchid: undefined },
 
     update_location: function () {
+
         // current user location is given more precedence over campus location.
         if (!Geolocation.get_is_using_location()) {
             Geolocation.set_campus_location();
@@ -27,11 +28,13 @@ var Geolocation = {
             // this will be called directly from native
             //Geolocation.query_client_location();
         }
+
         if(!window.has_set_loc){
             // Fire this event so pages can handle location on page load
             $.event.trigger(Geolocation.location_changed);
         }
         window.has_set_loc = true;
+
     },
 
     get_is_using_location: function () {
@@ -72,6 +75,7 @@ var Geolocation = {
         return Geolocation.get_latlng_from_coords(lat, lng);
     },
 
+    /*
     handle_watch_position: function (position) {
        if(Geolocation.get_is_using_location()){
            var new_position = Geolocation.get_latlng_from_coords(position.coords.latitude, position.coords.longitude);
@@ -79,8 +83,10 @@ var Geolocation = {
            Geolocation.set_client_location(position);
        }
     },
+    */
 
-    query_client_location: function(user_lat, user_lng) {
+    // function called from native...
+    send_client_location: function(user_lat, user_lng) {
 
         var position =  { coords:
             {
@@ -89,9 +95,10 @@ var Geolocation = {
             }
         };
 
-        Geolocation.handle_watch_position(position);
+        Geolocation.set_client_location(position);
     },
 
+    /**
     stop_watching_location: function(){
         var watchid = Geolocation.geolocation_status.watchid;
         if(watchid !== undefined){
@@ -99,6 +106,7 @@ var Geolocation = {
             Geolocation.geolocation_status.watchid = undefined;
         }
     },
+    **/
 
     set_campus_location: function() {
 

@@ -21,7 +21,7 @@ $(document).on('turbolinks:load', function() {
         //alert( "Handler for .click() called." );
         myApp.closeNotification(".notification-item")
     });
-
+    
     // get the app_type
     var type = $("body").data("app-type")
 
