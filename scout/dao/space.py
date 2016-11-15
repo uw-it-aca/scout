@@ -144,6 +144,8 @@ def _get_spot_filters(request):
             params.append(
                 ("item:extended_info:i_brand", request.GET[param])
             )
+        if "item_is_active" in param:
+            params.append(("item:extended_info:i_is_active", "true"))
     return params
 
 

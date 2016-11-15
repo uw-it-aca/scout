@@ -224,6 +224,8 @@ def study_filter_view(request, campus):
 @validate_campus_selection
 def tech_list_view(request, campus):
     # spots = get_spots_by_filter([('has_items', 'true')])
+    request.GET = request.GET.copy()
+    request.GET['item_is_active'] = 'true'
     spots = get_filtered_spots(request, campus, "tech")
     spots = get_filtered_items(spots, request)
     count = get_item_count(spots)
