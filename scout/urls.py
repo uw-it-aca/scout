@@ -25,68 +25,78 @@ urlpatterns = patterns(
 
     # discover
     url(r'^(?P<campus>[^/]+)/$',
-        DiscoverView.as_view(template_name="scout/discover.html")),
+        DiscoverView.as_view(), {"template_name": "scout/discover.html"}),
     url(r'^(?P<campus>[^/]+)/discover_card/(?P<discover_category>[a-zA-Z]+)/$',
-        DiscoverCardView.as_view(template_name="scout/discover_card.html")),
+        DiscoverCardView.as_view(),
+        {"template_name": "scout/discover_card.html"}),
 
     # food
     url(r'^(?P<campus>[^/]+)/food/$',
-        FoodListView.as_view(template_name="scout/food/list.html")),
+        FoodListView.as_view(), {"template_name": "scout/food/list.html"}),
     url(r'^(?P<campus>[^/]+)/food/(?P<spot_id>[0-9]{1,5})/$',
-        FoodDetailView.as_view(template_name="scout/food/detail.html")),
+        FoodDetailView.as_view(), {"template_name": "scout/food/detail.html"}),
     url(r'^(?P<campus>[^/]+)/food/filter/$',
-        FoodFilterView.as_view(template_name="scout/food/filter.html")),
+        FoodFilterView.as_view(), {"template_name": "scout/food/filter.html"}),
 
     # study
     url(r'^(?P<campus>[^/]+)/study/$',
-        StudyListView.as_view(template_name="scout/study/list.html")),
+        StudyListView.as_view(), {"template_name": "scout/study/list.html"}),
     url(r'^(?P<campus>[^/]+)/study/(?P<spot_id>[0-9]{1,5})/$',
-        StudyDetailView.as_view(template_name="scout/study/detail.html")),
+        StudyDetailView.as_view(),
+        {"template_name": "scout/study/detail.html"}),
     url(r'^(?P<campus>[^/]+)/study/filter/$',
-        StudyFilterView.as_view(template_name="scout/study/filter.html")),
+        StudyFilterView.as_view(),
+        {"template_name": "scout/study/filter.html"}),
 
     # tech
     url(r'^(?P<campus>[^/]+)/tech/$',
-        TechListView.as_view(template_name="scout/tech/list.html")),
+        TechListView.as_view(), {"template_name": "scout/tech/list.html"}),
     url(r'^(?P<campus>[^/]+)/tech/(?P<item_id>[0-9]{1,5})/$',
-        TechDetailView.as_view(template_name="scout/tech/detail.html")),
+        TechDetailView.as_view(), {"template_name": "scout/tech/detail.html"}),
     url(r'^(?P<campus>[^/]+)/tech/filter/$',
-        TechFilterView.as_view(template_name="scout/tech/filter.html")),
+        TechFilterView.as_view(), {"template_name": "scout/tech/filter.html"}),
 
     # hybrid home
     url(r'^h/$', RedirectView.as_view(url='/h/seattle')),
 
     # hybrid discover
     url(r'^h/(?P<campus>[^/]+)/$',
-        DiscoverView.as_view(template_name="hybridize/discover.html")),
+        DiscoverView.as_view(), {"template_name": "hybridize/discover.html"}),
     url(r'^h/(?P<campus>[^/]+)/discover_card/'
         '(?P<discover_category>[a-zA-Z]+)/$',
-        DiscoverCardView.as_view(
-            template_name="hybridize/discover_card.html")),
+        DiscoverCardView.as_view(),
+        {"template_name": "hybridize/discover_card.html"}),
 
     # hybrid food
     url(r'^h/(?P<campus>[^/]+)/food/$',
-        FoodListView.as_view(template_name="hybridize/food/list.html")),
+        FoodListView.as_view(), {"template_name": "hybridize/food/list.html"}),
     url(r'^h/(?P<campus>[^/]+)/food/(?P<spot_id>[0-9]{1,5})/$',
-        FoodDetailView.as_view(template_name="hybridize/food/detail.html")),
+        FoodDetailView.as_view(),
+        {"template_name": "hybridize/food/detail.html"}),
     url(r'^h/(?P<campus>[^/]+)/food/filter/$',
-        FoodFilterView.as_view(template_name="hybridize/food/filter.html")),
+        FoodFilterView.as_view(),
+        {"template_name": "hybridize/food/filter.html"}),
 
     # hybrid study
     url(r'^h/(?P<campus>[^/]+)/study/$',
-        StudyListView.as_view(template_name="hybridize/study/list.html")),
+        StudyListView.as_view(),
+        {"template_name": "hybridize/study/list.html"}),
     url(r'^h/(?P<campus>[^/]+)/study/(?P<spot_id>[0-9]{1,5})/$',
-        StudyDetailView.as_view(template_name="hybridize/study/detail.html")),
+        StudyDetailView.as_view(),
+        {"template_name": "hybridize/study/detail.html"}),
     url(r'^h/(?P<campus>[^/]+)/study/filter/$',
-        StudyFilterView.as_view(template_name="hybridize/study/filter.html")),
+        StudyFilterView.as_view(),
+        {"template_name": "hybridize/study/filter.html"}),
 
     # hybrid tech
     url(r'^h/(?P<campus>[^/]+)/tech/$',
-        TechListView.as_view(template_name="hybridize/tech/list.html")),
+        TechListView.as_view(), {"template_name": "hybridize/tech/list.html"}),
     url(r'^h/(?P<campus>[^/]+)/tech/(?P<item_id>[0-9]{1,5})/$',
-        TechDetailView.as_view(template_name="hybridize/tech/detail.html")),
+        TechDetailView.as_view(),
+        {"template_name": "hybridize/tech/detail.html"}),
     url(r'^h/(?P<campus>[^/]+)/tech/filter/$',
-        TechFilterView.as_view(template_name="hybridize/tech/filter.html")),
+        TechFilterView.as_view(),
+        {"template_name": "hybridize/tech/filter.html"}),
 
     # hybrid components
     url(r'^h/components/$', 'scout.views.hybrid_comps_view',

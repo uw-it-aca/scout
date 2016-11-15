@@ -10,7 +10,7 @@ from scout.dao.image import get_spot_image, get_item_image
 from scout.dao.item import get_item_by_id, get_filtered_items, \
     get_item_count, add_item_info
 
-from django.views.generic.base import TemplateView
+from django.views.generic.base import TemplateView, TemplateResponse
 
 # using red square as the default center
 DEFAULT_LAT = 47.6558539
@@ -36,23 +36,28 @@ def validate_campus_selection(function):
         if kwargs['campus'] in campuses:
             return function(request, *args, **kwargs)
         else:
-            return custom_404_response(request)
+            raise Http404
     return wrap
 
 
 # discover
 class DiscoverView(TemplateView):
+    template_name = "404.html"
+
     @validate_campus_selection
     def get_context_data(self, **kwargs):
-        # import pdb; pdb.set_trace()
+        self.template_name = kwargs['template_name']
         context = {"campus": kwargs['campus'],
                    "campus_locations": CAMPUS_LOCATIONS}
         return context
 
 
 class DiscoverCardView(TemplateView):
+    template_name = "404.html"
+
     @validate_campus_selection
     def get_context_data(self, **kwargs):
+        self.template_name = kwargs['template_name']
         # Will figure this out later
         lat = self.request.GET.get('latitude', None)
         lon = self.request.GET.get('longitude', None)
@@ -127,14 +132,19 @@ class DiscoverCardView(TemplateView):
         try:
             discover_data = discover_categories[kwargs['discover_category']]
         except KeyError:
-            return custom_404_response(self.request)
+            self.response_class = Response404
+            self.template_name = "404.html"
+            return custom_404_context(kwargs["campus"])
 
         discover_data["filter"].append(('extended_info:campus',
                                         kwargs['campus']))
 
         spots = get_spots_by_filter(discover_data["filter"])
         if len(spots) == 0:
-            return custom_404_response(self.request)
+            self.response_class = Response404
+            self.template_name = "404.html"
+            return custom_404_context(kwargs["campus"])
+
         context = {
             "spots": spots,
             "campus": kwargs['campus'],
@@ -147,8 +157,11 @@ class DiscoverCardView(TemplateView):
 
 # food
 class FoodListView(TemplateView):
+    template_name = "404.html"
+
     @validate_campus_selection
     def get_context_data(self, **kwargs):
+        self.template_name = kwargs['template_name']
         spots = get_filtered_spots(self.request, kwargs['campus'], "food")
         context = {"spots": spots,
                    "campus": kwargs['campus'],
@@ -159,12 +172,17 @@ class FoodListView(TemplateView):
 
 
 class FoodDetailView(TemplateView):
+    template_name = "404.html"
+
     @validate_campus_selection
     def get_context_data(self, **kwargs):
+        self.template_name = kwargs['template_name']
         spot = get_spot_by_id(kwargs['spot_id'])
         spot = validate_detail_info(spot, kwargs['campus'], "food")
         if not spot:
-            return custom_404_response(self.request, kwargs['campus'])
+            self.response_class = Response404
+            self.template_name = "404.html"
+            return custom_404_context(kwargs["campus"])
 
         context = {"spot": spot,
                    "campus": kwargs['campus'],
@@ -174,8 +192,11 @@ class FoodDetailView(TemplateView):
 
 
 class FoodFilterView(TemplateView):
+    template_name = "404.html"
+
     @validate_campus_selection
     def get_context_data(self, **kwargs):
+        self.template_name = kwargs['template_name']
         context = {"campus": kwargs['campus'],
                    "app_type": 'food',
                    "campus_locations": CAMPUS_LOCATIONS}
@@ -184,8 +205,11 @@ class FoodFilterView(TemplateView):
 
 # study
 class StudyListView(TemplateView):
+    template_name = "404.html"
+
     @validate_campus_selection
     def get_context_data(self, **kwargs):
+        self.template_name = kwargs['template_name']
         spots = get_filtered_spots(self.request, kwargs['campus'], "study")
         grouped_spots = group_spots_by_building(spots)
         context = {"spots": spots,
@@ -198,12 +222,17 @@ class StudyListView(TemplateView):
 
 
 class StudyDetailView(TemplateView):
+    template_name = "404.html"
+
     @validate_campus_selection
     def get_context_data(self, **kwargs):
+        self.template_name = kwargs['template_name']
         spot = get_spot_by_id(kwargs['spot_id'])
         spot = validate_detail_info(spot, kwargs['campus'], "study")
         if not spot:
-            return custom_404_response(self.request, kwargs['campus'])
+            self.response_class = Response404
+            self.template_name = "404.html"
+            return custom_404_context(kwargs["campus"])
 
         context = {"spot": spot,
                    "campus": kwargs['campus'],
@@ -213,8 +242,11 @@ class StudyDetailView(TemplateView):
 
 
 class StudyFilterView(TemplateView):
+    template_name = "404.html"
+
     @validate_campus_selection
     def get_context_data(self, **kwargs):
+        self.template_name = kwargs['template_name']
         context = {"campus": kwargs['campus'],
                    "buildings": get_building_list(kwargs['campus']),
                    "app_type": 'study',
@@ -224,8 +256,11 @@ class StudyFilterView(TemplateView):
 
 # tech
 class TechListView(TemplateView):
+    template_name = "404.html"
+
     @validate_campus_selection
     def get_context_data(self, **kwargs):
+        self.template_name = kwargs['template_name']
         # spots = get_spots_by_filter([('has_items', 'true')])
         spots = get_filtered_spots(self.request, kwargs['campus'], "tech")
         spots = get_filtered_items(spots, self.request)
@@ -242,12 +277,17 @@ class TechListView(TemplateView):
 
 
 class TechDetailView(TemplateView):
+    template_name = "404.html"
+
     @validate_campus_selection
     def get_context_data(self, **kwargs):
+        self.template_name = kwargs['template_name']
         spot = get_item_by_id(int(kwargs['item_id']))
         spot = validate_detail_info(spot, kwargs['campus'], "tech")
         if not spot:
-            return custom_404_response(self.request, kwargs['campus'])
+            self.response_class = Response404
+            self.template_name = "404.html"
+            return custom_404_context(kwargs["campus"])
 
         context = {"spot": spot,
                    "campus": kwargs['campus'],
@@ -257,8 +297,11 @@ class TechDetailView(TemplateView):
 
 
 class TechFilterView(TemplateView):
+    template_name = "404.html"
+
     @validate_campus_selection
     def get_context_data(self, **kwargs):
+        self.template_name = kwargs['template_name']
         context = {"campus": kwargs['campus'],
                    "app_type": 'tech',
                    "campus_locations": CAMPUS_LOCATIONS}
@@ -280,7 +323,7 @@ def spot_image_view(request, image_id, spot_id):
         response['etag'] = etag
         return response
     except Exception:
-        return custom_404_response(request)
+        raise Http404
 
 
 def item_image_view(request, image_id, item_id):
@@ -292,13 +335,23 @@ def item_image_view(request, image_id, item_id):
         response['etag'] = etag
         return response
     except Exception:
-        return custom_404_response(request)
+        raise Http404
 
 
-# Custom 404 page
+# Custom method-based 404 page
 def custom_404_response(request, campus="seattle"):
-    context = {"campus": campus}
+    context = custom_404_context(campus)
     response = render_to_response('404.html', context,
                                   context_instance=RequestContext(request))
     response.status_code = 404
     return response
+
+
+def custom_404_context(campus="seattle"):
+    context = {"campus": campus,
+               "campus_locations": CAMPUS_LOCATIONS}
+    return context
+
+
+class Response404(TemplateResponse):
+    status_code = 404
