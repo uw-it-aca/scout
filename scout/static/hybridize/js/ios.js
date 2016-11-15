@@ -22,9 +22,6 @@ $(document).on('turbolinks:load', function() {
         myApp.closeNotification(".notification-item")
     });
 
-    // Geolocation
-    Geolocation.update_location();
-
     // get the app_type
     var type = $("body").data("app-type")
 
@@ -53,7 +50,10 @@ $(document).on('turbolinks:load', function() {
         // discover
         Discover.init_cards();
     }
-        
+
+    // Geolocation
+    Geolocation.update_location();
+
     // filter
     Filter.init_events();
 
