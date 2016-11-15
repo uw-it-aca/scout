@@ -64,7 +64,7 @@ def discover_card_view(request, campus, discover_category):
                 ('open_now', True),
                 ('center_latitude', lat if lat else DEFAULT_LAT),
                 ('center_longitude', lon if lon else DEFAULT_LON),
-                ('distance', 100000),
+                ('distance', 10000000),
                 ('extended_info:app_type', 'food')
                 ]
         },
@@ -76,7 +76,7 @@ def discover_card_view(request, campus, discover_category):
                 ('limit', 5),
                 ('center_latitude', lat if lat else DEFAULT_LAT),
                 ('center_longitude', lon if lon else DEFAULT_LON),
-                ('distance', 100000),
+                ('distance', 10000000),
                 ('extended_info:app_type', 'food')
                 ] + get_period_filter('morning')
 
@@ -89,7 +89,7 @@ def discover_card_view(request, campus, discover_category):
                 ('limit', 5),
                 ('center_latitude', lat if lat else DEFAULT_LAT),
                 ('center_longitude', lon if lon else DEFAULT_LON),
-                ('distance', 100000),
+                ('distance', 10000000),
                 ('extended_info:app_type', 'food')
                 ] + get_period_filter('late_night')
         },
@@ -101,7 +101,7 @@ def discover_card_view(request, campus, discover_category):
                 ('limit', 5),
                 ('center_latitude', lat if lat else DEFAULT_LAT),
                 ('center_longitude', lon if lon else DEFAULT_LON),
-                ('distance', 100000),
+                ('distance', 10000000),
                 ('type', 'outdoor')
                 ]
         },
@@ -113,7 +113,7 @@ def discover_card_view(request, campus, discover_category):
                 ('limit', 5),
                 ('center_latitude', lat if lat else DEFAULT_LAT),
                 ('center_longitude', lon if lon else DEFAULT_LON),
-                ('distance', 100000),
+                ('distance', 10000000),
                 ('type', 'computer_lab')
             ]
 

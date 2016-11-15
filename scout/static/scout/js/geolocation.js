@@ -71,8 +71,6 @@ var Geolocation = {
 
     handle_watch_position: function (position) {
        if(Geolocation.get_is_using_location()){
-           var new_position = Geolocation.get_latlng_from_coords(position.coords.latitude, position.coords.longitude);
-           var distance = Geolocation.get_distance_from_position(new_position);
            Geolocation.set_client_location(position);
        }
     },
