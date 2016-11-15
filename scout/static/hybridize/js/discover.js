@@ -4,7 +4,6 @@ Discover = {
 
         $(document).on("location_changed", function() {
 
-            //Geolocation.display_location_status();
             var discover_divs = $("#discover_cards").children();
 
             var latlng = Geolocation.get_client_latlng();
@@ -14,11 +13,7 @@ Discover = {
                 Discover.fetch_cards(card_id, latlng);
             });
 
-            // mimic console.log for debugging hybrid
-            //Filter.call_js_bridge("init cards called with " + latlng);
-
         });
-        //Geolocation.init_location_toggles();
 
     },
 
