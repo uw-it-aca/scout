@@ -5,7 +5,7 @@
 {% block title %}{{spot.item.name}}{% endblock %}
 
 {% block hybrid_notification %}
-{% if request.is_ios and spot.has_alert %}
+{% if request.is_ios %}
 <div class="notifications list-block media-list" style="display: block; transform: translate3d(0px, 0px, 0px);">
     <ul>
         <li class="notification-item" style="margin-top: 0px;">
@@ -61,7 +61,7 @@
                 <div class="col-66" style="text-transform: capitalize; ">
                     {{ spot.item.subcategory }}
                 </div>
-                <div class="col-33" style="text-align:right;"> <span style="color:#2ecc71;">{{ spot.item.quantity }} available</span></div>
+                <div class="col-33" style="text-align:right;">{% if spot.item.quantity %}<span style="color:#2ecc71;">{{ spot.item.quantity }} available</span>{% endif %}</div>
             </div>
 
         </div>
@@ -70,9 +70,11 @@
 </div>
 
 <div class="list-block">
+    {% if spot.item.description %}
     <div class="list-block-label" style="margin-bottom:1em;">
         {{ spot.item.description }}
     </div>
+    {% endif %}
     <ul>
         <li class="item-content">
             <div class="item-inner">
@@ -80,27 +82,15 @@
                 <div class="item-after">{{ spot.name }}</div>
             </div>
         </li>
+        {% if spot.item.brand %}
         <li class="item-content">
             <div class="item-inner">
                 <div class="item-title">Brand</div>
                 <div class="item-after">{{spot.item.brand}}</div>
             </div>
         </li>
-        <li class="item-content">
-            <div class="item-inner">
-                <div class="item-title">Checkout</div>
-                <div class="item-after">{{ spot.item.checkout_period|floatformat:"0" }} days</div>
-            </div>
-        </li>
-        <li>
-            <a href="https://www.cte.uw.edu/stfequip/request" class="item-link" data-turbolinks="false">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">Reserve Item <span>https://www.cte.uw.edu/stfequip/request</span></div>
-                    </div>
-                </div>
-            </a>
-        </li>
+        {% endif %}
+        {% if spot.item.manual_url %}
         <li>
             <a href="{{ spot.item.manual_url }}" class="item-link" data-turbolinks="false">
                 <div class="item-content">
@@ -110,11 +100,27 @@
                 </div>
             </a>
         </li>
-
+        {% endif %}
+        {% if spot.item.checkout_period %}
+        <li class="item-content">
+            <div class="item-inner">
+                <div class="item-title">Checkout Period</div>
+                <div class="item-after">{{ spot.item.checkout_period|floatformat:"0" }} days</div>
+            </div>
+        </li>
+        {% endif %}
+        <li>
+            <a href="https://www.cte.uw.edu/stfequip/request" class="item-link" data-turbolinks="false">
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">Reserve Item <span>https://www.cte.uw.edu/stfequip/request</span></div>
+                    </div>
+                </div>
+            </a>
+        </li>
     </ul>
 
 </div>
-
 
 <div class="content-block-title">Location Hours</div>
 <div class="list-block">
@@ -162,12 +168,16 @@
             </div>
         </li>
     </ul>
+    {% if spot.hours_notes %}
     <div class="list-block-label" style="margin-bottom:1em;">
-        <i class="fa fa-clock-o" aria-hidden="true"></i> hours_notes: {{spot.hours_notes}}
+        <i class="fa fa-clock-o" aria-hidden="true"></i> {{spot.hours_notes}}
     </div>
+    {% endif %}
+    {% if spot.display_access_restrictions %}
     <div class="list-block-label" style="margin-bottom:1em;">
-        <i class="fa fa-sign-in" aria-hidden="true"></i> access notes: {{ spot.display_access_restrictions }}, {{spot.access_notes}}
+        <i class="fa fa-sign-in" aria-hidden="true"></i> {{spot.access_notes}}
     </div>
+    {% endif %}
 </div>
 
 <div class="content-block-title">Getting Here</div>
@@ -200,7 +210,7 @@
             <a href="https://uwstf.org" class="item-link" data-turbolinks="false">
                 <div class="item-content">
                     <div class="item-inner">
-                        <div class="item-title">STF Funded <span>https://uwstf.org/</span></div>
+                        <div class="item-title">Student Technology Fee <span>https://uwstf.org/</span></div>
                     </div>
                 </div>
             </a>

@@ -16,6 +16,11 @@
 		li { }
 	}
 
+    .list-block-label { clear: both;
+
+        i { color:#333; margin-right: 8px; }
+    }
+
     .item-inner { overflow: hidden;
 
         .item-title-row { /*background-image: none !important;*/ }

@@ -5,7 +5,7 @@
 {% block title %}{{spot.name}}{% endblock %}
 
 {% block hybrid_notification %}
-{% if request.is_ios and spot.has_alert %}
+{% if request.is_ios %}
 <div class="notifications list-block media-list" style="display: block; transform: translate3d(0px, 0px, 0px);">
     <ul>
         <li class="notification-item" style="margin-top: 0px;">
@@ -69,10 +69,15 @@
 </div>
 
 <div class="list-block">
+
+    {% if spot.description %}
     <div class="list-block-label" style="margin-bottom:1em;">
         {{ spot.description }}
     </div>
+    {% endif %}
+
     <ul>
+        {% if spot.building_name %}
         <li>
             <div class="item-content">
                 <div class="item-inner">
@@ -80,6 +85,7 @@
                 </div>
             </div>
         </li>
+        {% endif %}
         {% if spot.phone %}
         <li>
             <a href="tel:+1{{ spot.phone }}" class="item-link" data-turbolinks="false">
@@ -91,6 +97,7 @@
             </a>
         </li>
         {% endif %}
+        {% if spot.website_url %}
         <li>
             <a href="{{spot.website_url}}" class="item-link" data-turbolinks="false">
                 <div class="item-content">
@@ -100,6 +107,8 @@
                 </div>
             </a>
         </li>
+        {% endif %}
+        {% if spot.menu_url %}
         <li>
             <a href="{{ spot.menu_url }}" class="item-link" data-turbolinks="false">
                 <div class="item-content">
@@ -109,6 +118,8 @@
                 </div>
             </a>
         </li>
+        {% endif %}
+        {% if spot.coupon_url %}
         <li>
             <a href="{{ spot.coupon_url }}" class="item-link" data-turbolinks="false">
                 <div class="item-content">
@@ -118,13 +129,18 @@
                 </div>
             </a>
         </li>
+        {% endif %}
     </ul>
+    {% if spot.has_reservation %}
     <div class="list-block-label" style="margin-bottom:1em;">
-        <i class="fa fa-bookmark" aria-hidden="true"></i> reservation notes: {{ spot.has_reservation }}, {{ spot.reservation_notes }}
+        <i class="fa fa-bookmark" aria-hidden="true"></i> {{ spot.reservation_notes }}
     </div>
+    {% endif %}
+    {% if spot.display_access_restrictions %}
     <div class="list-block-label" style="margin-bottom:1em;">
-        <i class="fa fa-sign-in" aria-hidden="true"></i> access notes: {{ spot.display_access_restrictions }}, {{spot.access_notes}}
+        <i class="fa fa-sign-in" aria-hidden="true"></i> {{spot.access_notes}}
     </div>
+    {% endif %}
 </div>
 
 <div class="content-block-title">Open periods</div>
@@ -186,9 +202,11 @@
             </div>
         </li>
     </ul>
+    {% if spot.hours_notes %}
     <div class="list-block-label" style="margin-bottom:1em;">
-        <i class="fa fa-clock-o" aria-hidden="true"></i> hours_notes: {{spot.hours_notes}}
+        <i class="fa fa-clock-o" aria-hidden="true"></i> {{spot.hours_notes}}
     </div>
+    {% endif %}
 </div>
 
 <div class="content-block-title">Payment Accepted</div>

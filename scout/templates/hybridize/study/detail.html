@@ -5,7 +5,7 @@
 {% block title %}{{spot.name}}{% endblock %}
 
 {% block hybrid_notification %}
-{% if request.is_ios and spot.has_alert %}
+{% if request.is_ios %}
 <div class="notifications list-block media-list" style="display: block; transform: translate3d(0px, 0px, 0px);">
     <ul>
         <li class="notification-item" style="margin-top: 0px;">
@@ -73,12 +73,14 @@
 
 <div class="list-block" style="margin-top:1em;">
     <ul>
+
+        {% if spot.location_description %}
         <li class="item-content">
             <div class="item-inner">
                 <div class="item-title">Location <span>{{ spot.location_description }}</span></div>
             </div>
         </li>
-
+        {% endif %}
         {% if spot.capacity %}
         <li class="item-content">
             <div class="item-inner">
@@ -87,7 +89,6 @@
             </div>
         </li>
         {% endif %}
-
         {% if spot.auto_labstats_total > 0 and spot.auto_labstats_available > 0 %}
         <li class="item-content">
             <div class="item-inner">
@@ -98,7 +99,6 @@
             </div>
         </li>
         {% endif %}
-
         {% if spot.reservable %}
         <li class="item-content">
             <div class="item-inner">
@@ -107,14 +107,18 @@
             </div>
         </li>
         {% endif %}
-
     </ul>
+
+    {% if spot.reservation_notes %}
     <div class="list-block-label" style="margin-bottom:1em;">
         <i class="fa fa-bookmark" aria-hidden="true"></i> {{ spot.reservation_notes|urlize }}
     </div>
+    {% endif %}
+    {% if spot.access_notes %}
     <div class="list-block-label" style="margin-bottom:1em;">
-        <i class="fa fa-sign-in" aria-hidden="true"></i> {{spot.access_notes}}
+        <i class="fa fa-sign-in" aria-hidden="true" style="float:left; height:38px;"></i> {{spot.access_notes}}
     </div>
+    {% endif %}
 </div>
 
 <div class="content-block-title">Open Hours</div>
@@ -163,15 +167,19 @@
             </div>
         </li>
     </ul>
+    {% if spot.hours_notes %}
     <div class="list-block-label" style="margin-bottom:1em;">
-        <i class="fa fa-clock-o" aria-hidden="true"></i> {{spot.hours_notes}}
+        <i class="fa fa-clock-o" aria-hidden="true" style="float:left; height:38px;"></i> {{spot.hours_notes}}
     </div>
+    {% endif %}
 </div>
 
 
 <div class="content-block-title">Environment</div>
 <div class="list-block">
     <ul>
+
+        {% if spot.spot_resources %}
         <li class="item-content">
             <div class="item-inner">
                 {% if spot.spot_resources|length < 3 %}
@@ -192,18 +200,24 @@
                 {% endif %}
             </div>
         </li>
+        {% endif %}
+
+        {% if spot.food_nearby %}
         <li class="item-content">
             <div class="item-inner">
                 <div class="item-title">Food/Coffee</div>
-                <div class="item-after">{{ spot.food_nearby }}</div>
+                <div class="item-after">{{ spot.food_nearby|title }}</div>
             </div>
         </li>
+        {% endif %}
+        {% if spot.spot_noise %}
         <li class="item-content">
             <div class="item-inner">
                 <div class="item-title">Noise level</div>
-                <div class="item-after"> {{ spot.spot_noise }}</div>
+                <div class="item-after"> {{ spot.spot_noise|title }}</div>
             </div>
         </li>
+        {% endif %}
         {% if spot.natural_light %}
         <li class="item-content">
             <div class="item-inner">
