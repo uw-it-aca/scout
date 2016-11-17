@@ -111,12 +111,16 @@
 
     {% if spot.reservation_notes %}
     <div class="list-block-label" style="margin-bottom:1em;">
-        <i class="fa fa-bookmark" aria-hidden="true"></i> {{ spot.reservation_notes|urlize }}
+        <i class="fa fa-bookmark" aria-hidden="true" style="float:left;"></i>
+        <span style=" display:block; float:left; width: 92%;">{{ spot.reservation_notes|urlize }}</span>
+        <div style="clear:both;"></div>
     </div>
     {% endif %}
     {% if spot.access_notes %}
     <div class="list-block-label" style="margin-bottom:1em;">
-        <i class="fa fa-sign-in" aria-hidden="true" style="float:left; height:38px;"></i> {{spot.access_notes}}
+        <i class="fa fa-sign-in" aria-hidden="true" style="float:left; margin-top:3px;"></i>
+        <span style=" display:block; float:left; width: 92%;">{{spot.access_notes}}</span>
+        <div style="clear:both;"></div>
     </div>
     {% endif %}
 </div>
@@ -169,7 +173,9 @@
     </ul>
     {% if spot.hours_notes %}
     <div class="list-block-label" style="margin-bottom:1em;">
-        <i class="fa fa-clock-o" aria-hidden="true" style="float:left; height:38px;"></i> {{spot.hours_notes}}
+        <i class="fa fa-clock-o" aria-hidden="true" style="float:left;"></i>
+        <span style=" display:block; float:left; width: 92%;">{{spot.hours_notes}}</span>
+        <div style="clear:both;"></div>
     </div>
     {% endif %}
 </div>
