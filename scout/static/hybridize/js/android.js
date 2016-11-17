@@ -17,16 +17,9 @@ $(document).on('turbolinks:load', function() {
 		activeState: true,
 	});
 
-    // handle closing notifcation banners
-    $(".close-notification").click(function(e) {
-        e.preventDefault();
-        //alert( "Handler for .click() called." );
-        myApp.closeNotification(".notification-item")
-    });
-
     // Geolocation
     Geolocation.update_location();
-    
+
     // get the app_type
     var type = $("body").data("app-type")
 

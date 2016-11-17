@@ -4,45 +4,6 @@
 
 {% block title %}{{spot.name}}{% endblock %}
 
-{% block hybrid_notification %}
-{% if request.is_ios %}
-<div class="notifications list-block media-list" style="display: block; transform: translate3d(0px, 0px, 0px);">
-    <ul>
-        <li class="notification-item" style="margin-top: 0px;">
-            <div class="item-content">
-                <div class="item-inner">
-                    <div class="item-title-row">
-                        <div class="item-title">Just thought you should know...</div>
-                        <div class="item-after">
-                            <a href="#" class="close-notification" data-turbolinks="false"><span></span></a>
-                        </div>
-                    </div>
-                    <div class="item-text">{{ spot.alert_notes }}</div>
-                </div>
-            </div>
-        </li>
-    </ul>
-</div>
-{% endif %}
-
-{% if request.is_and and spot.has_alert %}
-<div class="notifications list-block" style="display: block; transform: translate3d(0px, 0px, 0px);">
-    <ul>
-        <li class="notification-item">
-            <div class="item-content">
-                <div class="item-inner">
-                    <div class="item-title">{{ spot.alert_notes }}</div>
-                    <div class="item-after">
-                        <a href="#" class="button close-notification" data-turbolinks="false">Close</a>
-                    </div>
-                </div>
-            </div>
-        </li>
-    </ul>
-</div>
-{% endif %}
-{% endblock %}
-
 {% block hybrid_content %}
 
 <div class="card">
@@ -68,13 +29,21 @@
 
 <div class="list-block">
 
-    {% if spot.description %}
+
     <div class="list-block-label" style="margin-bottom:1em;">
-        {{ spot.description }}
+        {% if spot.description %}{{ spot.description }}{% else %}&nbsp;{% endif %}
     </div>
-    {% endif %}
 
     <ul>
+        {% if spot.has_alert %}
+        <li>
+            <div class="item-content">
+                <div class="item-inner">
+                    <div class="item-title" style="color:#A94441;">{% now "DATE_FORMAT" %} <span>{{ spot.alert_notes }}</span></div>
+                </div>
+            </div>
+        </li>
+        {% endif %}
         {% if spot.building_name %}
         <li>
             <div class="item-content">
