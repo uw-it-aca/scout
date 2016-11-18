@@ -3,12 +3,12 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.core.exceptions import ImproperlyConfigured
 from django.conf import settings
-from scout.dao.space import get_spot_list, get_spot_by_id, get_filtered_spots,\
-    get_period_filter, get_spots_by_filter, group_spots_by_building,\
-    get_building_list, validate_detail_info
+from scout.dao.space import (get_spot_by_id, get_filtered_spots,
+                             get_period_filter, get_spots_by_filter,
+                             group_spots_by_building, get_building_list,
+                             validate_detail_info, get_random_limit_from_spots)
 from scout.dao.image import get_spot_image, get_item_image
-from scout.dao.item import get_item_by_id, get_filtered_items, \
-    get_item_count, add_item_info
+from scout.dao.item import (get_item_by_id, get_filtered_items, get_item_count)
 
 from django.views.generic.base import TemplateView, TemplateResponse
 
@@ -48,7 +48,8 @@ class DiscoverView(TemplateView):
     def get_context_data(self, **kwargs):
         self.template_name = kwargs['template_name']
         context = {"campus": kwargs['campus'],
-                   "campus_locations": CAMPUS_LOCATIONS}
+                   "campus_locations": CAMPUS_LOCATIONS,
+                   "random_cards": ["studyrandom", "foodrandom"]}
         return context
 
 
@@ -125,8 +126,25 @@ class DiscoverCardView(TemplateView):
                     ('distance', 100000),
                     ('type', 'computer_lab')
                 ]
-
             },
+            "studyrandom": {
+                "title": "Discover places to study",
+                "spot_type": "study",
+                "filter_url": "",
+                "filter": [
+                    ('limit', 0)
+                ]
+            },
+            "foodrandom": {
+                "title": "Discover places to eat",
+                "spot_type": "food",
+                "filter_url": "",
+                "filter": [
+                    ('extended_info:app_type', 'food'),
+                    ('limit', 0)
+                ]
+            },
+
         }
 
         try:
@@ -144,6 +162,8 @@ class DiscoverCardView(TemplateView):
             self.response_class = Response404
             self.template_name = "404.html"
             return custom_404_context(kwargs["campus"])
+        if kwargs['discover_category'] in ['foodrandom', 'studyrandom']:
+            spots = get_random_limit_from_spots(spots, 5)
 
         context = {
             "spots": spots,
@@ -262,6 +282,8 @@ class TechListView(TemplateView):
     def get_context_data(self, **kwargs):
         self.template_name = kwargs['template_name']
         # spots = get_spots_by_filter([('has_items', 'true')])
+        request.GET = request.GET.copy()
+        request.GET['item_is_active'] = 'true'
         spots = get_filtered_spots(self.request, kwargs['campus'], "tech")
         spots = get_filtered_items(spots, self.request)
         count = get_item_count(spots)
