@@ -282,8 +282,8 @@ class TechListView(TemplateView):
     def get_context_data(self, **kwargs):
         self.template_name = kwargs['template_name']
         # spots = get_spots_by_filter([('has_items', 'true')])
-        request.GET = request.GET.copy()
-        request.GET['item_is_active'] = 'true'
+        self.request.GET = self.request.GET.copy()
+        self.request.GET['item_is_active'] = 'true'
         spots = get_filtered_spots(self.request, kwargs['campus'], "tech")
         spots = get_filtered_items(spots, self.request)
         count = get_item_count(spots)
