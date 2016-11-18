@@ -128,7 +128,7 @@ class DiscoverCardView(TemplateView):
                 ]
             },
             "studyrandom": {
-                "title": "Discover places to study",
+                "title": "Places to study",
                 "spot_type": "study",
                 "filter_url": "",
                 "filter": [
@@ -136,7 +136,7 @@ class DiscoverCardView(TemplateView):
                 ]
             },
             "foodrandom": {
-                "title": "Discover places to eat",
+                "title": "Places to eat",
                 "spot_type": "food",
                 "filter_url": "",
                 "filter": [
