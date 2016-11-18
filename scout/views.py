@@ -3,12 +3,12 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.core.exceptions import ImproperlyConfigured
 from django.conf import settings
-from scout.dao.space import get_spot_list, get_spot_by_id, get_filtered_spots,\
-    get_period_filter, get_spots_by_filter, group_spots_by_building,\
-    get_building_list, validate_detail_info
+from scout.dao.space import (get_spot_by_id, get_filtered_spots,
+                             get_period_filter, get_spots_by_filter,
+                             group_spots_by_building, get_building_list,
+                             validate_detail_info, get_random_limit_from_spots)
 from scout.dao.image import get_spot_image, get_item_image
-from scout.dao.item import get_item_by_id, get_filtered_items, \
-    get_item_count, add_item_info
+from scout.dao.item import (get_item_by_id, get_filtered_items, get_item_count)
 
 
 # using red square as the default center
@@ -42,7 +42,8 @@ def validate_campus_selection(function):
 @validate_campus_selection
 def discover_view(request, campus):
     context = {"campus": campus,
-               "campus_locations": CAMPUS_LOCATIONS}
+               "campus_locations": CAMPUS_LOCATIONS,
+               "random_cards": ["studyrandom", "foodrandom"]}
     return render_to_response('scout/discover.html', context,
                               context_instance=RequestContext(request))
 
@@ -64,7 +65,7 @@ def discover_card_view(request, campus, discover_category):
                 ('open_now', True),
                 ('center_latitude', lat if lat else DEFAULT_LAT),
                 ('center_longitude', lon if lon else DEFAULT_LON),
-                ('distance', 10000000),
+                ('distance', 1000000),
                 ('extended_info:app_type', 'food')
                 ]
         },
@@ -76,7 +77,7 @@ def discover_card_view(request, campus, discover_category):
                 ('limit', 5),
                 ('center_latitude', lat if lat else DEFAULT_LAT),
                 ('center_longitude', lon if lon else DEFAULT_LON),
-                ('distance', 10000000),
+                ('distance', 1000000),
                 ('extended_info:app_type', 'food')
                 ] + get_period_filter('morning')
 
@@ -89,7 +90,7 @@ def discover_card_view(request, campus, discover_category):
                 ('limit', 5),
                 ('center_latitude', lat if lat else DEFAULT_LAT),
                 ('center_longitude', lon if lon else DEFAULT_LON),
-                ('distance', 10000000),
+                ('distance', 1000000),
                 ('extended_info:app_type', 'food')
                 ] + get_period_filter('late_night')
         },
@@ -101,7 +102,7 @@ def discover_card_view(request, campus, discover_category):
                 ('limit', 5),
                 ('center_latitude', lat if lat else DEFAULT_LAT),
                 ('center_longitude', lon if lon else DEFAULT_LON),
-                ('distance', 10000000),
+                ('distance', 1000000),
                 ('type', 'outdoor')
                 ]
         },
@@ -113,10 +114,26 @@ def discover_card_view(request, campus, discover_category):
                 ('limit', 5),
                 ('center_latitude', lat if lat else DEFAULT_LAT),
                 ('center_longitude', lon if lon else DEFAULT_LON),
-                ('distance', 10000000),
+                ('distance', 1000000),
                 ('type', 'computer_lab')
             ]
-
+        },
+        "studyrandom": {
+            "title": "Study somewhere new!",
+            "spot_type": "study",
+            "filter_url": "",
+            "filter": [
+                ('limit', 0)
+            ]
+        },
+        "foodrandom": {
+            "title": "Eat something new!",
+            "spot_type": "food",
+            "filter_url": "",
+            "filter": [
+                ('extended_info:app_type', 'food'),
+                ('limit', 0)
+            ]
         },
     }
 
@@ -130,6 +147,9 @@ def discover_card_view(request, campus, discover_category):
     spots = get_spots_by_filter(discover_data["filter"])
     if len(spots) == 0:
         return custom_404_response(request)
+    if discover_category in ['foodrandom', 'studyrandom']:
+        spots = get_random_limit_from_spots(spots, 5)
+
     context = {
         "spots": spots,
         "campus": campus,

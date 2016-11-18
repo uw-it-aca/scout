@@ -2,6 +2,7 @@ from spotseeker_restclient.spotseeker import Spotseeker
 from spotseeker_restclient.exceptions import DataFailureException
 import datetime
 import pytz
+import random
 
 OPEN_PERIODS = {
         # 5am - 10:59am
@@ -523,3 +524,19 @@ def validate_detail_info(spot, campus, app_type):
         if spot.campus != campus or spot.app_type != app_type:
             spot = []
     return spot
+
+
+def get_random_limit_from_spots(spot_list, count):
+    # return <count> spots using reservoir sampling
+    result = []
+    i = 0
+
+    for item in spot_list:
+        i += 1
+        if len(result) < count:
+            result.append(item)
+        else:
+            s = int(random.random() * i)
+            if s < count:
+                result[s] = item
+    return result
