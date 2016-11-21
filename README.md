@@ -89,11 +89,10 @@ Add details for connection to spotseeker_server. Change 'File' to 'Live' if you 
 SPOTSEEKER_HOST = ''
 SPOTSEEKER_OAUTH_KEY = ''
 SPOTSEEKER_OAUTH_SECRET = ''
-SPOTSEEKER_DAO_CLASS = 'ispotseeker_restclient.dao_implementation.spotseeker.File'
+SPOTSEEKER_DAO_CLASS = 'spotseeker_restclient.dao_implementation.spotseeker.File'
 ```
 
-
-For additional settings, see [some page that doesn't exist.]
+For additional settings, see [some page that doesn't exist yet.]
 
 Create your database, and you can run the server.
 
@@ -122,13 +121,13 @@ Please read [CONTRIBUTING.md] for details on our code of conduct, and the proces
 
 ## Versioning
 
-For the versions available, see the [tags on this repository](https://github.com/uw-it-aca/spotseeker_server/tags).
+For the versions available, see the [tags on this repository](https://github.com/uw-it-aca/scout/tags).
 
 ## Authors
 
 * [**Academic Experience Design & Delivery**](https://github.com/uw-it-aca)
 
-See also the list of [contributors](https://github.com/uw-it-aca/spotseeker_server/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/uw-it-aca/scout/contributors) who participated in this project.
 
 ## License
 
@@ -150,8 +149,10 @@ limitations under the License.
 
 (To be moved to the wiki eventually.)
 
-JSON_PRETTY_PRINT
-SPOTSEEKER_AUTH_ADMINS
-SPOTSEEKER_AUTH_MODULE
-SPOTSEEKER_SEARCH_FILTERS
-USER_EMAIL_DOMAIN
+CAMPUS_URL_LIST
+GOOGLE_ANALYTICS_KEY
+GOOGLE_MAPS_API
+SPOTSEEKER_DAO_CLASS
+SPOTSEEKER_HOST = ''
+SPOTSEEKER_OAUTH_KEY = ''
+SPOTSEEKER_OAUTH_SECRET = ''
