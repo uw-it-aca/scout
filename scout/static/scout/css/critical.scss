@@ -297,7 +297,7 @@ a {color: $scout-link;}
                     ol {margin:0; padding:0;}
                     span {  display: block; text-transform: uppercase; font-size: 10px; margin-bottom: 2px; color: #BBB; }
                     li {list-style: none; display:inline; }
-                    li:after { content: ", "; }
+                    li:after { content: ","; margin-right:5px;}
                     li:last-child:after { content: ""; }
                 }
 
