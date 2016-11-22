@@ -6,6 +6,35 @@
 
 {% block hybrid_content %}
 
+{% if campus != "seattle" %}
+
+<div style="padding:20px; line-height:20px;">
+
+    <p>This feature is currently not available for the <strong style="text-transform:capitalize;">{{ campus }} campus</strong>. We are working hard to make this data available for you in the near future.</p>
+
+    {% if campus == "bothell" %}
+    <p>In the meantime, please visit the Information Technologies <a href="http://www.uwb.edu/it/services/articles/equipment-checkout" target="_blank">Equipment Checkout</a> service to see what is available for you.</p>
+    {% endif %}
+
+    {% if campus == "tacoma" %}
+    <p>In the meantime, please visit the <a href="https://www.tacoma.uw.edu/learning-research-commons/learning-research-commons" target="_blank">Learning and Resource Commons (LARC)</a>, to see what is available for you.</p>
+    {% endif %}
+
+    <hr>
+
+    <p style="font-size:14px; color:#666;">If you'd like to visit the <strong>Seattle Campus</strong>, here are a list of popular technology items available for you to checkout.</p>
+
+    <ul style="list-style:none; padding:0; margin:0; line-height:20px; font-size:14px;">
+        <li><a href="/h/seattle/tech/?h_title=Seattle Tech&subcategory0=Digital+Camera">Digital Camera</a></li>
+        <li><a href="/h/seattle/tech/?h_title=Seattle Tech&subcategory0=Digital+Video+Camera">Digital Video Camera</a></li>
+        <li><a href="/h/seattle/tech/?h_title=Seattle Tech&subcategory0=Laptop+Computer">Laptop Computer</a></li>
+        <li><a href="/h/seattle/tech/?h_title=Seattle Tech&subcategory0=Tablet+Computer">Tablet Computer</a></li>
+        <li><a href="/h/seattle/tech/?h_title=Seattle Tech&subcategory0=Data+Projector">Data Projector</a></li>
+    </ul>
+
+</div>
+{% else %}
+
 <div class="card">
     <div class="card-content">
         <div class="card-content-inner">
@@ -71,7 +100,7 @@
             {% endif %}
             {% empty %}
                 <li class="scout-list-item">
-                    <div class="list-group-title">no found</div>
+                    <div class="list-group-title">No results found</div>
                 </li>
                 <li class="scout-list-item scout-error" style="padding:20px;">
                     <p class="scout-error-msg">No results? Try updating your filters.</p>
@@ -89,5 +118,6 @@
     </div>
 
 </div>
+{% endif %}
 
 {% endblock %}
