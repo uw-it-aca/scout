@@ -349,6 +349,7 @@ def add_additional_info(spot):
 def add_study_info(spot):
     RESOURCE_MAPPING = {
         "has_whiteboards": "Whiteboards",
+        "has_computers": "Computers",
         "has_outlets": "Outlets",
         "has_printing": "Printing",
         "has_scanner": "Scanner",
@@ -359,11 +360,8 @@ def add_study_info(spot):
                                                        RESOURCE_MAPPING,
                                                        spot.extended_info)
 
-    if (_get_extended_info_by_key("has_computers", spot.extended_info) ==
-            "true"):
-        spot.computers = True
-        spot.num_computers = _get_extended_info_by_key("num_computers",
-                                                       spot.extended_info)
+    spot.num_computers = _get_extended_info_by_key("num_computers",
+                                                   spot.extended_info)
 
     if (_get_extended_info_by_key("has_natural_light", spot.extended_info) ==
             "true"):
