@@ -351,7 +351,7 @@ def add_study_info(spot):
         "has_whiteboards": "Whiteboards",
         "has_outlets": "Outlets",
         "has_printing": "Printing",
-        "has_scanning": "Scanning",
+        "has_scanner": "Scanner",
         "has_displays": "Displays",
         "has_projector": "Projector"
     }
