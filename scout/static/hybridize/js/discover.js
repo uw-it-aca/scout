@@ -13,6 +13,8 @@ Discover = {
                 Discover.fetch_cards(card_id, latlng);
             });
 
+
+
         });
 
     },
@@ -37,6 +39,7 @@ Discover = {
                        //Discover._init_card_events(card_id);
                        Discover.add_distance_and_sort();
                        Discover.set_cards_are_visible(true);
+                       $("#discover_cards").removeClass("visually-hidden");
                    },
                    error: function(xhr, status, error) {
                    }
