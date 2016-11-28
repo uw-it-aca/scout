@@ -1,89 +1,158 @@
 [![Build Status](https://travis-ci.org/uw-it-aca/scout.svg?branch=develop)](https://travis-ci.org/uw-it-aca/scout)  [![Coverage Status](https://coveralls.io/repos/uw-it-aca/scout/badge.svg?branch=master&service=github)](https://coveralls.io/github/uw-it-aca/scout?branch=master)
-SCOUT
-=====
 
-This README documents whatever steps are necessary to get your application up and running using Vagrant or manually using our Classic Django environment.
+# Scout
 
-## Vagrant ##
+This is the Scout app. It connects to services provided by [spotseeker_server](https://github.com/uw-it-aca/spotseeker_server).
 
-The Scout project uses Vagrant and Ansible to build your development environment. Go to the scout-vagrant github repo for instructions on installation.
+## Getting Started
 
-https://github.com/uw-it-aca/scout-vagrant
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
+### Prerequisites
 
-## API ##
+* Django <1.8.6. (Is this still true?)
+* A Python installation (2.6 or 2.7)
+* pip or easy_install
+* git
 
-Refer to the Spotseeker API https://github.com/uw-it-aca/spotseeker_server/wiki/REST-protocol-v1 to view documentation regarding core data that is needed for all spots.
+### Installing
 
+Use pip to install the app as editable from GitHub:
 
-The following types are to be used for Food finding...
+```
+pip install -e git+https://github.com/uw-it-aca/scout.git#egg=scout
+```
 
-    "type" : ["cafe", "cafeteria", "food_court", "food_truck"  "market", "restaurant"],
+You'll also need [spotseeker_client](https://github.com/uw-it-aca/spotseeker_client)
 
-Scout specific extended info...
+```
+pip install -e git+https://github.com/uw-it-aca/spotseeker_client.git#egg=spotseeker_restclient
+```
 
-	"extended_info": {
+Add scout to your INSTALLED_APPS in settings.py:
 
-		// global
+```
+INSTALLED_APPS = (
+    ...
+    'scout',
+    'spotseeker_restclient',
+    'compressor',
+    ...
+)
+```
 
-		"app_type" : ["food", "study", "other"],
-		"campus" : "seattle", ( or bothell, tacoma, south_lake_union)
-		"hours_notes" : "",
-		"access_notes" : "",
+Add django_mobileesp to MIDDLEWARE_CLASSES:
 
-		// scout
+```
+MIDDLEWARE_CLASSES = (
+    ...
+    'django_mobileesp.middleware.UserAgentDetectionMiddleware',
+    ...
+)
+```
 
-		"s_menu_url" : "",
-		"s_website_url" : "",
-		"s_phone" : "",
-        "s_email" : "",
+Add the app to your project's urls.py:
 
-		"s_has_alert" : false,
-		"s_alert_notes" : "",
+```
+from django.conf.urls import patterns, include, url
 
-	    "s_has_reservation" : false,
-		"s_reservation_notes" : "",
+handler404 = 'scout.views.custom_404_response'
 
-		"s_has_coupon" : "true",
-		"s_coupon_expiration" : "datetime",
-		"s_coupon_url" : "",
+urlpatterns = patterns('',
+    ...
+    url(r'^', include('scout.urls')),
+    ...
+)
+```
 
-		// cuisine
+Additional settings:
 
-	    "s_cuisine_american" : true,
-        "s_cuisine_bbq" : false,
-		"s_cuisine_chinese" : false,
-		"s_cuisine_hawaiian" : false,
-        "s_cuisine_indian" : false,
-		"s_cuisine_italian" : false,
-		"s_cuisine_korean" : false,
-        "s_cuisine_mexican" : false,
-		"s_cuisine_vietnamese" : false,
+```
+CAMPUS_URL_LIST = ['seattle', 'tacoma', 'bothell']
 
-		// food served
+COMPRESS_ROOT = '/tmp/'
+```
 
-        "s_food_breakfast" : true,
-        "s_food_burgers" : true,
-        "s_food_curry" : true,
-        "s_food_desserts" : true,
-        "s_food_entrees" : true,
-        "s_food_espresso" : true,
-        "s_food_frozen_yogurt" : true,
-        "s_food_pasta" : true,
-        "s_food_pastries" : true,
-        "s_food_pho" : true,
-        "s_food_pizza" : true,
-        "s_food_salads" : true,
-        "s_food_sandwiches" : true,
-        "s_food_smoothies" : true,
-        "s_food_sushi_packaged" : true,
-        "s_food_tacos" : true,
+Add STATICFILES_FINDERS:
 
-		// payment extended info
+```
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
+)
+```
 
-		"s_pay_cash" : true,
-		"s_pay_visa" : true,
-		"s_pay_mastercard" : true,
-		"s_pay_husky" : true,
-		"s_pay_dining" : true,
-	},
+Add details for connection to spotseeker_server. Change 'File' to 'Live' if you want to connect to a live spotseeker_server instead of using the file-based mock data:
+
+```
+SPOTSEEKER_HOST = ''
+SPOTSEEKER_OAUTH_KEY = ''
+SPOTSEEKER_OAUTH_SECRET = ''
+SPOTSEEKER_DAO_CLASS = 'spotseeker_restclient.dao_implementation.spotseeker.File'
+```
+
+For additional settings, see [some page that doesn't exist yet.]
+
+Create your database, and you can run the server.
+
+```
+python manage.py syncdb
+python manage.py runserver
+```
+
+## Running the tests
+
+```
+python manage.py test scout
+```
+
+## Deployment
+
+(To be completed.)
+
+## Built With
+
+* [Django](http://djangoproject.com/)
+
+## Contributing
+
+Please read [CONTRIBUTING.md] for details on our code of conduct, and the process for submitting pull requests to us. (This has yet to be writtien.)
+
+## Versioning
+
+For the versions available, see the [tags on this repository](https://github.com/uw-it-aca/scout/tags).
+
+## Authors
+
+* [**Academic Experience Design & Delivery**](https://github.com/uw-it-aca)
+
+See also the list of [contributors](https://github.com/uw-it-aca/scout/contributors) who participated in this project.
+
+## License
+
+Copyright 2012-2016 UW Information Technology, University of Washington
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+## List of settings
+
+(To be moved to the wiki eventually.)
+
+CAMPUS_URL_LIST
+GOOGLE_ANALYTICS_KEY
+GOOGLE_MAPS_API
+SPOTSEEKER_DAO_CLASS
+SPOTSEEKER_HOST = ''
+SPOTSEEKER_OAUTH_KEY = ''
+SPOTSEEKER_OAUTH_SECRET = ''
