@@ -15,7 +15,7 @@
 		li { }
 	}
 
-    .list-block-label { clear: both;
+    .list-block-label { clear: both; word-wrap: break-word;
 
         i { color:#333; margin-right: 8px; }
     }
@@ -58,10 +58,4 @@ body { font-family: 'Roboto', sans-serif; }
     height: 1px!important;
     width: 1px!important;
     overflow: hidden;
-}
-
-// avoid links causing screen to be too wide
-
-.list-block-label {
-    word-wrap: break-word;
 }
