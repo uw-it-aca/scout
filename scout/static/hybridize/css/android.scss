@@ -59,3 +59,9 @@ body { font-family: 'Roboto', sans-serif; }
     width: 1px!important;
     overflow: hidden;
 }
+
+// avoid links causing screen to be too wide
+
+.list-block-label {
+    word-wrap: break-word;
+}
