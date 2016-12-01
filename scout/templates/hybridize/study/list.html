@@ -68,7 +68,7 @@
                                         <span class="scout-spot-distance"><span class="distance-number">---</span>&nbsp;mi&nbsp;&nbsp;</span>
 
                                         {% if spot.auto_labstats_total > 0 and spot.auto_labstats_available > 0 %}
-                                            <span style="float:right; color:#999;"><i class="fa fa-desktop" aria-hidden="true"></i> <span class="visually-hidden">Computer availability:</span><span style="color:#2ecc71;">{{ spot.auto_labstats_available }}</span> / {{ spot.auto_labstats_total }}</span>
+                                            <span style="float:right; color:#999;"><i class="fa fa-desktop" aria-hidden="true"></i> <span class="visually-hidden">Computer availability:</span><span class="scout-green">{{ spot.auto_labstats_available }}</span> / {{ spot.auto_labstats_total }}</span>
                                         {% else %}
                                             {% if spot.capacity %}<span style="float:right; color:#999;">Seats: {{ spot.capacity }}</span>{% endif %}
                                         {% endif %}

@@ -19,7 +19,7 @@
                 <div class="col-66" style="text-transform: capitalize; ">
                     {% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}{% if not forloop.last %}, {% endif %}</span>{% endfor %}
                 </div>
-                <div class="col-33" style="text-align:right;">{% if spot.is_open %}<span style="color:#2ecc71;">Open now</span>{% else %}<span style="color:#a94441;">Currently closed</span>{% endif %}</div>
+                <div class="col-33" style="text-align:right;">{% if spot.is_open %}<span class="scout-green">Open now</span>{% else %}<span class="scout-red">Currently closed</span>{% endif %}</div>
             </div>
 
         </div>

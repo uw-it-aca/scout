@@ -15,7 +15,7 @@
 		li { }
 	}
 
-    .list-block-label { clear: both; word-wrap: break-word;
+    .list-block-label { clear: both; word-wrap: break-word; color: #696969;
 
         i { color:#333; margin-right: 8px; }
     }
@@ -59,3 +59,8 @@ body { font-family: 'Roboto', sans-serif; }
     width: 1px!important;
     overflow: hidden;
 }
+
+// colors
+
+.scout-green { color: #408325; }
+.scout-red { color:#a94441; }
