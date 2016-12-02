@@ -43,9 +43,9 @@
                             <div class="item-media">
 
                                 {% if spot.images %}
-                                <div class="scout-spot-image" style="background: url('/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}/?width=100') no-repeat center center; background-size: cover !important; width:80px; height:80px">&nbsp;</div>
+                                <div class="scout-spot-image image-defer" data-defer-src="/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}/?width=100" style="background-image: url('{% static "scout/img/placeholder-200.png" %}'); width:80px; height:80px;">&nbsp;</div>
                                 {% else %}
-                                <div class="scout-spot-image" style="background: #e5e6e9 url('{% static "scout/img/placeholder-200.png" %}') no-repeat center center; background-size: cover !important; width:80px; height:80px">&nbsp;</div>
+                                <div class="scout-spot-image" style="background-image: url('{% static "scout/img/placeholder-200.png" %}'); width:80px; height:80px;">&nbsp;</div>
                                 {% endif %}
 
                             </div>

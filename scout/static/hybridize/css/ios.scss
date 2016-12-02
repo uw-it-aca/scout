@@ -84,7 +84,20 @@ label.label-radio input[type=checkbox]:checked~.item-inner, label.label-radio in
 
 body { background: #efeff4 !important; padding: 0 !important; margin: 0 !important; overflow-x: hidden; }
 
-.scout-list { }
+.scout-list {
+
+    a {
+        .scout-spot-image {
+            background-color: #e5e6e9;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover !important;
+            width:80px;
+            height:80px;
+        }
+    }
+    
+}
 
 .scout-filter-toggle {
     label { display: inline-block;
