@@ -136,17 +136,17 @@
                     {% endif %}
                 {% empty %}
                 <li class="scout-list-item scout-error" style="padding:20px;">
-                    <p class="scout-error-msg">No results? Try updating your filters.</p>
-                    <div class="scout-error-body">
-                        <p>Suggestions for improving the results:</p>
-                        <ul>
-                            <li>Try a specific campus.</li>
-                            <li>Try using fewer filters.</li>
+                    <p ><strong>Your filter returns 0 items.</strong></p>
+                    <div class="">
+                        <p>To get results, you can:</p>
+                        <ul class="steps-list">
+                            <li class="steps-list-item">Clear the filters using the RESET button above.</li>
+                            <li class="steps-list-item">Try filtering on different values.</li>
+                            <li>Make sure that you have the correct campus selected.</li>
                         </ul>
                     </div>
                 </li>
-
-                {% endfor %}
+            {% endfor %}
 
         </ol>
 

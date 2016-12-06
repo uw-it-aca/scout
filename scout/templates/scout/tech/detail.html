@@ -41,6 +41,8 @@
 
                 <h4 class="visually-hidden">Reservation Info</h4>
 
+
+
                 {% if spot.item.subcategory %}
                 <div class="scout-spot-info-item">
                     <div style="overflow:visible; line-height:20px; white-space:normal;">
@@ -138,6 +140,11 @@
                         <span class="scout-map-action-text">Download user manual</span>
                     </a>
                 </div>
+                {% endif %}
+
+                {% if spot.item.is_stf %}
+                <div>This item is funded by <a href="https://techfee.washington.edu/" target="_blank">Student Technology Fee</a></div>
+                <img src="{% static "scout/img/STF-Logo.png" %}" style="width:60px; position:absolute; right:15px; bottom:15px;  " />
                 {% endif %}
 
             </div>

@@ -114,7 +114,7 @@
         </div>
 
         <div class="scout-spot-content">
-        {% if spot.location_description %}
+
         <div class="scout-card">
 
             <h3>Type</h3>
@@ -122,11 +122,12 @@
                 {% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}{% if not forloop.last %}, {% endif %}</span>{% endfor %}
             </div>
 
+            {% if spot.description %}
             <h3>Description</h3>
-            <div class="scout-spot-description">{{spot.location_description}}</div>
-
+            <div class="scout-spot-description">{{spot.description}}</div>
+            {% endif %}
         </div>
-        {% endif %}
+
 
             <div class="scout-card">
                 <div class="scout-spot-hours">
@@ -201,9 +202,9 @@
             <div class="scout-card">
                 <h3>Details</h3>
 
-                {% if spot.has_reservation %}
+                {% if spot.s_has_reservation %}
                 <h4><i class="fa fa-bookmark"></i> Reservations</h4>
-                <div class="scout-spot-reservation">{{spot.reservation_notes}}</div>
+                <div class="scout-spot-reservation">{{spot.s_reservation_notes}}</div>
                 {% endif %}
 
                 <h4><i class="fa fa-credit-card"></i> Payment accepted</h4>
