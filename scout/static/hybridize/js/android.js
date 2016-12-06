@@ -31,6 +31,15 @@ $(document).on('turbolinks:load', function() {
         // study
         List.init();
         Filter.init();
+
+        // study detail image slider
+        if ($( ".photo-gallery").length) {
+            $('.photo-gallery').not('.slick-initialized').slick({
+                dots: true,
+                arrows: false,
+            });
+        }
+
     } else if (type.indexOf("tech") !== -1){
         // tech
         List.init();
@@ -39,17 +48,11 @@ $(document).on('turbolinks:load', function() {
         // discover
         Discover.init_cards();
     }
-    
+
     // Geolocation
     Geolocation.update_location();
 
     // filter
     Filter.init_events();
-
-    // study detail image slider
-    $('.photo-gallery').slick({
-        dots: true,
-        arrows: false,
-    });
 
 });
