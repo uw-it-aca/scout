@@ -1,7 +1,7 @@
 var Filter = require('../filter').Filter;
-var Food_Filter = require('../food-filter').Food_Filter;
-var Study_Filter = require('../study-filter').Study_Filter;
-var Tech_Filter = require('../tech-filter').Tech_Filter;
+var Food_Filter = require('../filter-food').Food_Filter;
+var Study_Filter = require('../filter-study').Study_Filter;
+var Tech_Filter = require('../filter-tech').Tech_Filter;
 var Navigation = require('../navigation').Navigation;
 
 var jsdom = require('jsdom');

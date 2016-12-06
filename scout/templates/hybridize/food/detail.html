@@ -4,55 +4,12 @@
 
 {% block title %}{{spot.name}}{% endblock %}
 
-{% block hybrid_notification %}
-
-{% if request.is_ios %}
-<div class="notifications list-block media-list" style="display: block; transform: translate3d(0px, 0px, 0px);">
-    <ul>
-        <li class="notification-item" style="margin-top: 0px;">
-            <div class="item-content">
-                <div class="item-inner">
-                    <div class="item-title-row">
-                        <div class="item-title">Alert: {{spot.has_alert}}</div>
-                        <div class="item-after">
-                            <a href="#" class="close-notification" data-turbolinks="false"><span></span></a>
-                        </div>
-                    </div>
-                    <div class="item-text">{{ spot.alert_notes }}: Multi-line message. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc in magna nisi.</div>
-                </div>
-            </div>
-        </li>
-    </ul>
-</div>
-{% endif %}
-
-{% if request.is_and %}
-<div class="notifications list-block" style="display: block; transform: translate3d(0px, 0px, 0px);">
-    <ul>
-        <li class="notification-item">
-            <div class="item-content">
-                <div class="item-inner">
-                    <div class="item-title">{{ spot.alert_notes }}: Multi-line message. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc in magna nisi.</div>
-                    <div class="item-after">
-                        <a href="#" class="button close-notification" data-turbolinks="false">Close</a>
-                    </div>
-                </div>
-            </div>
-        </li>
-    </ul>
-</div>
-{% endif %}
-
-{% endblock %}
-
 {% block hybrid_content %}
 
 <div class="card">
 
     {% if spot.images %}
     <div style="background:url('/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}/?width=500') center center no-repeat; background-size:cover; height:270px;" valign="bottom" class="card-header">&nbsp;</div>
-    {% else %}
-    <div style="background: #e5e6e9 url('{% static "scout/img/placeholder-1000.png" %}') no-repeat center center; background-size: cover; height:270px;" valign="bottom" class="card-header">&nbsp;</div>
     {% endif %}
 
     <div class="card-content">
@@ -60,11 +17,9 @@
 
             <div class="row no-gutter">
                 <div class="col-66" style="text-transform: capitalize; ">
-                    {% for type in spot.spot_types %}
-                    {% if type.name == 'open'%}{{ type.name|remove_underscores }} space{% else %}{{ type.name|remove_underscores }}{% endif %}
-                    {% endfor %}
+                    {% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}{% if not forloop.last %}, {% endif %}</span>{% endfor %}
                 </div>
-                <div class="col-33" style="text-align:right;">{% if spot.is_open %}<span style="color:#2ecc71;">Open now</span>{% else %}<span style="color:#a94441;">Currently closed</span>{% endif %}</div>
+                <div class="col-33" style="text-align:right;">{% if spot.is_open %}<span class="scout-green">Open now</span>{% else %}<span class="scout-red">Currently closed</span>{% endif %}</div>
             </div>
 
         </div>
@@ -73,19 +28,31 @@
 </div>
 
 <div class="list-block">
+
+
     <div class="list-block-label" style="margin-bottom:1em;">
-        {{ spot.location_description }}
+        {% if spot.description %}{{ spot.description }}{% else %}&nbsp;{% endif %}
     </div>
+
     <ul>
+        {% if spot.has_alert %}
         <li>
-            <a href="maps://maps.apple.com/maps?q={{ spot.latitude }},{{ spot.longitude }}" class="item-link">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">Location <span>{{ spot.building_name }}</span></div>
-                    </div>
+            <div class="item-content">
+                <div class="item-inner">
+                    <div class="item-title" style="color:#A94441;">{% now "DATE_FORMAT" %} <span>{{ spot.alert_notes }}</span></div>
                 </div>
-            </a>
+            </div>
         </li>
+        {% endif %}
+        {% if spot.building_name %}
+        <li>
+            <div class="item-content">
+                <div class="item-inner">
+                    <div class="item-title">Location <span>{{ spot.building_name }}</span></div>
+                </div>
+            </div>
+        </li>
+        {% endif %}
         {% if spot.phone %}
         <li>
             <a href="tel:+1{{ spot.phone }}" class="item-link" data-turbolinks="false">
@@ -97,6 +64,7 @@
             </a>
         </li>
         {% endif %}
+        {% if spot.website_url %}
         <li>
             <a href="{{spot.website_url}}" class="item-link" data-turbolinks="false">
                 <div class="item-content">
@@ -106,6 +74,8 @@
                 </div>
             </a>
         </li>
+        {% endif %}
+        {% if spot.menu_url %}
         <li>
             <a href="{{ spot.menu_url }}" class="item-link" data-turbolinks="false">
                 <div class="item-content">
@@ -115,6 +85,8 @@
                 </div>
             </a>
         </li>
+        {% endif %}
+        {% if spot.coupon_url %}
         <li>
             <a href="{{ spot.coupon_url }}" class="item-link" data-turbolinks="false">
                 <div class="item-content">
@@ -124,13 +96,22 @@
                 </div>
             </a>
         </li>
+        {% endif %}
     </ul>
+    {% if spot.has_reservation %}
     <div class="list-block-label" style="margin-bottom:1em;">
-        <i class="fa fa-bookmark" aria-hidden="true"></i> reservation notes: {{ spot.has_reservation }}, {{ spot.reservation_notes }}
+        <i class="fa fa-bookmark" aria-hidden="true" style="float:left;"></i>
+        <span style=" display:block; float:left; width: 92%;">{{spot.reservation_notes}}</span>
+        <div style="clear:both;"></div>
     </div>
+    {% endif %}
+    {% if spot.display_access_restrictions %}
     <div class="list-block-label" style="margin-bottom:1em;">
-        <i class="fa fa-sign-in" aria-hidden="true"></i> access notes: {{ spot.display_access_restrictions }}, {{spot.access_notes}}
+        <i class="fa fa-sign-in" aria-hidden="true" style="float:left; margin-top:3px;"></i>
+        <span style=" display:block; float:left; width: 92%;">{{spot.access_notes}}</span>
+        <div style="clear:both;"></div>
     </div>
+    {% endif %}
 </div>
 
 <div class="content-block-title">Open periods</div>
@@ -192,37 +173,14 @@
             </div>
         </li>
     </ul>
+    {% if spot.hours_notes %}
     <div class="list-block-label" style="margin-bottom:1em;">
-        <i class="fa fa-clock-o" aria-hidden="true"></i> hours_notes: {{spot.hours_notes}}
+        <i class="fa fa-clock-o" aria-hidden="true" style="float:left; margin-top:3px;"></i>
+        <span style=" display:block; float:left; width: 92%;">{{spot.hours_notes}}</span>
+        <div style="clear:both;"></div>
     </div>
+    {% endif %}
 </div>
-
-<!--
-<div class="content-block-title">Cuisine:</div>
-<div class="list-block">
-    <ul>
-        {% for cuisinetype in spot.cuisinetype_names %}
-        <li class="item-content">
-            <div class="item-inner">
-                <div class="item-title">{{ cuisinetype }}</div>
-            </div>
-        </li>
-        {% endfor %}
-    </ul>
-</div>
-<div class="content-block-title">Food Served:</div>
-<div class="list-block">
-    <ul>
-        {% for foodtype in spot.foodtype_names %}
-        <li class="item-content">
-            <div class="item-inner">
-                <div class="item-title">{{ foodtype }}</div>
-            </div>
-        </li>
-        {% endfor %}
-    </ul>
-</div>
--->
 
 <div class="content-block-title">Payment Accepted</div>
 <div class="list-block">
@@ -241,10 +199,39 @@
 <div class="list-block">
     <ul>
         <li>
+
+            {% if request.is_ios %}
             <a href="maps://maps.apple.com/maps?q={{ spot.latitude }},{{ spot.longitude }}" class="item-link">
+            {% endif %}
+            {% if request.is_and %}
+            <a href="comgooglemaps://?q={{ spot.latitude }},{{ spot.longitude }}" class="item-link">
+            {% endif %}
+
                 <div class="item-content">
                     <div class="item-inner">
-                        <div class="item-title">Open in Google Maps</div>
+                        <div class="item-title">Directions in {% if request.is_ios %}Apple{% endif %}{% if request.is_and %}Google{% endif %} Maps</div>
+                    </div>
+                </div>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<div class="content-block-title">Contact Us</div>
+<div class="list-block">
+    <ul>
+        <li>
+
+            {% if request.is_ios %}
+            <a class="item-link" href="mailto:help@uw.edu?subject=Scout%20iOS:%20Problem%20with%20{{app_type}}%20space%20{{spot.name}}">
+            {% endif %}
+            {% if request.is_and %}
+            <a class="item-link" href="mailto:help@uw.edu?subject=Scout%20Android:%20Problem%20with%20{{app_type}}%20space%20{{spot.name}}">
+            {% endif %}
+
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">Report a problem</div>
                     </div>
                 </div>
             </a>

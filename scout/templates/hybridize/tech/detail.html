@@ -2,18 +2,14 @@
 {% load staticfiles %}
 {% load scout_filters %}
 
-{% block title %}{{spot.name}}{% endblock %}
+{% block title %}{{spot.item.name}}{% endblock %}
 
 {% block hybrid_content %}
 
 <div class="card">
 
-    {% if spot.images %}
-    <div class="photo-gallery">
-        {% for image in spot.images %}
-        <div style="background:url('/images/{{ spot.spot_id }}/image/{{ image.image_id }}/?width=500') center center no-repeat; background-size:cover; height:270px;" valign="bottom">&nbsp;</div>
-        {% endfor %}
-    </div>
+    {% if spot.item.images %}
+    <div style="background:url('/item/images/{{ spot.item.item_id }}/image/{{ spot.item.images.0.image_id }}/?width=500') center center no-repeat; background-size:cover; height:270px;" valign="bottom" class="card-header">&nbsp;</div>
     {% endif %}
 
     <div class="card-content">
@@ -21,16 +17,22 @@
 
             <div class="row no-gutter">
                 <div class="col-66" style="text-transform: capitalize; ">
-                    {% for type in spot.spot_types %}<span>{% if type.name == 'open'%}{{ type.name|remove_underscores }} space{% else %}{{ type.name|remove_underscores }}{% endif %}{% if not forloop.last %}, {% endif %}</span>{% endfor %}
+                    {{ spot.item.subcategory }}
                 </div>
-                <div class="col-33" style="text-align:right;">{% if spot.is_open %}<span class="scout-green">Open now</span>{% else %}<span class="scout-red">Currently closed</span>{% endif %}</div>
+                <div class="col-33" style="text-align:right;">{% if spot.item.quantity %}<span class="scout-green">{{ spot.item.quantity }} available</span>{% endif %}</div>
             </div>
 
         </div>
     </div>
+
 </div>
 
-<div class="list-block" style="margin-top:1em;">
+<div class="list-block">
+
+    <div class="list-block-label" style="margin-bottom:1em;">
+        {% if spot.item.description %}{{ spot.item.description }}{% else %}&nbsp;{% endif %}
+    </div>
+
     <ul>
         {% if spot.has_alert %}
         <li>
@@ -41,58 +43,53 @@
             </div>
         </li>
         {% endif %}
-        {% if spot.location_description %}
         <li class="item-content">
             <div class="item-inner">
-                <div class="item-title">Location <span>{{ spot.location_description }}</span></div>
+                <div class="item-title">Location</div>
+                <div class="item-after">{{ spot.name }}</div>
+            </div>
+        </li>
+        {% if spot.item.brand %}
+        <li class="item-content">
+            <div class="item-inner">
+                <div class="item-title">Brand</div>
+                <div class="item-after">{{spot.item.brand}}</div>
             </div>
         </li>
         {% endif %}
-        {% if spot.capacity %}
-        <li class="item-content">
-            <div class="item-inner">
-                <div class="item-title">Seats</div>
-                <div class="item-after">{{ spot.capacity }}</dvi>
-            </div>
-        </li>
-        {% endif %}
-        {% if spot.auto_labstats_total > 0 and spot.auto_labstats_available > 0 %}
-        <li class="item-content">
-            <div class="item-inner">
-                <div class="item-title">Computers</div>
-                <div class="item-after">
-                    <i class="fa fa-desktop" aria-hidden="true"></i>&nbsp;<span style="color:#2ecc71;">{{ spot.auto_labstats_available }}</span>&nbsp;/&nbsp;{{ spot.auto_labstats_total }}
+        {% if spot.item.manual_url %}
+        <li>
+            <a href="{{ spot.item.manual_url }}" class="item-link" data-turbolinks="false">
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">User Manual <span>{{ spot.item.manual_url }}</span></div>
+                    </div>
                 </div>
-            </div>
+            </a>
         </li>
         {% endif %}
-        {% if spot.reservable %}
+        {% if spot.item.checkout_period %}
         <li class="item-content">
             <div class="item-inner">
-                <div class="item-title">{% if spot.reservable == 'reservations' %}Reservations required{% else %}Reservable{% endif %}</div>
-                <div class="item-after">see below</div>
+                <div class="item-title">Checkout Period</div>
+                <div class="item-after">{{ spot.item.checkout_period|floatformat:"0" }} days</div>
             </div>
         </li>
         {% endif %}
+        <li>
+            <a href="https://www.cte.uw.edu/stfequip/request" class="item-link" data-turbolinks="false">
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">Reserve Item <span>https://www.cte.uw.edu/stfequip/request</span></div>
+                    </div>
+                </div>
+            </a>
+        </li>
     </ul>
 
-    {% if spot.reservation_notes %}
-    <div class="list-block-label" style="margin-bottom:1em;">
-        <i class="fa fa-bookmark" aria-hidden="true" style="float:left; margin-top:3px;"></i>
-        <span style=" display:block; float:left; width: 92%;">{{ spot.reservation_notes|urlize }}</span>
-        <div style="clear:both;"></div>
-    </div>
-    {% endif %}
-    {% if spot.access_notes %}
-    <div class="list-block-label" style="margin-bottom:1em;">
-        <i class="fa fa-sign-in" aria-hidden="true" style="float:left; margin-top:3px;"></i>
-        <span style=" display:block; float:left; width: 92%;">{{spot.access_notes}}</span>
-        <div style="clear:both;"></div>
-    </div>
-    {% endif %}
 </div>
 
-<div class="content-block-title">Open Hours</div>
+<div class="content-block-title">Location Hours</div>
 <div class="list-block">
     <ul>
         <li class="item-content">
@@ -145,65 +142,16 @@
         <div style="clear:both;"></div>
     </div>
     {% endif %}
+    {% if spot.display_access_restrictions %}
+    <div class="list-block-label" style="margin-bottom:1em;">
+        <i class="fa fa-sign-in" aria-hidden="true" style="float:left; margin-top:3px;"></i>
+        <span style=" display:block; float:left; width: 92%;">{{spot.access_notes}}</span>
+        <div style="clear:both;"></div>
+    </div>
+    {% endif %}
 </div>
 
-
-<div class="content-block-title">Environment</div>
-<div class="list-block">
-    <ul>
-
-        {% if spot.spot_resources %}
-        <li class="item-content">
-            <div class="item-inner">
-                {% if spot.spot_resources|length < 3 %}
-                <div class="item-title">Resources</div>
-                <div class="item-after">
-                    {% for spot_resource in spot.spot_resources %}
-                    {% if forloop.last %}{{ spot_resource }}{% else %}{{ spot_resource }}, {% endif %}
-                    {% endfor %}
-                </div>
-                {% else %}
-                <div class="item-title">Resources
-                    <span>
-                        {% for spot_resource in spot.spot_resources %}
-                        {% if forloop.last %}{{ spot_resource }}{% else %}{{ spot_resource }}, {% endif %}
-                        {% endfor %}
-                    </span>
-                </div>
-                {% endif %}
-            </div>
-        </li>
-        {% endif %}
-
-        {% if spot.food_nearby %}
-        <li class="item-content">
-            <div class="item-inner">
-                <div class="item-title">Food/Coffee</div>
-                <div class="item-after">{{ spot.food_nearby|title }}</div>
-            </div>
-        </li>
-        {% endif %}
-        {% if spot.spot_noise %}
-        <li class="item-content">
-            <div class="item-inner">
-                <div class="item-title">Noise level</div>
-                <div class="item-after"> {{ spot.spot_noise|title }}</div>
-            </div>
-        </li>
-        {% endif %}
-        {% if spot.natural_light %}
-        <li class="item-content">
-            <div class="item-inner">
-                <div class="item-title">Lighting</div>
-                <div class="item-after">Natural light</div>
-            </div>
-        </li>
-        {% endif %}
-    </ul>
-</div>
-
-<div class="content-block-title">Getting Here</div>
-
+<div class="content-block-title">Getting here</div>
 <div class="list-block">
     <ul>
         <li>
@@ -225,7 +173,25 @@
     </ul>
 </div>
 
-<div class="content-block-title">Contact Us</div>
+{% if spot.item.is_stf %}
+<div class="content-block-title">Funded by</div>
+<div class="list-block">
+    <ul>
+        <li>
+            <a href="https://uwstf.org" class="item-link" data-turbolinks="false">
+                <div class="item-content">
+                    <div class="item-media"><img src="{% static "scout/img/STF-Logo.png" %}" style="width:40px;" /></div>
+                    <div class="item-inner">
+                        <div class="item-title">Student Technology Fee <span>https://uwstf.org/</span></div>
+                    </div>
+                </div>
+            </a>
+        </li>
+    </ul>
+</div>
+{% endif %}
+
+<div class="content-block-title">Contact us</div>
 <div class="list-block">
     <ul>
         <li>
@@ -246,5 +212,4 @@
         </li>
     </ul>
 </div>
-
 {% endblock %}
