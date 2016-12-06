@@ -2,6 +2,7 @@ from spotseeker_restclient.spotseeker import Spotseeker
 from spotseeker_restclient.exceptions import DataFailureException
 import datetime
 import pytz
+import random
 
 OPEN_PERIODS = {
         # 5am - 10:59am
@@ -144,6 +145,8 @@ def _get_spot_filters(request):
             params.append(
                 ("item:extended_info:i_brand", request.GET[param])
             )
+        if "item_is_active" in param:
+            params.append(("item:extended_info:i_is_active", "true"))
     return params
 
 
@@ -205,6 +208,7 @@ def process_extended_info(spot):
     spot = add_payment_names(spot)
     spot = add_additional_info(spot)
     spot = add_study_info(spot)
+    spot = add_tech_info(spot)
     spot = organize_hours(spot)
     spot = add_item_info(spot)
 
@@ -315,10 +319,12 @@ def add_additional_info(spot):
     spot.alert_notes = _get_extended_info_by_key("alert_notes",
                                                  spot.extended_info)
     # new extended_info (food only)
-    spot.has_reservation = _get_extended_info_by_key("s_has_reservation",
-                                                     spot.extended_info)
-    spot.reservation_notes = _get_extended_info_by_key("s_reservation_notes",
+    spot.description = \
+        _get_extended_info_by_key("s_description", spot.extended_info)
+    spot.s_has_reservation = _get_extended_info_by_key("s_has_reservation",
                                                        spot.extended_info)
+    spot.s_reservation_notes = _get_extended_info_by_key("s_reservation_notes",
+                                                         spot.extended_info)
     spot.menu_url = _get_extended_info_by_key("s_menu_url",
                                               spot.extended_info)
     spot.has_coupon = _get_extended_info_by_key("s_has_coupon",
@@ -343,9 +349,10 @@ def add_additional_info(spot):
 def add_study_info(spot):
     RESOURCE_MAPPING = {
         "has_whiteboards": "Whiteboards",
+        "has_computers": "Computers",
         "has_outlets": "Outlets",
         "has_printing": "Printing",
-        "has_scanning": "Scanning",
+        "has_scanner": "Scanner",
         "has_displays": "Displays",
         "has_projector": "Projector"
     }
@@ -353,11 +360,8 @@ def add_study_info(spot):
                                                        RESOURCE_MAPPING,
                                                        spot.extended_info)
 
-    if (_get_extended_info_by_key("has_computers", spot.extended_info) ==
-            "true"):
-        spot.computers = True
-        spot.num_computers = _get_extended_info_by_key("num_computers",
-                                                       spot.extended_info)
+    spot.num_computers = _get_extended_info_by_key("num_computers",
+                                                   spot.extended_info)
 
     if (_get_extended_info_by_key("has_natural_light", spot.extended_info) ==
             "true"):
@@ -369,8 +373,8 @@ def add_study_info(spot):
     spot.food_nearby = _get_extended_info_by_key("food_nearby",
                                                  spot.extended_info)
 
-    if _get_extended_info_by_key("reservable", spot.extended_info) == "true":
-        spot.reservable = "true"
+    spot.reservable = _get_extended_info_by_key("reservable",
+                                                spot.extended_info)
 
     spot.reservation_notes = _get_extended_info_by_key("reservation_notes",
                                                        spot.extended_info)
@@ -387,6 +391,15 @@ def add_study_info(spot):
        or spot.auto_labstats_total is None:
         spot.auto_labstats_total = 0
         spot.auto_labstats_available = 0
+
+    return spot
+
+
+def add_tech_info(spot):
+    spot.has_cte_techloan = _get_extended_info_by_key("has_cte_techloan",
+                                                      spot.extended_info)
+    spot.cte_techloan_id = _get_extended_info_by_key("cte_techloan_id",
+                                                     spot.extended_info)
 
     return spot
 
@@ -509,3 +522,19 @@ def validate_detail_info(spot, campus, app_type):
         if spot.campus != campus or spot.app_type != app_type:
             spot = []
     return spot
+
+
+def get_random_limit_from_spots(spot_list, count):
+    # return <count> spots using reservoir sampling
+    result = []
+    i = 0
+
+    for item in spot_list:
+        i += 1
+        if len(result) < count:
+            result.append(item)
+        else:
+            s = int(random.random() * i)
+            if s < count:
+                result[s] = item
+    return result

@@ -16,9 +16,14 @@
 		li { }
 	}
 
+    .list-block-label { clear: both; word-wrap: break-word; color: #696969;
+
+        i { color:#333; margin-right: 8px; }
+    }
+
     .item-inner { overflow: hidden;
 
-        .item-title-row { background-image: none !important; }
+        .item-title-row { /*background-image: none !important;*/ }
 
         .item-title {
             span { color: #666; font-size: 80%; display: block; overflow: hidden; text-overflow: ellipsis; }
@@ -33,14 +38,32 @@
     // group lists styling
     .list-group {
         .list-group-title {
+
             text-transform: uppercase;;
             font-size: 13px;
             color: #555;
             line-height: 28px;
             padding-left: 15px;
+
         }
     }
 
+    // radio button group override
+    .label-radio {
+        .item-inner:after { left: 37px; }
+    }
+
+
+}
+
+label.label-radio input[type=checkbox]~.item-inner, label.label-radio input[type=radio]~.item-inner {
+    padding-right: 10px;
+    padding-left: 38px;
+}
+
+label.label-radio input[type=checkbox]:checked~.item-inner, label.label-radio input[type=radio]:checked~.item-inner {
+    background-position: calc(2%) center;
+    padding-left: 38px;
 }
 
 .item-input { text-align: right;
@@ -63,8 +86,28 @@ body { background: #efeff4 !important; padding: 0 !important; margin: 0 !importa
 
 .scout-list {
 
+    a {
+        .scout-spot-image {
+            background-color: #e5e6e9;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover !important;
+            width:80px;
+            height:80px;
+        }
+    }
+    
+}
 
+.scout-filter-toggle {
+    label { display: inline-block;
+        &:last-child { margin-left: 10px; }
+    }
+}
 
+.scout-filter-toggle-options {
+    line-height: 25px;
+    span, select { display:inline-block; }
 }
 
 // webkit sticky header on scroll
@@ -77,3 +120,21 @@ body { background: #efeff4 !important; padding: 0 !important; margin: 0 !importa
   top: 0;
   z-index: 9999;
 }
+
+// helpers
+
+.visually-hidden {
+    position: absolute!important;
+    clip: rect(1px 1px 1px 1px);
+    clip: rect(1px,1px,1px,1px);
+    padding: 0!important;
+    border: 0!important;
+    height: 1px!important;
+    width: 1px!important;
+    overflow: hidden;
+}
+
+// colors
+
+.scout-green { color: #408325; }
+.scout-red { color:#a94441; }

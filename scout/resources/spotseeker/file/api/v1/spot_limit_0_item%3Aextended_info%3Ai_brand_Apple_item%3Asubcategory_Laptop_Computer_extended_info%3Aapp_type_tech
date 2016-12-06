@@ -1,0 +1,2199 @@
+[
+  {
+    "capacity": null,
+    "name": "STF Checkout - Health Sciences",
+    "display_access_restrictions": "",
+    "extended_info": {
+      "owner": "cte",
+      "app_type": "tech",
+      "campus": "seattle"
+    },
+    "uri": "/api/v1/spot/5258",
+    "available_hours": {
+      "monday": [
+        [
+          "08:00",
+          "17:00"
+        ]
+      ],
+      "tuesday": [
+        [
+          "08:00",
+          "17:00"
+        ]
+      ],
+      "friday": [
+        [
+          "08:00",
+          "17:00"
+        ]
+      ],
+      "wednesday": [
+        [
+          "08:00",
+          "17:00"
+        ]
+      ],
+      "thursday": [
+        [
+          "08:00",
+          "17:00"
+        ]
+      ],
+      "sunday": [],
+      "saturday": []
+    },
+    "manager": "",
+    "etag": "57dfacda8771c9078c34b8fa8be2cd9ffbed370c",
+    "location": {
+      "floor": "1st Floor",
+      "height_from_sea_level": null,
+      "room_number": "I-146",
+      "longitude": -122.308847,
+      "latitude": 47.650663,
+      "building_name": "Magnuson Health Sciences Center I (HSI)"
+    },
+    "last_modified": "2016-08-24T21:17:10+00:00",
+    "items": [
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "5",
+          "i_model": "WH10LS30K",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "LG",
+          "i_checkout_period": "14.0"
+        },
+        "subcategory": "Blu-ray Burner",
+        "id": 18,
+        "name": "LG Blu-ray Burner"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "5",
+          "i_model": "84+ Silver Edition",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "TI",
+          "i_checkout_period": "31.0"
+        },
+        "subcategory": "Calculator",
+        "id": 19,
+        "name": "Placeholder Name"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "25",
+          "i_model": "CP-WX3014WN",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Hitachi",
+          "i_checkout_period": "31.0"
+        },
+        "subcategory": "Data Projector",
+        "id": 20,
+        "name": "Hitachi CP-WX3014N"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "25",
+          "i_model": "CP-WX3015WN",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Hitachi",
+          "i_checkout_period": "31.0"
+        },
+        "subcategory": "Data Projector",
+        "id": 21,
+        "name": "Hitachi CP-WX3015WN"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "10",
+          "i_model": "CPX4015WN",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Hitachi",
+          "i_checkout_period": "14.0"
+        },
+        "subcategory": "Data Projector",
+        "id": 22,
+        "name": "Hitachi CPX4015WN"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "15",
+          "i_model": "Digital Rebel T2i",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Canon",
+          "i_checkout_period": "31.0"
+        },
+        "subcategory": "Digital Camera",
+        "id": 23,
+        "name": "Digital Rebel T2i"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "15",
+          "i_model": "Digital Rebel T2i",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Canon",
+          "i_checkout_period": "14.0"
+        },
+        "subcategory": "Digital Camera",
+        "id": 24,
+        "name": "Placeholder Name"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "10",
+          "i_model": "Digital Rebel T2i Partial Kit",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Canon",
+          "i_checkout_period": "14.0"
+        },
+        "subcategory": "Digital Camera",
+        "id": 25,
+        "name": "T2i Partial Kit"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "5",
+          "i_model": "Digital Rebel T5i",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Canon",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "Digital Camera",
+        "id": 26,
+        "name": "T5i Full kit"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "5",
+          "i_model": "Digital Rebel T5i Partial Kit",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Canon",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "Digital Camera",
+        "id": 27,
+        "name": "T5i Partial Kit"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "10",
+          "i_model": "Digital Rebel T6i Partial Kit",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Canon",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "Digital Camera",
+        "id": 28,
+        "name": "T6i Partial Kit"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "5",
+          "i_model": "EOS 70D Partial Kit",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Canon",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "Digital Camera",
+        "id": 29,
+        "name": "Canon EOS 70D"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "5",
+          "i_model": "PowerShot ELPH 320 HS",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Canon",
+          "i_checkout_period": "14.0"
+        },
+        "subcategory": "Digital Camera",
+        "id": 30,
+        "name": "Canon PowerShot 320 HS"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "9",
+          "i_model": "PowerShot SD1200 IS (Full Quarter)",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Canon",
+          "i_checkout_period": "50.0"
+        },
+        "subcategory": "Digital Camera",
+        "id": 31,
+        "name": "PowerShot SD1200 IS"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "0",
+          "i_model": "GL-2",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Canon",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "Digital Video Camera",
+        "id": 32,
+        "name": "Placeholder Name"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "5",
+          "i_model": "HDMI VIXIA HFS21",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Canon",
+          "i_checkout_period": "14.0"
+        },
+        "subcategory": "Digital Video Camera",
+        "id": 33,
+        "name": "HDMI VIXIA HFS21"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "10",
+          "i_model": "XA10",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Canon",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "Digital Video Camera",
+        "id": 34,
+        "name": "Canon XA10 Video Camera"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "5",
+          "i_model": "GoPro Hero3+",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "GoPro",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "Digital Video Camera",
+        "id": 35,
+        "name": "GoPro Hero3+"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "3",
+          "i_model": "AG-HMC150 HD",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Panasonic",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "Digital Video Camera",
+        "id": 36,
+        "name": "Placeholder Name"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "5",
+          "i_model": "Macro Ring Lite MR-14EX",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Canon",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "DSLR Accessories - Macro Ring Lite Flash",
+        "id": 37,
+        "name": "Placeholder Name"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "4",
+          "i_model": "ShutterBoss RC-C1",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Vello",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "DSLR Accessories - SLR Remote",
+        "id": 38,
+        "name": "SLR Remote"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "35",
+          "i_model": "Macbook Pro 2011",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Apple",
+          "i_checkout_period": "31.0"
+        },
+        "subcategory": "Laptop Computer",
+        "id": 39,
+        "name": "Macbook Pro 2011"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "26",
+          "i_model": "Macbook Pro 2013",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Apple",
+          "i_checkout_period": "14.0"
+        },
+        "subcategory": "Laptop Computer",
+        "id": 40,
+        "name": "Macbook Pro 2013"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "25",
+          "i_model": "Macbook Pro 2014",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Apple",
+          "i_checkout_period": "10.0"
+        },
+        "subcategory": "Laptop Computer",
+        "id": 41,
+        "name": "Macbook Pro 2014"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "25",
+          "i_model": "Macbook Pro 2015",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Apple",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "Laptop Computer",
+        "id": 42,
+        "name": "Macbook Pro 2015"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "24",
+          "i_model": "Inspiron 15z Ultrabook",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Dell",
+          "i_checkout_period": "14.0"
+        },
+        "subcategory": "Laptop Computer",
+        "id": 43,
+        "name": "Dell Inspiron 15z Ultrabook"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "24",
+          "i_model": "Latitude E6420",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Dell",
+          "i_checkout_period": "31.0"
+        },
+        "subcategory": "Laptop Computer",
+        "id": 44,
+        "name": "Dell Latitude E6420"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "20",
+          "i_model": "Latitude E7450",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Dell",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "Laptop Computer",
+        "id": 45,
+        "name": "Dell Latitude E7450"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "18",
+          "i_model": "Probook 6460b",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "HP",
+          "i_checkout_period": "52.0"
+        },
+        "subcategory": "Laptop Computer",
+        "id": 46,
+        "name": "HP Probook 6460b"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "5",
+          "i_model": "MSP2 Microphone Stand",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Peavey",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "Microphone Stands",
+        "id": 47,
+        "name": "Floor Microphone Stand"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "5",
+          "i_model": "Desktop Microphone Stand",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "QuikLok",
+          "i_checkout_period": "14.0"
+        },
+        "subcategory": "Microphone Stands",
+        "id": 48,
+        "name": "Tabletop Microphone Stand"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "10",
+          "i_model": "AN-Mini",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Anchor",
+          "i_checkout_period": "14.0"
+        },
+        "subcategory": "Portable Audio System",
+        "id": 49,
+        "name": "Placeholder Name"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "10",
+          "i_model": "VP4550",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Interlink",
+          "i_checkout_period": "14.0"
+        },
+        "subcategory": "Power Point Remote",
+        "id": 50,
+        "name": "Power Point Remote"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "6",
+          "i_model": "83316",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Da-Lite (6 ft)",
+          "i_checkout_period": "14.0"
+        },
+        "subcategory": "Projection Screen",
+        "id": 51,
+        "name": "Dalite"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "5",
+          "i_model": "87063",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Da-Lite (8 ft)",
+          "i_checkout_period": "14.0"
+        },
+        "subcategory": "Projection Screen",
+        "id": 52,
+        "name": "Placeholder Name"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "5",
+          "i_model": "MKE 400",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Sennheiser",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "Shotgun Microphone",
+        "id": 53,
+        "name": "Shotgun Microphone"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "10",
+          "i_model": "iPad 4",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Apple",
+          "i_checkout_period": "14.0"
+        },
+        "subcategory": "Tablet Computer",
+        "id": 54,
+        "name": "iPad 4"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "10",
+          "i_model": "iPad Air",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Apple",
+          "i_checkout_period": "10.0"
+        },
+        "subcategory": "Tablet Computer",
+        "id": 55,
+        "name": "iPad Air"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "10",
+          "i_model": "iPad Air 2",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Apple",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "Tablet Computer",
+        "id": 56,
+        "name": "Apple iPad Air 2"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "5",
+          "i_model": "GorillaPod Tripod",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Joby",
+          "i_checkout_period": "14.0"
+        },
+        "subcategory": "Tripod",
+        "id": 57,
+        "name": "GorillaPod"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "6",
+          "i_model": "Large tripod (755B)",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Manfrotto",
+          "i_checkout_period": "14.0"
+        },
+        "subcategory": "Tripod",
+        "id": 58,
+        "name": "Large Tripod"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "11",
+          "i_model": "Medium tripod (190XPROB)",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Manfrotto",
+          "i_checkout_period": "14.0"
+        },
+        "subcategory": "Tripod",
+        "id": 59,
+        "name": "Medium Tripod"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "5",
+          "i_model": "Small tripod (7001D)",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Sunpak",
+          "i_checkout_period": "14.0"
+        },
+        "subcategory": "Tripod",
+        "id": 60,
+        "name": "Small Tripod"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "7",
+          "i_model": "WS-331M & 510M (Full Quarter)",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Olympus Digital Voice Recorder",
+          "i_checkout_period": "50.0"
+        },
+        "subcategory": "Voice Recorder/MP3 player",
+        "id": 61,
+        "name": "Voice Recorder"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "13",
+          "i_model": "WS-510M",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Olympus Digital Voice Recorder",
+          "i_checkout_period": "31.0"
+        },
+        "subcategory": "Voice Recorder/MP3 player",
+        "id": 62,
+        "name": "Voice Recorder"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "6",
+          "i_model": "WMS-Pro",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Azden",
+          "i_checkout_period": "14.0"
+        },
+        "subcategory": "Wireless Microphone System",
+        "id": 63,
+        "name": "Placeholder Name"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "6",
+          "i_model": "UWP-V1",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Sony",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "Wireless Microphone System",
+        "id": 64,
+        "name": "Placeholder Name"
+      }
+    ],
+    "images": [],
+    "organization": "",
+    "type": [],
+    "id": 5258,
+    "external_id": null
+  },
+  {
+    "capacity": null,
+    "name": "STF Checkout - Kane Hall",
+    "display_access_restrictions": "",
+    "extended_info": {
+      "owner": "cte",
+      "app_type": "tech",
+      "campus": "seattle"
+    },
+    "uri": "/api/v1/spot/5259",
+    "available_hours": {
+      "monday": [
+        [
+          "08:00",
+          "17:00"
+        ]
+      ],
+      "tuesday": [
+        [
+          "08:00",
+          "17:00"
+        ]
+      ],
+      "friday": [
+        [
+          "08:00",
+          "17:00"
+        ]
+      ],
+      "wednesday": [
+        [
+          "08:00",
+          "17:00"
+        ]
+      ],
+      "thursday": [
+        [
+          "08:00",
+          "17:00"
+        ]
+      ],
+      "sunday": [],
+      "saturday": []
+    },
+    "manager": "",
+    "etag": "156c9006209a544f38e82683835b80414e8c1bcd",
+    "location": {
+      "floor": "Basement",
+      "height_from_sea_level": null,
+      "room_number": "035",
+      "longitude": -122.309132,
+      "latitude": 47.656659,
+      "building_name": "Kane Hall (KNE)"
+    },
+    "last_modified": "2016-08-25T18:06:19+00:00",
+    "items": [
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "5",
+          "i_model": "WH10LS30K",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "test_item_ei": "test",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "LG",
+          "i_checkout_period": "14.0"
+        },
+        "subcategory": "Blu-ray Burner",
+        "id": 65,
+        "name": "LG Blu-ray Burner"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "15",
+          "i_model": "84+ Silver Edition",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "TI",
+          "i_checkout_period": "14.0"
+        },
+        "subcategory": "Calculator",
+        "id": 66,
+        "name": "Calculator"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "10",
+          "i_model": "W1070",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "BenQ",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "Data Projector",
+        "id": 67,
+        "name": "BenQ W1070"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "24",
+          "i_model": "CP-WX3014WN",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Hitachi",
+          "i_checkout_period": "14.0"
+        },
+        "subcategory": "Data Projector",
+        "id": 68,
+        "name": "Hitachi CP-WX3014WN"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "25",
+          "i_model": "CP-WX3015WN",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Hitachi",
+          "i_checkout_period": "14.0"
+        },
+        "subcategory": "Data Projector",
+        "id": 69,
+        "name": "Hitachi CP-WX3015WN"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "18",
+          "i_model": "CP-X3011N",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Hitachi",
+          "i_checkout_period": "31.0"
+        },
+        "subcategory": "Data Projector",
+        "id": 70,
+        "name": "Hitachi CP-X3011N"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "30",
+          "i_model": "CPX4015WN",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Hitachi",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "Data Projector",
+        "id": 71,
+        "name": "Hitachi CPX4015WN"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "18",
+          "i_model": "Digital Rebel T2i",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Canon",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "Digital Camera",
+        "id": 72,
+        "name": "Placeholder Name"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "15",
+          "i_model": "Digital Rebel T2i Partial Kit",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Canon",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "Digital Camera",
+        "id": 73,
+        "name": "T2i Partial Kit"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "8",
+          "i_model": "Digital Rebel T4i",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Canon",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "Digital Camera",
+        "id": 74,
+        "name": "Placeholder Name"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "5",
+          "i_model": "Digital Rebel T4i Partial Kit",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Canon",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "Digital Camera",
+        "id": 75,
+        "name": "T4i Partial Kit"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "10",
+          "i_model": "Digital Rebel T5i",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Canon",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "Digital Camera",
+        "id": 76,
+        "name": "T5i Full kit"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "10",
+          "i_model": "Digital Rebel T5i Partial Kit",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Canon",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "Digital Camera",
+        "id": 77,
+        "name": "T5i Partial Kit"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "25",
+          "i_model": "Digital Rebel T6i Partial Kit",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Canon",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "Digital Camera",
+        "id": 78,
+        "name": "T6i Partial Kit"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "10",
+          "i_model": "EOS 70D Partial Kit",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Canon",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "Digital Camera",
+        "id": 79,
+        "name": "EOS 70D"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "5",
+          "i_model": "PowerShot ELPH 320 HS",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Canon",
+          "i_checkout_period": "14.0"
+        },
+        "subcategory": "Digital Camera",
+        "id": 80,
+        "name": "Canon PowerShot 320 HS"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "11",
+          "i_model": "PowerShot SD1100 IS (Full Quarter)",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Canon",
+          "i_checkout_period": "50.0"
+        },
+        "subcategory": "Digital Camera",
+        "id": 81,
+        "name": "PowerShot SD1100 IS"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "8",
+          "i_model": "PowerShot SX20 IS",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Canon",
+          "i_checkout_period": "31.0"
+        },
+        "subcategory": "Digital Camera",
+        "id": 82,
+        "name": "PowerShot SX20 IS"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "15",
+          "i_model": "PowerShot SX60 HS",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Canon",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "Digital Camera",
+        "id": 83,
+        "name": "PowerShot SX60 HS"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "5",
+          "i_model": "Cintiq DTH-1300",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Wacom",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "Digital Pen Tablet",
+        "id": 84,
+        "name": "Digital Pen Tablet"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "20",
+          "i_model": "Intuos4M",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Wacom",
+          "i_checkout_period": "20.0"
+        },
+        "subcategory": "Digital Pen Tablet",
+        "id": 85,
+        "name": "Digital Pen Tablet"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "9",
+          "i_model": "HDMI VIXIA HFS21",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Canon",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "Digital Video Camera",
+        "id": 86,
+        "name": "Placeholder Name"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "8",
+          "i_model": "VIXIA HF10-High Def",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Canon",
+          "i_checkout_period": "14.0"
+        },
+        "subcategory": "Digital Video Camera",
+        "id": 87,
+        "name": "Digital Video Camera"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "9",
+          "i_model": "XA10",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Canon",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "Digital Video Camera",
+        "id": 88,
+        "name": "Canon XA10 Video Camera"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "10",
+          "i_model": "GoPro Hero3+",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "GoPro",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "Digital Video Camera",
+        "id": 89,
+        "name": "GoPro Hero3+"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "10",
+          "i_model": "AG-HMC150 HD",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Panasonic",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "Digital Video Camera",
+        "id": 90,
+        "name": "Placeholder Name"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "10",
+          "i_model": "CX580V",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Sony",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "Digital Video Camera",
+        "id": 91,
+        "name": "Sony CX580V Video Camera"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "18",
+          "i_model": "Macro: EF100",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Canon",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "DSLR Accessories - Macro Lens",
+        "id": 92,
+        "name": "Macro Lens"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "10",
+          "i_model": "Macro Ring Lite MR-14EX",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Canon",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "DSLR Accessories - Macro Ring Lite Flash",
+        "id": 93,
+        "name": "Macro Ring Flash"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "17",
+          "i_model": "430EX II Speedlite",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Canon",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "DSLR Accessories - Shoe Mount Flash",
+        "id": 94,
+        "name": "Placeholder Name"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "5",
+          "i_model": "ShutterBoss RC-C1",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Vello",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "DSLR Accessories - SLR Remote",
+        "id": 95,
+        "name": "SLR Remote"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "33",
+          "i_model": "Telephoto Lens: EF70-200mm",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Canon",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "DSLR Accessories - Telephoto Lens",
+        "id": 96,
+        "name": "Telephoto Lens"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "32",
+          "i_model": "Wide Angle: EFS10-22mm",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Canon",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "DSLR Accessories - Wide Angle Lens",
+        "id": 97,
+        "name": "Wide Angle Lens"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "10",
+          "i_model": "250GB Solid State Drive",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Lacie",
+          "i_checkout_period": "14.0"
+        },
+        "subcategory": "External Hard Drive",
+        "id": 98,
+        "name": "SSD External Hard Drive"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "33",
+          "i_model": "100GB Hard Drive",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Seagate",
+          "i_checkout_period": "31.0"
+        },
+        "subcategory": "External Hard Drive",
+        "id": 99,
+        "name": "Placeholder Name"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "49",
+          "i_model": "Macbook Pro 2011",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Apple",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "Laptop Computer",
+        "id": 100,
+        "name": "Macbook Pro 2011"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "24",
+          "i_model": "Macbook Pro 2013",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Apple",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "Laptop Computer",
+        "id": 101,
+        "name": "Macbook Pro 2013"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "36",
+          "i_model": "Macbook Pro 2014",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Apple",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "Laptop Computer",
+        "id": 102,
+        "name": "Macbook Pro 2014"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "25",
+          "i_model": "Macbook Pro 2015",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Apple",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "Laptop Computer",
+        "id": 103,
+        "name": "Macbook Pro 2015"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "25",
+          "i_model": "Inspiron 15z Ultrabook",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Dell",
+          "i_checkout_period": "14.0"
+        },
+        "subcategory": "Laptop Computer",
+        "id": 104,
+        "name": "Dell Inspiron 15z Ultrabook"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "36",
+          "i_model": "Latitude E5440",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Dell",
+          "i_checkout_period": "10.0"
+        },
+        "subcategory": "Laptop Computer",
+        "id": 105,
+        "name": "Dell Latitude E5440"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "24",
+          "i_model": "Latitude E6420",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Dell",
+          "i_checkout_period": "20.0"
+        },
+        "subcategory": "Laptop Computer",
+        "id": 106,
+        "name": "Dell Latitude E6420"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "30",
+          "i_model": "Latitude E7450",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Dell",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "Laptop Computer",
+        "id": 107,
+        "name": "Dell Latitude E7450"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "21",
+          "i_model": "Probook 6460b",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "HP",
+          "i_checkout_period": "31.0"
+        },
+        "subcategory": "Laptop Computer",
+        "id": 108,
+        "name": "HP Probook 6460b"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "5",
+          "i_model": "MSP2 Microphone Stand",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Peavey",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "Microphone Stands",
+        "id": 109,
+        "name": "Floor Microphone Stand"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "5",
+          "i_model": "Desktop Microphone Stand",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "QuikLok",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "Microphone Stands",
+        "id": 110,
+        "name": "Tabletop Microphone Stand"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "10",
+          "i_model": "AN-Mini",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Anchor",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "Portable Audio System",
+        "id": 111,
+        "name": "Placeholder Name"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "10",
+          "i_model": "Passport P-150",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Fender",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "Portable Audio System",
+        "id": 112,
+        "name": "Fender Passport Deluxe P-150 (7-day)"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "3",
+          "i_model": "Passport PD-150",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Fender",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "Portable Audio System",
+        "id": 113,
+        "name": "Fender Passport PD-150 (7-day)"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "13",
+          "i_model": "VP4450",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "InterLink",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "Power Point Remote",
+        "id": 114,
+        "name": "Power Point Remote"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "22",
+          "i_model": "83316",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Da-Lite (6 ft)",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "Projection Screen",
+        "id": 115,
+        "name": "Placeholder Name"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "5",
+          "i_model": "87063",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Da-Lite (8 ft)",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "Projection Screen",
+        "id": 116,
+        "name": "Placeholder Name"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "10",
+          "i_model": "MKE 400",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Sennheiser",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "Shotgun Microphone",
+        "id": 117,
+        "name": "Shotgun Microphone"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "18",
+          "i_model": "iPad 2",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Apple",
+          "i_checkout_period": "14.0"
+        },
+        "subcategory": "Tablet Computer",
+        "id": 118,
+        "name": "iPad 2"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "10",
+          "i_model": "iPad 4",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Apple",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "Tablet Computer",
+        "id": 119,
+        "name": "iPad 4"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "10",
+          "i_model": "iPad Air",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Apple",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "Tablet Computer",
+        "id": 120,
+        "name": "iPad Air"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "10",
+          "i_model": "iPad Air 2",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Apple",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "Tablet Computer",
+        "id": 121,
+        "name": "Apple iPad Air 2"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "5",
+          "i_model": "GorillaPod Tripod",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Joby",
+          "i_checkout_period": "14.0"
+        },
+        "subcategory": "Tripod",
+        "id": 122,
+        "name": "GorillaPod"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "7",
+          "i_model": "Large tripod (755B)",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Manfrotto",
+          "i_checkout_period": "14.0"
+        },
+        "subcategory": "Tripod",
+        "id": 123,
+        "name": "Large Tripod"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "24",
+          "i_model": "Medium tripod (190XPROB)",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Manfrotto",
+          "i_checkout_period": "14.0"
+        },
+        "subcategory": "Tripod",
+        "id": 124,
+        "name": "Medium Tripod"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "5",
+          "i_model": "Monopod (MMC3-01M)",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Manfrotto",
+          "i_checkout_period": "14.0"
+        },
+        "subcategory": "Tripod",
+        "id": 125,
+        "name": "Monopod"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "15",
+          "i_model": "Small tripod (MKCOMPACTACN)",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Manfrotto",
+          "i_checkout_period": "14.0"
+        },
+        "subcategory": "Tripod",
+        "id": 126,
+        "name": "Small Tripod"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "8",
+          "i_model": "Small tripod (7001D)",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Sunpak",
+          "i_checkout_period": "14.0"
+        },
+        "subcategory": "Tripod",
+        "id": 127,
+        "name": "Small Tripod"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "5",
+          "i_model": "GoPro Pole (Pole 38HD)",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "UK Pro",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "Tripod",
+        "id": 128,
+        "name": "GoPro Pole"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "19",
+          "i_model": "WS-331M",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Olympus",
+          "i_checkout_period": "31.0"
+        },
+        "subcategory": "Voice Recorder/MP3 player",
+        "id": 129,
+        "name": "Voice Recorder"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "28",
+          "i_model": "WS-510M",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Olympus",
+          "i_checkout_period": "14.0"
+        },
+        "subcategory": "Voice Recorder/MP3 player",
+        "id": 130,
+        "name": "Voice Recorder"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "15",
+          "i_model": "Pro",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Azden",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "Wireless Microphone System",
+        "id": 131,
+        "name": "Placeholder Name"
+      },
+      {
+        "category": "Placeholder Category",
+        "extended_info": {
+          "i_quantity": "25",
+          "i_model": "UWP-V1",
+          "i_access_role_students": "true",
+          "i_reservation_required": "true",
+          "i_has_access_restriction": "true",
+          "i_is_active": "true",
+          "i_access_limit_role": "true",
+          "i_reservaion_required": "true",
+          "i_brand": "Sony",
+          "i_checkout_period": "7.0"
+        },
+        "subcategory": "Wireless Microphone System",
+        "id": 132,
+        "name": "Placeholder Name"
+      }
+    ],
+    "images": [],
+    "organization": "",
+    "type": [],
+    "id": 5259,
+    "external_id": null
+  }
+]

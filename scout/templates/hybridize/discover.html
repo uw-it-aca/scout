@@ -9,95 +9,35 @@
 <div class="content">
 
     {% if campus == 'seattle' %}
-    <div style="background:url('{% static "scout/img/uw-signage.jpg" %}') no-repeat center center; background-size:cover; height:270px;" valign="bottom" class="content-header">Discover {{campus}}</div>
+    <div style="background:url('{% static "scout/img/seattle/IMG_3973-M.jpg" %}') no-repeat center center; background-size:cover; height:270px;" valign="bottom" class="content-header">&nbsp;</div>
     {% elif campus == 'bothell' %}
-    <div style="background:url('{% static "scout/img/uwb-signage.jpg" %}') no-repeat center center; background-size:cover; height:270px;" valign="bottom" class="content-header">Discover {{campus}}</div>
+    <div style="background:url('{% static "scout/img/bothell/mascot-w.jpg" %}') no-repeat center center; background-size:cover; height:270px;" valign="bottom" class="content-header">&nbsp;</div>
     {% elif campus == 'tacoma' %}
-    <div style="background:url('{% static "scout/img/uwt-signage.jpg" %}') no-repeat center center; background-size:cover; height:270px;" valign="bottom" class="content-header">Discover {{campus}}</div>
+    <div style="background:url('{% static "scout/img/tacoma/sign-w.jpg" %}') no-repeat center center; background-size:cover; height:270px;" valign="bottom" class="content-header">&nbsp;</div>
     {% endif %}
 
-    <div class="content-content">
-        <!--<div class="content-content-inner" style="padding:20px;">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non urna et lorem venenatis varius quis sit amet dui. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur a nisi odio.
-        </div>-->
-    </div>
+    <div class="content-content"></div>
+
 </div>
 
+{% if campus == 'seattle' %}
+<div id="discover_cards" class="visually-hidden" data-campus="{{campus}}" data-campus-latitude="{{ campus_locations.seattle.latitude }}" data-campus-longitude="{{ campus_locations.seattle.longitude }}">
+{% elif campus == 'bothell' %}
+<div id="discover_cards" class="visually-hidden" data-campus="{{campus}}" data-campus-latitude="{{ campus_locations.bothell.latitude }}" data-campus-longitude="{{ campus_locations.bothell.longitude }}">
+{% elif campus == 'tacoma' %}
+<div id="discover_cards" class="visually-hidden" data-campus="{{campus}}" data-campus-latitude="{{ campus_locations.tacoma.latitude }}" data-campus-longitude="{{ campus_locations.tacoma.longitude }}">
+{% endif %}
 
-<div class="content-block-title">Open Nearby, {{campus}} campus</div>
-<div class="list-block">
-    <ul>
-        <li>
-            <a href="/h/{{campus}}/food/5071/" class="item-link">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">By George</div>
-                    </div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/h/{{campus}}/food/5072/" class="item-link">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">Cafe 815 Mercer</div>
-                    </div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/h/{{campus}}/food/5073/" class="item-link">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">Court Cafe</div>
-                    </div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/h/{{campus}}/food/5075/" class="item-link">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">Dawg Bites</div>
-                    </div>
-                </div>
-            </a>
-        </li>
-    </ul>
+    <!-- containers for displaying cards -->
+    <div id="open"></div>
+    <div id="morning"></div>
+    <div id="studycomputerlab"></div>
+    <div id="{{ random_cards|random }}"></div>
+    <div>{% include "hybridize/discover_tech.html" %}</div>
+    <div id="late"></div>
+    <div id="studyoutdoors"></div>
+
 </div>
 
-
-<div class="content-block-title">Temporary Navigation</div>
-<div class="list-block">
-    <ul>
-        <li>
-            <a href="/h/{{campus}}/food/" class="item-link">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">Food</div>
-                    </div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/h/{{campus}}/study/" class="item-link">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">Study</div>
-                    </div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="/h/{{campus}}/tech/" class="item-link">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">Tech</div>
-                    </div>
-                </div>
-            </a>
-        </li>
-    </ul>
-</div>
 
 {% endblock %}

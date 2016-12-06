@@ -2,13 +2,36 @@
 <html class="no-js">
     <head>
         <meta charset="utf-8">
-        <title>{% block title %}{% endblock %}</title>
+        <title>{% if request.GET.h_title %}{{ request.GET.h_title }}{% else %}{% block title %}{% endblock %}{% endif %}</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="cleartype" content="on">
 
         {% load staticfiles %}
         {% load compress %}
+
+        <!-- http://realfavicongenerator.net/ -->
+        <link rel="apple-touch-icon" sizes="57x57" href="{% static "scout/ico/apple-touch-icon-57x57.png" %}">
+        <link rel="apple-touch-icon" sizes="60x60" href="{% static "scout/ico/apple-touch-icon-60x60.png" %}">
+        <link rel="apple-touch-icon" sizes="72x72" href="{% static "scout/ico/apple-touch-icon-72x72.png" %}">
+        <link rel="apple-touch-icon" sizes="76x76" href="{% static "scout/ico/apple-touch-icon-76x76.png" %}">
+        <link rel="apple-touch-icon" sizes="114x114" href="{% static "scout/ico/apple-touch-icon-114x114.png" %}">
+        <link rel="apple-touch-icon" sizes="120x120" href="{% static "scout/ico/apple-touch-icon-120x120.png" %}">
+        <link rel="apple-touch-icon" sizes="144x144" href="{% static "scout/ico/apple-touch-icon-144x144.png" %}">
+        <link rel="apple-touch-icon" sizes="152x152" href="{% static "scout/ico/apple-touch-icon-152x152.png" %}">
+        <link rel="apple-touch-icon" sizes="180x180" href="{% static "scout/ico/apple-touch-icon-180x180.png" %}">
+        <link rel="icon" type="image/png" href="{% static "scout/ico/favicon-32x32.png" %}" sizes="32x32">
+        <link rel="icon" type="image/png" href="{% static "scout/ico/favicon-194x194.png" %}" sizes="194x194">
+        <link rel="icon" type="image/png" href="{% static "scout/ico/favicon-96x96.png" %}" sizes="96x96">
+        <link rel="icon" type="image/png" href="{% static "scout/ico/android-chrome-192x192.png" %}" sizes="192x192">
+        <link rel="icon" type="image/png" href="{% static "scout/ico/favicon-16x16.png" %}" sizes="16x16">
+        <link rel="manifest" href="{% static "scout/ico/manifest.json" %}">
+        <link rel="mask-icon" href="{% static "scout/ico/safari-pinned-tab.svg" %}" color="#6564a8">
+        <meta name="apple-mobile-web-app-title" content="Scout">
+        <meta name="application-name" content="Scout">
+        <meta name="msapplication-TileColor" content="#ffc40d">
+        <meta name="msapplication-TileImage" content="{% static "scout/ico/mstile-144x144.png" %}">
+        <meta name="theme-color" content="#ffffff">
 
         {% if request.is_and %}
 
@@ -20,7 +43,7 @@
             <!-- local override files -->
             <link rel="stylesheet" href="{% static "hybridize/css/android-theme.scss" %}" type="text/x-scss">
             <link rel="stylesheet" href="{% static "hybridize/css/android.scss" %}" type="text/x-scss">
-            <link rel="stylesheet" href="{% static "scout/css/slick.scss" %}" type="text/x-scss">
+            <link rel="stylesheet" href="{% static "hybridize/css/slick.scss" %}" type="text/x-scss">
             {% endcompress %}
 
             {% compress js %}
@@ -31,6 +54,13 @@
             <script type="text/javascript" src="{% static "vendor/js/slick.min.js" %}"></script>
             <!-- local override files -->
 		    <script type="text/javascript" src="{% static "hybridize/js/android.js" %}"></script>
+            <script type="text/javascript" src="{% static "hybridize/js/discover.js" %}"></script>
+            <script type="text/javascript" src="{% static "hybridize/js/filter.js" %}"></script>
+            <script type="text/javascript" src="{% static "hybridize/js/filter-food.js" %}"></script>
+            <script type="text/javascript" src="{% static "hybridize/js/filter-study.js" %}"></script>
+            <script type="text/javascript" src="{% static "hybridize/js/filter-tech.js" %}"></script>
+            <script type="text/javascript" src="{% static "hybridize/js/geolocation.js" %}"></script>
+            <script type="text/javascript" src="{% static "hybridize/js/list.js" %}"></script>
 		    {% endcompress %}
 
         {% endif %}
@@ -43,10 +73,10 @@
 
 
             {% compress css %}
-            <link rel="stylesheet" href="{% static "scout/css/slick.scss" %}" type="text/x-scss">
             <!-- local override files -->
             <link rel="stylesheet" href="{% static "hybridize/css/ios-theme.scss" %}" type="text/x-scss">
             <link rel="stylesheet" href="{% static "hybridize/css/ios.scss" %}" type="text/x-scss">
+            <link rel="stylesheet" href="{% static "hybridize/css/slick.scss" %}" type="text/x-scss">
             {% endcompress %}
 
             {% compress js %}
@@ -57,15 +87,38 @@
             <script type="text/javascript" src="{% static "vendor/js/slick.min.js" %}"></script>
 		    <!-- local override files -->
 		    <script type="text/javascript" src="{% static "hybridize/js/ios.js" %}"></script>
+            <script type="text/javascript" src="{% static "hybridize/js/discover.js" %}"></script>
+            <script type="text/javascript" src="{% static "hybridize/js/filter.js" %}"></script>
+            <script type="text/javascript" src="{% static "hybridize/js/filter-food.js" %}"></script>
+            <script type="text/javascript" src="{% static "hybridize/js/filter-study.js" %}"></script>
+            <script type="text/javascript" src="{% static "hybridize/js/filter-tech.js" %}"></script>
+            <script type="text/javascript" src="{% static "hybridize/js/geolocation.js" %}"></script>
+            <script type="text/javascript" src="{% static "hybridize/js/list.js" %}"></script>
 		    {% endcompress %}
 
         {% endif %}
 
+        <script type="text/javascript">
+            window.staticPath="{% static "" %}";
+            window.campus_locations = {{ campus_locations | safe }};
+        </script>
+
+        <!-- googlme maps -->
+        {% if google_maps %}
+        <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3&amp;key={{ google_maps }}&amp;libraries=geometry"></script>
+        {% else %}
+        <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?libraries=geometry"></script>
+        {% endif %}
+
     </head>
 
-    <body class="theme-custom">
-
-        {% block hybrid_notification %}{% endblock %}
+    {% if campus == 'seattle' %}
+    <body class="theme-custom" data-app-type="{{ app_type }}" data-campus="{{campus}}" data-campus-latitude="{{ campus_locations.seattle.latitude }}" data-campus-longitude="{{ campus_locations.seattle.longitude }}" {% if request.is_and %}data-device="android"{% else %}data-device="ios"{% endif %}>
+    {% elif campus == 'bothell' %}
+    <body class="theme-custom" data-app-type="{{ app_type }}" data-campus="{{campus}}" data-campus-latitude="{{ campus_locations.bothell.latitude }}" data-campus-longitude="{{ campus_locations.bothell.longitude }}" {% if request.is_and %}data-device="android"{% else %}data-device="ios"{% endif %}>
+    {% elif campus == 'tacoma' %}
+    <body class="theme-custom" data-app-type="{{ app_type }}" data-campus="{{campus}}" data-campus-latitude="{{ campus_locations.tacoma.latitude }}" data-campus-longitude="{{ campus_locations.tacoma.longitude }}" {% if request.is_and %}data-device="android"{% else %}data-device="ios"{% endif %}>
+    {% endif %}
 
         <div class="views">
             <div class="view view-main">
@@ -78,8 +131,6 @@
                 </div>
             </div>
         </div>
-
-
 
     </body>
 

@@ -1,0 +1,510 @@
+{% extends "hybridize/base.html" %}
+{% load staticfiles %}
+{% load scout_filters %}
+
+{% block title %}Filter{% endblock %}
+
+{% block hybrid_content %}
+
+<form id="scout_filter">
+
+    <div class="content-block-title">Type</div>
+    <div class="list-block">
+    	<ul id="subcategory_select">
+            <li class="item-divider">Computers</li>
+            <li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="Laptop Computer">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Laptop Computer</div>
+    				</div>
+    			</label>
+    		</li>
+            <li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="Tablet Computer">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Tablet Computer</div>
+    				</div>
+    			</label>
+    		</li>
+            <li class="item-divider">Cameras</li>
+            <li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="Digital Camera">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Digital Camera</div>
+    				</div>
+    			</label>
+    		</li>
+            <li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="Digital Video Camera">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Digital Video Camera</div>
+    				</div>
+    			</label>
+    		</li>
+            <li class="item-divider">DSLR Accessories</li>
+            <li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="DSLR Accessories - Light Kit">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Light Kit</div>
+    				</div>
+    			</label>
+    		</li>
+            <li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="DSLR Accessories - Macro Lens">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Macro Lens</div>
+    				</div>
+    			</label>
+    		</li>
+            <li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="DSLR Accessories - Macro Ring Lite Flash">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Macro Ring Lite Flash</div>
+    				</div>
+    			</label>
+    		</li>
+            <li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="DSLR Accessories - Shoe Mount Flash">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Shoe Mount Flash</div>
+    				</div>
+    			</label>
+    		</li>
+            <li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="DSLR Accessories - SLR Remote">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">SLR Remote</div>
+    				</div>
+    			</label>
+    		</li>
+            <li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="DSLR Accessories - Telephoto Lens">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Telephoto Lens</div>
+    				</div>
+    			</label>
+    		</li>
+            <li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="DSLR Accessories - Wide Angle Lens">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Wide Angle Lens</div>
+    				</div>
+    			</label>
+    		</li>
+            <li class="item-divider">Other types</li>
+            <li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="Blu-ray Burner">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Blu-ray Burner</div>
+    				</div>
+    			</label>
+    		</li>
+            <li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="Calculator">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Calculator</div>
+    				</div>
+    			</label>
+    		</li>
+            <li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="Data Projector">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Data Projector</div>
+    				</div>
+    			</label>
+    		</li>
+            <li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="Digital Pen Tablet">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Digital Pen Tablet</div>
+    				</div>
+    			</label>
+    		</li>
+            <li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="External Hard Drive">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">External Hard Drive</div>
+    				</div>
+    			</label>
+    		</li>
+            <li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="Microphone Stands">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Microphone Stands</div>
+    				</div>
+    			</label>
+    		</li>
+            <li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="Portable Audio System">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Portable Audio System</div>
+    				</div>
+    			</label>
+    		</li>
+            <li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="Power Point Remote">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Power Point Remote</div>
+    				</div>
+    			</label>
+    		</li>
+            <li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="Projection Screen">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Projection Screen</div>
+    				</div>
+    			</label>
+    		</li>
+            <li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="Shotgun Microphone">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Shotgun Microphone</div>
+    				</div>
+    			</label>
+    		</li>
+            <li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="Tripod">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Tripod</div>
+    				</div>
+    			</label>
+    		</li>
+            <li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="Voice Recorder/MP3 player">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Voice Recorder/MP3 player</div>
+    				</div>
+    			</label>
+    		</li>
+            <li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="Wireless Microphone System">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Wireless Microphone System</div>
+    				</div>
+    			</label>
+    		</li>
+
+    	</ul>
+
+    </div>
+
+    <div class="content-block-title">Brand</div>
+    <div class="list-block">
+    	<ul id="brand_select">
+    		<li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="Anchor">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Anchor</div>
+    				</div>
+    			</label>
+    		</li>
+            <li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="Apple">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Apple</div>
+    				</div>
+    			</label>
+    		</li>
+            <li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="Azden">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Azden</div>
+    				</div>
+    			</label>
+    		</li>
+            <li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="BenQ">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">BenQ</div>
+    				</div>
+    			</label>
+    		</li>
+            <li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="Canon">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Canon</div>
+    				</div>
+    			</label>
+    		</li>
+            <li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="Dell">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Dell</div>
+    				</div>
+    			</label>
+    		</li>
+            <li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="Fender">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Fender</div>
+    				</div>
+    			</label>
+    		</li>
+            <li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="GoPro">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">GoPro</div>
+    				</div>
+    			</label>
+    		</li>
+            <li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="Hitachi">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Hitachi</div>
+    				</div>
+    			</label>
+    		</li>
+            <li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="HP">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">HP</div>
+    				</div>
+    			</label>
+    		</li>
+            <li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="Interlink">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Interlink</div>
+    				</div>
+    			</label>
+    		</li>
+            <li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="Joby">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Joby</div>
+    				</div>
+    			</label>
+    		</li>
+            <li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="Lacie">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Lacie</div>
+    				</div>
+    			</label>
+    		</li>
+            <li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="LG">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">LG</div>
+    				</div>
+    			</label>
+    		</li>
+            <li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="Manfrotto">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Manfrotto</div>
+    				</div>
+    			</label>
+    		</li>
+            <li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="Olympus">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Olympus</div>
+    				</div>
+    			</label>
+    		</li>
+            <li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="Panasonic">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Panasonic</div>
+    				</div>
+    			</label>
+    		</li>
+            <li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="Peavey">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Peavey</div>
+    				</div>
+    			</label>
+    		</li>
+            <li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="QuikLok">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">QuikLok</div>
+    				</div>
+    			</label>
+    		</li>
+            <li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="Seagate">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Seagate</div>
+    				</div>
+    			</label>
+    		</li>
+            <li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="Sennheiser">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Sennheiser</div>
+    				</div>
+    			</label>
+    		</li>
+            <li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="Sony">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Sony</div>
+    				</div>
+    			</label>
+    		</li>
+            <li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="Sunpak">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Sunpak</div>
+    				</div>
+    			</label>
+    		</li>
+            <li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="TI">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Texas Instruments</div>
+    				</div>
+    			</label>
+    		</li>
+            <li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="UK Pro">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">UK Pro</div>
+    				</div>
+    			</label>
+    		</li>
+            <li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="Vello">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Vello</div>
+    				</div>
+    			</label>
+    		</li>
+            <li>
+    			<label class="label-checkbox item-content">
+    				<input type="checkbox" value="Wacom">
+    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+    				<div class="item-inner">
+    					<div class="item-title">Wacom</div>
+    				</div>
+    			</label>
+    		</li>
+    	</ul>
+    </div>
+
+    {% if request.is_and %}
+    <div class="content-block" style="display:none;">
+    	<div class="content-block-inner">
+            <p class="buttons-row">
+                <a href="javascript:void(0)" id="filter_submit" class="button button-fill button-raised">Submit</a>
+                <a href="javascript:void(0)" id="filter_clear" class="button button-fill button-raised">Clear</a>
+            </p>
+    	</div>
+    </div>
+    {% endif %}
+
+    {% if request.is_ios %}
+    <div class="content-block" style="display:none;">
+        <div class="row">
+            <div class="col-50"><a href="javascript:void(0)" id="filter_submit" class="button button-big button-fill">Submit</a></div>
+            <div class="col-50"><a href="javascript:void(0)" id="filter_clear" class="button button-big button-fill">Clear</a></div>
+        </div>
+    </div>
+    {% endif %}
+
+</form>
+
+{% endblock %}

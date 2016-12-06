@@ -1,4 +1,4 @@
-// Initialize your app
+// Initialize your hybrid app
 
 
 $(document).on('turbolinks:load', function() {
@@ -15,29 +15,42 @@ $(document).on('turbolinks:load', function() {
 		activeState: true,
 	});
 
-    // Include filter js if on filter page
-	if(window.location.href.indexOf("/filter/") > -1){
-		$.getScript('/static/scout/js/filter.js');
-	}
+    // get the app_type
+    var type = $("body").data("app-type")
 
-    // handle closing notifcation banners
-    $(".close-notification").click(function(e) {
-        e.preventDefault();
-        //alert( "Handler for .click() called." );
-        myApp.closeNotification(".notification-item")
-    });
+    if (type.indexOf("food") !== -1) {
+        // food
+        List.init();
+        Filter.init();
 
-    // handle food filter submit
-    $("#food_filter_submit").click(function(e) {
-        e.preventDefault();
-        history.back(1);
-        Turbolinks.clearCache();
-    });
+    } else if (type.indexOf("study") !== -1){
+        // study
+        List.init();
+        Filter.init();
 
-    // initialize slick image slider
-    $('.photo-gallery').slick({
-        dots: true,
-        arrows: false,
-    });
+        // study detail image slider
+        if ($( ".photo-gallery").length) {
+            $('.photo-gallery').not('.slick-initialized').slick({
+                dots: true,
+                arrows: false,
+            });
+        }
+
+    } else if (type.indexOf("tech") !== -1){
+        // tech
+        List.init();
+        Filter.init();
+    } else {
+        // discover
+        Discover.init_cards();
+    }
+
+    // Geolocation
+    Geolocation.update_location();
+
+    // filter
+    Filter.init_events();
+
+
 
 });

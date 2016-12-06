@@ -1,8 +1,10 @@
 var Geolocation = {
+
     // drumheller fountain
     default_location: { latitude: 47.653811, longitude: -122.307815 },
 
     campus_locations: function(campus){
+
         var locations = window.campus_locations;
         $.event.trigger(Geolocation.location_updating);
         if(locations !== undefined && locations[campus] !== undefined){
@@ -18,17 +20,22 @@ var Geolocation = {
     geolocation_status: { watchid: undefined },
 
     update_location: function () {
+
         // current user location is given more precedence over campus location.
         if (!Geolocation.get_is_using_location()) {
             Geolocation.set_campus_location();
         } else {
-            Geolocation.query_client_location();
+
+            // this will be called directly from native
+            //Geolocation.query_client_location();
         }
+
         if(!window.has_set_loc){
             // Fire this event so pages can handle location on page load
             $.event.trigger(Geolocation.location_changed);
         }
         window.has_set_loc = true;
+
     },
 
     get_is_using_location: function () {
@@ -69,27 +76,32 @@ var Geolocation = {
         return Geolocation.get_latlng_from_coords(lat, lng);
     },
 
+    /*
     handle_watch_position: function (position) {
        if(Geolocation.get_is_using_location()){
+           var new_position = Geolocation.get_latlng_from_coords(position.coords.latitude, position.coords.longitude);
+           var distance = Geolocation.get_distance_from_position(new_position);
            Geolocation.set_client_location(position);
        }
     },
+    */
 
-    query_client_location: function() {
-        // deal w/ error state
-        if (navigator.geolocation) {
-            Geolocation.geolocation_status.watchid =
-                navigator.geolocation.watchPosition(
-                    Geolocation.handle_watch_position,
-                    function(){
-                        $("#forget_location").trigger("click");
-                        $("#geolocation_error").addClass("open");
-                        $("#geolocation_error").removeClass("closed");
-                    }
-                );
-        }
+    // function called from native...
+    send_client_location: function(user_lat, user_lng) {
+
+        var position =  { coords:
+            {
+                latitude: user_lat,
+                longitude: user_lng
+            }
+        };
+
+        //Filter.call_js_bridge("send_client_location called: " + position);
+
+        Geolocation.set_client_location(position);
     },
 
+    /**
     stop_watching_location: function(){
         var watchid = Geolocation.geolocation_status.watchid;
         if(watchid !== undefined){
@@ -97,10 +109,13 @@ var Geolocation = {
             Geolocation.geolocation_status.watchid = undefined;
         }
     },
+    **/
 
     set_campus_location: function() {
+
         // get the campus from the url
-        var campus = window.location.pathname.split('/')[1]
+        //var campus = window.location.pathname.split('/')[1]
+        var campus = $("body").data("campus");
 
         Geolocation.campus_locations(campus);
         sessionStorage.setItem('lat', Geolocation.default_location.latitude);
@@ -119,7 +134,7 @@ var Geolocation = {
 
     },
 
-
+    /***
     display_location_status: function () {
 
         if (Geolocation.get_location_type() === "default") {
@@ -168,11 +183,6 @@ var Geolocation = {
         });
 
     }
+    **/
 
 };
-
-/* node.js exports */
-if (typeof exports == "undefined") {
-    var exports = {};
-}
-exports.Geolocation = Geolocation;

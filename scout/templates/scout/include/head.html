@@ -44,7 +44,7 @@
     <!-- async (mobile) -->
     {% compress css %}
     {% endcompress %}
-    
+
 {% endif %}
 
 {% if request.is_tablet %}
@@ -88,9 +88,9 @@
 <script async="async" src="{% static "scout/js/layout.js" %}"></script>
 <script async="async" src="{% static "scout/js/map.js" %}"></script>
 <script async="async" src="{% static "scout/js/filter.js" %}"></script>
-<script async="async" src="{% static "scout/js/food-filter.js" %}"></script>
-<script async="async" src="{% static "scout/js/study-filter.js" %}"></script>
-<script async="async" src="{% static "scout/js/tech-filter.js" %}"></script>
+<script async="async" src="{% static "scout/js/filter-food.js" %}"></script>
+<script async="async" src="{% static "scout/js/filter-study.js" %}"></script>
+<script async="async" src="{% static "scout/js/filter-tech.js" %}"></script>
 <script async="async" src="{% static "scout/js/navigation.js" %}"></script>
 <script async="async" src="{% static "scout/js/list.js" %}"></script>
 <script async="async" src="{% static "scout/js/discover.js" %}"></script>
@@ -110,7 +110,8 @@
 <script src="{% static 'vendor/js/markerclusterer.js' %}"></script>
 <script src="{% static 'vendor/js/OverlappingMarkerSpiderfier.js' %}"></script>
 <script type="text/javascript">
-    window.staticPath="{% static "" %}"
+    window.staticPath="{% static "" %}";
+    window.campus_locations = {{ campus_locations | safe}};
 </script>
 {% if google_analytics %}
 <!-- google analytics -->
