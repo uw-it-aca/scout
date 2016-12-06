@@ -24,17 +24,9 @@ $(document).on('turbolinks:load', function() {
         Filter.init();
 
     } else if (type.indexOf("study") !== -1){
-
         // study
         List.init();
         Filter.init();
-
-        // study detail image slider
-        $('.photo-gallery').slick({
-            dots: true,
-            arrows: false,
-        });
-
     } else if (type.indexOf("tech") !== -1){
         // tech
         List.init();
@@ -49,5 +41,11 @@ $(document).on('turbolinks:load', function() {
 
     // filter
     Filter.init_events();
+
+    // study detail image slider
+    $('.photo-gallery').slick({
+        dots: true,
+        arrows: false,
+    });
 
 });
