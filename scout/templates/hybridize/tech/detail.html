@@ -94,44 +94,72 @@
     <ul>
         <li class="item-content">
             <div class="item-inner">
+                {% if spot.hours.monday|length > 1 %}
+                <div class="item-title">Monday <span>{% for hours in spot.hours.monday %}{% if not forloop.first %}, {% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|display_midnight|remove_periods }}{% empty %} Closed {% endfor %}</span></div>
+                {% else %}
                 <div class="item-title">Monday</div>
-                <div class="item-after">{% for hours in spot.hours.monday %} {{ hours.0|time:"gA"}} - {{ hours.1|time:"gA"}} {% empty %} Closed {% endfor %}</div>
+                <div class="item-after">{% for hours in spot.hours.monday %}{% if not forloop.first %}, {% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|display_midnight|remove_periods }}{% empty %} Closed {% endfor %}</div>
+                {% endif %}
             </div>
         </li>
         <li class="item-content">
             <div class="item-inner">
+                {% if spot.hours.tuesday|length > 1 %}
+                <div class="item-title">Tuesday <span>{% for hours in spot.hours.tuesday %}{% if not forloop.first %}, {% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|display_midnight|remove_periods }}{% empty %} Closed {% endfor %}</span></div>
+                {% else %}
                 <div class="item-title">Tuesday</div>
-                <div class="item-after">{% for hours in spot.hours.tuesday %} {{ hours.0|time:"gA"}} - {{ hours.1|time:"gA"}} {% empty %} Closed {% endfor %}</div>
+                <div class="item-after">{% for hours in spot.hours.tuesday %}{% if not forloop.first %}, {% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|display_midnight|remove_periods }}{% empty %} Closed {% endfor %}</div>
+                {% endif %}
             </div>
         </li>
         <li class="item-content">
             <div class="item-inner">
+                {% if spot.hours.wednesday|length > 1 %}
+                <div class="item-title">Wednesday <span>{% for hours in spot.hours.wednesday %}{% if not forloop.first %}, {% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|display_midnight|remove_periods }}{% empty %} Closed {% endfor %}</span></div>
+                {% else %}
                 <div class="item-title">Wednesday</div>
-                <div class="item-after"> {% for hours in spot.hours.wednesday %} {{ hours.0|time:"gA"}} - {{ hours.1|time:"gA"}} {% empty %} Closed {% endfor %}</div>
+                <div class="item-after"> {% for hours in spot.hours.wednesday %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|display_midnight|remove_periods }} {% empty %} Closed {% endfor %}</div>
+                {% endif %}
             </div>
         </li>
         <li class="item-content">
             <div class="item-inner">
+                {% if spot.hours.thursday|length > 1 %}
+                <div class="item-title">Thursday <span>{% for hours in spot.hours.thursday %}{% if not forloop.first %}, {% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|display_midnight|remove_periods }}{% empty %} Closed {% endfor %}</span></div>
+                {% else %}
                 <div class="item-title">Thursday</div>
-                <div class="item-after">{% for hours in spot.hours.thursday %} {{ hours.0|time:"gA"}} - {{ hours.1|time:"gA"}} {% empty %} Closed {% endfor %}</div>
+                <div class="item-after">{% for hours in spot.hours.thursday %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|display_midnight|remove_periods }} {% empty %} Closed {% endfor %}</div>
+                {% endif %}
             </div>
         </li>
         <li class="item-content">
             <div class="item-inner">
+                {% if spot.hours.friday|length > 1 %}
+                <div class="item-title">Friday <span>{% for hours in spot.hours.friday %}{% if not forloop.first %}, {% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|display_midnight|remove_periods }}{% empty %} Closed {% endfor %}</span></div>
+                {% else %}
                 <div class="item-title">Friday</div>
-                <div class="item-after">{% for hours in spot.hours.friday %} {{ hours.0|time:"gA"}} - {{ hours.1|time:"gA"}} {% empty %} Closed {% endfor %}</div>
+                <div class="item-after">{% for hours in spot.hours.friday %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|display_midnight|remove_periods }} {% empty %} Closed {% endfor %}</div>
+                {% endif %}
             </div>
         </li>
         <li class="item-content">
             <div class="item-inner">
+                {% if spot.hours.saturday|length > 1 %}
+                <div class="item-title">Saturday <span>{% for hours in spot.hours.saturday %}{% if not forloop.first %}, {% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|display_midnight|remove_periods }}{% empty %} Closed {% endfor %}</span></div>
+                {% else %}
                 <div class="item-title">Saturday</div>
-                <div class="item-after">{% for hours in spot.hours.saturday %} {{ hours.0|time:"gA"}} - {{ hours.1|time:"gA"}} {% empty %} Closed {% endfor %}</div>
+                <div class="item-after">{% for hours in spot.hours.saturday %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|display_midnight|remove_periods }} {% empty %} Closed {% endfor %}</div>
+                {% endif %}
             </div>
         </li>
         <li class="item-content">
             <div class="item-inner">
+                {% if spot.hours.sunday|length > 1 %}
+                <div class="item-title">Sunday <span>{% for hours in spot.hours.sunday %}{% if not forloop.first %}, {% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|display_midnight|remove_periods }}{% empty %} Closed {% endfor %}</span></div>
+                {% else %}
                 <div class="item-title">Sunday</div>
-                <div class="item-after">{% for hours in spot.hours.sunday %} {{ hours.0|time:"gA"}} - {{ hours.1|time:"gA"}} {% empty %} Closed {% endfor %}</div>
+                <div class="item-after">{% for hours in spot.hours.sunday %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|display_midnight|remove_periods }} {% empty %} Closed {% endfor %}</div>
+                {% endif %}
             </div>
         </li>
     </ul>
