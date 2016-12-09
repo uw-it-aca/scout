@@ -47,11 +47,12 @@ $footer-height: 40px;
                 .scout-spot-hours { margin-bottom: 20px; color: #333; font-size: 14px;
 
                     ul { margin: 0; padding: 0;
-                        li { list-style: none; white-space: nowrap; color: #666; line-height: 20px;
+                        li { list-style: none; white-space: nowrap; color: #666; line-height: 20px; margin-bottom: 8px;
 
                             span { display: inline-block;
-                                &.day { width: 110px;  text-transform: capitalize; color: #222; }
+                                &.day { width: 35%; text-transform: capitalize; color: #222; vertical-align: top;}
                                 &.closed { color: #a94442; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; }
+                                &.day-hours { width: 65%; white-space: normal; }
                             }
                         }
                     }
