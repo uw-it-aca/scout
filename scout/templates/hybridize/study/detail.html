@@ -11,7 +11,7 @@
     {% if spot.images %}
     <div class="photo-gallery">
         {% for image in spot.images %}
-        <div style="background:url('/images/{{ spot.spot_id }}/image/{{ image.image_id }}/?width=500') center center no-repeat; background-size:cover; height:270px;" valign="bottom">&nbsp;</div>
+        <div class="scout-detail-image" style="background-image:url('/images/{{ spot.spot_id }}/image/{{ image.image_id }}/?width=500'); height:270px;" valign="bottom">&nbsp;</div>
         {% endfor %}
     </div>
     {% endif %}
