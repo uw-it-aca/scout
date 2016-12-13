@@ -96,7 +96,7 @@ body { background: #efeff4 !important; padding: 0 !important; margin: 0 !importa
             height:80px;
         }
     }
-    
+
 }
 
 .scout-filter-toggle {
@@ -108,6 +108,14 @@ body { background: #efeff4 !important; padding: 0 !important; margin: 0 !importa
 .scout-filter-toggle-options {
     line-height: 25px;
     span, select { display:inline-block; }
+}
+
+
+.scout-detail-image {
+    background-color: #e5e6e9;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
 }
 
 // webkit sticky header on scroll
