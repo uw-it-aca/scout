@@ -197,6 +197,14 @@ class HybridFoodListView(TemplateView):
     @validate_campus_selection
     def get_context_data(self, **kwargs):
         self.template_name = kwargs['template_name']
+
+        # get user lat/lng from query params
+        lat = self.request.GET.get('h_lat', DEFAULT_LAT)
+        lng = self.request.GET.get('h_lng', DEFAULT_LON)
+
+        print lat
+        print lng
+
         spots = get_filtered_spots(self.request, kwargs['campus'], "food")
         context = {"spots": spots,
                    "campus": kwargs['campus'],
