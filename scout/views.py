@@ -191,6 +191,21 @@ class FoodListView(TemplateView):
         return context
 
 
+class HybridFoodListView(TemplateView):
+    template_name = "404.html"
+
+    @validate_campus_selection
+    def get_context_data(self, **kwargs):
+        self.template_name = kwargs['template_name']
+        spots = get_filtered_spots(self.request, kwargs['campus'], "food")
+        context = {"spots": spots,
+                   "campus": kwargs['campus'],
+                   "count": len(spots),
+                   "app_type": 'food',
+                   "campus_locations": CAMPUS_LOCATIONS}
+        return context
+
+
 class FoodDetailView(TemplateView):
     template_name = "404.html"
 
