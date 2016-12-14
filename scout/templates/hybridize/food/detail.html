@@ -97,7 +97,27 @@
             </a>
         </li>
         {% endif %}
+        {% if spot.payment_names %}
+        <li>
+            <div class="item-content">
+                <div class="item-inner">
+                    <div class="item-title">Payments <span>{% for payment in spot.payment_names %}{{ payment }}{% if not forloop.last %}, {% endif %}{% endfor %}</span></div>
+                </div>
+            </div>
+        </li>
+        {% endif %}
+        {% if spot.open_periods %}
+        <li>
+            <div class="item-content">
+                <div class="item-inner">
+                    <div class="item-title">Open Periods <span>{% for period in spot.open_periods %}{{ period|remove_underscores|title }}{% if not forloop.last %}, {% endif %}{% endfor %}</span></div>
+                </div>
+            </div>
+        </li>
+        {% endif %}
+
     </ul>
+
     {% if spot.has_reservation %}
     <div class="list-block-label" style="margin-bottom:1em;">
         <i class="fa fa-bookmark" aria-hidden="true" style="float:left;"></i>
@@ -112,19 +132,9 @@
         <div style="clear:both;"></div>
     </div>
     {% endif %}
-</div>
 
-<div class="content-block-title">Open periods</div>
-<div class="list-block">
-    <ul>
-        {% for period in spot.open_periods %}
-        <li class="item-content">
-            <div class="item-inner">
-                <div class="item-title" style="text-transform: capitalize;">{{ period|remove_underscores }}</div>
-            </div>
-        </li>
-        {% endfor %}
-    </ul>
+
+
 </div>
 
 <div class="content-block-title">Open Hours</div>
@@ -208,19 +218,6 @@
         <div style="clear:both;"></div>
     </div>
     {% endif %}
-</div>
-
-<div class="content-block-title">Payment Accepted</div>
-<div class="list-block">
-    <ul>
-        {% for payment in spot.payment_names %}
-        <li class="item-content">
-            <div class="item-inner">
-                <div class="item-title">{{ payment }}</div>
-            </div>
-        </li>
-        {% endfor %}
-    </ul>
 </div>
 
 <div class="content-block-title">Getting Here</div>
