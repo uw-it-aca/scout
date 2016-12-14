@@ -11,19 +11,19 @@ var List = {
 
             if (currentType.indexOf("study") > -1) {
 
-                List.add_distances("scout-list-building", "data-building-lat", "data-building-lng");
-                List.order_list("scout-list-building", "scout_study_list", true);
+                //List.add_distances("scout-list-building", "data-building-lat", "data-building-lng");
+                //List.order_list("scout-list-building", "scout_study_list", true);
                 List.defer_load_image();
 
             } else if (currentType.indexOf("tech") > -1)  {
 
                 List.add_additional_tech_distances();
-                List.order_list("scout-list-item", "scout_tech_list", false);
+                //List.order_list("scout-list-item", "scout_tech_list", false);
                 List.defer_load_image();
 
             } else {
 
-                List.order_list("scout-list-item", "scout_food_list", false);
+                //List.order_list("scout-list-item", "scout_food_list", false);
                 List.defer_load_image();
             }
         });
