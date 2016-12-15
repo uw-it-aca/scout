@@ -208,10 +208,10 @@ class HybridFoodListView(TemplateView):
         spots = get_spots_by_filter([
             ('extended_info:app_type', 'food'),
             ('extended_info:campus', kwargs['campus']),
-            ('limit', 20),
+            ('limit', 10),
             ('center_latitude', lat),
             ('center_longitude', lng),
-            ('distance', 1000)
+            ('distance', 100000)
         ])
         context = {"spots": spots,
                    "campus": kwargs['campus'],
