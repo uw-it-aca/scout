@@ -4,7 +4,7 @@ var List = {
 
         $(document).on("location_changed", function() {
 
-            List.add_distances("scout-list-item", "data-spot-lat", "data-spot-lng");
+            //List.add_distances("scout-list-item", "data-spot-lat", "data-spot-lng");
 
             // Gets the current type the page is on!
             var currentType = $("body").data("app-type")
