@@ -2,16 +2,14 @@ var List = {
 
     init: function () {
 
-        $(document).on("location_changed", function() {
 
-            //List.add_distances("scout-list-item", "data-spot-lat", "data-spot-lng");
 
             // Gets the current type the page is on!
             var currentType = $("body").data("app-type")
 
             if (currentType.indexOf("study") > -1) {
 
-                //List.add_distances("scout-list-building", "data-building-lat", "data-building-lng");
+                List.add_distances("scout-list-building", "data-building-lat", "data-building-lng");
                 //List.order_list("scout-list-building", "scout_study_list", true);
                 //List.defer_load_image();
 
@@ -23,10 +21,11 @@ var List = {
 
             } else {
 
+                List.add_distances("scout-list-item", "data-spot-lat", "data-spot-lng");
+
                 //List.order_list("scout-list-item", "scout_food_list", false);
                 //List.defer_load_image();
             }
-        });
 
     },
 

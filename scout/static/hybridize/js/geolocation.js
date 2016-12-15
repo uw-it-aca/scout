@@ -71,8 +71,23 @@ var Geolocation = {
     },
 
     get_client_latlng: function () {
-        var lat = sessionStorage.getItem("lat");
-        var lng = sessionStorage.getItem("lng");
+
+        //var lat = sessionStorage.getItem("lat");
+        //var lng = sessionStorage.getItem("lng");
+
+        // if the lat/lng is passed in query params... it's user location_changed
+        // else.. just use the lat/lng in the data-attribute (dafault campus location)
+
+        var lat, lng;
+
+        if ( $("body").data("user-latitude") && $("body").data("user-longitude") ) {
+            lat = $("body").data("user-latitude");
+            lng = $("body").data("user-longitude");
+        } else {
+            lat = $("body").data("campus-latitude");
+            lng = $("body").data("campus-longitude");
+        }
+
         return Geolocation.get_latlng_from_coords(lat, lng);
     },
 
