@@ -24,7 +24,7 @@ var List = {
             } else {
 
                 //List.order_list("scout-list-item", "scout_food_list", false);
-                List.defer_load_image();
+                //List.defer_load_image();
             }
         });
 
