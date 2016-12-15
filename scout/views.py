@@ -206,6 +206,12 @@ class HybridFoodListView(TemplateView):
         print lng
 
         spots = get_filtered_spots(self.request, kwargs['campus'], "food")
+        spots = get_spots_by_filter([
+            ('limit', 10),
+            ('center_latitude', lat),
+            ('center_longitude', lng),
+            ('distance', 100000)
+        ])
         context = {"spots": spots,
                    "campus": kwargs['campus'],
                    "count": len(spots),
