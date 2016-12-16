@@ -4,9 +4,10 @@ var List = {
 
         // Gets the current type the page is on!
         var currentType = $("body").data("app-type")
-        
+
         if (currentType.indexOf("study") > -1) {
 
+            List.add_distances("scout-list-item", "data-spot-lat", "data-spot-lng");
             List.add_distances("scout-list-building", "data-building-lat", "data-building-lng");
             //List.order_list("scout-list-building", "scout_study_list", true);
             //List.defer_load_image();
