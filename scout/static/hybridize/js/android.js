@@ -17,9 +17,6 @@ $(document).on('turbolinks:load', function() {
 		activeState: true,
 	});
 
-    // Geolocation
-    Geolocation.update_location();
-
     // get the app_type
     var type = $("body").data("app-type")
 
