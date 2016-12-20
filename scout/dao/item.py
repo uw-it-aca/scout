@@ -30,20 +30,8 @@ def add_item_info(spot):
             "i_checkout_period",
             item.extended_info
         )
-        item.has_access_restriction = _get_extended_info_by_key(
-            "i_has_access_restriction",
-            item.extended_info
-        )
-        item.access_limit_role = _get_extended_info_by_key(
-            "i_access_limit_role",
-            item.extended_info
-        )
-        item.access_role_students = _get_extended_info_by_key(
-            "i_access_role_students",
-            item.extended_info
-        )
-        item.reservation_required = _get_extended_info_by_key(
-            "i_reservation_required",
+        item.reservation_notes = _get_extended_info_by_key(
+            "i_reservation_notes",
             item.extended_info
         )
         item.is_active = _get_extended_info_by_key(
@@ -66,6 +54,19 @@ def add_item_info(spot):
             "i_manual_url",
             item.extended_info
         )
+        item.owner = _get_extended_info_by_key(
+            "i_owner",
+            item.extended_info
+        )
+        item.is_stf = _get_extended_info_by_key(
+            "i_is_stf",
+            item.extended_info
+        )
+        item.cte_type_id = _get_extended_info_by_key(
+            "cte_type_id",
+            item.extended_info
+        )
+
     return spot
 
 
@@ -73,28 +74,30 @@ def get_filtered_items(spots, request):
     parameter_list = _get_spot_filters(request)
     brand = []
     subcategory = []
+    is_active = False
     for param in parameter_list:
         if param[0] == "item:extended_info:i_brand":
             brand.append(param[1])
         elif param[0] == "item:subcategory":
             subcategory.append(param[1])
+        elif param[0] == "item:extended_info:i_is_active":
+            is_active = True
 
-    if len(brand) <= 0 and len(subcategory) <= 0:
-        return spots
-
-    newSpots = []
+    new_spots = []
 
     for spot in spots:
-        newSpot = copy.deepcopy(spot)
-        newSpot.items = []
+        new_spot = copy.deepcopy(spot)
+        new_spot.items = []
         for item in spot.items:
-            if item.subcategory in subcategory:
-                newSpot.items.append(item)
-            else:
-                if item.brand in brand:
-                    newSpot.items.append(item)
-        newSpots.append(newSpot)
-    return newSpots
+            if is_active and not item.is_active:
+                continue
+            if len(subcategory) > 0 and item.subcategory not in subcategory:
+                continue
+            if len(brand) > 0 and item.brand not in brand:
+                continue
+            new_spot.items.append(item)
+        new_spots.append(new_spot)
+    return new_spots
 
 
 def get_item_count(spots):

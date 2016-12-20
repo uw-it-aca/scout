@@ -1,0 +1,21 @@
+{% load staticfiles %}
+
+<div class="scout-card scout-discover-content">
+
+    <h3>
+        <span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i> <i class="fa fa-laptop fa-stack-1x fa-inverse"></i></span>
+        <span class="scout-card-title">Technology</span>
+    </h3>
+
+    <div style="background:url('{% static "scout/img/seattle/IMG_1758-X3.jpg" %}') no-repeat center bottom; background-size: cover !important; height:100px; text-transform:uppercase; font-size:14px; color:#fff; margin-top:15px;" valign="bottom" class="card-header color-white no-border">&nbsp;</div>
+    <div class="card-content" style="background:#fff; padding: 10px 0;">
+        <div class="card-content-inner">
+            <p class="color-gray">Did you know?</p>
+            <p>The <strong>Student Technology Fee</strong> funds many technology items around campus for you to checkout and use.</p>
+        </div>
+    </div>
+    <div class="card-footer">
+        <span>&nbsp;</span>
+        <span><a href="/{{campus}}/tech/" style="text-transform:capitalize;float:right;">View Technology</a></span>
+    </div>
+</div>

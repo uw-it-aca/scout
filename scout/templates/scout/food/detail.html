@@ -114,7 +114,7 @@
         </div>
 
         <div class="scout-spot-content">
-        {% if spot.location_description %}
+
         <div class="scout-card">
 
             <h3>Type</h3>
@@ -122,23 +122,24 @@
                 {% for type in spot.spot_types %}<span>{{ type.name|remove_underscores }}{% if not forloop.last %}, {% endif %}</span>{% endfor %}
             </div>
 
+            {% if spot.description %}
             <h3>Description</h3>
-            <div class="scout-spot-description">{{spot.location_description}}</div>
-
+            <div class="scout-spot-description">{{spot.description}}</div>
+            {% endif %}
         </div>
-        {% endif %}
+
 
             <div class="scout-card">
                 <div class="scout-spot-hours">
                     <h3>Hours</h3>
                     <ul style="margin-bottom: 15px;">
-                        <li><span class="day">Monday:</span> {% for hours in spot.hours.monday %}{% if not forloop.first %}, {% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|display_midnight|remove_periods }}{% empty %}<span class="closed">Closed</span>{% endfor %}</li>
-                        <li><span class="day">Tuesday:</span> {% for hours in spot.hours.tuesday %}{% if not forloop.first %}, {% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|display_midnight|remove_periods }}{% empty %}<span class="closed">Closed</span>{% endfor %}</li>
-                        <li><span class="day">Wednesday:</span> {% for hours in spot.hours.wednesday %}{% if not forloop.first %}, {% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|display_midnight|remove_periods }}{% empty %}<span class="closed">Closed</span>{% endfor %}</li>
-                        <li><span class="day">Thursday:</span> {% for hours in spot.hours.thursday %}{% if not forloop.first %}, {% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|display_midnight|remove_periods }}{% empty %}<span class="closed">Closed</span>{% endfor %}</li>
-                        <li><span class="day">Friday:</span> {% for hours in spot.hours.friday %}{% if not forloop.first %}, {% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|display_midnight|remove_periods }}{% empty %}<span class="closed">Closed</span>{% endfor %}</li>
-                        <li><span class="day">Saturday:</span> {% for hours in spot.hours.saturday %}{% if not forloop.first %}, {% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|display_midnight|remove_periods }}{% empty %}<span class="closed">Closed</span>{% endfor %}</li>
-                        <li><span class="day">Sunday:</span> {% for hours in spot.hours.sunday %}{% if not forloop.first %}, {% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|display_midnight|remove_periods }}{% empty %}<span class="closed">Closed</span>{% endfor %}</li>
+                        <li><span class="day">Monday:</span> <span class="day-hours">{% for hours in spot.hours.monday %}{% if not forloop.first %}<br>{% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|display_midnight|remove_periods }}{% empty %}<span class="closed">Closed</span>{% endfor %}</span></li>
+                        <li><span class="day">Tuesday:</span> <span class="day-hours">{% for hours in spot.hours.tuesday %}{% if not forloop.first %}<br>{% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|display_midnight|remove_periods }}{% empty %}<span class="closed">Closed</span>{% endfor %}</span></li>
+                        <li><span class="day">Wednesday:</span> <span class="day-hours">{% for hours in spot.hours.wednesday %}{% if not forloop.first %}<br>{% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|display_midnight|remove_periods }}{% empty %}<span class="closed">Closed</span>{% endfor %}</span></li>
+                        <li><span class="day">Thursday:</span> <span class="day-hours">{% for hours in spot.hours.thursday %}{% if not forloop.first %}<br>{% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|display_midnight|remove_periods }}{% empty %}<span class="closed">Closed</span>{% endfor %}</span></li>
+                        <li><span class="day">Friday:</span> <span class="day-hours">{% for hours in spot.hours.friday %}{% if not forloop.first %}<br>{% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|display_midnight|remove_periods }}{% empty %}<span class="closed">Closed</span>{% endfor %}</span></li>
+                        <li><span class="day">Saturday:</span> <span class="day-hours">{% for hours in spot.hours.saturday %}{% if not forloop.first %}<br>{% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|display_midnight|remove_periods }}{% empty %}<span class="closed">Closed</span>{% endfor %}</span></li>
+                        <li><span class="day">Sunday:</span> <span class="day-hours">{% for hours in spot.hours.sunday %}{% if not forloop.first %}<br>{% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|display_midnight|remove_periods }}{% empty %}<span class="closed">Closed</span>{% endfor %}</span></li>
                     </ul>
 
                     {% if spot.hours_notes %}
@@ -201,9 +202,9 @@
             <div class="scout-card">
                 <h3>Details</h3>
 
-                {% if spot.has_reservation %}
+                {% if spot.s_has_reservation %}
                 <h4><i class="fa fa-bookmark"></i> Reservations</h4>
-                <div class="scout-spot-reservation">{{spot.reservation_notes}}</div>
+                <div class="scout-spot-reservation">{{spot.s_reservation_notes}}</div>
                 {% endif %}
 
                 <h4><i class="fa fa-credit-card"></i> Payment accepted</h4>

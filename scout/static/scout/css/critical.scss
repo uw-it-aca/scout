@@ -196,12 +196,13 @@ a {color: $scout-link;}
 .scout-scroll { background: #f1f1f1; padding-bottom: 1px;
 
     // generic card
-    .scout-card { margin: 0 0 10px 0; background: #fff; padding: 20px; min-height: 50px;
+    .scout-card { margin: 0 0 10px 0; background: #fff; padding: 20px; min-height: 50px; position: relative; font-size: 14px; color: #333;
 
         // general list styles
         ul { list-style: none; margin: 0; padding: 0;
             li { }
         }
+
     }
 
     // content
@@ -296,7 +297,7 @@ a {color: $scout-link;}
                     ol {margin:0; padding:0;}
                     span {  display: block; text-transform: uppercase; font-size: 10px; margin-bottom: 2px; color: #BBB; }
                     li {list-style: none; display:inline; }
-                    li:after { content: ", "; }
+                    li:after { content: ","; margin-right:5px;}
                     li:last-child:after { content: ""; }
                 }
 
