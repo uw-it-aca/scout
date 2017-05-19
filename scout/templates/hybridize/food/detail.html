@@ -221,20 +221,14 @@
 </div>
 
 <div class="content-block-title">Getting Here</div>
+
 <div class="list-block">
     <ul>
         <li>
-
-            {% if request.is_ios %}
-            <a href="maps://maps.apple.com/maps?q={{ spot.latitude }},{{ spot.longitude }}" class="item-link">
-            {% endif %}
-            {% if request.is_and %}
-            <a href="comgooglemaps://?q={{ spot.latitude }},{{ spot.longitude }}" class="item-link">
-            {% endif %}
-
+            <a href="https://www.google.com/maps/search/?api=1&query={{ spot.latitude }},{{ spot.longitude }}" class="item-link">
                 <div class="item-content">
                     <div class="item-inner">
-                        <div class="item-title">Directions in {% if request.is_ios %}Apple{% endif %}{% if request.is_and %}Google{% endif %} Maps</div>
+                        <div class="item-title">Open in Google Maps</div>
                     </div>
                 </div>
             </a>
