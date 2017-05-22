@@ -46,7 +46,7 @@ $(document).on('turbolinks:load', function() {
     }
 
     // Geolocation
-    Geolocation.update_location();
+    //Geolocation.update_location();
 
     // filter
     Filter.init_events();
