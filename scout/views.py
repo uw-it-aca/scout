@@ -13,9 +13,8 @@ from scout.dao.item import (get_item_by_id, get_filtered_items, get_item_count)
 from django.views.generic.base import TemplateView, TemplateResponse
 
 # using red square as the default center
-DEFAULT_LAT = 47.6558539
+DEFAULT_LAT = 47.653811
 DEFAULT_LON = -122.3094925
-
 
 CAMPUS_LOCATIONS = {
     "seattle": {"latitude": 47.653811, "longitude": -122.307815},
@@ -183,6 +182,33 @@ class FoodListView(TemplateView):
     def get_context_data(self, **kwargs):
         self.template_name = kwargs['template_name']
         spots = get_filtered_spots(self.request, kwargs['campus'], "food")
+        context = {"spots": spots,
+                   "campus": kwargs['campus'],
+                   "count": len(spots),
+                   "app_type": 'food',
+                   "campus_locations": CAMPUS_LOCATIONS}
+        return context
+
+
+class HybridFoodListView(TemplateView):
+    template_name = "404.html"
+
+    @validate_campus_selection
+    def get_context_data(self, **kwargs):
+        self.template_name = kwargs['template_name']
+
+        # get user lat/lng from query params
+        lat = self.request.GET.get('h_lat', DEFAULT_LAT)
+        lng = self.request.GET.get('h_lng', DEFAULT_LON)
+
+        spots = get_spots_by_filter([
+            ('extended_info:app_type', 'food'),
+            ('extended_info:campus', kwargs['campus']),
+            ('limit', 10),
+            ('center_latitude', lat),
+            ('center_longitude', lng),
+            ('distance', 100000)
+        ])
         context = {"spots": spots,
                    "campus": kwargs['campus'],
                    "count": len(spots),

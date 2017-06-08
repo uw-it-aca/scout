@@ -1,4 +1,4 @@
-$(document).on('ready', function(event) {
+$(function(){
 
     Layout.init_layout();
     Navigation.set_campus_selection();
