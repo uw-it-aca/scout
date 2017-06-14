@@ -355,6 +355,9 @@ class TechFilterView(TemplateView):
                    "campus_locations": CAMPUS_LOCATIONS}
         return context
 
+# hybrid components examples
+class LoadingPerformanceView(TemplateView):
+    template_name = "scout/performance.html"
 
 # hybrid components examples
 class HybridCompsView(TemplateView):

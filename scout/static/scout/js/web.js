@@ -32,7 +32,13 @@ $(function(){
         Map.init_map();
         Filter.init();
 
-    } else {
+    } else if (page_path.indexOf("performance") !== -1){
+
+        // load some data inside of the performance div
+        $("#loading_performance").html("hello world!");
+
+    }
+     else {
         Discover.init_cards();
         Map.init_map();
     }
@@ -40,6 +46,9 @@ $(function(){
     // call this last so all page level location event listeners have been declared
     Geolocation.update_location();
     Filter.init_events();
+
+
+
 
 });
 

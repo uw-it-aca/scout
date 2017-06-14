@@ -21,6 +21,8 @@ from scout.views import TechFilterView
 from scout.views import HybridFoodListView
 from scout.views import HybridCompsView
 
+from scout.views import LoadingPerformanceView
+
 urlpatterns = patterns(
     '',
     # home
@@ -58,6 +60,10 @@ urlpatterns = patterns(
         TechDetailView.as_view(), {"template_name": "scout/tech/detail.html"}),
     url(r'^(?P<campus>[^/]+)/tech/filter/$',
         TechFilterView.as_view(), {"template_name": "scout/tech/filter.html"}),
+
+    # loading performance
+    url(r'^(?P<campus>[^/]+)/performance/$',
+        LoadingPerformanceView.as_view()),
 
     # hybrid home
     url(r'^h/$', RedirectView.as_view(url='/h/seattle')),
