@@ -19,6 +19,7 @@ from scout.views import TechDetailView
 from scout.views import TechFilterView
 
 from scout.views import HybridFoodListView
+from scout.views import HybridCompsView
 
 urlpatterns = patterns(
     '',
@@ -61,6 +62,9 @@ urlpatterns = patterns(
     # hybrid home
     url(r'^h/$', RedirectView.as_view(url='/h/seattle')),
 
+    # hybrid components
+    url(r'^h/components/$', HybridCompsView.as_view()),
+
     # hybrid discover
     url(r'^h/(?P<campus>[^/]+)/$',
         DiscoverView.as_view(), {"template_name": "hybridize/discover.html"}),
@@ -100,10 +104,6 @@ urlpatterns = patterns(
     url(r'^h/(?P<campus>[^/]+)/tech/filter/$',
         TechFilterView.as_view(),
         {"template_name": "hybridize/tech/filter.html"}),
-
-    # hybrid components
-    url(r'^h/components/$', 'scout.views.hybrid_comps_view',
-        name='hybrid_comps_view'),
 
     # images
     url(r'^images/(?P<spot_id>\d+)/image/(?P<image_id>\d+)/$',
