@@ -29,9 +29,11 @@
 
 <div class="list-block">
 
+    {% if spot.item.description %}
     <div class="list-block-label" style="margin-bottom:1em;">
-        {% if spot.item.description %}{{ spot.item.description }}{% else %}&nbsp;{% endif %}
+        {{ spot.item.description }}
     </div>
+    {% endif %}
 
     <ul>
         {% if spot.has_alert %}
