@@ -97,6 +97,36 @@ def get_filtered_spots(request, campus, app_type=None):
     return get_spots_by_filter(filters)
 
 
+# for the study api, would reduce serialization and de-seriazation if
+# data was already sent in json or pre-processed.
+# This might be slower because of post-processing
+# Only data relevant to list is returned
+def prepare_spot_api_info(data):
+    for group in data:
+        spot_list = group["spots"]
+        group["spots"] = []
+        for spot in spot_list:
+            # convert this spot to it's json-ish form
+            spot_json = {}
+            spot_json["spot_id"] = spot.spot_id
+            spot_json["latitude"] = spot.latitude
+            spot_json["longitude"] = spot.longitude
+            spot_json["name"] = spot.name
+            if spot.images:
+                spot_json["image_id"] = spot.images[0].image_id
+            # spot_types needs to be handled
+            if spot.auto_labstats_total > 0 and spot.auto_labstats_available > 0:
+                spot_json["auto_labstats_total"] = spot.auto_labstats_total
+                spot_json["auto_labstats_available"] = spot.auto_labstats_available
+            elif spot.capacity is not None:
+                spot_json["capacity"] = spot.capacity
+            if spot.location_description:
+                spot_json["location_description"] = spot.location_description
+            spot_json["is_open"] = spot.is_open
+            group["spots"].append(spot_json)
+    return data
+
+
 def _get_spot_filters(request):
     params = []
     for param in request.GET:

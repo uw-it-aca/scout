@@ -22,6 +22,7 @@ from scout.views import HybridFoodListView
 from scout.views import HybridCompsView
 
 from scout.views import LoadingPerformanceView
+from scout.views import StudyDataApiView
 
 urlpatterns = patterns(
     '',
@@ -64,6 +65,9 @@ urlpatterns = patterns(
     # loading performance
     url(r'^(?P<campus>[^/]+)/performance/$',
         LoadingPerformanceView.as_view()),
+    # data endpoint for ajax requests for study
+    url(r'^(?P<campus>[^/]+)/api/study/$',
+        StudyDataApiView.as_view()),
 
     # hybrid home
     url(r'^h/$', RedirectView.as_view(url='/h/seattle')),
