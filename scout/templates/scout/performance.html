@@ -12,14 +12,18 @@
 
     <!-- food filter results -->
     <div class="scout-filter-results" aria-labelledby="filter_header">
-        <div class="scout-filter-results-by visually-hidden" id="filter_text_holder">
+        <div class="scout-filter-results-by" id="filter_text_holder">
             <h2 class="visually-hidden" id="filter_header">Filters</h2>
             <span class="filter-results-label">Filtering by:</span>
-            <div id="filter_label_text" class="scout-filter-results-text"><span class="visually-hidden">No filter selected</span>---</div>
+            <div id="filter_label_text" style="outline: solid 2px red; padding:5px;" class="scout-filter-results-text">
+                <span class="visually-hidden">No filter selected</span>Loading...
+            </div>
         </div>
         <div class="scout-filter-results-results clearfix">
             <span class="filter-results-label"><span class="visually-hidden">Number of </span>Spaces<span class="visually-hidden"> in list</span>:</span>
-            <div id="scout_filter_results_count" class="scout-filter-results-count">{{ count }}</div>
+
+            <div id="scout_filter_results_count" class="scout-filter-results-count" style="outline: solid 2px red; line-height:30px;">{{ count }}Loading...</div>
+
             <div class="scout-filter-results-actions">
                 <a id="reset_study_list" class="action-cancel visually-hidden" aria-hidden="true" role="button" title="Clear filters">
                     <i class="fa fa-refresh"></i>Reset<span class="visually-hidden"> filter</span>
@@ -37,7 +41,9 @@
 
         <h2 class="scout-list-header visually-hidden" id="list_header">List of study places (by distance)</h2>
 
-        <div id="loading_performance" style="outline: solid 2px red; min-height:200px; margin:10px;"></div>
+        <div id="loading_performance" style="outline: solid 2px red; min-height:200px; margin:0 20px;">
+            Loading...
+        </div>
 
         <div style="padding:20px; font-size:13px;">Have a space to add? <a title="Suggest a space via email" href="mailto:help@uw.edu?subject=Scout:%20{{ app_type|title }}%20space%20suggestion">Suggest it</a></div>
 
