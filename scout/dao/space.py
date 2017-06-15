@@ -97,11 +97,16 @@ def get_filtered_spots(request, campus, app_type=None):
     return get_spots_by_filter(filters)
 
 
-# for the study api, would reduce serialization and de-seriazation if
-# data was already sent in json or pre-processed.
-# This might be slower because of post-processing
-# Only data relevant to list is returned
-def prepare_spot_api_info(data):
+"""
+-------------------------------------------------------------------------
+Experimental Section
+Implementing a new endpoint for the performance tab to communicate
+with.
+"""
+
+
+# OLD VERSION: ONLY FOR PROFILING PURPOSES
+def prepare_spot_api_info_OLD(data):
     for group in data:
         spot_list = group["spots"]
         group["spots"] = []
@@ -114,7 +119,11 @@ def prepare_spot_api_info(data):
             spot_json["name"] = spot.name
             if spot.images:
                 spot_json["image_id"] = spot.images[0].image_id
-            # spot_types needs to be handled
+            # handles spot_types
+            if spot.spot_types:
+                spot_json["spot_types"] = []
+                for spot_type in spot.spot_types:
+                    spot_json["spot_types"].append(spot_type.name)
             if spot.auto_labstats_total > 0 and spot.auto_labstats_available > 0:
                 spot_json["auto_labstats_total"] = spot.auto_labstats_total
                 spot_json["auto_labstats_available"] = spot.auto_labstats_available
@@ -125,6 +134,112 @@ def prepare_spot_api_info(data):
             spot_json["is_open"] = spot.is_open
             group["spots"].append(spot_json)
     return data
+
+# modified version to match with the Experimental Section
+def get_filtered_api_spots(request, campus, app_type=None):
+    filters = _get_spot_filters(request)
+
+    # adding 'default' filter params
+    filters.append(('limit', 0))
+    filters.append(("extended_info:campus", campus))
+
+    if(app_type == "food"):
+        filters.append(('extended_info:app_type', 'food'))
+    elif(app_type == "tech"):
+        filters.append(('extended_info:app_type', 'tech'))
+    elif(app_type == "study"):
+        if "open_at" not in dict(filters):
+            filters.append(('open_now', 'true'))
+    return get_api_spots_by_filter(filters)
+
+
+# modified to represent the new functions used by the api
+def get_api_spots_by_filter(filters=[]):
+    spot_client = Spotseeker()
+    resp = []
+    try:
+        spots = spot_client.search_spots(filters)
+        grouped_spots = group_api_spots_by_building(spots)
+        for data in grouped_spots:
+            resp.append(prepare_spot_api_info(data))
+    except DataFailureException:
+        # TODO: consider logging on failure
+        pass
+    return resp
+
+
+# modified to ignore hidden spots
+def group_api_spots_by_building(spots):
+    grouped_spots = {}
+    for spot in spots:
+        is_hidden = _get_extended_info_by_key("is_hidden", spot.extended_info)
+        if is_hidden is None or is_hidden is False:
+            if spot.building_name in grouped_spots:
+                grouped_spots[spot.building_name].append(spot)
+            else:
+                grouped_spots[spot.building_name] = [spot]
+
+    list_structure = []
+    for name in grouped_spots:
+        building_dict = {"name": name,
+                         "spots": grouped_spots[name]}
+        list_structure.append(building_dict)
+    return add_latlng_to_building(list_structure)
+
+
+# get data from spotseeker based on the query parameters.
+# for the study api, would reduce serialization and de-seriazation if
+# data was already sent in json or pre-processed.
+# This might be slower because of post-processing
+# Only data relevant to list is returned
+def prepare_spot_api_info(data):
+    spot_list = data["spots"]
+    data["spots"] = []
+    for spot in spot_list:
+        spot_json = {}
+        spot_json["spot_id"] = spot.spot_id
+        spot_json["latitude"] = spot.latitude
+        spot_json["longitude"] = spot.longitude
+        spot_json["name"] = spot.name
+        if spot.images:
+            spot_json["image_id"] = spot.images[0].image_id
+
+        # handles spot_types
+        if spot.spot_types:
+            spot_json["spot_types"] = []
+            for spot_type in spot.spot_types:
+                spot_json["spot_types"].append(spot_type.name)
+
+        # handles labstats / capacity
+        spot.auto_labstats_total = _get_extended_info_by_key(
+                                                     "auto_labstats_total",
+                                                     spot.extended_info)
+        spot.auto_labstats_available = _get_extended_info_by_key(
+                                                     "auto_labstats_available",
+                                                     spot.extended_info)
+        if spot.auto_labstats_total > 0 and spot.auto_labstats_available > 0:
+            spot_json["auto_labstats_total"] = spot.auto_labstats_total
+            spot_json["auto_labstats_available"] = spot.auto_labstats_available
+        elif spot.capacity is not None:
+            spot_json["capacity"] = spot.capacity
+
+        # handles location_description
+        spot.location_description = _get_extended_info_by_key(
+                                                "location_description",
+                                                spot.extended_info)
+        if spot.location_description:
+            spot_json["location_description"] = spot.location_description
+
+        # handles open status of the spot
+        now = datetime.datetime.now(pytz.timezone('America/Los_Angeles'))
+        spot_json["is_open"] = get_is_spot_open(organize_hours(spot), now)
+        data["spots"].append(spot_json)
+    return data
+
+"""
+End of Experimental Section
+-------------------------------------------------------------------------
+"""
 
 
 def _get_spot_filters(request):
