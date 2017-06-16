@@ -12,6 +12,12 @@ from scout.dao.item import (get_item_by_id, get_filtered_items, get_item_count)
 
 from django.views.generic.base import TemplateView, TemplateResponse
 
+# Experimental
+# for study api
+from scout.dao.space import get_filtered_api_spots, prepare_spot_api_info_OLD
+import json as simplejson
+from datetime import datetime
+
 # using red square as the default center
 DEFAULT_LAT = 47.653811
 DEFAULT_LON = -122.3094925
@@ -267,6 +273,29 @@ class StudyListView(TemplateView):
         return context
 
 
+# Experimental
+# peformance test api for study data
+@validate_campus_selection
+def study_data_api(request, campus="seattle"):
+    print "NEW Implementation: Start: " + str(datetime.now())
+    spots = get_filtered_api_spots(request, campus, "study")
+    print "NEW Implementation: End: " + str(datetime.now())
+    return HttpResponse(simplejson.dumps(spots),
+                        content_type='application/json')
+
+
+# peformance test api for study data
+@validate_campus_selection
+def study_data_api_OLD(request, campus="seattle"):
+    print "OLD Implementation: Start: " + str(datetime.now())
+    spots = get_filtered_spots(request, campus, "study")
+    grouped_spots = group_spots_by_building(spots)
+    final = prepare_spot_api_info_OLD(grouped_spots)
+    print "OLD Implementation: End: " + str(datetime.now())
+    return HttpResponse(simplejson.dumps(final),
+                        content_type='application/json')
+
+
 class StudyDetailView(TemplateView):
     template_name = "404.html"
 
@@ -355,9 +384,11 @@ class TechFilterView(TemplateView):
                    "campus_locations": CAMPUS_LOCATIONS}
         return context
 
+
 # hybrid components examples
 class LoadingPerformanceView(TemplateView):
     template_name = "scout/performance.html"
+
 
 # hybrid components examples
 class HybridCompsView(TemplateView):

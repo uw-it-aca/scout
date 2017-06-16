@@ -35,10 +35,15 @@ $(function(){
     } else if (page_path.indexOf("performance") !== -1){
 
         // load some data inside of the performance div
-        $("#loading_performance").html("hello world!");
+        $.ajax({
+            url: "/seattle/api/study/"
+        })
+        .done(function(data) {
+            // $("#loading_performance").html(data);
+            console.log(data);
+        });
 
-    }
-     else {
+    } else {
         Discover.init_cards();
         Map.init_map();
     }
