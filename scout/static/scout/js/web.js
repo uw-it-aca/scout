@@ -34,14 +34,21 @@ $(function(){
 
     } else if (page_path.indexOf("performance") !== -1){
 
-        // load some data inside of the performance div
+        // load json payload using ajax request
         $.ajax({
-            url: "/seattle/api/study/"
-        })
-        .done(function(data) {
-            $("#loading_performance").html(JSON.stringify(data));
-            //console.log(data);
+           url: "/seattle/api/study/",
+           type: 'get',
+           success: function(data) {
+               //If the success function is execute,
+               //then the Ajax request was successful.
+              $("#loading_performance").html(JSON.stringify(data));
+           },
+           error: function (xhr, ajaxOptions, thrownError) {
+               var error = 'Ajax request failed: ' + xhr.responseText;
+               $("#loading_performance").html(error);
+             }
         });
+
 
     } else {
         Discover.init_cards();
