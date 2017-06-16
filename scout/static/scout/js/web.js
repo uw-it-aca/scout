@@ -39,8 +39,8 @@ $(function(){
             url: "/seattle/api/study/"
         })
         .done(function(data) {
-            // $("#loading_performance").html(data);
-            console.log(data);
+            $("#loading_performance").html(JSON.stringify(data));
+            //console.log(data);
         });
 
     } else {
