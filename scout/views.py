@@ -14,7 +14,8 @@ from django.views.generic.base import TemplateView, TemplateResponse
 
 # Experimental
 # for study api
-from scout.dao.space import get_filtered_api_spots, prepare_spot_api_info_OLD
+from scout.dao.space import (get_filtered_api_spots, prepare_spot_api_info_OLD,
+                             get_api_spot_by_id)
 import json as simplejson
 from datetime import datetime
 
@@ -261,6 +262,7 @@ class StudyListView(TemplateView):
 
     @validate_campus_selection
     def get_context_data(self, **kwargs):
+        start = datetime.now()
         self.template_name = kwargs['template_name']
         spots = get_filtered_spots(self.request, kwargs['campus'], "study")
         grouped_spots = group_spots_by_building(spots)
@@ -270,16 +272,37 @@ class StudyListView(TemplateView):
                    "count": len(spots),
                    "app_type": 'study',
                    "campus_locations": CAMPUS_LOCATIONS}
+        end = datetime.now()
+        print "Total time taken by HO: " + str((end - start).total_seconds())
         return context
 
 
 # Experimental
+class HPStudyListView(TemplateView):
+    template_name = "404.html"
+
+    @validate_campus_selection
+    def get_context_data(self, **kwargs):
+        start = datetime.now()
+        self.template_name = kwargs['template_name']
+        spots = get_filtered_api_spots(self.request, kwargs['campus'], "study")
+        context = {"campus": kwargs['campus'],
+                   "grouped_spots": spots,
+                   "count": len(spots),
+                   "app_type": 'study',
+                   "campus_locations": CAMPUS_LOCATIONS}
+        end = datetime.now()
+        print "Total time taken by HP: " + str((end - start).total_seconds())
+        return context
+
+
 # peformance test api for study data
 @validate_campus_selection
 def study_data_api(request, campus="seattle"):
-    print "NEW Implementation: Start: " + str(datetime.now())
+    start = datetime.now()
     spots = get_filtered_api_spots(request, campus, "study")
-    print "NEW Implementation: End: " + str(datetime.now())
+    end = datetime.now()
+    print "Total time taken by NEW: " + str((end - start).total_seconds())
     return HttpResponse(simplejson.dumps(spots),
                         content_type='application/json')
 
@@ -287,12 +310,26 @@ def study_data_api(request, campus="seattle"):
 # peformance test api for study data
 @validate_campus_selection
 def study_data_api_OLD(request, campus="seattle"):
-    print "OLD Implementation: Start: " + str(datetime.now())
+    start = datetime.now()
     spots = get_filtered_spots(request, campus, "study")
     grouped_spots = group_spots_by_building(spots)
     final = prepare_spot_api_info_OLD(grouped_spots)
-    print "OLD Implementation: End: " + str(datetime.now())
+    end = datetime.now()
+    print "Total time taken by OLD: " + str((end - start).total_seconds())
     return HttpResponse(simplejson.dumps(final),
+                        content_type='application/json')
+
+
+# peformance test api for study detail data
+@validate_campus_selection
+def study_detail_data_api(request, spot_id, campus="seattle"):
+    # start = datetime.now()
+    spot = get_api_spot_by_id(spot_id)
+    if spot is None:
+        spot = []
+    # end = datetime.now()
+    # print "Total time taken by NEW: " + str((end - start).total_seconds())
+    return HttpResponse(simplejson.dumps(spot),
                         content_type='application/json')
 
 

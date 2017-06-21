@@ -1,0 +1,48 @@
+{% load templatetag_handlebars %}
+{% tplhandlebars "study-list-module-component" %}
+
+<!-- BEGIN INNER PART -->
+<li class="scout-list-item"  id="SPOT_ID"  data-spot-lat="SPOT_LATITUDE" data-spot-lng="SPOT_LONGITUDE" data-spot-building="BUILDING_NAME" data-spot-name="SPOT_NAME">
+    <a href="/h/CAMPUS/study/SPOT_ID/" class="item-link item-content">
+        <div class="item-media">
+            <!-- IF SPOT HAS IMAGE -->
+            <div class="scout-spot-image" style="background-image: url('/images/SPOT_ID/image/IMAGE_ID/?width=100'); width:80px; height:80px;">&nbsp;</div>
+            <!-- END IF -->
+        </div>
+        <div class="item-inner">
+            <div class="item-title-row">
+                <div class="item-title">SPOT_NAME</div>
+            </div>
+            <div class="item-subtitle">
+                <div style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+                    <!-- IF SPOT HAS LOCATION_DESCRIPTION -->
+                    SPOT_LOCATION_DESCRIPTION
+                    <!-- END IF -->
+                </div>
+            </div>
+            <div class="item-text">
+                <div style="text-transform:capitalize;">
+                <!-- LOOP OVER SPOT_TYPES -->
+                <span>SPOT_TYPE</span>
+                <!-- END LOOP -->
+                </div>
+                <div style="font-size:12px;color:#000;">
+                    <span class="scout-spot-distance"><span class="distance-number">---</span>&nbsp;mi&nbsp;&nbsp;</span>
+                    <!-- IF SPOT HAS LABSTATS -->
+                    <span style="float:right; color:#999;">
+                        <i class="fa fa-desktop" aria-hidden="true"></i>
+                        <span class="visually-hidden">Computer availability:</span>
+                        <span class="scout-green">SPOT_AUTO_LABSTATS_AVAILABLE</span> / SPOT_AUTO_LABSTATS_TOTAL
+                    </span>
+                    <!-- ELSE IF SPOT HAS CAPACITY -->
+                    <span style="float:right; color:#999;">Seats: SPOT_CAPACITY</span>
+                    <!-- END IF -->
+
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<!-- END INNER PART -->
+
+{% endtplhandlebars %}

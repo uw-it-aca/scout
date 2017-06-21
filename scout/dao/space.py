@@ -135,6 +135,7 @@ def prepare_spot_api_info_OLD(data):
             group["spots"].append(spot_json)
     return data
 
+
 # modified version to match with the Experimental Section
 def get_filtered_api_spots(request, campus, app_type=None):
     filters = _get_spot_filters(request)
@@ -150,18 +151,22 @@ def get_filtered_api_spots(request, campus, app_type=None):
     elif(app_type == "study"):
         if "open_at" not in dict(filters):
             filters.append(('open_now', 'true'))
+            # PASSES A NEW FILTER REQUESTING EXPERIMENTAL
+            filters.append(('request-experimental', 'true'))
     return get_api_spots_by_filter(filters)
 
 
 # modified to represent the new functions used by the api
 def get_api_spots_by_filter(filters=[]):
+    print "Spotseeker start: " + str(datetime.datetime.now())
     spot_client = Spotseeker()
     resp = []
     try:
         spots = spot_client.search_spots(filters)
+        print "Spotseeker end: " + str(datetime.datetime.now())
         grouped_spots = group_api_spots_by_building(spots)
         for data in grouped_spots:
-            resp.append(prepare_spot_api_info(data))
+            resp.append(prepare_spot_api_info_compact(data))
     except DataFailureException:
         # TODO: consider logging on failure
         pass
@@ -235,6 +240,28 @@ def prepare_spot_api_info(data):
         spot_json["is_open"] = get_is_spot_open(organize_hours(spot), now)
         data["spots"].append(spot_json)
     return data
+
+
+def prepare_spot_api_info_compact(data):
+    spot_list = data["spots"]
+    data["spots"] = []
+    for spot in spot_list:
+        spot_json = {}
+        spot_json["spot_id"] = spot.spot_id
+        spot_json["latitude"] = spot.latitude
+        spot_json["longitude"] = spot.longitude
+        data["spots"].append(spot_json)
+    return data
+
+
+def get_api_spot_by_id(spot_id):
+    spot_client = Spotseeker()
+    try:
+        spot = spot_client.get_spot_by_id(spot_id)
+    except DataFailureException:
+        return None
+    return prepare_spot_api_info({"spots": [spot]})["spots"][0]
+
 
 """
 End of Experimental Section

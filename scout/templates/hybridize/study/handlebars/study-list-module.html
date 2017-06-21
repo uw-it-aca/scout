@@ -1,0 +1,15 @@
+{% load templatetag_handlebars %}
+{% tplhandlebars "study-list-module" %}
+
+<!-- begin outer part of the template -->
+<li style="padding:0;" class="scout-list-building" data-building-name="BUILDING_NAME" data-building-lat="BUILDING_LATITUDE" data-building-lng="BUILDING_LONGITUDE">
+    <div class="list-group-title">BUILDING_NAME</div>
+    <ul class="scout_study_spot_list" style="padding-left:0;">
+        <!-- BEGIN INNER PART -->
+        {{ COMPLETE_INNER_HTML }}
+        <!-- END INNER PART -->
+    </ul>
+</li>
+<!-- END OUTER PART -->
+
+{% endtplhandlebars %}

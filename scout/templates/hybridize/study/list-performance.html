@@ -1,0 +1,181 @@
+{% extends "hybridize/base.html" %}
+{% load staticfiles %}
+{% load scout_filters %}
+
+{% block title %}Study{% endblock %}
+
+{% block hybrid_content %}
+
+<div class="card">
+    <div class="card-content">
+        <div class="card-content-inner">
+
+            <div class="row no-gutter">
+                <div class="col-66">
+                    Filtering by: <span id="filter_label_text"></span>
+                </div>
+                <div class="col-33" style="text-align:right;">
+                    <!-- Fix the count value -->
+                    {{ count }} spaces
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="list-block media-list scout-list">
+
+
+    <div class="list-group">
+        <ul id="scout_study_list">
+            {% if count > 0 %}
+            <!-- Data goes here -->
+            <!-- fancy content placeholder -->
+            <li style="padding:0;" class="scout-list-building">
+                <div class="list-group-title"><span style="display:inline-block;background:#ccc;width:150px; height:10px; vertical-align:middle;">&nbsp;</span></div>
+                <ul class="scout_study_spot_list" style="padding-left:0;">
+                    <li class="scout-list-item">
+                        <a href="#" class="item-link item-content">
+                            <div class="item-media">
+                                <div class="scout-spot-image" style="background-image: url('{% static "scout/img/placeholder-200.png" %}'); width:80px; height:80px;">&nbsp;</div>
+                            </div>
+                            <div class="item-inner">
+                                <div class="item-title-row">
+                                    <div class="item-title"><span style="display:inline-block;background:#ccc;width:100px; height:10px; vertical-align:middle;">&nbsp;</span></div>
+                                </div>
+                                <div class="item-subtitle">
+                                    <div style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"><span style="display:inline-block;background:#ccc;width:150px; height:10px; vertical-align:middle;">&nbsp;</span></div>
+                                </div>
+                                <div class="item-text">
+                                    <div style="text-transform:capitalize;">
+                                        <span style="display:inline-block;background:#ccc;width:80px; height:10px; vertical-align:middle;">&nbsp;</span>
+                                    </div>
+                                    <div style="font-size:12px;color:#000;">
+                                        <span class="scout-spot-distance"><span style="display:inline-block;background:#ccc;width:40px; height:10px; vertical-align:middle;">&nbsp;</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li class="scout-list-item">
+                        <a href="#" class="item-link item-content">
+                            <div class="item-media">
+                                <div class="scout-spot-image" style="background-image: url('{% static "scout/img/placeholder-200.png" %}'); width:80px; height:80px;">&nbsp;</div>
+                            </div>
+                            <div class="item-inner">
+                                <div class="item-title-row">
+                                    <div class="item-title"><span style="display:inline-block;background:#ccc;width:100px; height:10px; vertical-align:middle;">&nbsp;</span></div>
+                                </div>
+                                <div class="item-subtitle">
+                                    <div style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"><span style="display:inline-block;background:#ccc;width:150px; height:10px; vertical-align:middle;">&nbsp;</span></div>
+                                </div>
+                                <div class="item-text">
+                                    <div style="text-transform:capitalize;">
+                                        <span style="display:inline-block;background:#ccc;width:80px; height:10px; vertical-align:middle;">&nbsp;</span>
+                                    </div>
+                                    <div style="font-size:12px;color:#000;">
+                                        <span class="scout-spot-distance"><span style="display:inline-block;background:#ccc;width:40px; height:10px; vertical-align:middle;">&nbsp;</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li class="scout-list-item">
+                        <a href="#" class="item-link item-content">
+                            <div class="item-media">
+                                <div class="scout-spot-image" style="background-image: url('{% static "scout/img/placeholder-200.png" %}'); width:80px; height:80px;">&nbsp;</div>
+                            </div>
+                            <div class="item-inner">
+                                <div class="item-title-row">
+                                    <div class="item-title"><span style="display:inline-block;background:#ccc;width:100px; height:10px; vertical-align:middle;">&nbsp;</span></div>
+                                </div>
+                                <div class="item-subtitle">
+                                    <div style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"><span style="display:inline-block;background:#ccc;width:150px; height:10px; vertical-align:middle;">&nbsp;</span></div>
+                                </div>
+                                <div class="item-text">
+                                    <div style="text-transform:capitalize;">
+                                        <span style="display:inline-block;background:#ccc;width:80px; height:10px; vertical-align:middle;">&nbsp;</span>
+                                    </div>
+                                    <div style="font-size:12px;color:#000;">
+                                        <span class="scout-spot-distance"><span style="display:inline-block;background:#ccc;width:40px; height:10px; vertical-align:middle;">&nbsp;</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li class="scout-list-item">
+                        <a href="#" class="item-link item-content">
+                            <div class="item-media">
+                                <div class="scout-spot-image" style="background-image: url('{% static "scout/img/placeholder-200.png" %}'); width:80px; height:80px;">&nbsp;</div>
+                            </div>
+                            <div class="item-inner">
+                                <div class="item-title-row">
+                                    <div class="item-title"><span style="display:inline-block;background:#ccc;width:100px; height:10px; vertical-align:middle;">&nbsp;</span></div>
+                                </div>
+                                <div class="item-subtitle">
+                                    <div style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"><span style="display:inline-block;background:#ccc;width:150px; height:10px; vertical-align:middle;">&nbsp;</span></div>
+                                </div>
+                                <div class="item-text">
+                                    <div style="text-transform:capitalize;">
+                                        <span style="display:inline-block;background:#ccc;width:80px; height:10px; vertical-align:middle;">&nbsp;</span>
+                                    </div>
+                                    <div style="font-size:12px;color:#000;">
+                                        <span class="scout-spot-distance"><span style="display:inline-block;background:#ccc;width:40px; height:10px; vertical-align:middle;">&nbsp;</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li class="scout-list-item">
+                        <a href="#" class="item-link item-content">
+                            <div class="item-media">
+                                <div class="scout-spot-image" style="background-image: url('{% static "scout/img/placeholder-200.png" %}'); width:80px; height:80px;">&nbsp;</div>
+                            </div>
+                            <div class="item-inner">
+                                <div class="item-title-row">
+                                    <div class="item-title"><span style="display:inline-block;background:#ccc;width:100px; height:10px; vertical-align:middle;">&nbsp;</span></div>
+                                </div>
+                                <div class="item-subtitle">
+                                    <div style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"><span style="display:inline-block;background:#ccc;width:150px; height:10px; vertical-align:middle;">&nbsp;</span></div>
+                                </div>
+                                <div class="item-text">
+                                    <div style="text-transform:capitalize;">
+                                        <span style="display:inline-block;background:#ccc;width:80px; height:10px; vertical-align:middle;">&nbsp;</span>
+                                    </div>
+                                    <div style="font-size:12px;color:#000;">
+                                        <span class="scout-spot-distance"><span style="display:inline-block;background:#ccc;width:40px; height:10px; vertical-align:middle;">&nbsp;</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <!-- end fancy content placeholder -->
+            {% else %}
+            <!-- error message -->
+            <li class="scout-list-item">
+                <div class="list-group-title">no found</div>
+            </li>
+            <li class="scout-list-item scout-error" style="padding:20px;">
+                <p class="scout-error-msg">No results? Try updating your filters.</p>
+                <div class="scout-error-body">
+                    <p>Suggestions for improving the results:</p>
+                    <ul>
+                        <li>Try a specific campus.</li>
+                        <li>Try using fewer filters.</li>
+                    </ul>
+                </div>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+
+
+</div>
+
+{% endblock %}
