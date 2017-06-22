@@ -99,29 +99,14 @@
 
         {% endif %}
 
-        <script type="text/javascript">
-            window.staticPath="{% static "" %}";
-            window.campus_locations = {{ campus_locations | safe }};
-        </script>
-
-        <!-- googlme maps -->
-        {% if google_maps %}
-        <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3&amp;key={{ google_maps }}&amp;libraries=geometry"></script>
-        {% else %}
-        <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?libraries=geometry"></script>
-        {% endif %}
-
+        <!-- inline css -->
+        {% compress css inline %}
         <style>
 
-            @keyframes placeHolderShimmer{
-                0%{
-                    background-position: -468px 0
-                }
-                100%{
-                    background-position: 468px 0
-                }
+            @keyframes placeHolderShimmer {
+                0% { background-position: -468px 0 }
+                100% { background-position: 468px 0 }
             }
-
             .content-loading {
                 display:inline-block !important;
                 height:10px;
@@ -138,6 +123,19 @@
                 position: relative;
             }
         </style>
+        {% endcompress %}
+
+        <script type="text/javascript">
+            window.staticPath="{% static "" %}";
+            window.campus_locations = {{ campus_locations | safe }};
+        </script>
+
+        <!-- googlme maps -->
+        {% if google_maps %}
+        <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3&amp;key={{ google_maps }}&amp;libraries=geometry"></script>
+        {% else %}
+        <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?libraries=geometry"></script>
+        {% endif %}
 
     </head>
 
