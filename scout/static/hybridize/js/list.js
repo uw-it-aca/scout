@@ -2,6 +2,37 @@ var List = {
 
     init: function () {
 
+        // Compile template with Handlebars
+        var source = $("#study-list-module").html();
+        var template = Handlebars.compile(source);
+
+        // load json payload using ajax request
+        $.ajax({
+           url: "/seattle/api/study/",
+           type: 'get',
+           success: function(data) {
+               //If the success function is execute,
+               //then the Ajax request was successful.
+              console.log(data[1]);
+              console.log(template({
+                  object: data[1]
+              }));
+              /*$("scout_study_list").html(template({
+                  object: data[1]
+              }));*/
+           },
+           error: function (xhr, ajaxOptions, thrownError) {
+               console.log(xhr.responseText);
+           }
+        });
+
+
+        // List.load_init_actions_on_populate()
+
+    },
+
+    load_init_actions_on_populate: function () {
+
         // Gets the current type the page is on!
         var currentType = $("body").data("app-type")
 

@@ -23,6 +23,7 @@ from scout.views import HybridCompsView
 
 # Experimental
 from scout.views import LoadingPerformanceView
+from scout.views import HPStudyListView
 
 urlpatterns = patterns(
     '',
@@ -69,9 +70,16 @@ urlpatterns = patterns(
     # data endpoint for ajax requests for study
     url(r'^(?P<campus>[^/]+)/api/study/$',
         views.study_data_api),
+    # data endpoint for ajax requests for study detail
+    url(r'^(?P<campus>[^/]+)/api/study/(?P<spot_id>[0-9]{1,5})/$',
+        views.study_detail_data_api),
     # OLD data endpoint for ajax requests for study
     url(r'^(?P<campus>[^/]+)/api/study/old$',
         views.study_data_api_OLD),
+    # hybrid template render with new implementation
+    url(r'^h/(?P<campus>[^/]+)/performance/study/$',
+        HPStudyListView.as_view(),
+        {"template_name": "hybridize/study/list-performance.html"}),
 
     # hybrid home
     url(r'^h/$', RedirectView.as_view(url='/h/seattle')),
