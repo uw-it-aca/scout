@@ -42,7 +42,7 @@ var List = {
                 //then the Ajax request was successful.
                 var isource = $("#study-list-module-component").html();
                 var itemplate = Handlebars.compile(isource);
-                $("#scout_study_list").html("");
+                //$("#scout_study_list").html("");
                 $.each(data, function(index, object) {
                     List.load_spot_details(template, itemplate, object, campus);
                 });
@@ -78,10 +78,14 @@ var List = {
             promises.push(request);
         });
         $.when.apply(null, promises).done(function(){
+
             $("#scout_study_list").append(outer_template({
                 object: object,
                 inner_html: spot_html
             }));
+
+            //remove the content loading static after appending list
+            $("#fancy_content_loading").remove();
         });
     },
 
