@@ -15,8 +15,9 @@ $(document).on('turbolinks:load', function() {
 		activeState: true,
 	});
 
-    // get the app_type
-    var type = $("body").data("app-type")
+    // get the app_type and campus
+    var type = $("body").data("app-type");
+    var campus = $("body").data("campus");
 
     if (type.indexOf("food") !== -1) {
         // food
@@ -25,7 +26,8 @@ $(document).on('turbolinks:load', function() {
 
     } else if (type.indexOf("study") !== -1){
         // study
-        List.init();
+        List.add_spot_data_to_list(campus);
+        // List.init();
         Filter.init();
 
         // study detail image slider

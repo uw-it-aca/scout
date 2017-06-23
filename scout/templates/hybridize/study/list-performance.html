@@ -28,7 +28,8 @@
 
     <div class="list-group">
         <ul id="scout_study_list">
-
+            {% if count > 0 %}
+            <!-- Data goes here -->
             <!-- fancy content placeholder -->
             <li style="padding:0;" class="scout-list-building">
 
@@ -249,9 +250,6 @@
                 </ul>
             </li>
             <!-- end fancy content placeholder -->
-
-            {% if count > 0 %}
-            <!-- Data goes here -->
             {% else %}
             <!-- error message -->
             <li class="scout-list-item">
@@ -274,5 +272,8 @@
 
 
 </div>
+
+{% include "hybridize/study/handlebars/study-list-module.html" %}
+{% include "hybridize/study/handlebars/study-list-module-component.html" %}
 
 {% endblock %}

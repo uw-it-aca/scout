@@ -2,37 +2,6 @@ var List = {
 
     init: function () {
 
-        // Compile template with Handlebars
-        var source = $("#study-list-module").html();
-        var template = Handlebars.compile(source);
-
-        // load json payload using ajax request
-        $.ajax({
-           url: "/seattle/api/study/",
-           type: 'get',
-           success: function(data) {
-               //If the success function is execute,
-               //then the Ajax request was successful.
-              console.log(data[1]);
-              console.log(template({
-                  object: data[1]
-              }));
-              /*$("scout_study_list").html(template({
-                  object: data[1]
-              }));*/
-           },
-           error: function (xhr, ajaxOptions, thrownError) {
-               console.log(xhr.responseText);
-           }
-        });
-
-
-        // List.load_init_actions_on_populate()
-
-    },
-
-    load_init_actions_on_populate: function () {
-
         // Gets the current type the page is on!
         var currentType = $("body").data("app-type")
 
@@ -58,6 +27,62 @@ var List = {
             //List.defer_load_image();
         }
 
+    },
+
+    add_spot_data_to_list: function(campus) {
+        // Compile template with Handlebars
+        var source = $("#study-list-module").html();
+        var template = Handlebars.compile(source);
+        // load json payload using ajax request
+        $.ajax({
+            url: "/" + campus + "/api/study/",
+            type: 'get',
+            success: function(data) {
+                //If the success function is execute,
+                //then the Ajax request was successful.
+                var isource = $("#study-list-module-component").html();
+                var itemplate = Handlebars.compile(isource);
+                $("#scout_study_list").html("");
+                $.each(data, function(index, object) {
+                    List.load_spot_details(template, itemplate, object, campus);
+                });
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log(xhr.responseText);
+            }
+        });
+    },
+
+    load_spot_details: function(outer_template, inner_template, object, campus) {
+        var spot_html = "";
+        var promises = [];
+        $.each(object["spots"], function(index, bare_spot) {
+            var request = $.ajax({
+                url: "/" + campus + "/api/study/" + bare_spot["spot_id"] + "/",
+                type: 'get',
+                success: function(spot) {
+                    if ($.isEmptyObject(spot)) {
+                        console.log(bare_spot["spot_id"] + " doesn't have any data");
+                    } else {
+                        spot_html += inner_template({
+                            spot: spot,
+                            campus: campus
+                        });
+                    }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    console.log("Request failed for spot : " + bare_spot["spot_id"]);
+                    console.log(xhr.responseText);
+                }
+            });
+            promises.push(request);
+        });
+        $.when.apply(null, promises).done(function(){
+            $("#scout_study_list").append(outer_template({
+                object: object,
+                inner_html: spot_html
+            }));
+        });
     },
 
     add_distances: function (className, latAttr, lngAttr) {
