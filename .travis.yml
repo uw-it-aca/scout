@@ -12,7 +12,7 @@ before_script:
   - cp travis-ci/manage.py manage.py
   - python manage.py migrate --noinput
   - npm install mocha
-  - npm install instalbul-coveralls
+  - npm install instanbul-coveralls
   - npm install jquery
   - npm install jsdom@3
 script:
