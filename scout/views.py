@@ -204,7 +204,7 @@ class HybridFoodListView(TemplateView):
         spots = get_spots_by_filter([
             ('extended_info:app_type', 'food'),
             ('extended_info:campus', kwargs['campus']),
-            ('limit', 10),
+            ('limit', 0),
             ('center_latitude', lat),
             ('center_longitude', lng),
             ('distance', 100000)
@@ -356,9 +356,9 @@ class TechFilterView(TemplateView):
         return context
 
 
-def hybrid_comps_view(request):
-    return render_to_response('hybridize/components.html',
-                              context_instance=RequestContext(request))
+# hybrid components examples
+class HybridCompsView(TemplateView):
+    template_name = "hybridize/components.html"
 
 
 # image views
