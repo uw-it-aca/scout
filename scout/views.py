@@ -372,10 +372,9 @@ class TechFilterView(TemplateView):
         pre = _load_filter_params_checked(self.request, filter_types)
         context = {}
 
-        # TODO: replace %20 and - and / with _
         for obj in pre:
-            new_key = obj.replace("%20", "_").replace("-", "_").replace("/",
-                                                                        "_")
+            new_key = obj.replace(" ", "_").replace("-", "_").replace("/",
+                                                                      "_")
             context[new_key] = pre[obj]
 
         context.update({"campus": kwargs['campus'],
