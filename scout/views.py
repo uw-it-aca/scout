@@ -436,6 +436,9 @@ class Response404(TemplateResponse):
 def _load_filter_params_checked(request, filter_types):
     context = {}
 
+    if "open_now" in request.GET:
+        context["open_now"] = True
+
     for param_class in filter_types:
         has_type = True
         i = 0
