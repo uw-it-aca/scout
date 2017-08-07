@@ -162,6 +162,18 @@ var Study_Filter = {
         // in fllter.js. This method is called by populate_filters_from_saved
         // in filter.js so no tests needed on this.
 
+        // clear session storage and load params from url
+
+        var params = {};
+        var param = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+        for(var i = 0; i < param.length; i++)
+        {
+            var arr = param[i].split("=");
+            params[decodeURIComponent(arr[0])] = decodeURIComponent(arr[1]);
+        }
+
+        sessionStorage.setItem("study_filter_params", JSON.stringify(params));
+
         var param_types = {
             "building": "building_select",
             "resources": "resources_select",
