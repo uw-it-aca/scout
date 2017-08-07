@@ -13,7 +13,7 @@
     	<ul id="type_select">
     		<li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="study_room">
+    				<input type="checkbox" value="study_room" {% if study_room %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Study room</div>
@@ -22,7 +22,7 @@
     		</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="study_area">
+    				<input type="checkbox" value="study_area" {% if study_area %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Study area</div>
@@ -31,7 +31,7 @@
     		</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="computer_lab">
+    				<input type="checkbox" value="computer_lab" {% if computer_lab %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Computer lab</div>
@@ -40,7 +40,7 @@
     		</li>
     		<li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="studio">
+    				<input type="checkbox" value="studio" {% if studio %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Production studio</div>
@@ -49,7 +49,7 @@
     		</li>
     		<li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="conference">
+    				<input type="checkbox" value="conference" {% if conference %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Conference/Classroom</div>
@@ -58,7 +58,7 @@
     		</li>
     		<li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="open">
+    				<input type="checkbox" value="open" {% if open %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Open space</div>
@@ -67,7 +67,7 @@
     		</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="lounge">
+    				<input type="checkbox" value="lounge" {% if lounge %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Lounge</div>
@@ -76,7 +76,7 @@
     		</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="cafe">
+    				<input type="checkbox" value="cafe" {% if cafe %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Café</div>
@@ -85,7 +85,7 @@
     		</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="outdoor">
+    				<input type="checkbox" value="outdoor" {% if outdoor %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Outdoor area</div>
@@ -100,7 +100,7 @@
     	<ul id="resources_select">
     		<li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="has_whiteboards">
+    				<input type="checkbox" value="has_whiteboards" {% if has_whiteboards %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Whiteboards</div>
@@ -109,7 +109,7 @@
     		</li>
     		<li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="has_outlets">
+    				<input type="checkbox" value="has_outlets" {% if has_outlets %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Outlets</div>
@@ -118,7 +118,7 @@
     		</li>
     		<li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="has_computers">
+    				<input type="checkbox" value="has_computers" {% if has_computers %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Computers</div>
@@ -127,7 +127,7 @@
     		</li>
     		<li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="has_scanner">
+    				<input type="checkbox" value="has_scanner" {% if has_scanner %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Scanner</div>
@@ -136,7 +136,7 @@
     		</li>
     		<li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="has_displays">
+    				<input type="checkbox" value="has_displays" {% if has_displays %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Large displays (for laptop)</div>
@@ -145,7 +145,7 @@
     		</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="has_projector">
+    				<input type="checkbox" value="has_projector" {% if has_projector %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Projector</div>
@@ -154,7 +154,7 @@
     		</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="has_printing">
+    				<input type="checkbox" value="has_printing" {% if has_printing %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Printing</div>
@@ -169,7 +169,7 @@
     	<ul id="noise_select">
     		<li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="silent">
+    				<input type="checkbox" value="silent" {% if silent %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Silent</div>
@@ -178,7 +178,7 @@
     		</li>
     		<li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="quiet">
+    				<input type="checkbox" value="quiet" {% if quiet %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Low hum</div>
@@ -187,7 +187,7 @@
     		</li>
     		<li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="moderate">
+    				<input type="checkbox" value="moderate" {% if moderate %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Chatter</div>
@@ -202,7 +202,7 @@
     	<ul id="food_select">
     		<li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="space">
+    				<input type="checkbox" value="space" {% if space %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">In space</div>
@@ -211,7 +211,7 @@
     		</li>
     		<li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="building">
+    				<input type="checkbox" value="building" {% if building %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">In building</div>
@@ -220,7 +220,7 @@
     		</li>
     		<li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="neighboring">
+    				<input type="checkbox" value="neighboring" {% if neighboring %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">In neighboring building</div>

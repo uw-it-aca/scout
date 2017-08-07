@@ -103,23 +103,4 @@ var Food_Filter = {
         **/
     },
 
-
-    populate_filters_from_saved: function(){
-        // This method is similar to the current implementation
-        // in fllter.js. This method is called by populate_filters_from_saved
-        // in filter.js so no tests needed on this.
-
-        var param_types = {
-            "payment": "payment_select",
-            "type": "type_select",
-            "food": "food_select",
-            "cuisine": "cuisine_select",
-            "period": "period_select",
-            "open_now": "open_now"
-        };
-
-        Filter.populate_filters_from_saved("food_filter_params", param_types);
-
-    },
-
 };

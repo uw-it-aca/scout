@@ -243,9 +243,16 @@ class FoodFilterView(TemplateView):
     @validate_campus_selection
     def get_context_data(self, **kwargs):
         self.template_name = kwargs['template_name']
-        context = {"campus": kwargs['campus'],
-                   "app_type": 'food',
-                   "campus_locations": CAMPUS_LOCATIONS}
+
+        # load parameters into context
+        filter_types = ["payment", "period", "type"]
+
+        context = _load_filter_params_checked(self.request, filter_types)
+
+        context.update({"campus": kwargs['campus'],
+                        "app_type": 'food',
+                        "campus_locations": CAMPUS_LOCATIONS})
+
         return context
 
 
@@ -293,10 +300,18 @@ class StudyFilterView(TemplateView):
     @validate_campus_selection
     def get_context_data(self, **kwargs):
         self.template_name = kwargs['template_name']
-        context = {"campus": kwargs['campus'],
-                   "buildings": get_building_list(kwargs['campus']),
-                   "app_type": 'study',
-                   "campus_locations": CAMPUS_LOCATIONS}
+
+        # load parameters into context
+        filter_types = ["type", "resources", "noise", "food", "lighting",
+                        "reservation", "building", "capacity"]
+
+        context = _load_filter_params_checked(self.request, filter_types)
+
+        context.update({"campus": kwargs['campus'],
+                        "buildings": get_building_list(kwargs['campus']),
+                        "app_type": 'study',
+                        "campus_locations": CAMPUS_LOCATIONS})
+
         return context
 
 
@@ -350,9 +365,22 @@ class TechFilterView(TemplateView):
     @validate_campus_selection
     def get_context_data(self, **kwargs):
         self.template_name = kwargs['template_name']
-        context = {"campus": kwargs['campus'],
-                   "app_type": 'tech',
-                   "campus_locations": CAMPUS_LOCATIONS}
+
+        # load parameters into context
+        filter_types = ["brand", "subcategory"]
+
+        pre = _load_filter_params_checked(self.request, filter_types)
+        context = {}
+
+        for obj in pre:
+            new_key = obj.replace(" ", "_").replace("-", "_").replace("/",
+                                                                      "_")
+            context[new_key] = pre[obj]
+
+        context.update({"campus": kwargs['campus'],
+                        "app_type": 'tech',
+                        "campus_locations": CAMPUS_LOCATIONS})
+
         return context
 
 
@@ -403,3 +431,23 @@ def custom_404_context(campus="seattle"):
 
 class Response404(TemplateResponse):
     status_code = 404
+
+
+def _load_filter_params_checked(request, filter_types):
+    context = {}
+
+    if "open_now" in request.GET:
+        context["open_now"] = True
+
+    for param_class in filter_types:
+        has_type = True
+        i = 0
+        while has_type:
+            if param_class + str(i) in request.GET:
+                param = request.GET[param_class + str(i)]
+                context[param] = True
+            else:
+                has_type = False
+            i = i + 1
+
+    return context

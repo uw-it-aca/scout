@@ -92,16 +92,4 @@ var Tech_Filter = {
         **/
     },
 
-    populate_filters_from_saved: function(){
-        // This method is similar to the current implementation
-        // in fllter.js. This method is called by populate_filters_from_saved
-        // in filter.js so no tests needed on this.
-
-        var param_types = {
-            "brand": "brand_select",
-            "subcategory": "subcategory_select",
-        };
-        Filter.populate_filters_from_saved("tech_filter_params", param_types);
-    },
-
 };
