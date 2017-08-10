@@ -1,8 +1,9 @@
 var Geolocation = {
 
     // drumheller fountain
-    default_location: { latitude: 47.653811, longitude: -122.307815 },
+    // default_location: { latitude: 47.653811, longitude: -122.307815 },
 
+    /**
     campus_locations: function(campus){
 
         var locations = window.campus_locations;
@@ -12,13 +13,15 @@ var Geolocation = {
             Geolocation.default_location.longitude = locations[campus]["longitude"];
         }
     },
+    **/
 
-    location_changed:  {"type": "location_changed"},
+    // location_changed:  {"type": "location_changed"},
 
-    location_updating:  {"type": "location_updating"},
+    // location_updating:  {"type": "location_updating"},
 
-    geolocation_status: { watchid: undefined },
+    // geolocation_status: { watchid: undefined },
 
+    /**
     update_location: function () {
 
         // current user location is given more precedence over campus location.
@@ -65,14 +68,30 @@ var Geolocation = {
         Geolocation.set_location_type("user");
         $.event.trigger(Geolocation.location_changed);
     },
+    **/
 
     get_latlng_from_coords: function(lat, lng) {
         return new google.maps.LatLng(lat, lng);
     },
 
     get_client_latlng: function () {
-        var lat = sessionStorage.getItem("lat");
-        var lng = sessionStorage.getItem("lng");
+
+        //var lat = sessionStorage.getItem("lat");
+        //var lng = sessionStorage.getItem("lng");
+
+        // if the lat/lng is passed in query params... it's user location_changed
+        // else.. just use the lat/lng in the data-attribute (dafault campus location)
+
+        var lat, lng;
+
+        if ( $("body").data("user-latitude") && $("body").data("user-longitude") ) {
+            lat = $("body").data("user-latitude");
+            lng = $("body").data("user-longitude");
+        } else {
+            lat = $("body").data("campus-latitude");
+            lng = $("body").data("campus-longitude");
+        }
+
         return Geolocation.get_latlng_from_coords(lat, lng);
     },
 
@@ -87,6 +106,7 @@ var Geolocation = {
     */
 
     // function called from native...
+    /**
     send_client_location: function(user_lat, user_lng) {
 
         var position =  { coords:
@@ -97,9 +117,9 @@ var Geolocation = {
         };
 
         //Filter.call_js_bridge("send_client_location called: " + position);
-
         Geolocation.set_client_location(position);
     },
+    **/
 
     /**
     stop_watching_location: function(){
@@ -111,6 +131,7 @@ var Geolocation = {
     },
     **/
 
+    /**
     set_campus_location: function() {
 
         // get the campus from the url
@@ -123,7 +144,8 @@ var Geolocation = {
         Geolocation.set_location_type("default");
         $.event.trigger(Geolocation.location_changed);
     },
-
+    **/
+    
     get_distance_from_position: function (item_latlng) {
         // Returns distance in miles, rounded to 2 decimals
         var current_latlng = Geolocation.get_client_latlng();

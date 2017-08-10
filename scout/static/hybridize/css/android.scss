@@ -1,5 +1,21 @@
 
 /*** framework7 overrides ***/
+body { position: static; overflow: auto; height: auto; }
+
+.views {
+    position: static;
+    width: auto;
+    height: auto;
+    z-index: 0;
+
+    .view { position: static; overflow: auto; }
+}
+
+.pages { position: static; width: auto; height: auto; overflow: auto;
+    .page { position: static; width: auto; height: auto; left: auto; top: auto;
+        .page-content { position: static; height: auto; z-index: 0; }
+    }
+}
 
 .item-media {
 
@@ -15,6 +31,8 @@
 		li { }
 	}
 
+    .list-group-title { position: static; }
+    
     .list-block-label { clear: both; word-wrap: break-word; color: #696969;
 
         i { color:#333; margin-right: 8px; }

@@ -2,19 +2,14 @@ Discover = {
 
     init_cards: function () {
 
-        $(document).on("location_changed", function() {
 
-            var discover_divs = $("#discover_cards").children();
+        var discover_divs = $("#discover_cards").children();
 
-            var latlng = Geolocation.get_client_latlng();
+        var latlng = Geolocation.get_client_latlng();
 
-            $(discover_divs).each(function (idx, div){
-                var card_id = $(div).attr('id');
-                Discover.fetch_cards(card_id, latlng);
-            });
-
-
-
+        $(discover_divs).each(function (idx, div){
+            var card_id = $(div).attr('id');
+            Discover.fetch_cards(card_id, latlng);
         });
 
     },

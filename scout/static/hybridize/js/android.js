@@ -5,6 +5,15 @@ $(document).on('turbolinks:load', function() {
 
     console.log("turbolinks android fired!");
 
+    // track visits in google analytics
+    try{
+        ga('send', 'pageview', (location.pathname + location.search));
+        console.info("Navigated to: " + location.pathname + location.search);
+    }
+    catch(e){
+        console.log("No ga function, GOOGLE_ANALYTICS_KEY may not be set.");
+    };
+
     /// async load css by flipping the media attribute to all
     $('link[rel="stylesheet"]').attr('media', 'all');
 
@@ -16,9 +25,6 @@ $(document).on('turbolinks:load', function() {
         materialRipple: false,
 		activeState: true,
 	});
-
-    // Geolocation
-    Geolocation.update_location();
 
     // get the app_type
     var type = $("body").data("app-type")
@@ -50,7 +56,7 @@ $(document).on('turbolinks:load', function() {
     }
 
     // Geolocation
-    Geolocation.update_location();
+    // Geolocation.update_location();
 
     // filter
     Filter.init_events();

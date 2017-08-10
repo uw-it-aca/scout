@@ -2,31 +2,30 @@ var List = {
 
     init: function () {
 
-        $(document).on("location_changed", function() {
+        // Gets the current type the page is on!
+        var currentType = $("body").data("app-type")
+
+        if (currentType.indexOf("study") > -1) {
+
+            List.add_distances("scout-list-item", "data-spot-lat", "data-spot-lng");
+            List.add_distances("scout-list-building", "data-building-lat", "data-building-lng");
+            //List.order_list("scout-list-building", "scout_study_list", true);
+            //List.defer_load_image();
+
+        } else if (currentType.indexOf("tech") > -1)  {
+
+            List.add_distances("scout-list-item", "data-spot-lat", "data-spot-lng");
+            List.add_additional_tech_distances();
+            //List.order_list("scout-list-item", "scout_tech_list", false);
+            //List.defer_load_image();
+
+        } else {
 
             List.add_distances("scout-list-item", "data-spot-lat", "data-spot-lng");
 
-            // Gets the current type the page is on!
-            var currentType = $("body").data("app-type")
-
-            if (currentType.indexOf("study") > -1) {
-
-                List.add_distances("scout-list-building", "data-building-lat", "data-building-lng");
-                List.order_list("scout-list-building", "scout_study_list", true);
-                List.defer_load_image();
-
-            } else if (currentType.indexOf("tech") > -1)  {
-
-                List.add_additional_tech_distances();
-                List.order_list("scout-list-item", "scout_tech_list", false);
-                List.defer_load_image();
-
-            } else {
-
-                List.order_list("scout-list-item", "scout_food_list", false);
-                List.defer_load_image();
-            }
-        });
+            //List.order_list("scout-list-item", "scout_food_list", false);
+            //List.defer_load_image();
+        }
 
     },
 
@@ -57,6 +56,7 @@ var List = {
         });
     },
 
+    /**
     order_list: function (className, listName, isBuilding) {
         var objects = $("." + className).not(".scout-error").detach();
         if(isBuilding) {
@@ -92,5 +92,6 @@ var List = {
             $(this).css('background-image', 'url(' + imageUrl + ')');
         });
     },
+    ***/
 
 };
