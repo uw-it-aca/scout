@@ -18,7 +18,6 @@ from scout.views import TechListView
 from scout.views import TechDetailView
 from scout.views import TechFilterView
 
-from scout.views import HybridCompsView
 
 urlpatterns = patterns(
     '',
@@ -60,9 +59,6 @@ urlpatterns = patterns(
 
     # hybrid home
     url(r'^h/$', RedirectView.as_view(url='/h/seattle')),
-
-    # hybrid components
-    url(r'^h/components/$', HybridCompsView.as_view()),
 
     # hybrid discover
     url(r'^h/(?P<campus>[^/]+)/$',

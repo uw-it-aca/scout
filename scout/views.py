@@ -357,11 +357,6 @@ class TechFilterView(TemplateView):
         return context
 
 
-# hybrid components examples
-class HybridCompsView(TemplateView):
-    template_name = "hybridize/components.html"
-
-
 # image views
 def spot_image_view(request, image_id, spot_id):
     width = request.GET.get('width', None)
