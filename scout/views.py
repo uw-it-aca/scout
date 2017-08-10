@@ -190,33 +190,6 @@ class FoodListView(TemplateView):
         return context
 
 
-class HybridFoodListView(TemplateView):
-    template_name = "404.html"
-
-    @validate_campus_selection
-    def get_context_data(self, **kwargs):
-        self.template_name = kwargs['template_name']
-
-        # get user lat/lng from query params
-        lat = self.request.GET.get('h_lat', DEFAULT_LAT)
-        lng = self.request.GET.get('h_lng', DEFAULT_LON)
-
-        spots = get_spots_by_filter([
-            ('extended_info:app_type', 'food'),
-            ('extended_info:campus', kwargs['campus']),
-            ('limit', 0),
-            ('center_latitude', lat),
-            ('center_longitude', lng),
-            ('distance', 100000)
-        ])
-        context = {"spots": spots,
-                   "campus": kwargs['campus'],
-                   "count": len(spots),
-                   "app_type": 'food',
-                   "campus_locations": CAMPUS_LOCATIONS}
-        return context
-
-
 class FoodDetailView(TemplateView):
     template_name = "404.html"
 
@@ -382,11 +355,6 @@ class TechFilterView(TemplateView):
                         "campus_locations": CAMPUS_LOCATIONS})
 
         return context
-
-
-# hybrid components examples
-class HybridCompsView(TemplateView):
-    template_name = "hybridize/components.html"
 
 
 # image views
