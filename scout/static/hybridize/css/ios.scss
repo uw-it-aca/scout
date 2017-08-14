@@ -1,6 +1,6 @@
 /*** framework 7 overrides ***/
 
-body { position: static !important; overflow: inherit !important; height: auto !important; }
+body { position: static !important; overflow: initial !important; height: auto !important; box-sizing: border-box; }
 
 .views { overflow: hidden !important; overflow-x: hidden !important; overflow-y: auto !important; }
 
