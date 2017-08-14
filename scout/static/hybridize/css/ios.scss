@@ -1,5 +1,7 @@
 /*** framework 7 overrides ***/
 
+body { position: static !important; overflow: inherit !important; height: auto !important; }
+
 .views { overflow: hidden !important; overflow-x: hidden !important; overflow-y: auto !important; }
 
 .pages { position: relative; background: none !important;
@@ -82,7 +84,7 @@ label.label-radio input[type=checkbox]:checked~.item-inner, label.label-radio in
 
 /*** ios hybrid reset ***/
 
-body { background: #efeff4 !important; padding: 0 !important; margin: 0 !important; overflow-x: hidden; }
+body { background: #efeff4 !important; padding: 0 !important; margin: 0 !important; }
 
 .scout-list {
 
