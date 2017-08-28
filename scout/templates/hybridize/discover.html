@@ -22,7 +22,7 @@
 
 <div id="discover_loading" class="card" style="background:none !important;">
     <div class="card-header" style="color:#666; text-transform:uppercase; font-size:14px;">
-        Loading...
+        <span class="content-loading" style="width:200px;">&nbsp;</span>
     </div>
     <div class="card-content" style="background:#fff; padding: 10px 0;">
         <div class="list-block media-list">
@@ -122,21 +122,21 @@
 </div>
 
 {% if campus == 'seattle' %}
-<div id="discover_cards" class="visually-hidden" data-campus="{{campus}}" data-campus-latitude="{{ campus_locations.seattle.latitude }}" data-campus-longitude="{{ campus_locations.seattle.longitude }}">
+<div id="discover_cards" data-campus="{{campus}}" data-campus-latitude="{{ campus_locations.seattle.latitude }}" data-campus-longitude="{{ campus_locations.seattle.longitude }}">
 {% elif campus == 'bothell' %}
-<div id="discover_cards" class="visually-hidden" data-campus="{{campus}}" data-campus-latitude="{{ campus_locations.bothell.latitude }}" data-campus-longitude="{{ campus_locations.bothell.longitude }}">
+<div id="discover_cards" data-campus="{{campus}}" data-campus-latitude="{{ campus_locations.bothell.latitude }}" data-campus-longitude="{{ campus_locations.bothell.longitude }}">
 {% elif campus == 'tacoma' %}
-<div id="discover_cards" class="visually-hidden" data-campus="{{campus}}" data-campus-latitude="{{ campus_locations.tacoma.latitude }}" data-campus-longitude="{{ campus_locations.tacoma.longitude }}">
+<div id="discover_cards" data-campus="{{campus}}" data-campus-latitude="{{ campus_locations.tacoma.latitude }}" data-campus-longitude="{{ campus_locations.tacoma.longitude }}">
 {% endif %}
 
     <!-- containers for displaying cards -->
-    <div id="open"></div>
-    <div id="morning"></div>
-    <div id="studycomputerlab"></div>
-    <div id="{{ random_cards|random }}"></div>
-    <div>{% include "hybridize/discover_tech.html" %}</div>
-    <div id="late"></div>
-    <div id="studyoutdoors"></div>
+    <div id="open" style="display:none"></div>
+    <div id="morning" style="display:none"></div>
+    <div id="studycomputerlab" style="display:none"></div>
+    <div id="{{ random_cards|random }}" style="display:none"></div>
+    <div id="TECH_STATIC" style="display:none">{% include "hybridize/discover_tech.html" %}</div>
+    <div id="late" style="display:none"></div>
+    <div id="studyoutdoors" style="display:none"></div>
 
 </div>
 
