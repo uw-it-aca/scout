@@ -35,6 +35,7 @@ Discover = {
                        Discover.add_distance_and_sort();
                        //Discover.set_cards_are_visible(true);
                        $("#discover_cards").removeClass("visually-hidden");
+                       $("#discover_loading").hide();
                    },
                    error: function(xhr, status, error) {
                    }
