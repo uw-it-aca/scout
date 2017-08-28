@@ -6,13 +6,12 @@ $(document).on('turbolinks:load', function() {
     console.log("turbolinks android fired!");
 
     // track visits in google analytics
-    try{
+    try {
         ga('send', 'pageview', (location.pathname + location.search));
         console.info("Navigated to: " + location.pathname + location.search);
-    }
-    catch(e){
+    } catch(e){
         console.log("No ga function, GOOGLE_ANALYTICS_KEY may not be set.");
-    };
+    }
 
     /// async load css by flipping the media attribute to all
     $('link[rel="stylesheet"]').attr('media', 'all');
@@ -27,7 +26,7 @@ $(document).on('turbolinks:load', function() {
 	});
 
     // get the app_type
-    var type = $("body").data("app-type")
+    var type = $("body").data("app-type");
 
     if (type.indexOf("food") !== -1) {
         // food
