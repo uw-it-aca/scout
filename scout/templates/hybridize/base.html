@@ -131,17 +131,11 @@
     <body class="theme-custom" data-app-type="{{ app_type }}" data-campus="{{campus}}" {% if request.GET.h_lat and request.GET.h_lng %}data-user-latitude="{{ request.GET.h_lat }}" data-user-longitude="{{ request.GET.h_lng }}"{% else %}data-campus-latitude="{{ campus_locations.tacoma.latitude }}" data-campus-longitude="{{ campus_locations.tacoma.longitude }}"{% endif %} {% if request.is_and %}data-device="android"{% else %}data-device="ios"{% endif %}>
     {% endif %}
 
-        <div class="views">
-            <div class="view view-main">
-                <div class="pages">
-                    <div class="page">
-                        <div class="page-content">
-                        {% block hybrid_content %}{% endblock %}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+    <div class="scout-content">
+    {% block hybrid_content %}{% endblock %}
+    </div>
+
 
     </body>
 

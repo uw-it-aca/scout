@@ -3,27 +3,26 @@ var List = {
     init: function () {
 
         // Gets the current type the page is on!
-        var currentType = $("body").data("app-type")
+        var currentType = $("body").data("app-type");
 
         if (currentType.indexOf("study") > -1) {
 
             List.add_distances("scout-list-item", "data-spot-lat", "data-spot-lng");
             List.add_distances("scout-list-building", "data-building-lat", "data-building-lng");
-            //List.order_list("scout-list-building", "scout_study_list", true);
+            List.order_list("scout-list-building", "scout_study_list", true);
             //List.defer_load_image();
 
         } else if (currentType.indexOf("tech") > -1)  {
 
             List.add_distances("scout-list-item", "data-spot-lat", "data-spot-lng");
             List.add_additional_tech_distances();
-            //List.order_list("scout-list-item", "scout_tech_list", false);
+            List.order_list("scout-list-item", "scout_tech_list", false);
             //List.defer_load_image();
 
-        } else {
+        } else if (currentType.indexOf("food") > -1) {
 
             List.add_distances("scout-list-item", "data-spot-lat", "data-spot-lng");
-
-            //List.order_list("scout-list-item", "scout_food_list", false);
+            List.order_list("scout-list-item", "scout_food_list", false);
             //List.defer_load_image();
         }
 
@@ -56,7 +55,6 @@ var List = {
         });
     },
 
-    /**
     order_list: function (className, listName, isBuilding) {
         var objects = $("." + className).not(".scout-error").detach();
         if(isBuilding) {
@@ -74,17 +72,12 @@ var List = {
         spots.sort(function(a, b) {
             var a_distance = parseFloat($(a).attr('data-spot-distance'));
             var b_distance = parseFloat($(b).attr('data-spot-distance'));
-            if(a_distance < b_distance){
-                return -1;
-            } else if (a_distance > b_distance){
-                return 1;
-            } else {
-                return 0;
-            }
+            return a_distance - b_distance;
         });
         return spots;
     },
 
+    /**
     defer_load_image: function() {
         var spots = $(".image-defer");
         $.each(spots, function(idx, item){
@@ -92,6 +85,6 @@ var List = {
             $(this).css('background-image', 'url(' + imageUrl + ')');
         });
     },
-    ***/
+    **/
 
 };
