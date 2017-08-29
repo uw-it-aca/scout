@@ -10,7 +10,7 @@ Discover = {
         $(discover_divs).each(function (idx, div){
             var card_id = $(div).attr('id');
             // ignore if its a static card
-            if (card_id !== "TECH_STATIC") {
+            if (card_id && card_id !== "TECH_STATIC") {
                 Discover.fetch_cards(card_id, latlng);
             } else {
                 $("#" + card_id).fadeIn(3000);
@@ -72,7 +72,7 @@ Discover = {
     },
 
     _add_distance_to_spots: function (card_id) {
-        spots = $("#" + card_id).find("li");
+        var spots = $("#" + card_id).find("li");
         $.each(spots, function(idx, spot){
 
             var latitude = $(spot).attr("data-lat");
@@ -86,8 +86,8 @@ Discover = {
     },
 
     _sort_spots_on_cards: function (card_id) {
-        spots = $("#" + card_id).find("li");
-        spot_parent = spots.parent();
+        var spots = $("#" + card_id).find("li");
+        var spot_parent = spots.parent();
         spots.detach().sort(function(a, b) {
             var a_distance = parseFloat($(a).attr('data-spot-distance'));
             var b_distance = parseFloat($(b).attr('data-spot-distance'));
