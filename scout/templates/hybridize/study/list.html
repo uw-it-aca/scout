@@ -11,8 +11,11 @@
         <div class="card-content-inner">
 
             <div class="row no-gutter">
-                <div class="col-66">
-                    Filtering by: <span id="filter_label_text"></span>
+                <!-- study always has some sort of filter applied to it, so doesnt need to be visually hidden -->
+                <div class="col-66" id="filter_text_holder">
+                    <span id="filter_text_holder">
+                        Filtering by: <span id="filter_label_text"></span>
+                    </span>
                 </div>
                 <div class="col-33" style="text-align:right;">
                     {{ spots|length }} spaces

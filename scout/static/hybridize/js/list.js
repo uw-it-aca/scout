@@ -72,7 +72,14 @@ var List = {
         spots.sort(function(a, b) {
             var a_distance = parseFloat($(a).attr('data-spot-distance'));
             var b_distance = parseFloat($(b).attr('data-spot-distance'));
-            return a_distance - b_distance;
+            // its faster to sort ints.
+            if(a_distance < b_distance){
+                return -1;
+            } else if (a_distance > b_distance){
+                return 1;
+            } else {
+                return 0;
+            }
         });
         return spots;
     },
