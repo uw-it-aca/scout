@@ -1,5 +1,6 @@
 sudo: false
 language: python
+dist: precise
 python:
   - "2.7.6"
 install: 
