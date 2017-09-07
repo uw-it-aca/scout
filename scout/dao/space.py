@@ -84,7 +84,9 @@ def get_filtered_spots(request, campus, app_type=None):
     filters = _get_spot_filters(request)
 
     # adding 'default' filter params
-    filters.append(('limit', 0))
+    # if limit is not in the query tuple, add default
+    if "limit" not in dict(filters):
+        filters.append(('limit', 0))
     filters.append(("extended_info:campus", campus))
 
     if(app_type == "food"):
@@ -147,6 +149,15 @@ def _get_spot_filters(request):
             )
         if "item_is_active" in param:
             params.append(("item:extended_info:i_is_active", "true"))
+        # distance, lat, long and limit are essential to distance sorting
+        if "distance" in param:
+            params.append(("distance", request.GET[param]))
+        if "latitude" in param:
+            params.append(("center_latitude", request.GET[param]))
+        if "longitude" in param:
+            params.append(("center_longitude", request.GET[param]))
+        if "limit" in param:
+            params.append(("limit", request.GET[param]))
     return params
 
 
