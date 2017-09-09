@@ -84,6 +84,101 @@ var List = {
         return spots;
     },
 
+    fetch_spot_list: function(distance, limit, attacher, callback) {
+        if (isNaN(distance) || isNaN(limit)) {
+            console.log("Invalid distance and limit passed to fetch_spot_list");
+            throw "InvalidParams";
+        } else {
+            var campus = $("body").data("campus");
+            var app_type = $("body").data("app-type");
+            // this will never be null/undefined
+            var latlng = Geolocation.get_client_latlng();
+            // get query params from the url
+            var filter_params = location.search.substr(1);
+            var query = {
+                "latitude": latlng.lat(),
+                "longitude": latlng.lng(),
+                "limit": limit,
+                "distance": distance
+            };
+            List._update_limit_param(app_type, limit);
+
+            var url = "/h/" + campus + "/" + app_type + "/spot_list/?" + $.param(query);
+            if (filter_params !== undefined && filter_params !== "") {
+                url += "&" + filter_params;
+            }
+            console.log(url);
+
+            $.ajax({
+                url: url,
+                dataType: "html",
+                type: "GET",
+                accepts: {
+                    html: "text/html"
+                },
+                success: function(data) {
+                    List._attach_spot_list(attacher, data);
+                    List._update_spot_count(app_type, attacher);
+                    if (callback) {
+                        callback();
+                    }
+                    $("#content_placeholder").hide();
+                    $("#" + attacher).fadeIn("slow");
+                    $("#load_more_spot_list").fadeIn(3000);
+                    List._attach_more_listener(app_type, attacher, callback);
+                },
+                error: function(xhr, status, error) {
+                    console.log("An error occurred while fetching spot list for " + app_type);
+                }
+            });
+        }
+    },
+
+    _attach_spot_list: function(attacher, list) {
+        // attach html to list
+        $("#" + attacher).html(list);
+    },
+
+    _update_spot_count: function(app_type, attacher) {
+        // update the spot count with the current spots
+        var length = 0;
+        if (app_type == "tech") {
+            length = $("#" + attacher).find(".scout-list-item-object").not(".scout-error").length;
+            $("#spot_count").html(length + " items");
+        } else {
+            length = $("#" + attacher).find(".scout-list-item").not(".scout-error").length;
+            $("#spot_count").html(length + " spaces");
+        }
+    },
+
+    _attach_more_listener: function(app_type, attacher, callback) {
+        // one makes sure multiple click listeners dont get attached to load more
+        $("#load_more_spot_list").one("click", function() {
+            var limit = List._get_limit_param(app_type);
+            // we can make increment dynamic for each tab
+            var increment = 20;
+            List.fetch_spot_list(100000, limit + increment, attacher, callback);
+        });
+    },
+
+    _get_limit_param: function(app_type) {
+        var key = app_type + "_limit_param";
+        var limit = JSON.parse(sessionStorage.getItem(key));
+        if (!isNaN(limit)) {
+            return limit;
+        }
+        return undefined;
+    },
+
+    _update_limit_param: function(app_type, limit) {
+        var key = app_type + "_limit_param";
+        if (!isNaN(limit)) {
+            sessionStorage.setItem(key, JSON.stringify(limit));
+        } else {
+            console.log("Invalid limit provided at _update_limit_param");
+        }
+    },
+
     /**
     defer_load_image: function() {
         var spots = $(".image-defer");

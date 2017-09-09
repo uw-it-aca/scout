@@ -6,6 +6,7 @@ Discover = {
         var discover_divs = $("#discover_cards").children();
 
         var latlng = Geolocation.get_client_latlng();
+        console.log(latlng);
 
         $(discover_divs).each(function (idx, div){
             var card_id = $(div).attr('id');
