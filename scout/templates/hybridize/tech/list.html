@@ -67,13 +67,23 @@
         </ul>
     </div>
 
-    <!-- stylize this -->
-    <!-- MVP
-    <div class="row no-gutter">
-        <div class="col-100" style="text-align:center; display:none;" id="load_more_spot_list">
-            Load more...
-        </div>
-    </div> -->
+    <ul id="load_more_content_placeholder" style="display: none;">
+        <li>
+            <a href="javascript:void(0)" class="item-link item-content" title="">
+                <div class="item-media">
+                    <div style="background: #e5e6e9 url('{% static "scout/img/placeholder-200.png" %}') no-repeat center center; background-size: cover !important; width:80px; height:80px">&nbsp;</div>
+                </div>
+                <div class="item-inner">
+                    <div class="item-title-row">
+                        <div class="item-title"><span class="content-loading" style="width:140px;">&nbsp;</span></div>
+                    </div>
+                    <div class="item-subtitle"><span class="content-loading" style="width:200px;">&nbsp;</span></div>
+                    <div class="item-subtitle"><span class="content-loading" style="width:200px;">&nbsp;</span></div>
+                    <div style="font-size:12px;"><span class="content-loading" style="width:80px;">&nbsp;</span></div>
+                </div>
+            </a>
+        </li>
+    </ul>
     <div style="margin: 15px;">
         <a href="javascript:void(0)" class="button button-big active" style="display:none" id="load_more_spot_list">Load more...</a>
     </div>

@@ -3,7 +3,7 @@
 
 {% for spot in spots %}
 {% if spot.items %}
-<li class="scout-list-item" style="padding:0;" data-spot-building="{{ spot.building_name }}"  data-spot-lat="{{ spot.latitude }}" data-spot-lng="{{ spot.longitude }}" data-spot-name="{{ spot.name }}" data-items="{{ spot.items|length }}">
+<li class="scout-list-item" id="{{ spot.spot_id }}" style="padding:0;" data-spot-building="{{ spot.building_name }}"  data-spot-lat="{{ spot.latitude }}" data-spot-lng="{{ spot.longitude }}" data-spot-name="{{ spot.name }}" data-items="{{ spot.items|length }}">
 
     <div class="list-group-title">{{ spot.name }}</div>
 

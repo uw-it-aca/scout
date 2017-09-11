@@ -23,7 +23,7 @@ $(document).on('turbolinks:load', function() {
 
     // get the app_type
     var type = $("body").data("app-type");
-    var limit = List._get_limit_param(type);
+    var limit = List.get_limit_param(type);
 
     if (type == "food") {
         if (LIST_PAGE == true) {
@@ -63,7 +63,7 @@ $(document).on('turbolinks:load', function() {
             // tech list
             // initialize limit
             if (limit === undefined || limit === null) {
-                limit = 20;
+                limit = 2;
             }
             List.fetch_spot_list(100000, limit, "scout_tech_list", function() {
                 List.init();

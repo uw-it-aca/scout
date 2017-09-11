@@ -117,14 +117,14 @@ var List = {
                     html: "text/html"
                 },
                 success: function(data) {
-                    List._attach_spot_list(attacher, data);
+                    List._attach_spot_list(app_type, attacher, data);
                     List._update_spot_count(app_type, attacher);
                     if (callback) {
                         callback();
                     }
                     $("#content_placeholder").hide();
-                    $("#" + attacher).fadeIn("slow");
-                    $("#load_more_spot_list").fadeIn(3000);
+                    // $("#" + attacher).fadeIn("slow");
+                    // $("#" + attacher).children().fadeIn("slow");
                     List._attach_more_listener(app_type, attacher, callback);
                 },
                 error: function(xhr, status, error) {
@@ -134,9 +134,76 @@ var List = {
         }
     },
 
-    _attach_spot_list: function(attacher, list) {
+    _attach_spot_list: function(app_type, attacher, list) {
         // attach html to list
-        $("#" + attacher).html(list);
+        $("#load_more_content_placeholder").fadeOut("slow");
+
+        var id_list = List._get_spot_id_list(app_type, $("#" + attacher).html(), list);
+        if (List._did_load_all_spots(id_list.existing_id_list, id_list.server_id_list)) {
+            // all spots have loaded already
+            // hide load more button, even though it should already be hidden
+            // $("#load_more_spot_list").hide();
+            console.log("reached the end of list");
+        } else {
+            list = List._prepare_fluid_transition(list, id_list);
+            var currentPosition = $("body").scrollTop();
+            $("#" + attacher).html(list);
+            $("#" + attacher).children().fadeIn("slow");
+            $("body").scrollTop(currentPosition);
+            $("#load_more_spot_list").fadeIn(3000);
+        }
+    },
+
+    // Returns the list of ids for each scout-list-item
+    // existing_list and server_list are passed in as html string
+    _get_spot_id_list: function(app_type, existing_list, server_list) {
+        var existing_id_list = $(existing_list);
+        var server_id_list = $(server_list);
+        // for some weird reason, find is not an addition to filter.
+        // since study has spots nested, find works for study and filter
+        // works for other tabs.
+        if (app_type == "study") {
+            existing_id_list = $(existing_id_list).find(".scout-list-item");
+            server_id_list = $(server_id_list).find(".scout-list-item");
+        } else {
+            existing_id_list = $(existing_id_list).filter(".scout-list-item");
+            server_id_list = $(server_id_list).filter(".scout-list-item");
+        }
+
+        existing_id_list = $(existing_id_list)
+                                .not(".scout-error")
+                                .map(function(){
+                                    return $(this).attr("id");
+                                }).get();
+
+        server_id_list = $(server_id_list)
+                            .not(".scout-error")
+                            .map(function(){
+                                return $(this).attr("id");
+                            }).get();
+
+        return {
+            "existing_id_list": existing_id_list,
+            "server_id_list": server_id_list
+        };
+    },
+
+    // Checks if the user has loaded all possible spots
+    // Requires input of existing_id_list and server_id_list
+    _did_load_all_spots: function(existing_id_list, server_id_list) {
+        return $(existing_id_list).not(server_id_list).length == 0 &&
+               $(server_id_list).not(existing_id_list).length == 0;
+    },
+
+    // to make the load more look more fluid, hide non-existent spots
+    // then fade those spots into the div
+    _prepare_fluid_transition: function(html_list, id_list) {
+        var hidden_id_list = $(id_list.server_id_list).not(id_list.existing_id_list);
+        html_list = $.parseHTML(html_list);
+        $.each(hidden_id_list, function(index, hidden_id) {
+            $(html_list).filter("#" + hidden_id).css("display", "none");
+        });
+        return html_list;
     },
 
     _update_spot_count: function(app_type, attacher) {
@@ -154,14 +221,16 @@ var List = {
     _attach_more_listener: function(app_type, attacher, callback) {
         // one makes sure multiple click listeners dont get attached to load more
         $("#load_more_spot_list").one("click", function() {
-            var limit = List._get_limit_param(app_type);
+            $("#load_more_spot_list").hide();
+            $("#load_more_content_placeholder").fadeIn("slow");
+            var limit = List.get_limit_param(app_type);
             // we can make increment dynamic for each tab
             var increment = 20;
             List.fetch_spot_list(100000, limit + increment, attacher, callback);
         });
     },
 
-    _get_limit_param: function(app_type) {
+    get_limit_param: function(app_type) {
         var key = app_type + "_limit_param";
         var limit = JSON.parse(sessionStorage.getItem(key));
         if (!isNaN(limit)) {
