@@ -67,7 +67,7 @@ $(document).on('turbolinks:load', function() {
             // tech list
             // initialize limit
             if (limit === undefined || limit === null) {
-                limit = 2;
+                limit = 20;
             }
             List.fetch_spot_list(100000, limit, "scout_tech_list", function() {
                 List.init();
