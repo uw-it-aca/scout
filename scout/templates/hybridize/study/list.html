@@ -13,12 +13,12 @@
             <div class="row no-gutter">
                 <!-- study always has some sort of filter applied to it, so doesnt need to be visually hidden -->
                 <div class="col-66" id="filter_text_holder">
-                    <span id="filter_text_holder">
+                    <span id="filter_text_holder" class="visually-hidden">
                         Filtering by: <span id="filter_label_text"></span>
                     </span>
                 </div>
-                <div class="col-33" style="text-align:right;">
-                    {{ spots|length }} spaces
+                <div class="col-33" style="text-align:right;" id="spot_count">
+                    <span class="content-loading" style="width:80px;">&nbsp;</span>
                 </div>
             </div>
 
@@ -27,85 +27,42 @@
 </div>
 <div class="list-block media-list scout-list">
 
-
     <div class="list-group">
-
+        <ul aria-label="content placeholder" id="content_placeholder">
+            <!-- content placeholder -->
+            {% include "hybridize/list_content_placeholder.html" %}
+        </ul>
 
         <ul id="scout_study_list">
-
-            {% for group in grouped_spots %}
-            <li style="padding:0;" class="scout-list-building" data-building-name="{{ group.name }}" data-building-lat="{{ group.latitude }}" data-building-lng="{{ group.longitude }}">
-
-                <div class="list-group-title">{% if group.name %}{{ group.name }}{% else %}missing building_name{% endif %}</div>
-
-                <ul class="scout_study_spot_list" style="padding-left:0;">
-                    {% for spot in group.spots %}
-                    <li class="scout-list-item"  id="{{ spot.spot_id }}"  data-spot-lat="{{ spot.latitude }}" data-spot-lng="{{ spot.longitude }}" data-spot-building="{{ spot.building_name }}" data-spot-name="{{ spot.name }}">
-
-                        <a href="/h/{{campus}}/study/{{ spot.spot_id }}/" class="item-link item-content">
-                            <div class="item-media">
-
-                                {% if spot.images %}
-                                <div class="scout-spot-image" style="background-image: url('/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}/?width=100'); width:80px; height:80px;">&nbsp;</div>
-                                {% else %}
-                                <div class="scout-spot-image" style="background-image: url('{% static "scout/img/placeholder-200.png" %}'); width:80px; height:80px;">&nbsp;</div>
-                                {% endif %}
-
-                            </div>
-                            <div class="item-inner">
-                                <div class="item-title-row">
-                                    <div class="item-title">{{ spot.name }}</div>
-                                </div>
-                                <div class="item-subtitle">
-                                    <div style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{% if spot.location_description %}{{ spot.location_description }}{% else %} <span style="color:red;">missing location_description</span> {% endif %}</div>
-                                </div>
-                                <div class="item-text">
-
-                                    <div style="text-transform:capitalize;">
-                                    {% for type in spot.spot_types %}
-                                    <span>{% if type.name == 'open'%}{{ type.name|remove_underscores }} space{% else %}{{ type.name|remove_underscores }}{% endif %}{% if not forloop.last %}, {% endif %}</span>{% endfor %}
-                                    </div>
-
-                                    <div style="font-size:12px;color:#000;">
-
-                                        <span class="scout-spot-distance"><span class="distance-number">---</span>&nbsp;mi&nbsp;&nbsp;</span>
-
-                                        {% if spot.auto_labstats_total > 0 and spot.auto_labstats_available > 0 %}
-                                            <span style="float:right; color:#999;"><i class="fa fa-desktop" aria-hidden="true"></i> <span class="visually-hidden">Computer availability:</span><span class="scout-green">{{ spot.auto_labstats_available }}</span> / {{ spot.auto_labstats_total }}</span>
-                                        {% else %}
-                                            {% if spot.capacity %}<span style="float:right; color:#999;">Seats: {{ spot.capacity }}</span>{% endif %}
-                                        {% endif %}
-
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-
-                    </li>
-                    {% endfor %}
-
-                </ul>
-
-            </li>
-            {% empty %}
-            <li class="scout-list-item">
-                <div class="list-group-title">no found</div>
-            </li>
-            <li class="scout-list-item scout-error" style="padding:20px;">
-                <p class="scout-error-msg">No results? Try updating your filters.</p>
-                <div class="scout-error-body">
-                    <p>Suggestions for improving the results:</p>
-                    <ul>
-                        <li>Try a specific campus.</li>
-                        <li>Try using fewer filters.</li>
-                    </ul>
-                </div>
-            </li>
-            {% endfor %}
-
+            <!-- main list content goes here -->
         </ul>
     </div>
 
+    <ul id="load_more_content_placeholder" style="display: none;">
+        <li>
+            <a href="javascript:void(0)" class="item-link item-content" title="">
+                <div class="item-media">
+                    <div style="background: #e5e6e9 url('{% static "scout/img/placeholder-200.png" %}') no-repeat center center; background-size: cover !important; width:80px; height:80px">&nbsp;</div>
+                </div>
+                <div class="item-inner">
+                    <div class="item-title-row">
+                        <div class="item-title"><span class="content-loading" style="width:140px;">&nbsp;</span></div>
+                    </div>
+                    <div class="item-subtitle"><span class="content-loading" style="width:200px;">&nbsp;</span></div>
+                    <div class="item-subtitle"><span class="content-loading" style="width:200px;">&nbsp;</span></div>
+                    <div style="font-size:12px;"><span class="content-loading" style="width:80px;">&nbsp;</span></div>
+                </div>
+            </a>
+        </li>
+    </ul>
+    <div style="display:none" id="load_more_spot_list">
+        <div style="padding: 15px;">
+            <a href="javascript:void(0)" class="button button-big button-fill" id="load_more_spot_button">Load more...</a>
+        </div>
+    </div>
 
 </div>
+
+<script> var LIST_PAGE = true; </script>
+
 {% endblock %}

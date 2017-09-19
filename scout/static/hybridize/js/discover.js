@@ -46,7 +46,7 @@ Discover = {
                 $("#" + card_id).fadeIn("slow");
             },
             error: function(xhr, status, error) {
-                console.log("error occurred fetching card " + card_id);
+                console.log("An error occurred fetching card " + card_id);
             }
         });
     },

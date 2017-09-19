@@ -263,7 +263,7 @@ var Filter = {
 
         } catch(err) {
             // no bridge could be found
-            console.log('The native context does not exist yet');
+            console.log('The native context does not exist yet.');
         }
 
     },

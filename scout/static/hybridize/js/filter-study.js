@@ -48,7 +48,6 @@ var Study_Filter = {
         sessionStorage.setItem("study_filter_params", JSON.stringify(params));
 
         // pass the params to native apps via bridge
-        console.log($.param(params));
         Filter.call_js_bridge($.param(params));
 
     },
@@ -138,7 +137,6 @@ var Study_Filter = {
         $("#buildings_toggle input").change(function() {
 
             if ($(this).val() == "building_list") {
-                console.log("building_list clicked")
                 $("#building_select").removeClass("visually-hidden");
             } else {
                 $("#building_select").addClass("visually-hidden");
