@@ -6,7 +6,6 @@ Discover = {
         var discover_divs = $("#discover_cards").children();
 
         var latlng = Geolocation.get_client_latlng();
-        console.log(latlng);
 
         $(discover_divs).each(function (idx, div){
             var card_id = $(div).attr('id');
@@ -47,7 +46,7 @@ Discover = {
                 $("#" + card_id).fadeIn("slow");
             },
             error: function(xhr, status, error) {
-                console.log("error occurred fetching card " + card_id);
+                console.log("An error occurred fetching card " + card_id);
             }
         });
     },

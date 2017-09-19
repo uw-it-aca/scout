@@ -107,7 +107,6 @@ var List = {
             if (filter_params !== undefined && filter_params !== "") {
                 url += "&" + filter_params;
             }
-            console.log(url);
 
             $.ajax({
                 url: url,
@@ -143,7 +142,7 @@ var List = {
             // all spots have loaded already
             // hide load more button, even though it should already be hidden
             // $("#load_more_spot_list").hide();
-            console.log("reached the end of list");
+            console.log("No new spots were found.");
         } else {
             list = List._prepare_fluid_transition(list, id_list);
             var currentPosition = $("body").scrollTop();
