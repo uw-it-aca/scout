@@ -220,7 +220,7 @@ var List = {
 
     _attach_more_listener: function(app_type, attacher, callback) {
         // one makes sure multiple click listeners dont get attached to load more
-        $("#load_more_spot_list").one("click", function() {
+        $("#load_more_spot_button").one("click", function() {
             $("#load_more_spot_list").hide();
             $("#load_more_content_placeholder").fadeIn("slow");
             var limit = List.get_limit_param(app_type);
