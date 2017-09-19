@@ -32,7 +32,6 @@ var Food_Filter = {
         sessionStorage.setItem("food_filter_params", JSON.stringify(params));
 
         // pass the params to native apps via bridge
-        console.log($.param(params));
         Filter.call_js_bridge($.param(params));
     },
 
