@@ -111,6 +111,10 @@ body { background: #efeff4 !important; padding: 0 !important; margin: 0 !importa
 
 .scout-filter-toggle-options {
     line-height: 25px;
+    min-height: 50px;
+    background:#fff;
+    padding-left:53px;
+    color:#666;
     span, select { display:inline-block; }
 }
 
