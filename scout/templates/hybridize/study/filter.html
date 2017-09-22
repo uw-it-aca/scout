@@ -319,7 +319,7 @@
                     </div>
                 </label>
 
-                <div class="scout-filter-toggle-options visually-hidden" id="hours_list" style="background:#fff; padding-left:53px; color:#666;">
+                <div class="scout-filter-toggle-options visually-hidden" id="hours_list">
                     <div>
                         <span class="hours-from" style="width:50px;">Start: </span>
                         <select id="day-from" style="width:100px;">
@@ -432,9 +432,9 @@
                     </div>
                 </label>
 
-                <div id="building_select" class="scout-filter-toggle-options visually-hidden" style="background:#fff; padding-left:53px; color:#666;">
+                <div id="building_select" class="scout-filter-toggle-options visually-hidden">
                     <!--Needs to be updated dynamically!-->
-                    <select multiple style="width:100%;">
+                    <select multiple style="width:100%; height:48px;display:block !important;">
                         <optgroup disabled hidden></optgroup>
                         {% for building_name in buildings %}
                             {% if building_name %}
