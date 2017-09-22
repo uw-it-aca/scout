@@ -27,7 +27,7 @@ body { position: static !important; overflow: initial !important; height: auto !
 
     // removes transition animation for lists
     .item-link { transition-duration: 0ms !important; }
-    
+
 	ul:before { height: 0; }
 
 	ul {
@@ -82,6 +82,16 @@ body { font-family: 'Roboto', sans-serif; }
     background-position: center center;
     background-size: cover;
 }
+
+.scout-filter-toggle-options {
+    line-height: 25px;
+    min-height: 50px;
+    background:#fff;
+    padding-left:73px;
+    color:#666;
+    span, select { display:inline-block; }
+}
+
 
 // helpers
 
