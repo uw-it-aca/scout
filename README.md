@@ -29,7 +29,9 @@ You'll also need [spotseeker_client](https://github.com/uw-it-aca/spotseeker_cli
 pip install -e git+https://github.com/uw-it-aca/spotseeker_client.git#egg=spotseeker_restclient
 ```
 
-Add scout to your INSTALLED_APPS in settings.py:
+In settings.py:
+
+Add scout to your INSTALLED_APPS:
 
 ```
 INSTALLED_APPS = (
@@ -51,26 +53,26 @@ MIDDLEWARE_CLASSES = (
 )
 ```
 
-Add the app to your project's urls.py:
+Add to additional context_processors to TEMPLATES
 
 ```
-from django.conf.urls import patterns, include, url
-
-handler404 = 'scout.views.custom_404_response'
-
-urlpatterns = patterns('',
-    ...
-    url(r'^', include('scout.urls')),
-    ...
-)
-```
-
-Additional settings:
-
-```
-CAMPUS_URL_LIST = ['seattle', 'tacoma', 'bothell']
-
-COMPRESS_ROOT = '/tmp/'
+TEMPLATES = [ 
+    {   
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [], 
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+	        ...
+	        'scout.context_processors.google_maps',
+		'scout.context_processors.google_analytics',
+		'scout.context_processors.is_desktop',
+		’scout.context_processors.is_hybrid',
+		...
+            ],  
+        },  
+    },  
+]
 ```
 
 Add STATICFILES_FINDERS:
@@ -83,6 +85,46 @@ STATICFILES_FINDERS = (
 )
 ```
 
+Add STATIC_ROOT:
+
+```
+STATIC_ROOT = '/tmp/'
+```
+
+Add import statement and  DETECT_USER_AGENTS:
+
+```
+from django_mobileesp.detector import mobileesp_agent as agent
+
+DETECT_USER_AGENTS = {
+     'is_tablet' : agent.detectTierTablet,
+     'is_mobile': agent.detectMobileQuick,
+     'is_and': agent.detectAndroid,
+     'is_ios': agent.detectIos,
+     'is_win': agent.detectWindowsPhone,
+}
+```
+
+Add the following compress settings:
+
+```
+COMPRESS_PRECOMPILERS = (
+    ('text/x-scss', 'sass --scss {infile} {outfile}'),
+    ('text/x-scss', 'django_pyscss.compressor.DjangoScssFilter')
+)
+
+COMPRESS_ENABLED = True
+COMPRESS_OFFLINE = False
+COMPRESS_OUTPUT_DIR = ''
+COMPRESS_CSS_FILTERS = [
+    'compressor.filters.css_default.CssAbsoluteFilter',
+    'compressor.filters.cssmin.CSSMinFilter'
+]
+COMPRESS_JS_FILTERS = [
+    'compressor.filters.jsmin.JSMinFilter',
+]
+```
+
 Add details for connection to spotseeker_server. Change 'File' to 'Live' if you want to connect to a live spotseeker_server instead of using the file-based mock data:
 
 ```
@@ -91,7 +133,27 @@ SPOTSEEKER_OAUTH_KEY = ''
 SPOTSEEKER_OAUTH_SECRET = ''
 SPOTSEEKER_DAO_CLASS = 'spotseeker_restclient.dao_implementation.spotseeker.File'
 ```
+Additional settings:
 
+```
+CAMPUS_URL_LIST = ['seattle', 'tacoma', 'bothell']
+
+COMPRESS_ROOT = '/tmp/'
+```
+
+Add the app to your project's urls.py:
+
+```
+from django.conf.urls import patterns, include, url 
+
+handler404 = 'scout.views.custom_404_response'
+
+urlpatterns = patterns('',
+    ... 
+    url(r'^', include('scout.urls')),
+    ... 
+)
+```
 For additional settings, see [some page that doesn't exist yet.]
 
 Create your database, and you can run the server.
