@@ -67,7 +67,7 @@ TEMPLATES = [
 	        'scout.context_processors.google_maps',
 		'scout.context_processors.google_analytics',
 		'scout.context_processors.is_desktop',
-		’scout.context_processors.is_hybrid',
+		'scout.context_processors.is_hybrid',
 		...
             ],  
         },  
