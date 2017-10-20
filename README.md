@@ -53,24 +53,23 @@ MIDDLEWARE_CLASSES = (
 )
 ```
 
-Add to additional context_processors to TEMPLATES
+Add additional context_processors to TEMPLATES-OPTIONS
 
 ```
 TEMPLATES = [ 
     {   
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [], 
-        'APP_DIRS': True,
+        ...
         'OPTIONS': {
             'context_processors': [
-	        ...
-	        'scout.context_processors.google_maps',
-		'scout.context_processors.google_analytics',
-		'scout.context_processors.is_desktop',
-		'scout.context_processors.is_hybrid',
-		...
+                ...
+                'scout.context_processors.google_maps',
+                'scout.context_processors.google_analytics',
+                'scout.context_processors.is_desktop',
+                'scout.context_processors.is_hybrid',
+                ...
             ],  
-        },  
+        }, 
+        ... 
     },  
 ]
 ```
