@@ -1,4 +1,5 @@
 var jsdom = require('jsdom');
+const { JSDOM } = jsdom;
 var jquery = require('jquery');
 
 // Used to test the variables stored during the session
@@ -29,8 +30,8 @@ fakeSessionStorage.prototype.removeItem = function(item) {
 
 // Used in tests files to generate jquery from given html
 var jqueryFromHtml = function jqueryFromHtml(html) {
-    var doc = jsdom.jsdom(html);
-    var win = doc.parentWindow;
+    var doc = new JSDOM(html);
+    var win = doc.window;
     var $ = jquery(win);
     return $;
 };
