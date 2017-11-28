@@ -1,14 +1,14 @@
-var Map = {
+var ScoutMap = {
 
     initialize_resource_map: function() {
         var app_type = {
-            "discover_list_map": Map.load_list_map,
-            "food_list_map": Map.load_list_map,
-            "food_detail_map": Map.load_detail_map,
-            "study_list_map": Map.load_list_map,
-            "study_detail_map": Map.load_detail_map,
-            "tech_list_map": Map.load_list_map,
-            "tech_detail_map": Map.load_detail_map
+            "discover_list_map": ScoutMap.load_list_map,
+            "food_list_map": ScoutMap.load_list_map,
+            "food_detail_map": ScoutMap.load_detail_map,
+            "study_list_map": ScoutMap.load_list_map,
+            "study_detail_map": ScoutMap.load_detail_map,
+            "tech_list_map": ScoutMap.load_list_map,
+            "tech_detail_map": ScoutMap.load_detail_map
         };
 
         $.each(app_type, function(resource, map_init){
@@ -20,17 +20,17 @@ var Map = {
 
     init_map: function () {
         // handle map stuff for location change
-        Map.initialize_resource_map();
+        ScoutMap.initialize_resource_map();
 
         $(document).ready().on("location_changed", function(){
-            Map.handle_location_update();
+            ScoutMap.handle_location_update();
         });
         // handle map stuff for window resize
-        //$(window).resize(Map.initialize_resource_map());
+        //$(window).resize(ScoutMap.initialize_resource_map());
     },
 
     handle_location_update: function() {
-        Map.add_current_position_marker(window.map_object,
+        ScoutMap.add_current_position_marker(window.map_object,
                                         Geolocation.get_client_latlng());
     },
 
@@ -65,7 +65,7 @@ var Map = {
 
             var map = new google.maps.Map(currentMap, mapOptions);
 
-            Map.add_current_position_marker(map, pos);
+            ScoutMap.add_current_position_marker(map, pos);
             map.setOptions({styles: styles});
 
             // multiple pins on a single map
@@ -73,10 +73,10 @@ var Map = {
 
             // create and open InfoWindow.
             var infoWindow = new google.maps.InfoWindow();
-            Map.infoWindow = infoWindow;
+            ScoutMap.infoWindow = infoWindow;
             var markers = [];
             var oms = new OverlappingMarkerSpiderfier(map, {keepSpiderfied: true, circleFootSeparation: 46});
-            Map.oms = oms;
+            ScoutMap.oms = oms;
 
             $.each(locations, function (key, data){
                 var marker = new MarkerWithLabel({
@@ -165,7 +165,7 @@ var Map = {
 
             // zoom the map automatically using the bounds of all markers
             if (Geolocation.get_location_type() !== "default") {
-                Map.add_current_position_marker(map, pos);
+                ScoutMap.add_current_position_marker(map, pos);
             } else if(markers.length == 0){
                 map.setCenter(pos);
                 map.setZoom(16);
@@ -198,32 +198,32 @@ var Map = {
                     var spidered = oms.markersNearAnyOtherMarker();
                     // Change the icons of spots that are spidered
                     $(spidered).each(function(idx, marker){
-                        Map._set_spidered_icon(marker);
+                        ScoutMap._set_spidered_icon(marker);
                     });
                 }, 1);
 
-                Map.update_displayed_spots();
+                ScoutMap.update_displayed_spots();
             });
 
             oms.addListener('spiderfy', function (markers) {
                 $(markers).each(function(idx, marker){
-                    Map._set_unspidered_icon(marker);
+                    ScoutMap._set_unspidered_icon(marker);
                 });
             });
 
             oms.addListener('unspiderfy', function (markers) {
                 $(markers).each(function(idx, marker){
-                    Map._set_spidered_icon(marker);
+                    ScoutMap._set_spidered_icon(marker);
 
                 });
             });
 
-            Map.markerCluster = markerCluster;
+            ScoutMap.markerCluster = markerCluster;
         }
     },
 
     update_displayed_spots: function () {
-        var visible_markers = Map._get_visible_markers(window.map_object, window.markers);
+        var visible_markers = ScoutMap._get_visible_markers(window.map_object, window.markers);
         var visible_spot_ids = [];
         $.each(visible_markers, function(idx, marker){
             visible_spot_ids.push(marker.spot.id);
@@ -266,11 +266,11 @@ var Map = {
 
     load_list_map: function (map_id) {
         var locations = List.get_spot_locations();
-        Map.load_map_with_markers(map_id, locations);
+        ScoutMap.load_map_with_markers(map_id, locations);
     },
 
     load_discover_map: function (locations) {
-        Map.load_map_with_markers("discover_list_map", locations);
+        ScoutMap.load_map_with_markers("discover_list_map", locations);
 
     },
 
@@ -389,7 +389,7 @@ var Map = {
                 map.fitBounds(bounds);
 
                 // adds user location to map
-                Map.add_current_position_marker(map, pos);
+                ScoutMap.add_current_position_marker(map, pos);
             }
             // update map object
             window.map_object = map;
@@ -426,7 +426,7 @@ var Map = {
     },
 
     update_discover_map: function(locations) {
-        Map.clear_markers();
+        ScoutMap.clear_markers();
 
 
         // multiple pins on a single map
@@ -463,16 +463,16 @@ var Map = {
             $('#' + data.id).hover(
                 function () {
                     // hover IN
-                    Map.infoWindow.setContent(
+                    ScoutMap.infoWindow.setContent(
                         "<div><strong>" + data.spot_name + "</strong><br>" +
                         data.building + "</div>"
                     );
-                    Map.infoWindow.open(window.map_object);
-                    Map.infoWindow.setPosition(marker.position);
+                    ScoutMap.infoWindow.open(window.map_object);
+                    ScoutMap.infoWindow.setPosition(marker.position);
                 },
                 function () {
                     // hover OUT
-                    Map.infoWindow.close(window.map_object, marker);
+                    ScoutMap.infoWindow.close(window.map_object, marker);
                 }
             );
 
@@ -486,33 +486,33 @@ var Map = {
             maxZoom: 18
         };
 
-        Map.markerCluster = new MarkerClusterer(map_object, markers, mc_options);
+        ScoutMap.markerCluster = new MarkerClusterer(map_object, markers, mc_options);
 
         for(var i = 0; i < markers.length; i++){
-            Map.markerCluster.addMarker(markers[i])
-            Map.oms.addMarker(markers[i]);
+            ScoutMap.markerCluster.addMarker(markers[i])
+            ScoutMap.oms.addMarker(markers[i]);
         }
 
-        Map.markerCluster.redraw_();
+        ScoutMap.markerCluster.redraw_();
         window.map_object.fitBounds(bounds);
         window.map_object.setZoom(16);
 
     },
 
     clear_markers: function(){
-        var markers = Map.markerCluster.markers_;
+        var markers = ScoutMap.markerCluster.markers_;
 
-        while(Map.markerCluster.markers_.length > 0){
-            marker = Map.markerCluster.markers_[0];
-            Map.markerCluster.removeMarker(marker);
+        while(ScoutMap.markerCluster.markers_.length > 0){
+            marker = ScoutMap.markerCluster.markers_[0];
+            ScoutMap.markerCluster.removeMarker(marker);
         }
 
-        while(Map.oms.getMarkers().length > 0){
-            marker = Map.oms.getMarkers()[0];
-            Map.oms.removeMarker(marker);
+        while(ScoutMap.oms.getMarkers().length > 0){
+            marker = ScoutMap.oms.getMarkers()[0];
+            ScoutMap.oms.removeMarker(marker);
         }
 
-        Map.markerCluster.redraw_()
+        ScoutMap.markerCluster.redraw_()
     }
 
 };
