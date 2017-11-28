@@ -116,7 +116,7 @@ Discover = {
             spots.splice(spots.length - 1, 1)
         }
         var spot_data = Discover.get_spot_locations(spots);
-        Map.update_discover_map(spot_data);
+        ScoutMap.update_discover_map(spot_data);
     },
 
     get_spot_locations: function(spots){
@@ -152,6 +152,6 @@ Discover = {
             spots.splice(spots.length - 1, 1);
         }
         var spot_data = Discover.get_spot_locations(spots);
-        Map.load_discover_map(spot_data);
+        ScoutMap.load_discover_map(spot_data);
     }
 };
