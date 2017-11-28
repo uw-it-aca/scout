@@ -12,12 +12,12 @@ $(document).on('ready', function(event) {
         // food
         Geolocation.display_location_status();
         List.init();
-        Map.init_map();
+        ScoutMap.init_map();
         Filter.init();
     } else if (page_path.indexOf("study") !== -1){
         Geolocation.display_location_status();
         List.init();
-        Map.init_map();
+        ScoutMap.init_map();
         Filter.init();
 
         // initialize slick image slider
@@ -29,12 +29,12 @@ $(document).on('ready', function(event) {
     } else if (page_path.indexOf("tech") !== -1){
         Geolocation.display_location_status();
         List.init();
-        Map.init_map();
+        ScoutMap.init_map();
         Filter.init();
 
     } else {
         Discover.init_cards();
-        Map.init_map();
+        ScoutMap.init_map();
     }
     Filter.replace_navigation_href();
     // call this last so all page level location event listeners have been declared
