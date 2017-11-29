@@ -124,7 +124,7 @@
 
             {% if spot.description %}
             <h3>Description</h3>
-            <div class="scout-spot-description">{{spot.description}}</div>
+            <div class="scout-spot-description">{{spot.description|urlize}}</div>
             {% endif %}
         </div>
 
