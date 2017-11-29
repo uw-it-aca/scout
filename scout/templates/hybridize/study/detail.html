@@ -86,7 +86,7 @@
     {% if spot.access_notes %}
     <div class="list-block-label" style="margin-bottom:1em;">
         <i class="fa fa-sign-in" aria-hidden="true" style="float:left; margin-top:3px;"></i>
-        <span style=" display:block; float:left; width: 92%;">{{spot.access_notes}}</span>
+        <span style=" display:block; float:left; width: 92%;">{{spot.access_notes|urlize}}</span>
         <div style="clear:both;"></div>
     </div>
     {% endif %}
