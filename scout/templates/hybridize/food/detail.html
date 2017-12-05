@@ -31,7 +31,7 @@
 
     {% if spot.description %}
     <div class="list-block-label" style="margin-bottom:1em;">
-        {{ spot.description }}
+        {{ spot.description|urlize }}
     </div>
     {% endif %}
 
