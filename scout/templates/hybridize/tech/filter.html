@@ -14,7 +14,7 @@
             <li class="item-divider">Computers</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="Laptop Computer">
+    				<input type="checkbox" value="Laptop Computer" {% if Laptop_Computer %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Laptop Computer</div>
@@ -23,7 +23,7 @@
     		</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="Tablet Computer">
+    				<input type="checkbox" value="Tablet Computer" {% if Tablet_Computer %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Tablet Computer</div>
@@ -33,7 +33,7 @@
             <li class="item-divider">Cameras</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="Digital Camera">
+    				<input type="checkbox" value="Digital Camera" {% if Digital_Camera %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Digital Camera</div>
@@ -42,7 +42,7 @@
     		</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="Digital Video Camera">
+    				<input type="checkbox" value="Digital Video Camera" {% if Digital_Video_Camera %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Digital Video Camera</div>
@@ -52,7 +52,7 @@
             <li class="item-divider">DSLR Accessories</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="DSLR Accessories - Light Kit">
+    				<input type="checkbox" value="DSLR Accessories - Light Kit" {% if DSLR_Accessories___Light_Kit %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Light Kit</div>
@@ -61,7 +61,7 @@
     		</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="DSLR Accessories - Macro Lens">
+    				<input type="checkbox" value="DSLR Accessories - Macro Lens" {% if DSLR_Accessories___Macro_Lens %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Macro Lens</div>
@@ -70,7 +70,7 @@
     		</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="DSLR Accessories - Macro Ring Lite Flash">
+    				<input type="checkbox" value="DSLR Accessories - Macro Ring Lite Flash" {% if DSLR_Accessories___Macro_Ring_Lite_Flash %} checked {% endif %} >
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Macro Ring Lite Flash</div>
@@ -79,7 +79,7 @@
     		</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="DSLR Accessories - Shoe Mount Flash">
+    				<input type="checkbox" value="DSLR Accessories - Shoe Mount Flash" {% if DSLR_Accessories___Shoe_Mount_Flash %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Shoe Mount Flash</div>
@@ -88,7 +88,7 @@
     		</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="DSLR Accessories - SLR Remote">
+    				<input type="checkbox" value="DSLR Accessories - SLR Remote" {% if DSLR_Accessories___SLR_Remote %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">SLR Remote</div>
@@ -97,7 +97,7 @@
     		</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="DSLR Accessories - Telephoto Lens">
+    				<input type="checkbox" value="DSLR Accessories - Telephoto Lens" {% if DSLR_Accessories___Telephoto_Lens %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Telephoto Lens</div>
@@ -106,7 +106,7 @@
     		</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="DSLR Accessories - Wide Angle Lens">
+    				<input type="checkbox" value="DSLR Accessories - Wide Angle Lens" {% if DSLR_Accessories___Wide_Angle_Lens %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Wide Angle Lens</div>
@@ -116,7 +116,7 @@
             <li class="item-divider">Other types</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="Blu-ray Burner">
+    				<input type="checkbox" value="Blu-ray Burner" {% if Blu_ray_Burner %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Blu-ray Burner</div>
@@ -125,7 +125,7 @@
     		</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="Calculator">
+    				<input type="checkbox" value="Calculator" {% if Calculator %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Calculator</div>
@@ -134,7 +134,7 @@
     		</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="Data Projector">
+    				<input type="checkbox" value="Data Projector" {% if Data_Projector %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Data Projector</div>
@@ -143,7 +143,7 @@
     		</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="Digital Pen Tablet">
+    				<input type="checkbox" value="Digital Pen Tablet" {% if Digital_Pen_Tablet %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Digital Pen Tablet</div>
@@ -152,7 +152,7 @@
     		</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="External Hard Drive">
+    				<input type="checkbox" value="External Hard Drive" {% if External_Hard_Drive %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">External Hard Drive</div>
@@ -161,7 +161,7 @@
     		</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="Microphone Stands">
+    				<input type="checkbox" value="Microphone Stands" {% if Microphone_Stands %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Microphone Stands</div>
@@ -170,7 +170,7 @@
     		</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="Portable Audio System">
+    				<input type="checkbox" value="Portable Audio System" {% if Portable_Audio_System %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Portable Audio System</div>
@@ -179,7 +179,7 @@
     		</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="Power Point Remote">
+    				<input type="checkbox" value="Power Point Remote" {% if Power_Point_Remote %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Power Point Remote</div>
@@ -188,7 +188,7 @@
     		</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="Projection Screen">
+    				<input type="checkbox" value="Projection Screen" {% if Projection_Screen %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Projection Screen</div>
@@ -197,7 +197,7 @@
     		</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="Shotgun Microphone">
+    				<input type="checkbox" value="Shotgun Microphone"{% if Shotgun_Microphone %} checked {% endif %} >
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Shotgun Microphone</div>
@@ -206,7 +206,7 @@
     		</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="Tripod">
+    				<input type="checkbox" value="Tripod" {% if Tripod %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Tripod</div>
@@ -215,7 +215,7 @@
     		</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="Voice Recorder/MP3 player">
+    				<input type="checkbox" value="Voice Recorder/MP3 player" {% if Voice_Recorder_MP3_player %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Voice Recorder/MP3 player</div>
@@ -224,7 +224,7 @@
     		</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="Wireless Microphone System">
+    				<input type="checkbox" value="Wireless Microphone System" {% if Wireless_Microphone_System %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Wireless Microphone System</div>
@@ -241,7 +241,7 @@
     	<ul id="brand_select">
     		<li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="Anchor">
+    				<input type="checkbox" value="Anchor" {% if Anchor %} checked {% endif %} >
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Anchor</div>
@@ -250,7 +250,7 @@
     		</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="Apple">
+    				<input type="checkbox" value="Apple" {% if Apple %} checked {% endif %} >
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Apple</div>
@@ -259,7 +259,7 @@
     		</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="Azden">
+    				<input type="checkbox" value="Azden" {% if Azden %} checked {% endif %} >
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Azden</div>
@@ -268,7 +268,7 @@
     		</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="BenQ">
+    				<input type="checkbox" value="BenQ" {% if BenQ %} checked {% endif %} >
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">BenQ</div>
@@ -277,7 +277,7 @@
     		</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="Canon">
+    				<input type="checkbox" value="Canon" {% if Canon %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Canon</div>
@@ -286,7 +286,7 @@
     		</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="Dell">
+    				<input type="checkbox" value="Dell" {% if Dell %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Dell</div>
@@ -295,7 +295,7 @@
     		</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="Fender">
+    				<input type="checkbox" value="Fender" {% if Fender %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Fender</div>
@@ -304,7 +304,7 @@
     		</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="GoPro">
+    				<input type="checkbox" value="GoPro" {% if GoPro %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">GoPro</div>
@@ -313,7 +313,7 @@
     		</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="Hitachi">
+    				<input type="checkbox" value="Hitachi" {% if Hitachi %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Hitachi</div>
@@ -322,7 +322,7 @@
     		</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="HP">
+    				<input type="checkbox" value="HP" {% if HP %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">HP</div>
@@ -331,7 +331,7 @@
     		</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="Interlink">
+    				<input type="checkbox" value="Interlink" {% if Interlink %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Interlink</div>
@@ -340,7 +340,7 @@
     		</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="Joby">
+    				<input type="checkbox" value="Joby" {% if Joby %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Joby</div>
@@ -349,7 +349,7 @@
     		</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="Lacie">
+    				<input type="checkbox" value="Lacie" {% if Lacie %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Lacie</div>
@@ -358,7 +358,7 @@
     		</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="LG">
+    				<input type="checkbox" value="LG" {% if LG %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">LG</div>
@@ -367,7 +367,7 @@
     		</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="Manfrotto">
+    				<input type="checkbox" value="Manfrotto" {% if Manfrotto %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Manfrotto</div>
@@ -376,7 +376,7 @@
     		</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="Olympus">
+    				<input type="checkbox" value="Olympus" {% if Olympus %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Olympus</div>
@@ -385,7 +385,7 @@
     		</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="Panasonic">
+    				<input type="checkbox" value="Panasonic" {% if Panasonic %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Panasonic</div>
@@ -394,7 +394,7 @@
     		</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="Peavey">
+    				<input type="checkbox" value="Peavey" {% if Peavey %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Peavey</div>
@@ -403,7 +403,7 @@
     		</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="QuikLok">
+    				<input type="checkbox" value="QuikLok" {% if QuikLok %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">QuikLok</div>
@@ -412,7 +412,7 @@
     		</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="Seagate">
+    				<input type="checkbox" value="Seagate" {% if Seagate %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Seagate</div>
@@ -421,7 +421,7 @@
     		</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="Sennheiser">
+    				<input type="checkbox" value="Sennheiser" {% if Sennheiser %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Sennheiser</div>
@@ -430,7 +430,7 @@
     		</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="Sony">
+    				<input type="checkbox" value="Sony" {% if Sony %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Sony</div>
@@ -439,7 +439,7 @@
     		</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="Sunpak">
+    				<input type="checkbox" value="Sunpak" {% if Sunpak %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Sunpak</div>
@@ -448,7 +448,7 @@
     		</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="TI">
+    				<input type="checkbox" value="TI" {% if TI %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Texas Instruments</div>
@@ -457,7 +457,7 @@
     		</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="UK Pro">
+    				<input type="checkbox" value="UK Pro" {% if UK_Pro %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">UK Pro</div>
@@ -466,7 +466,7 @@
     		</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="Vello">
+    				<input type="checkbox" value="Vello" {% if Vello %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Vello</div>
@@ -475,7 +475,7 @@
     		</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="Wacom">
+    				<input type="checkbox" value="Wacom" {% if Wacom %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Wacom</div>
@@ -506,5 +506,7 @@
     {% endif %}
 
 </form>
+
+<script> var LIST_PAGE = false; </script>
 
 {% endblock %}

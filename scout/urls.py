@@ -18,6 +18,9 @@ from scout.views import TechListView
 from scout.views import TechDetailView
 from scout.views import TechFilterView
 
+from scout.views import HybridListView
+
+
 urlpatterns = patterns(
     '',
     # home
@@ -69,7 +72,12 @@ urlpatterns = patterns(
 
     # hybrid food
     url(r'^h/(?P<campus>[^/]+)/food/$',
-        FoodListView.as_view(), {"template_name": "hybridize/food/list.html"}),
+        HybridListView.as_view(),
+        {"template_name": "hybridize/food/list.html",
+         "app_type": "food"}),
+    url(r'^h/(?P<campus>[^/]+)/food/spot_list/$',
+        FoodListView.as_view(),
+        {"template_name": "hybridize/food/spot_list.html"}),
     url(r'^h/(?P<campus>[^/]+)/food/(?P<spot_id>[0-9]{1,5})/$',
         FoodDetailView.as_view(),
         {"template_name": "hybridize/food/detail.html"}),
@@ -79,8 +87,12 @@ urlpatterns = patterns(
 
     # hybrid study
     url(r'^h/(?P<campus>[^/]+)/study/$',
+        HybridListView.as_view(),
+        {"template_name": "hybridize/study/list.html",
+         "app_type": "study"}),
+    url(r'^h/(?P<campus>[^/]+)/study/spot_list/$',
         StudyListView.as_view(),
-        {"template_name": "hybridize/study/list.html"}),
+        {"template_name": "hybridize/study/spot_list.html"}),
     url(r'^h/(?P<campus>[^/]+)/study/(?P<spot_id>[0-9]{1,5})/$',
         StudyDetailView.as_view(),
         {"template_name": "hybridize/study/detail.html"}),
@@ -90,17 +102,18 @@ urlpatterns = patterns(
 
     # hybrid tech
     url(r'^h/(?P<campus>[^/]+)/tech/$',
-        TechListView.as_view(), {"template_name": "hybridize/tech/list.html"}),
+        HybridListView.as_view(),
+        {"template_name": "hybridize/tech/list.html",
+         "app_type": "tech"}),
+    url(r'^h/(?P<campus>[^/]+)/tech/spot_list/$',
+        TechListView.as_view(),
+        {"template_name": "hybridize/tech/spot_list.html"}),
     url(r'^h/(?P<campus>[^/]+)/tech/(?P<item_id>[0-9]{1,5})/$',
         TechDetailView.as_view(),
         {"template_name": "hybridize/tech/detail.html"}),
     url(r'^h/(?P<campus>[^/]+)/tech/filter/$',
         TechFilterView.as_view(),
         {"template_name": "hybridize/tech/filter.html"}),
-
-    # hybrid components
-    url(r'^h/components/$', 'scout.views.hybrid_comps_view',
-        name='hybrid_comps_view'),
 
     # images
     url(r'^images/(?P<spot_id>\d+)/image/(?P<image_id>\d+)/$',

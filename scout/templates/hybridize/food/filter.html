@@ -13,7 +13,7 @@
     	<ul>
             <li id="open_now">
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" name="open_now" value="open_now" >
+    				<input type="checkbox" name="open_now" value="open_now" {% if open_now %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Open Now</div>
@@ -23,7 +23,7 @@
         	<div id="period_select">
         		<li>
         			<label class="label-checkbox item-content">
-        				<input type="checkbox" name="morning" value="morning">
+        				<input type="checkbox" name="morning" value="morning" {% if morning %} checked {% endif %}>
         				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
         				<div class="item-inner">
         					<div class="item-title">Morning</div>
@@ -32,7 +32,7 @@
         		</li>
         		<li>
         			<label class="label-checkbox item-content">
-        				<input type="checkbox" name="afternoon" value="afternoon">
+        				<input type="checkbox" name="afternoon" value="afternoon" {% if afternoon %} checked {% endif %}>
         				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
         				<div class="item-inner">
         					<div class="item-title">Afternoon</div>
@@ -41,7 +41,7 @@
         		</li>
         		<li>
         			<label class="label-checkbox item-content">
-        				<input type="checkbox" name="evening" value="evening">
+        				<input type="checkbox" name="evening" value="evening" {% if evening %} checked {% endif %}>
         				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
         				<div class="item-inner">
         					<div class="item-title">Evening</div>
@@ -50,7 +50,7 @@
         		</li>
         		<li>
         			<label class="label-checkbox item-content">
-        				<input type="checkbox" name="late_night" value="late_night">
+        				<input type="checkbox" name="late_night" value="late_night" {% if late_night %} checked {% endif %}>
         				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
         				<div class="item-inner">
         					<div class="item-title">Late Night</div>
@@ -66,7 +66,7 @@
     	<ul id="type_select">
     		<li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="cafe">
+    				<input type="checkbox" value="cafe" {% if cafe %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Cafes</div>
@@ -75,7 +75,7 @@
     		</li>
     		<li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="food_court">
+    				<input type="checkbox" value="food_court" {% if food_court %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Food Court</div>
@@ -84,7 +84,7 @@
     		</li>
     		<li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="food_truck">
+    				<input type="checkbox" value="food_truck" {% if food_truck %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Food Truck</div>
@@ -93,7 +93,7 @@
     		</li>
     		<li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="market">
+    				<input type="checkbox" value="market" {% if market %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Market</div>
@@ -102,7 +102,7 @@
     		</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="restaurant">
+    				<input type="checkbox" value="restaurant" {% if restaurant %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Restaurant</div>
@@ -117,7 +117,7 @@
     	<ul id="payment_select">
     		<li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="s_pay_cash">
+    				<input type="checkbox" value="s_pay_cash" {% if s_pay_cash %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Cash</div>
@@ -126,7 +126,7 @@
     		</li>
     		<li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="s_pay_husky">
+    				<input type="checkbox" value="s_pay_husky" {% if s_pay_husky %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Husky Card</div>
@@ -135,7 +135,7 @@
     		</li>
     		<li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="s_pay_dining">
+    				<input type="checkbox" value="s_pay_dining" {% if s_pay_dining %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Dining Card</div>
@@ -144,7 +144,7 @@
     		</li>
     		<li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="s_pay_visa">
+    				<input type="checkbox" value="s_pay_visa" {% if s_pay_visa %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Visa</div>
@@ -153,7 +153,7 @@
     		</li>
             <li>
     			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="s_pay_mastercard">
+    				<input type="checkbox" value="s_pay_mastercard" {% if s_pay_mastercard %} checked {% endif %}>
     				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
     				<div class="item-inner">
     					<div class="item-title">Mastercard</div>
@@ -184,5 +184,7 @@
     {% endif %}
 
 </form>
+
+<script> var LIST_PAGE = false; </script>
 
 {% endblock %}

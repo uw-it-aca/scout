@@ -1,5 +1,21 @@
 
 /*** framework7 overrides ***/
+body { position: static !important; overflow: initial !important; height: auto !important; box-sizing: border-box; }
+
+.views {
+    position: static;
+    width: auto;
+    height: auto;
+    z-index: 0;
+
+    .view { position: static; overflow: auto; }
+}
+
+.pages { position: static; width: auto; height: auto; overflow: auto;
+    .page { position: static; width: auto; height: auto; left: auto; top: auto;
+        .page-content { position: static; height: auto; z-index: 0; }
+    }
+}
 
 .item-media {
 
@@ -9,11 +25,16 @@
 
 .list-block { margin: 0;
 
+    // removes transition animation for lists
+    .item-link { transition-duration: 0ms !important; }
+
 	ul:before { height: 0; }
 
 	ul {
 		li { }
 	}
+
+    .list-group-title { position: static; }
 
     .list-block-label { clear: both; word-wrap: break-word; color: #696969;
 
@@ -61,6 +82,16 @@ body { font-family: 'Roboto', sans-serif; }
     background-position: center center;
     background-size: cover;
 }
+
+.scout-filter-toggle-options {
+    line-height: 25px;
+    min-height: 50px;
+    background:#fff;
+    padding-left:73px;
+    color:#666;
+    span, select { display:inline-block; }
+}
+
 
 // helpers
 

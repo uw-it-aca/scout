@@ -32,7 +32,7 @@ var Filter = {
         var filter_categories = [];
         var specific_categories = [];
 
-        var type = $("body").data("app-type")
+        var type = $("body").data("app-type");
 
         if(type.indexOf("food") > -1) {
             specific_categories = Food_Filter._get_filter_label_text(url);
@@ -125,15 +125,11 @@ var Filter = {
     init: function() {
         // we can include type as a parameter and web.js
         // pas that!
-        var type = $("body").data("app-type")
+        var type = $("body").data("app-type");
 
-        if(type.indexOf("food") > -1) {
-            Food_Filter.populate_filters_from_saved();
-        } else if(type.indexOf("study") > -1) {
+        if(type.indexOf("study") > -1) {
             Study_Filter.populate_filters_from_saved();
             Study_Filter.populate_hour_filters();
-        } else if(type.indexOf("tech") > -1) {
-            Tech_Filter.populate_filters_from_saved();
         }
     },
 
@@ -141,7 +137,7 @@ var Filter = {
 
         var params = JSON.parse(sessionStorage.getItem(sessionVar));
 
-        if(params == undefined){
+        if(params === undefined){
             return;
         }
 
@@ -194,7 +190,7 @@ var Filter = {
 
     init_hybrid_events: function () {
 
-        var type = $("body").data("app-type")
+        var type = $("body").data("app-type");
 
         var params = {};
 
@@ -226,8 +222,8 @@ var Filter = {
                 Food_Filter.set_filter_params();
             } else if(type.indexOf("study") > -1) {
                 // reset the following radio buttons when clearing
-                $('#hours_toggle input:radio[value="open_now"]').prop("checked", true)
-                $('#buildings_toggle input:radio[value="entire_campus"]').prop("checked", true)
+                $('#hours_toggle input:radio[value="open_now"]').prop("checked", true);
+                $('#buildings_toggle input:radio[value="entire_campus"]').prop("checked", true);
                 Study_Filter.set_filter_params();
             } else if(type.indexOf("tech") > -1) {
                 Tech_Filter.set_filter_params();
@@ -247,7 +243,7 @@ var Filter = {
                     Tech_Filter.set_filter_params();
                 }
 
-            })
+            });
         });
 
     },
@@ -262,12 +258,12 @@ var Filter = {
             if (device == "android") {
                 scoutBridge.setParams(params);
             } else if (device == 'ios') {
-                webkit.messageHandlers.scoutBridge.postMessage(params)
+                webkit.messageHandlers.scoutBridge.postMessage(params);
             }
 
         } catch(err) {
             // no bridge could be found
-            console.log('The native context does not exist yet');
+            console.log('The native context does not exist yet.');
         }
 
     },

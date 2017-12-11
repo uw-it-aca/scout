@@ -48,7 +48,6 @@ var Study_Filter = {
         sessionStorage.setItem("study_filter_params", JSON.stringify(params));
 
         // pass the params to native apps via bridge
-        console.log($.param(params));
         Filter.call_js_bridge($.param(params));
 
     },
@@ -138,7 +137,6 @@ var Study_Filter = {
         $("#buildings_toggle input").change(function() {
 
             if ($(this).val() == "building_list") {
-                console.log("building_list clicked")
                 $("#building_select").removeClass("visually-hidden");
             } else {
                 $("#building_select").addClass("visually-hidden");
@@ -161,6 +159,18 @@ var Study_Filter = {
         // This method is similar to the current implementation
         // in fllter.js. This method is called by populate_filters_from_saved
         // in filter.js so no tests needed on this.
+
+        // clear session storage and load params from url
+
+        var params = {};
+        var param = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+        for(var i = 0; i < param.length; i++)
+        {
+            var arr = param[i].split("=");
+            params[decodeURIComponent(arr[0])] = decodeURIComponent(arr[1]);
+        }
+
+        sessionStorage.setItem("study_filter_params", JSON.stringify(params));
 
         var param_types = {
             "building": "building_select",

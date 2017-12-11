@@ -32,7 +32,6 @@ var Food_Filter = {
         sessionStorage.setItem("food_filter_params", JSON.stringify(params));
 
         // pass the params to native apps via bridge
-        console.log($.param(params));
         Filter.call_js_bridge($.param(params));
     },
 
@@ -101,25 +100,6 @@ var Food_Filter = {
             Food_Filter.reset_filter();
         });
         **/
-    },
-
-
-    populate_filters_from_saved: function(){
-        // This method is similar to the current implementation
-        // in fllter.js. This method is called by populate_filters_from_saved
-        // in filter.js so no tests needed on this.
-
-        var param_types = {
-            "payment": "payment_select",
-            "type": "type_select",
-            "food": "food_select",
-            "cuisine": "cuisine_select",
-            "period": "period_select",
-            "open_now": "open_now"
-        };
-
-        Filter.populate_filters_from_saved("food_filter_params", param_types);
-
     },
 
 };

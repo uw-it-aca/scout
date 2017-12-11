@@ -86,7 +86,7 @@
     {% if spot.access_notes %}
     <div class="list-block-label" style="margin-bottom:1em;">
         <i class="fa fa-sign-in" aria-hidden="true" style="float:left; margin-top:3px;"></i>
-        <span style=" display:block; float:left; width: 92%;">{{spot.access_notes}}</span>
+        <span style=" display:block; float:left; width: 92%;">{{spot.access_notes|urlize}}</span>
         <div style="clear:both;"></div>
     </div>
     {% endif %}
@@ -235,17 +235,10 @@
 <div class="list-block">
     <ul>
         <li>
-
-            {% if request.is_ios %}
-            <a href="maps://maps.apple.com/maps?q={{ spot.latitude }},{{ spot.longitude }}" class="item-link">
-            {% endif %}
-            {% if request.is_and %}
-            <a href="comgooglemaps://?q={{ spot.latitude }},{{ spot.longitude }}" class="item-link">
-            {% endif %}
-
+            <a href="https://www.google.com/maps/search/?api=1&query={{ spot.latitude }},{{ spot.longitude }}" class="item-link">
                 <div class="item-content">
                     <div class="item-inner">
-                        <div class="item-title">Directions in {% if request.is_ios %}Apple{% endif %}{% if request.is_and %}Google{% endif %} Maps</div>
+                        <div class="item-title">Open in Google Maps</div>
                     </div>
                 </div>
             </a>
@@ -274,5 +267,7 @@
         </li>
     </ul>
 </div>
+
+<script> var LIST_PAGE = false; </script>
 
 {% endblock %}
