@@ -122,7 +122,7 @@ COMPRESS_JS_FILTERS = [
 ]
 ```
 
-Add details for connection to spotseeker_server. Change 'File' to 'Live' if you want to connect to a live spotseeker_server instead of using the file-based mock data:
+Add details for connection to spotseeker_server. Change 'File' to 'Live' if you want to connect to a live spotseeker_server instead of using the file-based mock data (File-based mocks are sufficient for unit tests, but do not match any of the queries the app will make:
 
 ```
 SPOTSEEKER_HOST = ''
