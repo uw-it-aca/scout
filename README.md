@@ -87,7 +87,7 @@ STATICFILES_FINDERS = (
 Add STATIC_ROOT:
 
 ```
-STATIC_ROOT = '/tmp/'
+STATIC_ROOT = 'static/'
 ```
 
 Add import statement and  DETECT_USER_AGENTS:
