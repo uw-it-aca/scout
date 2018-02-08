@@ -87,7 +87,7 @@ STATICFILES_FINDERS = (
 Add STATIC_ROOT:
 
 ```
-STATIC_ROOT = '/tmp/'
+STATIC_ROOT = 'static/'
 ```
 
 Add import statement and  DETECT_USER_AGENTS:
@@ -135,7 +135,7 @@ Additional settings:
 ```
 CAMPUS_URL_LIST = ['seattle', 'tacoma', 'bothell']
 
-COMPRESS_ROOT = '/tmp/'
+COMPRESS_ROOT = 'static/'
 ```
 
 Add the app to your project's urls.py:
