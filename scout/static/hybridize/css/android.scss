@@ -92,7 +92,11 @@ body { font-family: 'Roboto', sans-serif; }
     span, select { display:inline-block; }
 }
 
+.item-input { text-align: right;
+    input, select { text-align: right }
 
+    select { display: inline-block; margin-right: 0; width: auto; height: auto }
+}
 // helpers
 
 .visually-hidden {

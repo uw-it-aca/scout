@@ -73,7 +73,7 @@ label.label-radio input[type=checkbox]:checked~.item-inner, label.label-radio in
 .item-input { text-align: right;
 	input, select { text-align: right; }
 
-	/*select { width: auto; margin-right: 0; display: inline-block; }*/
+	select { width: auto; margin-right: 0; display: inline-block; }
 }
 
 /** cards not really in ios.. flat and full width **/
