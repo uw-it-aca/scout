@@ -117,7 +117,12 @@
             m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
             })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-            ga('create', '{{ google_analytics }}', {% if devtools_bar %}{'cookieDomain': 'none'}{% else %}'auto'{% endif %});
+            var config = {}
+
+            config['siteSpeedSampleRate'] = 100;
+            config['cookieDomain'] = {% if devtools_bar %}'none'{% else %}'auto'{% endif %};
+
+            ga('create', '{{ google_analytics }}', config);
         </script>
         {% endif %}
 
