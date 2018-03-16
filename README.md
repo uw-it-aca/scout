@@ -87,7 +87,7 @@ STATICFILES_FINDERS = (
 Add STATIC_ROOT:
 
 ```
-STATIC_ROOT = '/tmp/'
+STATIC_ROOT = 'static/'
 ```
 
 Add import statement and  DETECT_USER_AGENTS:
@@ -122,7 +122,7 @@ COMPRESS_JS_FILTERS = [
 ]
 ```
 
-Add details for connection to spotseeker_server. Change 'File' to 'Live' if you want to connect to a live spotseeker_server instead of using the file-based mock data:
+Add details for connection to spotseeker_server. Change 'File' to 'Live' if you want to connect to a live spotseeker_server instead of using the file-based mock data (File-based mocks are sufficient for unit tests, but do not match any of the queries the app will make:
 
 ```
 SPOTSEEKER_HOST = ''
@@ -135,7 +135,7 @@ Additional settings:
 ```
 CAMPUS_URL_LIST = ['seattle', 'tacoma', 'bothell']
 
-COMPRESS_ROOT = '/tmp/'
+COMPRESS_ROOT = 'static/'
 ```
 
 Add the app to your project's urls.py:
