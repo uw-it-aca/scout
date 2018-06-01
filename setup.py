@@ -17,7 +17,6 @@ setup(
         'django-compressor',
         'django_mobileesp',
         'django-turbolinks',
-        'django-htmlmin',
         'django-pyscss',
         'pytz',
         'beautifulsoup4',
