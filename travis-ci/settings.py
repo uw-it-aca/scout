@@ -52,8 +52,6 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.security.SecurityMiddleware',
     'django_mobileesp.middleware.UserAgentDetectionMiddleware',
     'turbolinks.middleware.TurbolinksMiddleware',
-    'htmlmin.middleware.HtmlMinifyMiddleware',
-    'htmlmin.middleware.MarkRequestMiddleware'
 )
 
 AUTHENTICATION_BACKENDS = (
@@ -157,8 +155,5 @@ COMPRESS_JS_FILTERS = [
 
 # google analytics tracking
 #GOOGLE_ANALYTICS_KEY = "UA-XXXXXXXX-X"
-
-# htmlmin
-HTML_MINIFY = True
 
 CAMPUS_URL_LIST = ['seattle', 'tacoma', 'bothell']
