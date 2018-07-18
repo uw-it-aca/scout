@@ -37,7 +37,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'scout',
     'spotseeker_restclient',
-    'compressor'
+    'compressor',
+    'hybridize'
 )
 
 MIDDLEWARE_CLASSES = (
