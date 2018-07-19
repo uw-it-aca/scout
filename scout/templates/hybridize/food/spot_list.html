@@ -25,7 +25,7 @@
             <div class="item-text">
                 {% for type in spot.spot_types %}<span style="text-transform:capitalize;">{{ type.name|remove_underscores }}{% if not forloop.last %}, {% endif %}</span>{% endfor %}
                 <div style="font-size:12px;color:#000;">
-                  <span class="scout-spot-distance" style="border:solid 1px red;"><span class="distance-number">---</span>&nbsp;mi&nbsp;&nbsp;</span>
+                  {% if request.GET.h_lat and request.GET.h_lng %}<span class="scout-spot-distance" style="border:solid 1px red;"><span class="distance-number">---</span>&nbsp;mi&nbsp;&nbsp;</span>{% endif %}
                   {% if not spot.is_open %}<span class="closed scout-red">Currently closed</span>{% endif %}
                 </div>
             </div>
