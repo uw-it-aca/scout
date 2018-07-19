@@ -10,29 +10,20 @@
 
     {% if campus == 'seattle' %}
     <div style="background:url('{% static "scout/img/seattle/IMG_3973-M.jpg" %}') no-repeat center center; background-size:cover; height:270px;" valign="bottom" class="content-header">&nbsp;</div>
-    <div style="border:solid 1px red; text-align:center;">
-      SEATTLE, CAMPUS
-    </div>
-    <div style="border:solid 1px red; text-align:center;">
-      Near, Current Location
-    </div>
     {% elif campus == 'bothell' %}
     <div style="background:url('{% static "scout/img/bothell/mascot-w.jpg" %}') no-repeat center center; background-size:cover; height:270px;" valign="bottom" class="content-header">&nbsp;</div>
-    <div style="border:solid 1px red; text-align:center;">
-      BOTHELL CAMPUS
-    </div>
-    <div style="border:solid 1px red; text-align:center;">
-      Near, Current Location
-    </div>
     {% elif campus == 'tacoma' %}
     <div style="background:url('{% static "scout/img/tacoma/sign-w.jpg" %}') no-repeat center center; background-size:cover; height:270px;" valign="bottom" class="content-header">&nbsp;</div>
+    {% endif %}
+
     <div style="border:solid 1px red; text-align:center;">
-      TACOMA CAMPUS
-    </div>
-    <div style="border:solid 1px red; text-align:center;">
+    {% if request.GET.h_lat and request.GET.h_lng %}
       Near, Current Location
     </div>
+    {% else %}
+      {{campus}} campus
     {% endif %}
+    </div>
 
     <div class="content-content"></div>
 
