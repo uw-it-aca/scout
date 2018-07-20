@@ -76,9 +76,6 @@ var Geolocation = {
 
     get_client_latlng: function () {
 
-        //var lat = sessionStorage.getItem("lat");
-        //var lng = sessionStorage.getItem("lng");
-
         // if the lat/lng is passed in query params... it's user location_changed
         // else.. just use the lat/lng in the data-attribute (dafault campus location)
 
@@ -145,7 +142,7 @@ var Geolocation = {
         $.event.trigger(Geolocation.location_changed);
     },
     **/
-    
+
     get_distance_from_position: function (item_latlng) {
         // Returns distance in miles, rounded to 2 decimals
         var current_latlng = Geolocation.get_client_latlng();

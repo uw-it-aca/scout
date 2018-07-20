@@ -30,7 +30,7 @@ Discover = {
             "latitude": latlng.lat(),
             "longitude": latlng.lng()
         };
-        
+
         $.ajax({
             url: url,
             dataType: "html",

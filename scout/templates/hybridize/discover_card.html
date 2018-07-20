@@ -28,7 +28,7 @@
                                 <div class="item-title">{{spot.name}}</div>
                             </div>
                             <div class="item-subtitle">{{ spot.building_name }}</div>
-                            <div style="font-size:12px;">{% if request.GET.latitude and request.GET.longitude %}<span style="border:solid 1px red;"><span class="scout-spot-distance">xxx</span>&nbsp;mi.&nbsp;&nbsp;</span>{% endif %}{% if not spot.is_open %}<span style="color:#A94441;">Currently closed</span>{% endif %} </div>
+                            <div style="font-size:12px;"><span style="border:solid 1px lime;"><span class="scout-spot-distance">xxx</span>&nbsp;mi.&nbsp;&nbsp;</span>{% if not spot.is_open %}<span style="color:#A94441;">Currently closed</span>{% endif %} </div>
                         </div>
                     </a>
 
