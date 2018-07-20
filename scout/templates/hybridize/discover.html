@@ -16,18 +16,9 @@
     <div style="background:url('{% static "scout/img/tacoma/sign-w.jpg" %}') no-repeat center center; background-size:cover; height:270px;" valign="bottom" class="content-header">&nbsp;</div>
     {% endif %}
 
-    <div style="border:solid 1px red; text-align:center;">
-    {% if request.GET.h_lat and request.GET.h_lng %}
-      Near, Current Location
-    </div>
-    {% else %}
-      {{campus}} campus
-    {% endif %}
-    </div>
+    {% include "hybridize/includes/location.html" %}
 
     <div class="content-content"></div>
-
-
 
 </div>
 

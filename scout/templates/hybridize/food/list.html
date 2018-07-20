@@ -6,19 +6,11 @@
 
 {% block hybrid_content %}
 
+{% include "hybridize/includes/location.html" %}
+
 <div class="card">
     <div class="card-content">
         <div class="card-content-inner">
-
-            <div style="border:solid 1px red; text-align:center;">
-            {% if request.GET.h_lat and request.GET.h_lng %}
-              Near, Current Location
-            </div>
-            {% else %}
-              {{campus}} campus
-            {% endif %}
-            </div>
-
             <div class="row no-gutter">
                 <div class="col-66">
                     <span id="filter_text_holder" class="visually-hidden">
@@ -29,7 +21,6 @@
                     <span class="content-loading" style="width:80px;">&nbsp;</span>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
