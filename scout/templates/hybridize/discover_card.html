@@ -3,6 +3,7 @@
 {% block content %}
 
 <div class="card" style="background:none !important;">
+
     <div class="card-header" style="color:#666; text-transform:uppercase; font-size:14px;">{{ card_title }}</div>
     <div class="card-content" style="background:#fff; padding: 10px 0;">
         <div class="list-block media-list">
@@ -28,7 +29,7 @@
                                 <div class="item-title">{{spot.name}}</div>
                             </div>
                             <div class="item-subtitle">{{ spot.building_name }}</div>
-                            <div style="font-size:12px;"><span style="border:solid 1px lime;"><span class="scout-spot-distance">xxx</span>&nbsp;mi.&nbsp;&nbsp;</span>{% if not spot.is_open %}<span style="color:#A94441;">Currently closed</span>{% endif %} </div>
+                            <div style="font-size:12px;">{% if request.GET.h_lat and request.GET.h_lng %}<span style="border:solid 1px red;"><span class="scout-spot-distance">xxx</span>&nbsp;mi.&nbsp;&nbsp;</span>{% endif %}{% if not spot.is_open %}<span style="color:#A94441;">Currently closed</span>{% endif %} </div>
                         </div>
                     </a>
 
