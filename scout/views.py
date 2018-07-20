@@ -60,8 +60,8 @@ class DiscoverCardView(TemplateView):
         self.template_name = kwargs['template_name']
 
         # Will figure this out later
-        lat = self.request.GET.get('h_lat', None)
-        lon = self.request.GET.get('h_lng', None)
+        lat = self.request.GET.get('latitude', None)
+        lon = self.request.GET.get('longitude', None)
 
         # Hardcoded for food at the moment. Change it per need basis.
         discover_categories = {
