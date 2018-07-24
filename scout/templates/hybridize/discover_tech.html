@@ -10,6 +10,6 @@
     </div>
     <div class="card-footer">
         <span>&nbsp;</span>
-        <span><a href="/h/{{campus}}/tech/" style="text-transform:capitalize;float:right;">View Technology</a></span>
+        <span><a href="/h/{{campus}}/tech/?h=true{% if request.GET.h_lat and request.GET.h_lng %}&h_lat={{request.GET.h_lat}}&h_lng={{request.GET.h_lng}}{%endif%}" style="text-transform:capitalize;float:right;">View Technology</a></span>
     </div>
 </div>
