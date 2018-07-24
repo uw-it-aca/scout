@@ -9,7 +9,7 @@ before_script:
   - pip install python-coveralls
   - pip install pycodestyle
   - pip install -r requirements.txt
-  - cp travis-ci/manage.py manage.py
+  - cp sampleproj/manage.py manage.py
   - python manage.py migrate --noinput
   - npm install -g mocha
   - npm install jquery
