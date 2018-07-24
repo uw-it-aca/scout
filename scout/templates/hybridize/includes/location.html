@@ -1,7 +1,7 @@
 
 {% if request.GET.h_lat and request.GET.h_lng %}
-<div style="text-align:center; text-transform: capitalize; padding: 8px 0; background:#fff; color:purple;">
-  <div><small>Displaying spaces near:</small></div>
-  <div><i class="fas fa-map-marker-alt"></i> Current Location</div>
+<div class="scout-location">
+  <div class="scout-location-sort"><small>Sorted by:</small></div>
+  <div class="scout-location-display"><i class="fas fa-map-marker-alt"></i> Current Location</div>
 </div>
 {% endif %}

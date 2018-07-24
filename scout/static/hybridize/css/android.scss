@@ -114,3 +114,14 @@ body { font-family: 'Roboto', sans-serif; }
 
 .scout-green { color: #408325; }
 .scout-red { color:#a94441; }
+
+// client Location
+.scout-location {
+  text-align:center;
+  text-transform: capitalize;
+  padding: 8px 0;
+
+  .scout-location-sort { text-transform: uppercase; color: #666; }
+  .scout-location-display { color: #000; font-weight: bold; }
+
+}
