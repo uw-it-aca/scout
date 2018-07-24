@@ -35,11 +35,10 @@
 
         {% if request.is_and %}
 
+            {% compress css inline %}
             <!-- framework7 material -->
             <link rel="stylesheet" type="text/css" href="{% static "hybridize/css/framework7.material.min.css" %}">
             <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.6.3.min.css" %}">
-
-            {% compress css %}
             <!-- local override files -->
             <link rel="stylesheet" href="{% static "hybridize/css/android-theme.scss" %}" type="text/x-scss">
             <link rel="stylesheet" href="{% static "hybridize/css/android.scss" %}" type="text/x-scss">
@@ -67,11 +66,10 @@
 
         {% if request.is_ios %}
 
-        	<!-- framework7 ios -->
+          {% compress css inline %}
+          <!-- framework7 ios -->
           <link rel="stylesheet" type="text/css" href="{% static "hybridize/css/framework7.ios.min.css" %}">
           <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.6.3.min.css" %}">
-
-          {% compress css %}
           <!-- local override files -->
           <link rel="stylesheet" href="{% static "hybridize/css/ios-theme.scss" %}" type="text/x-scss">
           <link rel="stylesheet" href="{% static "hybridize/css/ios.scss" %}" type="text/x-scss">
