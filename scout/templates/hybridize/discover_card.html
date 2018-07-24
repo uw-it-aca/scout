@@ -56,7 +56,7 @@
 
     <div class="card-footer">
         <span>&nbsp;</span>
-        <span><a href="/h/{{campus}}/{{ spot_type }}/?h_title={{card_title}}&{{ card_filter_url }}" style="text-transform:capitalize;float:right;">View more</a></span>
+        <span><a href="/h/{{campus}}/{{ spot_type }}/?h=true{% if request.GET.h_lat and request.GET.h_lng %}&h_lat={{request.GET.h_lat}}&h_lng={{request.GET.h_lng}}{%endif%}&h_title={{card_title}}&{{ card_filter_url }}" style="text-transform:capitalize;float:right;">View more</a></span>
     </div>
 
 </div>
