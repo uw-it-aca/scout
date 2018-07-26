@@ -137,7 +137,6 @@ DETECT_USER_AGENTS = {
 
 COMPRESS_ROOT = "/tmp/"
 COMPRESS_PRECOMPILERS = (
-    ('text/less', 'lesscpy {infile} {outfile}'),
     ('text/x-sass', 'sassc {infile} {outfile}'),
     ('text/x-scss', 'sassc {infile} {outfile}'),
 )

@@ -20,7 +20,6 @@ setup(
         'beautifulsoup4',
         'html5lib==0.9999999',
         'requests',
-        'lesscpy',
         'libsass'
     ],
     license='Apache License, Version 2.0',  # example license
