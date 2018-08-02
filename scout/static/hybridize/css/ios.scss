@@ -72,7 +72,7 @@ label.label-radio input[type=checkbox]:checked~.item-inner, label.label-radio in
 
 .item-input { text-align: right;
 	input, select { text-align: right; }
-	
+
     select { width: auto; margin-right: 0; display: inline-block; }
 }
 
@@ -154,3 +154,16 @@ body { background: #efeff4 !important; padding: 0 !important; margin: 0 !importa
 
 .scout-green { color: #408325; }
 .scout-red { color:#a94441; }
+
+
+// client Location
+.scout-location {
+  text-align:center;
+  text-transform: capitalize;
+  padding: 8px 0;
+  border-bottom: solid 1px #ddd;
+
+  .scout-location-sort { text-transform: uppercase; color: #666; }
+  .scout-location-display { color: #000; font-weight: bold; }
+
+}

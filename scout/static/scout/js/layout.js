@@ -2,9 +2,6 @@ var Layout = {
 
     init_layout: function(){
 
-        // async load css by flipping the media attribute to all
-    	$('link[rel="stylesheet"]').attr('media', 'all');
-
         var isMobile = $("body").data("mobile");
 
         var offsetHeight;

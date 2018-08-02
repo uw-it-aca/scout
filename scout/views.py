@@ -58,6 +58,7 @@ class DiscoverCardView(TemplateView):
     @validate_campus_selection
     def get_context_data(self, **kwargs):
         self.template_name = kwargs['template_name']
+
         # Will figure this out later
         lat = self.request.GET.get('latitude', None)
         lon = self.request.GET.get('longitude', None)

@@ -16,10 +16,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+SECRET_KEY = ''
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 TEMPLATE_DEBUG = True
 
@@ -36,9 +36,9 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'scout',
-    'turbolinks',
     'spotseeker_restclient',
-    'compressor'
+    'compressor',
+    'hybridize'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -50,15 +50,14 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'django_mobileesp.middleware.UserAgentDetectionMiddleware',
-    'turbolinks.middleware.TurbolinksMiddleware',
+    'django_mobileesp.middleware.UserAgentDetectionMiddleware'
 )
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.RemoteUserBackend',
 )
 
-ROOT_URLCONF = 'travis-ci.urls'
+ROOT_URLCONF = 'sampleproj.urls'
 
 TEMPLATES = [
     {
@@ -79,7 +78,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'travis-ci.wsgi.application'
+WSGI_APPLICATION = 'sampleproj.wsgi.application'
 
 
 # Database
@@ -138,7 +137,6 @@ DETECT_USER_AGENTS = {
 
 COMPRESS_ROOT = "/tmp/"
 COMPRESS_PRECOMPILERS = (
-    ('text/less', 'lessc {infile} {outfile}'),
     ('text/x-sass', 'sassc {infile} {outfile}'),
     ('text/x-scss', 'sassc {infile} {outfile}'),
 )
@@ -156,4 +154,5 @@ COMPRESS_JS_FILTERS = [
 # google analytics tracking
 #GOOGLE_ANALYTICS_KEY = "UA-XXXXXXXX-X"
 
+# scout settings
 CAMPUS_URL_LIST = ['seattle', 'tacoma', 'bothell']
