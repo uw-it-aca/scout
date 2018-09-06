@@ -127,9 +127,9 @@
 {% else %}
 <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?libraries=geometry"></script>
 {% endif %}
-<script src="{% static 'vendor/js/markerwithlabel.js' %}"></script>
-<script src="{% static 'vendor/js/markerclusterer.js' %}"></script>
-<script src="{% static 'vendor/js/OverlappingMarkerSpiderfier.js' %}"></script>
+<script src="{% static 'vendor/js/markerwithlabel-1.2.3.min.js' %}"></script>
+<script src="{% static 'vendor/js/markerclusterer-2.1.11.min.js' %}"></script>
+<script src="{% static 'vendor/js/OverlappingMarkerSpiderfier-1.0.3.min.js' %}"></script>
 <script type="text/javascript">
     window.staticPath="{% static "" %}";
     window.campus_locations = {{ campus_locations | safe}};
