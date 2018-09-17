@@ -10,89 +10,123 @@
 
 <div style="padding:20px; line-height:20px;">
 
-    <p>This feature is currently not available for the <strong style="text-transform:capitalize;">{{ campus }} campus</strong>. We are working hard to make this data available for you in the near future.</p>
+  <p>This feature is currently not available for the <strong style="text-transform:capitalize;">{{ campus }} campus</strong>. We are working hard to make this data available for you in the near future.</p>
 
-    {% if campus == "bothell" %}
-    <p>In the meantime, please visit the Information Technologies <a href="http://www.uwb.edu/it/services/articles/equipment-checkout" target="_blank">Equipment Checkout</a> service to see what is available for you.</p>
-    {% endif %}
+  {% if campus == "bothell" %}
+  <p>In the meantime, please visit the Information Technologies <a href="http://www.uwb.edu/it/services/articles/equipment-checkout" target="_blank">Equipment Checkout</a> service to see what is available for you.</p>
+  {% endif %}
 
-    {% if campus == "tacoma" %}
-    <p>In the meantime, please visit the <a href="https://www.tacoma.uw.edu/learning-research-commons/learning-research-commons" target="_blank">Learning and Resource Commons (LARC)</a>, to see what is available for you.</p>
-    {% endif %}
+  {% if campus == "tacoma" %}
+  <p>In the meantime, please visit the <a href="https://www.tacoma.uw.edu/learning-research-commons/learning-research-commons" target="_blank">Learning and Resource Commons (LARC)</a>, to see what is available for you.</p>
+  {% endif %}
 
-    <hr>
+  <hr>
 
-    <p style="font-size:14px; color:#666;">If you'd like to visit the <strong>Seattle Campus</strong>, here is a list of popular technology items available for you to checkout.</p>
+  <p style="font-size:14px; color:#666;">If you'd like to visit the <strong>Seattle Campus</strong>, here is a list of popular technology items available for you to checkout.</p>
 
-    <ul style="list-style:none; padding:0; margin:0; line-height:20px; font-size:14px;">
-        <li><a href="/h/seattle/tech/?h_title=Seattle Tech&subcategory0=Digital+Camera">Digital Camera</a></li>
-        <li><a href="/h/seattle/tech/?h_title=Seattle Tech&subcategory0=Digital+Video+Camera">Digital Video Camera</a></li>
-        <li><a href="/h/seattle/tech/?h_title=Seattle Tech&subcategory0=Laptop+Computer">Laptop Computer</a></li>
-        <li><a href="/h/seattle/tech/?h_title=Seattle Tech&subcategory0=Tablet+Computer">Tablet Computer</a></li>
-        <li><a href="/h/seattle/tech/?h_title=Seattle Tech&subcategory0=Data+Projector">Data Projector</a></li>
-    </ul>
+  <ul style="list-style:none; padding:0; margin:0; line-height:20px; font-size:14px;">
+    <li><a href="/h/seattle/tech/?h_title=Seattle Tech&subcategory0=Digital+Camera">Digital Camera</a></li>
+    <li><a href="/h/seattle/tech/?h_title=Seattle Tech&subcategory0=Digital+Video+Camera">Digital Video Camera</a></li>
+    <li><a href="/h/seattle/tech/?h_title=Seattle Tech&subcategory0=Laptop+Computer">Laptop Computer</a></li>
+    <li><a href="/h/seattle/tech/?h_title=Seattle Tech&subcategory0=Tablet+Computer">Tablet Computer</a></li>
+    <li><a href="/h/seattle/tech/?h_title=Seattle Tech&subcategory0=Data+Projector">Data Projector</a></li>
+  </ul>
 
 </div>
 {% else %}
 {% include "hybridize/includes/location.html" %}
 <div class="card">
-    <div class="card-content">
-        <div class="card-content-inner">
+  <div class="card-content">
+    <div class="card-content-inner">
 
-            <div class="row no-gutter">
-                <div class="col-66">
-                    <span id="filter_text_holder" class="visually-hidden">
+      <div class="row no-gutter">
+        <div class="col-66">
+          <span id="filter_text_holder" class="visually-hidden">
                         Filtering by: <span id="filter_label_text"></span>
-                    </span>
-                </div>
-                <div class="col-33" style="text-align:right;" id="spot_count">
-                    <span class="content-loading" style="width:80px;">&nbsp;</span>
-                </div>
-            </div>
-
+          </span>
         </div>
+        <div class="col-33" style="text-align:right;">
+          {{ count }} items
+        </div>
+      </div>
+
     </div>
+  </div>
 </div>
 
 <div class="list-block media-list scout-list">
 
-    <div class="list-group">
-        <ul aria-label="content placeholder" id="content_placeholder">
-            <!-- content placeholder -->
-            {% include "hybridize/list_content_placeholder.html" %}
+  <div class="list-group">
+
+    <ul id="scout_tech_list">
+
+      {% for spot in spots %}
+      {% if spot.items %}
+
+      <li class="scout-list-item" style="padding:0;" data-spot-building="{{ spot.building_name }}" data-spot-lat="{{ spot.latitude }}" data-spot-lng="{{ spot.longitude }}" data-spot-name="{{ spot.name }}" data-items="{{ spot.items|length }}">
+
+        <div class="list-group-title">{{ spot.name }}</div>
+
+        <ul style="padding-left:0;">
+          {% for item in spot.items %}
+          <li class="scout-list-item-object">
+
+            <a href="/h/{{campus}}/tech/{{ item.item_id }}/" class="item-link item-content">
+
+                        <div class="item-media">
+
+                            {% if item.images %}
+                            <div class="scout-spot-image" style="background-image: url('/item/images/{{ item.item_id }}/image/{{ item.images.0.image_id }}/?width=100'); width:80px; height:80px;">&nbsp;</div>
+                            {% else %}
+                            <div class="scout-spot-image" style="background-image: url('{% static "scout/img/placeholder-200.png" %}'); width:80px; height:80px;">&nbsp;</div>
+                            {% endif %}
+
+                        </div>
+                        <div class="item-inner">
+                            <div class="item-title-row">
+                                <div class="item-title">{{ item.name }}</div>
+                            </div>
+                            <div class="item-subtitle">
+                                <div style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{% if spot.building_name %}{{ spot.building_name }}{% else %} <span style="color:red;">missing building_name</span> {% endif %}</div>
+                            </div>
+                            <div class="item-text">
+                                {{ item.subcategory }}
+                                <div style="font-size:12px;color:#000;">
+                                  {% if request.GET.h_lat and request.GET.h_lng %}<span class="scout-spot-distance"><span class="distance-number">---</span>&nbsp;mi&nbsp;&nbsp;</span>{% endif %}
+                                  {% if not spot.is_open %}<span class="closed scout-red">Currently closed</span>{% endif %}</div>
+                            </div>
+                        </div>
+
+                    </a>
+          </li>
+          {% endfor %}
         </ul>
 
-        <ul id="scout_tech_list">
-            <!-- main list content goes here -->
-        </ul>
-    </div>
-
-    <ul id="load_more_content_placeholder" style="display: none;">
-        <li>
-            <a href="javascript:void(0)" class="item-link item-content" title="">
-                <div class="item-media">
-                    <div style="background: #e5e6e9 url('{% static "scout/img/placeholder-200.png" %}') no-repeat center center; background-size: cover !important; width:80px; height:80px">&nbsp;</div>
-                </div>
-                <div class="item-inner">
-                    <div class="item-title-row">
-                        <div class="item-title"><span class="content-loading" style="width:140px;">&nbsp;</span></div>
-                    </div>
-                    <div class="item-subtitle"><span class="content-loading" style="width:200px;">&nbsp;</span></div>
-                    <div class="item-subtitle"><span class="content-loading" style="width:200px;">&nbsp;</span></div>
-                    <div style="font-size:12px;"><span class="content-loading" style="width:80px;">&nbsp;</span></div>
-                </div>
-            </a>
-        </li>
-    </ul>
-    <div style="display:none" id="load_more_spot_list">
-        <div style="padding: 15px;">
-            <a href="javascript:void(0)" class="button button-big button-fill" id="load_more_spot_button">Load more...</a>
+      </li>
+      {% endif %}
+      {% empty %}
+      <li class="scout-list-item">
+        <div class="list-group-title">No results found</div>
+      </li>
+      <li class="scout-list-item scout-error" style="padding:20px;">
+        <p class="scout-error-msg">No results? Try updating your filters.</p>
+        <div class="scout-error-body">
+          <p>Suggestions for improving the results:</p>
+          <ul>
+            <li>Try a specific campus.</li>
+            <li>Try using fewer filters.</li>
+          </ul>
         </div>
-    </div>
+      </li>
+      {% endfor %}
+
+    </ul>
+
+  </div>
+
+
 
 </div>
-
-<script> var LIST_PAGE = true; </script>
 
 {% endif %}
 
