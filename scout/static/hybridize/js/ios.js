@@ -1,15 +1,12 @@
 // Initialize your hybrid app
+
+
 $(document).on('turbolinks:load', function() {
 
     console.log("turbolinks ios fired!");
 
-    // track visits in google analytics
-    try {
-        ga('send', 'pageview', (location.pathname + location.search));
-        console.info("Navigated to: " + location.pathname + location.search);
-    } catch(e){
-        console.log("No ga function, GOOGLE_ANALYTICS_KEY may not be set.");
-    }
+    /// async load css by flipping the media attribute to all
+    $('link[rel="stylesheet"]').attr('media', 'all');
 
     // initialize framework7
     var myApp = new Framework7({
@@ -19,54 +16,30 @@ $(document).on('turbolinks:load', function() {
 	});
 
     // get the app_type
-    var type = $("body").data("app-type");
-    var limit = List.get_limit_param(type);
+    var type = $("body").data("app-type")
 
-    if (type == "food") {
-        if (LIST_PAGE == true) {
-            // food list
-            // initialize limit
-            if (limit === undefined || limit === null) {
-                limit = 20;
-            }
-            List.fetch_spot_list(100000, limit, "scout_food_list", function() {
-                List.init();
-                Filter.init();
+    if (type.indexOf("food") !== -1) {
+        // food
+        List.init();
+        Filter.init();
+
+    } else if (type.indexOf("study") !== -1){
+        // study
+        List.init();
+        Filter.init();
+
+        // study detail image slider
+        if ($( ".photo-gallery").length) {
+            $('.photo-gallery').not('.slick-initialized').slick({
+                dots: true,
+                arrows: false,
             });
         }
-    } else if (type == "study") {
-        if (LIST_PAGE == true) {
-            // study list
-            // initialize limit
-            if (limit === undefined || limit === null) {
-                limit = 20;
-            }
-            List.fetch_spot_list(100000, limit, "scout_study_list", function() {
-                List.init();
-                Filter.init();
-            });
-        } else {
-            // study detail
-            // image slider
-            if ($( ".photo-gallery").length) {
-                $('.photo-gallery').not('.slick-initialized').slick({
-                    dots: true,
-                    arrows: false,
-                });
-            }
-        }
-    } else if (type === "tech") {
-        if (LIST_PAGE == true) {
-            // tech list
-            // initialize limit
-            if (limit === undefined || limit === null) {
-                limit = 20;
-            }
-            List.fetch_spot_list(100000, limit, "scout_tech_list", function() {
-                List.init();
-                Filter.init();
-            });
-        }
+
+    } else if (type.indexOf("tech") !== -1){
+        // tech
+        List.init();
+        Filter.init();
     } else {
         // discover
         Discover.init_cards();
@@ -77,5 +50,7 @@ $(document).on('turbolinks:load', function() {
 
     // filter
     Filter.init_events();
+
+
 
 });
