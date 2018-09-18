@@ -41,13 +41,6 @@
             </div>
         </li>
         {% endif %}
-        {% if spot.location_description %}
-        <li class="item-content">
-            <div class="item-inner">
-                <div class="item-title">Location <span>{{ spot.location_description }}</span></div>
-            </div>
-        </li>
-        {% endif %}
         {% if spot.capacity %}
         <li class="item-content">
             <div class="item-inner">
@@ -90,6 +83,23 @@
         <div style="clear:both;"></div>
     </div>
     {% endif %}
+</div>
+
+<div class="content-block-title">Location</div>
+<div class="list-block">
+    <ul>
+      {% if spot.location_description %}
+      <li>
+          <a href="https://www.google.com/maps/search/?api=1&query={{ spot.latitude }},{{ spot.longitude }}" class="item-link">
+          <div class="item-content">
+              <div class="item-inner">
+                  <div class="item-title">{{ spot.location_description }} <span>Directions via Google Maps</span></div>
+              </div>
+          </div>
+          </a>
+      </li>
+      {% endif %}
+    </ul>
 </div>
 
 <div class="content-block-title">Open Hours</div>
