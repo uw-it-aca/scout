@@ -16,6 +16,11 @@ a.color-red {
 .label-switch.color-red input[type="checkbox"]:checked + .checkbox {
   background-color: $maincolor;
 }
+
+.label-switch input[type=checkbox]:checked+.checkbox {
+  background-color: $maincolor;
+}
+
 .color-red.button:not(.button-fill),
 .color-red.buttons-row .button,
 .theme-custom .button:not(.button-fill) {
