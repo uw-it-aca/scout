@@ -41,13 +41,6 @@
             </div>
         </li>
         {% endif %}
-        {% if spot.location_description %}
-        <li class="item-content">
-            <div class="item-inner">
-                <div class="item-title">Location <span>{{ spot.location_description }}</span></div>
-            </div>
-        </li>
-        {% endif %}
         {% if spot.capacity %}
         <li class="item-content">
             <div class="item-inner">
@@ -85,11 +78,28 @@
     {% endif %}
     {% if spot.access_notes %}
     <div class="list-block-label" style="margin-bottom:1em;">
-        <i class="fa fa-sign-in" aria-hidden="true" style="float:left; margin-top:3px;"></i>
+        <i class="fas fa-exclamation-circle" aria-hidden="true" style="float:left; margin-top:3px;"></i>
         <span style=" display:block; float:left; width: 92%;">{{spot.access_notes|urlize}}</span>
         <div style="clear:both;"></div>
     </div>
     {% endif %}
+</div>
+
+<div class="content-block-title">Location</div>
+<div class="list-block">
+    <ul>
+      {% if spot.location_description %}
+      <li>
+          <a href="https://www.google.com/maps/search/?api=1&query={{ spot.latitude }},{{ spot.longitude }}" class="item-link">
+          <div class="item-content">
+              <div class="item-inner">
+                  <div class="item-title">{{ spot.location_description }} <span>Directions via Google Maps</span></div>
+              </div>
+          </div>
+          </a>
+      </li>
+      {% endif %}
+    </ul>
 </div>
 
 <div class="content-block-title">Open Hours</div>
@@ -227,22 +237,6 @@
             </div>
         </li>
         {% endif %}
-    </ul>
-</div>
-
-<div class="content-block-title">Getting Here</div>
-
-<div class="list-block">
-    <ul>
-        <li>
-            <a href="https://www.google.com/maps/search/?api=1&query={{ spot.latitude }},{{ spot.longitude }}" class="item-link">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">Open in Google Maps</div>
-                    </div>
-                </div>
-            </a>
-        </li>
     </ul>
 </div>
 

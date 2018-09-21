@@ -58,6 +58,7 @@ class DiscoverCardView(TemplateView):
     @validate_campus_selection
     def get_context_data(self, **kwargs):
         self.template_name = kwargs['template_name']
+
         # Will figure this out later
         lat = self.request.GET.get('latitude', None)
         lon = self.request.GET.get('longitude', None)
@@ -171,19 +172,6 @@ class DiscoverCardView(TemplateView):
             "spot_type": discover_data["spot_type"],
             "card_filter_url": discover_data["filter_url"]
         }
-        return context
-
-
-# backbone for hybrid views
-class HybridListView(TemplateView):
-    template_name = "404.html"
-
-    @validate_campus_selection
-    def get_context_data(self, **kwargs):
-        self.template_name = kwargs['template_name']
-        context = {"campus": kwargs['campus'],
-                   "app_type": kwargs['app_type'],
-                   "campus_locations": CAMPUS_LOCATIONS}
         return context
 
 
