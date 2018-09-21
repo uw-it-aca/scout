@@ -45,15 +45,6 @@
             </div>
         </li>
         {% endif %}
-        {% if spot.building_name %}
-        <li>
-            <div class="item-content">
-                <div class="item-inner">
-                    <div class="item-title">Location <span>{{ spot.building_name }}</span></div>
-                </div>
-            </div>
-        </li>
-        {% endif %}
         {% if spot.phone %}
         <li>
             <a href="tel:+1{{ spot.phone }}" class="item-link" data-turbolinks="false">
@@ -128,14 +119,29 @@
     {% endif %}
     {% if spot.display_access_restrictions %}
     <div class="list-block-label" style="margin-bottom:1em;">
-        <i class="fa fa-sign-in" aria-hidden="true" style="float:left; margin-top:3px;"></i>
+        <i class="fas fa-exclamation-circle" aria-hidden="true" style="float:left; margin-top:3px;"></i>
         <span style=" display:block; float:left; width: 92%;">{{spot.access_notes}}</span>
         <div style="clear:both;"></div>
     </div>
     {% endif %}
 
+</div>
 
-
+<div class="content-block-title">Location</div>
+<div class="list-block">
+    <ul>
+      {% if spot.building_name %}
+      <li>
+          <a href="https://www.google.com/maps/search/?api=1&query={{ spot.latitude }},{{ spot.longitude }}" class="item-link">
+          <div class="item-content">
+              <div class="item-inner">
+                  <div class="item-title">{{ spot.building_name }} <span>Directions via Google Maps</span></div>
+              </div>
+          </div>
+          </a>
+      </li>
+      {% endif %}
+    </ul>
 </div>
 
 <div class="content-block-title">Open Hours</div>
@@ -219,22 +225,6 @@
         <div style="clear:both;"></div>
     </div>
     {% endif %}
-</div>
-
-<div class="content-block-title">Getting Here</div>
-
-<div class="list-block">
-    <ul>
-        <li>
-            <a href="https://www.google.com/maps/search/?api=1&query={{ spot.latitude }},{{ spot.longitude }}" class="item-link">
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">Open in Google Maps</div>
-                    </div>
-                </div>
-            </a>
-        </li>
-    </ul>
 </div>
 
 <div class="content-block-title">Contact Us</div>
