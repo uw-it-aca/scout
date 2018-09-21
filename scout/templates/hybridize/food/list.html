@@ -9,61 +9,76 @@
 {% include "hybridize/includes/location.html" %}
 
 <div class="card">
-    <div class="card-content">
-        <div class="card-content-inner">
-            <div class="row no-gutter">
-                <div class="col-66">
-                    <span id="filter_text_holder" class="visually-hidden">
-                        Filtering by: <span id="filter_label_text"></span>
-                    </span>
-                </div>
-                <div class="col-33" style="text-align:right;" id="spot_count">
-                    <span class="content-loading" style="width:80px;">&nbsp;</span>
-                </div>
-            </div>
+  <div class="card-content">
+    <div class="card-content-inner">
+      <div class="row no-gutter">
+        <div class="col-66">
+          <span id="filter_text_holder" class="visually-hidden">
+            Filtering by: <span id="filter_label_text"></span>
+          </span>
         </div>
+        <div class="col-33" style="text-align:right;">
+          {{ spots|length }} spaces
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 
 <div class="list-block media-list scout-list">
 
-    <div class="list-group">
+  <div class="list-group">
 
-        <ul aria-label="content placeholder" id="content_placeholder">
-            <!-- content placeholder -->
-            {% include "hybridize/list_content_placeholder.html" %}
-        </ul>
+    <ul id="scout_food_list">
 
-        <ul id="scout_food_list">
-            <!-- main list content goes here -->
-        </ul>
-    </div>
+      <li class="list-group-title">Spaces</li>
+      {% for spot in spots %}
+      <li class="scout-list-item" id="{{ spot.spot_id }}" data-spot-lat="{{ spot.latitude }}" data-spot-lng="{{ spot.longitude }}" data-spot-building="{{ spot.building_name }}" data-spot-name="{{ spot.name }}">
+        <a href="/h/{{campus}}/food/{{ spot.spot_id }}/" class="item-link item-content">
+          <div class="item-media">
 
-    <ul id="load_more_content_placeholder" style="display: none;">
-        <li>
-            <a href="javascript:void(0)" class="item-link item-content" title="">
-                <div class="item-media">
-                    <div style="background: #e5e6e9 url('{% static "scout/img/placeholder-200.png" %}') no-repeat center center; background-size: cover !important; width:80px; height:80px">&nbsp;</div>
-                </div>
-                <div class="item-inner">
-                    <div class="item-title-row">
-                        <div class="item-title"><span class="content-loading" style="width:140px;">&nbsp;</span></div>
-                    </div>
-                    <div class="item-subtitle"><span class="content-loading" style="width:200px;">&nbsp;</span></div>
-                    <div class="item-subtitle"><span class="content-loading" style="width:200px;">&nbsp;</span></div>
-                    <div style="font-size:12px;"><span class="content-loading" style="width:80px;">&nbsp;</span></div>
-                </div>
-            </a>
-        </li>
-    </ul>
-    <div style="display:none" id="load_more_spot_list">
-        <div style="padding: 15px;">
-            <a href="javascript:void(0)" class="button button-big button-fill" id="load_more_spot_button">Load more...</a>
+              {% if spot.images %}
+              <div class="scout-spot-image" style="background-image: url('/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}/?width=100'); width:80px; height:80px;">&nbsp;</div>
+              {% else %}
+              <div class="scout-spot-image" style="background-image: url('{% static "scout/img/placeholder-200.png" %}'); width:80px; height:80px;">&nbsp;</div>
+              {% endif %}
+
+          </div>
+          <div class="item-inner">
+              <div class="item-title-row">
+                  <div class="item-title">{{ spot.name }}</div>
+              </div>
+              <div class="item-subtitle">
+                  <div style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{% if spot.building_name %}{{ spot.building_name }}{% else %} <span style="color:red;">missing building_name</span> {% endif %}</div>
+
+              </div>
+              <div class="item-text">
+                  {% for type in spot.spot_types %}<span style="text-transform:capitalize;">{{ type.name|remove_underscores }}{% if not forloop.last %}, {% endif %}</span>{% endfor %}
+                  <div style="font-size:12px;color:#000;">
+                    {% if request.GET.h_lat and request.GET.h_lng %}<span class="scout-spot-distance"><span class="distance-number">---</span>&nbsp;mi&nbsp;&nbsp;</span>{% endif %}
+                    {% if not spot.is_open %}<span class="closed scout-red">Currently closed</span>{% endif %}
+                  </div>
+              </div>
+          </div>
+        </a>
+      </li>
+      {% empty %}
+      <li class="scout-list-item scout-error" style="padding:20px;">
+        <p class="scout-error-msg">No results? Try updating your filters.</p>
+        <div class="scout-error-body">
+          <p>Suggestions for improving the results:</p>
+          <ul>
+            <li>Try a specific campus.</li>
+            <li>Try using fewer filters.</li>
+          </ul>
         </div>
-    </div>
+      </li>
+      {% endfor %}
+
+    </ul>
+
+  </div>
 
 </div>
-
-<script> var LIST_PAGE = true; </script>
 
 {% endblock %}
