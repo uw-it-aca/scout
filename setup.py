@@ -20,10 +20,10 @@ setup(
         'beautifulsoup4',
         'html5lib==0.9999999',
         'requests',
-        'libsass'
+        'django-pyscss'
     ],
     license='Apache License, Version 2.0',  # example license
-    description='A Django app for developer resources complimentary to mdot_web client.',
+    description='A Django app for finding resources on campus.',
     long_description=README,
     url='http://www.example.com/',
     author='Your Name',
