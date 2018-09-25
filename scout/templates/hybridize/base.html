@@ -35,9 +35,11 @@
 
         {% if request.is_and %}
 
-            {% compress css %}
             <!-- framework7 material -->
             <link rel="stylesheet" type="text/css" href="{% static "hybridize/css/framework7.material.min.css" %}">
+            <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.6.3.min.css" %}">
+
+            {% compress css %}
             <!-- local override files -->
             <link rel="stylesheet" href="{% static "hybridize/css/android-theme.scss" %}" type="text/x-scss">
             <link rel="stylesheet" href="{% static "hybridize/css/android.scss" %}" type="text/x-scss">
@@ -65,9 +67,11 @@
 
         {% if request.is_ios %}
 
-          {% compress css %}
           <!-- framework7 ios -->
           <link rel="stylesheet" type="text/css" href="{% static "hybridize/css/framework7.ios.min.css" %}">
+          <link rel="stylesheet" href="{% static "vendor/css/font-awesome-4.6.3.min.css" %}">
+
+          {% compress css %}
           <!-- local override files -->
           <link rel="stylesheet" href="{% static "hybridize/css/ios-theme.scss" %}" type="text/x-scss">
           <link rel="stylesheet" href="{% static "hybridize/css/ios.scss" %}" type="text/x-scss">
@@ -147,9 +151,9 @@
             }
         </style>
 
-        <!-- font awesome cdn -->
+        <!-- font awesome cdn
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/solid.css" integrity="sha384-VGP9aw4WtGH/uPAOseYxZ+Vz/vaTb1ehm1bwx92Fm8dTrE+3boLfF1SpAtB1z7HW" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/fontawesome.css" integrity="sha384-1rquJLNOM3ijoueaaeS5m+McXPJCGdr5HcA03/VHXxcp2kX2sUrQDmFc3jR5i/C7" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/fontawesome.css" integrity="sha384-1rquJLNOM3ijoueaaeS5m+McXPJCGdr5HcA03/VHXxcp2kX2sUrQDmFc3jR5i/C7" crossorigin="anonymous"> -->
 
     </head>
 
