@@ -6,7 +6,7 @@ install:
   - python setup.py -q install
 before_script:
   - pip install coverage
-  - pip install python-coveralls
+  - pip install coveralls
   - pip install pycodestyle
   - pip install -r requirements.txt
   - cp sampleproj/manage.py manage.py
