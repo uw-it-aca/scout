@@ -126,35 +126,6 @@
             window.campus_locations = {{ campus_locations | safe }};
         </script>
 
-        <style>
-            @keyframes placeHolderShimmer{
-                0%{
-                    background-position: -468px 0
-                }
-                100%{
-                    background-position: 468px 0
-                }
-            }
-            .content-loading {
-                display:inline-block !important;
-                height:10px;
-                vertical-align:middle;
-                animation-duration: 1s;
-                animation-fill-mode: forwards;
-                animation-iteration-count: infinite;
-                animation-name: placeHolderShimmer;
-                animation-timing-function: linear;
-                background: #f6f7f8;
-                background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
-                background-size: 800px 104px;
-                position: relative;
-            }
-        </style>
-
-        <!-- font awesome cdn
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/solid.css" integrity="sha384-VGP9aw4WtGH/uPAOseYxZ+Vz/vaTb1ehm1bwx92Fm8dTrE+3boLfF1SpAtB1z7HW" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/fontawesome.css" integrity="sha384-1rquJLNOM3ijoueaaeS5m+McXPJCGdr5HcA03/VHXxcp2kX2sUrQDmFc3jR5i/C7" crossorigin="anonymous"> -->
-
     </head>
 
     {% if campus == 'seattle' %}
