@@ -137,8 +137,7 @@ DETECT_USER_AGENTS = {
 
 COMPRESS_ROOT = "/tmp/"
 COMPRESS_PRECOMPILERS = (
-    ('text/x-sass', 'sassc {infile} {outfile}'),
-    ('text/x-scss', 'sassc {infile} {outfile}'),
+    ('text/x-scss', 'django_pyscss.compressor.DjangoScssFilter'),
 )
 COMPRESS_ENABLED = True
 COMPRESS_OFFLINE = False
