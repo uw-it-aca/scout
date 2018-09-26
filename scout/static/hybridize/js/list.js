@@ -9,14 +9,14 @@ var List = {
 
             List.add_distances("scout-list-item", "data-spot-lat", "data-spot-lng");
             List.add_distances("scout-list-building", "data-building-lat", "data-building-lng");
-            //List.order_list("scout-list-building", "scout_study_list", true);
+            List.order_list("scout-list-building", "scout_study_list", true);
             //List.defer_load_image();
 
         } else if (currentType.indexOf("tech") > -1)  {
 
             List.add_distances("scout-list-item", "data-spot-lat", "data-spot-lng");
             List.add_additional_tech_distances();
-            //List.order_list("scout-list-item", "scout_tech_list", false);
+            List.order_list("scout-list-item", "scout_tech_list", false);
             //List.defer_load_image();
 
         } else {
