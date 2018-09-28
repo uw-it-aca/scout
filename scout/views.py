@@ -59,7 +59,14 @@ class DiscoverCardView(TemplateView):
     def get_context_data(self, **kwargs):
         self.template_name = kwargs['template_name']
 
-        # Will figure this out later
+        # if h_lat and h_lng is provided, use it
+        # otherwise, user latitude and longitude
+
+        # handle hybridize user lat/lng requests
+        hlat = self.request.GET.get('h_lat', None)
+        hlon = self.request.GET.get('h_lng', None)
+
+        # handle standard lat/lng requests for web
         lat = self.request.GET.get('latitude', None)
         lon = self.request.GET.get('longitude', None)
 
@@ -72,8 +79,10 @@ class DiscoverCardView(TemplateView):
                 "filter": [
                     ('limit', 5),
                     ('open_now', True),
-                    ('center_latitude', lat if lat else DEFAULT_LAT),
-                    ('center_longitude', lon if lon else DEFAULT_LON),
+                    ('center_latitude', hlat if hlat else lat if lat else
+                        DEFAULT_LAT),
+                    ('center_longitude', hlon if hlon else lon if lon else
+                        DEFAULT_LON),
                     ('distance', 100000),
                     ('extended_info:app_type', 'food')
                     ]
@@ -84,8 +93,10 @@ class DiscoverCardView(TemplateView):
                 "filter_url": "period0=morning",
                 "filter": [
                     ('limit', 5),
-                    ('center_latitude', lat if lat else DEFAULT_LAT),
-                    ('center_longitude', lon if lon else DEFAULT_LON),
+                    ('center_latitude', hlat if hlat else lat if lat else
+                        DEFAULT_LAT),
+                    ('center_longitude', hlon if hlon else lon if lon else
+                        DEFAULT_LON),
                     ('distance', 100000),
                     ('extended_info:app_type', 'food')
                     ] + get_period_filter('morning')
@@ -97,8 +108,10 @@ class DiscoverCardView(TemplateView):
                 "filter_url": "period0=late_night",
                 "filter": [
                     ('limit', 5),
-                    ('center_latitude', lat if lat else DEFAULT_LAT),
-                    ('center_longitude', lon if lon else DEFAULT_LON),
+                    ('center_latitude', hlat if hlat else lat if lat else
+                        DEFAULT_LAT),
+                    ('center_longitude', hlon if hlon else lon if lon else
+                        DEFAULT_LON),
                     ('distance', 100000),
                     ('extended_info:app_type', 'food')
                     ] + get_period_filter('late_night')
@@ -109,8 +122,10 @@ class DiscoverCardView(TemplateView):
                 "filter_url": "type0=outdoor",
                 "filter": [
                     ('limit', 5),
-                    ('center_latitude', lat if lat else DEFAULT_LAT),
-                    ('center_longitude', lon if lon else DEFAULT_LON),
+                    ('center_latitude', hlat if hlat else lat if lat else
+                        DEFAULT_LAT),
+                    ('center_longitude', hlon if hlon else lon if lon else
+                        DEFAULT_LON),
                     ('distance', 100000),
                     ('type', 'outdoor')
                     ]
@@ -121,8 +136,10 @@ class DiscoverCardView(TemplateView):
                 "filter_url": "type0=computer_lab",
                 "filter": [
                     ('limit', 5),
-                    ('center_latitude', lat if lat else DEFAULT_LAT),
-                    ('center_longitude', lon if lon else DEFAULT_LON),
+                    ('center_latitude', hlat if hlat else lat if lat else
+                        DEFAULT_LAT),
+                    ('center_longitude', hlon if hlon else lon if lon else
+                        DEFAULT_LON),
                     ('distance', 100000),
                     ('type', 'computer_lab')
                 ]

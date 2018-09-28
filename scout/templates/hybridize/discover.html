@@ -124,11 +124,11 @@
 </div>
 
 {% if campus == 'seattle' %}
-<div id="discover_cards" data-campus="{{campus}}" data-campus-latitude="{{ campus_locations.seattle.latitude }}" data-campus-longitude="{{ campus_locations.seattle.longitude }}">
+<div id="discover_cards" data-campus="{{campus}}" {% if request.GET.h_lat and request.GET.h_lng %}data-user-latitude="{{ request.GET.h_lat }}" data-user-longitude="{{ request.GET.h_lng }}"{% else %}data-campus-latitude="{{ campus_locations.seattle.latitude }}" data-campus-longitude="{{ campus_locations.seattle.longitude }}"{% endif %} {% if request.is_and %}data-device="android"{% else %}data-device="ios"{% endif %}>
 {% elif campus == 'bothell' %}
-<div id="discover_cards" data-campus="{{campus}}" data-campus-latitude="{{ campus_locations.bothell.latitude }}" data-campus-longitude="{{ campus_locations.bothell.longitude }}">
+<div id="discover_cards" data-campus="{{campus}}" {% if request.GET.h_lat and request.GET.h_lng %}data-user-latitude="{{ request.GET.h_lat }}" data-user-longitude="{{ request.GET.h_lng }}"{% else %}data-campus-latitude="{{ campus_locations.bothell.latitude }}" data-campus-longitude="{{ campus_locations.bothell.longitude }}"{% endif %} {% if request.is_and %}data-device="android"{% else %}data-device="ios"{% endif %}>
 {% elif campus == 'tacoma' %}
-<div id="discover_cards" data-campus="{{campus}}" data-campus-latitude="{{ campus_locations.tacoma.latitude }}" data-campus-longitude="{{ campus_locations.tacoma.longitude }}">
+<div id="discover_cards" data-campus="{{campus}}" {% if request.GET.h_lat and request.GET.h_lng %}data-user-latitude="{{ request.GET.h_lat }}" data-user-longitude="{{ request.GET.h_lng }}"{% else %}data-campus-latitude="{{ campus_locations.tacoma.latitude }}" data-campus-longitude="{{ campus_locations.tacoma.longitude }}"{% endif %} {% if request.is_and %}data-device="android"{% else %}data-device="ios"{% endif %}>
 {% endif %}
 
     <!-- containers for displaying cards -->
