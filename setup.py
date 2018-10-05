@@ -20,7 +20,11 @@ setup(
         'beautifulsoup4',
         'html5lib==0.9999999',
         'requests',
-        'django-pyscss'
+        'django-pyscss',
+        'pyyaml',
+        'ua-parser',
+        'user-agents',
+        'django-user-agents'
     ],
     license='Apache License, Version 2.0',  # example license
     description='A Django app for finding resources on campus.',

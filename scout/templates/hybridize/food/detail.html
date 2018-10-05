@@ -232,10 +232,10 @@
     <ul>
         <li>
 
-            {% if request.is_ios %}
+            {% if request.user_agent.os.family == 'iOS' %}
             <a class="item-link" href="mailto:help@uw.edu?subject=Scout%20iOS:%20Problem%20with%20{{app_type}}%20space%20{{spot.name}}">
             {% endif %}
-            {% if request.is_and %}
+            {% if request.user_agent.os.family == 'Android' %}
             <a class="item-link" href="mailto:help@uw.edu?subject=Scout%20Android:%20Problem%20with%20{{app_type}}%20space%20{{spot.name}}">
             {% endif %}
 

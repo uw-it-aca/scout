@@ -35,6 +35,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_user_agents',
     'scout',
     'spotseeker_restclient',
     'compressor',
@@ -50,7 +51,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'django_mobileesp.middleware.UserAgentDetectionMiddleware'
+    'django_mobileesp.middleware.UserAgentDetectionMiddleware',
+    'django_user_agents.middleware.UserAgentMiddleware',
 )
 
 AUTHENTICATION_BACKENDS = (

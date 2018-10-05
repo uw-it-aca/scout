@@ -9,6 +9,7 @@
 
         {% load staticfiles %}
         {% load compress %}
+        {% load user_agents %}
 
         <!-- http://realfavicongenerator.net/ -->
         <link rel="apple-touch-icon" sizes="57x57" href="{% static "scout/ico/apple-touch-icon-57x57.png" %}">
@@ -33,7 +34,7 @@
         <meta name="msapplication-TileImage" content="{% static "scout/ico/mstile-144x144.png" %}">
         <meta name="theme-color" content="#ffffff">
 
-        {% if request.is_and %}
+        {% if request.user_agent.os.family == 'Android' %}
 
             <!-- framework7 material -->
             <link rel="stylesheet" type="text/css" href="{% static "hybridize/css/framework7.material.min.css" %}">
@@ -65,7 +66,7 @@
 
         {% endif %}
 
-        {% if request.is_ios %}
+        {% if request.user_agent.os.family == 'iOS' %}
 
           <!-- framework7 ios -->
           <link rel="stylesheet" type="text/css" href="{% static "hybridize/css/framework7.ios.min.css" %}">
@@ -129,11 +130,11 @@
     </head>
 
     {% if campus == 'seattle' %}
-    <body class="theme-custom" data-app-type="{{ app_type }}" data-campus="{{campus}}" {% if request.GET.h_lat and request.GET.h_lng %}data-user-latitude="{{ request.GET.h_lat }}" data-user-longitude="{{ request.GET.h_lng }}"{% else %}data-campus-latitude="{{ campus_locations.seattle.latitude }}" data-campus-longitude="{{ campus_locations.seattle.longitude }}"{% endif %} {% if request.is_and %}data-device="android"{% else %}data-device="ios"{% endif %}>
+    <body class="theme-custom" data-app-type="{{ app_type }}" data-campus="{{campus}}" {% if request.GET.h_lat and request.GET.h_lng %}data-user-latitude="{{ request.GET.h_lat }}" data-user-longitude="{{ request.GET.h_lng }}"{% else %}data-campus-latitude="{{ campus_locations.seattle.latitude }}" data-campus-longitude="{{ campus_locations.seattle.longitude }}"{% endif %} {% if request.user_agent.os.family == 'Android' %}data-device="android"{% else %}data-device="ios"{% endif %}>
     {% elif campus == 'bothell' %}
-    <body class="theme-custom" data-app-type="{{ app_type }}" data-campus="{{campus}}" {% if request.GET.h_lat and request.GET.h_lng %}data-user-latitude="{{ request.GET.h_lat }}" data-user-longitude="{{ request.GET.h_lng }}"{% else %}data-campus-latitude="{{ campus_locations.bothell.latitude }}" data-campus-longitude="{{ campus_locations.bothell.longitude }}"{% endif %} {% if request.is_and %}data-device="android"{% else %}data-device="ios"{% endif %}>
+    <body class="theme-custom" data-app-type="{{ app_type }}" data-campus="{{campus}}" {% if request.GET.h_lat and request.GET.h_lng %}data-user-latitude="{{ request.GET.h_lat }}" data-user-longitude="{{ request.GET.h_lng }}"{% else %}data-campus-latitude="{{ campus_locations.bothell.latitude }}" data-campus-longitude="{{ campus_locations.bothell.longitude }}"{% endif %} {% if request.user_agent.os.family == 'Android' %}data-device="android"{% else %}data-device="ios"{% endif %}>
     {% elif campus == 'tacoma' %}
-    <body class="theme-custom" data-app-type="{{ app_type }}" data-campus="{{campus}}" {% if request.GET.h_lat and request.GET.h_lng %}data-user-latitude="{{ request.GET.h_lat }}" data-user-longitude="{{ request.GET.h_lng }}"{% else %}data-campus-latitude="{{ campus_locations.tacoma.latitude }}" data-campus-longitude="{{ campus_locations.tacoma.longitude }}"{% endif %} {% if request.is_and %}data-device="android"{% else %}data-device="ios"{% endif %}>
+    <body class="theme-custom" data-app-type="{{ app_type }}" data-campus="{{campus}}" {% if request.GET.h_lat and request.GET.h_lng %}data-user-latitude="{{ request.GET.h_lat }}" data-user-longitude="{{ request.GET.h_lng }}"{% else %}data-campus-latitude="{{ campus_locations.tacoma.latitude }}" data-campus-longitude="{{ campus_locations.tacoma.longitude }}"{% endif %} {% if request.user_agent.os.family == 'Android' %}data-device="android"{% else %}data-device="ios"{% endif %}>
     {% endif %}
 
     <div class="scout-content">
