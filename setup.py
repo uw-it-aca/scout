@@ -15,7 +15,6 @@ setup(
         'setuptools',
         'django<=1.8.6',
         'django_compressor',
-        'django_mobileesp',
         'pytz',
         'beautifulsoup4',
         'html5lib==0.9999999',

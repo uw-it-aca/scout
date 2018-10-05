@@ -51,7 +51,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'django_mobileesp.middleware.UserAgentDetectionMiddleware',
     'django_user_agents.middleware.UserAgentMiddleware',
 )
 
@@ -122,20 +121,6 @@ STATICFILES_FINDERS = (
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
-
-# django mobileesp
-
-from django_mobileesp.detector import mobileesp_agent as agent
-
-DETECT_USER_AGENTS = {
-
-    'is_tablet' : agent.detectTierTablet,
-    'is_mobile': agent.detectMobileQuick,
-
-    'is_and': agent.detectAndroid,
-    'is_ios': agent.detectIos,
-    'is_win': agent.detectWindowsPhone,
-}
 
 COMPRESS_ROOT = "/tmp/"
 COMPRESS_PRECOMPILERS = (
