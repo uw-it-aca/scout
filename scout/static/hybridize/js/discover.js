@@ -5,6 +5,7 @@ Discover = {
 
         var discover_divs = $("#discover_cards").children();
 
+        // get the client lat/lng
         var latlng = Geolocation.get_client_latlng();
 
         $(discover_divs).each(function (idx, div){
@@ -26,10 +27,21 @@ Discover = {
 
         var url = "/h/" + campus + "/discover_card/" + card_id + "/";
 
-        var pos_data = {
-            "latitude": latlng.lat(),
-            "longitude": latlng.lng()
-        };
+        var pos_data = {}
+
+        // change the request params based on user location (h_lat/h_lng) or default (latitude/longitude)
+        if ( $("body").data("user-latitude") && $("body").data("user-longitude") ) {
+          pos_data = {
+              "h_lat": latlng.lat(),
+              "h_lng": latlng.lng()
+          };
+        } else {
+          pos_data = {
+              "latitude": latlng.lat(),
+              "longitude": latlng.lng()
+          };
+        }
+
         $.ajax({
             url: url,
             dataType: "html",

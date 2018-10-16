@@ -8,13 +8,15 @@
 
 <div class="content">
 
-    {% if campus == 'seattle' %}
-    <div style="background:url('{% static "scout/img/seattle/IMG_3973-M.jpg" %}') no-repeat center center; background-size:cover; height:270px;" valign="bottom" class="content-header">&nbsp;</div>
-    {% elif campus == 'bothell' %}
-    <div style="background:url('{% static "scout/img/bothell/mascot-w.jpg" %}') no-repeat center center; background-size:cover; height:270px;" valign="bottom" class="content-header">&nbsp;</div>
-    {% elif campus == 'tacoma' %}
-    <div style="background:url('{% static "scout/img/tacoma/sign-w.jpg" %}') no-repeat center center; background-size:cover; height:270px;" valign="bottom" class="content-header">&nbsp;</div>
-    {% endif %}
+  {% if campus == 'seattle' %}
+  <div style="background: #e5e6e9 url('{% static "scout/img/seattle/IMG_3973-M.jpg" %}') no-repeat center center; background-size:cover; height:270px;" valign="bottom" class="content-header">&nbsp;</div>
+  {% elif campus == 'bothell' %}
+  <div style="background: #e5e6e9 url('{% static "scout/img/bothell/mascot-w.jpg" %}') no-repeat center center; background-size:cover; height:270px;" valign="bottom" class="content-header">&nbsp;</div>
+  {% elif campus == 'tacoma' %}
+  <div style="background: #e5e6e9 url('{% static "scout/img/tacoma/sign-w.jpg" %}') no-repeat center center; background-size:cover; height:270px;" valign="bottom" class="content-header">&nbsp;</div>
+  {% endif %}
+
+    {% include "hybridize/includes/location.html" %}
 
     <div class="content-content"></div>
 
@@ -122,11 +124,11 @@
 </div>
 
 {% if campus == 'seattle' %}
-<div id="discover_cards" data-campus="{{campus}}" data-campus-latitude="{{ campus_locations.seattle.latitude }}" data-campus-longitude="{{ campus_locations.seattle.longitude }}">
+<div id="discover_cards" data-campus="{{campus}}" {% if request.GET.h_lat and request.GET.h_lng %}data-user-latitude="{{ request.GET.h_lat }}" data-user-longitude="{{ request.GET.h_lng }}"{% else %}data-campus-latitude="{{ campus_locations.seattle.latitude }}" data-campus-longitude="{{ campus_locations.seattle.longitude }}"{% endif %} {% if request.is_and %}data-device="android"{% else %}data-device="ios"{% endif %}>
 {% elif campus == 'bothell' %}
-<div id="discover_cards" data-campus="{{campus}}" data-campus-latitude="{{ campus_locations.bothell.latitude }}" data-campus-longitude="{{ campus_locations.bothell.longitude }}">
+<div id="discover_cards" data-campus="{{campus}}" {% if request.GET.h_lat and request.GET.h_lng %}data-user-latitude="{{ request.GET.h_lat }}" data-user-longitude="{{ request.GET.h_lng }}"{% else %}data-campus-latitude="{{ campus_locations.bothell.latitude }}" data-campus-longitude="{{ campus_locations.bothell.longitude }}"{% endif %} {% if request.is_and %}data-device="android"{% else %}data-device="ios"{% endif %}>
 {% elif campus == 'tacoma' %}
-<div id="discover_cards" data-campus="{{campus}}" data-campus-latitude="{{ campus_locations.tacoma.latitude }}" data-campus-longitude="{{ campus_locations.tacoma.longitude }}">
+<div id="discover_cards" data-campus="{{campus}}" {% if request.GET.h_lat and request.GET.h_lng %}data-user-latitude="{{ request.GET.h_lat }}" data-user-longitude="{{ request.GET.h_lng }}"{% else %}data-campus-latitude="{{ campus_locations.tacoma.latitude }}" data-campus-longitude="{{ campus_locations.tacoma.longitude }}"{% endif %} {% if request.is_and %}data-device="android"{% else %}data-device="ios"{% endif %}>
 {% endif %}
 
     <!-- containers for displaying cards -->

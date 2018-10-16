@@ -1,22 +1,22 @@
 sudo: false
 language: python
 python:
-  - "2.7.6"
+  - "2.7.11"
 install: 
   - python setup.py -q install
 before_script:
   - pip install coverage
-  - pip install python-coveralls
-  - pip install pep8
+  - pip install coveralls
+  - pip install pycodestyle
   - pip install -r requirements.txt
-  - cp travis-ci/manage.py manage.py
+  - cp sampleproj/manage.py manage.py
   - python manage.py migrate --noinput
   - npm install -g mocha
   - npm install jquery
   - npm install jsdom
 script:
-  - pep8 scout/ --exclude=migrations
-  - coverage run --source=scout/ --omit=scout/migrations/* manage.py test scout
+  - pycodestyle scout/ --exclude=migrations
+  - coverage run --source=scout/ --omit=scout/migrations/* manage.py test scout --settings=sampleproj.settings.travis
   - mocha scout/static/scout/js/test --recursive
 after_script:
   - coveralls

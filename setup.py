@@ -13,18 +13,17 @@ setup(
     include_package_data=True,
     install_requires = [
         'setuptools',
-        'Django<=1.8.6',
-        'django-compressor',
+        'django<=1.8.6',
+        'django_compressor',
         'django_mobileesp',
-        'django-turbolinks',
-        'django-htmlmin',
-        'django-pyscss',
         'pytz',
         'beautifulsoup4',
-        'html5lib==0.9999999'
+        'html5lib==0.9999999',
+        'requests',
+        'django-pyscss'
     ],
     license='Apache License, Version 2.0',  # example license
-    description='A Django app for developer resources complimentary to mdot_web client.',
+    description='A Django app for finding resources on campus.',
     long_description=README,
     url='http://www.example.com/',
     author='Your Name',
