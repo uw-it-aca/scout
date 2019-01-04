@@ -17,7 +17,6 @@ Discover = {
                 $("#" + card_id).fadeIn(3000);
             }
         });
-
     },
 
     fetch_cards: function (card_id , latlng) {

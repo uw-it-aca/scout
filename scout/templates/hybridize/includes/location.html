@@ -1,8 +1,5 @@
-
-{% if request.GET.h_lat and request.GET.h_lng %}
 <div class="scout-location">
-  <div class="scout-location-sort"><small>Sort (distance)</small></div>
+  <div class="scout-location-sort"><small>Sooooort (distance)</small></div>
   <div class="scout-location-display" style="display:none;"><i class="fas fa-map-marker-alt"></i> Current Location</div>
-  <div class="scout-location-display"><i class="fas fa-map-marker-alt"></i> {{request.GET.h_lat}}, {{request.GET.h_lng}}</div>
+  <div class="scout-location-display" id="hybrid_location_bridge"><i class="fas fa-map-marker-alt"></i> Loading...</div>
 </div>
-{% endif %}

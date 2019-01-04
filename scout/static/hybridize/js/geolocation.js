@@ -150,6 +150,13 @@ var Geolocation = {
         var miles_per_meter = 0.000621371;
         distance = (distance * miles_per_meter).toFixed(2);
         return distance;
+    },
+
+    set_location_using_bridge: function(lat, lng) {
+
+      setTimeout(function(){
+        $("#hybrid_location_bridge").html(lat + ", " + lng);
+      }, 2000);
 
     },
 
