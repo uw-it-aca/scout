@@ -81,9 +81,9 @@ var Geolocation = {
 
         var lat, lng;
 
-        if ( $("body").data("user-latitude") && $("body").data("user-longitude") ) {
-            lat = $("body").data("user-latitude");
-            lng = $("body").data("user-longitude");
+        if ( $("#hybrid_location_bridge").data("user-latitude") && $("#hybrid_location_bridge").data("user-longitude") ) {
+            lat = $("#hybrid_location_bridge").data("user-latitude");
+            lng = $("#hybrid_location_bridge").data("user-longitude");
         } else {
             lat = $("body").data("campus-latitude");
             lng = $("body").data("campus-longitude");
@@ -154,9 +154,12 @@ var Geolocation = {
 
     set_location_using_bridge: function(lat, lng) {
 
-      setTimeout(function(){
         $("#hybrid_location_bridge").html(lat + ", " + lng);
-      }, 2000);
+        $("#hybrid_location_bridge").attr("data-user-latitude", lat);
+        $("#hybrid_location_bridge").attr("data-user-longitude", lng);
+
+
+      // TODO: store the lat/lng somewhere
 
     },
 

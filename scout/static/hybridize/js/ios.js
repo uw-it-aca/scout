@@ -48,7 +48,7 @@ $(document).on('turbolinks:load', function() {
         Filter.init();
     } else {
         // discover
-        Discover.init_cards();
+        // Discover.init_cards();
     }
 
     // Geolocation
