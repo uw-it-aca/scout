@@ -19,9 +19,13 @@ var List = {
 
         } else {
 
-            List.add_distances("scout-list-item", "data-spot-lat", "data-spot-lng");
+          // wait 3 seconds then hide the loading placeholder
+          setTimeout(function(){
+            $("#food_loading").hide();
+          }, 3000);
 
-            List.order_list("scout-list-item", "scout_food_list", false);
+          List.add_distances("scout-list-item", "data-spot-lat", "data-spot-lng");
+          List.order_list("scout-list-item", "scout_food_list", false);
         }
 
     },
