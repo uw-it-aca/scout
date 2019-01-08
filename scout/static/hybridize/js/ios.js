@@ -21,7 +21,9 @@ $(document).on('turbolinks:load', function() {
 		activeState: true,
 	});
 
+
     // get the app_type
+    /**
     var type = $("body").data("app-type")
 
     if (type.indexOf("food") !== -1) {
@@ -51,10 +53,12 @@ $(document).on('turbolinks:load', function() {
         // Discover.init_cards();
     }
 
-    // Geolocation
-    //Geolocation.update_location();
+
 
     // filter
     Filter.init_events();
+
+      **/
+      
 
 });

@@ -81,9 +81,10 @@ var Geolocation = {
 
         var lat, lng;
 
-        if ( $("#hybrid_location_bridge").data("user-latitude") && $("#hybrid_location_bridge").data("user-longitude") ) {
-            lat = $("#hybrid_location_bridge").data("user-latitude");
-            lng = $("#hybrid_location_bridge").data("user-longitude");
+        if ( $("body").data("user-location") ) {
+        //if ( $("#hybrid_location_bridge").data("user-latitude") && $("#hybrid_location_bridge").data("user-longitude") ) {
+            lat = $("body").data("user-latitude");
+            lng = $("body").data("user-longitude");
         } else {
             lat = $("body").data("campus-latitude");
             lng = $("body").data("campus-longitude");

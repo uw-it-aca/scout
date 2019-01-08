@@ -29,7 +29,7 @@
                                 <div class="item-title">{{spot.name}}</div>
                             </div>
                             <div class="item-subtitle">{{ spot.building_name }}</div>
-                            <div style="font-size:12px;">{% if request.GET.h_lat and request.GET.h_lng %}<span class="scout-spot-distance">xxx</span>&nbsp;mi.&nbsp;&nbsp;{% endif %}{% if not spot.is_open %}<span style="color:#A94441;">Currently closed</span>{% endif %} </div>
+                            <div style="font-size:12px;"><span class="scout-spot-distance">xxx</span>&nbsp;mi.&nbsp;&nbsp;{% if not spot.is_open %}<span style="color:#A94441;">Currently closed</span>{% endif %} </div>
                         </div>
                     </a>
 
@@ -56,7 +56,7 @@
 
     <div class="card-footer">
         <span>&nbsp;</span>
-        <span><a href="/h/{{campus}}/{{ spot_type }}/?h=true{% if request.GET.h_lat and request.GET.h_lng %}&h_lat={{request.GET.h_lat}}&h_lng={{request.GET.h_lng}}{%endif%}&h_title={{card_title}}&{{ card_filter_url }}" style="text-transform:capitalize;float:right;">View more</a></span>
+        <span><a href="/h/{{campus}}/{{ spot_type }}/?h=true&h_title={{card_title}}&{{ card_filter_url }}" style="text-transform:capitalize;float:right;">View more</a></span>
     </div>
 
 </div>

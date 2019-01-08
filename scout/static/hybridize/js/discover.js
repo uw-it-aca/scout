@@ -8,6 +8,7 @@ Discover = {
         // get the client lat/lng
         var latlng = Geolocation.get_client_latlng();
 
+        console.log("latlng is: " + latlng)
         $(discover_divs).each(function (idx, div){
             var card_id = $(div).attr('id');
             // ignore if its a static card
@@ -28,17 +29,32 @@ Discover = {
 
         var pos_data = {}
 
+        /**
         // change the request params based on user location (h_lat/h_lng) or default (latitude/longitude)
         if ( $("body").data("user-latitude") && $("body").data("user-longitude") ) {
+        //if ( $("#hybrid_location_bridge").data("user-latitude") && $("#hybrid_location_bridge").data("user-longitude") ) {
           pos_data = {
               "h_lat": latlng.lat(),
               "h_lng": latlng.lng()
           };
         } else {
           pos_data = {
-              "latitude": latlng.lat(),
+              "latitude": $("body").data,
               "longitude": latlng.lng()
           };
+        }**/
+
+        if ( $("body").data("user-location") ) {
+        //if ( $("#hybrid_location_bridge").data("user-latitude") && $("#hybrid_location_bridge").data("user-longitude") ) {
+            pos_data = {
+                "latitude": $("body").data("user-latitude"),
+                "longitude": $("body").data("user-longitude")
+            };
+        } else {
+            pos_data = {
+                "latitude": $("body").data("campus-latitude"),
+                "longitude": $("body").data("campus-longitude")
+            };
         }
 
         $.ajax({
