@@ -16,49 +16,54 @@ $(document).on('turbolinks:load', function() {
 
     // initialize framework7
     var myApp = new Framework7({
-		router: false,
-		fastClicks: true,
-		activeState: true,
-	});
+  		router: false,
+  		fastClicks: true,
+  		activeState: true,
+	  });
 
 
-    // get the app_type
-    /**
-    var type = $("body").data("app-type")
+    // check if user location is enabled... if not init app in default state
+    if (!$("body").data("user-location")) {
 
-    if (type.indexOf("food") !== -1) {
-        // food
-        List.init();
-        Filter.init();
+        console.log("no user location");
 
-    } else if (type.indexOf("study") !== -1){
-        // study
-        List.init();
-        Filter.init();
+        $("#default_location").show();
+        $("#user_location").hide();
 
-        // study detail image slider
-        if ($( ".photo-gallery").length) {
-            $('.photo-gallery').not('.slick-initialized').slick({
-                dots: true,
-                arrows: false,
-            });
+        // get the app_type
+        var type = $("body").data("app-type")
+
+        if (type.indexOf("food") !== -1) {
+            // food
+            List.init();
+            Filter.init();
+
+        } else if (type.indexOf("study") !== -1){
+            // study
+            List.init();
+            Filter.init();
+
+            // study detail image slider
+            if ($( ".photo-gallery").length) {
+                $('.photo-gallery').not('.slick-initialized').slick({
+                    dots: true,
+                    arrows: false,
+                });
+            }
+
+        } else if (type.indexOf("tech") !== -1){
+            // tech
+            List.init();
+            Filter.init();
+        } else {
+            // discover
+            Discover.init_cards();
         }
 
-    } else if (type.indexOf("tech") !== -1){
-        // tech
-        List.init();
-        Filter.init();
-    } else {
-        // discover
-        // Discover.init_cards();
+        // filter
+        Filter.init_events();
+
     }
 
-
-
-    // filter
-    Filter.init_events();
-
-      **/
-      
 
 });

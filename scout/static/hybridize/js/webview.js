@@ -3,7 +3,6 @@ var WebView = {
   load_app_with_location: function(lat, lng) {
 
       // print back the user location for debugging
-      $(".scout-location").show();
       $("#hybrid_location_bridge").html(lat + ", " + lng);
 
       // store the user location in body element as a data attribute
@@ -11,6 +10,9 @@ var WebView = {
       $("body").attr("data-user-longitude", lng);
       $("body").attr("data-user-location", "true");
 
+      $("#user_location").show();
+      $("#default_location").hide();
+      
       // get the app_type
       var type = $("body").data("app-type")
 
