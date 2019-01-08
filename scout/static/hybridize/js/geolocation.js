@@ -152,17 +152,6 @@ var Geolocation = {
         return distance;
     },
 
-    set_location_using_bridge: function(lat, lng) {
-
-        $("#hybrid_location_bridge").html(lat + ", " + lng);
-        $("#hybrid_location_bridge").attr("data-user-latitude", lat);
-        $("#hybrid_location_bridge").attr("data-user-longitude", lng);
-
-
-      // TODO: store the lat/lng somewhere
-
-    },
-
     /***
     display_location_status: function () {
 
