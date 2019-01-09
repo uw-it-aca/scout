@@ -81,10 +81,10 @@ var Geolocation = {
 
         var lat, lng;
 
-        if ( $("body").data("user-location") ) {
+        if (Cookies.get("user_location")) {
         //if ( $("#hybrid_location_bridge").data("user-latitude") && $("#hybrid_location_bridge").data("user-longitude") ) {
-            lat = $("body").data("user-latitude");
-            lng = $("body").data("user-longitude");
+            lat = Cookies.get("user_lat");
+            lng = Cookies.get("user_lng");
         } else {
             lat = $("body").data("campus-latitude");
             lng = $("body").data("campus-longitude");
