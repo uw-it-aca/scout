@@ -21,11 +21,8 @@ $(document).on('turbolinks:load', function() {
   		activeState: true,
 	  });
 
-    // HANDLE USER LOCATION STUFF
-    var blah1 = Cookies.get('user_lat');
-    var blah2 = Cookies.get('user_lng');
-    console.log(blah1 + ", " + blah2);
-    $("#hybrid_location_bridge").html(blah1 + ", " + blah2);
+    // update location bar display
+    WebView.update_location_display();
 
     // get the app_type
     var type = $("body").data("app-type")

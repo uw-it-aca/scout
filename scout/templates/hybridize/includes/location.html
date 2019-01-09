@@ -1,6 +1,6 @@
 <div class="scout-location" style="min-height:38px;">
 
-  <div id="default_location">
+  <div style="display:none;" id="default_location">
     <div class="scout-location-display"><i class="fa fa-university"></i> Campus Location</div>
     {% if campus == 'seattle' %}
     <div style="font-weight:normal;">Red Square</div>
@@ -11,7 +11,7 @@
     {% endif %}
   </div>
 
-  <div id="user_location">
+  <div style="display:none;" id="user_location">
     <div class="scout-location-display"><i class="fa fa-location-arrow"></i> User Location</div>
     <div style="font-weight:normal;" id="hybrid_location_bridge" data-user-latitude="" data-user-longitude="">Loading...</div>
   </div>
