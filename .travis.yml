@@ -14,6 +14,7 @@ before_script:
   - npm install -g mocha
   - npm install jquery
   - npm install jsdom
+  - pip list
 script:
   - pycodestyle scout/ --exclude=migrations
   - coverage run --source=scout/ --omit=scout/migrations/* manage.py test scout --settings=sampleproj.settings.travis
