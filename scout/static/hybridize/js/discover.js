@@ -8,7 +8,6 @@ Discover = {
         // get the client lat/lng
         var latlng = Geolocation.get_client_latlng();
 
-        console.log("latlng is: " + latlng)
         $(discover_divs).each(function (idx, div){
             var card_id = $(div).attr('id');
             // ignore if its a static card
@@ -44,11 +43,10 @@ Discover = {
           };
         }**/
 
-        if ( $("body").data("user-location") ) {
-        //if ( $("#hybrid_location_bridge").data("user-latitude") && $("#hybrid_location_bridge").data("user-longitude") ) {
+        if (Cookies.get("user_location")) {
             pos_data = {
-                "latitude": $("body").data("user-latitude"),
-                "longitude": $("body").data("user-longitude")
+                "latitude": Cookies.get('user_lat'),
+                "longitude": Cookies.get('user_lng')
             };
         } else {
             pos_data = {

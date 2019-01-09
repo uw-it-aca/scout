@@ -9,16 +9,20 @@ var WebView = {
 
   update_location_display: function() {
 
-    // temp display of lat lng values
-    var blah1 = Cookies.get('user_lat');
-    var blah2 = Cookies.get('user_lng');
-
-    console.log(blah1 + ", " + blah2);
-
     if (Cookies.get("user_location")) {
+
+      // temp display of lat lng values
+      var blah1 = Cookies.get('user_lat');
+      var blah2 = Cookies.get('user_lng');
+
+      console.log(blah1 + ", " + blah2);
+
       $("#user_location").show();
       $("#hybrid_location_bridge").html(blah1 + ", " + blah2);
     } else {
+
+      console.log("no cookies set.. default");
+
       $("#default_location").show();
     }
 

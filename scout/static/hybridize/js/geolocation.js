@@ -82,14 +82,14 @@ var Geolocation = {
         var lat, lng;
 
         if (Cookies.get("user_location")) {
-        //if ( $("#hybrid_location_bridge").data("user-latitude") && $("#hybrid_location_bridge").data("user-longitude") ) {
             lat = Cookies.get("user_lat");
             lng = Cookies.get("user_lng");
+            console.log("user latlng is: " + lat + ", " + lng)
         } else {
             lat = $("body").data("campus-latitude");
             lng = $("body").data("campus-longitude");
+            console.log("default latlng is: " + lat + ", " + lng)
         }
-
         return Geolocation.get_latlng_from_coords(lat, lng);
     },
 
