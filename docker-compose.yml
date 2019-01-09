@@ -10,5 +10,5 @@ services:
       - ./sampleproj:/app/sampleproj
       - ./scout:/app/scout
     ports:
-      - "8000:8000"
+      - "${PORT:-8000}:8000"
     command: bash -c "python manage.py migrate --settings=sampleproj.settings.local && python manage.py runserver 0.0.0.0:8000 --settings=sampleproj.settings.local"
