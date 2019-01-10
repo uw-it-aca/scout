@@ -19,13 +19,37 @@ var List = {
 
         } else {
 
-          // wait 3 seconds then hide the loading placeholder
-          setTimeout(function(){
-            $("#food_loading").hide();
-          }, 3000);
 
-          List.add_distances("scout-list-item", "data-spot-lat", "data-spot-lng");
-          List.order_list("scout-list-item", "scout_food_list", false);
+          // request food/list/ async
+
+          var campus = $("body").data("campus");
+          var url = "/h/" + campus + "/food/list/";
+
+          $.ajax({
+              url: url,
+              dataType: "html",
+              type: "GET",
+              accepts: {html: "text/html"},
+              success: function(results) {
+
+                $("#food_list").html(results);
+
+                List.add_distances("scout-list-item", "data-spot-lat", "data-spot-lng");
+                List.order_list("scout-list-item", "scout_food_list", false);
+
+                setTimeout(function(){
+                  $("#food_placeholder").hide();
+                }, 1000);
+
+                  //$("#food_list").fadeIn("slow");
+              },
+              error: function(xhr, status, error) {
+                  console.log("An error occurred fetching food list");
+              }
+          });
+
+
+
         }
 
     },
