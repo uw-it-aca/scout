@@ -21,9 +21,14 @@ var List = {
 
 
           // request food/list/ async
-
           var campus = $("body").data("campus");
-          var url = "/h/" + campus + "/food/list/";
+
+          // get the food params in query string and append to url construction
+          var food_params = ""
+          food_params =  location.search;
+
+          // build the ajax url with food params
+          var url = "/h/" + campus + "/food/list/" + food_params;
 
           $.ajax({
               url: url,
@@ -41,7 +46,6 @@ var List = {
                   $("#food_placeholder").hide();
                 }, 1000);
 
-                  //$("#food_list").fadeIn("slow");
               },
               error: function(xhr, status, error) {
                   console.log("An error occurred fetching food list");
