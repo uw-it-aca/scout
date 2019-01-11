@@ -67,7 +67,10 @@ Discover = {
                 Discover.add_distance_and_sort(card_id);
                 //Discover.set_cards_are_visible(true);
                 //$("#discover_cards").removeClass("visually-hidden");
-                $("#discover_loading").hide();
+                setTimeout(function(){
+                  $("#discover_loading").hide();
+                }, 1500);
+
                 $("#" + card_id).fadeIn("slow");
             },
             error: function(xhr, status, error) {

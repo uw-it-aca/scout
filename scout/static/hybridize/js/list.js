@@ -44,7 +44,7 @@ var List = {
 
                 setTimeout(function(){
                   $("#food_placeholder").hide();
-                }, 1000);
+                }, 1500);
 
               },
               error: function(xhr, status, error) {
