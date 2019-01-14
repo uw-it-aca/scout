@@ -37,22 +37,24 @@ var List = {
               accepts: {html: "text/html"},
               success: function(results) {
 
+                // display the food list and reorder and add distances
                 $("#food_list").html(results);
-
                 List.add_distances("scout-list-item", "data-spot-lat", "data-spot-lng");
                 List.order_list("scout-list-item", "scout_food_list", false);
 
+                // hide the placeholder
                 setTimeout(function(){
                   $("#food_placeholder").hide();
                 }, 1500);
-                
+
+                // reinitialize filter events
+                Filter.init_events();
+
               },
               error: function(xhr, status, error) {
                   console.log("An error occurred fetching food list");
               }
           });
-
-
 
         }
 

@@ -28,21 +28,6 @@ Discover = {
 
         var pos_data = {}
 
-        /**
-        // change the request params based on user location (h_lat/h_lng) or default (latitude/longitude)
-        if ( $("body").data("user-latitude") && $("body").data("user-longitude") ) {
-        //if ( $("#hybrid_location_bridge").data("user-latitude") && $("#hybrid_location_bridge").data("user-longitude") ) {
-          pos_data = {
-              "h_lat": latlng.lat(),
-              "h_lng": latlng.lng()
-          };
-        } else {
-          pos_data = {
-              "latitude": $("body").data,
-              "longitude": latlng.lng()
-          };
-        }**/
-
         if (Cookies.get("user_location")) {
             pos_data = {
                 "latitude": Cookies.get('user_lat'),
@@ -62,11 +47,10 @@ Discover = {
             data: pos_data,
             accepts: {html: "text/html"},
             success: function(results) {
+
                 Discover._attach_card(card_id, results);
-                //Discover._init_card_events(card_id);
                 Discover.add_distance_and_sort(card_id);
-                //Discover.set_cards_are_visible(true);
-                //$("#discover_cards").removeClass("visually-hidden");
+
                 setTimeout(function(){
                   $("#discover_loading").hide();
                 }, 1500);
@@ -79,19 +63,8 @@ Discover = {
         });
     },
 
-    /*set_cards_are_visible: function(is_visible) {
-        if(is_visible){
-            $("#discover_cards").show();
-        } else {
-            $("#discover_cards").hide();
-        }
-    },*/
-
     _attach_card: function (card_id, card_html) {
         $("#" + card_id).html(card_html);
-        //if(card_id === 'open'){
-            //Discover.initialize_map(card_id);
-        //}
     },
 
     add_distance_and_sort: function(card_id) {

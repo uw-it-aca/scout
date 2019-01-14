@@ -75,33 +75,4 @@ var Food_Filter = {
         return filter_categories;
     },
 
-    /**
-    reset_filter: function(){
-        // just makes a call to generic filter.js reset_filter with
-        // the session variable as the parameter.
-        Filter.reset_filter("food_filter_params", "/food/");
-    },
-    **/
-
-
-    init_events: function(){
-        // Very similar to the current implementation in fllter.js
-        // No tests required for this, I guess?
-
-        /***
-        $("#run_food_search").click(function(){
-            Food_Filter.set_filter_params();
-            Filter.redirect_to_page("/food/");
-        });
-
-        $("#reset_food_button").click(function() {
-            Food_Filter.reset_filter();
-        });
-
-        $("#reset_food_list").click(function() {
-            Food_Filter.reset_filter();
-        });
-        **/
-    },
-
 };

@@ -65,24 +65,16 @@ var Filter = {
 
 
         if(filter_text.length > 0){
-            console.log("yoooo " + filter_text)
+
             $("#filter_label_text").html(filter_text);
-            $("#filter_text_holder").removeClass("visually-hidden");
+
+            $("#food_filter_text_holder").removeClass("visually-hidden");
+
             $("#reset_food_list").removeClass("visually-hidden");
             $("#reset_study_list").removeClass("visually-hidden");
             $("#reset_tech_list").removeClass("visually-hidden");
         }
     },
-
-    /**
-    reset_filter: function(sessionVar, type) {
-        // this will now have a paramater, so it can set the delete app type
-        // specific filters.
-        sessionStorage.removeItem(sessionVar);
-        Filter.replace_navigation_href();
-        Filter.redirect_to_page(type);
-    },
-    **/
 
     init_events: function() {
 
@@ -95,38 +87,6 @@ var Filter = {
         Tech_Filter.init_events(); // empty
 
     },
-
-    /**
-    redirect_to_page: function(type) {
-        var campus = Navigation.get_campus_selection();
-        var filter_url = Filter.get_filter_url(type);
-
-        if (filter_url !== undefined){
-            window.location.href = "/"+ campus + type + "?" + filter_url;
-        } else {
-            window.location.href = "/" + campus + type;
-        }
-    },
-    **/
-
-    /**
-    get_current_type: function() {
-
-        var current_page = window.location.pathname;
-
-        if (current_page.indexOf("study") > -1){
-            return "/study/";
-        } else if (current_page.indexOf("tech") > -1){
-            return "/tech/";
-        } else if (current_page.indexOf("food") > -1){
-            return "/food/";
-        } else {
-            return "/";
-        }
-
-        return current_page;
-    },
-    **/
 
     init: function() {
         // we can include type as a parameter and web.js
@@ -171,28 +131,6 @@ var Filter = {
             });
         });
     },
-
-    /**
-    replace_navigation_href: function(){
-        var anchors = {
-            "/food/" : "#link_food",
-            "/study/" : "#link_study",
-            "/tech/" : "#link_tech",
-        };
-
-        for (anchor in anchors){
-            // build the url with filtered params
-            var filter = Filter.get_filter_url(anchor);
-            var anchor_id = $(anchors[anchor]);
-            if (filter !== undefined){
-                filter = anchor_id.attr("href") + "?" + filter;
-            }
-            anchor_id.attr("href", filter);
-        }
-    },
-    **/
-
-    /**** NEW STUFF... HYBRID ONLY ***/
 
     init_hybrid_events: function () {
 
