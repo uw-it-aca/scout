@@ -45,7 +45,7 @@ var List = {
                 setTimeout(function(){
                   $("#food_placeholder").hide();
                 }, 1500);
-
+                
               },
               error: function(xhr, status, error) {
                   console.log("An error occurred fetching food list");

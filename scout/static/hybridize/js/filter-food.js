@@ -70,6 +70,8 @@ var Food_Filter = {
                 filter_categories.push(label);
             }
         });
+
+        console.log(filter_categories)
         return filter_categories;
     },
 

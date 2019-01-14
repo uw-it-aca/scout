@@ -35,6 +35,7 @@ var Filter = {
         var type = $("body").data("app-type");
 
         if(type.indexOf("food") > -1) {
+            console.log("food list and filters" + url)
             specific_categories = Food_Filter._get_filter_label_text(url);
         } else if(type.indexOf("study") > -1) {
             specific_categories = Study_Filter._get_filter_label_text(url);
@@ -51,6 +52,8 @@ var Filter = {
             }
         }
 
+        console.log(filter_string)
+
         return filter_string;
     },
 
@@ -59,7 +62,10 @@ var Filter = {
         // based on what it recieves as a parameter.
 
         var filter_text = Filter._get_filter_label_text();
+
+
         if(filter_text.length > 0){
+            console.log("yoooo " + filter_text)
             $("#filter_label_text").html(filter_text);
             $("#filter_text_holder").removeClass("visually-hidden");
             $("#reset_food_list").removeClass("visually-hidden");
