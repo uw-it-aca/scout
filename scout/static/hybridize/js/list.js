@@ -47,9 +47,6 @@ var List = {
                   $("#food_placeholder").hide();
                 }, 1500);
 
-                // reinitialize filter events
-                Filter.init_events();
-
               },
               error: function(xhr, status, error) {
                   console.log("An error occurred fetching food list");
