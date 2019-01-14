@@ -6,6 +6,7 @@ from scout import views
 from scout.views import DiscoverView
 from scout.views import DiscoverCardView
 
+from scout.views import FoodPlacehholderView
 from scout.views import FoodListView
 from scout.views import FoodDetailView
 from scout.views import FoodFilterView
@@ -70,9 +71,8 @@ urlpatterns = patterns(
 
     # hybrid food
     url(r'^h/(?P<campus>[^/]+)/food/$',
-        FoodListView.as_view(),
-        {"template_name": "hybridize/food/list.html",
-         "app_type": "food"}),
+        FoodPlacehholderView.as_view(),
+        {"template_name": "hybridize/food/list.html"}),
     url(r'^h/(?P<campus>[^/]+)/food/list/$',
         FoodListView.as_view(),
         {"template_name": "hybridize/food/list_content.html",
