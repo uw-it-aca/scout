@@ -35,7 +35,6 @@ var Filter = {
         var type = $("body").data("app-type");
 
         if(type.indexOf("food") > -1) {
-            console.log("food list and filters" + url)
             specific_categories = Food_Filter._get_filter_label_text(url);
         } else if(type.indexOf("study") > -1) {
             specific_categories = Study_Filter._get_filter_label_text(url);
@@ -51,8 +50,6 @@ var Filter = {
                 filter_string += ", ";
             }
         }
-
-        console.log(filter_string)
 
         return filter_string;
     },
@@ -76,22 +73,13 @@ var Filter = {
         }
     },
 
-    init_events: function() {
-
-        Filter.set_filter_text();
-        Filter.init_hybrid_events();
-
-        // initial app_type specific events (if needed)
-        Food_Filter.init_events(); // empty
-        Study_Filter.init_events(); // handles building and hours toggle
-        Tech_Filter.init_events(); // empty
-
-    },
-
     init: function() {
         // we can include type as a parameter and web.js
         // pas that!
         var type = $("body").data("app-type");
+
+        Filter.set_filter_text();
+        Filter.init_hybrid_events();
 
         if(type.indexOf("study") > -1) {
             Study_Filter.populate_filters_from_saved();

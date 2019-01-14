@@ -71,7 +71,6 @@ var Food_Filter = {
             }
         });
 
-        console.log(filter_categories)
         return filter_categories;
     },
 

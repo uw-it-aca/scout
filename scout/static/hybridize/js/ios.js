@@ -49,12 +49,10 @@ $(document).on('turbolinks:load', function() {
         // tech
         List.init();
         Filter.init();
+
     } else {
         // discover
         Discover.init_cards();
     }
-
-    // filter
-    Filter.init_events();
 
 });
