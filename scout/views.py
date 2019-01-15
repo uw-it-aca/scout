@@ -193,14 +193,14 @@ class DiscoverCardView(TemplateView):
 
 
 # food
-class FoodPlacehholderView(TemplateView):
+class PlaceHolderView(TemplateView):
     template_name = "404.html"
 
     @validate_campus_selection
     def get_context_data(self, **kwargs):
         self.template_name = kwargs['template_name']
         context = {"campus": kwargs['campus'],
-                   "app_type": 'food',
+                   "app_type": kwargs['app_type'],
                    "campus_locations": CAMPUS_LOCATIONS}
         return context
 
