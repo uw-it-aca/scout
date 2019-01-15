@@ -14,11 +14,11 @@ var Geolocation = {
         if (Cookies.get("user_location")) {
             lat = Cookies.get("user_lat");
             lng = Cookies.get("user_lng");
-            console.log("user latlng is: " + lat + ", " + lng)
+            // console.log("user latlng is: " + lat + ", " + lng)
         } else {
             lat = $("body").data("campus-latitude");
             lng = $("body").data("campus-longitude");
-            console.log("default latlng is: " + lat + ", " + lng)
+            // console.log("default latlng is: " + lat + ", " + lng)
         }
         return Geolocation.get_latlng_from_coords(lat, lng);
     },
