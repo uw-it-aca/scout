@@ -1,15 +1,21 @@
 var WebView = {
 
-  store_location: function(lat, lng) {
+  user_location: function(lat, lng) {
     Cookies.set('user_lat', lat, { expires: 365 });
     Cookies.set('user_lng', lng, { expires: 365 });
+    Cookies.set('location_enabled', 'true', { expires: 365 });
     Cookies.set('user_location', 'true', { expires: 365 });
+    WebView.update_location_display();
+  },
+
+  default_location: function(lat, lng) {
+    Cookies.set('location_enabled', 'false', { expires: 365 });
     WebView.update_location_display();
   },
 
   update_location_display: function() {
 
-    if (Cookies.get("user_location")) {
+    if (Cookies.get("location_enabled")) {
 
       // temp display of lat lng values
       var blah1 = Cookies.get('user_lat');

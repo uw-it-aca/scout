@@ -16,12 +16,15 @@ $(document).on('turbolinks:load', function() {
 
     // initialize framework7
     var myApp = new Framework7({
-	    router: false,
-		material: true,
-		fastClicks: true,
-        materialRipple: false,
-		activeState: true,
-	});
+      router: false,
+      material: true,
+      fastClicks: true,
+      materialRipple: false,
+      activeState: true,
+    });
+
+    // update location bar display
+    WebView.update_location_display();
 
     // get the app_type
     var type = $("body").data("app-type")
@@ -30,6 +33,7 @@ $(document).on('turbolinks:load', function() {
         // food
         List.init();
         Filter.init();
+
     } else if (type.indexOf("study") !== -1){
         // study
         List.init();
@@ -47,15 +51,10 @@ $(document).on('turbolinks:load', function() {
         // tech
         List.init();
         Filter.init();
+
     } else {
         // discover
         Discover.init_cards();
     }
-
-    // Geolocation
-    // Geolocation.update_location();
-
-    // filter
-    Filter.init_events();
 
 });
