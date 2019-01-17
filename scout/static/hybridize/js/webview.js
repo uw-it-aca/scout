@@ -28,4 +28,8 @@ var WebView = {
 
   },
 
+  new_location_message: function() {
+    $("#hybrid_location_bridge").html("Pull to refresh!");
+  }
+
 }

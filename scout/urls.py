@@ -70,9 +70,10 @@ urlpatterns = patterns(
         {"template_name": "hybridize/discover_card.html"}),
 
     # hybrid food
-    url(r'^h/(?P<campus>[^/]+)/(?P<app_type>[^/]+)/$',
+    url(r'^h/(?P<campus>[^/]+)/food/$',
         PlaceHolderView.as_view(),
-        {"template_name": "hybridize/food/list.html"}),
+        {"template_name": "hybridize/food/list.html",
+         "app_type": "food"}),
     url(r'^h/(?P<campus>[^/]+)/food/list/$',
         FoodListView.as_view(),
         {"template_name": "hybridize/food/list_content.html",
