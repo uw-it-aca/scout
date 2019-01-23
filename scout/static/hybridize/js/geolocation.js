@@ -1,3 +1,5 @@
+var x = document.getElementById("geodemo");
+
 var Geolocation = {
 
     // drumheller fountain
@@ -203,5 +205,23 @@ var Geolocation = {
 
     }
     **/
+
+    getLocation: function() {
+
+      console.log("gettng location via html5...")
+
+      if (navigator.geolocation) {
+        console.log("blah");
+        navigator.geolocation.getCurrentPosition(Geolocation.showPosition);
+      } else {
+        $("#geodemo").html("Geolocation is not supported by this browser.");
+      }
+
+    },
+
+    showPosition: function(position) {
+      console.log("show position");
+      $("#geodemo").html("Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude);
+    }
 
 };

@@ -16,10 +16,13 @@ $(document).on('turbolinks:load', function() {
 
     // initialize framework7
     var myApp = new Framework7({
-		router: false,
-		fastClicks: true,
-		activeState: true,
-	});
+  		router: false,
+  		fastClicks: true,
+  		activeState: true,
+  	});
+
+
+    Geolocation.getLocation();
 
     // get the app_type
     var type = $("body").data("app-type")
