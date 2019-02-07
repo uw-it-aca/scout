@@ -210,8 +210,10 @@ var Geolocation = {
 
       console.log("gettng location via html5...")
 
+      $("#geodemo").html("Hello world...");
+
       if (navigator.geolocation) {
-        console.log("blah");
+        $("#geodemo").html("call show position...");
         navigator.geolocation.getCurrentPosition(Geolocation.showPosition);
       } else {
         $("#geodemo").html("Geolocation is not supported by this browser.");
@@ -221,6 +223,7 @@ var Geolocation = {
 
     showPosition: function(position) {
       console.log("show position");
+      $("#geodemo").html("Show location...");
       $("#geodemo").html("Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude);
     }
 
