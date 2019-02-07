@@ -16,13 +16,16 @@ $(document).on('turbolinks:load', function() {
 
     // initialize framework7
     var myApp = new Framework7({
-	    router: false,
-		material: true,
-		fastClicks: true,
-        materialRipple: false,
-		activeState: true,
-	});
+      router: false,
+      material: true,
+      fastClicks: true,
+      materialRipple: false,
+      activeState: true,
+    });
 
+    // html5 geolocation
+    Geolocation.getLocation();
+    
     // get the app_type
     var type = $("body").data("app-type")
 

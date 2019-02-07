@@ -21,7 +21,7 @@ $(document).on('turbolinks:load', function() {
   		activeState: true,
   	});
 
-
+    // html5 geolocation
     Geolocation.getLocation();
 
     // get the app_type

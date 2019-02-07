@@ -213,9 +213,9 @@ var Geolocation = {
       $("#geodemo").html("Getting location...");
 
       var options = {
-          enableHighAccuracy: true,
-          timeout: 5000,
-          maximumAge: 0
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0
       };
 
       function success(pos) {
@@ -235,25 +235,15 @@ var Geolocation = {
         $("#geodemo").html(`ERROR(${err.code}): ${err.message}`);
       }
 
-      navigator.geolocation.getCurrentPosition(success, error, options);
 
-      /***
       if (navigator.geolocation) {
         $("#geodemo").html("call show position...");
-
+        navigator.geolocation.getCurrentPosition(success, error, options);
 
       } else {
         $("#geodemo").html("Geolocation is not supported by this browser.");
       }
-      **/
-
 
     },
-
-    showPosition: function(position) {
-      console.log("show position");
-      $("#geodemo").html("Show location...");
-      $("#geodemo").html("Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude);
-    }
 
 };
