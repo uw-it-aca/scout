@@ -210,14 +210,43 @@ var Geolocation = {
 
       console.log("gettng location via html5...")
 
-      $("#geodemo").html("Hello world...");
+      $("#geodemo").html("Getting location...");
 
+      var options = {
+          enableHighAccuracy: true,
+          timeout: 5000,
+          maximumAge: 0
+      };
+
+      function success(pos) {
+        var crd = pos.coords;
+
+        console.log('Your current position is:');
+        console.log(`Latitude : ${crd.latitude}`);
+        console.log(`Longitude: ${crd.longitude}`);
+        console.log(`More or less ${crd.accuracy} meters.`);
+
+        $("#geodemo").html("Latitude: " + pos.coords.latitude + "<br>Longitude: " + pos.coords.longitude);
+
+      }
+
+      function error(err) {
+        console.warn(`ERROR(${err.code}): ${err.message}`);
+        $("#geodemo").html(`ERROR(${err.code}): ${err.message}`);
+      }
+
+      navigator.geolocation.getCurrentPosition(success, error, options);
+
+      /***
       if (navigator.geolocation) {
         $("#geodemo").html("call show position...");
-        navigator.geolocation.getCurrentPosition(Geolocation.showPosition);
+
+
       } else {
         $("#geodemo").html("Geolocation is not supported by this browser.");
       }
+      **/
+
 
     },
 
