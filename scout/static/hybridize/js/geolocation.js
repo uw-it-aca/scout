@@ -226,6 +226,7 @@ var Geolocation = {
         console.log(`Longitude: ${crd.longitude}`);
         console.log(`More or less ${crd.accuracy} meters.`);
 
+        /**
         var geocoder = new google.maps.Geocoder;
         var point = new google.maps.LatLng(
         pos.coords.latitude, pos.coords.longitude);
@@ -239,6 +240,7 @@ var Geolocation = {
             };
           }
         });
+        **/
 
         // update location display
         $("#geodemo").html("Latitude: " + pos.coords.latitude + "<br>Longitude: " + pos.coords.longitude);

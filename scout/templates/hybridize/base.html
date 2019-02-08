@@ -102,7 +102,8 @@
 
         <!-- googlme maps -->
         {% if google_maps %}
-        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3&amp;key={{ google_maps }}&amp;libraries=geometry,places" defer></script>
+        <!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3&amp;key={{ google_maps }}&amp;libraries=geometry,places" defer></script>-->
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3&amp;key={{ google_maps }}&amp;libraries=geometry" defer></script>
         {% endif %}
 
         {% if google_analytics %}
