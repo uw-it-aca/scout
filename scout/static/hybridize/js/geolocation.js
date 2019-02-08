@@ -214,7 +214,7 @@ var Geolocation = {
 
       var options = {
         enableHighAccuracy: true,
-        timeout: 5000,
+        timeout: 10000, //how long to wait for user to allow location sharing
         maximumAge: 0
       };
 
@@ -226,22 +226,45 @@ var Geolocation = {
         console.log(`Longitude: ${crd.longitude}`);
         console.log(`More or less ${crd.accuracy} meters.`);
 
+        var geocoder = new google.maps.Geocoder;
+        var point = new google.maps.LatLng(
+        pos.coords.latitude, pos.coords.longitude);
+        geocoder.geocode({'latLng': point}, function (locations, status) {
+          if (status == google.maps.GeocoderStatus.OK) {
+            for (var location of locations) {
+              if ($.inArray('locality', location.types) != -1) {
+                console.log('Your location is: ' + location.formatted_address);
+                break;
+              }
+            };
+          }
+        });
+
+        // update location display
         $("#geodemo").html("Latitude: " + pos.coords.latitude + "<br>Longitude: " + pos.coords.longitude);
+
+        // wait and render the webview
+        setTimeout(WebView.render, 1000);
 
       }
 
       function error(err) {
         console.warn(`ERROR(${err.code}): ${err.message}`);
         $("#geodemo").html(`ERROR(${err.code}): ${err.message}`);
+
+        // wait and render the webview
+        setTimeout(WebView.render, 1000);
+
       }
 
 
       if (navigator.geolocation) {
-        $("#geodemo").html("call show position...");
         navigator.geolocation.getCurrentPosition(success, error, options);
-
       } else {
         $("#geodemo").html("Geolocation is not supported by this browser.");
+
+        WebView.render;
+
       }
 
     },

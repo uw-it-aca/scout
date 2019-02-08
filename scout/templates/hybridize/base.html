@@ -61,6 +61,7 @@
             <script type="text/javascript" src="{% static "hybridize/js/filter-study.js" %}" defer></script>
             <script type="text/javascript" src="{% static "hybridize/js/filter-tech.js" %}" defer></script>
             <script type="text/javascript" src="{% static "hybridize/js/geolocation.js" %}" defer></script>
+            <script type="text/javascript" src="{% static "hybridize/js/webview.js" %}" defer></script>
             <script type="text/javascript" src="{% static "hybridize/js/list.js" %}" defer></script>
 		        {% endcompress %}
 
@@ -93,6 +94,7 @@
           <script type="text/javascript" src="{% static "hybridize/js/filter-study.js" %}" defer></script>
           <script type="text/javascript" src="{% static "hybridize/js/filter-tech.js" %}" defer></script>
           <script type="text/javascript" src="{% static "hybridize/js/geolocation.js" %}" defer></script>
+          <script type="text/javascript" src="{% static "hybridize/js/webview.js" %}" defer></script>
           <script type="text/javascript" src="{% static "hybridize/js/list.js" %}" defer></script>
 	        {% endcompress %}
 
@@ -100,9 +102,7 @@
 
         <!-- googlme maps -->
         {% if google_maps %}
-        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3&amp;key={{ google_maps }}&amp;libraries=geometry" defer></script>
-        {% else %}
-        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=geometry" defer></script>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3&amp;key={{ google_maps }}&amp;libraries=geometry,places" defer></script>
         {% endif %}
 
         {% if google_analytics %}
