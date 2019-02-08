@@ -226,21 +226,6 @@ var Geolocation = {
         console.log(`Longitude: ${crd.longitude}`);
         console.log(`More or less ${crd.accuracy} meters.`);
 
-        /**
-        var geocoder = new google.maps.Geocoder;
-        var point = new google.maps.LatLng(
-        pos.coords.latitude, pos.coords.longitude);
-        geocoder.geocode({'latLng': point}, function (locations, status) {
-          if (status == google.maps.GeocoderStatus.OK) {
-            for (var location of locations) {
-              if ($.inArray('locality', location.types) != -1) {
-                console.log('Your location is: ' + location.formatted_address);
-                break;
-              }
-            };
-          }
-        });
-        **/
 
         // update location display
         $("#geodemo").html("Latitude: " + pos.coords.latitude + "<br>Longitude: " + pos.coords.longitude);
@@ -252,7 +237,7 @@ var Geolocation = {
 
       function error(err) {
         console.warn(`ERROR(${err.code}): ${err.message}`);
-        $("#geodemo").html(`ERROR(${err.code}): ${err.message}`);
+        $("#geodemo").html("Geolocation error occured. Use default location.");
 
         // wait and render the webview
         setTimeout(WebView.render, 1000);
@@ -263,7 +248,7 @@ var Geolocation = {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(success, error, options);
       } else {
-        $("#geodemo").html("Geolocation is not supported by this browser.");
+        $("#geodemo").html("Geolocation is not supported. Use default location.");
 
         WebView.render;
 

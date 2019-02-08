@@ -20,7 +20,29 @@ $(document).on('turbolinks:load', function() {
   		activeState: true,
   	});
 
-    // html5 geolocation
-    Geolocation.getLocation();
+    // get the app_type
+    var type = $("body").data("app-type")
+
+    if (type.indexOf("food") !== -1) {
+        // food
+        // html5 geolocation
+        console.log("on food home");
+        Geolocation.getLocation();
+
+    } else if (type.indexOf("study") !== -1){
+        // study
+        // html5 geolocation
+        Geolocation.getLocation();
+
+
+    } else if (type.indexOf("tech") !== -1){
+        // tech
+        // html5 geolocation
+        Geolocation.getLocation();
+    } else {
+        // discover
+        // html5 geolocation
+        Geolocation.getLocation();
+    }
 
 });
