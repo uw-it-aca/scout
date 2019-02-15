@@ -221,7 +221,7 @@ var Geolocation = {
 
     getLocation: function() {
 
-      console.log("gettng location via html5...")
+      console.log("getting location via html5...")
 
       $("#geodemo").html("Getting location...");
 

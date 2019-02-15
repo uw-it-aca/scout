@@ -20,29 +20,23 @@ $(document).on('turbolinks:load', function() {
   		activeState: true,
   	});
 
-    switch(location.pathname) {
-      case "/h/seattle/":
-      case "/h/bothell/":
-      case "/h/tacoma/":
-        console.log("switch on discover");
+    // initialize webview by requesting html5 geolocation
+    let foodRe = new RegExp('\/h\/[a-z]+\/food\/');
+    let studyRe = new RegExp('\/h\/[a-z]+\/study\/');
+    let techRe = new RegExp('\/h\/[a-z]+\/tech\/');
+    let discoverRe = new RegExp('\/h\/[a-z]+\/');
+
+    switch(true) {
+      case foodRe.test(location.pathname):
         Geolocation.getLocation();
         break;
-      case "/h/seattle/food/":
-      case "/h/bothell/food/":
-      case "/h/tacoma/food/":
-        console.log("switch on food");
+      case studyRe.test(location.pathname):
         Geolocation.getLocation();
         break;
-      case "/h/seattle/study/":
-      case "/h/bothell/study/":
-      case "/h/tacoma/study/":
-        console.log("switch on study");
+      case techRe.test(location.pathname):
         Geolocation.getLocation();
         break;
-      case "/h/seattle/tech/":
-      case "/h/bothell/tech/":
-      case "/h/tacoma/tech/":
-        console.log("switch on tech");
+      case discoverRe.test(location.pathname):
         Geolocation.getLocation();
         break;
     }

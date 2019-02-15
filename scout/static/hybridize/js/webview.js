@@ -10,36 +10,34 @@ var WebView = {
       console.log("using default coords");
     }
 
-    switch(location.pathname) {
-      case "/h/seattle/":
-      case "/h/bothell/":
-      case "/h/tacoma/":
-        console.log("render on discover");
+    // initialize webview by requesting html5 geolocation
+    let foodRe = new RegExp('\/h\/[a-z]+\/food\/');
+    let studyRe = new RegExp('\/h\/[a-z]+\/study\/');
+    let techRe = new RegExp('\/h\/[a-z]+\/tech\/');
+    let discoverRe = new RegExp('\/h\/[a-z]+\/');
+
+    switch(true) {
+      case foodRe.test(location.pathname):
+        console.log('render on food');
+        List.init();
+        Filter.init();
+        Filter.init_events();
+        break;
+      case studyRe.test(location.pathname):
+        console.log('render on study');
+        List.init();
+        Filter.init();
+        Filter.init_events();
+        break;
+      case techRe.test(location.pathname):
+        console.log('render on tech');
+        List.init();
+        Filter.init();
+        Filter.init_events();
+        break;
+      case discoverRe.test(location.pathname):
+        console.log('render on discover');
         Discover.init_cards(crd);
-        break;
-      case "/h/seattle/food/":
-      case "/h/bothell/food/":
-      case "/h/tacoma/food/":
-        console.log("render on food");
-        List.init();
-        Filter.init();
-        Filter.init_events();
-        break;
-      case "/h/seattle/study/":
-      case "/h/bothell/study/":
-      case "/h/tacoma/study/":
-        console.log("render on study");
-        List.init();
-        Filter.init();
-        Filter.init_events();
-        break;
-      case "/h/seattle/tech/":
-      case "/h/bothell/tech/":
-      case "/h/tacoma/tech/":
-        console.log("render on tech");
-        List.init();
-        Filter.init();
-        Filter.init_events();
         break;
     }
 
