@@ -76,22 +76,25 @@ var Geolocation = {
         return new google.maps.LatLng(lat, lng);
     },
 
-    get_client_latlng: function () {
-
-        // if the lat/lng is passed in query params... it's user location_changed
-        // else.. just use the lat/lng in the data-attribute (dafault campus location)
+    get_client_latlng: function (crd) {
 
         var lat, lng;
 
-        if ( $("body").data("user-latitude") && $("body").data("user-longitude") ) {
-            lat = $("body").data("user-latitude");
-            lng = $("body").data("user-longitude");
+        // make sure user coords are passed
+        if (crd) {
+          console.log("user coords passed to geolocation");
+          lat = crd.latitude;
+          lng = crd.longitude;
+
         } else {
-            lat = $("body").data("campus-latitude");
-            lng = $("body").data("campus-longitude");
+          console.log("using default coords on geolocation");
+          lat = $("body").data("campus-latitude");
+          lng = $("body").data("campus-longitude");
+
         }
 
         return Geolocation.get_latlng_from_coords(lat, lng);
+
     },
 
     /*
@@ -145,9 +148,19 @@ var Geolocation = {
     },
     **/
 
-    get_distance_from_position: function (item_latlng) {
+    get_distance_from_position: function (item_latlng, crd) {
         // Returns distance in miles, rounded to 2 decimals
-        var current_latlng = Geolocation.get_client_latlng();
+
+        // make sure user coords are passed
+        if (crd) {
+          console.log("user coords passed to get distance");
+          //console.log(crd);
+        } else {
+          console.log("using default coords to get distance");
+        }
+
+        var current_latlng = Geolocation.get_client_latlng(crd);
+
         var distance = google.maps.geometry.spherical.computeDistanceBetween(current_latlng, item_latlng);
         var miles_per_meter = 0.000621371;
         distance = (distance * miles_per_meter).toFixed(2);
@@ -219,6 +232,7 @@ var Geolocation = {
       };
 
       function success(pos) {
+
         var crd = pos.coords;
 
         console.log('Your current position is:');
@@ -226,12 +240,11 @@ var Geolocation = {
         console.log(`Longitude: ${crd.longitude}`);
         console.log(`More or less ${crd.accuracy} meters.`);
 
-
         // update location display
-        $("#geodemo").html("Latitude: " + pos.coords.latitude + "<br>Longitude: " + pos.coords.longitude);
+        $("#geodemo").html("Latitude: " + crd.latitude + "<br>Longitude: " + crd.longitude);
 
         // wait and render the webview
-        setTimeout(WebView.render, 1000);
+        setTimeout(WebView.render(crd), 1000);
 
       }
 
@@ -249,7 +262,6 @@ var Geolocation = {
         navigator.geolocation.getCurrentPosition(success, error, options);
       } else {
         $("#geodemo").html("Geolocation is not supported. Use default location.");
-
         WebView.render;
 
       }

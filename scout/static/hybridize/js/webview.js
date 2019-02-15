@@ -1,11 +1,19 @@
 var WebView = {
 
-  render: function() {
+  render: function(crd) {
+
+    // make sure user coords are passed
+    if (crd) {
+      console.log("user coords passed to webview");
+      //console.log(crd);
+    } else {
+      console.log("using default coords");
+    }
 
     switch(location.pathname) {
       case "/h/seattle/":
         console.log("render on discover");
-        Discover.init_cards();
+        Discover.init_cards(crd);
         break;
       case "/h/seattle/food/":
         console.log("render on food");
