@@ -20,29 +20,23 @@ $(document).on('turbolinks:load', function() {
   		activeState: true,
   	});
 
-    // get the app_type
-    var type = $("body").data("app-type")
-
-    if (type.indexOf("food") !== -1) {
-        // food
-        // html5 geolocation
-        console.log("on food home");
+    switch(location.pathname) {
+      case "/h/seattle/":
+        console.log("switch on discover");
         Geolocation.getLocation();
-
-    } else if (type.indexOf("study") !== -1){
-        // study
-        // html5 geolocation
+        break;
+      case "/h/seattle/food/":
+        console.log("switch on food");
         Geolocation.getLocation();
-
-
-    } else if (type.indexOf("tech") !== -1){
-        // tech
-        // html5 geolocation
+        break;
+      case "/h/seattle/study/":
+        console.log("switch on study");
         Geolocation.getLocation();
-    } else {
-        // discover
-        // html5 geolocation
+        break;
+      case "/h/seattle/tech/":
+        console.log("switch on tech");
         Geolocation.getLocation();
+        break;
     }
 
 });

@@ -22,7 +22,23 @@ $(document).on('turbolinks:load', function() {
       activeState: true,
     });
 
-    // html5 geolocation
-    Geolocation.getLocation();
+    switch(location.pathname) {
+      case "/h/seattle/":
+        console.log("switch on discover");
+        Geolocation.getLocation();
+        break;
+      case "/h/seattle/food/":
+        console.log("switch on food");
+        Geolocation.getLocation();
+        break;
+      case "/h/seattle/study/":
+        console.log("switch on study");
+        Geolocation.getLocation();
+        break;
+      case "/h/seattle/tech/":
+        console.log("switch on tech");
+        Geolocation.getLocation();
+        break;
+    }
 
 });

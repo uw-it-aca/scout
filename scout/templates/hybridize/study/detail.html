@@ -266,4 +266,17 @@
 
 <script> var LIST_PAGE = false; </script>
 
+{% if spot.images %}
+<script type="text/javascript">
+  console.log("callng slider function");
+  // study detail image slider
+  if ($( ".photo-gallery").length) {
+      $('.photo-gallery').not('.slick-initialized').slick({
+          dots: true,
+          arrows: false,
+      });
+  }
+</script>
+{% endif %}
+
 {% endblock %}
