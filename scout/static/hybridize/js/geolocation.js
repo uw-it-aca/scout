@@ -105,7 +105,7 @@ var Geolocation = {
       // render the location display
       setTimeout(function(){
         // update location display
-        $("#geodemo").html("Latitude: " + hlat + "<br>Longitude: " + hlng);
+        $("#geodemo").html(hlat + ",   " + hlng);
       }, 1000);
 
       // wait and render the webview

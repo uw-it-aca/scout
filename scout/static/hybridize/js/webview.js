@@ -47,7 +47,7 @@ var WebView = {
 
     console.log("initialize webview")
     var blah = "hello world"
-    $("#geodemo").html("Send hello world");
+    $("#geodemo").html("Getting location...");
 
     // get the device type
     var device = $("body").data("device");
