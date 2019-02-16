@@ -1,9 +1,9 @@
 var WebView = {
 
-  render: function(crd) {
+  render: function(hlat, hlng) {
 
     // make sure user coords are passed
-    if (crd) {
+    if (hlat && hlng) {
       console.log("user coords passed to webview");
       //console.log(crd);
     } else {
@@ -37,7 +37,7 @@ var WebView = {
         break;
       case discoverRe.test(location.pathname):
         console.log('render on discover');
-        Discover.init_cards(crd);
+        Discover.init_cards(hlat, hlng);
         break;
     }
 

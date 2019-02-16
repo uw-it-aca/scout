@@ -20,6 +20,7 @@ $(document).on('turbolinks:load', function() {
   		activeState: true,
   	});
 
+    /****
     // initialize webview by requesting html5 geolocation
     let foodRe = new RegExp('\/h\/[a-z]+\/food\/');
     let studyRe = new RegExp('\/h\/[a-z]+\/study\/');
@@ -40,5 +41,6 @@ $(document).on('turbolinks:load', function() {
         Geolocation.getLocation();
         break;
     }
+    ****/
 
 });
