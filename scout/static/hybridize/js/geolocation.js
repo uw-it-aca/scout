@@ -102,17 +102,15 @@ var Geolocation = {
 
       console.log("getting location via native bridge...");
 
-      // update location display
-      $("#geodemo").html("Latitude: " + hlat + "<br>Longitude: " + hlng);
+      // render the location display
+      setTimeout(function(){
+        // update location display
+        $("#geodemo").html("Latitude: " + hlat + "<br>Longitude: " + hlng);
+      }, 1000);
 
       // wait and render the webview
-      setTimeout(WebView.render(hlat, hlng), 1000);
+      setTimeout(WebView.render(hlat, hlng), 2000);
 
     },
-
-    updateLocationDisplay: function() {
-      // update location display
-      $("#geodemo").html("Pull to Refresh...");
-    }
 
 };

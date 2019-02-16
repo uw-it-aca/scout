@@ -22,23 +22,28 @@ $(document).on('turbolinks:load', function() {
       activeState: true,
     });
 
-    switch(location.pathname) {
-      case "/h/seattle/":
-        console.log("switch on discover");
-        Geolocation.getLocation();
+    // initialize webview on main pages only
+    let foodRe = new RegExp('\/h\/[a-z]+\/food\/');
+    let studyRe = new RegExp('\/h\/[a-z]+\/study\/');
+    let techRe = new RegExp('\/h\/[a-z]+\/tech\/');
+    let discoverRe = new RegExp('\/h\/[a-z]+\/');
+
+    switch(true) {
+      case foodRe.test(location.pathname):
+        WebView.initialize();
         break;
-      case "/h/seattle/food/":
-        console.log("switch on food");
-        Geolocation.getLocation();
+      case studyRe.test(location.pathname):
+        WebView.initialize();
         break;
-      case "/h/seattle/study/":
-        console.log("switch on study");
-        Geolocation.getLocation();
+      case techRe.test(location.pathname):
+        WebView.initialize();
         break;
-      case "/h/seattle/tech/":
-        console.log("switch on tech");
-        Geolocation.getLocation();
+      case discoverRe.test(location.pathname):
+        WebView.initialize();
         break;
     }
+
+    // TESTING: call this function in the console
+    // Geolocation.getNativeLocation("47.6592308", "-122.3139863");
 
 });

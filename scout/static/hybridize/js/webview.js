@@ -10,7 +10,7 @@ var WebView = {
       console.log("using default coords");
     }
 
-    // initialize webview by requesting html5 geolocation
+    // initialize webview of main landing pages
     let foodRe = new RegExp('\/h\/[a-z]+\/food\/');
     let studyRe = new RegExp('\/h\/[a-z]+\/study\/');
     let techRe = new RegExp('\/h\/[a-z]+\/tech\/');
@@ -40,6 +40,31 @@ var WebView = {
         Discover.init_cards(hlat, hlng);
         break;
     }
+
+  },
+
+  initialize: function() {
+
+    console.log("initialize webview")
+    var blah = "hello world"
+    $("#geodemo").html("Send hello world");
+
+    // get the device type
+    var device = $("body").data("device");
+
+    try {
+        // check device and handle js bridge accordingly
+        if (device == "android") {
+            scoutBridge.setParams(blah);
+        } else if (device == 'ios') {
+            webkit.messageHandlers.scoutBridge.postMessage(blah);
+        }
+
+    } catch(err) {
+        // no bridge could be found
+        console.log('The native context does not exist yet.');
+    }
+
 
   },
 
