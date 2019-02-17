@@ -102,11 +102,8 @@ var Geolocation = {
 
       console.log("getting location via native bridge...");
 
-      // render the location display
-      setTimeout(function(){
-        // update location display
-        $("#geodemo").html(hlat + ",   " + hlng);
-      }, 1000);
+      // update location display
+      $("#geodemo").html(hlat + ",   " + hlng);
 
       // wait and render the webview
       setTimeout(WebView.render(hlat, hlng), 2000);
