@@ -11,12 +11,16 @@ var WebView = {
     }
 
     // initialize webview of main landing pages
+    let detailRe = new RegExp('\/h\/[a-z]+\/[a-z]+\/[0-9]+\/');
     let foodRe = new RegExp('\/h\/[a-z]+\/food\/');
     let studyRe = new RegExp('\/h\/[a-z]+\/study\/');
     let techRe = new RegExp('\/h\/[a-z]+\/tech\/');
     let discoverRe = new RegExp('\/h\/[a-z]+\/');
 
     switch(true) {
+      case detailRe.test(location.pathname):
+        console.log("detail page");
+        break;
       case foodRe.test(location.pathname):
         console.log('render on food');
         List.init();
