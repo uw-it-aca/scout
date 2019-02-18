@@ -72,6 +72,8 @@ var WebView = {
         // call the getNativeLocation function that normally gets called
         // from native apps only
         Geolocation.getNativeLocation();
+        // Geolocation.getNativeLocation("47.6592308", "-122.3139863");
+
     }
 
   },

@@ -47,7 +47,4 @@ $(document).on('turbolinks:load', function() {
         break;
     }
 
-    // TESTING: call this function in the console
-    // Geolocation.getNativeLocation("47.6592308", "-122.3139863");
-
 });

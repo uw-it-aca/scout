@@ -20,31 +20,6 @@ $(document).on('turbolinks:load', function() {
   		activeState: true,
   	});
 
-
-
-    /****
-    // initialize webview by requesting html5 geolocation
-    let foodRe = new RegExp('\/h\/[a-z]+\/food\/');
-    let studyRe = new RegExp('\/h\/[a-z]+\/study\/');
-    let techRe = new RegExp('\/h\/[a-z]+\/tech\/');
-    let discoverRe = new RegExp('\/h\/[a-z]+\/');
-
-    switch(true) {
-      case foodRe.test(location.pathname):
-        Geolocation.getLocation();
-        break;
-      case studyRe.test(location.pathname):
-        Geolocation.getLocation();
-        break;
-      case techRe.test(location.pathname):
-        Geolocation.getLocation();
-        break;
-      case discoverRe.test(location.pathname):
-        Geolocation.getLocation();
-        break;
-    }
-    ****/
-
     // initialize webview on main pages only
     let detailRe = new RegExp('\/h\/[a-z]+\/[a-z]+\/[0-9]+\/');
     let foodRe = new RegExp('\/h\/[a-z]+\/food\/');
@@ -69,8 +44,5 @@ $(document).on('turbolinks:load', function() {
         WebView.initialize();
         break;
     }
-
-    // TESTING: call this function in the console
-    // Geolocation.getNativeLocation("47.6592308", "-122.3139863");
 
 });

@@ -100,10 +100,8 @@ var Geolocation = {
 
     getNativeLocation: function(hlat, hlng) {
 
-      console.log("getting location via native bridge...");
-
-      // wait and render the webview
-      setTimeout(WebView.render(hlat, hlng), 2000);
+      // render the webview
+      WebView.render(hlat, hlng);
 
     },
 
