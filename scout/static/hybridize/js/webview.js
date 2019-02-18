@@ -2,12 +2,14 @@ var WebView = {
 
   render: function(hlat, hlng) {
 
-    // make sure user coords are passed
+    // make sure user coords are passed.. if not, specify default location
     if (hlat && hlng) {
       console.log("user coords passed to webview");
-      //console.log(crd);
+      // update location display
+      $("#geodemo").html(hlat + ",   " + hlng);
     } else {
       console.log("using default coords");
+      $("#geodemo").html("Default location");
     }
 
     // initialize webview of main landing pages
@@ -50,7 +52,7 @@ var WebView = {
   initialize: function() {
 
     console.log("initialize webview");
-    var blah = "hello world";
+    var message = "hello world";
 
     // get the device type
     var device = $("body").data("device");
@@ -58,16 +60,19 @@ var WebView = {
     try {
         // check device and handle js bridge accordingly
         if (device == "android") {
-            scoutBridge.setParams(blah);
+            scoutBridge.setParams(message);
         } else if (device == 'ios') {
-            webkit.messageHandlers.scoutBridge.postMessage(blah);
+            webkit.messageHandlers.scoutBridge.postMessage(message);
         }
 
     } catch(err) {
-        // no bridge could be found
+        // no bridge could be found (usually when on localhost webview only)
         console.log('The native context does not exist yet.');
-    }
 
+        // call the getNativeLocation function that normally gets called
+        // from native apps only
+        Geolocation.getNativeLocation();
+    }
 
   },
 
