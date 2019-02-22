@@ -52,7 +52,7 @@ var WebView = {
   initialize: function() {
 
     console.log("initialize webview");
-    var message = "hello world";
+    var message = "renderWebview";
 
     // get the device type
     var device = $("body").data("device");
