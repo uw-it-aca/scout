@@ -1,6 +1,7 @@
 {% extends "scout/base.html" %}
 {% load staticfiles %}
 {% load scout_filters %}
+{% load user_agents %}
 
 {% block title %}Places to eat{% endblock %}
 
@@ -8,7 +9,7 @@
 
 <div id="page_food" class="scout-content">
 
-    {% if request.is_mobile or request.is_tablet %}{% include "scout/include/user_geolocation.html" %}{% endif %}
+    {% if request|is_mobile or request|is_tablet %}{% include "scout/include/user_geolocation.html" %}{% endif %}
 
     <!-- food filter results -->
     <div class="scout-filter-results" aria-labelledby="filter_header">

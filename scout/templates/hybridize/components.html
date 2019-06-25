@@ -8,7 +8,7 @@
 
 <h2>Form Elements</h2>
 
-{% if request.is_and %}
+{% if request.user_agent.os.family == 'Android' %}
 <div class="content-block-title">With Floating Labels (android only)</div>
 <div class="list-block inputs-list">
     <ul>
@@ -407,7 +407,7 @@
     </ul>
 </div>
 
-{% if request.is_ios %}
+{% if request.user_agent.os.family == 'iOS' %}
 <h2>Buttons ios</h2>
 
 <div class="content-block-title">Usual Buttons</div>
@@ -455,7 +455,7 @@
 </div>
 {% endif %}
 
-{% if request.is_and %}
+{% if request.user_agent.os.family == 'Android' %}
 <h2>Buttons Android</h2>
 
 <div class="content-block-title">Flat Buttons</div>

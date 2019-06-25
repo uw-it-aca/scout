@@ -485,7 +485,7 @@
     	</ul>
     </div>
 
-    {% if request.is_and %}
+    {% if request.user_agent.os.family == 'Android' %}
     <div class="content-block" style="display:none;">
     	<div class="content-block-inner">
             <p class="buttons-row">
@@ -496,7 +496,7 @@
     </div>
     {% endif %}
 
-    {% if request.is_ios %}
+    {% if request.user_agent.os.family == 'iOS' %}
     <div class="content-block" style="display:none;">
         <div class="row">
             <div class="col-50"><a href="javascript:void(0)" id="filter_submit" class="button button-big button-fill">Submit</a></div>

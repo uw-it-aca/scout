@@ -10,6 +10,8 @@
 
     {% if spot.item.images %}
     <div class="scout-detail-image" style="background-image:url('/item/images/{{ spot.item.item_id }}/image/{{ spot.item.images.0.image_id }}/?width=500'); height:270px;" valign="bottom" class="card-header">&nbsp;</div>
+    {% else %}
+    <div class="scout-detail-image" style="background-image:url('{% static "scout/img/placeholder-1000.png" %}'); height:270px;" valign="bottom" class="card-header">&nbsp;</div>
     {% endif %}
 
     <div class="card-content">
@@ -215,10 +217,10 @@
     <ul>
         <li>
 
-            {% if request.is_ios %}
+            {% if request.user_agent.os.family == 'iOS' %}
             <a class="item-link" href="mailto:help@uw.edu?subject=Scout%20iOS:%20Problem%20with%20{{app_type}}%20space%20{{spot.name}}">
             {% endif %}
-            {% if request.is_and %}
+            {% if request.user_agent.os.family == 'Android' %}
             <a class="item-link" href="mailto:help@uw.edu?subject=Scout%20Android:%20Problem%20with%20{{app_type}}%20space%20{{spot.name}}">
             {% endif %}
 

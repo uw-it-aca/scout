@@ -15,12 +15,15 @@ setup(
         'setuptools',
         'django>=1.8.19,<1.9',
         'django_compressor',
-        'django_mobileesp',
         'pytz',
         'beautifulsoup4',
         'html5lib==0.9999999',
         'requests',
-        'django-pyscss'
+        'django-pyscss',
+        'pyyaml',
+        'ua-parser',
+        'user-agents',
+        'django-user-agents'
     ],
     license='Apache License, Version 2.0',  # example license
     description='A Django app for finding resources on campus.',

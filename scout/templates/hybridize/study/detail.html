@@ -14,6 +14,8 @@
         <div class="scout-detail-image" style="background-image:url('/images/{{ spot.spot_id }}/image/{{ image.image_id }}/?width=500'); height:270px;" valign="bottom">&nbsp;</div>
         {% endfor %}
     </div>
+    {% else %}
+    <div class="scout-detail-image" style="background-image:url('{% static "scout/img/placeholder-1000.png" %}'); height:270px;" valign="bottom" class="card-header">&nbsp;</div>
     {% endif %}
 
     <div class="card-content">
@@ -30,7 +32,7 @@
     </div>
 </div>
 
-<div class="list-block" style="margin-top:1em;">
+<div class="list-block">
     <ul>
         {% if spot.has_alert %}
         <li>
@@ -78,7 +80,7 @@
     {% endif %}
     {% if spot.access_notes %}
     <div class="list-block-label" style="margin-bottom:1em;">
-        <i class="fas fa-exclamation-circle" aria-hidden="true" style="float:left; margin-top:3px;"></i>
+        <i class="fa fa-exclamation-circle" aria-hidden="true" style="float:left; margin-top:3px;"></i>
         <span style=" display:block; float:left; width: 92%;">{{spot.access_notes|urlize}}</span>
         <div style="clear:both;"></div>
     </div>
@@ -245,10 +247,10 @@
     <ul>
         <li>
 
-            {% if request.is_ios %}
+            {% if request.user_agent.os.family == 'iOS' %}
             <a class="item-link" href="mailto:help@uw.edu?subject=Scout%20iOS:%20Problem%20with%20{{app_type}}%20space%20{{spot.name}}">
             {% endif %}
-            {% if request.is_and %}
+            {% if request.user_agent.os.family == 'Android' %}
             <a class="item-link" href="mailto:help@uw.edu?subject=Scout%20Android:%20Problem%20with%20{{app_type}}%20space%20{{spot.name}}">
             {% endif %}
 
