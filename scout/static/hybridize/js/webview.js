@@ -27,19 +27,19 @@ var WebView = {
         console.log('render on food');
         List.init();
         Filter.init();
-        Filter.init_events();
+        //Filter.init_events();
         break;
       case studyRe.test(location.pathname):
         console.log('render on study');
         List.init();
         Filter.init();
-        Filter.init_events();
+        //Filter.init_events();
         break;
       case techRe.test(location.pathname):
         console.log('render on tech');
         List.init();
         Filter.init();
-        Filter.init_events();
+        //Filter.init_events();
         break;
       case discoverRe.test(location.pathname):
         console.log('render on discover');

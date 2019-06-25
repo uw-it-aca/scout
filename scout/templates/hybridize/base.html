@@ -7,6 +7,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
         <meta http-equiv="cleartype" content="on">
 
+        <meta name="turbolinks-cache-control" content="no-cache">
+
         {% load staticfiles %}
         {% load compress %}
         {% load user_agents %}
@@ -104,7 +106,7 @@
         {% if google_maps %}
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3&amp;key={{ google_maps }}&amp;libraries=geometry" defer></script>
         {% else %}
-        <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?libraries=geometry"></script>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=geometry" defer></script>
         {% endif %}
 
         {% if google_analytics %}
@@ -124,31 +126,6 @@
         </script>
         {% endif %}
 
-        <style>
-            @keyframes placeHolderShimmer{
-                0%{
-                    background-position: -468px 0
-                }
-                100%{
-                    background-position: 468px 0
-                }
-            }
-            .content-loading {
-                display:inline-block !important;
-                height:10px;
-                vertical-align:middle;
-                animation-duration: 1s;
-                animation-fill-mode: forwards;
-                animation-iteration-count: infinite;
-                animation-name: placeHolderShimmer;
-                animation-timing-function: linear;
-                background: #f6f7f8;
-                background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
-                background-size: 800px 104px;
-                position: relative;
-            }
-        </style>
-        
         <script type="text/javascript">
             window.staticPath="{% static "" %}";
             window.campus_locations = {{ campus_locations | safe }};

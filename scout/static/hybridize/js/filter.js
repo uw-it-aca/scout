@@ -61,6 +61,8 @@ var Filter = {
         var filter_text = Filter._get_filter_label_text();
         if(filter_text.length > 0){
             $("#filter_label_text").html(filter_text);
+
+            $("#food_filter_text_holder").removeClass("visually-hidden");
             $("#filter_text_holder").removeClass("visually-hidden");
             $("#reset_food_list").removeClass("visually-hidden");
             $("#reset_study_list").removeClass("visually-hidden");
@@ -68,22 +70,13 @@ var Filter = {
         }
     },
 
-    init_events: function() {
-
-        Filter.set_filter_text();
-        Filter.init_hybrid_events();
-
-        // initial app_type specific events (if needed)
-        Food_Filter.init_events(); // empty
-        Study_Filter.init_events(); // handles building and hours toggle
-        Tech_Filter.init_events(); // empty
-
-    },
-
     init: function() {
         // we can include type as a parameter and web.js
         // pas that!
         var type = $("body").data("app-type");
+
+        Filter.set_filter_text();
+        Filter.init_hybrid_events();
 
         if(type.indexOf("study") > -1) {
             Study_Filter.populate_filters_from_saved();
@@ -123,8 +116,6 @@ var Filter = {
             });
         });
     },
-
-    /**** NEW STUFF... HYBRID ONLY ***/
 
     init_hybrid_events: function () {
 

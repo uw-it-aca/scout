@@ -1,5 +1,3 @@
-var x = document.getElementById("geodemo");
-
 var Geolocation = {
 
     get_latlng_from_coords: function(lat, lng) {
@@ -46,57 +44,6 @@ var Geolocation = {
         return distance;
 
     },
-
-    /*
-    getLocation: function() {
-
-      console.log("getting location via html5...")
-
-      $("#geodemo").html("Getting location...");
-
-      var options = {
-        enableHighAccuracy: true,
-        timeout: 10000, //how long to wait for user to allow location sharing
-        maximumAge: 0
-      };
-
-      function success(pos) {
-
-        var crd = pos.coords;
-
-        console.log('Your current position is:');
-        console.log(`Latitude : ${crd.latitude}`);
-        console.log(`Longitude: ${crd.longitude}`);
-        console.log(`More or less ${crd.accuracy} meters.`);
-
-        // update location display
-        $("#geodemo").html("Latitude: " + crd.latitude + "<br>Longitude: " + crd.longitude);
-
-        // wait and render the webview
-        setTimeout(WebView.render(crd), 1000);
-
-      }
-
-      function error(err) {
-        console.warn(`ERROR(${err.code}): ${err.message}`);
-        $("#geodemo").html("Geolocation error occured. Use default location.");
-
-        // wait and render the webview
-        setTimeout(WebView.render, 1000);
-
-      }
-
-
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(success, error, options);
-      } else {
-        $("#geodemo").html("Geolocation is not supported. Use default location.");
-        WebView.render;
-
-      }
-
-    },
-    */
 
     getNativeLocation: function(hlat, hlng) {
 

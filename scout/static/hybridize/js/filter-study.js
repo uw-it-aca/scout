@@ -99,32 +99,7 @@ var Study_Filter = {
         return filter_categories;
     },
 
-    /**
-    reset_filter: function(){
-        // just makes a call to generic filter.js reset_filter with
-        // the session variable as the parameter.
-        Filter.reset_filter("study_filter_params", "/study/");
-    },
-    **/
-
     init_events: function(){
-        // Very similar to the current implementation in fllter.js
-        // No tests required for this, I guess?
-
-        /**
-        $("#run_study_search").click(function(){
-            Study_Filter.set_filter_params();
-            Filter.redirect_to_page("/study/");
-        });
-
-        $("#reset_study_button").click(function() {
-            Study_Filter.reset_filter();
-        });
-
-        $("#reset_study_list").click(function() {
-            Study_Filter.reset_filter();
-        });
-        **/
 
         $("#hours_toggle input").change(function(){
             if ($(this).val() == "hours_list") {
