@@ -13,7 +13,7 @@ setup(
     include_package_data=True,
     install_requires = [
         'setuptools',
-        'django<=1.8.6',
+        'django>=1.8.19,<1.9',
         'django_compressor',
         'pytz',
         'beautifulsoup4',
