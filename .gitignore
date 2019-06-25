@@ -76,3 +76,6 @@ static/CACHE
 
 # node
 node_modules/
+
+# other files
+.env
