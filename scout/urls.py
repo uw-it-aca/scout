@@ -103,8 +103,12 @@ urlpatterns = patterns(
 
     # hybrid tech
     url(r'^h/(?P<campus>[^/]+)/tech/$',
-        TechListView.as_view(),
+        PlaceHolderView.as_view(),
         {"template_name": "hybridize/tech/list.html",
+         "app_type": "tech"}),
+    url(r'^h/(?P<campus>[^/]+)/tech/list/$',
+        TechListView.as_view(),
+        {"template_name": "hybridize/tech/list_content.html",
          "app_type": "tech"}),
     url(r'^h/(?P<campus>[^/]+)/tech/(?P<item_id>[0-9]{1,5})/$',
         TechDetailView.as_view(),

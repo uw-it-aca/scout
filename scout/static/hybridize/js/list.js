@@ -50,9 +50,45 @@ var List = {
 
         } else if (currentType.indexOf("tech") > -1)  {
 
-            List.add_distances("scout-list-item", "data-spot-lat", "data-spot-lng");
-            List.add_additional_tech_distances();
-            List.order_list("scout-list-item", "scout_tech_list", false);
+            
+
+            // request food/list/ async
+            var campus = $("body").data("campus");
+
+            // get the food params in query string and append to url construction
+            var tech_params = ""
+            tech_params =  location.search;
+
+            // build the ajax url with food params
+            var url = "/h/" + campus + "/tech/list/" + tech_params;
+
+            $.ajax({
+                url: url,
+                dataType: "html",
+                type: "GET",
+                accepts: {html: "text/html"},
+                success: function(results) {
+
+                    // display the food list and reorder and add distances
+                    $("#tech_list").html(results);
+
+
+                    List.add_distances("scout-list-item", "data-spot-lat", "data-spot-lng");
+                    List.add_additional_tech_distances();
+                    List.order_list("scout-list-item", "scout_tech_list", false);
+
+                    // hide the placeholder
+                    setTimeout(function(){
+                    $("#tech_placeholder").hide();
+                    }, 1500);
+
+                    Filter.init();
+
+                },
+                error: function(xhr, status, error) {
+                    console.log("An error occurred fetching food list");
+                }
+            });
 
         } else {
 
