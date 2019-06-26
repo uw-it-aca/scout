@@ -61,8 +61,13 @@ Discover = {
                 Discover._attach_card(card_id, results);
                 Discover.add_distance_and_sort(card_id, hlat, hlng);
 
-                $("#discover_loading").hide();
+                // hide the placeholder
+                setTimeout(function() {
+                    $("#discover_loading").hide();
+                }, 1500);
+
                 $("#" + card_id).fadeIn("slow");
+
             },
             error: function(xhr, status, error) {
                 console.log("An error occurred fetching card " + card_id);
