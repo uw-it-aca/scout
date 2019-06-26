@@ -7,9 +7,11 @@ var WebView = {
       console.log("user coords passed to webview");
       // update location display
       $("#geodemo").html(hlat + ",   " + hlng);
+      $("#user_location").show();
     } else {
       console.log("using default coords");
       $("#geodemo").html("Default location");
+      $("#default_location").show();
     }
 
     // initialize webview of main landing pages
