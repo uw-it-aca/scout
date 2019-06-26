@@ -20,9 +20,6 @@ setup(
         'html5lib==0.9999999',
         'requests',
         'django-pyscss',
-        'pyyaml',
-        'ua-parser',
-        'user-agents',
         'django-user-agents'
     ],
     license='Apache License, Version 2.0',  # example license
