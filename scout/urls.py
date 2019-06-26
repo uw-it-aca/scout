@@ -87,8 +87,12 @@ urlpatterns = patterns(
 
     # hybrid study
     url(r'^h/(?P<campus>[^/]+)/study/$',
-        StudyListView.as_view(),
+        PlaceHolderView.as_view(),
         {"template_name": "hybridize/study/list.html",
+         "app_type": "study"}),
+    url(r'^h/(?P<campus>[^/]+)/study/list/$',
+        StudyListView.as_view(),
+        {"template_name": "hybridize/study/list_content.html",
          "app_type": "study"}),
     url(r'^h/(?P<campus>[^/]+)/study/(?P<spot_id>[0-9]{1,5})/$',
         StudyDetailView.as_view(),

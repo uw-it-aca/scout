@@ -7,9 +7,46 @@ var List = {
 
         if (currentType.indexOf("study") > -1) {
 
-            List.add_distances("scout-list-item", "data-spot-lat", "data-spot-lng");
-            List.add_distances("scout-list-building", "data-building-lat", "data-building-lng");
-            List.order_list("scout-list-building", "scout_study_list", true);
+            
+
+            // request food/list/ async
+            var campus = $("body").data("campus");
+
+            // get the food params in query string and append to url construction
+            var study_params = ""
+            study_params =  location.search;
+
+            // build the ajax url with food params
+            var url = "/h/" + campus + "/study/list/" + study_params;
+
+            $.ajax({
+                url: url,
+                dataType: "html",
+                type: "GET",
+                accepts: {html: "text/html"},
+                success: function(results) {
+
+                    // display the food list and reorder and add distances
+                    $("#study_list").html(results);
+                    //List.add_distances("scout-list-item", "data-spot-lat", "data-spot-lng");
+                    //List.order_list("scout-list-item", "scout_food_list", false);
+
+                    List.add_distances("scout-list-item", "data-spot-lat", "data-spot-lng");
+                    List.add_distances("scout-list-building", "data-building-lat", "data-building-lng");
+                    List.order_list("scout-list-building", "scout_study_list", true);
+
+                    // hide the placeholder
+                    setTimeout(function(){
+                    $("#study_placeholder").hide();
+                    }, 1500);
+
+                    Filter.init();
+
+                },
+                error: function(xhr, status, error) {
+                    console.log("An error occurred fetching food list");
+                }
+            });
 
         } else if (currentType.indexOf("tech") > -1)  {
 
