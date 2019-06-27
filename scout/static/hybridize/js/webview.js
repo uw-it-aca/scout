@@ -6,7 +6,7 @@ var WebView = {
     if (hlat && hlng) {
       console.log("user coords passed to webview");
       // update location display
-      $("#geodemo").html(hlat + ",   " + hlng);
+      $("#hybrid_location_bridge").html(hlat + ",   " + hlng);
       $("#user_location").show();
     } else {
       console.log("using default coords");
@@ -74,7 +74,7 @@ var WebView = {
         // call the getNativeLocation function that normally gets called
         // from native apps only
         Geolocation.getNativeLocation();
-        // Geolocation.getNativeLocation("47.6592308", "-122.3139863");
+        //Geolocation.getNativeLocation("47.6592308", "-122.3139863");
 
     }
 
