@@ -4,10 +4,10 @@ var List = {
     var currentType = $("body").data("app-type");
 
     if (currentType.indexOf("study") > -1) {
-      // request food/list/ async
+      // request study/list/ async
       var campus = $("body").data("campus");
 
-      // get the food params in query string and append to url construction
+      // get the study params in query string and append to url construction
       var study_params = "";
       study_params = location.search;
 
@@ -40,10 +40,10 @@ var List = {
         }
       });
     } else if (currentType.indexOf("tech") > -1) {
-      // request food/list/ async
+      // request tech/list/ async
       var campus = $("body").data("campus");
 
-      // get the food params in query string and append to url construction
+      // get the tech params in query string and append to url construction
       var tech_params = "";
       tech_params = location.search;
 
@@ -59,12 +59,7 @@ var List = {
           // display the food list and reorder and add distances
           $("#tech_list").html(results);
 
-          List.add_distances(
-            "scout-list-item",
-            "spot",
-            hlat,
-            hlng
-          );
+          List.add_distances("scout-list-item", "spot", hlat, hlng);
           List.add_additional_tech_distances();
           List.order_list("scout-list-item", "scout_tech_list", false);
 
@@ -100,12 +95,7 @@ var List = {
           
           // display the food list and reorder and add distances
           $("#food_list").html(results);
-          List.add_distances(
-            "scout-list-item",
-            "spot",
-            hlat,
-            hlng
-          );
+          List.add_distances("scout-list-item", "spot", hlat, hlng);
           List.order_list("scout-list-item", "scout_food_list", false);
 
           // hide the placeholder
