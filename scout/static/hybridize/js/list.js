@@ -107,6 +107,7 @@ var List = {
         type: "GET",
         accepts: { html: "text/html" },
         success: function(results) {
+          
           // display the food list and reorder and add distances
           $("#food_list").html(results);
           List.add_distances(
