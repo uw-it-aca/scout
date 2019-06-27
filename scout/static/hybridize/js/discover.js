@@ -64,6 +64,7 @@ Discover = {
                 // hide the placeholder
                 setTimeout(function() {
                     $("#discover_loading").hide();
+                    $("#discover_cards").removeClass("visually-hidden");
                 }, 1500);
 
                 $("#" + card_id).fadeIn("slow");

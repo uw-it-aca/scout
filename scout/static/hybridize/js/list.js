@@ -22,26 +22,15 @@ var List = {
         success: function(results) {
           // display the food list and reorder and add distances
           $("#study_list").html(results);
-          //List.add_distances("scout-list-item", "data-spot-lat", "data-spot-lng");
-          //List.order_list("scout-list-item", "scout_food_list", false);
 
-          List.add_distances(
-            "scout-list-item",
-            "spot",
-            hlat,
-            hlng
-          );
-          List.add_distances(
-            "scout-list-building",
-            "building",
-            hlat,
-            hlng
-          );
+          List.add_distances("scout-list-item","spot", hlat, hlng);
+          List.add_distances("scout-list-building", "building", hlat, hlng);
           List.order_list("scout-list-building", "scout_study_list", true);
 
           // hide the placeholder
           setTimeout(function() {
             $("#study_placeholder").hide();
+            $("#study_list").removeClass("visually-hidden");
           }, 1500);
 
           Filter.init();
@@ -82,6 +71,7 @@ var List = {
           // hide the placeholder
           setTimeout(function() {
             $("#tech_placeholder").hide();
+            $("#tech_list").removeClass("visually-hidden");
           }, 1500);
 
           Filter.init();
@@ -121,6 +111,7 @@ var List = {
           // hide the placeholder
           setTimeout(function() {
             $("#food_placeholder").hide();
+            $("#food_list").removeClass("visually-hidden");
           }, 1500);
 
           Filter.init();

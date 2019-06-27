@@ -137,11 +137,11 @@
 </div>
 
 {% if campus == 'seattle' %}
-<div id="discover_cards" data-campus="{{campus}}" data-campus-latitude="{{ campus_locations.seattle.latitude }}" data-campus-longitude="{{ campus_locations.seattle.longitude }}" {% if request.is_and %}data-device="android"{% else %}data-device="ios"{% endif %}>
+<div id="discover_cards" class="visually-hidden" data-campus="{{campus}}" data-campus-latitude="{{ campus_locations.seattle.latitude }}" data-campus-longitude="{{ campus_locations.seattle.longitude }}" {% if request.is_and %}data-device="android"{% else %}data-device="ios"{% endif %}>
 {% elif campus == 'bothell' %}
-<div id="discover_cards" data-campus="{{campus}}" data-campus-latitude="{{ campus_locations.bothell.latitude }}" data-campus-longitude="{{ campus_locations.bothell.longitude }}" {% if request.is_and %}data-device="android"{% else %}data-device="ios"{% endif %}>
+<div id="discover_cards" class="visually-hidden" data-campus="{{campus}}" data-campus-latitude="{{ campus_locations.bothell.latitude }}" data-campus-longitude="{{ campus_locations.bothell.longitude }}" {% if request.is_and %}data-device="android"{% else %}data-device="ios"{% endif %}>
 {% elif campus == 'tacoma' %}
-<div id="discover_cards" data-campus="{{campus}}" data-campus-latitude="{{ campus_locations.tacoma.latitude }}" data-campus-longitude="{{ campus_locations.tacoma.longitude }}" {% if request.is_and %}data-device="android"{% else %}data-device="ios"{% endif %}>
+<div id="discover_cards" class="visually-hidden" data-campus="{{campus}}" data-campus-latitude="{{ campus_locations.tacoma.latitude }}" data-campus-longitude="{{ campus_locations.tacoma.longitude }}" {% if request.is_and %}data-device="android"{% else %}data-device="ios"{% endif %}>
 {% endif %}
 
     <!-- containers for displaying cards -->
