@@ -27,19 +27,19 @@ var WebView = {
         break;
       case foodRe.test(location.pathname):
         console.log('render on food');
-        List.init();
+        List.init(hlat, hlng);
         Filter.init();
         //Filter.init_events();
         break;
       case studyRe.test(location.pathname):
         console.log('render on study');
-        List.init();
+        List.init(hlat, hlng);
         Filter.init();
         //Filter.init_events();
         break;
       case techRe.test(location.pathname):
         console.log('render on tech');
-        List.init();
+        List.init(hlat, hlng);
         Filter.init();
         //Filter.init_events();
         break;
@@ -74,7 +74,7 @@ var WebView = {
         // call the getNativeLocation function that normally gets called
         // from native apps only
         Geolocation.getNativeLocation();
-        //Geolocation.getNativeLocation("47.6592308", "-122.3139863");
+        //Geolocation.getNativeLocation("48.284691", "-116.590854");
 
     }
 

@@ -1,5 +1,5 @@
 var List = {
-  init: function() {
+  init: function(hlat, hlng) {
     // Gets the current type the page is on!
     var currentType = $("body").data("app-type");
 
@@ -27,13 +27,15 @@ var List = {
 
           List.add_distances(
             "scout-list-item",
-            "data-spot-lat",
-            "data-spot-lng"
+            "spot",
+            hlat,
+            hlng
           );
           List.add_distances(
             "scout-list-building",
-            "data-building-lat",
-            "data-building-lng"
+            "building",
+            hlat,
+            hlng
           );
           List.order_list("scout-list-building", "scout_study_list", true);
 
@@ -70,8 +72,9 @@ var List = {
 
           List.add_distances(
             "scout-list-item",
-            "data-spot-lat",
-            "data-spot-lng"
+            "spot",
+            hlat,
+            hlng
           );
           List.add_additional_tech_distances();
           List.order_list("scout-list-item", "scout_tech_list", false);
@@ -108,8 +111,9 @@ var List = {
           $("#food_list").html(results);
           List.add_distances(
             "scout-list-item",
-            "data-spot-lat",
-            "data-spot-lng"
+            "spot",
+            hlat,
+            hlng
           );
           List.order_list("scout-list-item", "scout_food_list", false);
 
@@ -127,18 +131,19 @@ var List = {
     }
   },
 
-  add_distances: function(className, latAttr, lngAttr) {
-    var objects = $("." + className).not(".scout-error");
+  add_distances: function(className, type, hlat, hlng) {
+    // spots is the list items in a spot list
+    var spots = $("." + className).not(".scout-error");
 
-    $.each(objects, function(index, object) {
-      var lat = $(object).attr(latAttr);
-      var lng = $(object).attr(lngAttr);
+    $.each(spots, function(index, spot) {
+      var lat = $(spot).attr("data-" + type + "-lat");
+      var lng = $(spot).attr("data-" + type + "-lng");
 
-      var latlng = Geolocation.get_latlng_from_coords(lat, lng);
-      var distance = Geolocation.get_distance_from_position(latlng);
+      var spot_latlng = Geolocation.get_latlng_from_coords(lat, lng);
+      var distance = Geolocation.get_distance_from_position(spot_latlng, hlat, hlng);
 
-      $(object).attr("data-spot-distance", distance);
-      $($(object).find(".distance-number")[0]).html(distance);
+      $(spot).attr("data-spot-distance", distance);
+      $($(spot).find(".distance-number")[0]).html(distance);
     });
   },
 
