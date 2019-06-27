@@ -77,7 +77,7 @@ var List = {
           Filter.init();
         },
         error: function(xhr, status, error) {
-          console.log("An error occurred fetching food list");
+          //console.log("An error occurred fetching food list");
         }
       });
     } else {
@@ -117,7 +117,7 @@ var List = {
           Filter.init();
         },
         error: function(xhr, status, error) {
-          console.log("An error occurred fetching food list");
+          //console.log("An error occurred fetching food list");
         }
       });
     }

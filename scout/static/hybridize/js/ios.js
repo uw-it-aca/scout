@@ -2,15 +2,13 @@
 
 $(document).on('turbolinks:load', function() {
 
-    console.log("turbolinks ios fired!");
-
     // track visits in google analytics
     try{
         ga('send', 'pageview', (location.pathname + location.search));
-        console.info("Navigated to: " + location.pathname + location.search);
+        //console.info("Navigated to: " + location.pathname + location.search);
     }
     catch(e){
-        console.log("No ga function, GOOGLE_ANALYTICS_KEY may not be set.");
+        //console.log("No ga function, GOOGLE_ANALYTICS_KEY may not be set.");
     };
 
     // initialize framework7
@@ -29,7 +27,6 @@ $(document).on('turbolinks:load', function() {
 
     switch(true) {
       case detailRe.test(location.pathname):
-        console.log("detail page");
         break;
       case foodRe.test(location.pathname):
         WebView.initialize();

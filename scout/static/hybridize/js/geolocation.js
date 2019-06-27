@@ -10,12 +10,12 @@ var Geolocation = {
 
         // make sure user coords are passed
         if (hlat && hlng) {
-          console.log("user coords passed to geolocation");
+          //user coords passed to geolocation
           lat = hlat;
           lng = hlng;
 
         } else {
-          console.log("using default coords on geolocation");
+          // using default coords on geolocation
           lat = $("body").data("campus-latitude");
           lng = $("body").data("campus-longitude");
 
@@ -26,18 +26,9 @@ var Geolocation = {
     },
 
     get_distance_from_position: function (item_latlng, hlat, hlng) {
-        // Returns distance in miles, rounded to 2 decimals
-
-        // make sure user coords are passed
-        if (hlat && hlng) {
-          console.log("user coords passed to get distance");
-          //console.log(crd);
-        } else {
-          console.log("using default coords to get distance");
-        }
-
+        
+      // Returns distance in miles, rounded to 2 decimals
         var current_latlng = Geolocation.get_client_latlng(hlat, hlng);
-
         var distance = google.maps.geometry.spherical.computeDistanceBetween(current_latlng, item_latlng);
         var miles_per_meter = 0.000621371;
         distance = (distance * miles_per_meter).toFixed(2);

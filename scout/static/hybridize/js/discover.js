@@ -2,14 +2,6 @@ Discover = {
 
     init_cards: function (hlat, hlng) {
 
-      // make sure user coords are passed
-      if (hlat && hlng) {
-        console.log("user coords passed to discover");
-        //console.log(crd);
-      } else {
-        console.log("using default coords");
-      }
-
       var discover_divs = $("#discover_cards").children();
 
       $(discover_divs).each(function (idx, div){
@@ -34,7 +26,6 @@ Discover = {
 
         if (hlat && hlng) {
 
-          console.log("fetch cards using user coords");
           pos_data = {
               "latitude": hlat,
               "longitude": hlng
@@ -42,7 +33,6 @@ Discover = {
 
         } else {
 
-          console.log("fetch cards using default coords");
           pos_data = {
               "latitude": $("body").data("campus-latitude"),
               "longitude": $("body").data("campus-longitude")
@@ -71,7 +61,7 @@ Discover = {
 
             },
             error: function(xhr, status, error) {
-                console.log("An error occurred fetching card " + card_id);
+                //console.log("An error occurred fetching card " + card_id);
             }
         });
     },

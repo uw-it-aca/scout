@@ -4,12 +4,10 @@ var WebView = {
 
     // make sure user coords are passed.. if not, specify default location
     if (hlat && hlng) {
-      console.log("user coords passed to webview");
       // update location display
       $("#hybrid_location_bridge").html(hlat + ",   " + hlng);
       $("#user_location").show();
     } else {
-      console.log("using default coords");
       $("#geodemo").html("Default location");
       $("#default_location").show();
     }
@@ -23,28 +21,23 @@ var WebView = {
 
     switch(true) {
       case detailRe.test(location.pathname):
-        console.log("detail page");
         break;
       case foodRe.test(location.pathname):
-        console.log('render on food');
         List.init(hlat, hlng);
         Filter.init();
         //Filter.init_events();
         break;
       case studyRe.test(location.pathname):
-        console.log('render on study');
         List.init(hlat, hlng);
         Filter.init();
         //Filter.init_events();
         break;
       case techRe.test(location.pathname):
-        console.log('render on tech');
         List.init(hlat, hlng);
         Filter.init();
         //Filter.init_events();
         break;
       case discoverRe.test(location.pathname):
-        console.log('render on discover');
         Discover.init_cards(hlat, hlng);
         break;
     }
@@ -53,7 +46,6 @@ var WebView = {
 
   initialize: function() {
 
-    console.log("initialize webview");
     var message = "renderWebview";
 
     // get the device type
@@ -69,8 +61,6 @@ var WebView = {
 
     } catch(err) {
         // no bridge could be found (usually when on localhost webview only)
-        console.log('The native context does not exist yet.');
-
         // call the getNativeLocation function that normally gets called
         // from native apps only
         Geolocation.getNativeLocation();

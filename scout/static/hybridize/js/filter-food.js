@@ -47,7 +47,7 @@ var Food_Filter = {
                 specific_filter = {};
             }
         } catch(e) {
-            console.log(e);
+            //console.log(e);
         }
         return specific_filter;
     },
