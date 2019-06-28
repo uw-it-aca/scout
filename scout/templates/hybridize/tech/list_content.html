@@ -1,4 +1,3 @@
-
 {% load staticfiles %}
 {% load scout_filters %}
 
@@ -11,7 +10,7 @@
       <div class="row no-gutter">
         <div class="col-66">
           <span id="tech_filter_text_holder" class="visually-hidden">
-                        Filtering by: <span id="filter_label_text"></span>
+            Filtering by: <span id="filter_label_text"></span>
           </span>
         </div>
         <div class="col-33" style="text-align:right;">
@@ -32,7 +31,9 @@
       {% for spot in spots %}
       {% if spot.items %}
 
-      <li class="scout-list-item" style="padding:0;" data-spot-building="{{ spot.building_name }}" data-spot-lat="{{ spot.latitude }}" data-spot-lng="{{ spot.longitude }}" data-spot-name="{{ spot.name }}" data-items="{{ spot.items|length }}">
+      <li class="scout-list-item" style="padding:0;" data-spot-building="{{ spot.building_name }}"
+        data-spot-lat="{{ spot.latitude }}" data-spot-lng="{{ spot.longitude }}" data-spot-name="{{ spot.name }}"
+        data-items="{{ spot.items|length }}">
 
         <div class="list-group-title">{{ spot.name }}</div>
 
@@ -42,31 +43,38 @@
 
             <a href="/h/{{campus}}/tech/{{ item.item_id }}/" class="item-link item-content">
 
-                        <div class="item-media">
+              <div class="item-media">
 
-                            {% if item.images %}
-                            <div class="scout-spot-image" style="background-image: url('/item/images/{{ item.item_id }}/image/{{ item.images.0.image_id }}/?width=100'); width:80px; height:80px;">&nbsp;</div>
-                            {% else %}
-                            <div class="scout-spot-image" style="background-image: url('{% static "scout/img/placeholder-200.png" %}'); width:80px; height:80px;">&nbsp;</div>
-                            {% endif %}
+                {% if item.images %}
+                <div class="scout-spot-image"
+                  style="background-image: url('/item/images/{{ item.item_id }}/image/{{ item.images.0.image_id }}/?width=100'); width:80px; height:80px;">
+                  &nbsp;</div>
+                {% else %}
+                <div class="scout-spot-image"
+                  style="background-image: url('{% static "scout/img/placeholder-200.png" %}'); width:80px; height:80px;">
+                  &nbsp;</div>
+                {% endif %}
 
-                        </div>
-                        <div class="item-inner">
-                            <div class="item-title-row">
-                                <div class="item-title">{{ item.name }}</div>
-                            </div>
-                            <div class="item-subtitle">
-                                <div style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{% if spot.building_name %}{{ spot.building_name }}{% else %} <span style="color:red;">missing building_name</span> {% endif %}</div>
-                            </div>
-                            <div class="item-text">
-                                <div style="white-space:nowrap; text-overflow:ellipsis; overflow:hidden;">{{ item.subcategory }}</div>
-                                <div style="font-size:12px;color:#000;">
-                                  <span class="scout-spot-distance"><span class="distance-number">---</span>&nbsp;mi&nbsp;&nbsp;</span>
-                                  {% if not spot.is_open %}<span class="closed scout-red">Currently closed</span>{% endif %}</div>
-                            </div>
-                        </div>
+              </div>
+              <div class="item-inner">
+                <div class="item-title-row">
+                  <div class="item-title">{{ item.name }}</div>
+                </div>
+                <div class="item-subtitle">
+                  <div style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+                    {% if spot.building_name %}{{ spot.building_name }}{% else %} <span style="color:red;">missing
+                      building_name</span> {% endif %}</div>
+                </div>
+                <div class="item-text">
+                  <div style="white-space:nowrap; text-overflow:ellipsis; overflow:hidden;">{{ item.subcategory }}</div>
+                  <div style="font-size:12px;color:#000;">
+                    <span class="scout-spot-distance"><span
+                        class="distance-number">---</span>&nbsp;mi&nbsp;&nbsp;</span>
+                    {% if not spot.is_open %}<span class="closed scout-red">Currently closed</span>{% endif %}</div>
+                </div>
+              </div>
 
-                    </a>
+            </a>
           </li>
           {% endfor %}
         </ul>
