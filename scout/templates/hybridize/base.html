@@ -1,171 +1,148 @@
 <!DOCTYPE html>
 <html class="no-js">
-    <head>
-        <meta charset="utf-8">
-        <title>{% if request.GET.h_title %}{{ request.GET.h_title }}{% else %}{% block title %}{% endblock %}{% endif %}</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-        <meta http-equiv="cleartype" content="on">
+  <head>
+    <meta charset="utf-8">
+    <title>{% if request.GET.h_title %}{{ request.GET.h_title }}{% else %}{% block title %}{% endblock %}{% endif %}</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="cleartype" content="on">
 
-        {% load staticfiles %}
-        {% load compress %}
-        {% load user_agents %}
+    {% load staticfiles %}
+    {% load compress %}
+    {% load user_agents %}
 
-        <!-- http://realfavicongenerator.net/ -->
-        <link rel="apple-touch-icon" sizes="57x57" href="{% static "scout/ico/apple-touch-icon-57x57.png" %}">
-        <link rel="apple-touch-icon" sizes="60x60" href="{% static "scout/ico/apple-touch-icon-60x60.png" %}">
-        <link rel="apple-touch-icon" sizes="72x72" href="{% static "scout/ico/apple-touch-icon-72x72.png" %}">
-        <link rel="apple-touch-icon" sizes="76x76" href="{% static "scout/ico/apple-touch-icon-76x76.png" %}">
-        <link rel="apple-touch-icon" sizes="114x114" href="{% static "scout/ico/apple-touch-icon-114x114.png" %}">
-        <link rel="apple-touch-icon" sizes="120x120" href="{% static "scout/ico/apple-touch-icon-120x120.png" %}">
-        <link rel="apple-touch-icon" sizes="144x144" href="{% static "scout/ico/apple-touch-icon-144x144.png" %}">
-        <link rel="apple-touch-icon" sizes="152x152" href="{% static "scout/ico/apple-touch-icon-152x152.png" %}">
-        <link rel="apple-touch-icon" sizes="180x180" href="{% static "scout/ico/apple-touch-icon-180x180.png" %}">
-        <link rel="icon" type="image/png" href="{% static "scout/ico/favicon-32x32.png" %}" sizes="32x32">
-        <link rel="icon" type="image/png" href="{% static "scout/ico/favicon-194x194.png" %}" sizes="194x194">
-        <link rel="icon" type="image/png" href="{% static "scout/ico/favicon-96x96.png" %}" sizes="96x96">
-        <link rel="icon" type="image/png" href="{% static "scout/ico/android-chrome-192x192.png" %}" sizes="192x192">
-        <link rel="icon" type="image/png" href="{% static "scout/ico/favicon-16x16.png" %}" sizes="16x16">
-        <link rel="manifest" href="{% static "scout/ico/manifest.json" %}">
-        <link rel="mask-icon" href="{% static "scout/ico/safari-pinned-tab.svg" %}" color="#6564a8">
-        <meta name="apple-mobile-web-app-title" content="Scout">
-        <meta name="application-name" content="Scout">
-        <meta name="msapplication-TileColor" content="#ffc40d">
-        <meta name="msapplication-TileImage" content="{% static "scout/ico/mstile-144x144.png" %}">
-        <meta name="theme-color" content="#ffffff">
+    <!-- http://realfavicongenerator.net/ -->
+    <link rel="apple-touch-icon" sizes="57x57" href="{% static "scout/ico/apple-touch-icon-57x57.png" %}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{% static "scout/ico/apple-touch-icon-60x60.png" %}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{% static "scout/ico/apple-touch-icon-72x72.png" %}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static "scout/ico/apple-touch-icon-76x76.png" %}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{% static "scout/ico/apple-touch-icon-114x114.png" %}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{% static "scout/ico/apple-touch-icon-120x120.png" %}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{% static "scout/ico/apple-touch-icon-144x144.png" %}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{% static "scout/ico/apple-touch-icon-152x152.png" %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static "scout/ico/apple-touch-icon-180x180.png" %}">
+    <link rel="icon" type="image/png" href="{% static "scout/ico/favicon-32x32.png" %}" sizes="32x32">
+    <link rel="icon" type="image/png" href="{% static "scout/ico/favicon-194x194.png" %}" sizes="194x194">
+    <link rel="icon" type="image/png" href="{% static "scout/ico/favicon-96x96.png" %}" sizes="96x96">
+    <link rel="icon" type="image/png" href="{% static "scout/ico/android-chrome-192x192.png" %}" sizes="192x192">
+    <link rel="icon" type="image/png" href="{% static "scout/ico/favicon-16x16.png" %}" sizes="16x16">
+    <link rel="manifest" href="{% static "scout/ico/manifest.json" %}">
+    <link rel="mask-icon" href="{% static "scout/ico/safari-pinned-tab.svg" %}" color="#6564a8">
+    <meta name="apple-mobile-web-app-title" content="Scout">
+    <meta name="application-name" content="Scout">
+    <meta name="msapplication-TileColor" content="#ffc40d">
+    <meta name="msapplication-TileImage" content="{% static "scout/ico/mstile-144x144.png" %}">
+    <meta name="theme-color" content="#ffffff">
 
-        {% if request.user_agent.os.family == 'Android' %}
+    {% if request.user_agent.os.family == 'Android' %}
 
-            <!-- framework7 material -->
-            <link rel="stylesheet" type="text/css" href="{% static "hybridize/css/framework7.material.min.css" %}">
-            <link rel="stylesheet" type="text/css" href="{% static "vendor/css/font-awesome-4.6.3.min.css" %}">
+        <!-- framework7 material -->
+        <link rel="stylesheet" type="text/css" href="{% static "hybridize/css/framework7.material.min.css" %}">
+        <link rel="stylesheet" type="text/css" href="{% static "vendor/css/font-awesome-4.6.3.min.css" %}">
 
-            {% compress css inline %}
-            <!-- local override files -->
-            <link rel="stylesheet" href="{% static "hybridize/css/android-theme.scss" %}" type="text/x-scss">
-            <link rel="stylesheet" href="{% static "hybridize/css/android.scss" %}" type="text/x-scss">
-            <link rel="stylesheet" href="{% static "hybridize/css/slick.scss" %}" type="text/x-scss">
-            {% endcompress %}
+        {% compress css inline %}
+        <!-- local override files -->
+        <link rel="stylesheet" href="{% static "hybridize/css/android-theme.scss" %}" type="text/x-scss">
+        <link rel="stylesheet" href="{% static "hybridize/css/android.scss" %}" type="text/x-scss">
+        <link rel="stylesheet" href="{% static "hybridize/css/slick.scss" %}" type="text/x-scss">
+        {% endcompress %}
 
-            {% compress js %}
-            <!-- javascript -->
-		        <script type="text/javascript" src="{% static "vendor/js/jquery-3.1.1.min.js" %}" defer></script>
-            <script type="text/javascript" src="{% static "hybridize/js/turbolinks-5.2.0.min.js" %}" defer></script>
-		        <script type="text/javascript" src="{% static "hybridize/js/framework7.min.js" %}" defer></script>
-            <script type="text/javascript" src="{% static "vendor/js/slick.min.js" %}" defer></script>
-            <!-- local override files -->
-		        <script type="text/javascript" src="{% static "hybridize/js/android.js" %}" defer></script>
-            <script type="text/javascript" src="{% static "hybridize/js/discover.js" %}" defer></script>
-            <script type="text/javascript" src="{% static "hybridize/js/filter.js" %}" defer></script>
-            <script type="text/javascript" src="{% static "hybridize/js/filter-food.js" %}" defer></script>
-            <script type="text/javascript" src="{% static "hybridize/js/filter-study.js" %}" defer></script>
-            <script type="text/javascript" src="{% static "hybridize/js/filter-tech.js" %}" defer></script>
-            <script type="text/javascript" src="{% static "hybridize/js/geolocation.js" %}" defer></script>
-            <script type="text/javascript" src="{% static "hybridize/js/list.js" %}" defer></script>
-		        {% endcompress %}
+        {% compress js %}
+        <!-- javascript -->
+        <script type="text/javascript" src="{% static "vendor/js/jquery-3.1.1.min.js" %}" defer></script>
+        <script type="text/javascript" src="{% static "hybridize/js/turbolinks-5.2.0.min.js" %}" defer></script>
+        <script type="text/javascript" src="{% static "hybridize/js/framework7.min.js" %}" defer></script>
+        <script type="text/javascript" src="{% static "vendor/js/slick.min.js" %}" defer></script>
+        <!-- local override files -->
+        <script type="text/javascript" src="{% static "hybridize/js/android.js" %}" defer></script>
+        <script type="text/javascript" src="{% static "hybridize/js/discover.js" %}" defer></script>
+        <script type="text/javascript" src="{% static "hybridize/js/filter.js" %}" defer></script>
+        <script type="text/javascript" src="{% static "hybridize/js/filter-food.js" %}" defer></script>
+        <script type="text/javascript" src="{% static "hybridize/js/filter-study.js" %}" defer></script>
+        <script type="text/javascript" src="{% static "hybridize/js/filter-tech.js" %}" defer></script>
+        <script type="text/javascript" src="{% static "hybridize/js/geolocation.js" %}" defer></script>
+        <script type="text/javascript" src="{% static "hybridize/js/webview.js" %}" defer></script>
+        <script type="text/javascript" src="{% static "hybridize/js/list.js" %}" defer></script>
+        {% endcompress %}
 
-        {% endif %}
-
-        {% if request.user_agent.os.family == 'iOS' %}
-
-          <!-- framework7 ios -->
-          <link rel="stylesheet" type="text/css" href="{% static "hybridize/css/framework7.ios.min.css" %}">
-          <link rel="stylesheet" type="text/css" href="{% static "vendor/css/font-awesome-4.6.3.min.css" %}">
-
-          {% compress css inline %}
-          <!-- local override files -->
-          <link rel="stylesheet" href="{% static "hybridize/css/ios-theme.scss" %}" type="text/x-scss">
-          <link rel="stylesheet" href="{% static "hybridize/css/ios.scss" %}" type="text/x-scss">
-          <link rel="stylesheet" href="{% static "hybridize/css/slick.scss" %}" type="text/x-scss">
-          {% endcompress %}
-
-          {% compress js %}
-          <!-- javascript -->
-	        <script type="text/javascript" src="{% static "vendor/js/jquery-3.1.1.min.js" %}" defer></script>
-          <script type="text/javascript" src="{% static "hybridize/js/turbolinks-5.2.0.min.js" %}" defer></script>
-	        <script type="text/javascript" src="{% static "hybridize/js/framework7.min.js" %}" defer></script>
-          <script type="text/javascript" src="{% static "vendor/js/slick.min.js" %}" defer></script>
-	        <!-- local override files -->
-	        <script type="text/javascript" src="{% static "hybridize/js/ios.js" %}" defer></script>
-          <script type="text/javascript" src="{% static "hybridize/js/discover.js" %}" defer></script>
-          <script type="text/javascript" src="{% static "hybridize/js/filter.js" %}" defer></script>
-          <script type="text/javascript" src="{% static "hybridize/js/filter-food.js" %}" defer></script>
-          <script type="text/javascript" src="{% static "hybridize/js/filter-study.js" %}" defer></script>
-          <script type="text/javascript" src="{% static "hybridize/js/filter-tech.js" %}" defer></script>
-          <script type="text/javascript" src="{% static "hybridize/js/geolocation.js" %}" defer></script>
-          <script type="text/javascript" src="{% static "hybridize/js/list.js" %}" defer></script>
-	        {% endcompress %}
-
-        {% endif %}
-
-        <!-- googlme maps -->
-        {% if google_maps %}
-        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3&amp;key={{ google_maps }}&amp;libraries=geometry" defer></script>
-        {% else %}
-        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=geometry" defer></script>
-        {% endif %}
-
-        {% if google_analytics %}
-        <!-- google analytics -->
-        <script type="text/javascript">
-            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-          })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-            var config = {}
-
-            config['siteSpeedSampleRate'] = 100;
-            config['cookieDomain'] = {% if devtools_bar %}'none'{% else %}'auto'{% endif %};
-
-            ga('create', '{{ google_analytics }}', config);
-        </script>
-        {% endif %}
-
-        <style>
-            @keyframes placeHolderShimmer{
-                0%{
-                    background-position: -468px 0
-                }
-                100%{
-                    background-position: 468px 0
-                }
-            }
-            .content-loading {
-                display:inline-block !important;
-                height:10px;
-                vertical-align:middle;
-                animation-duration: 1s;
-                animation-fill-mode: forwards;
-                animation-iteration-count: infinite;
-                animation-name: placeHolderShimmer;
-                animation-timing-function: linear;
-                background: #f6f7f8;
-                background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
-                background-size: 800px 104px;
-                position: relative;
-            }
-        </style>
-        
-        <script type="text/javascript">
-            window.staticPath="{% static "" %}";
-            window.campus_locations = {{ campus_locations | safe }};
-        </script>
-
-    </head>
-
-    {% if campus == 'seattle' %}
-    <body class="theme-custom" data-app-type="{{ app_type }}" data-campus="{{campus}}" {% if request.GET.h_lat and request.GET.h_lng %}data-user-latitude="{{ request.GET.h_lat }}" data-user-longitude="{{ request.GET.h_lng }}"{% else %}data-campus-latitude="{{ campus_locations.seattle.latitude }}" data-campus-longitude="{{ campus_locations.seattle.longitude }}"{% endif %} {% if request.user_agent.os.family == 'Android' %}data-device="android"{% else %}data-device="ios"{% endif %}>
-    {% elif campus == 'bothell' %}
-    <body class="theme-custom" data-app-type="{{ app_type }}" data-campus="{{campus}}" {% if request.GET.h_lat and request.GET.h_lng %}data-user-latitude="{{ request.GET.h_lat }}" data-user-longitude="{{ request.GET.h_lng }}"{% else %}data-campus-latitude="{{ campus_locations.bothell.latitude }}" data-campus-longitude="{{ campus_locations.bothell.longitude }}"{% endif %} {% if request.user_agent.os.family == 'Android' %}data-device="android"{% else %}data-device="ios"{% endif %}>
-    {% elif campus == 'tacoma' %}
-    <body class="theme-custom" data-app-type="{{ app_type }}" data-campus="{{campus}}" {% if request.GET.h_lat and request.GET.h_lng %}data-user-latitude="{{ request.GET.h_lat }}" data-user-longitude="{{ request.GET.h_lng }}"{% else %}data-campus-latitude="{{ campus_locations.tacoma.latitude }}" data-campus-longitude="{{ campus_locations.tacoma.longitude }}"{% endif %} {% if request.user_agent.os.family == 'Android' %}data-device="android"{% else %}data-device="ios"{% endif %}>
     {% endif %}
+
+    {% if request.user_agent.os.family == 'iOS' %}
+
+      <!-- framework7 ios -->
+      <link rel="stylesheet" type="text/css" href="{% static "hybridize/css/framework7.ios.min.css" %}">
+      <link rel="stylesheet" type="text/css" href="{% static "vendor/css/font-awesome-4.6.3.min.css" %}">
+
+      {% compress css inline %}
+      <!-- local override files -->
+      <link rel="stylesheet" href="{% static "hybridize/css/ios-theme.scss" %}" type="text/x-scss">
+      <link rel="stylesheet" href="{% static "hybridize/css/ios.scss" %}" type="text/x-scss">
+      <link rel="stylesheet" href="{% static "hybridize/css/slick.scss" %}" type="text/x-scss">
+      {% endcompress %}
+
+      {% compress js %}
+      <!-- javascript -->
+      <script type="text/javascript" src="{% static "vendor/js/jquery-3.1.1.min.js" %}" defer></script>
+      <script type="text/javascript" src="{% static "hybridize/js/turbolinks-5.2.0.min.js" %}" defer></script>
+      <script type="text/javascript" src="{% static "hybridize/js/framework7.min.js" %}" defer></script>
+      <script type="text/javascript" src="{% static "vendor/js/slick.min.js" %}" defer></script>
+      <!-- local override files -->
+      <script type="text/javascript" src="{% static "hybridize/js/ios.js" %}" defer></script>
+      <script type="text/javascript" src="{% static "hybridize/js/discover.js" %}" defer></script>
+      <script type="text/javascript" src="{% static "hybridize/js/filter.js" %}" defer></script>
+      <script type="text/javascript" src="{% static "hybridize/js/filter-food.js" %}" defer></script>
+      <script type="text/javascript" src="{% static "hybridize/js/filter-study.js" %}" defer></script>
+      <script type="text/javascript" src="{% static "hybridize/js/filter-tech.js" %}" defer></script>
+      <script type="text/javascript" src="{% static "hybridize/js/geolocation.js" %}" defer></script>
+      <script type="text/javascript" src="{% static "hybridize/js/webview.js" %}" defer></script>
+      <script type="text/javascript" src="{% static "hybridize/js/list.js" %}" defer></script>
+      {% endcompress %}
+
+    {% endif %}
+
+    <!-- googlme maps -->
+    {% if google_maps %}
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3&amp;key={{ google_maps }}&amp;libraries=geometry" defer></script>
+    {% else %}
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=geometry" defer></script>
+    {% endif %}
+
+    {% if google_analytics %}
+    <!-- google analytics -->
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        var config = {}
+
+        config['siteSpeedSampleRate'] = 100;
+        config['cookieDomain'] = {% if devtools_bar %}'none'{% else %}'auto'{% endif %};
+
+        ga('create', '{{ google_analytics }}', config);
+    </script>
+    {% endif %}
+
+    <script type="text/javascript">
+        window.staticPath="{% static "" %}";
+        window.campus_locations = {{ campus_locations | safe }};
+    </script>
+
+  </head>
+
+  {% if campus == 'seattle' %}
+  <body class="theme-custom" data-app-type="{{ app_type }}" data-campus="{{campus}}" data-campus-latitude="{{ campus_locations.seattle.latitude }}" data-campus-longitude="{{ campus_locations.seattle.longitude }}" {% if request.user_agent.os.family == 'Android' %}data-device="android"{% else %}data-device="ios"{% endif %}>
+  {% elif campus == 'bothell' %}
+  <body class="theme-custom" data-app-type="{{ app_type }}" data-campus="{{campus}}" data-campus-latitude="{{ campus_locations.bothell.latitude }}" data-campus-longitude="{{ campus_locations.bothell.longitude }}" {% if request.user_agent.os.family == 'Android' %}data-device="android"{% else %}data-device="ios"{% endif %}>
+  {% elif campus == 'tacoma' %}
+  <body class="theme-custom" data-app-type="{{ app_type }}" data-campus="{{campus}}" data-campus-latitude="{{ campus_locations.tacoma.latitude }}" data-campus-longitude="{{ campus_locations.tacoma.longitude }}" {% if request.user_agent.os.family == 'Android' %}data-device="android"{% else %}data-device="ios"{% endif %}>
+  {% endif %}
 
     <div class="scout-content">
     {% block hybrid_content %}{% endblock %}
     </div>
 
-    </body>
+  </body>
 
 </html>

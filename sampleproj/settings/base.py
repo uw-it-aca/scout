@@ -71,6 +71,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'scout.context_processors.google_maps',
                 'scout.context_processors.google_analytics',
                 'scout.context_processors.is_desktop',
                 'scout.context_processors.is_hybrid',
@@ -136,9 +137,6 @@ COMPRESS_CSS_FILTERS = [
 COMPRESS_JS_FILTERS = [
     'compressor.filters.jsmin.JSMinFilter',
 ]
-
-# google analytics tracking
-#GOOGLE_ANALYTICS_KEY = "UA-XXXXXXXX-X"
 
 # scout settings
 CAMPUS_URL_LIST = ['seattle', 'tacoma', 'bothell']

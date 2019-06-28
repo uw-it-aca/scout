@@ -8,262 +8,325 @@
 
 <div class="card">
 
-    {% if spot.images %}
-    <div class="photo-gallery">
-        {% for image in spot.images %}
-        <div class="scout-detail-image" style="background-image:url('/images/{{ spot.spot_id }}/image/{{ image.image_id }}/?width=500'); height:270px;" valign="bottom">&nbsp;</div>
-        {% endfor %}
-    </div>
-    {% else %}
-    <div class="scout-detail-image" style="background-image:url('{% static "scout/img/placeholder-1000.png" %}'); height:270px;" valign="bottom" class="card-header">&nbsp;</div>
-    {% endif %}
+  {% if spot.images %}
+  <div class="photo-gallery">
+    {% for image in spot.images %}
+    <div class="scout-detail-image"
+      style="background-image:url('/images/{{ spot.spot_id }}/image/{{ image.image_id }}/?width=500'); height:270px;"
+      valign="bottom">&nbsp;</div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="scout-detail-image"
+    style="background-image:url('{% static "scout/img/placeholder-1000.png" %}'); height:270px;" valign="bottom"
+    class="card-header">&nbsp;</div>
+  {% endif %}
 
-    <div class="card-content">
-        <div class="card-content-inner">
+  <div class="card-content">
+    <div class="card-content-inner">
 
-            <div class="row no-gutter">
-                <div class="col-66" style="text-transform: capitalize; ">
-                    {% for type in spot.spot_types %}<span>{% if type.name == 'open'%}{{ type.name|remove_underscores }} space{% else %}{{ type.name|remove_underscores }}{% endif %}{% if not forloop.last %}, {% endif %}</span>{% endfor %}
-                </div>
-                <div class="col-33" style="text-align:right;">{% if spot.is_open %}<span class="scout-green">Open now</span>{% else %}<span class="scout-red">Currently closed</span>{% endif %}</div>
-            </div>
-
+      <div class="row no-gutter">
+        <div class="col-66" style="text-transform: capitalize; ">
+          {% for type in spot.spot_types %}<span>{% if type.name == 'open'%}{{ type.name|remove_underscores }}
+            space{% else %}{{ type.name|remove_underscores }}{% endif %}{% if not forloop.last %},
+            {% endif %}</span>{% endfor %}
         </div>
+        <div class="col-33" style="text-align:right;">{% if spot.is_open %}<span class="scout-green">Open
+            now</span>{% else %}<span class="scout-red">Currently closed</span>{% endif %}</div>
+      </div>
+
     </div>
+  </div>
 </div>
 
 <div class="list-block">
-    <ul>
-        {% if spot.has_alert %}
-        <li>
-            <div class="item-content">
-                <div class="item-inner">
-                    <div class="item-title" style="color:#A94441;">{% now "DATE_FORMAT" %} <span>{{ spot.alert_notes }}</span></div>
-                </div>
-            </div>
-        </li>
-        {% endif %}
-        {% if spot.capacity %}
-        <li class="item-content">
-            <div class="item-inner">
-                <div class="item-title">Seats</div>
-                <div class="item-after">{{ spot.capacity }}</dvi>
-            </div>
-        </li>
-        {% endif %}
-        {% if spot.auto_labstats_total > 0 and spot.auto_labstats_available > 0 %}
-        <li class="item-content">
-            <div class="item-inner">
-                <div class="item-title">Computers</div>
-                <div class="item-after">
-                    <i class="fa fa-desktop" aria-hidden="true"></i>&nbsp;<span style="color:#2ecc71;">{{ spot.auto_labstats_available }}</span>&nbsp;/&nbsp;{{ spot.auto_labstats_total }}
-                </div>
-            </div>
-        </li>
-        {% endif %}
-        {% if spot.reservable %}
-        <li class="item-content">
-            <div class="item-inner">
-                <div class="item-title">{% if spot.reservable == 'reservations' %}Reservations required{% else %}Reservable{% endif %}</div>
-                <div class="item-after">see below</div>
-            </div>
-        </li>
-        {% endif %}
-    </ul>
+  <ul>
+    {% if spot.has_alert %}
+    <li>
+      <div class="item-content">
+        <div class="item-inner">
+          <div class="item-title" style="color:#A94441;">{% now "DATE_FORMAT" %}
+            <span>{{ spot.alert_notes }}</span></div>
+        </div>
+      </div>
+    </li>
+    {% endif %}
+    {% if spot.capacity %}
+    <li class="item-content">
+      <div class="item-inner">
+        <div class="item-title">Seats</div>
+        <div class="item-after">{{ spot.capacity }}</dvi>
+        </div>
+    </li>
+    {% endif %}
+    {% if spot.auto_labstats_total > 0 and spot.auto_labstats_available > 0 %}
+    <li class="item-content">
+      <div class="item-inner">
+        <div class="item-title">Computers</div>
+        <div class="item-after">
+          <i class="fa fa-desktop" aria-hidden="true"></i>&nbsp;<span
+            style="color:#2ecc71;">{{ spot.auto_labstats_available }}</span>&nbsp;/&nbsp;{{ spot.auto_labstats_total }}
+        </div>
+      </div>
+    </li>
+    {% endif %}
+    {% if spot.reservable %}
+    <li class="item-content">
+      <div class="item-inner">
+        <div class="item-title">{% if spot.reservable == 'reservations' %}Reservations
+          required{% else %}Reservable{% endif %}</div>
+        <div class="item-after">see below</div>
+      </div>
+    </li>
+    {% endif %}
+  </ul>
 
-    {% if spot.reservation_notes %}
-    <div class="list-block-label" style="margin-bottom:1em;">
-        <i class="fa fa-bookmark" aria-hidden="true" style="float:left; margin-top:3px;"></i>
-        <span style=" display:block; float:left; width: 92%;">{{ spot.reservation_notes|urlize }}</span>
-        <div style="clear:both;"></div>
-    </div>
-    {% endif %}
-    {% if spot.access_notes %}
-    <div class="list-block-label" style="margin-bottom:1em;">
-        <i class="fa fa-exclamation-circle" aria-hidden="true" style="float:left; margin-top:3px;"></i>
-        <span style=" display:block; float:left; width: 92%;">{{spot.access_notes|urlize}}</span>
-        <div style="clear:both;"></div>
-    </div>
-    {% endif %}
+  {% if spot.reservation_notes %}
+  <div class="list-block-label" style="margin-bottom:1em;">
+    <i class="fa fa-bookmark" aria-hidden="true" style="float:left; margin-top:3px;"></i>
+    <span style=" display:block; float:left; width: 92%;">{{ spot.reservation_notes|urlize }}</span>
+    <div style="clear:both;"></div>
+  </div>
+  {% endif %}
+  {% if spot.access_notes %}
+  <div class="list-block-label" style="margin-bottom:1em;">
+    <i class="fa fa-exclamation-circle" aria-hidden="true" style="float:left; margin-top:3px;"></i>
+    <span style=" display:block; float:left; width: 92%;">{{spot.access_notes|urlize}}</span>
+    <div style="clear:both;"></div>
+  </div>
+  {% endif %}
 </div>
 
 <div class="content-block-title">Location</div>
 <div class="list-block">
-    <ul>
-      {% if spot.location_description %}
-      <li>
-          <a href="https://www.google.com/maps/search/?api=1&query={{ spot.latitude }},{{ spot.longitude }}" class="item-link">
-          <div class="item-content">
-              <div class="item-inner">
-                  <div class="item-title">{{ spot.location_description }} <span>Directions via Google Maps</span></div>
-              </div>
+  <ul>
+    {% if spot.location_description %}
+    <li>
+      <a href="https://www.google.com/maps/search/?api=1&query={{ spot.latitude }},{{ spot.longitude }}"
+        class="item-link">
+        <div class="item-content">
+          <div class="item-inner">
+            <div class="item-title">{{ spot.location_description }} <span>Directions via Google Maps</span>
+            </div>
           </div>
-          </a>
-      </li>
-      {% endif %}
-    </ul>
+        </div>
+      </a>
+    </li>
+    {% endif %}
+  </ul>
 </div>
 
 <div class="content-block-title">Open Hours</div>
 <div class="list-block">
-    <ul>
-        <li class="item-content">
-            <div class="item-inner">
-                {% if spot.hours.monday|length > 1 %}
-                <div class="item-title">Monday <span>{% for hours in spot.hours.monday %}{% if not forloop.first %}, {% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|display_midnight|remove_periods }}{% empty %} Closed {% endfor %}</span></div>
-                {% else %}
-                <div class="item-title">Monday</div>
-                <div class="item-after">{% for hours in spot.hours.monday %}{% if not forloop.first %}, {% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|display_midnight|remove_periods }}{% empty %} Closed {% endfor %}</div>
-                {% endif %}
-            </div>
-        </li>
-        <li class="item-content">
-            <div class="item-inner">
-                {% if spot.hours.tuesday|length > 1 %}
-                <div class="item-title">Tuesday <span>{% for hours in spot.hours.tuesday %}{% if not forloop.first %}, {% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|display_midnight|remove_periods }}{% empty %} Closed {% endfor %}</span></div>
-                {% else %}
-                <div class="item-title">Tuesday</div>
-                <div class="item-after">{% for hours in spot.hours.tuesday %}{% if not forloop.first %}, {% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|display_midnight|remove_periods }}{% empty %} Closed {% endfor %}</div>
-                {% endif %}
-            </div>
-        </li>
-        <li class="item-content">
-            <div class="item-inner">
-                {% if spot.hours.wednesday|length > 1 %}
-                <div class="item-title">Wednesday <span>{% for hours in spot.hours.wednesday %}{% if not forloop.first %}, {% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|display_midnight|remove_periods }}{% empty %} Closed {% endfor %}</span></div>
-                {% else %}
-                <div class="item-title">Wednesday</div>
-                <div class="item-after"> {% for hours in spot.hours.wednesday %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|display_midnight|remove_periods }} {% empty %} Closed {% endfor %}</div>
-                {% endif %}
-            </div>
-        </li>
-        <li class="item-content">
-            <div class="item-inner">
-                {% if spot.hours.thursday|length > 1 %}
-                <div class="item-title">Thursday <span>{% for hours in spot.hours.thursday %}{% if not forloop.first %}, {% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|display_midnight|remove_periods }}{% empty %} Closed {% endfor %}</span></div>
-                {% else %}
-                <div class="item-title">Thursday</div>
-                <div class="item-after">{% for hours in spot.hours.thursday %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|display_midnight|remove_periods }} {% empty %} Closed {% endfor %}</div>
-                {% endif %}
-            </div>
-        </li>
-        <li class="item-content">
-            <div class="item-inner">
-                {% if spot.hours.friday|length > 1 %}
-                <div class="item-title">Friday <span>{% for hours in spot.hours.friday %}{% if not forloop.first %}, {% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|display_midnight|remove_periods }}{% empty %} Closed {% endfor %}</span></div>
-                {% else %}
-                <div class="item-title">Friday</div>
-                <div class="item-after">{% for hours in spot.hours.friday %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|display_midnight|remove_periods }} {% empty %} Closed {% endfor %}</div>
-                {% endif %}
-            </div>
-        </li>
-        <li class="item-content">
-            <div class="item-inner">
-                {% if spot.hours.saturday|length > 1 %}
-                <div class="item-title">Saturday <span>{% for hours in spot.hours.saturday %}{% if not forloop.first %}, {% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|display_midnight|remove_periods }}{% empty %} Closed {% endfor %}</span></div>
-                {% else %}
-                <div class="item-title">Saturday</div>
-                <div class="item-after">{% for hours in spot.hours.saturday %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|display_midnight|remove_periods }} {% empty %} Closed {% endfor %}</div>
-                {% endif %}
-            </div>
-        </li>
-        <li class="item-content">
-            <div class="item-inner">
-                {% if spot.hours.sunday|length > 1 %}
-                <div class="item-title">Sunday <span>{% for hours in spot.hours.sunday %}{% if not forloop.first %}, {% endif %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|display_midnight|remove_periods }}{% empty %} Closed {% endfor %}</span></div>
-                {% else %}
-                <div class="item-title">Sunday</div>
-                <div class="item-after">{% for hours in spot.hours.sunday %} {{ hours.0|time:"P"|upper|remove_periods }} - {{ hours.1|time:"P"|upper|display_midnight|remove_periods }} {% empty %} Closed {% endfor %}</div>
-                {% endif %}
-            </div>
-        </li>
-    </ul>
-    {% if spot.hours_notes %}
-    <div class="list-block-label" style="margin-bottom:1em;">
-        <i class="fa fa-clock-o" aria-hidden="true" style="float:left; margin-top:3px;"></i>
-        <span style=" display:block; float:left; width: 92%;">{{spot.hours_notes}}</span>
-        <div style="clear:both;"></div>
-    </div>
-    {% endif %}
+  <ul>
+    <li class="item-content">
+      <div class="item-inner">
+        {% if spot.hours.monday|length > 1 %}
+        <div class="item-title">Monday <span>{% for hours in spot.hours.monday %}{% if not forloop.first %},
+            {% endif %} {{ hours.0|time:"P"|upper|remove_periods }} -
+            {{ hours.1|time:"P"|upper|display_midnight|remove_periods }}{% empty %} Closed
+            {% endfor %}</span></div>
+        {% else %}
+        <div class="item-title">Monday</div>
+        <div class="item-after">{% for hours in spot.hours.monday %}{% if not forloop.first %}, {% endif %}
+          {{ hours.0|time:"P"|upper|remove_periods }} -
+          {{ hours.1|time:"P"|upper|display_midnight|remove_periods }}{% empty %} Closed {% endfor %}</div>
+        {% endif %}
+      </div>
+    </li>
+    <li class="item-content">
+      <div class="item-inner">
+        {% if spot.hours.tuesday|length > 1 %}
+        <div class="item-title">Tuesday <span>{% for hours in spot.hours.tuesday %}{% if not forloop.first %},
+            {% endif %} {{ hours.0|time:"P"|upper|remove_periods }} -
+            {{ hours.1|time:"P"|upper|display_midnight|remove_periods }}{% empty %} Closed
+            {% endfor %}</span></div>
+        {% else %}
+        <div class="item-title">Tuesday</div>
+        <div class="item-after">{% for hours in spot.hours.tuesday %}{% if not forloop.first %}, {% endif %}
+          {{ hours.0|time:"P"|upper|remove_periods }} -
+          {{ hours.1|time:"P"|upper|display_midnight|remove_periods }}{% empty %} Closed {% endfor %}</div>
+        {% endif %}
+      </div>
+    </li>
+    <li class="item-content">
+      <div class="item-inner">
+        {% if spot.hours.wednesday|length > 1 %}
+        <div class="item-title">Wednesday
+          <span>{% for hours in spot.hours.wednesday %}{% if not forloop.first %}, {% endif %}
+            {{ hours.0|time:"P"|upper|remove_periods }} -
+            {{ hours.1|time:"P"|upper|display_midnight|remove_periods }}{% empty %} Closed
+            {% endfor %}</span></div>
+        {% else %}
+        <div class="item-title">Wednesday</div>
+        <div class="item-after"> {% for hours in spot.hours.wednesday %}
+          {{ hours.0|time:"P"|upper|remove_periods }} -
+          {{ hours.1|time:"P"|upper|display_midnight|remove_periods }} {% empty %} Closed {% endfor %}</div>
+        {% endif %}
+      </div>
+    </li>
+    <li class="item-content">
+      <div class="item-inner">
+        {% if spot.hours.thursday|length > 1 %}
+        <div class="item-title">Thursday <span>{% for hours in spot.hours.thursday %}{% if not forloop.first %},
+            {% endif %} {{ hours.0|time:"P"|upper|remove_periods }} -
+            {{ hours.1|time:"P"|upper|display_midnight|remove_periods }}{% empty %} Closed
+            {% endfor %}</span></div>
+        {% else %}
+        <div class="item-title">Thursday</div>
+        <div class="item-after">{% for hours in spot.hours.thursday %}
+          {{ hours.0|time:"P"|upper|remove_periods }} -
+          {{ hours.1|time:"P"|upper|display_midnight|remove_periods }} {% empty %} Closed {% endfor %}</div>
+        {% endif %}
+      </div>
+    </li>
+    <li class="item-content">
+      <div class="item-inner">
+        {% if spot.hours.friday|length > 1 %}
+        <div class="item-title">Friday <span>{% for hours in spot.hours.friday %}{% if not forloop.first %},
+            {% endif %} {{ hours.0|time:"P"|upper|remove_periods }} -
+            {{ hours.1|time:"P"|upper|display_midnight|remove_periods }}{% empty %} Closed
+            {% endfor %}</span></div>
+        {% else %}
+        <div class="item-title">Friday</div>
+        <div class="item-after">{% for hours in spot.hours.friday %} {{ hours.0|time:"P"|upper|remove_periods }}
+          - {{ hours.1|time:"P"|upper|display_midnight|remove_periods }} {% empty %} Closed {% endfor %}</div>
+        {% endif %}
+      </div>
+    </li>
+    <li class="item-content">
+      <div class="item-inner">
+        {% if spot.hours.saturday|length > 1 %}
+        <div class="item-title">Saturday <span>{% for hours in spot.hours.saturday %}{% if not forloop.first %},
+            {% endif %} {{ hours.0|time:"P"|upper|remove_periods }} -
+            {{ hours.1|time:"P"|upper|display_midnight|remove_periods }}{% empty %} Closed
+            {% endfor %}</span></div>
+        {% else %}
+        <div class="item-title">Saturday</div>
+        <div class="item-after">{% for hours in spot.hours.saturday %}
+          {{ hours.0|time:"P"|upper|remove_periods }} -
+          {{ hours.1|time:"P"|upper|display_midnight|remove_periods }} {% empty %} Closed {% endfor %}</div>
+        {% endif %}
+      </div>
+    </li>
+    <li class="item-content">
+      <div class="item-inner">
+        {% if spot.hours.sunday|length > 1 %}
+        <div class="item-title">Sunday <span>{% for hours in spot.hours.sunday %}{% if not forloop.first %},
+            {% endif %} {{ hours.0|time:"P"|upper|remove_periods }} -
+            {{ hours.1|time:"P"|upper|display_midnight|remove_periods }}{% empty %} Closed
+            {% endfor %}</span></div>
+        {% else %}
+        <div class="item-title">Sunday</div>
+        <div class="item-after">{% for hours in spot.hours.sunday %} {{ hours.0|time:"P"|upper|remove_periods }}
+          - {{ hours.1|time:"P"|upper|display_midnight|remove_periods }} {% empty %} Closed {% endfor %}</div>
+        {% endif %}
+      </div>
+    </li>
+  </ul>
+  {% if spot.hours_notes %}
+  <div class="list-block-label" style="margin-bottom:1em;">
+    <i class="fa fa-clock-o" aria-hidden="true" style="float:left; margin-top:3px;"></i>
+    <span style=" display:block; float:left; width: 92%;">{{spot.hours_notes}}</span>
+    <div style="clear:both;"></div>
+  </div>
+  {% endif %}
 </div>
 
 
 <div class="content-block-title">Environment</div>
 <div class="list-block">
-    <ul>
+  <ul>
 
-        {% if spot.spot_resources %}
-        <li class="item-content">
-            <div class="item-inner">
-                {% if spot.spot_resources|length < 3 %}
-                <div class="item-title">Resources</div>
-                <div class="item-after">
-                    {% for spot_resource in spot.spot_resources %}
-                    {% if forloop.last %}{{ spot_resource }}{% else %}{{ spot_resource }}, {% endif %}
-                    {% endfor %}
-                </div>
-                {% else %}
-                <div class="item-title">Resources
-                    <span>
-                        {% for spot_resource in spot.spot_resources %}
-                        {% if forloop.last %}{{ spot_resource }}{% else %}{{ spot_resource }}, {% endif %}
-                        {% endfor %}
-                    </span>
-                </div>
-                {% endif %}
-            </div>
-        </li>
+    {% if spot.spot_resources %}
+    <li class="item-content">
+      <div class="item-inner">
+        {% if spot.spot_resources|length < 3 %}
+        <div class="item-title">Resources</div>
+        <div class="item-after">
+          {% for spot_resource in spot.spot_resources %}
+          {% if forloop.last %}{{ spot_resource }}{% else %}{{ spot_resource }}, {% endif %}
+          {% endfor %}
+        </div>
+        {% else %}
+        <div class="item-title">Resources
+          <span>
+            {% for spot_resource in spot.spot_resources %}
+            {% if forloop.last %}{{ spot_resource }}{% else %}{{ spot_resource }}, {% endif %}
+            {% endfor %}
+          </span>
+        </div>
         {% endif %}
+      </div>
+    </li>
+    {% endif %}
 
-        {% if spot.food_nearby %}
-        <li class="item-content">
-            <div class="item-inner">
-                <div class="item-title">Food/Coffee</div>
-                <div class="item-after">{{ spot.food_nearby|title }}</div>
-            </div>
-        </li>
-        {% endif %}
-        {% if spot.spot_noise %}
-        <li class="item-content">
-            <div class="item-inner">
-                <div class="item-title">Noise level</div>
-                <div class="item-after"> {{ spot.spot_noise|title }}</div>
-            </div>
-        </li>
-        {% endif %}
-        {% if spot.natural_light %}
-        <li class="item-content">
-            <div class="item-inner">
-                <div class="item-title">Lighting</div>
-                <div class="item-after">Natural light</div>
-            </div>
-        </li>
-        {% endif %}
-    </ul>
+    {% if spot.food_nearby %}
+    <li class="item-content">
+      <div class="item-inner">
+        <div class="item-title">Food/Coffee</div>
+        <div class="item-after">{{ spot.food_nearby|title }}</div>
+      </div>
+    </li>
+    {% endif %}
+    {% if spot.spot_noise %}
+    <li class="item-content">
+      <div class="item-inner">
+        <div class="item-title">Noise level</div>
+        <div class="item-after"> {{ spot.spot_noise|title }}</div>
+      </div>
+    </li>
+    {% endif %}
+    {% if spot.natural_light %}
+    <li class="item-content">
+      <div class="item-inner">
+        <div class="item-title">Lighting</div>
+        <div class="item-after">Natural light</div>
+      </div>
+    </li>
+    {% endif %}
+  </ul>
 </div>
 
 <div class="content-block-title">Contact Us</div>
 <div class="list-block">
-    <ul>
-        <li>
+  <ul>
+    <li>
 
-            {% if request.user_agent.os.family == 'iOS' %}
-            <a class="item-link" href="mailto:help@uw.edu?subject=Scout%20iOS:%20Problem%20with%20{{app_type}}%20space%20{{spot.name}}">
-            {% endif %}
-            {% if request.user_agent.os.family == 'Android' %}
-            <a class="item-link" href="mailto:help@uw.edu?subject=Scout%20Android:%20Problem%20with%20{{app_type}}%20space%20{{spot.name}}">
-            {% endif %}
+      {% if request.user_agent.os.family == 'iOS' %}
+      <a class="item-link"
+        href="mailto:help@uw.edu?subject=Scout%20iOS:%20Problem%20with%20{{app_type}}%20space%20{{spot.name}}">
+        {% endif %}
+        {% if request.user_agent.os.family == 'Android' %}
+        <a class="item-link"
+          href="mailto:help@uw.edu?subject=Scout%20Android:%20Problem%20with%20{{app_type}}%20space%20{{spot.name}}">
+          {% endif %}
 
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">Report a problem</div>
-                    </div>
-                </div>
-            </a>
-        </li>
-    </ul>
+          <div class="item-content">
+            <div class="item-inner">
+              <div class="item-title">Report a problem</div>
+            </div>
+          </div>
+        </a>
+    </li>
+  </ul>
 </div>
 
-<script> var LIST_PAGE = false; </script>
+<script>
+  var LIST_PAGE = false;
+</script>
+
+{% if spot.images %}
+<script type="text/javascript">
+  console.log("callng slider function");
+  // study detail image slider
+  if ($(".photo-gallery").length) {
+    $('.photo-gallery').not('.slick-initialized').slick({
+      dots: true,
+      arrows: false,
+    });
+  }
+</script>
+{% endif %}
 
 {% endblock %}
