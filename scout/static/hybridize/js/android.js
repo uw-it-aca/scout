@@ -27,7 +27,6 @@ document.addEventListener("turbolinks:load", function() {
 
   switch (true) {
     case detailRe.test(location.pathname):
-      console.log("detail page");
       break;
     case foodRe.test(location.pathname):
       WebView.initialize();
