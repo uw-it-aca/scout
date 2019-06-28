@@ -1,129 +1,173 @@
 /*** framework 7 overrides ***/
-body { position: static !important; overflow: initial !important; height: auto !important; box-sizing: border-box; }
-
-.views { overflow: hidden !important; overflow-x: hidden !important; overflow-y: auto !important; }
-
-.pages { position: relative; background: none !important;
-    .page {
-        .page-content { overflow-x: hidden !important; }
-    }
+body {
+  position: static !important;
+  overflow: initial !important;
+  height: auto !important;
+  box-sizing: border-box;
 }
 
-.list-block { margin: 0;
-
-    // removes transition animation for lists
-    .item-link { transition-duration: 0ms !important; }
-
-	ul:before { height: 0; }
-
-	ul {
-		li { }
-	}
-
-    .list-block-label { clear: both; word-wrap: break-word; color: #696969;
-
-        i { color:#333; margin-right: 8px; }
-    }
-
-    .item-inner { overflow: hidden;
-
-        .item-title-row { /*background-image: none !important;*/ }
-
-        .item-title {
-            span { color: #666; font-size: 80%; display: block; overflow: hidden; text-overflow: ellipsis; }
-        }
-
-        .item-after {
-            .fa-desktop { line-height: 23px; }
-        }
-
-    }
-
-    // group lists styling
-    .list-group {
-        .list-group-title {
-
-            text-transform: uppercase;;
-            font-size: 13px;
-            color: #555;
-            line-height: 28px;
-            padding-left: 15px;
-
-        }
-    }
-
-    // radio button group override
-    .label-radio {
-        .item-inner:after { left: 37px; }
-    }
-
-
+.views {
+  overflow: hidden !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
 }
 
-label.label-radio input[type=checkbox]~.item-inner, label.label-radio input[type=radio]~.item-inner {
-    padding-right: 10px;
-    padding-left: 38px;
+.pages {
+  position: relative;
+  background: none !important;
+  .page {
+    .page-content {
+      overflow-x: hidden !important;
+    }
+  }
 }
 
-label.label-radio input[type=checkbox]:checked~.item-inner, label.label-radio input[type=radio]:checked~.item-inner {
-    background-position: calc(2%) center;
-    padding-left: 38px;
+.list-block {
+  margin: 0;
+
+  // removes transition animation for lists
+  .item-link {
+    transition-duration: 0ms !important;
+  }
+
+  ul:before {
+    height: 0;
+  }
+
+  .list-block-label {
+    clear: both;
+    word-wrap: break-word;
+    color: #696969;
+
+    i {
+      color: #333;
+      margin-right: 8px;
+    }
+  }
+
+  .item-inner {
+    overflow: hidden;
+
+    .item-title {
+      span {
+        color: #666;
+        font-size: 80%;
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+
+    .item-after {
+      .fa-desktop {
+        line-height: 23px;
+      }
+    }
+  }
+
+  // group lists styling
+  .list-group {
+    .list-group-title {
+      text-transform: uppercase;
+      font-size: 13px;
+      color: #555;
+      line-height: 28px;
+      padding-left: 15px;
+    }
+  }
+
+  // radio button group override
+  .label-radio {
+    .item-inner:after {
+      left: 37px;
+    }
+  }
 }
 
-.item-input { text-align: right;
-	input, select { text-align: right; }
+label.label-radio input[type="checkbox"] ~ .item-inner,
+label.label-radio input[type="radio"] ~ .item-inner {
+  padding-right: 10px;
+  padding-left: 38px;
+}
 
-    select { width: auto; margin-right: 0; display: inline-block; }
+label.label-radio input[type="checkbox"]:checked ~ .item-inner,
+label.label-radio input[type="radio"]:checked ~ .item-inner {
+  background-position: calc(2%) center;
+  padding-left: 38px;
+}
+
+.item-input {
+  text-align: right;
+  input,
+  select {
+    text-align: right;
+  }
+
+  select {
+    width: auto;
+    margin-right: 0;
+    display: inline-block;
+  }
 }
 
 /** cards not really in ios.. flat and full width **/
-.card {  margin: 0 !important; border-radius: 0; box-shadow: none;
-    .card-header { border-radius: 0; color: #fff; }
-    .card-content {
-        h4 {  }
-    }
+.card {
+  margin: 0 !important;
+  border-radius: 0;
+  box-shadow: none;
+  .card-header {
+    border-radius: 0;
+    color: #fff;
+  }
 }
 
 /*** ios hybrid reset ***/
 
-body { background: #efeff4 !important; padding: 0 !important; margin: 0 !important; }
+body {
+  background: #efeff4 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
 
 .scout-list {
-
-    a {
-        .scout-spot-image {
-            background-color: #e5e6e9;
-            background-repeat: no-repeat;
-            background-position: center center;
-            background-size: cover !important;
-            width:80px;
-            height:80px;
-        }
+  a {
+    .scout-spot-image {
+      background-color: #e5e6e9;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover !important;
+      width: 80px;
+      height: 80px;
     }
-
+  }
 }
 
 .scout-filter-toggle {
-    label { display: inline-block;
-        &:last-child { margin-left: 10px; }
+  label {
+    display: inline-block;
+    &:last-child {
+      margin-left: 10px;
     }
+  }
 }
 
 .scout-filter-toggle-options {
-    line-height: 25px;
-    min-height: 50px;
-    background:#fff;
-    padding-left:53px;
-    color:#666;
-    span, select { display:inline-block; }
+  line-height: 25px;
+  min-height: 50px;
+  background: #fff;
+  padding-left: 53px;
+  color: #666;
+  span,
+  select {
+    display: inline-block;
+  }
 }
 
-
 .scout-detail-image {
-    background-color: #e5e6e9;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
+  background-color: #e5e6e9;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
 }
 
 // webkit sticky header on scroll
@@ -140,33 +184,68 @@ body { background: #efeff4 !important; padding: 0 !important; margin: 0 !importa
 // helpers
 
 .visually-hidden {
-    position: absolute!important;
-    clip: rect(1px 1px 1px 1px);
-    clip: rect(1px,1px,1px,1px);
-    padding: 0!important;
-    border: 0!important;
-    height: 1px!important;
-    width: 1px!important;
-    overflow: hidden;
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 0 !important;
+  border: 0 !important;
+  height: 1px !important;
+  width: 1px !important;
+  overflow: hidden;
 }
 
 // colors
 
-.scout-green { color: #408325; }
-.scout-red { color:#a94441; }
-
+.scout-green {
+  color: #408325;
+}
+.scout-red {
+  color: #a94441;
+}
 
 // client Location
 .scout-location {
-  text-align:center;
+  text-align: center;
   text-transform: capitalize;
   padding: 8px 0;
   border-bottom: solid 1px #ddd;
 
-  .scout-location-sort { text-transform: uppercase; color: #666; }
-  .scout-location-display { color: #000; font-weight: bold; }
-
+  .scout-location-sort {
+    text-transform: uppercase;
+    color: #666;
+  }
+  .scout-location-display {
+    color: #000;
+    font-weight: bold;
+  }
 }
 
 // select inputs
-select { color: #514DA3 !important; text-decoration: underline; }
+select {
+  color: #514da3 !important;
+  text-decoration: underline;
+}
+
+// content loading
+
+@keyframes placeHolderShimmer {
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
+}
+
+.content-loading {
+  display: inline-block;
+  line-height: 11px;
+  animation-duration: 1.5s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeHolderShimmer;
+  animation-timing-function: linear;
+  background: #ddd;
+  background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+  background-size: 800px 104px;
+}

@@ -8,470 +8,478 @@
 
 <form id="scout_filter">
 
-    <div class="content-block-title">Type</div>
-    <div class="list-block">
-    	<ul id="type_select">
-    		<li>
-    			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="study_room" {% if study_room %} checked {% endif %}>
-    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-    				<div class="item-inner">
-    					<div class="item-title">Study room</div>
-    				</div>
-    			</label>
-    		</li>
-            <li>
-    			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="study_area" {% if study_area %} checked {% endif %}>
-    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-    				<div class="item-inner">
-    					<div class="item-title">Study area</div>
-    				</div>
-    			</label>
-    		</li>
-            <li>
-    			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="computer_lab" {% if computer_lab %} checked {% endif %}>
-    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-    				<div class="item-inner">
-    					<div class="item-title">Computer lab</div>
-    				</div>
-    			</label>
-    		</li>
-    		<li>
-    			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="studio" {% if studio %} checked {% endif %}>
-    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-    				<div class="item-inner">
-    					<div class="item-title">Production studio</div>
-    				</div>
-    			</label>
-    		</li>
-    		<li>
-    			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="conference" {% if conference %} checked {% endif %}>
-    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-    				<div class="item-inner">
-    					<div class="item-title">Conference/Classroom</div>
-    				</div>
-    			</label>
-    		</li>
-    		<li>
-    			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="open" {% if open %} checked {% endif %}>
-    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-    				<div class="item-inner">
-    					<div class="item-title">Open space</div>
-    				</div>
-    			</label>
-    		</li>
-            <li>
-    			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="lounge" {% if lounge %} checked {% endif %}>
-    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-    				<div class="item-inner">
-    					<div class="item-title">Lounge</div>
-    				</div>
-    			</label>
-    		</li>
-            <li>
-    			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="cafe" {% if cafe %} checked {% endif %}>
-    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-    				<div class="item-inner">
-    					<div class="item-title">Café</div>
-    				</div>
-    			</label>
-    		</li>
-            <li>
-    			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="outdoor" {% if outdoor %} checked {% endif %}>
-    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-    				<div class="item-inner">
-    					<div class="item-title">Outdoor area</div>
-    				</div>
-    			</label>
-    		</li>
-    	</ul>
-    </div>
+  <div class="content-block-title">Type</div>
+  <div class="list-block">
+    <ul id="type_select">
+      <li>
+        <label class="label-checkbox item-content">
+          <input type="checkbox" value="study_room" {% if study_room %} checked {% endif %}>
+          <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+          <div class="item-inner">
+            <div class="item-title">Study room</div>
+          </div>
+        </label>
+      </li>
+      <li>
+        <label class="label-checkbox item-content">
+          <input type="checkbox" value="study_area" {% if study_area %} checked {% endif %}>
+          <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+          <div class="item-inner">
+            <div class="item-title">Study area</div>
+          </div>
+        </label>
+      </li>
+      <li>
+        <label class="label-checkbox item-content">
+          <input type="checkbox" value="computer_lab" {% if computer_lab %} checked {% endif %}>
+          <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+          <div class="item-inner">
+            <div class="item-title">Computer lab</div>
+          </div>
+        </label>
+      </li>
+      <li>
+        <label class="label-checkbox item-content">
+          <input type="checkbox" value="studio" {% if studio %} checked {% endif %}>
+          <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+          <div class="item-inner">
+            <div class="item-title">Production studio</div>
+          </div>
+        </label>
+      </li>
+      <li>
+        <label class="label-checkbox item-content">
+          <input type="checkbox" value="conference" {% if conference %} checked {% endif %}>
+          <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+          <div class="item-inner">
+            <div class="item-title">Conference/Classroom</div>
+          </div>
+        </label>
+      </li>
+      <li>
+        <label class="label-checkbox item-content">
+          <input type="checkbox" value="open" {% if open %} checked {% endif %}>
+          <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+          <div class="item-inner">
+            <div class="item-title">Open space</div>
+          </div>
+        </label>
+      </li>
+      <li>
+        <label class="label-checkbox item-content">
+          <input type="checkbox" value="lounge" {% if lounge %} checked {% endif %}>
+          <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+          <div class="item-inner">
+            <div class="item-title">Lounge</div>
+          </div>
+        </label>
+      </li>
+      <li>
+        <label class="label-checkbox item-content">
+          <input type="checkbox" value="cafe" {% if cafe %} checked {% endif %}>
+          <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+          <div class="item-inner">
+            <div class="item-title">Café</div>
+          </div>
+        </label>
+      </li>
+      <li>
+        <label class="label-checkbox item-content">
+          <input type="checkbox" value="outdoor" {% if outdoor %} checked {% endif %}>
+          <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+          <div class="item-inner">
+            <div class="item-title">Outdoor area</div>
+          </div>
+        </label>
+      </li>
+    </ul>
+  </div>
 
-    <div class="content-block-title">Resources</div>
-    <div class="list-block">
-    	<ul id="resources_select">
-    		<li>
-    			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="has_whiteboards" {% if has_whiteboards %} checked {% endif %}>
-    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-    				<div class="item-inner">
-    					<div class="item-title">Whiteboards</div>
-    				</div>
-    			</label>
-    		</li>
-    		<li>
-    			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="has_outlets" {% if has_outlets %} checked {% endif %}>
-    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-    				<div class="item-inner">
-    					<div class="item-title">Outlets</div>
-    				</div>
-    			</label>
-    		</li>
-    		<li>
-    			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="has_computers" {% if has_computers %} checked {% endif %}>
-    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-    				<div class="item-inner">
-    					<div class="item-title">Computers</div>
-    				</div>
-    			</label>
-    		</li>
-    		<li>
-    			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="has_scanner" {% if has_scanner %} checked {% endif %}>
-    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-    				<div class="item-inner">
-    					<div class="item-title">Scanner</div>
-    				</div>
-    			</label>
-    		</li>
-    		<li>
-    			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="has_displays" {% if has_displays %} checked {% endif %}>
-    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-    				<div class="item-inner">
-    					<div class="item-title">Large displays (for laptop)</div>
-    				</div>
-    			</label>
-    		</li>
-            <li>
-    			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="has_projector" {% if has_projector %} checked {% endif %}>
-    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-    				<div class="item-inner">
-    					<div class="item-title">Projector</div>
-    				</div>
-    			</label>
-    		</li>
-            <li>
-    			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="has_printing" {% if has_printing %} checked {% endif %}>
-    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-    				<div class="item-inner">
-    					<div class="item-title">Printing</div>
-    				</div>
-    			</label>
-    		</li>
-    	</ul>
-    </div>
+  <div class="content-block-title">Resources</div>
+  <div class="list-block">
+    <ul id="resources_select">
+      <li>
+        <label class="label-checkbox item-content">
+          <input type="checkbox" value="has_whiteboards" {% if has_whiteboards %} checked {% endif %}>
+          <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+          <div class="item-inner">
+            <div class="item-title">Whiteboards</div>
+          </div>
+        </label>
+      </li>
+      <li>
+        <label class="label-checkbox item-content">
+          <input type="checkbox" value="has_outlets" {% if has_outlets %} checked {% endif %}>
+          <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+          <div class="item-inner">
+            <div class="item-title">Outlets</div>
+          </div>
+        </label>
+      </li>
+      <li>
+        <label class="label-checkbox item-content">
+          <input type="checkbox" value="has_computers" {% if has_computers %} checked {% endif %}>
+          <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+          <div class="item-inner">
+            <div class="item-title">Computers</div>
+          </div>
+        </label>
+      </li>
+      <li>
+        <label class="label-checkbox item-content">
+          <input type="checkbox" value="has_scanner" {% if has_scanner %} checked {% endif %}>
+          <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+          <div class="item-inner">
+            <div class="item-title">Scanner</div>
+          </div>
+        </label>
+      </li>
+      <li>
+        <label class="label-checkbox item-content">
+          <input type="checkbox" value="has_displays" {% if has_displays %} checked {% endif %}>
+          <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+          <div class="item-inner">
+            <div class="item-title">Large displays (for laptop)</div>
+          </div>
+        </label>
+      </li>
+      <li>
+        <label class="label-checkbox item-content">
+          <input type="checkbox" value="has_projector" {% if has_projector %} checked {% endif %}>
+          <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+          <div class="item-inner">
+            <div class="item-title">Projector</div>
+          </div>
+        </label>
+      </li>
+      <li>
+        <label class="label-checkbox item-content">
+          <input type="checkbox" value="has_printing" {% if has_printing %} checked {% endif %}>
+          <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+          <div class="item-inner">
+            <div class="item-title">Printing</div>
+          </div>
+        </label>
+      </li>
+    </ul>
+  </div>
 
-    <div class="content-block-title">Noise Level</div>
-    <div class="list-block">
-    	<ul id="noise_select">
-    		<li>
-    			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="silent" {% if silent %} checked {% endif %}>
-    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-    				<div class="item-inner">
-    					<div class="item-title">Silent</div>
-    				</div>
-    			</label>
-    		</li>
-    		<li>
-    			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="quiet" {% if quiet %} checked {% endif %}>
-    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-    				<div class="item-inner">
-    					<div class="item-title">Low hum</div>
-    				</div>
-    			</label>
-    		</li>
-    		<li>
-    			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="moderate" {% if moderate %} checked {% endif %}>
-    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-    				<div class="item-inner">
-    					<div class="item-title">Chatter</div>
-    				</div>
-    			</label>
-    		</li>
-    	</ul>
-    </div>
+  <div class="content-block-title">Noise Level</div>
+  <div class="list-block">
+    <ul id="noise_select">
+      <li>
+        <label class="label-checkbox item-content">
+          <input type="checkbox" value="silent" {% if silent %} checked {% endif %}>
+          <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+          <div class="item-inner">
+            <div class="item-title">Silent</div>
+          </div>
+        </label>
+      </li>
+      <li>
+        <label class="label-checkbox item-content">
+          <input type="checkbox" value="quiet" {% if quiet %} checked {% endif %}>
+          <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+          <div class="item-inner">
+            <div class="item-title">Low hum</div>
+          </div>
+        </label>
+      </li>
+      <li>
+        <label class="label-checkbox item-content">
+          <input type="checkbox" value="moderate" {% if moderate %} checked {% endif %}>
+          <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+          <div class="item-inner">
+            <div class="item-title">Chatter</div>
+          </div>
+        </label>
+      </li>
+    </ul>
+  </div>
 
-    <div class="content-block-title">Food/Coffee</div>
-    <div class="list-block">
-    	<ul id="food_select">
-    		<li>
-    			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="space" {% if space %} checked {% endif %}>
-    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-    				<div class="item-inner">
-    					<div class="item-title">In space</div>
-    				</div>
-    			</label>
-    		</li>
-    		<li>
-    			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="building" {% if building %} checked {% endif %}>
-    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-    				<div class="item-inner">
-    					<div class="item-title">In building</div>
-    				</div>
-    			</label>
-    		</li>
-    		<li>
-    			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="neighboring" {% if neighboring %} checked {% endif %}>
-    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-    				<div class="item-inner">
-    					<div class="item-title">In neighboring building</div>
-    				</div>
-    			</label>
-    		</li>
-    	</ul>
-    </div>
+  <div class="content-block-title">Food/Coffee</div>
+  <div class="list-block">
+    <ul id="food_select">
+      <li>
+        <label class="label-checkbox item-content">
+          <input type="checkbox" value="space" {% if space %} checked {% endif %}>
+          <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+          <div class="item-inner">
+            <div class="item-title">In space</div>
+          </div>
+        </label>
+      </li>
+      <li>
+        <label class="label-checkbox item-content">
+          <input type="checkbox" value="building" {% if building %} checked {% endif %}>
+          <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+          <div class="item-inner">
+            <div class="item-title">In building</div>
+          </div>
+        </label>
+      </li>
+      <li>
+        <label class="label-checkbox item-content">
+          <input type="checkbox" value="neighboring" {% if neighboring %} checked {% endif %}>
+          <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+          <div class="item-inner">
+            <div class="item-title">In neighboring building</div>
+          </div>
+        </label>
+      </li>
+    </ul>
+  </div>
 
-    <div class="content-block-title">Lighting</div>
-    <div class="list-block">
-    	<ul id="lighting_select">
-            <li>
-            <div class="item-content">
-            <div class="item-inner">
+  <div class="content-block-title">Lighting</div>
+  <div class="list-block">
+    <ul id="lighting_select">
+      <li>
+        <div class="item-content">
+          <div class="item-inner">
             <div class="item-title label" style="width:75%;">Has natural lighting</div>
             <div class="item-input">
-            <label class="label-switch">
-            <input type="checkbox" value="has_natural_light">
-            <div class="checkbox"></div>
-            </label>
+              <label class="label-switch">
+                <input type="checkbox" value="has_natural_light">
+                <div class="checkbox"></div>
+              </label>
             </div>
-            </div>
-            </div>
-            </li>
-        </ul>
-    </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
 
-    <div class="content-block-title">Reservability</div>
-    <div class="list-block">
-    	<ul id="reserve_select">
-            <li>
-            <div class="item-content">
-            <div class="item-inner">
+  <div class="content-block-title">Reservability</div>
+  <div class="list-block">
+    <ul id="reserve_select">
+      <li>
+        <div class="item-content">
+          <div class="item-inner">
             <div class="item-title label" style="width:75%;">Only reservable</div>
             <div class="item-input">
-            <label class="label-switch">
-            <input type="checkbox" value="reservable">
-            <div class="checkbox"></div>
-            </label>
+              <label class="label-switch">
+                <input type="checkbox" value="reservable">
+                <div class="checkbox"></div>
+              </label>
             </div>
-            </div>
-            </div>
-            </li>
-        </ul>
-    </div>
-
-    <div class="content-block-title">Capacity</div>
-    <div class="list-block">
-    	<ul id="capacity_select">
-            <li>
-                <div class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title label" style="width:75%">Seats at least</div>
-                        <div class="item-input">
-                            <select>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
-                                <option value="15">15</option>
-                                <option value="20">20</option>
-                                <option value="25">25+</option>
-                           </select>
-                        </div>
-                    </div>
-                </div>
-            </li>
-        </ul>
-    </div>
-
-    <div class="content-block-title">Hours</div>
-    <div class="list-block">
-        <ul id="hours_toggle">
-            <li>
-                <label class="label-radio item-content">
-                    <input type="radio" name="optionsHours" value="open_now" checked>
-                    {% if request.is_and %}<div class="item-media"><i class="icon icon-form-radio"></i></div>{% endif %}
-                    <div class="item-inner">
-                        <div class="item-title">Open now</div>
-                    </div>
-                </label>
-            </li>
-            <li>
-                <label class="label-radio item-content">
-                    <input type="radio" name="optionsHours" value="hours_list">
-                    {% if request.is_and %}<div class="item-media"><i class="icon icon-form-radio"></i></div>{% endif %}
-                    <div class="item-inner">
-                        <div class="item-title">Specify day &amp; time</div>
-                    </div>
-                </label>
-
-                <div class="scout-filter-toggle-options visually-hidden" id="hours_list">
-                    <div>
-                        <span class="hours-from" style="width:50px;">Start: </span>
-                        <select id="day-from" style="width:100px;">
-                            <option value="Monday">Monday</option>
-                            <option value="Tuesday">Tuesday</option>
-                            <option value="Wednesday">Wednesday</option>
-                            <option value="Thursday">Thursday</option>
-                            <option value="Friday">Friday</option>
-                            <option value="Saturday">Saturday</option>
-                            <option value="Sunday">Sunday</option>
-                        </select>
-                        <select id="hour-from" style="width:60px;">
-                            <option value="12:00">12:00</option>
-                            <option value="12:30">12:30</option>
-                            <option value="01:00">1:00</option>
-                            <option value="01:30">1:30</option>
-                            <option value="02:00">2:00</option>
-                            <option value="02:30">2:30</option>
-                            <option value="03:00">3:00</option>
-                            <option value="03:30">3:30</option>
-                            <option value="04:00">4:00</option>
-                            <option value="04:30">4:30</option>
-                            <option value="05:00">5:00</option>
-                            <option value="05:30">5:30</option>
-                            <option value="06:00">6:00</option>
-                            <option value="06:30">6:30</option>
-                            <option value="07:00">7:00</option>
-                            <option value="07:30">7:30</option>
-                            <option value="08:00">8:00</option>
-                            <option value="08:30">8:30</option>
-                            <option value="09:00">9:00</option>
-                            <option value="09:30">9:30</option>
-                            <option value="10:00">10:00</option>
-                            <option value="10:30">10:30</option>
-                            <option value="11:00">11:00</option>
-                            <option value="11:30">11:30</option>
-                        </select>
-                        <select id="ampm-from" class="ampm" style="width:50px;">
-                            <option value="AM">AM</option>
-                            <option value="PM">PM</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <span class="hours-from" id="until-time-heading" style="width:50px;">End:</span>
-                        <select id="day-until" style="width:100px;">
-                            <option value="Monday">Monday</option>
-                            <option value="Tuesday">Tuesday</option>
-                            <option value="Wednesday">Wednesday</option>
-                            <option value="Thursday">Thursday</option>
-                            <option value="Friday">Friday</option>
-                            <option value="Saturday">Saturday</option>
-                            <option value="Sunday">Sunday</option>
-                        </select>
-                        <select id="hour-until" style="width:60px;">
-                            <option value="12:00">12:00</option>
-                            <option value="12:30">12:30</option>
-                            <option value="01:00">1:00</option>
-                            <option value="01:30">1:30</option>
-                            <option value="02:00">2:00</option>
-                            <option value="02:30">2:30</option>
-                            <option value="03:00">3:00</option>
-                            <option value="03:30">3:30</option>
-                            <option value="04:00">4:00</option>
-                            <option value="04:30">4:30</option>
-                            <option value="05:00">5:00</option>
-                            <option value="05:30">5:30</option>
-                            <option value="06:00">6:00</option>
-                            <option value="06:30">6:30</option>
-                            <option value="07:00">7:00</option>
-                            <option value="07:30">7:30</option>
-                            <option value="08:00">8:00</option>
-                            <option value="08:30">8:30</option>
-                            <option value="09:00">9:00</option>
-                            <option value="09:30">9:30</option>
-                            <option value="10:00">10:00</option>
-                            <option value="10:30">10:30</option>
-                            <option value="11:00">11:00</option>
-                            <option value="11:30">11:30</option>
-                        </select>
-                        <select class="ampm" id="ampm-until" style="width:50px;">
-                            <option value="AM">AM</option>
-                            <option value="PM">PM</option>
-                        </select>
-                    </div>
-                </div>
-
-            </li>
-        </ul>
-    </div>
-
-    <div class="content-block-title">Building(s)</div>
-    <div class="list-block">
-        <ul id="buildings_toggle">
-            <li>
-                <label class="label-radio item-content">
-                    <input type="radio" name="optionsLocations" value="entire_campus" checked>
-                    {% if request.is_and %}<div class="item-media"><i class="icon icon-form-radio"></i></div>{% endif %}
-                    <div class="item-inner">
-                        <div class="item-title">Entire campus</div>
-                    </div>
-                </label>
-            </li>
-            <li>
-                <label class="label-radio item-content">
-                    <input type="radio" name="optionsLocations" value="building_list">
-                    {% if request.is_and %}<div class="item-media"><i class="icon icon-form-radio"></i></div>{% endif %}
-                    <div class="item-inner">
-                        <div class="item-title">Specific buildings</div>
-                    </div>
-                </label>
-
-                <div id="building_select" class="scout-filter-toggle-options visually-hidden">
-                    <!--Needs to be updated dynamically!-->
-                    <select multiple style="width:100%; height:48px;display:block !important;">
-                        <optgroup disabled hidden></optgroup>
-                        {% for building_name in buildings %}
-                            {% if building_name %}
-                                <option value="{{ building_name }}">{{ building_name }}</option>
-                            {% endif %}
-                        {% endfor %}
-                    </select>
-                </div>
-
-            </li>
-        </ul>
-
-
-    </div>
-
-    {% if request.is_and %}
-    <div class="content-block" style="display:none;">
-    	<div class="content-block-inner">
-            <p class="buttons-row">
-                <a href="javascript:void(0)" id="filter_submit" class="button button-fill button-raised">Submit</a>
-                <a href="javascript:void(0)" id="filter_clear" class="button button-fill button-raised">Clear</a>
-            </p>
-    	</div>
-    </div>
-    {% endif %}
-
-    {% if request.is_ios %}
-    <div class="content-block" style="display:none;">
-        <div class="row">
-            <div class="col-50"><a href="javascript:void(0)" id="filter_submit" class="button button-big button-fill">Submit</a></div>
-            <div class="col-50"><a href="javascript:void(0)" id="filter_clear" class="button button-big button-fill">Clear</a></div>
+          </div>
         </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="content-block-title">Capacity</div>
+  <div class="list-block">
+    <ul id="capacity_select">
+      <li>
+        <div class="item-content">
+          <div class="item-inner">
+            <div class="item-title label" style="width:75%">Seats at least</div>
+            <div class="item-input">
+              <select>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+                <option value="25">25+</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="content-block-title">Hours</div>
+  <div class="list-block">
+    <ul id="hours_toggle">
+      <li>
+        <label class="label-radio item-content">
+          <input type="radio" name="optionsHours" value="open_now" checked>
+          {% if request.user_agent.os.family == 'Android' %}<div class="item-media"><i class="icon icon-form-radio"></i>
+          </div>{% endif %}
+          <div class="item-inner">
+            <div class="item-title">Open now</div>
+          </div>
+        </label>
+      </li>
+      <li>
+        <label class="label-radio item-content">
+          <input type="radio" name="optionsHours" value="hours_list">
+          {% if request.user_agent.os.family == 'Android' %}<div class="item-media"><i class="icon icon-form-radio"></i>
+          </div>{% endif %}
+          <div class="item-inner">
+            <div class="item-title">Specify day &amp; time</div>
+          </div>
+        </label>
+
+        <div class="scout-filter-toggle-options visually-hidden" id="hours_list">
+          <div>
+            <span class="hours-from" style="width:50px;">Start: </span>
+            <select id="day-from" style="width:100px;">
+              <option value="Monday">Monday</option>
+              <option value="Tuesday">Tuesday</option>
+              <option value="Wednesday">Wednesday</option>
+              <option value="Thursday">Thursday</option>
+              <option value="Friday">Friday</option>
+              <option value="Saturday">Saturday</option>
+              <option value="Sunday">Sunday</option>
+            </select>
+            <select id="hour-from" style="width:60px;">
+              <option value="12:00">12:00</option>
+              <option value="12:30">12:30</option>
+              <option value="01:00">1:00</option>
+              <option value="01:30">1:30</option>
+              <option value="02:00">2:00</option>
+              <option value="02:30">2:30</option>
+              <option value="03:00">3:00</option>
+              <option value="03:30">3:30</option>
+              <option value="04:00">4:00</option>
+              <option value="04:30">4:30</option>
+              <option value="05:00">5:00</option>
+              <option value="05:30">5:30</option>
+              <option value="06:00">6:00</option>
+              <option value="06:30">6:30</option>
+              <option value="07:00">7:00</option>
+              <option value="07:30">7:30</option>
+              <option value="08:00">8:00</option>
+              <option value="08:30">8:30</option>
+              <option value="09:00">9:00</option>
+              <option value="09:30">9:30</option>
+              <option value="10:00">10:00</option>
+              <option value="10:30">10:30</option>
+              <option value="11:00">11:00</option>
+              <option value="11:30">11:30</option>
+            </select>
+            <select id="ampm-from" class="ampm" style="width:50px;">
+              <option value="AM">AM</option>
+              <option value="PM">PM</option>
+            </select>
+          </div>
+
+          <div>
+            <span class="hours-from" id="until-time-heading" style="width:50px;">End:</span>
+            <select id="day-until" style="width:100px;">
+              <option value="Monday">Monday</option>
+              <option value="Tuesday">Tuesday</option>
+              <option value="Wednesday">Wednesday</option>
+              <option value="Thursday">Thursday</option>
+              <option value="Friday">Friday</option>
+              <option value="Saturday">Saturday</option>
+              <option value="Sunday">Sunday</option>
+            </select>
+            <select id="hour-until" style="width:60px;">
+              <option value="12:00">12:00</option>
+              <option value="12:30">12:30</option>
+              <option value="01:00">1:00</option>
+              <option value="01:30">1:30</option>
+              <option value="02:00">2:00</option>
+              <option value="02:30">2:30</option>
+              <option value="03:00">3:00</option>
+              <option value="03:30">3:30</option>
+              <option value="04:00">4:00</option>
+              <option value="04:30">4:30</option>
+              <option value="05:00">5:00</option>
+              <option value="05:30">5:30</option>
+              <option value="06:00">6:00</option>
+              <option value="06:30">6:30</option>
+              <option value="07:00">7:00</option>
+              <option value="07:30">7:30</option>
+              <option value="08:00">8:00</option>
+              <option value="08:30">8:30</option>
+              <option value="09:00">9:00</option>
+              <option value="09:30">9:30</option>
+              <option value="10:00">10:00</option>
+              <option value="10:30">10:30</option>
+              <option value="11:00">11:00</option>
+              <option value="11:30">11:30</option>
+            </select>
+            <select class="ampm" id="ampm-until" style="width:50px;">
+              <option value="AM">AM</option>
+              <option value="PM">PM</option>
+            </select>
+          </div>
+        </div>
+
+      </li>
+    </ul>
+  </div>
+
+  <div class="content-block-title">Building(s)</div>
+  <div class="list-block">
+    <ul id="buildings_toggle">
+      <li>
+        <label class="label-radio item-content">
+          <input type="radio" name="optionsLocations" value="entire_campus" checked>
+          {% if request.user_agent.os.family == 'Android' %}<div class="item-media"><i class="icon icon-form-radio"></i>
+          </div>{% endif %}
+          <div class="item-inner">
+            <div class="item-title">Entire campus</div>
+          </div>
+        </label>
+      </li>
+      <li>
+        <label class="label-radio item-content">
+          <input type="radio" name="optionsLocations" value="building_list">
+          {% if request.user_agent.os.family == 'Android' %}<div class="item-media"><i class="icon icon-form-radio"></i>
+          </div>{% endif %}
+          <div class="item-inner">
+            <div class="item-title">Specific buildings</div>
+          </div>
+        </label>
+
+        <div id="building_select" class="scout-filter-toggle-options visually-hidden">
+          <!--Needs to be updated dynamically!-->
+          <select multiple style="width:100%; height:48px;display:block !important;">
+            <optgroup disabled hidden></optgroup>
+            {% for building_name in buildings %}
+            {% if building_name %}
+            <option value="{{ building_name }}">{{ building_name }}</option>
+            {% endif %}
+            {% endfor %}
+          </select>
+        </div>
+
+      </li>
+    </ul>
+
+
+  </div>
+
+  {% if request.user_agent.os.family == 'Android' %}
+  <div class="content-block" style="display:none;">
+    <div class="content-block-inner">
+      <p class="buttons-row">
+        <a href="javascript:void(0)" id="filter_submit" class="button button-fill button-raised">Submit</a>
+        <a href="javascript:void(0)" id="filter_clear" class="button button-fill button-raised">Clear</a>
+      </p>
     </div>
-    {% endif %}
+  </div>
+  {% endif %}
+
+  {% if request.user_agent.os.family == 'iOS' %}
+  <div class="content-block" style="display:none;">
+    <div class="row">
+      <div class="col-50"><a href="javascript:void(0)" id="filter_submit"
+          class="button button-big button-fill">Submit</a></div>
+      <div class="col-50"><a href="javascript:void(0)" id="filter_clear" class="button button-big button-fill">Clear</a>
+      </div>
+    </div>
+  </div>
+  {% endif %}
 
 </form>
 
-<script> var LIST_PAGE = false; </script>
+<script>
+  var LIST_PAGE = false;
+</script>
 
 {% endblock %}

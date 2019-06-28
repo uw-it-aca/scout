@@ -35,6 +35,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_user_agents',
     'scout',
     'spotseeker_restclient',
     'compressor',
@@ -50,7 +51,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'django_mobileesp.middleware.UserAgentDetectionMiddleware'
+    'django_user_agents.middleware.UserAgentMiddleware',
 )
 
 AUTHENTICATION_BACKENDS = (
@@ -70,6 +71,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'scout.context_processors.google_maps',
                 'scout.context_processors.google_analytics',
                 'scout.context_processors.is_desktop',
                 'scout.context_processors.is_hybrid',
@@ -121,20 +123,6 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-# django mobileesp
-
-from django_mobileesp.detector import mobileesp_agent as agent
-
-DETECT_USER_AGENTS = {
-
-    'is_tablet' : agent.detectTierTablet,
-    'is_mobile': agent.detectMobileQuick,
-
-    'is_and': agent.detectAndroid,
-    'is_ios': agent.detectIos,
-    'is_win': agent.detectWindowsPhone,
-}
-
 COMPRESS_ROOT = "/tmp/"
 COMPRESS_PRECOMPILERS = (
     ('text/x-scss', 'django_pyscss.compressor.DjangoScssFilter'),
@@ -149,9 +137,6 @@ COMPRESS_CSS_FILTERS = [
 COMPRESS_JS_FILTERS = [
     'compressor.filters.jsmin.JSMinFilter',
 ]
-
-# google analytics tracking
-#GOOGLE_ANALYTICS_KEY = "UA-XXXXXXXX-X"
 
 # scout settings
 CAMPUS_URL_LIST = ['seattle', 'tacoma', 'bothell']

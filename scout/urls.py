@@ -6,6 +6,7 @@ from scout import views
 from scout.views import DiscoverView
 from scout.views import DiscoverCardView
 
+from scout.views import PlaceHolderView
 from scout.views import FoodListView
 from scout.views import FoodDetailView
 from scout.views import FoodFilterView
@@ -70,8 +71,12 @@ urlpatterns = patterns(
 
     # hybrid food
     url(r'^h/(?P<campus>[^/]+)/food/$',
-        FoodListView.as_view(),
+        PlaceHolderView.as_view(),
         {"template_name": "hybridize/food/list.html",
+         "app_type": "food"}),
+    url(r'^h/(?P<campus>[^/]+)/food/list/$',
+        FoodListView.as_view(),
+        {"template_name": "hybridize/food/list_content.html",
          "app_type": "food"}),
     url(r'^h/(?P<campus>[^/]+)/food/(?P<spot_id>[0-9]{1,5})/$',
         FoodDetailView.as_view(),
@@ -82,8 +87,12 @@ urlpatterns = patterns(
 
     # hybrid study
     url(r'^h/(?P<campus>[^/]+)/study/$',
-        StudyListView.as_view(),
+        PlaceHolderView.as_view(),
         {"template_name": "hybridize/study/list.html",
+         "app_type": "study"}),
+    url(r'^h/(?P<campus>[^/]+)/study/list/$',
+        StudyListView.as_view(),
+        {"template_name": "hybridize/study/list_content.html",
          "app_type": "study"}),
     url(r'^h/(?P<campus>[^/]+)/study/(?P<spot_id>[0-9]{1,5})/$',
         StudyDetailView.as_view(),
@@ -94,8 +103,12 @@ urlpatterns = patterns(
 
     # hybrid tech
     url(r'^h/(?P<campus>[^/]+)/tech/$',
-        TechListView.as_view(),
+        PlaceHolderView.as_view(),
         {"template_name": "hybridize/tech/list.html",
+         "app_type": "tech"}),
+    url(r'^h/(?P<campus>[^/]+)/tech/list/$',
+        TechListView.as_view(),
+        {"template_name": "hybridize/tech/list_content.html",
          "app_type": "tech"}),
     url(r'^h/(?P<campus>[^/]+)/tech/(?P<item_id>[0-9]{1,5})/$',
         TechDetailView.as_view(),

@@ -1,6 +1,6 @@
 /*** sass variables ***/
 
-$maincolor: #514DA3; // scout purple
+$maincolor: #514da3; // scout purple
 
 /** framework7 theme classes ***/
 
@@ -113,18 +113,60 @@ label.label-checkbox.theme-custom {
 label.label-checkbox.theme-custom i.icon-form-checkbox:after {
   background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20fill%3D'%23ffffff'%20width%3D'24'%20height%3D'24'%20viewBox%3D'0%200%2024%2024'%3E%3Cpath%20d%3D'M9%2016.17L4.83%2012l-1.42%201.41L9%2019%2021%207l-1.41-1.41z'%2F%3E%3C%2Fsvg%3E");
 }
-.theme-custom label.label-checkbox input[type="checkbox"]:checked + .item-media i.icon-form-checkbox,
-label.label-checkbox.theme-custom input[type="checkbox"]:checked + .item-media i.icon-form-checkbox,
-.theme-custom label.label-checkbox input[type="radio"]:checked + .item-media i.icon-form-checkbox,
-label.label-checkbox.theme-custom input[type="radio"]:checked + .item-media i.icon-form-checkbox,
-.theme-custom label.label-checkbox input[type="checkbox"]:checked ~ .item-after i.icon-form-checkbox,
-label.label-checkbox.theme-custom input[type="checkbox"]:checked ~ .item-after i.icon-form-checkbox,
-.theme-custom label.label-checkbox input[type="radio"]:checked ~ .item-after i.icon-form-checkbox,
-label.label-checkbox.theme-custom input[type="radio"]:checked ~ .item-after i.icon-form-checkbox,
-.theme-custom label.label-checkbox input[type="checkbox"]:checked ~ .item-inner i.icon-form-checkbox,
-label.label-checkbox.theme-custom input[type="checkbox"]:checked ~ .item-inner i.icon-form-checkbox,
-.theme-custom label.label-checkbox input[type="radio"]:checked ~ .item-inner i.icon-form-checkbox,
-label.label-checkbox.theme-custom input[type="radio"]:checked ~ .item-inner i.icon-form-checkbox {
+.theme-custom
+  label.label-checkbox
+  input[type="checkbox"]:checked
+  + .item-media
+  i.icon-form-checkbox,
+label.label-checkbox.theme-custom
+  input[type="checkbox"]:checked
+  + .item-media
+  i.icon-form-checkbox,
+.theme-custom
+  label.label-checkbox
+  input[type="radio"]:checked
+  + .item-media
+  i.icon-form-checkbox,
+label.label-checkbox.theme-custom
+  input[type="radio"]:checked
+  + .item-media
+  i.icon-form-checkbox,
+.theme-custom
+  label.label-checkbox
+  input[type="checkbox"]:checked
+  ~ .item-after
+  i.icon-form-checkbox,
+label.label-checkbox.theme-custom
+  input[type="checkbox"]:checked
+  ~ .item-after
+  i.icon-form-checkbox,
+.theme-custom
+  label.label-checkbox
+  input[type="radio"]:checked
+  ~ .item-after
+  i.icon-form-checkbox,
+label.label-checkbox.theme-custom
+  input[type="radio"]:checked
+  ~ .item-after
+  i.icon-form-checkbox,
+.theme-custom
+  label.label-checkbox
+  input[type="checkbox"]:checked
+  ~ .item-inner
+  i.icon-form-checkbox,
+label.label-checkbox.theme-custom
+  input[type="checkbox"]:checked
+  ~ .item-inner
+  i.icon-form-checkbox,
+.theme-custom
+  label.label-checkbox
+  input[type="radio"]:checked
+  ~ .item-inner
+  i.icon-form-checkbox,
+label.label-checkbox.theme-custom
+  input[type="radio"]:checked
+  ~ .item-inner
+  i.icon-form-checkbox {
   border-color: $maincolor;
   background-color: $maincolor;
 }
@@ -132,32 +174,116 @@ label.label-checkbox.theme-custom input[type="radio"]:checked ~ .item-inner i.ic
 label.label-radio.theme-custom i.icon-form-radio:after {
   background-color: $maincolor;
 }
-.theme-custom label.label-radio input[type="checkbox"]:checked + .item-media i.icon-form-radio,
-label.label-radio.theme-custom input[type="checkbox"]:checked + .item-media i.icon-form-radio,
-.theme-custom label.label-radio input[type="radio"]:checked + .item-media i.icon-form-radio,
-label.label-radio.theme-custom input[type="radio"]:checked + .item-media i.icon-form-radio,
-.theme-custom label.label-radio input[type="checkbox"]:checked ~ .item-after i.icon-form-radio,
-label.label-radio.theme-custom input[type="checkbox"]:checked ~ .item-after i.icon-form-radio,
-.theme-custom label.label-radio input[type="radio"]:checked ~ .item-after i.icon-form-radio,
-label.label-radio.theme-custom input[type="radio"]:checked ~ .item-after i.icon-form-radio,
-.theme-custom label.label-radio input[type="checkbox"]:checked ~ .item-inner i.icon-form-radio,
-label.label-radio.theme-custom input[type="checkbox"]:checked ~ .item-inner i.icon-form-radio,
-.theme-custom label.label-radio input[type="radio"]:checked ~ .item-inner i.icon-form-radio,
-label.label-radio.theme-custom input[type="radio"]:checked ~ .item-inner i.icon-form-radio {
+.theme-custom
+  label.label-radio
+  input[type="checkbox"]:checked
+  + .item-media
+  i.icon-form-radio,
+label.label-radio.theme-custom
+  input[type="checkbox"]:checked
+  + .item-media
+  i.icon-form-radio,
+.theme-custom
+  label.label-radio
+  input[type="radio"]:checked
+  + .item-media
+  i.icon-form-radio,
+label.label-radio.theme-custom
+  input[type="radio"]:checked
+  + .item-media
+  i.icon-form-radio,
+.theme-custom
+  label.label-radio
+  input[type="checkbox"]:checked
+  ~ .item-after
+  i.icon-form-radio,
+label.label-radio.theme-custom
+  input[type="checkbox"]:checked
+  ~ .item-after
+  i.icon-form-radio,
+.theme-custom
+  label.label-radio
+  input[type="radio"]:checked
+  ~ .item-after
+  i.icon-form-radio,
+label.label-radio.theme-custom
+  input[type="radio"]:checked
+  ~ .item-after
+  i.icon-form-radio,
+.theme-custom
+  label.label-radio
+  input[type="checkbox"]:checked
+  ~ .item-inner
+  i.icon-form-radio,
+label.label-radio.theme-custom
+  input[type="checkbox"]:checked
+  ~ .item-inner
+  i.icon-form-radio,
+.theme-custom
+  label.label-radio
+  input[type="radio"]:checked
+  ~ .item-inner
+  i.icon-form-radio,
+label.label-radio.theme-custom
+  input[type="radio"]:checked
+  ~ .item-inner
+  i.icon-form-radio {
   border-color: $maincolor;
 }
-.theme-custom label.label-radio input[type="checkbox"]:checked + .item-media i.icon-form-radio:after,
-label.label-radio.theme-custom input[type="checkbox"]:checked + .item-media i.icon-form-radio:after,
-.theme-custom label.label-radio input[type="radio"]:checked + .item-media i.icon-form-radio:after,
-label.label-radio.theme-custom input[type="radio"]:checked + .item-media i.icon-form-radio:after,
-.theme-custom label.label-radio input[type="checkbox"]:checked ~ .item-after i.icon-form-radio:after,
-label.label-radio.theme-custom input[type="checkbox"]:checked ~ .item-after i.icon-form-radio:after,
-.theme-custom label.label-radio input[type="radio"]:checked ~ .item-after i.icon-form-radio:after,
-label.label-radio.theme-custom input[type="radio"]:checked ~ .item-after i.icon-form-radio:after,
-.theme-custom label.label-radio input[type="checkbox"]:checked ~ .item-inner i.icon-form-radio:after,
-label.label-radio.theme-custom input[type="checkbox"]:checked ~ .item-inner i.icon-form-radio:after,
-.theme-custom label.label-radio input[type="radio"]:checked ~ .item-inner i.icon-form-radio:after,
-label.label-radio.theme-custom input[type="radio"]:checked ~ .item-inner i.icon-form-radio:after {
+.theme-custom
+  label.label-radio
+  input[type="checkbox"]:checked
+  + .item-media
+  i.icon-form-radio:after,
+label.label-radio.theme-custom
+  input[type="checkbox"]:checked
+  + .item-media
+  i.icon-form-radio:after,
+.theme-custom
+  label.label-radio
+  input[type="radio"]:checked
+  + .item-media
+  i.icon-form-radio:after,
+label.label-radio.theme-custom
+  input[type="radio"]:checked
+  + .item-media
+  i.icon-form-radio:after,
+.theme-custom
+  label.label-radio
+  input[type="checkbox"]:checked
+  ~ .item-after
+  i.icon-form-radio:after,
+label.label-radio.theme-custom
+  input[type="checkbox"]:checked
+  ~ .item-after
+  i.icon-form-radio:after,
+.theme-custom
+  label.label-radio
+  input[type="radio"]:checked
+  ~ .item-after
+  i.icon-form-radio:after,
+label.label-radio.theme-custom
+  input[type="radio"]:checked
+  ~ .item-after
+  i.icon-form-radio:after,
+.theme-custom
+  label.label-radio
+  input[type="checkbox"]:checked
+  ~ .item-inner
+  i.icon-form-radio:after,
+label.label-radio.theme-custom
+  input[type="checkbox"]:checked
+  ~ .item-inner
+  i.icon-form-radio:after,
+.theme-custom
+  label.label-radio
+  input[type="radio"]:checked
+  ~ .item-inner
+  i.icon-form-radio:after,
+label.label-radio.theme-custom
+  input[type="radio"]:checked
+  ~ .item-inner
+  i.icon-form-radio:after {
   background-color: $maincolor;
 }
 .theme-custom .focus-state .label,

@@ -8,183 +8,187 @@
 
 <form id="scout_filter">
 
-    <div class="content-block-title">Open Period</div>
-    <div class="list-block">
-    	<ul>
-            <li id="open_now">
-    			<label class="label-checkbox item-content">
-    				<input type="checkbox" name="open_now" value="open_now" {% if open_now %} checked {% endif %}>
-    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-    				<div class="item-inner">
-    					<div class="item-title">Open Now</div>
-    				</div>
-    			</label>
-    		</li>
-        	<div id="period_select">
-        		<li>
-        			<label class="label-checkbox item-content">
-        				<input type="checkbox" name="morning" value="morning" {% if morning %} checked {% endif %}>
-        				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-        				<div class="item-inner">
-        					<div class="item-title">Morning</div>
-        				</div>
-        			</label>
-        		</li>
-        		<li>
-        			<label class="label-checkbox item-content">
-        				<input type="checkbox" name="afternoon" value="afternoon" {% if afternoon %} checked {% endif %}>
-        				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-        				<div class="item-inner">
-        					<div class="item-title">Afternoon</div>
-        				</div>
-        			</label>
-        		</li>
-        		<li>
-        			<label class="label-checkbox item-content">
-        				<input type="checkbox" name="evening" value="evening" {% if evening %} checked {% endif %}>
-        				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-        				<div class="item-inner">
-        					<div class="item-title">Evening</div>
-        				</div>
-        			</label>
-        		</li>
-        		<li>
-        			<label class="label-checkbox item-content">
-        				<input type="checkbox" name="late_night" value="late_night" {% if late_night %} checked {% endif %}>
-        				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-        				<div class="item-inner">
-        					<div class="item-title">Late Night</div>
-        				</div>
-        			</label>
-        		</li>
+  <div class="content-block-title">Open Period</div>
+  <div class="list-block">
+    <ul>
+      <li id="open_now">
+        <label class="label-checkbox item-content">
+          <input type="checkbox" name="open_now" value="open_now" {% if open_now %} checked {% endif %}>
+          <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+          <div class="item-inner">
+            <div class="item-title">Open Now</div>
+          </div>
+        </label>
+      </li>
+      <div id="period_select">
+        <li>
+          <label class="label-checkbox item-content">
+            <input type="checkbox" name="morning" value="morning" {% if morning %} checked {% endif %}>
+            <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+            <div class="item-inner">
+              <div class="item-title">Morning</div>
             </div>
-    	</ul>
-    </div>
+          </label>
+        </li>
+        <li>
+          <label class="label-checkbox item-content">
+            <input type="checkbox" name="afternoon" value="afternoon" {% if afternoon %} checked {% endif %}>
+            <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+            <div class="item-inner">
+              <div class="item-title">Afternoon</div>
+            </div>
+          </label>
+        </li>
+        <li>
+          <label class="label-checkbox item-content">
+            <input type="checkbox" name="evening" value="evening" {% if evening %} checked {% endif %}>
+            <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+            <div class="item-inner">
+              <div class="item-title">Evening</div>
+            </div>
+          </label>
+        </li>
+        <li>
+          <label class="label-checkbox item-content">
+            <input type="checkbox" name="late_night" value="late_night" {% if late_night %} checked {% endif %}>
+            <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+            <div class="item-inner">
+              <div class="item-title">Late Night</div>
+            </div>
+          </label>
+        </li>
+      </div>
+    </ul>
+  </div>
 
-    <div class="content-block-title">Type</div>
-    <div class="list-block">
-    	<ul id="type_select">
-    		<li>
-    			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="cafe" {% if cafe %} checked {% endif %}>
-    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-    				<div class="item-inner">
-    					<div class="item-title">Cafes</div>
-    				</div>
-    			</label>
-    		</li>
-    		<li>
-    			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="food_court" {% if food_court %} checked {% endif %}>
-    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-    				<div class="item-inner">
-    					<div class="item-title">Food Court</div>
-    				</div>
-    			</label>
-    		</li>
-    		<li>
-    			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="food_truck" {% if food_truck %} checked {% endif %}>
-    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-    				<div class="item-inner">
-    					<div class="item-title">Food Truck</div>
-    				</div>
-    			</label>
-    		</li>
-    		<li>
-    			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="market" {% if market %} checked {% endif %}>
-    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-    				<div class="item-inner">
-    					<div class="item-title">Market</div>
-    				</div>
-    			</label>
-    		</li>
-            <li>
-    			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="restaurant" {% if restaurant %} checked {% endif %}>
-    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-    				<div class="item-inner">
-    					<div class="item-title">Restaurant</div>
-    				</div>
-    			</label>
-    		</li>
-    	</ul>
-    </div>
+  <div class="content-block-title">Type</div>
+  <div class="list-block">
+    <ul id="type_select">
+      <li>
+        <label class="label-checkbox item-content">
+          <input type="checkbox" value="cafe" {% if cafe %} checked {% endif %}>
+          <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+          <div class="item-inner">
+            <div class="item-title">Cafes</div>
+          </div>
+        </label>
+      </li>
+      <li>
+        <label class="label-checkbox item-content">
+          <input type="checkbox" value="food_court" {% if food_court %} checked {% endif %}>
+          <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+          <div class="item-inner">
+            <div class="item-title">Food Court</div>
+          </div>
+        </label>
+      </li>
+      <li>
+        <label class="label-checkbox item-content">
+          <input type="checkbox" value="food_truck" {% if food_truck %} checked {% endif %}>
+          <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+          <div class="item-inner">
+            <div class="item-title">Food Truck</div>
+          </div>
+        </label>
+      </li>
+      <li>
+        <label class="label-checkbox item-content">
+          <input type="checkbox" value="market" {% if market %} checked {% endif %}>
+          <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+          <div class="item-inner">
+            <div class="item-title">Market</div>
+          </div>
+        </label>
+      </li>
+      <li>
+        <label class="label-checkbox item-content">
+          <input type="checkbox" value="restaurant" {% if restaurant %} checked {% endif %}>
+          <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+          <div class="item-inner">
+            <div class="item-title">Restaurant</div>
+          </div>
+        </label>
+      </li>
+    </ul>
+  </div>
 
-    <div class="content-block-title">Payment Accepted</div>
-    <div class="list-block">
-    	<ul id="payment_select">
-    		<li>
-    			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="s_pay_cash" {% if s_pay_cash %} checked {% endif %}>
-    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-    				<div class="item-inner">
-    					<div class="item-title">Cash</div>
-    				</div>
-    			</label>
-    		</li>
-    		<li>
-    			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="s_pay_husky" {% if s_pay_husky %} checked {% endif %}>
-    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-    				<div class="item-inner">
-    					<div class="item-title">Husky Card</div>
-    				</div>
-    			</label>
-    		</li>
-    		<li>
-    			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="s_pay_dining" {% if s_pay_dining %} checked {% endif %}>
-    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-    				<div class="item-inner">
-    					<div class="item-title">Dining Card</div>
-    				</div>
-    			</label>
-    		</li>
-    		<li>
-    			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="s_pay_visa" {% if s_pay_visa %} checked {% endif %}>
-    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-    				<div class="item-inner">
-    					<div class="item-title">Visa</div>
-    				</div>
-    			</label>
-    		</li>
-            <li>
-    			<label class="label-checkbox item-content">
-    				<input type="checkbox" value="s_pay_mastercard" {% if s_pay_mastercard %} checked {% endif %}>
-    				<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-    				<div class="item-inner">
-    					<div class="item-title">Mastercard</div>
-    				</div>
-    			</label>
-    		</li>
-    	</ul>
-    </div>
+  <div class="content-block-title">Payment Accepted</div>
+  <div class="list-block">
+    <ul id="payment_select">
+      <li>
+        <label class="label-checkbox item-content">
+          <input type="checkbox" value="s_pay_cash" {% if s_pay_cash %} checked {% endif %}>
+          <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+          <div class="item-inner">
+            <div class="item-title">Cash</div>
+          </div>
+        </label>
+      </li>
+      <li>
+        <label class="label-checkbox item-content">
+          <input type="checkbox" value="s_pay_husky" {% if s_pay_husky %} checked {% endif %}>
+          <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+          <div class="item-inner">
+            <div class="item-title">Husky Card</div>
+          </div>
+        </label>
+      </li>
+      <li>
+        <label class="label-checkbox item-content">
+          <input type="checkbox" value="s_pay_dining" {% if s_pay_dining %} checked {% endif %}>
+          <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+          <div class="item-inner">
+            <div class="item-title">Dining Card</div>
+          </div>
+        </label>
+      </li>
+      <li>
+        <label class="label-checkbox item-content">
+          <input type="checkbox" value="s_pay_visa" {% if s_pay_visa %} checked {% endif %}>
+          <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+          <div class="item-inner">
+            <div class="item-title">Visa</div>
+          </div>
+        </label>
+      </li>
+      <li>
+        <label class="label-checkbox item-content">
+          <input type="checkbox" value="s_pay_mastercard" {% if s_pay_mastercard %} checked {% endif %}>
+          <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+          <div class="item-inner">
+            <div class="item-title">Mastercard</div>
+          </div>
+        </label>
+      </li>
+    </ul>
+  </div>
 
-    {% if request.is_and %}
-    <div class="content-block" style="display:none;">
-    	<div class="content-block-inner">
-            <p class="buttons-row">
-                <a href="javascript:void(0)" id="filter_submit" class="button button-fill button-raised">Submit</a>
-                <a href="javascript:void(0)" id="filter_clear" class="button button-fill button-raised">Clear</a>
-            </p>
-    	</div>
+  {% if request.user_agent.os.family == 'Android' %}
+  <div class="content-block" style="display:none;">
+    <div class="content-block-inner">
+      <p class="buttons-row">
+        <a href="javascript:void(0)" id="filter_submit" class="button button-fill button-raised">Submit</a>
+        <a href="javascript:void(0)" id="filter_clear" class="button button-fill button-raised">Clear</a>
+      </p>
     </div>
-    {% endif %}
+  </div>
+  {% endif %}
 
-    {% if request.is_ios %}
-    <div class="content-block" style="display:none;">
-        <div class="row">
-            <div class="col-50"><a href="javascript:void(0)" id="filter_submit" class="button button-big button-fill">Submit</a></div>
-            <div class="col-50"><a href="javascript:void(0)" id="filter_clear" class="button button-big button-fill">Clear</a></div>
-        </div>
+  {% if request.user_agent.os.family == 'iOS' %}
+  <div class="content-block" style="display:none;">
+    <div class="row">
+      <div class="col-50"><a href="javascript:void(0)" id="filter_submit"
+          class="button button-big button-fill">Submit</a></div>
+      <div class="col-50"><a href="javascript:void(0)" id="filter_clear" class="button button-big button-fill">Clear</a>
+      </div>
     </div>
-    {% endif %}
+  </div>
+  {% endif %}
 
 </form>
 
-<script> var LIST_PAGE = false; </script>
+<script>
+  var LIST_PAGE = false;
+</script>
 
 {% endblock %}

@@ -1,6 +1,7 @@
 {% extends "scout/base.html" %}
 {% load staticfiles %}
 {% load scout_filters %}
+{% load user_agents %}
 
 {% block title %}{{spot.item.name}}{% endblock %}
 
@@ -143,7 +144,7 @@
                 {% endif %}
 
                 {% if spot.item.is_stf %}
-                <div>This item is funded by 
+                <div>This item is funded by
                     <br>
                     <a href="https://uwstf.org/" target="_blank">Student Technology Fee</a>
                 </div>
@@ -165,7 +166,7 @@
                     </div>
                 </div>
 
-                {% if request.is_mobile %}
+                {% if request|is_mobile %}
                 <h4 class="visually-hidden">Map</h4>
                 <div class="scout-spot-map">
                     <div id="tech_detail_map" data-mobile="true" style="height:100%;"></div>

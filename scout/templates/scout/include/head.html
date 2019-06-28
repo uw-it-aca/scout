@@ -1,5 +1,6 @@
 {% load staticfiles %}
 {% load compress %}
+{% load user_agents %}
 
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -32,7 +33,7 @@
 <meta name="msapplication-TileImage" content="{% static "scout/ico/mstile-144x144.png" %}">
 <meta name="theme-color" content="#ffffff">
 
-{% if request.is_mobile %}
+{% if request|is_mobile %}
     <!-- critical (above the fold styles) -->
     {% compress css inline %}
     <link rel="stylesheet" href="{% static "vendor/css/normalize-3.0.1.min.css" %}">
@@ -47,7 +48,7 @@
 
 {% endif %}
 
-{% if request.is_tablet %}
+{% if request|is_tablet %}
     <!-- critical (above the fold styles) -->
     {% compress css inline %}
     <!-- inline -->

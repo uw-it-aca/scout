@@ -22,10 +22,10 @@ def google_analytics(request):
 
 def is_desktop(request):
 
-    desktopapp = not request.is_mobile and not request.is_tablet
+    dk = not request.user_agent.is_mobile and not request.user_agent.is_tablet
 
     return {
-        'is_desktop': desktopapp
+        'is_desktop': dk
     }
 
 

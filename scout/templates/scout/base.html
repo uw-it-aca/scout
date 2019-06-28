@@ -1,5 +1,6 @@
 {% load staticfiles %}
 {% load scout_filters %}
+{% load user_agents %}
 
 <!DOCTYPE html>
 <html class="no-js" lang="en">
@@ -9,13 +10,13 @@
         {% include "scout/include/head.html" %}
     </head>
 
-    <body {% if request.is_mobile or request.is_tablet %}data-mobile="true"{% endif %}>
+    <body {% if request|is_mobile or request|is_tablet %}data-mobile="true"{% endif %}>
 
         <div class="scout-primary">
 
             <div id="header" class="scout-header">
 
-                {% if request.is_mobile or request.is_tablet %}
+                {% if request|is_mobile or request|is_tablet %}
                 <h1 style="background: url('{% static "scout/img/scout-small.png" %}') no-repeat 12px; background-size:35px;">
                 {% else %}
                 <h1 style="background: url('{% static "scout/img/scout-small.png" %}') no-repeat 8px; background-size:38px;">
@@ -58,7 +59,7 @@
 
         </div>
 
-        {% if not request.is_mobile %}
+        {% if not request|is_mobile %}
         <!-- desktop only extra container -->
         <div class="scout-secondary" aria-hidden="true">
             {% block secondary_content %}{% endblock %}
