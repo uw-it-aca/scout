@@ -1,6 +1,6 @@
 // android initialization
 
-$(document).on('turbolinks:load', function() {
+document.addEventListener("turbolinks:load", function() {
 
     // track visits in google analytics
     try{
