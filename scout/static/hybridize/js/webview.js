@@ -1,7 +1,5 @@
 var WebView = {
-
   render: function(hlat, hlng) {
-
     // make sure user coords are passed.. if not, specify default location
     if (hlat && hlng) {
       // update location display
@@ -13,13 +11,13 @@ var WebView = {
     }
 
     // initialize webview of main landing pages
-    let detailRe = new RegExp('\/h\/[a-z]+\/[a-z]+\/[0-9]+\/');
-    let foodRe = new RegExp('\/h\/[a-z]+\/food\/');
-    let studyRe = new RegExp('\/h\/[a-z]+\/study\/');
-    let techRe = new RegExp('\/h\/[a-z]+\/tech\/');
-    let discoverRe = new RegExp('\/h\/[a-z]+\/');
+    let detailRe = new RegExp("/h/[a-z]+/[a-z]+/[0-9]+/");
+    let foodRe = new RegExp("/h/[a-z]+/food/");
+    let studyRe = new RegExp("/h/[a-z]+/study/");
+    let techRe = new RegExp("/h/[a-z]+/tech/");
+    let discoverRe = new RegExp("/h/[a-z]+/");
 
-    switch(true) {
+    switch (true) {
       case detailRe.test(location.pathname):
         break;
       case foodRe.test(location.pathname):
@@ -41,33 +39,27 @@ var WebView = {
         Discover.init_cards(hlat, hlng);
         break;
     }
-
   },
 
   initialize: function() {
-
     var message = "renderWebview";
 
     // get the device type
     var device = $("body").data("device");
 
     try {
-        // check device and handle js bridge accordingly
-        if (device == "android") {
-            scoutBridge.setParams(message);
-        } else if (device == 'ios') {
-            webkit.messageHandlers.scoutBridge.postMessage(message);
-        }
-
-    } catch(err) {
-        // no bridge could be found (usually when on localhost webview only)
-        // call the getNativeLocation function that normally gets called
-        // from native apps only
-        Geolocation.getNativeLocation();
-        //Geolocation.getNativeLocation("48.284691", "-116.590854");
-
+      // check device and handle js bridge accordingly
+      if (device == "android") {
+        scoutBridge.setParams(message);
+      } else if (device == "ios") {
+        webkit.messageHandlers.scoutBridge.postMessage(message);
+      }
+    } catch (err) {
+      // no bridge could be found (usually when on localhost webview only)
+      // call the getNativeLocation function that normally gets called
+      // from native apps only
+      Geolocation.getNativeLocation();
+      //Geolocation.getNativeLocation("48.284691", "-116.590854");
     }
-
-  },
-
+  }
 };

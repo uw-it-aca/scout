@@ -23,7 +23,7 @@ var List = {
           // display the food list and reorder and add distances
           $("#study_list").html(results);
 
-          List.add_distances("scout-list-item","spot", hlat, hlng);
+          List.add_distances("scout-list-item", "spot", hlat, hlng);
           List.add_distances("scout-list-building", "building", hlat, hlng);
           List.order_list("scout-list-building", "scout_study_list", true);
 
@@ -92,7 +92,6 @@ var List = {
         type: "GET",
         accepts: { html: "text/html" },
         success: function(results) {
-          
           // display the food list and reorder and add distances
           $("#food_list").html(results);
           List.add_distances("scout-list-item", "spot", hlat, hlng);
@@ -122,7 +121,11 @@ var List = {
       var lng = $(spot).attr("data-" + type + "-lng");
 
       var spot_latlng = Geolocation.get_latlng_from_coords(lat, lng);
-      var distance = Geolocation.get_distance_from_position(spot_latlng, hlat, hlng);
+      var distance = Geolocation.get_distance_from_position(
+        spot_latlng,
+        hlat,
+        hlng
+      );
 
       $(spot).attr("data-spot-distance", distance);
       $($(spot).find(".distance-number")[0]).html(distance);
