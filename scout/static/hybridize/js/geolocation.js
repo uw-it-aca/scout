@@ -47,7 +47,9 @@ var Geolocation = {
         zoom: 21
     }, function (result) {
         console.log(result);
-        $("#hybrid_location_bridge").html(result.display_name);
+
+        var geoDisplay = result.address.road + ", " + result.address.city
+        $("#hybrid_location_bridge").html(geoDisplay);
     });
 
   }
