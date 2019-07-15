@@ -35,5 +35,21 @@ var Geolocation = {
   getNativeLocation: function(hlat, hlng) {
     // render the webview
     WebView.render(hlat, hlng);
+  },
+
+  getReverseGeocodingData(hlat, hlng) {
+    
+    // perform reverse geocoding using openstreetmap.org
+    $.getJSON('https://nominatim.openstreetmap.org/reverse', {
+        lat: hlat,
+        lon: hlng,
+        format: 'json',
+        zoom: 21
+    }, function (result) {
+        console.log(result);
+        $("#hybrid_location_bridge").html(result.display_name);
+    });
+
   }
+
 };

@@ -3,7 +3,9 @@ var WebView = {
     // make sure user coords are passed.. if not, specify default location
     if (hlat && hlng) {
       // update location display
-      $("#hybrid_location_bridge").html(hlat + ",   " + hlng);
+      //$("#hybrid_location_bridge").html(hlat + ",   " + hlng);
+
+      Geolocation.getReverseGeocodingData(hlat, hlng);
       $("#user_location").show();
     } else {
       $("#geodemo").html("Default location");
@@ -59,7 +61,7 @@ var WebView = {
       // call the getNativeLocation function that normally gets called
       // from native apps only
       Geolocation.getNativeLocation();
-      //Geolocation.getNativeLocation("48.284691", "-116.590854");
+      //Geolocation.getNativeLocation("47.6580207", "-122.3075315");
     }
   }
 };
