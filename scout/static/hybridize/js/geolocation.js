@@ -64,6 +64,12 @@ var Geolocation = {
     }, function (result) {
       console.log(result);
 
+      var streetDisplay = result.address.road;
+      // if undefined... use commercial instead (user inside building)
+      if (streetDisplay == undefined) {
+        streetDisplay = result.address.commercial;
+      }
+
       // set city based on api result
       var cityDisplay = result.address.city
 
@@ -73,7 +79,8 @@ var Geolocation = {
       }
       
       // display city/county in location bar
-      var geoDisplay = result.address.road + ", " + cityDisplay
+      var geoDisplay = streetDisplay + ", " + cityDisplay
+      
       $("#hybrid_location_bridge").html(geoDisplay);
 
     });
