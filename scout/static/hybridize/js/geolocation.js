@@ -64,8 +64,18 @@ var Geolocation = {
     }, function (result) {
       console.log(result);
 
-      var geoDisplay = result.address.road + ", " + result.address.city
+      // set city based on api result
+      var cityDisplay = result.address.city
+
+      // if undefined... use county instead
+      if (cityDisplay == undefined) {
+        cityDisplay = result.address.county;
+      }
+      
+      // display city/county in location bar
+      var geoDisplay = result.address.road + ", " + cityDisplay
       $("#hybrid_location_bridge").html(geoDisplay);
+
     });
 
   }
