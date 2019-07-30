@@ -136,6 +136,12 @@ body {
     width: auto;
   }
 }
+
+// override android title bolding 
+.list-block.media-list .item-title {
+  font-weight: 600;
+}
+
 // helpers
 
 .visually-hidden {
