@@ -64,23 +64,10 @@ var Geolocation = {
     }, function (result) {
       console.log(result);
 
-      var streetDisplay = result.address.road;
-      // if undefined... use commercial instead (user inside building)
-      if (streetDisplay == undefined) {
-        streetDisplay = result.address.commercial;
-      }
+      // display the user location via reverse geolocation lookup
+      var houseOffset = result.address.house_number == undefined ? 0 : 1;
+      var geoDisplay = result.display_name.split(", ").slice(0 + houseOffset,3 + houseOffset).join(", ");
 
-      // set city based on api result
-      var cityDisplay = result.address.city
-
-      // if undefined... use county instead
-      if (cityDisplay == undefined) {
-        cityDisplay = result.address.county;
-      }
-      
-      // display city/county in location bar
-      var geoDisplay = streetDisplay + ", " + cityDisplay
-      
       $("#hybrid_location_bridge").html(geoDisplay);
 
     });
