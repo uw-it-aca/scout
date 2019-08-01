@@ -35,5 +35,43 @@ var Geolocation = {
   getNativeLocation: function(hlat, hlng) {
     // render the webview
     WebView.render(hlat, hlng);
+  },
+
+  getReverseGeocodingData(hlat, hlng) {
+    
+    // perform reverse geocoding using google maps geocoding api
+    /*
+    var latlng = new google.maps.LatLng(hlat, hlng);
+    var geocoder = new google.maps.Geocoder();
+    geocoder.geocode({ 'latLng': latlng }, function (results, status) {
+      if (status !== google.maps.GeocoderStatus.OK) {
+        console.log(status);
+      }
+      // This is checking to see if the Geoeode Status is OK before proceeding
+      if (status == google.maps.GeocoderStatus.OK) {
+        console.log(results);
+        var address = (results[0].formatted_address);
+      }
+    });
+    */
+
+    // perform reverse geocoding using openstreetmap.org nominatim api
+    $.getJSON('https://nominatim.openstreetmap.org/reverse', {
+      lat: hlat,
+      lon: hlng,
+      format: 'json',
+      zoom: 21
+    }, function (result) {
+      console.log(result);
+
+      // display the user location via reverse geolocation lookup
+      var houseOffset = result.address.house_number == undefined ? 0 : 1;
+      var geoDisplay = result.display_name.split(", ").slice(0 + houseOffset,3 + houseOffset).join(", ");
+
+      $("#hybrid_location_bridge").html(geoDisplay);
+
+    });
+
   }
+
 };
