@@ -364,3 +364,12 @@ html:not(.watch-active-state) .floating-button.color-red:active,
 .ripple-red .ripple-wave {
   background-color: rgba(244, 67, 54, 0.3);
 }
+
+
+/*** force text wrapping ***/
+.list-block .item-title { 
+  white-space: normal !important;
+}
+.list-block .item-subtitle {
+  white-space: normal !important;
+}
