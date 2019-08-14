@@ -165,3 +165,11 @@ button.link {
   font-size: 17px;
   color: $maincolor;
 }
+
+/*** force text wrapping ***/
+.list-block .item-title { 
+  white-space: normal !important;
+}
+.list-block .item-subtitle {
+  white-space: normal !important;
+}

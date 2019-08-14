@@ -8,8 +8,8 @@
     <div class="card-content-inner">
       <div class="row no-gutter">
         <div class="col-66">
-          <span id="food_filter_text_holder" class="visually-hidden">
-            Filtering by: <span id="filter_label_text">--</span>
+          <span id="food_filter_text_holder">
+            Filtering by: <span id="filter_label_text">All Spaces</span>
           </span>
         </div>
         <div class="col-33" style="text-align:right;">
@@ -51,7 +51,7 @@
               <div class="item-title">{{ spot.name }}</div>
             </div>
             <div class="item-subtitle">
-              <div style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+              <div>
                 {% if spot.building_name %}{{ spot.building_name }}{% else %} <span style="color:red;">missing
                   building_name</span> {% endif %}</div>
 
