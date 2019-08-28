@@ -1,6 +1,7 @@
 {% extends "scout/base.html" %}
 {% load staticfiles %}
 {% load scout_filters %}
+{% load user_agents %}
 
 {% block title %}{{spot.name}}{% endblock %}
 
@@ -170,7 +171,7 @@
 
                 </div>
 
-                {% if request.is_mobile %}
+                {% if request|is_mobile %}
                 <h4 class="visually-hidden">Map</h4>
                 <div class="scout-spot-map">
                     <div id="food_detail_map" data-mobile="true" style="height:100%;"></div>

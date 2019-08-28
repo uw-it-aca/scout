@@ -1,207 +1,77 @@
 var Geolocation = {
+  get_latlng_from_coords: function(lat, lng) {
+    return new google.maps.LatLng(lat, lng);
+  },
 
-    // drumheller fountain
-    // default_location: { latitude: 47.653811, longitude: -122.307815 },
+  get_client_latlng: function(hlat, hlng) {
+    var lat, lng;
 
-    /**
-    campus_locations: function(campus){
+    // make sure user coords are passed
+    if (hlat && hlng) {
+      //user coords passed to geolocation
+      lat = hlat;
+      lng = hlng;
+    } else {
+      // using default coords on geolocation
+      lat = $("body").data("campus-latitude");
+      lng = $("body").data("campus-longitude");
+    }
 
-        var locations = window.campus_locations;
-        $.event.trigger(Geolocation.location_updating);
-        if(locations !== undefined && locations[campus] !== undefined){
-            Geolocation.default_location.latitude = locations[campus]["latitude"];
-            Geolocation.default_location.longitude = locations[campus]["longitude"];
-        }
-    },
-    **/
+    return Geolocation.get_latlng_from_coords(lat, lng);
+  },
 
-    // location_changed:  {"type": "location_changed"},
+  get_distance_from_position: function(item_latlng, hlat, hlng) {
+    // Returns distance in miles, rounded to 2 decimals
+    var current_latlng = Geolocation.get_client_latlng(hlat, hlng);
+    var distance = google.maps.geometry.spherical.computeDistanceBetween(
+      current_latlng,
+      item_latlng
+    );
+    var miles_per_meter = 0.000621371;
+    distance = (distance * miles_per_meter).toFixed(2);
+    return distance;
+  },
 
-    // location_updating:  {"type": "location_updating"},
+  getNativeLocation: function(hlat, hlng) {
+    // render the webview
+    WebView.render(hlat, hlng);
+  },
 
-    // geolocation_status: { watchid: undefined },
-
-    /**
-    update_location: function () {
-
-        // current user location is given more precedence over campus location.
-        if (!Geolocation.get_is_using_location()) {
-            Geolocation.set_campus_location();
-        } else {
-
-            // this will be called directly from native
-            //Geolocation.query_client_location();
-        }
-
-        if(!window.has_set_loc){
-            // Fire this event so pages can handle location on page load
-            $.event.trigger(Geolocation.location_changed);
-        }
-        window.has_set_loc = true;
-
-    },
-
-    get_is_using_location: function () {
-        return (localStorage.getItem("is_using_location") === 'true');
-    },
-
-    set_is_using_location: function (is_using_location) {
-        // Setting should be bool
-        // Persists between sessions
-        localStorage.setItem("is_using_location", is_using_location);
-        Geolocation.update_location();
-    },
-
-    set_location_type: function (type) {
-        // Values: 'default', 'supplied', 'user'
-        // Session only
-        sessionStorage.setItem("location_type", type);
-    },
-
-    get_location_type: function () {
-         return sessionStorage.getItem("location_type") || 'default';
-     },
-
-    set_client_location: function(position) {
-        sessionStorage.setItem("lat", position.coords.latitude);
-        sessionStorage.setItem("lng", position.coords.longitude);
-        Geolocation.set_location_type("user");
-        $.event.trigger(Geolocation.location_changed);
-    },
-    **/
-
-    get_latlng_from_coords: function(lat, lng) {
-        return new google.maps.LatLng(lat, lng);
-    },
-
-    get_client_latlng: function () {
-
-        // if the lat/lng is passed in query params... it's user location_changed
-        // else.. just use the lat/lng in the data-attribute (dafault campus location)
-
-        var lat, lng;
-
-        if ( $("body").data("user-latitude") && $("body").data("user-longitude") ) {
-            lat = $("body").data("user-latitude");
-            lng = $("body").data("user-longitude");
-        } else {
-            lat = $("body").data("campus-latitude");
-            lng = $("body").data("campus-longitude");
-        }
-
-        return Geolocation.get_latlng_from_coords(lat, lng);
-    },
-
+  getReverseGeocodingData(hlat, hlng) {
+    
+    // perform reverse geocoding using google maps geocoding api
     /*
-    handle_watch_position: function (position) {
-       if(Geolocation.get_is_using_location()){
-           var new_position = Geolocation.get_latlng_from_coords(position.coords.latitude, position.coords.longitude);
-           var distance = Geolocation.get_distance_from_position(new_position);
-           Geolocation.set_client_location(position);
-       }
-    },
+    var latlng = new google.maps.LatLng(hlat, hlng);
+    var geocoder = new google.maps.Geocoder();
+    geocoder.geocode({ 'latLng': latlng }, function (results, status) {
+      if (status !== google.maps.GeocoderStatus.OK) {
+        console.log(status);
+      }
+      // This is checking to see if the Geoeode Status is OK before proceeding
+      if (status == google.maps.GeocoderStatus.OK) {
+        console.log(results);
+        var address = (results[0].formatted_address);
+      }
+    });
     */
 
-    // function called from native...
-    /**
-    send_client_location: function(user_lat, user_lng) {
+    // perform reverse geocoding using openstreetmap.org nominatim api
+    $.getJSON('https://nominatim.openstreetmap.org/reverse', {
+      lat: hlat,
+      lon: hlng,
+      format: 'json',
+      zoom: 21
+    }, function (result) {
+      console.log(result);
 
-        var position =  { coords:
-            {
-                latitude: user_lat,
-                longitude: user_lng
-            }
-        };
+      // display the user location via reverse geolocation lookup
+      var houseOffset = result.address.house_number == undefined ? 0 : 1;
+      var geoDisplay = result.display_name.split(", ").slice(0 + houseOffset,3 + houseOffset).join(", ");
 
-        //Filter.call_js_bridge("send_client_location called: " + position);
-        Geolocation.set_client_location(position);
-    },
-    **/
+      $("#hybrid_location_bridge").html(geoDisplay);
 
-    /**
-    stop_watching_location: function(){
-        var watchid = Geolocation.geolocation_status.watchid;
-        if(watchid !== undefined){
-            navigator.geolocation.clearWatch(watchid);
-            Geolocation.geolocation_status.watchid = undefined;
-        }
-    },
-    **/
+    });
 
-    /**
-    set_campus_location: function() {
-
-        // get the campus from the url
-        //var campus = window.location.pathname.split('/')[1]
-        var campus = $("body").data("campus");
-
-        Geolocation.campus_locations(campus);
-        sessionStorage.setItem('lat', Geolocation.default_location.latitude);
-        sessionStorage.setItem('lng', Geolocation.default_location.longitude);
-        Geolocation.set_location_type("default");
-        $.event.trigger(Geolocation.location_changed);
-    },
-    **/
-
-    get_distance_from_position: function (item_latlng) {
-        // Returns distance in miles, rounded to 2 decimals
-        var current_latlng = Geolocation.get_client_latlng();
-        var distance = google.maps.geometry.spherical.computeDistanceBetween(current_latlng, item_latlng);
-        var miles_per_meter = 0.000621371;
-        distance = (distance * miles_per_meter).toFixed(2);
-        return distance;
-
-    },
-
-    /***
-    display_location_status: function () {
-
-        if (Geolocation.get_location_type() === "default") {
-            $("#default_position").show();
-            $("#default_position").attr("aria-hidden", "false");
-
-            $("#shared_position").hide();
-            $("#shared_position").attr("aria-hidden", "true");
-        } else {
-            $("#default_position").hide();
-            $("#default_position").attr("aria-hidden", "true");
-
-            $("#shared_position").show();
-            $("#shared_position").attr("aria-hidden", "false");
-        }
-    },
-
-    init_location_toggles: function() {
-        $("#use_location").click(function(e) {
-            e.preventDefault();
-            $.event.trigger(Geolocation.location_updating);
-            Geolocation.set_is_using_location(true);
-            $("#default_position").hide();
-            $("#default_position").attr("aria-hidden", "true");
-
-            $("#shared_position").show();
-            $("#shared_position").attr("aria-hidden", "false");
-        });
-
-        $("#forget_location").click(function(e) {
-            e.preventDefault();
-            $.event.trigger(Geolocation.location_updating);
-            Geolocation.set_is_using_location(false);
-            Geolocation.stop_watching_location();
-            $("#default_position").show();
-            $("#default_position").attr("aria-hidden", "false");
-
-            $("#shared_position").hide();
-            $("#shared_position").attr("aria-hidden", "true");
-        });
-
-        $("#geolocation_error").click(function(e) {
-            e.preventDefault();
-            $(this).removeClass("open");
-            $(this).addClass("closed");
-        });
-
-    }
-    **/
+  }
 
 };

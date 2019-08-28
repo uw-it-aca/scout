@@ -13,14 +13,14 @@ setup(
     include_package_data=True,
     install_requires = [
         'setuptools',
-        'django<=1.8.6',
+        'django>=1.8.19,<1.9',
         'django_compressor',
-        'django_mobileesp',
         'pytz',
         'beautifulsoup4',
         'html5lib==0.9999999',
         'requests',
-        'django-pyscss'
+        'django-pyscss',
+        'django-user-agents'
     ],
     license='Apache License, Version 2.0',  # example license
     description='A Django app for finding resources on campus.',

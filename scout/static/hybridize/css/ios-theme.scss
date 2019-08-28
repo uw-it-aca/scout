@@ -1,6 +1,6 @@
 /*** sass variables ***/
 
-$maincolor: #514DA3; // scout purple
+$maincolor: #514da3; // scout purple
 
 /** framework7 theme classes ***/
 
@@ -17,7 +17,7 @@ a.color-red {
   background-color: $maincolor;
 }
 
-.label-switch input[type=checkbox]:checked+.checkbox {
+.label-switch input[type="checkbox"]:checked + .checkbox {
   background-color: $maincolor;
 }
 
@@ -32,7 +32,7 @@ html:not(.watch-active-state) .theme-custom .button:not(.button-fill):active,
 .color-red.button:not(.button-fill).active-state,
 .color-red.buttons-row .button.active-state,
 .theme-custom .button:not(.button-fill).active-state {
-  background-color: rgba($maincolor, 0.15)
+  background-color: rgba($maincolor, 0.15);
 }
 .color-red.button:not(.button-fill).active,
 .color-red.buttons-row .button.active,
@@ -103,8 +103,16 @@ i.icon-bars.theme-custom,
 .range-slider.theme-custom input[type="range"]::-webkit-slider-thumb:before {
   background-color: $maincolor;
 }
-.theme-custom label.label-checkbox input[type="checkbox"]:checked + .item-media i.icon-form-checkbox,
-.theme-custom label.label-checkbox input[type="radio"]:checked + .item-media i.icon-form-checkbox {
+.theme-custom
+  label.label-checkbox
+  input[type="checkbox"]:checked
+  + .item-media
+  i.icon-form-checkbox,
+.theme-custom
+  label.label-checkbox
+  input[type="radio"]:checked
+  + .item-media
+  i.icon-form-checkbox {
   background-color: $maincolor;
 }
 .theme-custom label.label-radio input[type="checkbox"]:checked ~ .item-inner,
@@ -150,10 +158,18 @@ a.bg-red,
 /*** custom link button ***/
 
 button.link {
-	-webkit-appearance: none;
-	border: none;
-	background: transparent;
-	padding: 0;
-	font-size: 17px;
-	color: $maincolor;
+  -webkit-appearance: none;
+  border: none;
+  background: transparent;
+  padding: 0;
+  font-size: 17px;
+  color: $maincolor;
+}
+
+/*** force text wrapping ***/
+.list-block .item-title { 
+  white-space: normal !important;
+}
+.list-block .item-subtitle {
+  white-space: normal !important;
 }
