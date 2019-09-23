@@ -105,7 +105,6 @@ var Filter = {
               $("#buildings_toggle")
                 .find("input[value=building_list]")
                 .prop("checked", true);
-              $("#building_select").removeClass("visually-hidden");
             }
           }
           if (param_key == "open_now") {
