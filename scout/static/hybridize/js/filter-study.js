@@ -106,7 +106,9 @@ var Study_Filter = {
   },
 
   init_events: function() {
-    $("#hours_toggle input").change(function() {
+    
+    $("#hours_toggle input:radio[name=optionsHours]").change(function() {
+
       if ($(this).val() == "hours_list") {
         $("#hours_list").removeClass("visually-hidden");
       } else {
@@ -115,6 +117,7 @@ var Study_Filter = {
     });
 
     $("#buildings_toggle input").change(function() {
+
       if ($(this).val() == "building_list") {
         $("#building_select").removeClass("visually-hidden");
       } else {

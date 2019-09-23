@@ -30,7 +30,7 @@ var WebView = {
       case studyRe.test(location.pathname):
         List.init(hlat, hlng);
         Filter.init();
-        //Filter.init_events();
+        Study_Filter.init_events();
         break;
       case techRe.test(location.pathname):
         List.init(hlat, hlng);
