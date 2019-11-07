@@ -17,11 +17,11 @@ document.addEventListener("turbolinks:load", function() {
   });
 
   // initialize webview on main pages only
-  let detailRe = new RegExp("/h/[a-z]+/[a-z]+/[0-9]+/");
-  let foodRe = new RegExp("/h/[a-z]+/food/");
-  let studyRe = new RegExp("/h/[a-z]+/study/");
-  let techRe = new RegExp("/h/[a-z]+/tech/");
-  let discoverRe = new RegExp("/h/[a-z]+/");
+  var detailRe = new RegExp("/h/[a-z]+/[a-z]+/[0-9]+/");
+  var foodRe = new RegExp("/h/[a-z]+/food/");
+  var studyRe = new RegExp("/h/[a-z]+/study/");
+  var techRe = new RegExp("/h/[a-z]+/tech/");
+  var discoverRe = new RegExp("/h/[a-z]+/");
 
   switch (true) {
     case detailRe.test(location.pathname):
