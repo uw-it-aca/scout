@@ -37,24 +37,7 @@ var Geolocation = {
     WebView.render(hlat, hlng);
   },
 
-  getReverseGeocodingData(hlat, hlng) {
-    
-    // perform reverse geocoding using google maps geocoding api
-    /*
-    var latlng = new google.maps.LatLng(hlat, hlng);
-    var geocoder = new google.maps.Geocoder();
-    geocoder.geocode({ 'latLng': latlng }, function (results, status) {
-      if (status !== google.maps.GeocoderStatus.OK) {
-        console.log(status);
-      }
-      // This is checking to see if the Geoeode Status is OK before proceeding
-      if (status == google.maps.GeocoderStatus.OK) {
-        console.log(results);
-        var address = (results[0].formatted_address);
-      }
-    });
-    */
-
+  getReverseGeocodingData: function(hlat, hlng) {
     // perform reverse geocoding using openstreetmap.org nominatim api
     $.getJSON('https://nominatim.openstreetmap.org/reverse', {
       lat: hlat,
