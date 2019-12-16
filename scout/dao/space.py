@@ -1,5 +1,5 @@
-from spotseeker_restclient.spotseeker import Spotseeker
-from spotseeker_restclient.exceptions import DataFailureException
+from uw_spotseeker import Spotseeker
+from restclients_core.exceptions import DataFailureException
 import datetime
 import pytz
 import random
@@ -202,7 +202,7 @@ def adjust_time_by_offset(time, minutes):
 def get_spot_by_id(spot_id):
     spot_client = Spotseeker()
     try:
-        res = spot_client.get_spot_by_id(spot_id)
+        res = spot_client.get_spot_by_id(int(spot_id))
     except DataFailureException:
         return None
     return process_extended_info(res)
@@ -429,6 +429,7 @@ def _get_names_for_extended_info(prefix, mapping, info):
                 names.append(mapping[obj.key])
             except KeyError:
                 pass
+    names.sort()
     return names
 
 

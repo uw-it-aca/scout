@@ -5,8 +5,9 @@ from django.test.utils import override_settings
 from scout.dao.space import get_spot_by_id, get_spots_by_filter
 from scout.dao.item import _filter_spot_items, get_filtered_items, \
     get_item_count
+from uw_spotseeker.dao import Spotseeker_DAO
 
-DAO = "spotseeker_restclient.dao_implementation.spotseeker.File"
+DAO = 'Mock'
 
 
 @override_settings(SPOTSEEKER_DAO_CLASS=DAO)
