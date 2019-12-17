@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.test.utils import override_settings
 
-DAO = "spotseeker_restclient.dao_implementation.spotseeker.File"
+DAO = 'Mock'
 
 
 @override_settings(SPOTSEEKER_DAO_CLASS=DAO)
