@@ -23,10 +23,10 @@ Use pip to install the app as editable from GitHub:
 pip install -e git+https://github.com/uw-it-aca/scout.git#egg=scout
 ```
 
-You'll also need [spotseeker_client](https://github.com/uw-it-aca/spotseeker_client)
+You'll also need [uw-restclients-spotseeker](https://github.com/uw-it-aca/uw-restclients-spotseeker)
 
 ```
-pip install -e git+https://github.com/uw-it-aca/spotseeker_client.git#egg=spotseeker_restclient
+pip install -e git+https://github.com/uw-it-aca/uw-restclients-spotseeker.git#egg=uw_restclients_spotseeker
 ```
 
 In settings.py:
@@ -37,7 +37,6 @@ Add scout to your INSTALLED_APPS:
 INSTALLED_APPS = (
     ...
     'scout',
-    'spotseeker_restclient',
     'compressor',
     ...
 )
@@ -90,20 +89,6 @@ Add STATIC_ROOT:
 STATIC_ROOT = 'static/'
 ```
 
-Add import statement and  DETECT_USER_AGENTS:
-
-```
-from django_mobileesp.detector import mobileesp_agent as agent
-
-DETECT_USER_AGENTS = {
-     'is_tablet' : agent.detectTierTablet,
-     'is_mobile': agent.detectMobileQuick,
-     'is_and': agent.detectAndroid,
-     'is_ios': agent.detectIos,
-     'is_win': agent.detectWindowsPhone,
-}
-```
-
 Add the following compress settings:
 
 ```
@@ -122,13 +107,13 @@ COMPRESS_JS_FILTERS = [
 ]
 ```
 
-Add details for connection to spotseeker_server. Change 'File' to 'Live' if you want to connect to a live spotseeker_server instead of using the file-based mock data (File-based mocks are sufficient for unit tests, but do not match any of the queries the app will make:
+Add details for connection to spotseeker_server. Change 'Mock' to 'Live' if you want to connect to a live spotseeker_server instead of using the file-based mock data (File-based mocks are sufficient for unit tests, but do not match any of the queries the app will make:
 
 ```
 SPOTSEEKER_HOST = ''
 SPOTSEEKER_OAUTH_KEY = ''
 SPOTSEEKER_OAUTH_SECRET = ''
-SPOTSEEKER_DAO_CLASS = 'spotseeker_restclient.dao_implementation.spotseeker.File'
+SPOTSEEKER_DAO_CLASS = 'Mock'
 ```
 Additional settings:
 
