@@ -9,12 +9,14 @@ from scout.dao.space import add_foodtype_names_to_spot, add_cuisine_names, \
     get_spot_by_id, group_spots_by_building, get_avg_latlng_for_spots,\
     add_latlng_to_building, get_spots_by_filter, adjust_time_by_offset, \
     _get_period_filter
-from spotseeker_restclient.spotseeker import Spotseeker
 from scout.dao import space
-from spotseeker_restclient.exceptions import DataFailureException
-from spotseeker_restclient.models.spot import Spot, SpotAvailableHours
+from uw_spotseeker.models import Spot, SpotAvailableHours
+from uw_spotseeker import Spotseeker
+from uw_spotseeker.dao import Spotseeker_DAO
+from restclients_core.exceptions import DataFailureException
 
-DAO = "spotseeker_restclient.dao_implementation.spotseeker.File"
+
+DAO = 'Mock'
 
 
 @override_settings(SPOTSEEKER_DAO_CLASS=DAO)
@@ -54,8 +56,8 @@ class SpaceDAOTest(TestCase):
         sc = Spotseeker()
         spot = sc.get_spot_by_id(1)
         spot = add_payment_names(spot)
-        self.assertEqual(spot.payment_names, ["Cash", "Husky Card",
-                                              "Mastercard", "Dining Account",
+        self.assertEqual(spot.payment_names, ["Cash", "Dining Account",
+                                              "Husky Card", "Mastercard",
                                               "Visa"])
 
     def test_add_additional_info(self):
