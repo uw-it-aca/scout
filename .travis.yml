@@ -12,9 +12,9 @@ before_script:
   - pip install -r requirements.txt
   - cp sampleproj/manage.py manage.py
   - python manage.py migrate --noinput
-  - npm install -g mocha@15.2.0
+  - npm install -g mocha
   - npm install jquery
-  - npm install jsdom
+  - npm install jsdom@15.2.0
   - pip list
 script:
   - pycodestyle scout/ --exclude=migrations
