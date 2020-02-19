@@ -392,8 +392,8 @@ def spot_image_view(request, image_id, spot_id):
     width = request.GET.get('width', None)
     try:
         resp, content = get_spot_image(spot_id, image_id, width)
-        etag = resp.get('etag', None)
-        response = HttpResponse(content, content_type=resp['content-type'])
+        etag = resp.headers.get('etag', None)
+        response = HttpResponse(content, content_type=resp.headers['content-type'])
         response['etag'] = etag
         return response
     except Exception:
@@ -404,8 +404,8 @@ def item_image_view(request, image_id, item_id):
     width = request.GET.get('width', None)
     try:
         resp, content = get_item_image(item_id, image_id, width)
-        etag = resp.get('etag', None)
-        response = HttpResponse(content, content_type=resp['content-type'])
+        etag = resp.headers.get('etag', None)
+        response = HttpResponse(content, content_type=resp.headers['content-type'])
         response['etag'] = etag
         return response
     except Exception:
