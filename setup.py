@@ -14,9 +14,9 @@ setup(
     install_requires = [
         'setuptools',
         'django>=1.8.19,<1.9',
-        'django_compressor',
+        'django_compressor<=1.6',
         'pytz',
-        'beautifulsoup4',
+        'beautifulsoup4<4.7.0',
         'html5lib==0.9999999',
         'requests',
         'django-pyscss',

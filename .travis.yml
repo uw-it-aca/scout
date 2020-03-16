@@ -14,7 +14,7 @@ before_script:
   - python manage.py migrate --noinput
   - npm install -g mocha
   - npm install jquery
-  - npm install jsdom
+  - npm install jsdom@15.2.0
   - pip list
 script:
   - pycodestyle scout/ --exclude=migrations

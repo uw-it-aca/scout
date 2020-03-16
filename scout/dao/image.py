@@ -1,4 +1,4 @@
-from spotseeker_restclient.spotseeker import Spotseeker
+from uw_spotseeker import Spotseeker
 
 
 def get_spot_image(spot_id, image_id, width=None):
