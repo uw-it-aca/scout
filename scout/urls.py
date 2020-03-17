@@ -24,7 +24,8 @@ from scout.views import TechFilterView
 urlpatterns = patterns(
     '',
     # news splash
-    url(r'^.*$', views.NewsSplashView.as_view(), {"template_name": "newssplash.html"}),
+    url(r'^.*$',
+        views.NewsSplashView.as_view(), {"template_name": "newssplash.html"}),
 )
 
 """
