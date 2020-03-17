@@ -39,6 +39,11 @@ def validate_campus_selection(function):
     return wrap
 
 
+# news splash
+class NewsSplashView(TemplateView):
+    template_name = 'newssplash.html'
+
+
 # discover
 class DiscoverView(TemplateView):
     template_name = "404.html"

@@ -25,6 +25,9 @@ urlpatterns = patterns(
     # home
     url(r'^$', RedirectView.as_view(url='/seattle')),
 
+    # news splash
+    url(r'^newssplash/$', views.NewsSplashView.as_view(), {"template_name": "newssplash.html"}),
+
     # discover
     url(r'^(?P<campus>[^/]+)/$',
         DiscoverView.as_view(), {"template_name": "scout/discover.html"}),

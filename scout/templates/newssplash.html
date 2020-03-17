@@ -1,0 +1,28 @@
+{% extends "scout/base.html" %}
+{% load staticfiles %}
+
+{% block title %}Page title{% endblock %}
+
+{% block web_content %}
+
+<div id="page_404" class="scout-content">
+    <div class="scout-card scout-error" style="margin:0;">
+        <h2 class="visually-hidden">Error Header</h2>
+        <p class="scout-error-msg">Placeholder error message</p>
+
+        <div class="scout-error-body">
+            <p>Body content.</p>
+            <ul>
+                <li>list item 1</li>
+                <li>list item 2</p>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
+
+{% block secondary_content %}
+<div style="background:url('{% static "scout/img/seattle/WinterCampus_1-X3.jpg" %}') no-repeat; background-size:cover; background-position:center center; position:absolute; top:0; bottom:0; width: 100%;">&nbsp;</div>
+{% endblock %}
