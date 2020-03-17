@@ -9,6 +9,7 @@
     <meta name="MobileOptimized" content="320">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta http-equiv="cleartype" content="on">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <link href='//fonts.googleapis.com/css?family=Raleway:700,900' rel='stylesheet' media="all" type='text/css'>
 
@@ -397,29 +398,31 @@
 
 </head>
 
-<body>
+<body class="container-fluid p-0 m-0">
 
     <div class="scout-primary">
 
-        <div id="header" class="scout-header">
+        <div id="header" class="scout-header row">
 
-            <h1 class="mobile">
+            <div class="col">
+                <h1 class="mobile">
                     <a href="http://scout.uw.edu" id="link_home" title="Discover UW places and items">Scout</a>
                 </h1>
 
-            <h1 class="desktop">
+                <h1 class="desktop">
                     <a id="link_home" href="http://scout.uw.edu" title="Discover UW places and items">Scout</a>
                 </h1>
+            </div>
 
         </div>
 
         <div id="scroll" class="scout-scroll">
-            <div id="page_500" class="scout-content">
-                <div class="scout-card scour-error" style="margin:0;">
+            <div id="page_500" class="scout-content row justify-content-center">
+                <div class="scout-card scour-error col-sm-10 col-md-8" style="margin:0;">
                     <h2 class="visually-hidden">News Alert</h2>
                     <!--<p class="scout-error-msg">There was a problem on our end.</p>-->
                     <div class="scout-error-body">
-                      <p>Due to the number of campus buildings and services moving to reduced hours or closing completely due to COVID-19, Scout's browsing features are offline until further notice.  The web sites below have up-to-date information on generally available spaces and services.</p>
+                      <p>Due to the number of campus buildings and services moving to reduced hours or closing completely due to COVID-19, Scout's browsing features are offline until further notice.  The web sites below have up-to-date information on generally available spaces and services. For information about your department's building(s), check your department's home page or contact your building's facilities staff.</p>
                       <p>The Scout team hopes that you stay safe and healthy.</p>
                       <h3>UW Seattle</h3>
                       <ul>
