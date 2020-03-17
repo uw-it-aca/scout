@@ -1,42 +1,453 @@
-{% extends "scout/base.html" %}
-{% load staticfiles %}
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>News &middot; Scout</title>
+    <meta name="description" content="">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="cleartype" content="on">
 
-{% block title %}Scout{% endblock %}
+    <link href='//fonts.googleapis.com/css?family=Raleway:700,900' rel='stylesheet' media="all" type='text/css'>
 
-{% block web_content %}
+    <!-- mobile & tablet -->
+    <style type="text/css">
+        @media (min-width:200px) {
+            /*! normalize.css v3.0.1 | MIT License | git.io/normalize */
+            html {
+                font-family: sans-serif;
+                -ms-text-size-adjust: 100%;
+                -webkit-text-size-adjust: 100%;
+            }
+            body {
+                margin: 0;
+            }
+            article,
+            aside,
+            details,
+            figcaption,
+            figure,
+            footer,
+            header,
+            hgroup,
+            main,
+            nav,
+            section,
+            summary {
+                display: block;
+            }
+            audio,
+            canvas,
+            progress,
+            video {
+                display: inline-block;
+                vertical-align: baseline;
+            }
+            audio:not([controls]) {
+                display: none;
+                height: 0;
+            }
+            [hidden],
+            template {
+                display: none;
+            }
+            a {
+                background: transparent;
+            }
+            a:active,
+            a:hover {
+                outline: 0;
+            }
+            abbr[title] {
+                border-bottom: 1px dotted;
+            }
+            b,
+            strong {
+                font-weight: bold;
+            }
+            dfn {
+                font-style: italic;
+            }
+            h1 {
+                font-size: 2em;
+                margin: .67em 0;
+                font-family: 'Raleway', sans-serif;
+            }
+            mark {
+                background: #ff0;
+                color: #000;
+            }
+            small {
+                font-size: 80%;
+            }
+            sub,
+            sup {
+                font-size: 75%;
+                line-height: 0;
+                position: relative;
+                vertical-align: baseline;
+            }
+            sup {
+                top: -0.5em;
+            }
+            sub {
+                bottom: -0.25em;
+            }
+            img {
+                border: 0;
+            }
+            svg:not(:root) {
+                overflow: hidden;
+            }
+            figure {
+                margin: 1em 40px;
+            }
+            hr {
+                -moz-box-sizing: content-box;
+                box-sizing: content-box;
+                height: 0;
+            }
+            pre {
+                overflow: auto;
+            }
+            code,
+            kbd,
+            pre,
+            samp {
+                font-family: monospace, monospace;
+                font-size: 1em;
+            }
+            button,
+            input,
+            optgroup,
+            select,
+            textarea {
+                color: inherit;
+                font: inherit;
+                margin: 0;
+            }
+            button {
+                overflow: visible;
+            }
+            button,
+            select {
+                text-transform: none;
+            }
+            button,
+            html input[type="button"],
+            input[type="reset"],
+            input[type="submit"] {
+                -webkit-appearance: button;
+                cursor: pointer;
+            }
+            button[disabled],
+            html input[disabled] {
+                cursor: default;
+            }
+            button::-moz-focus-inner,
+            input::-moz-focus-inner {
+                border: 0;
+                padding: 0;
+            }
+            input {
+                line-height: normal;
+            }
+            input[type="checkbox"],
+            input[type="radio"] {
+                box-sizing: border-box;
+                padding: 0;
+            }
+            input[type="number"]::-webkit-inner-spin-button,
+            input[type="number"]::-webkit-outer-spin-button {
+                height: auto;
+            }
+            input[type="search"] {
+                -webkit-appearance: textfield;
+                -moz-box-sizing: content-box;
+                -webkit-box-sizing: content-box;
+                box-sizing: content-box;
+            }
+            input[type="search"]::-webkit-search-cancel-button,
+            input[type="search"]::-webkit-search-decoration {
+                -webkit-appearance: none;
+            }
+            fieldset {
+                border: 1px solid #c0c0c0;
+                margin: 0 2px;
+                padding: .35em .625em .75em;
+            }
+            legend {
+                border: 0;
+                padding: 0;
+            }
+            textarea {
+                overflow: auto;
+            }
+            optgroup {
+                font-weight: bold;
+            }
+            table {
+                border-collapse: collapse;
+                border-spacing: 0;
+            }
+            td,
+            th {
+                padding: 0;
+            }
+            .scout-header {
+                background: #fafafa;
+                border-bottom: solid 1px #d0d1d5;
+                position: relative;
+            }
+            .scout-header h1 {
+                margin: 0;
+                line-height: 60px;
+                height: 60px;
+                color: #6564A8;
+                text-transform: uppercase;
+                font-family: 'Raleway', sans-serif;
+                font-weight: 900;
+                font-size: 30px;
+                text-align: left;
+            }
+            .scout-header h1 a {
+                color: #111;
+                text-decoration: none;
+                line-height: 60px;
+                display: inline-block;
+                padding-left: 20px;
+            }
+            .scout-header .scout-navigation {
+                position: relative;
+                background: #fafafa;
+                line-height: 41px;
+                color: #fff;
+                margin: 0;
+                padding: 0;
+            }
+            .scout-header .scout-navigation .scout-navigation-items {
+                line-height: 37px;
+                font-size: 14px;
+                text-transform: uppercase;
+                margin: 0;
+                list-style: none;
+                padding: 0;
+                display: flex;
+                flex-flow: row wrap;
+            }
+            .scout-header .scout-navigation .scout-navigation-items li {
+                margin: 0;
+                padding: 0;
+                flex: 1 0;
+            }
+            .scout-header .scout-navigation .scout-navigation-items li a {
+                display: block;
+                color: #666;
+                text-decoration: none;
+                text-align: center;
+                border-bottom: solid 4px #fafafa;
+            }
+            .scout-header .scout-navigation .scout-navigation-items li a:hover {
+                color: #6564A8;
+            }
+            .scout-header .scout-navigation .scout-navigation-items li a[disabled="disabled"] {
+                cursor: default;
+            }
+            .scout-scroll {
+                background: transparent;
+                padding-bottom: 1px;
+            }
+            .scout-scroll .scout-card {
+                margin: 0 0 10px 0;
+                background: #fff;
+                padding: 20px;
+                min-height: 100px;
+            }
+            .visually-hidden {
+                position: absolute!important;
+                clip: rect(1px 1px 1px 1px);
+                clip: rect(1px, 1px, 1px, 1px);
+                padding: 0!important;
+                border: 0!important;
+                height: 1px!important;
+                width: 1px!important;
+                overflow: hidden;
+            }
 
-<div id="page_404" class="scout-content">
-    <div class="scout-card scout-error" style="margin:0;">
-        <h2 class="visually-hidden">Error Header</h2>
-        <!--<p class="scout-error-msg">Placeholder error message</p>-->
+            .scout-error-msg {
+                color: red;
+            }
+            .scout-error-body {
+                font-size: 14px;
+                color: #222;
+            }
+            .scout-error-body ul {
+                list-style: circle!important;
+                padding-left: 30px!important;
+            }
+            .scout-error-body ul li {
+                margin-bottom: 5px;
+                color: #777;
+            }
+            .scout-error-body a {
+                color: #3498db;
+            }
 
-        <div class="scout-error-body">
-            <p>Due to the number of campus buildings and services moving to reduced hours or closing completely due to COVID-19, Scout's browsing features are offline until further notice.  The web sites below have up-to-date information on generally available spaces and services.</p>
-            <p>The Scout team hopes that you stay safe and healthy.</p>
-            <h3>UW Seattle</h3>
-            <ul>
-                <li>Libraries: <a target="_blank" rel="noopener noreferrer" href="https://www.lib.washington.edu/coronavirus/">https://www.lib.washington.edu/coronavirus</a></li>
-                <li>The HUB: <a target="_blank" rel="noopener noreferrer" href="https://hub.washington.edu/home/hub-hours/">https://hub.washington.edu/home/hub-hours</a></li>
-                <li>UW Seattle HFS (dorm) restaurants and other amenities: <a target="_blank" rel="noopener noreferrer" href="https://hfs.uw.edu/Suspended-Operations/">https://hfs.uw.edu/Suspended-Operations</a></li>
-                <li>Student Technology Loan Program: <a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/uwstlp/">https://www.facebook.com/uwstlp</a></li>
-            </ul>
-            <h3>UW Tacoma</h3>
-            <ul>
-                <li>Library: <a target="_blank" rel="noopener noreferrer" href="https://www.tacoma.uw.edu/library/covid-19-updates">https://www.tacoma.uw.edu/library/covid-19-updates</a></li>
-                <li>General campus information: <a target="_blank" rel="noopener noreferrer" href="https://www.tacoma.uw.edu/about-uw-tacoma/coronavirus-central-information-resource">https://www.tacoma.uw.edu/about-uw-tacoma/coronavirus-central-information-resource</a></li>
-            </ul>
-            <h3>UW Bothell</h3>
-            <ul>
-                <li>Library: <a target="_blank" rel="noopener noreferrer" href="https://guides.lib.uw.edu/bothell/onlinesupport">https://guides.lib.uw.edu/bothell/onlinesupport</a></li>
-                <li>General campus information: <a target="_blank" rel="noopener noreferrer" href="https://www.uwb.edu/safety/coronavirus/student-services">https://www.uwb.edu/safety/coronavirus/student-services</a></li>
-            </ul>
+            .scout-footer {
+                background: #fafafa;
+                color: #555;
+                width: 100%;
+                font-size: 75%;
+                text-align: center;
+                line-height: 40px;
+                border-top: solid 1px #ddd;
+            }
+            .scout-footer a {
+                color: #3498db;
+                display: inline-block;
+                margin-left: 8px;
+            }
+            .scout-secondary {
+                display: none;
+            }
+            .mobile {
+                display: block;
+            }
+            .desktop {
+                display: none;
+            }
+        }
+    </style>
+
+        <!-- desktop -->
+        <style type="text/css">
+        @media (min-width:100%) {
+            body {
+                overflow: hidden
+            }
+            .scout-footer a {
+                text-decoration: none;
+            }
+            .scout-footer a:hover {
+                text-decoration: underline!important
+            }
+            .scout-primary {
+                position: absolute;
+                width: 415px;
+                top: 0;
+                bottom: 0;
+                -webkit-box-shadow: 5px 0 20px 0 rgba(0, 0, 0, 0.3);
+                box-shadow: 5px 0 20px 0 rgba(0, 0, 0, 0.3);
+                z-index: 1;
+            }
+            .scout-primary .scout-header {
+                width: 415px;
+            }
+
+            .scout-primary .scout-scroll {
+                position: fixed;
+                top: 62px;
+                bottom: 30px;
+                width: 415px;
+                left: 0;
+                overflow: scroll;
+                margin-top: 0;
+            }
+            .scout-primary .scout-footer {
+                width: 415px;
+                position: absolute;
+                bottom: 0;
+                text-align: left;
+            }
+            .scout-secondary {
+                position: fixed;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 415px;
+                z-index: 0;
+            }
+            .scout-secondary {
+                display: block;
+            }
+            .mobile {
+                display: none;
+            }
+            .desktop {
+                display: block;
+            }
+        }
+    </style>
+
+    <script src="//code.jquery.com/jquery-2.2.2.min.js" integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function() {
+            // size the 500 page
+            if ($("#page_500").length > 0) {
+                var offsetHeight = ($(".scout-header").outerHeight() + $(".scout-footer").outerHeight());
+                $("#page_500").css({
+                    minHeight: $(window).outerHeight() - offsetHeight
+                });
+            }
+        });
+    </script>
+
+</head>
+
+<body>
+
+    <div class="scout-primary">
+
+        <div id="header" class="scout-header">
+
+            <h1 class="mobile">
+                    <a href="http://scout.uw.edu" id="link_home" title="Discover UW places and items">Scout</a>
+                </h1>
+
+            <h1 class="desktop">
+                    <a id="link_home" href="http://scout.uw.edu" title="Discover UW places and items">Scout</a>
+                </h1>
+
+        </div>
+
+        <div id="scroll" class="scout-scroll">
+            <div id="page_500" class="scout-content">
+                <div class="scout-card scour-error" style="margin:0;">
+                    <h2 class="visually-hidden">News Alert</h2>
+                    <!--<p class="scout-error-msg">There was a problem on our end.</p>-->
+                    <div class="scout-error-body">
+                      <p>Due to the number of campus buildings and services moving to reduced hours or closing completely due to COVID-19, Scout's browsing features are offline until further notice.  The web sites below have up-to-date information on generally available spaces and services.</p>
+                      <p>The Scout team hopes that you stay safe and healthy.</p>
+                      <h3>UW Seattle</h3>
+                      <ul>
+                          <li>Libraries: <a target="_blank" rel="noopener noreferrer" href="https://www.lib.washington.edu/coronavirus/">https://www.lib.washington.edu/coronavirus</a></li>
+                          <li>The HUB: <a target="_blank" rel="noopener noreferrer" href="https://hub.washington.edu/home/hub-hours/">https://hub.washington.edu/home/hub-hours</a></li>
+                          <li>UW Seattle HFS (dorm) restaurants and other amenities: <a target="_blank" rel="noopener noreferrer" href="https://hfs.uw.edu/Suspended-Operations/">https://hfs.uw.edu/Suspended-Operations</a></li>
+                          <li>Student Technology Loan Program: <a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/uwstlp/">https://www.facebook.com/uwstlp</a></li>
+                      </ul>
+                      <h3>UW Tacoma</h3>
+                      <ul>
+                          <li>Library: <a target="_blank" rel="noopener noreferrer" href="https://www.tacoma.uw.edu/library/covid-19-updates">https://www.tacoma.uw.edu/library/covid-19-updates</a></li>
+                          <li>General campus information: <a target="_blank" rel="noopener noreferrer" href="https://www.tacoma.uw.edu/about-uw-tacoma/coronavirus-central-information-resource">https://www.tacoma.uw.edu/about-uw-tacoma/coronavirus-central-information-resource</a></li>
+                      </ul>
+                      <h3>UW Bothell</h3>
+                      <ul>
+                          <li>Library: <a target="_blank" rel="noopener noreferrer" href="https://guides.lib.uw.edu/bothell/onlinesupport">https://guides.lib.uw.edu/bothell/onlinesupport</a></li>
+                          <li>General campus information: <a target="_blank" rel="noopener noreferrer" href="https://www.uwb.edu/safety/coronavirus/student-services">https://www.uwb.edu/safety/coronavirus/student-services</a></li>
+                      </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="footer" class="scout-footer" role="contentinfo">
+            <div class="mobile" style="padding-left:10px;">&copy; 2016 UW-IT, AXDD. <a href="http://www.washington.edu/online/privacy/">Privacy</a> <a href="http://www.washington.edu/online/terms/">Terms</a></div>
+            <div class="desktop" style="padding-left:10px;">&copy; 2016 UW-IT, Academic Experience Design & Delivery. <a href="http://www.washington.edu/online/privacy/">Privacy</a> <a href="http://www.washington.edu/online/terms/">Terms</a></div>
         </div>
 
     </div>
-</div>
 
-{% endblock %}
-
-{% block secondary_content %}
-<div style="background:url('{% static "scout/img/seattle/WinterCampus_1-X3.jpg" %}') no-repeat; background-size:cover; background-position:center center; position:absolute; top:0; bottom:0; width: 100%;">&nbsp;</div>
-{% endblock %}
+</body>
+</html>
