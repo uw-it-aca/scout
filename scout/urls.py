@@ -20,6 +20,15 @@ from scout.views import TechDetailView
 from scout.views import TechFilterView
 
 
+# Temporarily catch all pages.
+urlpatterns = patterns(
+    '',
+    # news splash
+    url(r'^.*$',
+        views.NewsSplashView.as_view(), {"template_name": "newssplash.html"}),
+)
+
+"""
 urlpatterns = patterns(
     '',
     # home
@@ -124,6 +133,7 @@ urlpatterns = patterns(
         views.item_image_view),
 
 )
+"""
 
 
 # debug routes for developing error pages
