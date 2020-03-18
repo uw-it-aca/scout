@@ -3,7 +3,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.core.exceptions import ImproperlyConfigured
 from django.conf import settings
-from scout.dao.space import (get_spot_by_id, get_filtered_spots,
+from scout.dao.space import (get_spot_by_id, get_filtered_spots, get_spot_list,
                              get_period_filter, get_spots_by_filter,
                              group_spots_by_building, get_building_list,
                              validate_detail_info, get_random_limit_from_spots)
@@ -371,6 +371,8 @@ class TechFilterView(TemplateView):
 
         # load parameters into context
         filter_types = ["brand", "subcategory"]
+        tech_spots = get_spot_list("tech")
+        info = extract_spots_item_info(tech_spots)
 
         pre = _load_filter_params_checked(self.request, filter_types)
         context = {}
@@ -382,9 +384,42 @@ class TechFilterView(TemplateView):
 
         context.update({"campus": kwargs['campus'],
                         "app_type": 'tech',
+                        "filters": info,
                         "campus_locations": CAMPUS_LOCATIONS})
 
         return context
+
+
+def extract_spots_item_info(spots):
+    category_list = {}
+    brand_list = []
+    for spot in spots:
+        for item in spot.items:
+            cat = item.category
+            sub = item.subcategory
+
+            if cat not in category_list:
+                category_list[cat] = {
+                    'sub': [],
+                    'name': ''
+                }
+
+            if not any(d['value'] == sub for d in category_list[cat]['sub']):
+                category_list[cat]['sub'].append({'name': '', 'value': sub})
+
+            for info in item.extended_info:
+                if info.key == 'i_brand' and info.value not in brand_list:
+                    brand_list.append(info.value)
+                if info.key == 'i_cat_print_name':
+                    category_list[cat]['name'] = info.value
+                if info.key == 'i_subcat_print_name':
+                    category_list[cat]['sub'][sub]['name'] = info.value
+
+    result = {
+        "categories": category_list,
+        "brands": brand_list
+    }
+    return result
 
 
 # image views

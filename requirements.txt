@@ -1,3 +1,3 @@
--e git+https://github.com/uw-it-aca/uw-restclients-spotseeker.git#egg=uw_restclients_spotseeker
+-e git+https://github.com/uw-it-aca/uw-restclients-spotseeker.git@feature/SCOUT-843py2#egg=uw_restclients_spotseeker
 -e git+https://github.com/charlon/django-hybridize/#egg=hybridize
 -e .
