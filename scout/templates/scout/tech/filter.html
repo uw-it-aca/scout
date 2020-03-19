@@ -19,7 +19,7 @@
                         {% for category, subcategories in filters.categories.items %}
                             <h3>{{ category.name|default:category }}</h3>
                             {% for subcategory in subcategories.sub %}
-                            <label><input type="checkbox" value={{ subcategory.value }}>{{ subcategory.name|default:subcategory.value }}</label>
+                            <label><input type="checkbox" value={{ subcategory }}>{{ subcategory.name|default:subcategory }}</label>
                             {% endfor %}
                         {% endfor %}
                     </div>

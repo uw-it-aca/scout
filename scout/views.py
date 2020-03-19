@@ -400,12 +400,12 @@ def extract_spots_item_info(spots):
 
             if cat not in category_list:
                 category_list[cat] = {
-                    'sub': [],
+                    'sub': {},
                     'name': ''
                 }
 
-            if not any(d['value'] == sub for d in category_list[cat]['sub']):
-                category_list[cat]['sub'].append({'name': '', 'value': sub})
+            if sub not in category_list[cat]['sub']:
+                category_list[cat]['sub'][sub] = {'name': ''}
 
             for info in item.extended_info:
                 if info.key == 'i_brand' and info.value not in brand_list:
