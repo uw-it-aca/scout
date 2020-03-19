@@ -17,9 +17,9 @@
                     <legend>Type</legend>
                     <div id="subcategory_select">
                         {% for category, subcategories in filters.categories.items %}
-                            <h3>{{ category }}</h3>
+                            <h3>{{ category.name|default:category }}</h3>
                             {% for subcategory in subcategories.sub %}
-                            <label><input type="checkbox" value={{ subcategory.value }}>{{ subcategory.value }}</label>
+                            <label><input type="checkbox" value={{ subcategory.value }}>{{ subcategory.name|default:subcategory.value }}</label>
                             {% endfor %}
                         {% endfor %}
                     </div>
