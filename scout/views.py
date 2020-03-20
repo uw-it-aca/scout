@@ -23,6 +23,15 @@ CAMPUS_LOCATIONS = {
     "tacoma": {"latitude": 47.24458187, "longitude": -122.43763134},
 }
 
+TECH_CATEGORIES = {
+    "cameras": "Cameras",
+    "camera_accessories": "Camera Accessories",
+    "computers": "Computers",
+    "computer_accessories": "Computer Accessories",
+    "audio_systems": "Audio Systems",
+    "audio_accessories": "Audio Accessories",
+}
+
 
 def validate_campus_selection(function):
     def wrap(request, *args, **kwargs):
@@ -410,10 +419,12 @@ def extract_spots_item_info(spots):
             for info in item.extended_info:
                 if info.key == 'i_brand' and info.value not in brand_list:
                     brand_list.append(info.value)
-                if info.key == 'i_cat_print_name':
-                    category_list[cat]['name'] = info.value
                 if info.key == 'i_subcat_print_name':
                     category_list[cat]['sub'][sub]['name'] = info.value
+
+    for cat_name in TECH_CATEGORIES:
+        if cat_name in category_list:
+            category_list[cat_name]['name'] = TECH_CATEGORIES[cat_name]
 
     result = {
         "categories": category_list,
