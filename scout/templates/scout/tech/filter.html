@@ -18,9 +18,11 @@
                     <div id="subcategory_select">
                         {% for category, subcategories in filters.categories.items %}
                             <h3>{{ subcategories.name|default:category }}</h3>
+                            <ul>
                             {% for subcategory, name in subcategories.sub.items %}
                             <label><input type="checkbox" value={{ subcategory }}>{{ name.name|default:subcategory }}</label>
                             {% endfor %}
+                            </ul>
                         {% endfor %}
                     </div>
                 </fieldset>
@@ -30,9 +32,11 @@
                 <fieldset class="scout-filter-split">
                     <legend>Brand</legend>
                     <div id="brand_select">
+                        <ul>
                         {% for brand in filters.brands %}
                         <label><input type="checkbox" value={{brand}}>{{brand}}</label>
                         {% endfor %}
+                        </ul>
                     </div>
                 </fieldset>
             </div>
