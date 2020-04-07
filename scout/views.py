@@ -3,7 +3,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.core.exceptions import ImproperlyConfigured
 from django.conf import settings
-from scout.dao.space import (get_spot_by_id, get_filtered_spots,
+from scout.dao.space import (get_spot_by_id, get_filtered_spots, get_spot_list,
                              get_period_filter, get_spots_by_filter,
                              group_spots_by_building, get_building_list,
                              validate_detail_info, get_random_limit_from_spots)
@@ -21,6 +21,15 @@ CAMPUS_LOCATIONS = {
     "south_lake_union": {"latitude": 47.62456939, "longitude": -122.34105337},
     "bothell": {"latitude": 47.75907121, "longitude": -122.19103843},
     "tacoma": {"latitude": 47.24458187, "longitude": -122.43763134},
+}
+
+TECH_CATEGORIES = {
+    "cameras": "Cameras",
+    "camera_accessories": "Camera Accessories",
+    "computers": "Computers",
+    "computer_accessories": "Computer Accessories",
+    "audio_systems": "Audio Systems",
+    "audio_accessories": "Audio Accessories",
 }
 
 
@@ -376,6 +385,8 @@ class TechFilterView(TemplateView):
 
         # load parameters into context
         filter_types = ["brand", "subcategory"]
+        tech_spots = get_spot_list("tech")
+        info = extract_spots_item_info(tech_spots)
 
         pre = _load_filter_params_checked(self.request, filter_types)
         context = {}
@@ -387,9 +398,44 @@ class TechFilterView(TemplateView):
 
         context.update({"campus": kwargs['campus'],
                         "app_type": 'tech',
+                        "filters": info,
                         "campus_locations": CAMPUS_LOCATIONS})
 
         return context
+
+
+def extract_spots_item_info(spots):
+    category_list = {}
+    brand_list = []
+    for spot in spots:
+        for item in spot.items:
+            cat = item.category
+            sub = item.subcategory
+
+            if cat not in category_list:
+                category_list[cat] = {
+                    'sub': {},
+                    'name': ''
+                }
+
+            if sub not in category_list[cat]['sub']:
+                category_list[cat]['sub'][sub] = {'name': ''}
+
+            for info in item.extended_info:
+                if info.key == 'i_brand' and info.value not in brand_list:
+                    brand_list.append(info.value)
+                if info.key == 'i_subcat_print_name':
+                    category_list[cat]['sub'][sub]['name'] = info.value
+
+    for cat_name in TECH_CATEGORIES:
+        if cat_name in category_list:
+            category_list[cat_name]['name'] = TECH_CATEGORIES[cat_name]
+
+    result = {
+        "categories": category_list,
+        "brands": brand_list
+    }
+    return result
 
 
 # image views
