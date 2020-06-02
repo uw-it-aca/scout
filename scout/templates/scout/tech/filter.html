@@ -20,7 +20,11 @@
                             <h3>{{ subcategories.name|default:category }}</h3>
                             <ul>
                             {% for subcategory, name in subcategories.sub.items %}
-                            <label><input type="checkbox" value={{ subcategory }}>{{ name.name|default:subcategory }}</label>
+                            {% if subcategory|first in 'DSLR Accessories - ' %}
+                              <label><input type="checkbox" value={{ subcategory }}>{{ name.name|default:subcategory|cut:'DSLR Accessories - ' }}</label>
+                            {% else %}
+                              <label><input type="checkbox" value={{ subcategory }}>{{ name.name|default:subcategory }}</label>
+                            {% endif %}
                             {% endfor %}
                             </ul>
                         {% endfor %}
