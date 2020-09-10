@@ -33,11 +33,10 @@ if show_newssplash:
         ),
     )
 else:
-
     urlpatterns = patterns(
         "",
         # home
-        url(r"^$", RedirectView.as_view(url="/seattle")),
+        url(r"^$", RedirectView.as_view(url="/seattle", permanent=True)),
         # discover
         url(
             r"^(?P<campus>[^/]+)/$",
