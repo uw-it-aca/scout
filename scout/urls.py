@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.conf.urls import patterns, include, url, handler404
+from django.conf.urls import url, handler404
 from django.views.generic import TemplateView
 from django.views.generic.base import RedirectView
 from scout import views
@@ -23,7 +23,7 @@ from scout.views import TechFilterView
 # Temporarily catch all pages.
 show_newssplash = getattr(settings, "SCOUT_SHOW_NEWSSPLASH", False)
 if show_newssplash:
-    urlpatterns = patterns(
+    urlpatterns = [
         "",
         # news splash
         url(
@@ -31,10 +31,9 @@ if show_newssplash:
             views.NewsSplashView.as_view(),
             {"template_name": "newssplash.html"},
         ),
-    )
+    ]
 else:
-    urlpatterns = patterns(
-        "",
+    urlpatterns = [
         # home
         url(r"^$", RedirectView.as_view(url="/seattle", permanent=True)),
         # discover
@@ -195,17 +194,16 @@ else:
             r"^item/images/(?P<item_id>\d+)/image/(?P<image_id>\d+)/$",
             views.item_image_view,
         ),
-    )
+    ]
 
 
 # debug routes for developing error pages
 if settings.DEBUG:
-    urlpatterns += patterns(
-        "",
+    urlpatterns += [
         url(r"^500/$", TemplateView.as_view(template_name="500.html")),
         url(
             r"^404/$",
-            "scout.views.custom_404_response",
+            views.custom_404_response,
             name="custom_404_response",
         ),
-    )
+    ]
