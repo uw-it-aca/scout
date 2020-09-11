@@ -201,9 +201,5 @@ else:
 if settings.DEBUG:
     urlpatterns += [
         url(r"^500/$", TemplateView.as_view(template_name="500.html")),
-        url(
-            r"^404/$",
-            views.custom_404_response,
-            name="custom_404_response",
-        ),
+        url(r"^404/$", views.custom_404_response, name="custom_404_response",),
     ]
