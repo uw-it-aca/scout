@@ -3,12 +3,16 @@ version: '3'
 services:
   app:
     restart: always
-    build: .
-    # map the local (host) directories to their container counterparts
-    # to support live-syncing
+    container_name: scout
+    build:
+      context: .
     volumes:
-      - ./sampleproj:/app/sampleproj
       - ./scout:/app/scout
     ports:
       - "${PORT:-8000}:8000"
-    command: bash -c "python manage.py migrate --settings=sampleproj.settings.local && python manage.py runserver 0.0.0.0:8000 --settings=sampleproj.settings.local"
+    environment:
+      ENV: localdev
+      #AUTH: ${AUTH:-SAML_DJANGO_LOGIN}
+      #DJANGO_LOGIN_USERNAME: ${DJANGO_LOGIN_USERNAME:-javerage}
+      #DJANGO_LOGIN_PASSWORD: ${DJANGO_LOGIN_PASSWORD:-javerage}
+      #DJANGO_LOGIN_EMAIL: ${DJANGO_LOGIN_EMAIL:-javerage@uw.edu}
