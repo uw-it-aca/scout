@@ -22,13 +22,26 @@ INSTALLED_APPS += [
     "hybridize",
 ]
 
+MIDDLEWARE += [
+    "django_user_agents.middleware.UserAgentMiddleware"
+]
+
 COMPRESS_ROOT = "/static/"
 
 COMPRESS_PRECOMPILERS = (
     ("text/x-scss", "django_pyscss.compressor.DjangoScssFilter",),
 )
 
+COMPRESS_ENABLED = True
 COMPRESS_OFFLINE = False
+
+COMPRESS_CSS_FILTERS = [
+    'compressor.filters.css_default.CssAbsoluteFilter',
+    'compressor.filters.cssmin.CSSMinFilter'
+]
+COMPRESS_JS_FILTERS = [
+    'compressor.filters.jsmin.JSMinFilter',
+]
 
 STATICFILES_FINDERS += ("compressor.finders.CompressorFinder",)
 
@@ -133,4 +146,6 @@ LOGGING = {
 }
 
 SCOUT_SHOW_NEWSSPLASH = False
-COMPRESS_OFFLINE = False
+
+# scout settings
+CAMPUS_URL_LIST = ['seattle', 'tacoma', 'bothell']
