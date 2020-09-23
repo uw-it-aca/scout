@@ -23,7 +23,9 @@ INSTALLED_APPS += [
 
 COMPRESS_ROOT = "/static/"
 
-COMPRESS_PRECOMPILERS = (("text/x-scss", "django_pyscss.compressor.DjangoScssFilter",))
+COMPRESS_PRECOMPILERS = (
+    ("text/x-scss", "django_pyscss.compressor.DjangoScssFilter",),
+)
 
 COMPRESS_OFFLINE = False
 
