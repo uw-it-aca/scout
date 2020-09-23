@@ -19,6 +19,7 @@ INSTALLED_APPS += [
     #"django.contrib.humanize",
     "django_user_agents",
     "compressor",
+    "hybridize",
 ]
 
 COMPRESS_ROOT = "/static/"
