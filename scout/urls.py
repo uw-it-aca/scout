@@ -35,7 +35,11 @@ if show_newssplash:
 else:
     urlpatterns = [
         # home
-        url(r"^$", RedirectView.as_view(url="/seattle", permanent=True), name="true"),
+        url(
+            r"^$",
+            RedirectView.as_view(url="/seattle", permanent=True),
+            name="true",
+        ),
         # discover
         url(
             r"^(?P<campus>[^/]+)/$",
@@ -108,7 +112,9 @@ else:
             name="techfilter",
         ),
         # hybrid home
-        url(r"^h/$", RedirectView.as_view(url="/h/seattle"), name="hybridhome"),
+        url(
+            r"^h/$", RedirectView.as_view(url="/h/seattle"), name="hybridhome"
+        ),
         # hybrid discover
         url(
             r"^h/(?P<campus>[^/]+)/$",
@@ -227,6 +233,10 @@ else:
 # debug routes for developing error pages
 if settings.DEBUG:
     urlpatterns += [
-        url(r"^500/$", TemplateView.as_view(template_name="500.html"), name="500_response"),
+        url(
+            r"^500/$",
+            TemplateView.as_view(template_name="500.html"),
+            name="500_response",
+        ),
         url(r"^404/$", views.custom_404_response, name="custom_404_response",),
     ]
