@@ -12,7 +12,4 @@ services:
       - "${PORT:-8000}:8000"
     environment:
       ENV: localdev
-      #AUTH: ${AUTH:-SAML_DJANGO_LOGIN}
-      #DJANGO_LOGIN_USERNAME: ${DJANGO_LOGIN_USERNAME:-javerage}
-      #DJANGO_LOGIN_PASSWORD: ${DJANGO_LOGIN_PASSWORD:-javerage}
-      #DJANGO_LOGIN_EMAIL: ${DJANGO_LOGIN_EMAIL:-javerage@uw.edu}
+      SCOUT_SHOW_NEWSSPLASH: ${SCOUT_SHOW_NEWSSPLASH:-False}

@@ -1,22 +1,8 @@
 from .base_settings import *
-#from google.oauth2 import service_account
 import os
-
-#if os.getenv("ENV", "localdev") == "localdev":
-#    DEFAULT_FILE_STORAGE = "django.core.files.storage.FileSystemStorage"
-#    MEDIA_ROOT = os.getenv("MEDIA_ROOT", "/app/data/")
-#else:
-#    DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
-#    GS_PROJECT_ID = os.getenv("STORAGE_PROJECT_ID", "")
-#    GS_BUCKET_NAME = os.getenv("STORAGE_BUCKET_NAME", "")
-#    GS_LOCATION = os.path.join(os.getenv("ENV"), "csvfiles")
-#    GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
-#        "/gcs/credentials.json")
 
 INSTALLED_APPS += [
     "scout",
-    #"templatetag_handlebars",
-    #"django.contrib.humanize",
     "django_user_agents",
     "compressor",
     "hybridize",
@@ -53,37 +39,6 @@ TEMPLATES[0]["OPTIONS"]["context_processors"].extend([
 ])
 
 GOOGLE_ANALYTICS_KEY = os.getenv("GOOGLE_ANALYTICS_KEY", " ")
-
-#AUTH_PASSWORD_VALIDATORS = [
-#    {
-#        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
-#    },
-#    {
-#        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
-#    },
-#    {
-#        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
-#    },
-#    {
-#        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
-#    },
-#]
-
-#SUPPORT_EMAIL = os.getenv("SUPPORT_EMAIL", "")
-#PIVOT_AUTHZ_GROUPS = {
-#    "access": os.getenv("PIVOT_ACCESS_GROUP", "u_test_access")
-#}
-
-#if os.getenv("AUTH", "NONE") == "SAML_MOCK":
-#    MOCK_SAML_ATTRIBUTES["isMemberOf"] = [
-#        PIVOT_AUTHZ_GROUPS["access"],
-#    ]
-#elif os.getenv("AUTH", "NONE") == "SAML_DJANGO_LOGIN":
-#    DJANGO_LOGIN_MOCK_SAML["SAML_USERS"][0]["MOCK_ATTRIBUTES"][
-#        "isMemberOf"
-#    ] = [
-#        PIVOT_AUTHZ_GROUPS["access"],
-#    ]
 
 if os.getenv("ENV", "") == "localdev":
     DEBUG = True
@@ -145,7 +100,6 @@ LOGGING = {
     }
 }
 
-SCOUT_SHOW_NEWSSPLASH = False
-
 # scout settings
 CAMPUS_URL_LIST = ['seattle', 'tacoma', 'bothell']
+SCOUT_SHOW_NEWSSPLASH = os.getenv("SCOUT_SHOW_NEWSSPLASH") == "True"

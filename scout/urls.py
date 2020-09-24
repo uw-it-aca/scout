@@ -24,7 +24,6 @@ from scout.views import TechFilterView
 show_newssplash = getattr(settings, "SCOUT_SHOW_NEWSSPLASH", False)
 if show_newssplash:
     urlpatterns = [
-        "",
         # news splash
         url(
             r"^.*$",
