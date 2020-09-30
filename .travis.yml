@@ -13,7 +13,7 @@ before_script:
   - pip install -r requirements.txt
   - cp sampleproj/manage.py manage.py
   - python manage.py migrate --noinput
-  - npm install -g mocha@^7.0.0
+  - npm install -g mocha@^7.2.0
   - npm install jquery
   - npm install jsdom@15.2.0
   - pip list
