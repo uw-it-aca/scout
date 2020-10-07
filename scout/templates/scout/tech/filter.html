@@ -16,39 +16,18 @@
                 <fieldset class="scout-filter-split">
                     <legend>Type</legend>
                     <div id="subcategory_select">
-
-                        <h3>Computers</h3>
-                        <label><input type="checkbox" value="Laptop Computer">Laptop Computer</label>
-                        <label><input type="checkbox" value="Tablet Computer">Tablet Computer</label>
-
-                        <h3>Cameras</h3>
-                        <label><input type="checkbox" value="Digital Camera">Digital Camera</label>
-                        <label><input type="checkbox" value="Digital Video Camera">Digital Video Camera</label>
-
-                        <h3>DSLR Accessories</h3>
-                        <label><input type="checkbox" value="DSLR Accessories - Light Kit">Light Kit</label>
-                        <label><input type="checkbox" value="DSLR Accessories - Macro Lens">Macro Lens</label>
-                        <label><input type="checkbox" value="DSLR Accessories - Macro Ring Lite Flash">Macro Ring Lite Flash</label>
-                        <label><input type="checkbox" value="DSLR Accessories - Shoe Mount Flash">Shoe Mount Flash</label>
-                        <label><input type="checkbox" value="DSLR Accessories - SLR Remote">SLR Remote</label>
-                        <label><input type="checkbox" value="DSLR Accessories - Telephoto Lens">Telephoto Lens</label>
-                        <label><input type="checkbox" value="DSLR Accessories - Wide Angle Lens">Wide Angle Lens</label>
-
-                        <h3>Other types</h3>
-                        <label><input type="checkbox" value="Blu-ray Burner">Blu-ray Burner</label>
-                        <label><input type="checkbox" value="Calculator">Calculator</label>
-                        <label><input type="checkbox" value="Data Projector">Data Projector</label>
-                        <label><input type="checkbox" value="Digital Pen Tablet">Digital Pen Tablet</label>
-                        <label><input type="checkbox" value="External Hard Drive">External Hard Drive</label>
-                        <label><input type="checkbox" value="Microphone Stands">Microphone Stands</label>
-                        <label><input type="checkbox" value="Portable Audio System">Portable Audio System</label>
-                        <label><input type="checkbox" value="Power Point Remote">Power Point Remote</label>
-                        <label><input type="checkbox" value="Projection Screen">Projection Screen</label>
-                        <label><input type="checkbox" value="Shotgun Microphone">Shotgun Microphone</label>
-                        <label><input type="checkbox" value="Tripod">Tripod</label>
-                        <label><input type="checkbox" value="Voice Recorder/MP3 player">Voice Recorder/MP3 player</label>
-                        <label><input type="checkbox" value="Wireless Microphone System">Wireless Microphone System</label>
-
+                        {% for category, subcategories in filters.categories.items %}
+                            <h3>{{ subcategories.name|default:category }}</h3>
+                            <ul>
+                            {% for subcategory, name in subcategories.sub.items %}
+                            {% if subcategory|first in 'DSLR Accessories - ' %}
+                              <label><input type="checkbox" value="{{ subcategory }}">{{ name.name|default:subcategory|cut:'DSLR Accessories - ' }}</label>
+                            {% else %}
+                              <label><input type="checkbox" value="{{ subcategory }}">{{ name.name|default:subcategory }}</label>
+                            {% endif %}
+                            {% endfor %}
+                            </ul>
+                        {% endfor %}
                     </div>
                 </fieldset>
             </div>
@@ -57,38 +36,11 @@
                 <fieldset class="scout-filter-split">
                     <legend>Brand</legend>
                     <div id="brand_select">
-                        <!--The value needs to be cleaned so search works!-->
-                        <label><input type="checkbox" value="Anchor">Anchor</label>
-                        <label><input type="checkbox" value="Apple">Apple</label>
-                        <label><input type="checkbox" value="Azden">Azden</label>
-                        <label><input type="checkbox" value="BenQ">BenQ</label>
-                        <label><input type="checkbox" value="Canon">Canon</label>
-                        <!--<label><input type="checkbox" value="da-lite">Da-Lite</label>-->
-                        <label><input type="checkbox" value="Dell">Dell</label>
-                        <label><input type="checkbox" value="Fender">Fender</label>
-                        <label><input type="checkbox" value="GoPro">GoPro</label>
-                        <label><input type="checkbox" value="Hitachi">Hitachi</label>
-                        <label><input type="checkbox" value="HP">HP</label>
-                        <!--We have two makes Interlink and InterLink-->
-                        <label><input type="checkbox" value="Interlink">Interlink</label>
-                        <label><input type="checkbox" value="Joby">Joby</label>
-                        <label><input type="checkbox" value="Lacie">Lacie</label>
-                        <label><input type="checkbox" value="LG">LG</label>
-                        <label><input type="checkbox" value="Manfrotto">Manfrotto</label>
-                        <!--We have Olympus and Olympus Digital Voice Recorder-->
-                        <label><input type="checkbox" value="Olympus">Olympus</label>
-                        <label><input type="checkbox" value="Panasonic">Panasonic</label>
-                        <label><input type="checkbox" value="Peavey">Peavey</label>
-                        <label><input type="checkbox" value="QuikLok">QuikLok</label>
-                        <label><input type="checkbox" value="Seagate">Seagate</label>
-                        <label><input type="checkbox" value="Sennheiser">Sennheiser</label>
-                        <label><input type="checkbox" value="Sony">Sony</label>
-                        <label><input type="checkbox" value="Sunpak">Sunpak</label>
-                        <label><input type="checkbox" value="TI">Texas Instruments</label>
-                        <label><input type="checkbox" value="UK Pro">UK Pro</label>
-                        <label><input type="checkbox" value="Vello">Vello</label>
-                        <label><input type="checkbox" value="Wacom">Wacom</label>
-
+                        <ul>
+                        {% for brand in filters.brands %}
+                        <label><input type="checkbox" value="{{brand}}">{{brand}}</label>
+                        {% endfor %}
+                        </ul>
                     </div>
                 </fieldset>
             </div>
