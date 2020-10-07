@@ -21,9 +21,9 @@
                             <ul>
                             {% for subcategory, name in subcategories.sub.items %}
                             {% if subcategory|first in 'DSLR Accessories - ' %}
-                              <label><input type="checkbox" value={{ subcategory }}>{{ name.name|default:subcategory|cut:'DSLR Accessories - ' }}</label>
+                              <label><input type="checkbox" value="{{ subcategory }}">{{ name.name|default:subcategory|cut:'DSLR Accessories - ' }}</label>
                             {% else %}
-                              <label><input type="checkbox" value={{ subcategory }}>{{ name.name|default:subcategory }}</label>
+                              <label><input type="checkbox" value="{{ subcategory }}">{{ name.name|default:subcategory }}</label>
                             {% endif %}
                             {% endfor %}
                             </ul>
@@ -38,7 +38,7 @@
                     <div id="brand_select">
                         <ul>
                         {% for brand in filters.brands %}
-                        <label><input type="checkbox" value={{brand}}>{{brand}}</label>
+                        <label><input type="checkbox" value="{{brand}}">{{brand}}</label>
                         {% endfor %}
                         </ul>
                     </div>
