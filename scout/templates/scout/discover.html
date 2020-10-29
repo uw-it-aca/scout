@@ -56,13 +56,18 @@
 
         <div id="discover_cards">
 
+            <div>{% include "scout/discover_notice.html" %}</div>
+            <!-- Temporarily removed for COVID-19 closures.
             <div id="open"></div>
             <div id="morning"></div>
             <div id="studycomputerlab"></div>
+            -->
             <div id="{{ random_cards|random }}"></div>
+            <!-- Temporarily removed for COVID-19 closures.
             <div>{% include "scout/discover_tech.html" %}</div>
             <div id="late"></div>
             <div id="studyoutdoors"></div>
+            -->
 
         </div>
 
