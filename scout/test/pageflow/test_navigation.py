@@ -38,6 +38,16 @@ tests = {
     # TODO add study_detail, tech_detail
 }
 
+# Temporarily disable Tech tests while the tab is disabled
+tests = {
+    'home': ('home', 'food', 'study'),
+    'food': ('home', 'study', 'food_filter'),
+    'study': ('home', 'food', 'study_filter'),
+    'food_filter': ('home', 'food', 'study'),
+    'study_filter': ('home', 'food', 'study'),
+    'food_detail': ('home', 'food', 'study'),
+    # TODO add study_detail, tech_detail
+}
 
 def _makeTestFunc(start, end):
     """Returns a function that tests the navigation between two pages"""
