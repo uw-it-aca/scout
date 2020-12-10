@@ -38,6 +38,7 @@
                     </div>
                 </div>
 
+                {% if campus == 'seattle' %}
                 <div class="scout-navigation" role="navigation" aria-label="main navigation">
                     <ul class="scout-navigation-items" role="tablist">
                         <li><a role="tab" id="link_food" href="/{{ campus }}/food/" {% if app_type == 'food' %}class="active" aria-selected="true"{% endif %} title="List of food places on campus"><i class="fa fa-cutlery" aria-hidden="true"></i> Food</a></li>
@@ -47,6 +48,7 @@
                         -->
                     </ul>
                 </div>
+                {% endif %}
 
             </div>
 
