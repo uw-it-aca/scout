@@ -56,13 +56,16 @@
 
         <div id="discover_cards">
 
-            <div id="open"></div>
-            <div id="morning"></div>
-            <div id="studycomputerlab"></div>
-            <div id="{{ random_cards|random }}"></div>
-            <div>{% include "scout/discover_tech.html" %}</div>
-            <div id="late"></div>
-            <div id="studyoutdoors"></div>
+            <div>{% include "scout/discover_notice.html" %}</div>
+            <div style="display: none;" id="safestudy"></div>
+            <div style="display: none;" id="safefood"></div>
+            <div style="display: none;" id="open"></div>
+            <div style="display: none;" id="morning"></div>
+            <div style="display: none;" id="studycomputerlab"></div>
+            <div style="display: none;" id="{{ random_cards|random }}"></div>
+            <div style="display: none;" >{% include "scout/discover_tech.html" %}</div>
+            <div style="display: none;" id="late"></div>
+            <div style="display: none;" id="studyoutdoors"></div>
 
         </div>
 
