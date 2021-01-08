@@ -7,34 +7,45 @@ Testing the flow between pages through links
 import bs4
 from scout.test import ScoutTestCase
 
-baseUrl = '/seattle/'
-foodUrl = baseUrl + 'food/'
-studyUrl = baseUrl + 'study/'
-techUrl = baseUrl + 'tech/'
+baseUrl = "/seattle/"
+foodUrl = baseUrl + "food/"
+studyUrl = baseUrl + "study/"
+techUrl = baseUrl + "tech/"
 
 urls = {
-    'home': baseUrl,
-    'food': foodUrl,
-    'study': studyUrl,
-    'tech': techUrl,
-    'food_filter': foodUrl + 'filter/',
-    'study_filter': studyUrl + 'filter/',
-    'tech_filter': techUrl + 'filter/',
-    'food_detail': foodUrl + '1/',
+    "home": baseUrl,
+    "food": foodUrl,
+    "study": studyUrl,
+    "tech": techUrl,
+    "food_filter": foodUrl + "filter/",
+    "study_filter": studyUrl + "filter/",
+    "tech_filter": techUrl + "filter/",
+    "food_detail": foodUrl + "1/",
     # TODO add study_detail, tech_detail
 }
 
 # the key for this dictionary represents a page and the corresponding tuple
 # represents the pages that should be linked to on the page
 tests = {
-    'home': ('home', 'food', 'study', 'tech'),
-    'food': ('home', 'study', 'tech', 'food_filter'),
-    'study': ('home', 'food', 'tech', 'study_filter'),
-    'tech': ('home', 'food', 'study', 'tech_filter'),
-    'food_filter': ('home', 'food', 'study', 'tech'),
-    'study_filter': ('home', 'food', 'study', 'tech'),
-    'tech_filter': ('home', 'food', 'study', 'tech'),
-    'food_detail': ('home', 'food', 'study', 'tech'),
+    "home": ("home", "food", "study", "tech"),
+    "food": ("home", "study", "tech", "food_filter"),
+    "study": ("home", "food", "tech", "study_filter"),
+    "tech": ("home", "food", "study", "tech_filter"),
+    "food_filter": ("home", "food", "study", "tech"),
+    "study_filter": ("home", "food", "study", "tech"),
+    "tech_filter": ("home", "food", "study", "tech"),
+    "food_detail": ("home", "food", "study", "tech"),
+    # TODO add study_detail, tech_detail
+}
+
+# Temporarily disable Tech tests while the tab is disabled
+tests = {
+    "home": ("home", "food", "study"),
+    "food": ("home", "study", "food_filter"),
+    "study": ("home", "food", "study_filter"),
+    "food_filter": ("home", "food", "study"),
+    "study_filter": ("home", "food", "study"),
+    "food_detail": ("home", "food", "study"),
     # TODO add study_detail, tech_detail
 }
 
@@ -46,8 +57,8 @@ def _makeTestFunc(start, end):
         page = self.get_soup(urls[start])
         self.assertTrue(self.checkLinkExists(page, urls[end]))
 
-    _testFunc.__name__ = 'test_%s_to_%s' % (start, end)
-    _testFunc.__doc__ = 'Assert that %s has a link to %s' % (start, end)
+    _testFunc.__name__ = "test_%s_to_%s" % (start, end)
+    _testFunc.__doc__ = "Assert that %s has a link to %s" % (start, end)
     return _testFunc
 
 
@@ -85,7 +96,7 @@ class MainNavigationTest(ScoutTestCase):
 
     def checkLinkExists(self, soup, link):
         """Returns true if a link with the given href is found in the page"""
-        return bool(soup.find('a', href=link))
+        return bool(soup.find("a", href=link))
 
     def get_soup(self, page):
         """Returns a soup object given a path, if there is no soup for the
@@ -105,17 +116,16 @@ class MainNavigationTest(ScoutTestCase):
 
     def check_footer_links(self, soup):
         """Checks the footer links at the given soup"""
-        footerLinks = soup.select('div#footer a')
+        footerLinks = soup.select("div#footer a")
         privacyLink, termsLink, mailtoLink = footerLinks
         self.assertEqual(
-            privacyLink.get('href'),
-            'http://www.washington.edu/online/privacy/'
+            privacyLink.get("href"),
+            "http://www.washington.edu/online/privacy/",
         )
         self.assertEqual(
-            termsLink.get('href'),
-            'http://www.washington.edu/online/terms/'
+            termsLink.get("href"), "http://www.washington.edu/online/terms/"
         )
         self.assertEqual(
-            mailtoLink.get('href'),
-            'mailto:help@uw.edu?subject=Scout:%20Help%20needed'
+            mailtoLink.get("href"),
+            "mailto:help@uw.edu?subject=Scout:%20Help%20needed",
         )
