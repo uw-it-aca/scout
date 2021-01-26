@@ -16,28 +16,16 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Intallation and Set Up
 
-Clone the repository:
+First, clone the repository:
 
     $ git clone https://github.com/uw-it-aca/scout.git
 
 
-In `docker/settings.py`:
-
-Add details for connection to spotseeker_server. Change 'Mock' to 'Live' if you want to connect to a live spotseeker_server instead of using the file-based mock data (File-based mocks are sufficient for unit tests, but do not match any of the queries the app will make:
+Navigate to the repository and copy the sample environment varaibels into yoru own `.env` file:
 
 ```
-SPOTSEEKER_HOST = ''
-SPOTSEEKER_OAUTH_KEY = ''
-SPOTSEEKER_OAUTH_SECRET = ''
-SPOTSEEKER_DAO_CLASS = 'Mock'
-```
-
-Additional settings:
-
-```
-CAMPUS_URL_LIST = ['seattle', 'tacoma', 'bothell']
-
-COMPRESS_ROOT = 'static/'
+cd scout-manager
+cp sample.env .env
 ```
 
 Optionally, add custom 404 response to `docker/urls.py`:
@@ -45,8 +33,6 @@ Optionally, add custom 404 response to `docker/urls.py`:
 ```
 handler404 = 'scout.views.custom_404_response'
 ```
-
-For additional settings, see [some page that doesn't exist yet.]
 
 ## Development
 
@@ -63,6 +49,13 @@ docker-compose up --build
 ```
 docker-compose run --rm app bin/python manage.py test
 ```
+
+### Running the app against a Live Spotseeker Server ###
+
+To find more information on how to run scout against a Live Spotseeker server using the 'all_ok' Auth Module, check [here](https://github.com/uw-it-aca/spotseeker_server/wiki/Using-'all_ok'-oauth-module)
+
+
+To find more information on how to run scout against a Live Spotseeker server using the 'oauth' Auth Module, check [here](https://github.com/uw-it-aca/spotseeker_server/wiki/Using-OAuth)
 
 ## Deployment
 
@@ -109,7 +102,7 @@ limitations under the License.
 CAMPUS_URL_LIST
 GOOGLE_ANALYTICS_KEY
 GOOGLE_MAPS_API
-SPOTSEEKER_DAO_CLASS
-SPOTSEEKER_HOST = ''
+RESTCLIENTS_SPOTSEEKER_DAO_CLASS
+RESTCLIENTS_SPOTSEEKER_HOST = ''
 SPOTSEEKER_OAUTH_KEY = ''
 SPOTSEEKER_OAUTH_SECRET = ''
