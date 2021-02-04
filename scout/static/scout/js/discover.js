@@ -38,6 +38,7 @@ Discover = {
                        Discover.set_cards_are_visible(true);
                    },
                    error: function(xhr, status, error) {
+                       Discover.set_cards_are_visible(true);
                    }
                });
     },
