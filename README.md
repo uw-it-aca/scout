@@ -21,10 +21,10 @@ First, clone the repository:
     $ git clone https://github.com/uw-it-aca/scout.git
 
 
-Navigate to the repository and copy the sample environment varaibels into yoru own `.env` file:
+Navigate to the repository and copy the sample environment variables into your own `.env` file:
 
 ```
-cd scout-manager
+cd scout
 cp sample.env .env
 ```
 
