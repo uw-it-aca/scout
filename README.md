@@ -10,146 +10,52 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-* Django <1.8.6. (Is this still true?)
-* A Python installation (2.6 or 2.7)
-* pip or easy_install
+* Docker
+* Docker-compose
 * git
 
-### Installing
+### Intallation and Set Up
 
-Use pip to install the app as editable from GitHub:
+First, clone the repository:
 
-```
-pip install -e git+https://github.com/uw-it-aca/scout.git#egg=scout
-```
+    $ git clone https://github.com/uw-it-aca/scout.git
 
-You'll also need [uw-restclients-spotseeker](https://github.com/uw-it-aca/uw-restclients-spotseeker)
 
-```
-pip install -e git+https://github.com/uw-it-aca/uw-restclients-spotseeker.git#egg=uw_restclients_spotseeker
-```
-
-In settings.py:
-
-Add scout to your INSTALLED_APPS:
+Navigate to the repository and copy the sample environment variables into your own `.env` file:
 
 ```
-INSTALLED_APPS = (
-    ...
-    'scout',
-    'compressor',
-    ...
-)
+cd scout
+cp sample.env .env
 ```
 
-Add django_mobileesp to MIDDLEWARE_CLASSES:
+Optionally, add custom 404 response to `docker/urls.py`:
 
 ```
-MIDDLEWARE_CLASSES = (
-    ...
-    'django_mobileesp.middleware.UserAgentDetectionMiddleware',
-    ...
-)
-```
-
-Add additional context_processors to TEMPLATES-OPTIONS
-
-```
-TEMPLATES = [ 
-    {   
-        ...
-        'OPTIONS': {
-            'context_processors': [
-                ...
-                'scout.context_processors.google_maps',
-                'scout.context_processors.google_analytics',
-                'scout.context_processors.is_desktop',
-                'scout.context_processors.is_hybrid',
-                ...
-            ],  
-        }, 
-        ... 
-    },  
-]
-```
-
-Add STATICFILES_FINDERS:
-
-```
-STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'compressor.finders.CompressorFinder',
-)
-```
-
-Add STATIC_ROOT:
-
-```
-STATIC_ROOT = 'static/'
-```
-
-Add the following compress settings:
-
-```
-COMPRESS_PRECOMPILERS = (
-    ('text/x-scss', 'sass --scss {infile} {outfile}'),
-    ('text/x-scss', 'django_pyscss.compressor.DjangoScssFilter')
-)
-
-COMPRESS_ENABLED = True
-COMPRESS_CSS_FILTERS = [
-    'compressor.filters.css_default.CssAbsoluteFilter',
-    'compressor.filters.cssmin.CSSMinFilter'
-]
-COMPRESS_JS_FILTERS = [
-    'compressor.filters.jsmin.JSMinFilter',
-]
-```
-
-Add details for connection to spotseeker_server. Change 'Mock' to 'Live' if you want to connect to a live spotseeker_server instead of using the file-based mock data (File-based mocks are sufficient for unit tests, but do not match any of the queries the app will make:
-
-```
-SPOTSEEKER_HOST = ''
-SPOTSEEKER_OAUTH_KEY = ''
-SPOTSEEKER_OAUTH_SECRET = ''
-SPOTSEEKER_DAO_CLASS = 'Mock'
-```
-Additional settings:
-
-```
-CAMPUS_URL_LIST = ['seattle', 'tacoma', 'bothell']
-
-COMPRESS_ROOT = 'static/'
-```
-
-Add the app to your project's urls.py:
-
-```
-from django.conf.urls import patterns, include, url 
-
 handler404 = 'scout.views.custom_404_response'
-
-urlpatterns = patterns('',
-    ... 
-    url(r'^', include('scout.urls')),
-    ... 
-)
-```
-For additional settings, see [some page that doesn't exist yet.]
-
-Create your database, and you can run the server.
-
-```
-python manage.py syncdb
-python manage.py runserver
 ```
 
-## Running the tests
+## Development
+
+### Running the App with Docker
+
+Run the following command to build your docker container:
 
 ```
-python manage.py test scout
+docker-compose up --build
 ```
+
+### Running Unit Tests with Docker
+
+```
+docker-compose run --rm app bin/python manage.py test
+```
+
+### Running the app against a Live Spotseeker Server ###
+
+To find more information on how to run scout against a Live Spotseeker server using the 'all_ok' Auth Module, check [here](https://github.com/uw-it-aca/spotseeker_server/wiki/Using-'all_ok'-oauth-module)
+
+
+To find more information on how to run scout against a Live Spotseeker server using the 'oauth' Auth Module, check [here](https://github.com/uw-it-aca/spotseeker_server/wiki/Using-OAuth)
 
 ## Deployment
 
@@ -196,7 +102,7 @@ limitations under the License.
 CAMPUS_URL_LIST
 GOOGLE_ANALYTICS_KEY
 GOOGLE_MAPS_API
-SPOTSEEKER_DAO_CLASS
-SPOTSEEKER_HOST = ''
+RESTCLIENTS_SPOTSEEKER_DAO_CLASS
+RESTCLIENTS_SPOTSEEKER_HOST = ''
 SPOTSEEKER_OAUTH_KEY = ''
 SPOTSEEKER_OAUTH_SECRET = ''

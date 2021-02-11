@@ -3,26 +3,56 @@ language: python
 python:
   - "2.7"
   - "3.6"
+services:
+  - docker
+env:
+  global:
+    - RELEASE_NAME="scout"
+    - DJANGO_APP="scout"
+    - COMMIT_HASH="$(git rev-parse --short=7 HEAD)"
+    - IMAGE_TAG="${RELEASE_NAME}:${COMMIT_HASH}"
+    # - DEPLOY_SCRIPT_BASE=https://raw.githubusercontent.com/uw-it-aca/gcp-app-deploy/master
 install: 
-  - pip install --upgrade setuptools
-  - python setup.py -q install
+  - docker build --target app-container -t "${IMAGE_TAG}" .
+  - docker build -t "${IMAGE_TAG}-test" .
 before_script:
-  - pip install coverage
   - pip install coveralls
   - pip install pycodestyle
-  - pip install -r requirements.txt
-  - cp sampleproj/manage.py manage.py
-  - python manage.py migrate --noinput
   - npm install -g mocha@^7.2.0
   - npm install jquery
   - npm install jsdom@15.2.0
   - pip list
 script:
-  - pycodestyle scout/ --exclude=migrations
-  - coverage run --source=scout/ --omit=scout/migrations/* manage.py test scout --settings=sampleproj.settings.travis
+  - docker run -u root -it -v /tmp:/coverage -e DJANGO_APP="${DJANGO_APP}" -e "ENV=localdev" "${IMAGE_TAG}-test" bash -c ". ./travis/test.sh"
   - mocha scout/static/scout/js/test --recursive
 after_script:
-  - coveralls
+    - cp /tmp/.coverage.* .
+    - coverage combine
+    - coveralls
+  # - |
+  #   if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
+  #     case "$TRAVIS_BRANCH" in
+  #       "master")
+  #         export APP_INSTANCE="prod";
+  #         ;;
+  #       "qa")
+  #         export APP_INSTANCE="test";
+  #         ;;
+  #       "develop")
+  #         export APP_INSTANCE="dev";
+  #         ;;
+  #       *)
+  #         unset APP_INSTANCE
+  #         ;;
+  #     esac
+  #     if [[ "$APP_INSTANCE" ]]; then
+  #       curl -Ls ${DEPLOY_SCRIPT_BASE}/travis-ci/deploy.sh | bash;
+  #     fi
+  #   fi
+  # cache:
+  #   directories:
+  #   - "$HOME/helm"
+  #   - "$HOME/kubeval"
 notifications:
   webhooks:
       urls:
