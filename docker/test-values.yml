@@ -29,7 +29,7 @@ externalService:
   enabled: true
   name: scout-db-service
   type: ClusterIP
-  serviceAddress: 172.18.0.37
+  serviceAddress: 172.18.0.37   # CHANGE TO MATCH
   servicePort: 3306
 database:
   engine: mysql
@@ -56,7 +56,7 @@ environmentVariables:
   - name: ENV
     value: test
   - name: RESTCLIENTS_SPOTSEEKER_DAO_CLASS
-    value: MOCK
+    value: Mock
   - name: RESTCLIENTS_SPOTSEEKER_HOST
     value: https://test.spotseeker.uw.edu
   - name: SCOUT_SHOW_NEWSSPLASH
