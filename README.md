@@ -21,7 +21,7 @@ First, clone the repository:
     $ git clone https://github.com/uw-it-aca/scout.git
 
 
-Navigate to the repository and copy the sample environment variables into your own `.env` file:
+If you wish to change the default settings, navigate to the repository and copy the sample environment variables into your own `.env` file:
 
 ```
 cd scout
