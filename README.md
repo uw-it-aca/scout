@@ -71,7 +71,7 @@ Please read [CONTRIBUTING.md] for details on our code of conduct, and the proces
 
 ## Versioning
 
-For the versions available, see the [tags on this repository](https://github.com/uw-it-aca/scout/tags).
+Branch master should be considered the production version. Branch develop is generally what should be used for Pull Requests.
 
 ## Authors
 
