@@ -110,21 +110,21 @@ externalSecrets:
 environmentVariablesSecrets:
   djangoSecret:
     name: DJANGO_SECRET
-    secretName: test.scout.uw.edu-secrets
+    secretName: prod.scout.uw.edu-secrets
     secretKey: django-secret
   googleAnalyticsKey:
     name: GOOGLE_ANALYTICS_KEY
-    secretName: test.scout.uw.edu-secrets
+    secretName: prod.scout.uw.edu-secrets
     secretKey: google-analytics-key
   oauthUser:
     name: OAUTH_USER
-    secretName: test.scout.uw.edu-secrets
+    secretName: prod.scout.uw.edu-secrets
     secretKey: oauth-user
   spotseekerOauthKey:
     name: SPOTSEEKER_OAUTH_KEY
-    secretName: test.scout.uw.edu-secrets
+    secretName: prod.scout.uw.edu-secrets
     secretKey: spotseeker-oauth-key
   spotseekerOauthSecret:
     name: SPOTSEEKER_OAUTH_SECRET
-    secretName: test.scout.uw.edu-secrets
+    secretName: prod.scout.uw.edu-secrets
     secretKey: spotseeker-oauth-secret
