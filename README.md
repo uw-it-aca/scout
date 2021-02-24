@@ -21,7 +21,7 @@ First, clone the repository:
     $ git clone https://github.com/uw-it-aca/scout.git
 
 
-Navigate to the repository and copy the sample environment variables into your own `.env` file:
+If you wish to change the default settings, navigate to the repository and copy the sample environment variables into your own `.env` file:
 
 ```
 cd scout
@@ -71,7 +71,7 @@ Please read [CONTRIBUTING.md] for details on our code of conduct, and the proces
 
 ## Versioning
 
-For the versions available, see the [tags on this repository](https://github.com/uw-it-aca/scout/tags).
+Branch master should be considered the production version. Branch develop is generally what should be used for Pull Requests.
 
 ## Authors
 
@@ -100,9 +100,15 @@ limitations under the License.
 (To be moved to the wiki eventually.)
 
 CAMPUS_URL_LIST
+
 GOOGLE_ANALYTICS_KEY
+
 GOOGLE_MAPS_API
+
 RESTCLIENTS_SPOTSEEKER_DAO_CLASS
+
 RESTCLIENTS_SPOTSEEKER_HOST = ''
+
 SPOTSEEKER_OAUTH_KEY = ''
+
 SPOTSEEKER_OAUTH_SECRET = ''
