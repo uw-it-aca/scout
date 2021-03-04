@@ -54,11 +54,6 @@ memcached:
   enabled: false
 cronjob:
   enabled: false
-certs:
-  mounted: true
-  certPath: /certs/prod.scout.uw.edu-uwca.cert
-  keyPath: /certs/prod.scout.uw.edu-uwca.key
-  secretName: prod.scout.uw.edu-uwca-certs
 environmentVariables:
   - name: CLUSTER_CNAME
     value: prod.scout.uw.edu
@@ -67,7 +62,7 @@ environmentVariables:
   - name: RESTCLIENTS_SPOTSEEKER_DAO_CLASS
     value: Live
   - name: RESTCLIENTS_SPOTSEEKER_HOST
-    value: https://spotseeker.uw.edu
+    value: https://prod.api.scout.uw.edu
   - name: SCOUT_SHOW_NEWSSPLASH
     value: True
   - name: WEBSERVER
@@ -82,8 +77,6 @@ externalSecrets:
           property: django-secret
         - name: google-analytics-key
           property: google-analytics-key
-        - name: oauth-user
-          property: oauth-user
         - name: spotseeker-oauth-key
           property: spotseeker-oauth-key
         - name: spotseeker-oauth-secret
@@ -95,18 +88,12 @@ externalSecrets:
           property: username
         - name: password
           property: password
-    - name: prod.scout.uw.edu-uwca-certs
-      externalKey: axdd/kv/data/scout/prod/uwca-certs
-      data:
-        - name: prod.scout.uw.edu-uwca.cert
-          property: prod.scout.uw.edu-uwca.cert
-        - name: prod.scout.uw.edu-uwca.key
-          property: prod.scout.uw.edu-uwca.key
-    - name: prod.scout.uw.edu-ic-cert
-      externalKey: axdd/kv/data/scout/prod/ic-certs
-      data:
-        - name: prod.scout.uw.edu-ic.cert
-          property: prod.scout.uw.edu-ic.cert
+    # may completely delete later if not needed
+    # - name: prod.scout.uw.edu-ic-cert
+    #   externalKey: axdd/kv/data/scout/prod/ic-certs
+    #   data:
+    #     - name: prod.scout.uw.edu-ic.cert
+    #       property: prod.scout.uw.edu-ic.cert
 environmentVariablesSecrets:
   djangoSecret:
     name: DJANGO_SECRET
@@ -116,10 +103,6 @@ environmentVariablesSecrets:
     name: GOOGLE_ANALYTICS_KEY
     secretName: prod.scout.uw.edu-secrets
     secretKey: google-analytics-key
-  oauthUser:
-    name: OAUTH_USER
-    secretName: prod.scout.uw.edu-secrets
-    secretKey: oauth-user
   spotseekerOauthKey:
     name: SPOTSEEKER_OAUTH_KEY
     secretName: prod.scout.uw.edu-secrets
