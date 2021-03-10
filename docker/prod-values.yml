@@ -82,7 +82,7 @@ externalSecrets:
         - name: spotseeker-oauth-secret
           property: spotseeker-oauth-secret
     - name: prod.scout.uw.edu-sql-secrets
-      externalKey: axdd/kv/data/scout/prod/sql-secrets
+      externalKey: axdd/kv/data/scout/common/sql-secrets
       data:
         - name: username
           property: username
