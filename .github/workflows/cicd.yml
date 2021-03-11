@@ -93,7 +93,7 @@ jobs:
         shell: bash
         run: >-
           docker run -u root -it
-          -v /tmp:/coverage
+          -v ${PWD}:/coverage
           -e DJANGO_APP="$DJANGO_APP"
           -e "ENV=localdev"
           app-test-container
