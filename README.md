@@ -1,4 +1,5 @@
-[![Build Status](https://travis-ci.org/uw-it-aca/scout.svg?branch=develop)](https://travis-ci.org/uw-it-aca/scout)  [![Coverage Status](https://coveralls.io/repos/uw-it-aca/scout/badge.svg?branch=master&service=github)](https://coveralls.io/github/uw-it-aca/scout?branch=master)
+[![Build Status](https://github.com/uw-it-aca/scout/workflows/Build%2C%20Test%20and%20Deploy/badge.svg?branch=master)](https://github.com/uw-it-aca/scout/actions)
+[![Coverage Status](https://coveralls.io/repos/github/uw-it-aca/scout/badge.svg?branch=master)](https://coveralls.io/github/uw-it-aca/scout?branch=master)
 
 # Scout
 
