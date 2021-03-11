@@ -5,7 +5,7 @@ trap catch ERR
 #
 # PRECONDITIONS:
 #      * necessary test tooling already installed
-#      * inherited env vars from application's .travis.yml MUST include:
+#      * inherited env vars MUST include:
 #        DJANGO_APP: django application directory name
 
 # start virtualenv
