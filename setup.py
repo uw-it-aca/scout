@@ -14,7 +14,7 @@ setup(
     install_requires=[
         "beautifulsoup4<4.7.0",
         "django==1.11",
-        "django-appconf==1.0.2",
+        "django-appconf",
         "django_compressor<2.4",
         "django-pyscss",
         "django-user-agents",
