@@ -3,12 +3,20 @@ version: '3'
 services:
   app:
     restart: always
-    build: .
-    # map the local (host) directories to their container counterparts
-    # to support live-syncing
+    container_name: scout
+    build:
+      context: .
     volumes:
-      - ./sampleproj:/app/sampleproj
       - ./scout:/app/scout
     ports:
       - "${PORT:-8000}:8000"
-    command: bash -c "python manage.py migrate --settings=sampleproj.settings.local && python manage.py runserver 0.0.0.0:8000 --settings=sampleproj.settings.local"
+    environment:
+      ENV: localdev
+      SCOUT_SHOW_NEWSSPLASH: ${SCOUT_SHOW_NEWSSPLASH:-False}
+      RESTCLIENTS_SPOTSEEKER_HOST: ${RESTCLIENTS_SPOTSEEKER_HOST:-""}
+      SPOTSEEKER_OAUTH_KEY: ${SPOTSEEKER_OAUTH_KEY:-""}
+      SPOTSEEKER_OAUTH_SECRET: ${SPOTSEEKER_OAUTH_SECRET:-""}
+      RESTCLIENTS_SPOTSEEKER_DAO_CLASS: ${RESTCLIENTS_SPOTSEEKER_DAO_CLASS:-Mock}
+      OAUTH_USER: ${OAUTH_USER:-javerage}
+
+
