@@ -16,6 +16,7 @@ setup(
         "django>=1.10,<1.11",
         "django-appconf==1.0.2",
         "django_compressor<2.4",
+        "django-prometheus==2.0.0",
         "django-pyscss",
         "django-user-agents",
         "html5lib==0.9999999",
