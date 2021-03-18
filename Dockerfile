@@ -9,7 +9,7 @@ ADD --chown=acait:acait setup.py /app/
 ADD --chown=acait:acait requirements.txt /app/
 
 RUN /app/bin/pip install -r requirements.txt
-RUN . /app/bin/pip install mysqlclient django-prometheus==2.0.0
+RUN . /app/bin/activate && pip install mysqlclient django-prometheus==2.0.0
 
 ADD --chown=acait:acait . /app/
 ADD --chown=acait:acait docker/ project/
