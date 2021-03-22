@@ -50,7 +50,7 @@ environmentVariables:
   - name: ENV
     value: test
   - name: RESTCLIENTS_SPOTSEEKER_DAO_CLASS
-    value: Mock
+    value: Live
   - name: RESTCLIENTS_SPOTSEEKER_HOST
     value: https://test.api.scout.uw.edu
   - name: SCOUT_SHOW_NEWSSPLASH
