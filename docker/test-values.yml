@@ -67,6 +67,8 @@ externalSecrets:
           property: django-secret
         - name: google-analytics-key
           property: google-analytics-key
+        - name: google-maps-api-key
+          property: google-maps-api-key
         - name: spotseeker-oauth-key
           property: spotseeker-oauth-key
         - name: spotseeker-oauth-secret
@@ -93,6 +95,10 @@ environmentVariablesSecrets:
     name: GOOGLE_ANALYTICS_KEY
     secretName: test.scout.uw.edu-secrets
     secretKey: google-analytics-key
+  googleMapsApiKey:
+    name: GOOGLE_MAPS_API
+    secretName: test.scout.uw.edu-secrets
+    secretKey: google-maps-api-key
   spotseekerOauthKey:
     name: SPOTSEEKER_OAUTH_KEY
     secretName: test.scout.uw.edu-secrets
