@@ -39,6 +39,8 @@ TEMPLATES[0]["OPTIONS"]["context_processors"].extend(
 )
 
 GOOGLE_ANALYTICS_KEY = os.getenv("GOOGLE_ANALYTICS_KEY", " ")
+GOOGLE_MAPS_API = os.getenv("GOOGLE_MAPS_API", "")
+
 
 if os.getenv("ENV", "") == "localdev":
     DEBUG = True
