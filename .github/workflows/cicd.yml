@@ -102,7 +102,7 @@ jobs:
       - name: Run Python Linters
         uses: uw-it-aca/actions/python-linters@main
         with:
-          app_name: ${APP_NAME}
+          app_name: ${DJANGO_APP}
 
       - name: Set up Python Test Dependency
         uses: actions/setup-python@v2
