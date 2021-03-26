@@ -1,4 +1,6 @@
-#!/usr/bin/python
+# Copyright 2021 UW-IT, University of Washington
+# SPDX-License-Identifier: Apache-2.0
+
 """
 Tests the general navigation of the application
 Testing the flow between pages through links
