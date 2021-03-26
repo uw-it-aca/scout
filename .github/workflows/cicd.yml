@@ -99,6 +99,11 @@ jobs:
           app-test-container
           bash -c ". ./docker/test.sh"
 
+      - name: Run Python Linters
+        uses: uw-it-aca/actions/python-linters@main
+        with:
+          app_name: ${APP_NAME}
+
       - name: Set up Python Test Dependency
         uses: actions/setup-python@v2
         with:
