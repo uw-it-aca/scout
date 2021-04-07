@@ -13,7 +13,7 @@ setup(
     include_package_data=True,
     install_requires=[
         "beautifulsoup4",
-        "django==1.11",
+        "django==2.1",
         "django-appconf",
         "django_compressor",
         "django-pyscss",
@@ -21,7 +21,7 @@ setup(
         "html5lib==0.9999999",
         "pytz",
         "requests",
-        "setuptools",  
+        "setuptools",
     ],
     license="Apache License, Version 2.0",  # example license
     description="A Django app for finding resources on campus.",
