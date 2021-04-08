@@ -23,7 +23,7 @@ affinity:
 readiness:
   enabled: true
 securityPolicy:
-  enabled: true
+  enabled: false
 externalService:
   enabled: true
   name: scout-db-service
