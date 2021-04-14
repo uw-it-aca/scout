@@ -241,5 +241,6 @@ if settings.DEBUG:
             TemplateView.as_view(template_name="500.html"),
             name="500_response",
         ),
-        re_path(r"^404/$", views.custom_404_response, name="custom_404_response",),
+        re_path(r"^404/$",
+                views.custom_404_response, name="custom_404_response",),
     ]
