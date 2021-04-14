@@ -1,7 +1,7 @@
 import os
-from django.conf.urls import include, url
+from .base_urls import *
+from django.urls import include, re_path
 
-urlpatterns = [
-    url(r'^', include('scout.urls')),
-    url(r'^', include('django_prometheus.urls')), # add here for django compatibility
+urlpatterns += [
+    re_path(r'^', include('scout.urls')),
 ]
