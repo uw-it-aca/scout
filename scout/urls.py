@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from django.conf import settings
-from django.conf.urls import url, handler404
+from django.urls import re_path
 from django.views.generic import TemplateView
 from django.views.generic.base import RedirectView
 from scout import views
@@ -28,7 +28,7 @@ show_newssplash = getattr(settings, "SCOUT_SHOW_NEWSSPLASH", False)
 if show_newssplash:
     urlpatterns = [
         # news splash
-        url(
+        re_path(
             r"^.*$",
             views.NewsSplashView.as_view(),
             {"template_name": "newssplash.html"},
@@ -38,19 +38,19 @@ if show_newssplash:
 else:
     urlpatterns = [
         # home
-        url(
+        re_path(
             r"^$",
             RedirectView.as_view(url="/seattle", permanent=True),
             name="true",
         ),
         # discover
-        url(
+        re_path(
             r"^(?P<campus>[^/]+)/$",
             DiscoverView.as_view(),
             {"template_name": "scout/discover.html"},
             name="discover",
         ),
-        url(
+        re_path(
             r"^(?P<campus>[^/]+)/discover_card/(?P<discover_category>[a-zA-Z]+"
             ")/$",
             DiscoverCardView.as_view(),
@@ -58,74 +58,74 @@ else:
             name="discovercard",
         ),
         # food
-        url(
+        re_path(
             r"^(?P<campus>[^/]+)/food/$",
             FoodListView.as_view(),
             {"template_name": "scout/food/list.html"},
             name="foodlist",
         ),
-        url(
+        re_path(
             r"^(?P<campus>[^/]+)/food/(?P<spot_id>[0-9]{1,5})/$",
             FoodDetailView.as_view(),
             {"template_name": "scout/food/detail.html"},
             name="fooddetail",
         ),
-        url(
+        re_path(
             r"^(?P<campus>[^/]+)/food/filter/$",
             FoodFilterView.as_view(),
             {"template_name": "scout/food/filter.html"},
             name="foodfilter",
         ),
         # study
-        url(
+        re_path(
             r"^(?P<campus>[^/]+)/study/$",
             StudyListView.as_view(),
             {"template_name": "scout/study/list.html"},
             name="studylist",
         ),
-        url(
+        re_path(
             r"^(?P<campus>[^/]+)/study/(?P<spot_id>[0-9]{1,5})/$",
             StudyDetailView.as_view(),
             {"template_name": "scout/study/detail.html"},
             name="studydetail",
         ),
-        url(
+        re_path(
             r"^(?P<campus>[^/]+)/study/filter/$",
             StudyFilterView.as_view(),
             {"template_name": "scout/study/filter.html"},
             name="studyfilter",
         ),
         # tech
-        url(
+        re_path(
             r"^(?P<campus>[^/]+)/tech/$",
             TechListView.as_view(),
             {"template_name": "scout/tech/list.html"},
             name="techlist",
         ),
-        url(
+        re_path(
             r"^(?P<campus>[^/]+)/tech/(?P<item_id>[0-9]{1,5})/$",
             TechDetailView.as_view(),
             {"template_name": "scout/tech/detail.html"},
             name="techdetail",
         ),
-        url(
+        re_path(
             r"^(?P<campus>[^/]+)/tech/filter/$",
             TechFilterView.as_view(),
             {"template_name": "scout/tech/filter.html"},
             name="techfilter",
         ),
         # hybrid home
-        url(
+        re_path(
             r"^h/$", RedirectView.as_view(url="/h/seattle"), name="hybridhome"
         ),
         # hybrid discover
-        url(
+        re_path(
             r"^h/(?P<campus>[^/]+)/$",
             DiscoverView.as_view(),
             {"template_name": "hybridize/discover.html"},
             name="hybriddiscover",
         ),
-        url(
+        re_path(
             r"^h/(?P<campus>[^/]+)/discover_card/"
             "(?P<discover_category>[a-zA-Z]+)/$",
             DiscoverCardView.as_view(),
@@ -133,13 +133,13 @@ else:
             name="hybriddiscovercard",
         ),
         # hybrid food
-        url(
+        re_path(
             r"^h/(?P<campus>[^/]+)/food/$",
             PlaceHolderView.as_view(),
             {"template_name": "hybridize/food/list.html", "app_type": "food"},
             name="hybridfoodlist",
         ),
-        url(
+        re_path(
             r"^h/(?P<campus>[^/]+)/food/list/$",
             FoodListView.as_view(),
             {
@@ -148,20 +148,20 @@ else:
             },
             name="hybridfoodlistcontent",
         ),
-        url(
+        re_path(
             r"^h/(?P<campus>[^/]+)/food/(?P<spot_id>[0-9]{1,5})/$",
             FoodDetailView.as_view(),
             {"template_name": "hybridize/food/detail.html"},
             name="hybridfooddetail",
         ),
-        url(
+        re_path(
             r"^h/(?P<campus>[^/]+)/food/filter/$",
             FoodFilterView.as_view(),
             {"template_name": "hybridize/food/filter.html"},
             name="hybridfoodfilter",
         ),
         # hybrid study
-        url(
+        re_path(
             r"^h/(?P<campus>[^/]+)/study/$",
             PlaceHolderView.as_view(),
             {
@@ -170,7 +170,7 @@ else:
             },
             name="hybridstudylist",
         ),
-        url(
+        re_path(
             r"^h/(?P<campus>[^/]+)/study/list/$",
             StudyListView.as_view(),
             {
@@ -179,26 +179,26 @@ else:
             },
             name="hybridstudylistcontent",
         ),
-        url(
+        re_path(
             r"^h/(?P<campus>[^/]+)/study/(?P<spot_id>[0-9]{1,5})/$",
             StudyDetailView.as_view(),
             {"template_name": "hybridize/study/detail.html"},
             name="hybridstudydetail",
         ),
-        url(
+        re_path(
             r"^h/(?P<campus>[^/]+)/study/filter/$",
             StudyFilterView.as_view(),
             {"template_name": "hybridize/study/filter.html"},
             name="hybridstudyfilter",
         ),
         # hybrid tech
-        url(
+        re_path(
             r"^h/(?P<campus>[^/]+)/tech/$",
             PlaceHolderView.as_view(),
             {"template_name": "hybridize/tech/list.html", "app_type": "tech"},
             name="hybridtechlist",
         ),
-        url(
+        re_path(
             r"^h/(?P<campus>[^/]+)/tech/list/$",
             TechListView.as_view(),
             {
@@ -207,25 +207,25 @@ else:
             },
             name="hybridtechlist",
         ),
-        url(
+        re_path(
             r"^h/(?P<campus>[^/]+)/tech/(?P<item_id>[0-9]{1,5})/$",
             TechDetailView.as_view(),
             {"template_name": "hybridize/tech/detail.html"},
             name="hybridtechdetail",
         ),
-        url(
+        re_path(
             r"^h/(?P<campus>[^/]+)/tech/filter/$",
             TechFilterView.as_view(),
             {"template_name": "hybridize/tech/filter.html"},
             name="hybridtechfilter",
         ),
         # images
-        url(
+        re_path(
             r"^images/(?P<spot_id>\d+)/image/(?P<image_id>\d+)/$",
             views.spot_image_view,
             name="spotimage",
         ),
-        url(
+        re_path(
             r"^item/images/(?P<item_id>\d+)/image/(?P<image_id>\d+)/$",
             views.item_image_view,
             name="itemimage",
@@ -236,10 +236,10 @@ else:
 # debug routes for developing error pages
 if settings.DEBUG:
     urlpatterns += [
-        url(
+        re_path(
             r"^500/$",
             TemplateView.as_view(template_name="500.html"),
             name="500_response",
         ),
-        url(r"^404/$", views.custom_404_response, name="custom_404_response",),
+        re_path(r"^404/$", views.custom_404_response, name="custom_404_response",),
     ]
