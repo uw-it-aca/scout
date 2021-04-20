@@ -17,7 +17,7 @@ ingress:
     nginx.ingress.kubernetes.io/use-regex: "true"
     nginx.ingress.kubernetes.io/configuration-snippet: |
       if ($request_uri ~ '^/manager(/.*)?') {
-        return 301 $scheme://test.manager.scout.edu$request_uri;
+        return 301 $scheme://test.manager.scout.uw.edu$request_uri;
       }
 lifecycle:
   enabled: true
