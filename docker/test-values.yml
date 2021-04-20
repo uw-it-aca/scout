@@ -16,7 +16,7 @@ ingress:
     nginx.ingress.kubernetes.io/client-body-buffer-size: "16K"
     nginx.ingress.kubernetes.io/use-regex: "true"
     nginx.ingress.kubernetes.io/configuration-snippet: |
-      if ($request_uri = '^/manager(/.*)?') {
+      if ($request_uri ~ '^/manager(/.*)?') {
         return 301 $scheme://test.manager.scout.edu$request_uri;
       }
 lifecycle:
