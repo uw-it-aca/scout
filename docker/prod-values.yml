@@ -26,6 +26,11 @@ ingress:
     cert-manager.io/cluster-issuer: letsencrypt
     nginx.ingress.kubernetes.io/ssl-ciphers: "ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-SHA256"
     nginx.ingress.kubernetes.io/client-body-buffer-size: "16K"
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      if ($request_uri ~ '^/manager(/.*)?') {
+        return 301 $scheme://manager.scout.uw.edu$request_uri;
+      }
 lifecycle:
   enabled: true
   preStop:
@@ -42,7 +47,7 @@ externalService:
   servicePort: 3306
 database:
   engine: mysql
-  name: scout_prod
+  name: scout
   hostname: scout-db-service
   secretName: prod.scout.uw.edu-sql-secrets
 repo: scout
@@ -60,11 +65,11 @@ environmentVariables:
   - name: ENV
     value: prod
   - name: RESTCLIENTS_SPOTSEEKER_DAO_CLASS
-    value: Live
+    value: Mock
   - name: RESTCLIENTS_SPOTSEEKER_HOST
-    value: https://prod.api.scout.uw.edu
+    value: https://api.scout.uw.edu
   - name: SCOUT_SHOW_NEWSSPLASH
-    value: True
+    value: 'True'
   - name: WEBSERVER
     value: nginx
 externalSecrets:
@@ -77,6 +82,8 @@ externalSecrets:
           property: django-secret
         - name: google-analytics-key
           property: google-analytics-key
+        - name: google-maps-api-key
+          property: google-maps-api-key
         - name: spotseeker-oauth-key
           property: spotseeker-oauth-key
         - name: spotseeker-oauth-secret
@@ -88,12 +95,6 @@ externalSecrets:
           property: username
         - name: password
           property: password
-    # may completely delete later if not needed
-    # - name: prod.scout.uw.edu-ic-cert
-    #   externalKey: axdd/kv/data/scout/prod/ic-certs
-    #   data:
-    #     - name: prod.scout.uw.edu-ic.cert
-    #       property: prod.scout.uw.edu-ic.cert
 environmentVariablesSecrets:
   djangoSecret:
     name: DJANGO_SECRET
@@ -103,6 +104,10 @@ environmentVariablesSecrets:
     name: GOOGLE_ANALYTICS_KEY
     secretName: prod.scout.uw.edu-secrets
     secretKey: google-analytics-key
+  googleMapsApiKey:
+    name: GOOGLE_MAPS_API
+    secretName: prod.scout.uw.edu-secrets
+    secretKey: google-maps-api-key
   spotseekerOauthKey:
     name: SPOTSEEKER_OAUTH_KEY
     secretName: prod.scout.uw.edu-secrets

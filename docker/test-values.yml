@@ -28,7 +28,7 @@ affinity:
 readiness:
   enabled: true
 securityPolicy:
-  enabled: false
+  enabled: true
 externalService:
   enabled: true
   name: scout-db-service
@@ -85,12 +85,6 @@ externalSecrets:
           property: username
         - name: password
           property: password
-    # may completely delete later if not needed
-    # - name: test.scout.uw.edu-ic-certs
-    #   externalKey: axdd/kv/data/scout/test/ic-certs
-    #   data:
-    #     - name: test.scout.uw.edu-ic.cert
-    #       property: test.scout.uw.edu-ic.cert
 environmentVariablesSecrets:
   djangoSecret:
     name: DJANGO_SECRET
