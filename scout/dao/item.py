@@ -1,3 +1,6 @@
+# Copyright 2021 UW-IT, University of Washington
+# SPDX-License-Identifier: Apache-2.0
+
 from scout.dao.space import get_spots_by_filter, _get_spot_filters, \
     _get_extended_info_by_key
 import copy

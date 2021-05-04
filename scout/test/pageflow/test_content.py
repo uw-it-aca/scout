@@ -1,4 +1,6 @@
-#!/usr/bin/python
+# Copyright 2021 UW-IT, University of Washington
+# SPDX-License-Identifier: Apache-2.0
+
 """
 Tests the contents of each page, making sure the
 necessary selectors are present
