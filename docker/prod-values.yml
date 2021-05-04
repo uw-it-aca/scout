@@ -69,7 +69,7 @@ environmentVariables:
   - name: RESTCLIENTS_SPOTSEEKER_HOST
     value: https://api.scout.uw.edu
   - name: SCOUT_SHOW_NEWSSPLASH
-    value: 'True'
+    value: 'False'
   - name: WEBSERVER
     value: nginx
 externalSecrets:
