@@ -227,7 +227,9 @@ def process_extended_info(spot):
     spot = organize_hours(spot)
     spot = add_item_info(spot)
 
-    now = datetime.datetime.now(pytz.timezone(getattr(settings, 'TIME_ZONE', 'America/Los_Angeles')))
+    now = datetime.datetime.now(
+        pytz.timezone(getattr(settings, 'TIME_ZONE', 'America/Los_Angeles'))
+    )
     spot.is_open = get_is_spot_open(spot, now)
     spot.open_periods = get_open_periods_by_day(spot, now)
     return spot
