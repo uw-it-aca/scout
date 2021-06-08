@@ -1,6 +1,7 @@
 # Copyright 2021 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
+from django.conf import settings
 from uw_spotseeker import Spotseeker
 from restclients_core.exceptions import DataFailureException
 import datetime
@@ -226,7 +227,7 @@ def process_extended_info(spot):
     spot = organize_hours(spot)
     spot = add_item_info(spot)
 
-    now = datetime.datetime.now(pytz.timezone('America/Los_Angeles'))
+    now = datetime.datetime.now(pytz.timezone(getattr(settings, 'TIME_ZONE', 'America/Los_Angeles')))
     spot.is_open = get_is_spot_open(spot, now)
     spot.open_periods = get_open_periods_by_day(spot, now)
     return spot
