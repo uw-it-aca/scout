@@ -16,10 +16,10 @@ ingress:
     scout:
       secretName: prod.scout.uw.edu-ingress-cert
       hosts:
-        - prod.scout.uw.edu
+        - scout.uw.edu
   hosts:
     scout:
-      host: prod.scout.uw.edu
+      host: scout.uw.edu
       paths:
         - "/"
   annotations:
@@ -61,7 +61,7 @@ cronjob:
   enabled: false
 environmentVariables:
   - name: CLUSTER_CNAME
-    value: prod.scout.uw.edu
+    value: scout.uw.edu
   - name: ENV
     value: prod
   - name: RESTCLIENTS_SPOTSEEKER_DAO_CLASS
