@@ -14,7 +14,7 @@ ingress:
   enabled: true
   tls:
     scout:
-      secretName: prod.scout.uw.edu-ingress-cert
+      secretName: scout.uw.edu-ingress-cert
       hosts:
         - scout.uw.edu
   hosts:
