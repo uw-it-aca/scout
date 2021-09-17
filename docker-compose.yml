@@ -6,6 +6,8 @@ services:
     container_name: scout
     build:
       context: .
+      dockerfile: ${DOCKERFILE:-Dockerfile}
+      target: app-container
     volumes:
       - ./scout:/app/scout
     ports:
