@@ -15,7 +15,6 @@ def google_maps(request):
 
 
 def google_analytics(request):
-
     ga_key = getattr(settings, 'GOOGLE_ANALYTICS_KEY', False)
     return {
         'GOOGLE_ANALYTICS_KEY': ga_key,
@@ -24,7 +23,6 @@ def google_analytics(request):
 
 
 def is_desktop(request):
-
     dk = not request.user_agent.is_mobile and not request.user_agent.is_tablet
 
     return {
@@ -33,9 +31,14 @@ def is_desktop(request):
 
 
 def is_hybrid(request):
-
     hybridapp = request.GET.get('hybrid')
 
     return {
         'is_hybrid': hybridapp
+    }
+
+
+def is_tech_tab_down(request):
+    return {
+        'is_tech_tab_down': settings.IS_TECH_TAB_DOWN
     }
