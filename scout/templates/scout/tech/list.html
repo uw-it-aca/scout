@@ -39,7 +39,7 @@
 
     </div>
     {% else %}
-        {% if not is_tech_tab_down %}
+        {% if not scout_show_alt_tech %}
         <!-- tech filter results -->
         <div class="scout-filter-results" aria-labelledby="filter_header">
 
@@ -154,12 +154,16 @@
 
         </div>
         {% else %}
-        <div style="padding: 1em">
-            <p>
-                UW Student Technology Loan Program (UW STLP) is run by students for students, allowing currently registered
-                students to borrow laptops, projectors, cameras, and more for free. You can visit this site
-                <a href="https://stlp.uw.edu" target="_blank">here</a>!
-            </p>
+        <div class="scout-card scout-discover-content">
+            <div class="card-content" style="background:#fff; padding: 10px 0;">
+                <div class="card-content-inner">
+                    <p>
+                        UW Student Technology Loan Program (UW STLP) is run by students for students, allowing currently registered
+                        students to borrow laptops, projectors, cameras, and more for free. You can visit this site below.
+                    </p>
+                    <a href="https://stlp.uw.edu" target="_blank">UW Student Technology Loan Program</a>
+                </div>
+            </div>
         </div>
         {% endif %}
     {% endif %}
