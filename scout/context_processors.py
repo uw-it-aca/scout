@@ -38,7 +38,7 @@ def is_hybrid(request):
     }
 
 
-def is_tech_tab_down(request):
+def scout_show_alt_tech(request):
     return {
-        'is_tech_tab_down': settings.IS_TECH_TAB_DOWN
+        'scout_show_alt_tech': settings.SCOUT_SHOW_ALT_TECH
     }

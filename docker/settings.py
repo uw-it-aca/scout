@@ -35,7 +35,7 @@ TEMPLATES[0]["OPTIONS"]["context_processors"].extend(
         "scout.context_processors.google_analytics",
         "scout.context_processors.is_desktop",
         "scout.context_processors.is_hybrid",
-        "scout.context_processors.is_tech_tab_down",
+        "scout.context_processors.scout_show_alt_tech",
     ]
 )
 
@@ -102,4 +102,4 @@ SPOTSEEKER_OAUTH_KEY = os.getenv("SPOTSEEKER_OAUTH_KEY", "")
 SPOTSEEKER_OAUTH_SECRET = os.getenv("SPOTSEEKER_OAUTH_SECRET", "")
 RESTCLIENTS_SPOTSEEKER_DAO_CLASS = os.getenv("RESTCLIENTS_SPOTSEEKER_DAO_CLASS", "Mock")
 OAUTH_USER = os.getenv("OAUTH_USER", "javerage")
-IS_TECH_TAB_DOWN = os.getenv("IS_TECH_TAB_DOWN", True)
+SCOUT_SHOW_ALT_TECH = os.getenv("SCOUT_SHOW_ALT_TECH") == "True"
