@@ -1,4 +1,4 @@
-version: '3'
+version: '3.7'
 
 services:
   app:
@@ -6,6 +6,8 @@ services:
     container_name: scout
     build:
       context: .
+      dockerfile: ${DOCKERFILE:-Dockerfile}
+      target: app-container
     volumes:
       - ./scout:/app/scout
     ports:
@@ -18,5 +20,6 @@ services:
       SPOTSEEKER_OAUTH_SECRET: ${SPOTSEEKER_OAUTH_SECRET:-""}
       RESTCLIENTS_SPOTSEEKER_DAO_CLASS: ${RESTCLIENTS_SPOTSEEKER_DAO_CLASS:-Mock}
       OAUTH_USER: ${OAUTH_USER:-javerage}
+      SCOUT_SHOW_ALT_TECH: ${SCOUT_SHOW_ALT_TECH:-False}
 
 
