@@ -38,7 +38,6 @@
                     </div>
                 </div>
 
-                {% if campus == 'seattle' %}
                 <div class="scout-navigation" role="navigation" aria-label="main navigation">
                     <ul class="scout-navigation-items" role="tablist">
                         <li><a role="tab" id="link_food" href="/{{ campus }}/food/" {% if app_type == 'food' %}class="active" aria-selected="true"{% endif %} title="List of food places on campus"><i class="fa fa-cutlery" aria-hidden="true"></i> Food</a></li>
@@ -47,7 +46,6 @@
                         <li><a role="tab" id="link_tech" href="/{{ campus }}/tech/" {% if app_type == 'tech' %}class="active" aria-selected="true"{% endif %} title="List of technology resources on campus"><i class="fa fa-laptop" aria-hidden="true"></i> Tech</a></li>
                     </ul>
                 </div>
-                {% endif %}
 
             </div>
 
