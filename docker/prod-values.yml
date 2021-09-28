@@ -70,6 +70,8 @@ environmentVariables:
     value: https://api.scout.uw.edu
   - name: SCOUT_SHOW_NEWSSPLASH
     value: 'False'
+  - name: SCOUT_SHOW_ALT_TECH
+    value: 'True'
   - name: WEBSERVER
     value: nginx
 externalSecrets:
