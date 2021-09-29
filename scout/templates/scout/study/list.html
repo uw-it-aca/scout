@@ -81,7 +81,7 @@
 
                                     <div class="scout-spot-location" style="white-space:normal; line-height: initial;">
                                         <span class="scout-spot-distance" style="display:inline-block;line-height:22px;"><span class="visually-hidden">Distance from you:</span><span class="distance-number">---</span>&nbsp;mi</span>
-                                        <span class="visually-hidden">Location: </span>{% if spot.location_description %}{{ spot.location_description }}{% else %}<span style="color:red;">missing location_description</span>{% endif %}
+                                        <span class="visually-hidden">Location: </span>{{ spot.location_description }}
                                     </div>
 
                                     <div class="scout-spot-status"><span class="visually-hidden">Status: </span>{% if spot.is_open %}<span class="open visually-hidden">Open now</span>{% else %}<span class="closed">Currently closed</span>{% endif %}</div>
