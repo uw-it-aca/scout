@@ -98,8 +98,8 @@ def get_filtered_spots(request, campus, app_type=None):
     elif(app_type == "tech"):
         filters.append(('extended_info:app_type', 'tech'))
     elif(app_type == "study"):
-        if "open_at" not in dict(filters) and
-        "open_and_closed" not in dict(filters):
+        if "open_at" not in dict(filters)
+        and "open_and_closed" not in dict(filters):
             filters.append(('open_now', 'true'))
     return get_spots_by_filter(filters)
 
