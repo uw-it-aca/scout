@@ -22,7 +22,7 @@ from restclients_core.exceptions import DataFailureException
 DAO = 'Mock'
 
 
-@override_settings(SPOTSEEKER_DAO_CLASS=DAO)
+@override_settings(RESTCLIENTS_SPOTSEEKER_DAO_CLASS=DAO)
 class SpaceDAOTest(TestCase):
 
     def test_get_spots_by_filter(self):
