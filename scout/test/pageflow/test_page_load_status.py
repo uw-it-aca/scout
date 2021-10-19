@@ -6,11 +6,15 @@ Tests pages and their respective URL status codes
 """
 
 from scout.test import ScoutTestCase
+from django.test.utils import override_settings
 
 # Statuses
 OK = 200
 notfound = 404
 redir = 301
+
+# Settings override
+DAO = 'Mock'
 
 baseUrl = '/seattle'
 # Each of these will be turned into a test function
@@ -90,6 +94,7 @@ def _makeTestFunc(name, url, status=OK, issue=None):
     return _testFunc
 
 
+@override_settings(RESTCLIENTS_SPOTSEEKER_DAO_CLASS=DAO)
 class UrlStatusTest(ScoutTestCase):
     """
     Ensure each listed URL/path results in the expected status code
