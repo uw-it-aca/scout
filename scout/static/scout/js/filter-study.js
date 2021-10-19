@@ -42,8 +42,6 @@ var Study_Filter = {
         if ($("#hours_toggle input:checked").val() == "hours_list") {
             // gets the parameter for start and stop hours
             params = $.extend(params, Study_Filter.get_processed_hours());
-        } else if ($("#hours_toggle input:checked").val() == "open_and_closed") {
-            params = $.extend(params, {"open_and_closed": "true"})
         }
 
         // Store these study_filter_params
