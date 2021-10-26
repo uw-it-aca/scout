@@ -40,8 +40,20 @@
 
 </div>
 {% else %}
+{% if not scout_show_alt_tech %}
 
 {% include "hybridize/includes/location.html" %}
+
+<div style="padding:20px; line-height:20px;">
+  <p style="font-size:14px; color:#666;">Commonly requested types:</p>
+  <ul style="list-style:none; padding:0; margin:0; line-height:20px; font-size:14px;">
+    <li><a href="/h/seattle/tech/?h_title=Seattle Tech&subcategory0=Digital+Camera">Digital Camera</a></li>
+    <li><a href="/h/seattle/tech/?h_title=Seattle Tech&subcategory0=Digital+Video+Camera">Digital Video Camera</a></li>
+    <li><a href="/h/seattle/tech/?h_title=Seattle Tech&subcategory0=Laptop+Computer">Laptop Computer</a></li>
+    <li><a href="/h/seattle/tech/?h_title=Seattle Tech&subcategory0=Tablet+Computer">Tablet Computer</a></li>
+    <li><a href="/h/seattle/tech/?h_title=Seattle Tech&subcategory0=Data+Projector">Data Projector</a></li>
+  </ul>
+</div>
 
 <div id="tech_placeholder">
 
@@ -223,6 +235,21 @@
     </div>
   </div>
 </div>
+
+{% else %}
+<div class="scout-card scout-discover-content">
+  <div class="card-content" style="background:#fff; padding: 10px 0;">
+    <div class="card-content-inner">
+      <p>
+        The UW Student Technology Loan Program (UW STLP) is run by students for students, allowing currently-registered
+        students to borrow laptops, projectors, cameras, and more for free.
+        <a href="https://stlp.uw.edu" target="_blank">Visit the STLP site to see what's available and check out equipment.</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+{% endif %}
 
 <!-- tech spot loading location -->
 <div id="tech_list" class="visually-hidden"></div>
