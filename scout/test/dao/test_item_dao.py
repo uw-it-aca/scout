@@ -13,7 +13,7 @@ from uw_spotseeker.dao import Spotseeker_DAO
 DAO = 'Mock'
 
 
-@override_settings(SPOTSEEKER_DAO_CLASS=DAO)
+@override_settings(RESTCLIENTS_SPOTSEEKER_DAO_CLASS=DAO)
 class ItemDAOTest(TestCase):
     """
     Runs tests on the item DAO to check for intended behavior.
