@@ -189,7 +189,8 @@
                 </div>
 
             </div>
-
+            
+            {% if spot.s_has_reservation or spot.payment_names|length > 0 or spot.has_coupon %}
             <div class="scout-card">
                 <h3>Details</h3>
 
@@ -197,7 +198,8 @@
                 <h4><i class="fa fa-bookmark"></i> Reservations</h4>
                 <div class="scout-spot-reservation">{{spot.s_reservation_notes}}</div>
                 {% endif %}
-
+                
+                {% if spot.payment_names|length > 0 %}
                 <h4><i class="fa fa-credit-card"></i> Payment accepted</h4>
                 <div class="scout-spot-payment">
                     <ul>
@@ -206,6 +208,7 @@
                         {% endfor %}
                     </ul>
                 </div>
+                {% endif %}
 
                 {% if spot.has_coupon %}
                 <h4><i class="fa fa-ticket"></i> Coupon</h4>
@@ -220,8 +223,8 @@
                     <div class="scout-spot-coupon-expire"><span>Expiration:</span> {% if spot.coupon_expiration %}{{ spot.coupon_expiration }}{% else %}No expiration specified{% endif %}</div>
                 </div>
                 {% endif %}
-
             </div>
+            {% endif %}
 
             <div class="scout-card">
                 <h3>Contact Us</h3>

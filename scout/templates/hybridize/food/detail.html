@@ -276,6 +276,35 @@
   {% endif %}
 </div>
 
+{% if spot.s_has_reservation or spot.payment_names|length > 0 %}
+<div class="content-block-title">Details</div>
+<div class="list-block">
+  <ul>
+    {% if spot.s_has_reservation %}
+    <li>
+      <div class="item-content">
+        <div class="item-inner">
+          <div class="item-title">Reservations</div>
+          <span>{{spot.s_reservation_notes}}</span>
+        </div>
+      </div>
+    </li>
+    {% endif %}
+
+    {% if spot.payment_names|length > 0 %}
+    <li>
+      <div class="item-content">
+        <div class="item-inner">
+          <div class="item-title">Payment Accepted</div>
+          <span>{% for payment in spot.payment_names %}{{ payment }}{% if not forloop.last %}, {% endif %}{% endfor %}</span>
+        </div>
+      </div>
+    </li>
+    {% endif %}
+  </ul>
+</div>
+{% endif %}
+
 <div class="content-block-title">Contact Us</div>
 <div class="list-block">
   <ul>
