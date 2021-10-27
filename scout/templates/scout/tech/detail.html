@@ -36,6 +36,11 @@
                     </div>
 
                 </div>
+                {% if spot.has_alert %}
+                <div class="scout-spot-alert" role="alert">
+                    <i class="fa fa-exclamation-triangle"></i>{{ spot.alert_notes|urlize|linebreaksbr}}
+                </div>
+                {% endif %}
             </div>
 
             <div class="scout-spot-info">
@@ -201,11 +206,6 @@
                     {% if spot.hours_notes %}
                     <h4><i class="fa fa-file-text"></i> Hour Notes</h4>
                     <div class="scout-spot-notes">{{spot.hours_notes|urlize|linebreaksbr}}</div>
-                    {% endif %}
-
-                    {% if spot.alert_notes %}
-                    <h4><i class="fa fa-file-text"></i> Alert Notes</h4>
-                    <div class="scout-spot-notes">{{ spot.alert_notes|urlize|linebreaksbr }}</div>
                     {% endif %}
 
                     {% if spot.display_access_restrictions %}
