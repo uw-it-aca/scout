@@ -99,7 +99,7 @@ def get_filtered_spots(request, campus, app_type=None):
         filters.append(('extended_info:app_type', 'tech'))
     elif(app_type == "study"):
         if ("open_at" not in dict(filters)) and (
-                "open_and_closed" not in dict(filters)):
+                "all_published" not in dict(filters)):
             filters.append(('open_now', 'true'))
     return get_spots_by_filter(filters)
 
@@ -126,8 +126,8 @@ def _get_spot_filters(request):
             params += get_period_filter(request.GET[param])
         if "open_now" in param:
             params.append(("open_now", "true"))
-        if "open_and_closed" in param:
-            params.append(("open_and_closed", "true"))
+        if "all_published" in param:
+            params.append(("all_published", "true"))
         if "building" in param:
             params.append(("building_name", request.GET[param]))
         if "resources" in param:
