@@ -43,16 +43,6 @@
   {% endif %}
 
   <ul>
-    {% if spot.has_alert %}
-    <li>
-      <div class="item-content">
-        <div class="item-inner">
-          <div class="item-title" style="color:#A94441;">{% now "DATE_FORMAT" %} <span>{{ spot.alert_notes|urlize|linebreaksbr }}</span>
-          </div>
-        </div>
-      </div>
-    </li>
-    {% endif %}
     {% if spot.item.brand %}
     <li class="item-content">
       <div class="item-inner">
