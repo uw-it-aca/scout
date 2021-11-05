@@ -97,24 +97,59 @@
   {% endif %}
 </div>
 
-<div class="content-block-title">Location</div>
+{% if spot.spot_resources|length > 0 or spot.food_nearby or spot.spot_noise or spot.natural_light %}
+<div class="content-block-title">Environment</div>
 <div class="list-block">
   <ul>
-    {% if spot.location_description %}
-    <li>
-      <a href="https://www.google.com/maps/search/?api=1&query={{ spot.latitude }},{{ spot.longitude }}"
-        class="item-link">
-        <div class="item-content">
-          <div class="item-inner">
-            <div class="item-title">{{ spot.location_description }} <span>Directions via Google Maps</span>
-            </div>
-          </div>
+    {% if spot.spot_resources %}
+    <li class="item-content">
+      <div class="item-inner">
+        {% if spot.spot_resources|length < 3 %} <div class="item-title">Resources</div>
+        <div class="item-after">
+          {% for spot_resource in spot.spot_resources %}
+          {% if forloop.last %}{{ spot_resource }}{% else %}{{ spot_resource }}, {% endif %}
+          {% endfor %}
         </div>
-      </a>
+        {% else %}
+        <div class="item-title">Resources
+          <span>
+            {% for spot_resource in spot.spot_resources %}
+            {% if forloop.last %}{{ spot_resource }}{% else %}{{ spot_resource }}, {% endif %}
+            {% endfor %}
+          </span>
+        </div>
+        {% endif %}
+      </div>
+    </li>
+    {% endif %}
+
+    {% if spot.food_nearby %}
+    <li class="item-content">
+      <div class="item-inner">
+        <div class="item-title">Food/Coffee</div>
+        <div class="item-after">{{ spot.food_nearby|title }}</div>
+      </div>
+    </li>
+    {% endif %}
+    {% if spot.spot_noise %}
+    <li class="item-content">
+      <div class="item-inner">
+        <div class="item-title">Noise level</div>
+        <div class="item-after"> {{ spot.spot_noise|title }}</div>
+      </div>
+    </li>
+    {% endif %}
+    {% if spot.natural_light %}
+    <li class="item-content">
+      <div class="item-inner">
+        <div class="item-title">Lighting</div>
+        <div class="item-after">Natural light</div>
+      </div>
     </li>
     {% endif %}
   </ul>
 </div>
+{% endif %}
 
 <div class="content-block-title">Open Hours</div>
 <div class="list-block">
@@ -233,56 +268,28 @@
   {% endif %}
 </div>
 
-
-<div class="content-block-title">Environment</div>
+<div class="content-block-title">Location</div>
 <div class="list-block">
   <ul>
-
-    {% if spot.spot_resources %}
-    <li class="item-content">
-      <div class="item-inner">
-        {% if spot.spot_resources|length < 3 %}
-        <div class="item-title">Resources</div>
-        <div class="item-after">
-          {% for spot_resource in spot.spot_resources %}
-          {% if forloop.last %}{{ spot_resource }}{% else %}{{ spot_resource }}, {% endif %}
-          {% endfor %}
+    {% if spot.location_description %}
+    <li>
+      <a href="https://www.google.com/maps/search/?api=1&query={{ spot.latitude }},{{ spot.longitude }}"
+        class="item-link">
+        <div class="item-content">
+          <div class="item-inner">
+            <div class="item-title">{{ spot.location_description }} <span>Directions via Google Maps</span>
+            </div>
+          </div>
         </div>
-        {% else %}
-        <div class="item-title">Resources
-          <span>
-            {% for spot_resource in spot.spot_resources %}
-            {% if forloop.last %}{{ spot_resource }}{% else %}{{ spot_resource }}, {% endif %}
-            {% endfor %}
-          </span>
+      </a>
+    </li>
+    {% else %}
+    <li>
+        <div class="item-content">
+          <div class="item-inner">
+            <div class="item-title">None</div>
+          </div>
         </div>
-        {% endif %}
-      </div>
-    </li>
-    {% endif %}
-
-    {% if spot.food_nearby %}
-    <li class="item-content">
-      <div class="item-inner">
-        <div class="item-title">Food/Coffee</div>
-        <div class="item-after">{{ spot.food_nearby|title }}</div>
-      </div>
-    </li>
-    {% endif %}
-    {% if spot.spot_noise %}
-    <li class="item-content">
-      <div class="item-inner">
-        <div class="item-title">Noise level</div>
-        <div class="item-after"> {{ spot.spot_noise|title }}</div>
-      </div>
-    </li>
-    {% endif %}
-    {% if spot.natural_light %}
-    <li class="item-content">
-      <div class="item-inner">
-        <div class="item-title">Lighting</div>
-        <div class="item-after">Natural light</div>
-      </div>
     </li>
     {% endif %}
   </ul>

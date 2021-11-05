@@ -1,0 +1,45 @@
+{% load staticfiles %}
+
+<div class="scout-card scout-discover-content">
+
+    <h3>
+        <span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i> <i class="fa fa-laptop fa-stack-1x fa-inverse"></i></span>
+        <span class="scout-card-title">Welcome New and Returning Huskies!</span>
+    </h3>
+
+    <div style="background:url('{% static "scout/img/seattle/IMG_1758-X3.jpg" %}') no-repeat center bottom; background-size: cover !important; height:100px; text-transform:uppercase; font-size:14px; color:#fff; margin-top:15px;" valign="bottom" class="card-header color-white no-border">&nbsp;</div>
+    <div class="card-content" style="background:#fff; padding: 10px 0;">
+        <div class="card-content-inner">
+            <!-- <p class="color-gray">My New Card</p> -->
+                {% if campus == "seattle" %}
+                <p>Browse Scout to find places to eat and study spaces with features you want. Keep checking back to see newly-opened spaces as they are added! Soon, you'll also be able to browse tech items available for loan from the Student Technology Loan Program.</p>
+                <p>Until then, you can find up-to-date information on available spaces and services, including the Student Technology Loan Program, on the websites below.</p>
+                <ul>
+                    <li><a style="color: #25738F; text-decoration: underline;" target="_blank" rel="noopener noreferrer" href="https://www.lib.washington.edu/coronavirus/">UW Libraries updates and resources</a></li>
+                    <li><a style="color: #25738F; text-decoration: underline;" target="_blank" rel="noopener noreferrer" href="https://hub.washington.edu/home/hub-hours/">The HUB hours</a></li>
+                    <li><a style="color: #25738F; text-decoration: underline;" target="_blank" rel="noopener noreferrer" href="https://hfs.uw.edu/Suspended-Operations/">UW Seattle Housing (dorm) restaurants and other amenities</a></li>
+                    <li style="text-align: left;">Student Technology Loan Program: <a style="display: inline; color: #25738F; text-decoration: underline;" target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/uwstlp/">get updates via Facebook</a> or <a style="display: inline; color:#25738F; text-decoration: underline;" target="_blank" rel="noopener noreferrer" href="https://stlp.uw.edu/">reserve equipment on their website</a>.</li>
+                </ul>
+                <p>Are you a space owner whose spaces are open? Let us know so we can include you in Scout by emailing <a href="mailto:help@uw.edu">help@uw.edu</a>.</p>
+                {% elif campus == "tacoma" %}
+                <p>Browse Scout to find places to eat and study that match what you're looking for.</p>
+                <p>You can also find up-to-date information on available spaces and services on the websites below.</p>
+                <ul>
+                    <li><a style="color: #25738F; text-decoration: underline;" target="_blank" rel="noopener noreferrer" href="https://www.tacoma.uw.edu/uwt/uuf/campus-study-spaces">Campus study spaces available for UW students</a></li>
+                    <li><a style="color: #25738F; text-decoration: underline;" target="_blank" rel="noopener noreferrer" href="https://www.tacoma.uw.edu/uwt/library">UW Tacoma Library updates and resources</a></li>
+                    <li style="text-align: left; margin-top: 8px;"><a style="display: inline; color: #25738F; text-decoration: underline;" target="_blank" rel="noopener noreferrer" href="https://www.tacoma.uw.edu/about-uw-tacoma/coronavirus-central-information-resource">COVID-19 facts and resources for UW Tacoma campus</a></li>
+                </ul>
+                <p>Are you a space owner whose spaces are open? Let us know so we can include you in Scout by emailing <a href="mailto:help@uw.edu">help@uw.edu</a>.</p>
+
+                {% elif campus == "bothell" %}
+                <p>Browse Scout to find places to eat and study that match what you're looking for.</p>
+                <p>You can also find up-to-date information on available spaces and services on the website below.</p>
+                <ul>
+                    <li style="text-align: left; margin-top: 8px;"><a style="color: #25738F; text-decoration: underline;" target="_blank" rel="noopener noreferrer" href="https://library.uwb.edu/covidupdates">UW Bothell Library updates and resources</a></li>
+                </ul>
+                <p>Are you a space owner whose spaces are open? Let us know so we can include you in Scout by emailing <a href="mailto:help@uw.edu">help@uw.edu</a>.</p>
+
+                {% endif %}
+        </div>
+    </div>
+</div>
