@@ -115,8 +115,9 @@
       <div class="item-content">
         <div class="item-inner">
           <div class="item-title">Open Periods
-            <span>{% for period in spot.open_periods %}{{ period|remove_underscores|title }}{% if not forloop.last %},
-              {% endif %}{% endfor %}</span></div>
+              <span>
+                  {% for key, value in spot.open_periods.items %}{% if value %}{{ key|remove_underscores|title }}{% if not forloop.last %},
+                  {% endif %}{% endif %}{% endfor %}</span></div>
         </div>
       </div>
     </li>
@@ -328,9 +329,5 @@
     </li>
   </ul>
 </div>
-
-<script>
-  var LIST_PAGE = false;
-</script>
 
 {% endblock %}
