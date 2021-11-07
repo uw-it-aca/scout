@@ -9,27 +9,27 @@ import pytz
 import random
 
 OPEN_PERIODS = {
-        # 5am - 10:59am
-        'morning': {
-            'start': datetime.time(5, 0, 00, 0),
-            'end':  datetime.time(11, 0, 0, 0)
-        },
-        # 11am - 2:59pm
-        'afternoon': {
-            'start': datetime.time(11, 0, 0, 0),
-            'end':  datetime.time(15, 0, 0, 0)
-        },
-        # 3pm - 9:59pm
-        'evening': {
-            'start': datetime.time(15, 0, 0, 0),
-            'end':  datetime.time(22, 0, 0, 0)
-        },
-        # 10pm - 4:59am (spans midnight)
-        'late_night': {
-            'start': datetime.time(22, 0, 0, 0),
-            'end':  datetime.time(5, 0, 0, 0)
-        },
-    }
+    # 5am - 10:59am
+    'morning': {
+        'start': datetime.time(5, 0, 00, 0),
+        'end':  datetime.time(11, 0, 0, 0)
+    },
+    # 11am - 2:59pm
+    'afternoon': {
+        'start': datetime.time(11, 0, 0, 0),
+        'end':  datetime.time(15, 0, 0, 0)
+    },
+    # 3pm - 9:59pm
+    'evening': {
+        'start': datetime.time(15, 0, 0, 0),
+        'end':  datetime.time(22, 0, 0, 0)
+    },
+    # 10pm - 4:59am (spans midnight)
+    'late_night': {
+        'start': datetime.time(22, 0, 0, 0),
+        'end':  datetime.time(5, 0, 0, 0)
+    },
+}
 
 
 def get_spot_list(app_type=None, groups=[]):
