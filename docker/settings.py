@@ -16,7 +16,7 @@ COMPRESS_PRECOMPILERS = (
     ("text/x-scss", "django_pyscss.compressor.DjangoScssFilter",),
 )
 
-COMPRESS_ENABLED = True
+COMPRESS_ENABLED = os.getenv("COMPRESS_ENABLED", "True") == "True"
 COMPRESS_OFFLINE = False
 
 COMPRESS_CSS_FILTERS = [
