@@ -36,6 +36,7 @@ TEMPLATES[0]["OPTIONS"]["context_processors"].extend(
         "scout.context_processors.is_desktop",
         "scout.context_processors.is_hybrid",
         "scout.context_processors.scout_show_alt_tech",
+        "scout.context_processors.compress_enabled",
     ]
 )
 
