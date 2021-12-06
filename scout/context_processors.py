@@ -43,6 +43,7 @@ def scout_show_alt_tech(request):
         'scout_show_alt_tech': settings.SCOUT_SHOW_ALT_TECH
     }
 
+
 def compress_enabled(request):
     return {
         'compress_enabled': settings.COMPRESS_ENABLED
