@@ -89,7 +89,8 @@ var Study_Filter = {
       resources: "Resources",
       reservation: "Reservability",
       capacity: "Capacity",
-      open_at: "Hours"
+      open_at: "Hours",
+      all_published: "All Published"
     };
     $.each(filter_labels, function(filter, label) {
       if (url.indexOf(filter) > -1) {
@@ -98,11 +99,20 @@ var Study_Filter = {
     });
 
     // Temporary fix for adding Open Now as a filter text.
-    if (!(filter_categories.indexOf("Hours") > -1)) {
+    if (!(filter_categories.indexOf("Hours") > -1) && !(filter_categories.indexOf("All Published") > -1)) {
       filter_categories.push("Open Now");
     }
 
-    return filter_categories;
+    // If there is only All Published, don't show the filter label
+    if (!(filter_categories.length == 1 && filter_categories[0] == "All Published")) {
+      // Return the filter label text except for All Published
+      if (filter_categories.indexOf("All Published") > -1) {
+        filter_categories.splice(filter_categories.indexOf("All Published"), 1);
+      }
+      return filter_categories;
+    } else {
+      return "";
+    }
   },
 
   init_events: function() {

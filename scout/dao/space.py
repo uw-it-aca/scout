@@ -9,27 +9,27 @@ import pytz
 import random
 
 OPEN_PERIODS = {
-        # 5am - 10:59am
-        'morning': {
-            'start': datetime.time(5, 0, 00, 0),
-            'end':  datetime.time(11, 0, 0, 0)
-        },
-        # 11am - 2:59pm
-        'afternoon': {
-            'start': datetime.time(11, 0, 0, 0),
-            'end':  datetime.time(15, 0, 0, 0)
-        },
-        # 3pm - 9:59pm
-        'evening': {
-            'start': datetime.time(15, 0, 0, 0),
-            'end':  datetime.time(22, 0, 0, 0)
-        },
-        # 10pm - 4:59am (spans midnight)
-        'late_night': {
-            'start': datetime.time(22, 0, 0, 0),
-            'end':  datetime.time(5, 0, 0, 0)
-        },
-    }
+    # 5am - 10:59am
+    'morning': {
+        'start': datetime.time(5, 0, 00, 0),
+        'end':  datetime.time(11, 0, 0, 0)
+    },
+    # 11am - 2:59pm
+    'afternoon': {
+        'start': datetime.time(11, 0, 0, 0),
+        'end':  datetime.time(15, 0, 0, 0)
+    },
+    # 3pm - 9:59pm
+    'evening': {
+        'start': datetime.time(15, 0, 0, 0),
+        'end':  datetime.time(22, 0, 0, 0)
+    },
+    # 10pm - 4:59am (spans midnight)
+    'late_night': {
+        'start': datetime.time(22, 0, 0, 0),
+        'end':  datetime.time(5, 0, 0, 0)
+    },
+}
 
 
 def get_spot_list(app_type=None, groups=[]):
@@ -98,7 +98,8 @@ def get_filtered_spots(request, campus, app_type=None):
     elif(app_type == "tech"):
         filters.append(('extended_info:app_type', 'tech'))
     elif(app_type == "study"):
-        if "open_at" not in dict(filters):
+        if ("open_at" not in dict(filters)) and (
+                "all_published" not in dict(filters)):
             filters.append(('open_now', 'true'))
     return get_spots_by_filter(filters)
 
@@ -125,6 +126,8 @@ def _get_spot_filters(request):
             params += get_period_filter(request.GET[param])
         if "open_now" in param:
             params.append(("open_now", "true"))
+        if "all_published" in param:
+            params.append(("all_published", "true"))
         if "building" in param:
             params.append(("building_name", request.GET[param]))
         if "resources" in param:
