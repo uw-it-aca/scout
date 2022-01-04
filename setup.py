@@ -1,8 +1,6 @@
 import os
 from setuptools import setup
 
-#README = open(os.path.join(os.path.dirname(__file__), "README.md")).read()
-
 # allow setup.py to be run from any path
 os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
@@ -13,7 +11,7 @@ setup(
     include_package_data=True,
     install_requires=[
         "beautifulsoup4",
-        "django>=1.11,<=2.1",
+        "django~=2.2",
         "django-appconf",
         "django_compressor",
         "django-pyscss",
@@ -23,9 +21,8 @@ setup(
         "requests",
         "setuptools",
     ],
-    license="Apache License, Version 2.0",  # example license
+    license="Apache License, Version 2.0",
     description="A Django app for finding resources on campus.",
-    #long_description=README,
     url="http://www.example.com/",
     author="Your Name",
     author_email="yourname@example.com",
@@ -33,7 +30,7 @@ setup(
         "Environment :: Web Environment",
         "Framework :: Django",
         "Intended Audience :: Developers",
-        "License :: OSI Approved :: Apache Software License",  # example license
+        "License :: OSI Approved :: Apache Software License",
         "Operating System :: OS Independent",
         "Programming Language :: Python",
         "Programming Language :: Python :: 2.6",
