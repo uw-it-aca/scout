@@ -237,10 +237,10 @@ else:
 if settings.DEBUG:
     urlpatterns += [
         re_path(
-            r"^500/$",
+            r"^test/500/$",
             TemplateView.as_view(template_name="500.html"),
             name="500_response",
         ),
-        re_path(r"^404/$",
+        re_path(r"^test/404/$",
                 views.custom_404_response, name="custom_404_response",),
     ]
