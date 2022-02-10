@@ -7,7 +7,7 @@
 
 {% block web_content %}
 
-<div id="page_discover" class="scout-content">
+<main id="page_discover" class="scout-content">
 
     {% if request|is_mobile or request|is_tablet %}{% include "scout/include/user_geolocation.html" %}{% endif %}
 
@@ -56,16 +56,18 @@
 
         <div id="discover_cards">
 
-            <div>{% include "scout/discover_notice.html" %}</div>
-            <div style="display: none;" id="safestudy"></div>
-            <div style="display: none;" id="safefood"></div>
-            <div style="display: none;" id="open"></div>
-            <div style="display: none;" id="morning"></div>
-            <div style="display: none;" id="studycomputerlab"></div>
-            <div style="display: none;" id="{{ random_cards|random }}"></div>
-            <div style="display: none;" >{% include "scout/discover_tech.html" %}</div>
-            <div style="display: none;" id="late"></div>
-            <div style="display: none;" id="studyoutdoors"></div>
+            <div id="safestudy"></div>
+            <div id="safefood"></div>
+            <div id="open"></div>
+            <div id="morning"></div>
+            <div id="studycomputerlab"></div>
+            <div id="{{ random_cards|random }}"></div>
+            <div {% include "scout/discover_tech.html" %}</div>
+            <div id="late"></div>
+            <div id="studyoutdoors"></div>
+            {% comment %}
+            <!--<div>{% include "scout/discover_notice.html" %}</div>-->
+            {% endcomment %}
 
         </div>
 
@@ -76,7 +78,7 @@
 
 {% block secondary_content %}
 <!-- show a map on the list page -->
-<div id="discover_list_map" class="scout-spot-list-map" style="height:100%; background: #ddd !important;">
+<aside id="discover_list_map" class="scout-spot-list-map" style="height:100%; background: #ddd !important;">
     <div class="scout-spot-list-map-loading" style="position:absolute; top: 50%; left: 50%; margin-left:-15px; margin-top: -110px; z-index:9999;">
         <p class="visually-hidden">loading...</p>
         <div class="sk-fading-circle" aria-hidden="true">
@@ -94,5 +96,5 @@
             <div class="sk-circle12 sk-circle"></div>
         </div>
     </div>
-</div>
+</aside>
 {% endblock %}

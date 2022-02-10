@@ -50,12 +50,18 @@ Discover = {
         $("#" + card_id).fadeIn("slow");
       },
       error: function(xhr, status, error) {
-        //console.log("An error occurred fetching card " + card_id);
+        // console.log("An error occurred fetching card " + card_id);
+
+        // hide the placeholder
+        setTimeout(function () {
+          $("#discover_loading").hide();
+          $("#discover_cards").removeClass("visually-hidden");
+        }, 3000);
       }
     });
   },
 
-  _attach_card: function(card_id, card_html) {
+  _attach_card: function (card_id, card_html) {
     $("#" + card_id).html(card_html);
   },
 
