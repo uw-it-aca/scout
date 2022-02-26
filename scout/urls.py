@@ -241,7 +241,8 @@ if settings.DEBUG:
             TemplateView.as_view(template_name="500.html"),
             name="500_response",
         ),
-        re_path(r"^test/404/$",
+        re_path(
+            r"^test/404/$",
             TemplateView.as_view(template_name="404.html"),
             name="404_response",
         ),
