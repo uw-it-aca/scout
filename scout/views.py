@@ -501,7 +501,7 @@ def item_image_view(request, image_id, item_id):
 def custom_404_response(request, campus="seattle"):
     context = custom_404_context(campus)
     response = render_to_response('404.html', context,
-                                  context_instance=RequestContext(request))
+                                  RequestContext(request))
     response.status_code = 404
     return response
 
