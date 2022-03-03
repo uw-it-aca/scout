@@ -16,7 +16,7 @@ COMPRESS_PRECOMPILERS = (
     ("text/x-scss", "django_pyscss.compressor.DjangoScssFilter",),
 )
 
-COMPRESS_ENABLED = True
+COMPRESS_ENABLED = os.getenv("COMPRESS_ENABLED", "True") == "True"
 COMPRESS_OFFLINE = False
 
 COMPRESS_CSS_FILTERS = [
@@ -36,6 +36,7 @@ TEMPLATES[0]["OPTIONS"]["context_processors"].extend(
         "scout.context_processors.is_desktop",
         "scout.context_processors.is_hybrid",
         "scout.context_processors.scout_show_alt_tech",
+        "scout.context_processors.compress_enabled",
     ]
 )
 
