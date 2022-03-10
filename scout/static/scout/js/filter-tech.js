@@ -12,11 +12,16 @@ var Tech_Filter = {
         var param_types = {
             "brand": "brand_select input:checkbox:checked",
             "subcategory": "subcategory_select input:checkbox:checked",
+            "building": "building_select option:selected"
         };
 
         $.each(param_types, function(type, param){
             var result = $("#" + param).map(function() {
-                return $(this).val();
+              let val = $(this).val();
+              if (type == "building" && $("#buildings_toggle input:checked").val() == "entire_campus") {
+                  val = null;
+              }
+              return val;
             }).get();
             params = $.extend(params, Filter._get_params_for_select(result, type));
         });
@@ -50,6 +55,7 @@ var Tech_Filter = {
         filter_labels = {
             "brand": "Brand",
             "subcategory": "Type",
+            "building": "Building"
         };
         $.each(filter_labels, function(filter, label){
             if(url.indexOf("&" + filter) > -1 || url.indexOf("?" + filter) > -1){
@@ -81,6 +87,14 @@ var Tech_Filter = {
         $("#reset_tech_list").click(function() {
             Tech_Filter.reset_filter();
         });
+
+        $("#buildings_toggle input").click(function() {
+            if ($(this).val() == "building_list") {
+                $("#building_select").removeClass("visually-hidden");
+            } else {
+                $("#building_select").addClass("visually-hidden");
+            }
+        });
     },
 
     populate_filters_from_saved: function(){
@@ -91,6 +105,7 @@ var Tech_Filter = {
         var param_types = {
             "brand": "brand_select",
             "subcategory": "subcategory_select",
+            "building": "building_select"
         };
         Filter.populate_filters_from_saved("tech_filter_params", param_types);
     },

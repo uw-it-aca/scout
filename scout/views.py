@@ -384,6 +384,7 @@ class TechListView(TemplateView):
                    "campus": kwargs['campus'],
                    "count": count,
                    "app_type": 'tech',
+                   "buildings": get_building_list(kwargs['campus'],"tech"),
                    "campus_locations": CAMPUS_LOCATIONS}
         return context
 
@@ -420,6 +421,12 @@ class TechFilterView(TemplateView):
         tech_spots = get_spot_list("tech")
         info = extract_spots_item_info(tech_spots)
 
+        #load building list for filtering by building (only buildings that contain
+        #spots that contain items are loaded)
+        non_empty_spots = list(filter(lambda spot:(len(spot.items) > 0), tech_spots))
+        building_list = list(map(lambda spot:(spot.building_name), non_empty_spots))
+
+
         pre = _load_filter_params_checked(self.request, filter_types)
         context = {}
 
@@ -431,7 +438,8 @@ class TechFilterView(TemplateView):
         context.update({"campus": kwargs['campus'],
                         "app_type": 'tech',
                         "filters": info,
-                        "campus_locations": CAMPUS_LOCATIONS})
+                        "campus_locations": CAMPUS_LOCATIONS,
+                        "buildings": building_list})
 
         return context
 
