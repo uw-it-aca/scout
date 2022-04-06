@@ -1,10 +1,10 @@
-# Copyright 2021 UW-IT, University of Washington
+# Copyright 2022 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
 import datetime
 from django.test.client import RequestFactory
+from scout.test import ScoutTestCase
 import pytz
-from django.test import TestCase
 from django.test.utils import override_settings
 from scout.dao.space import add_foodtype_names_to_spot, add_cuisine_names, \
     add_payment_names, add_additional_info, get_is_spot_open, organize_hours, \
@@ -15,15 +15,10 @@ from scout.dao.space import add_foodtype_names_to_spot, add_cuisine_names, \
 from scout.dao import space
 from uw_spotseeker.models import Spot, SpotAvailableHours
 from uw_spotseeker import Spotseeker
-from uw_spotseeker.dao import Spotseeker_DAO
 from restclients_core.exceptions import DataFailureException
 
 
-DAO = 'Mock'
-
-
-@override_settings(RESTCLIENTS_SPOTSEEKER_DAO_CLASS=DAO)
-class SpaceDAOTest(TestCase):
+class SpaceDAOTest(ScoutTestCase):
 
     def test_get_spots_by_filter(self):
         """ tests function used by discover cards to load spaces with
@@ -274,8 +269,7 @@ class FakeClient(object):
     search_spots = data_failure
 
 
-@override_settings(SPOTSEEKER_DAO_CLASS=DAO)
-class DAOErrorsTest(TestCase):
+class DAOErrorsTest(ScoutTestCase):
     """
     Ensure DataFailureExceptions are handled properly in space DAO
     """

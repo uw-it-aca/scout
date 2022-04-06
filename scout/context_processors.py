@@ -1,4 +1,4 @@
-# Copyright 2021 UW-IT, University of Washington
+# Copyright 2022 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
 from django.conf import settings
@@ -41,4 +41,10 @@ def is_hybrid(request):
 def scout_show_alt_tech(request):
     return {
         'scout_show_alt_tech': settings.SCOUT_SHOW_ALT_TECH
+    }
+
+
+def compress_enabled(request):
+    return {
+        'compress_enabled': settings.COMPRESS_ENABLED
     }

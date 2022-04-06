@@ -1,20 +1,16 @@
-# Copyright 2021 UW-IT, University of Washington
+# Copyright 2022 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
 import copy
-from django.test import TestCase
+from scout.test import ScoutTestCase
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 from scout.dao.space import get_spot_by_id, get_spots_by_filter
 from scout.dao.item import _filter_spot_items, get_filtered_items, \
     get_item_count
-from uw_spotseeker.dao import Spotseeker_DAO
-
-DAO = 'Mock'
 
 
-@override_settings(RESTCLIENTS_SPOTSEEKER_DAO_CLASS=DAO)
-class ItemDAOTest(TestCase):
+class ItemDAOTest(ScoutTestCase):
     """
     Runs tests on the item DAO to check for intended behavior.
     """
