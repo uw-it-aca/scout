@@ -16,7 +16,7 @@ setup(
         "django_compressor",
         "django-pyscss",
         "django-user-agents",
-        "html5lib==0.9999999",
+        "html5lib",
         "pytz",
         "requests",
         "setuptools",
