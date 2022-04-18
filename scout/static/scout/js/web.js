@@ -32,6 +32,12 @@ $(function(){
         ScoutMap.init_map();
         Filter.init();
 
+        // initialize slick image slider
+        $('.scout-spot-gallery').slick({
+            dots: true,
+            arrows: false,
+        });
+
     } else {
         Discover.init_cards();
         ScoutMap.init_map();
