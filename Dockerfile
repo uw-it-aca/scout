@@ -16,7 +16,8 @@ RUN . /app/bin/activate && pip install mysqlclient django-prometheus==2.0.0
 ADD --chown=acait:acait . /app/
 ADD --chown=acait:acait docker/ project/
 
-RUN . /app/bin/activate && pip install nodeenv && nodeenv -p &&\
+#TODO: when moving to django-container 1.4.0 stop pinning node version
+RUN . /app/bin/activate && pip install nodeenv && nodeenv -p --node=17.9.0 &&\
     npm install -g npm && ./bin/npm install less -g
 
 RUN . /app/bin/activate && python manage.py collectstatic --noinput &&\
