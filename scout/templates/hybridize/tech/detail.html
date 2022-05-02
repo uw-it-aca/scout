@@ -13,7 +13,7 @@
     {% for image in spot.item.images %}
     <div class="scout-detail-image"
       style="background-image:url('/item/images/{{ spot.item.item_id }}/image/{{ image.image_id }}/?width=500'); height:270px;"
-      valign="bottom">&nbsp;</div>
+      valign="bottom" class="card-header">&nbsp;</div>
     {% endfor %}
   </div>
   {% else %}
