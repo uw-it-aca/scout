@@ -17,7 +17,6 @@ setup(
         "django-pyscss",
         "django-user-agents",
         "html5lib",
-        "pylibmc",
         "pytz",
         "requests",
         "setuptools",
