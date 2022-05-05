@@ -45,8 +45,6 @@
                     <a class="clearfix" href="/{{campus}}/food/{{ spot.spot_id }}/" title="Get details about {{ spot.name }}">
 
                         {% if spot.images %}
-                        {% comment %} <div class="scout-spot-image" style="background-image: url('/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}/?width=200');">&nbsp;</div> {% endcomment %}
-
                         <div class="scout-spot-image" style="background: white">
                             <img loading="lazy" src="/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}/?width=200" alt="{{ spot.name }}" style="height: 100%; width:100%; object-fit: cover;">
                         </div>
