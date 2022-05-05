@@ -100,8 +100,6 @@
                                 <a class="clearfix" href="/{{campus}}/tech/{{ item.item_id }}/" title="Get details about {{ item.name }}">
 
                                     {% if item.images %}
-                                    {% comment %} <div class="scout-spot-image" loading="lazy" style="background-image: url('/item/images/{{ item.item_id }}/image/{{ item.images.0.image_id }}/?width=200'); background-size:cover;">&nbsp;</div> {% endcomment %}
-
                                     <div class="scout-spot-image" style="background: white">
                                         <img loading="lazy" src="/item/images/{{ item.item_id }}/image/{{ item.images.0.image_id }}/?width=200" alt="{{ item.name }}" style="height: 100%; width:100%; object-fit: cover;">
                                     </div>
