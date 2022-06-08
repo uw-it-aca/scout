@@ -50,3 +50,28 @@ class ContentTest(ScoutTestCase):
         """SCOUT-54 Test that the content on the filter page is correct"""
         bs = self.get_soup(baseUrl + 'food/filter/')
         self.assertOneExists(bs, "#page_filter")
+
+    def test_404_static_navigation(self):
+        """SCOUT-1037 Test that base html static content is complete on 404.html"""
+        study = self.get_soup(baseUrl + 'study/')
+        soup404 = self.get_soup(baseUrl + '404/')
+        """Test Privacy Policy"""
+        self.assertHTMLEqual(str(study.find(id='link_privacy')), str(soup404.find(id='link_privacy')))
+        """Test Terms of Use"""
+        self.assertHTMLEqual(str(study.find(id='link_terms')), str(soup404.find(id='link_terms')))
+        """Test UW Help"""
+        self.assertHTMLEqual(str(study.find(id='link_help')), str(soup404.find(id='link_help')))
+
+
+    def test_404_context_navigation(self):
+        """SCOUT-1037 Test that base html dynamic content is complete on 404.html"""
+        study = self.get_soup(baseUrl + 'study/')
+        soup404 = self.get_soup(baseUrl + '404/')
+        """Test home button"""
+        self.assertHTMLEqual(str(study.find(id='link_home')), str(soup404.find(id='link_home')))
+        """Test Food button"""
+        self.assertHTMLEqual(str(study.find(id='link_food')), str(soup404.find(id='link_food')))
+        """Test study button"""
+        self.assertHTMLEqual(str(study.find(id='link_study')), str(soup404.find(id='link_study')))
+        """Test tech button"""
+        self.assertHTMLEqual(str(study.find(id='link_tech')), str(soup404.find(id='link_tech')))
