@@ -2,8 +2,6 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from django.http import Http404, HttpResponse
-from django.shortcuts import render_to_response
-from django.template import RequestContext
 from django.core.exceptions import ImproperlyConfigured
 from django.conf import settings
 from scout.dao.space import (get_spot_by_id, get_filtered_spots, get_spot_list,
