@@ -10,6 +10,8 @@ import bs4
 from scout.test import ScoutTestCase
 from scout.dao.space import get_spot_list
 baseUrl = '/seattle/'
+baseUrlTacoma = '/tacoma/'
+baseUrlBothell = '/bothell'
 
 
 class ContentTest(ScoutTestCase):
@@ -65,13 +67,25 @@ class ContentTest(ScoutTestCase):
 
     def test_404_context_navigation(self):
         """SCOUT-1037 Test that base html dynamic content is complete on 404.html"""
-        study = self.get_soup(baseUrl + 'study/')
-        soup404 = self.get_soup(baseUrl + '404/')
-        """Test home button"""
-        self.assertHTMLEqual(str(study.find(id='link_home')), str(soup404.find(id='link_home')))
+        study_seattle = self.get_soup(baseUrl + 'study/')
+        soup404_seattle = self.get_soup(baseUrl + '404/')
+        study_tacoma = self.get_soup(baseUrlTacoma + 'study/')
+        soup404_tacoma = self.get_soup(baseUrlTacoma + '404/')
+        study_bothell = self.get_soup(baseUrlBothell + 'study/')
+        soup404_bothell = self.get_soup(baseUrlBothell + '404/')
+        """Test home buttons"""
+        self.assertHTMLEqual(str(study_seattle.find(id='link_home')['href']), str(soup404_seattle.find(id='link_home')['href']))
+        self.assertHTMLEqual(str(study_tacoma.find(id='link_home')['href']), str(soup404_tacoma.find(id='link_home')['href']))
+        self.assertHTMLEqual(str(study_bothell.find(id='link_home')['href']), str(soup404_bothell.find(id='link_home')['href']))
         """Test Food button"""
-        self.assertHTMLEqual(str(study.find(id='link_food')), str(soup404.find(id='link_food')))
+        self.assertHTMLEqual(str(study_seattle.find(id='link_food')['href']), str(soup404_seattle.find(id='link_food')['href']))
+        self.assertHTMLEqual(str(study_tacoma.find(id='link_food')['href']), str(soup404_tacoma.find(id='link_food')['href']))
+        self.assertHTMLEqual(str(study_bothell.find(id='link_food')['href']), str(soup404_bothell.find(id='link_food')['href']))
         """Test study button"""
-        self.assertHTMLEqual(str(study.find(id='link_study')), str(soup404.find(id='link_study')))
+        self.assertHTMLEqual(str(study_seattle.find(id='link_study')['href']), str(soup404_seattle.find(id='link_study')['href']))
+        self.assertHTMLEqual(str(study_tacoma.find(id='link_study')['href']), str(soup404_tacoma.find(id='link_study')['href']))
+        self.assertHTMLEqual(str(study_bothell.find(id='link_study')['href']), str(soup404_bothell.find(id='link_study')['href']))
         """Test tech button"""
-        self.assertHTMLEqual(str(study.find(id='link_tech')), str(soup404.find(id='link_tech')))
+        self.assertHTMLEqual(str(study_seattle.find(id='link_tech')['href']), str(soup404_seattle.find(id='link_tech')['href']))
+        self.assertHTMLEqual(str(study_tacoma.find(id='link_tech')['href']), str(soup404_tacoma.find(id='link_tech')['href']))
+        self.assertHTMLEqual(str(study_bothell.find(id='link_tech')['href']), str(soup404_bothell.find(id='link_tech')['href']))

@@ -213,18 +213,14 @@ class DiscoverCardView(TemplateView):
         try:
             discover_data = discover_categories[kwargs['discover_category']]
         except KeyError:
-            self.response_class = Response404
-            self.template_name = "404.html"
-            return custom_404_context(kwargs["campus"])
+            raise Http404
 
         discover_data["filter"].append(('extended_info:campus',
                                         kwargs['campus']))
 
         spots = get_spots_by_filter(discover_data["filter"])
         if len(spots) == 0:
-            self.response_class = Response404
-            self.template_name = "404.html"
-            return custom_404_context(kwargs["campus"])
+            raise Http404
         if kwargs['discover_category'] in ['foodrandom', 'studyrandom']:
             spots = get_random_limit_from_spots(spots, 5)
 
@@ -275,9 +271,7 @@ class FoodDetailView(TemplateView):
         spot = get_spot_by_id(kwargs['spot_id'])
         spot = validate_detail_info(spot, kwargs['campus'], "food")
         if not spot:
-            self.response_class = Response404
-            self.template_name = "404.html"
-            return custom_404_context(kwargs["campus"])
+            raise Http404
 
         context = {"spot": spot,
                    "campus": kwargs['campus'],
@@ -332,9 +326,7 @@ class StudyDetailView(TemplateView):
         spot = get_spot_by_id(kwargs['spot_id'])
         spot = validate_detail_info(spot, kwargs['campus'], "study")
         if not spot:
-            self.response_class = Response404
-            self.template_name = "404.html"
-            return custom_404_context(kwargs["campus"])
+            raise Http404
 
         context = {"spot": spot,
                    "campus": kwargs['campus'],
@@ -397,9 +389,7 @@ class TechDetailView(TemplateView):
         spot = get_item_by_id(int(kwargs['item_id']))
         spot = validate_detail_info(spot, kwargs['campus'], "tech")
         if not spot:
-            self.response_class = Response404
-            self.template_name = "404.html"
-            return custom_404_context(kwargs["campus"])
+            raise Http404
 
         context = {"spot": spot,
                    "campus": kwargs['campus'],
@@ -495,26 +485,6 @@ def item_image_view(request, image_id, item_id):
         return response
     except Exception:
         raise Http404
-
-
-# Custom method-based 404 page
-def custom_404_response(request, campus="seattle"):
-    context = custom_404_context(campus)
-    response = render_to_response('404.html', context,
-                                  RequestContext(request))
-    response.status_code = 404
-    return response
-
-
-def custom_404_context(campus="seattle"):
-    context = {"campus": campus,
-               "campus_locations": CAMPUS_LOCATIONS}
-    return context
-
-
-class Response404(TemplateResponse):
-    status_code = 404
-
 
 def _load_filter_params_checked(request, filter_types):
     context = {}
