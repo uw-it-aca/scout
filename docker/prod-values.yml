@@ -71,7 +71,7 @@ environmentVariables:
   - name: SCOUT_SHOW_NEWSSPLASH
     value: 'False'
   - name: SCOUT_SHOW_ALT_TECH
-    value: 'False'
+    value: 'True'
 externalSecrets:
   enabled: true
   secrets:
