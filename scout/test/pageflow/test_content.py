@@ -74,33 +74,18 @@ class ContentTest(ScoutTestCase):
         study_bothell = self.get_soup(baseUrlBothell + 'study/')
         soup404_bothell = self.get_soup(baseUrlBothell + '404/')
         """Test home buttons"""
-        self.assertHTMLEqual(str(study_seattle.find(id='link_home')['href']), 
-        str(soup404_seattle.find(id='link_home')['href']))
-        self.assertHTMLEqual(str(study_tacoma.find(id='link_home')['href']), 
-        str(soup404_tacoma.find(id='link_home')['href']))
-        self.assertHTMLEqual(str(study_bothell.find(id='link_home')['href']), 
-        str(soup404_bothell.find(id='link_home')['href']))
-
-        """Test Food buttons"""
-        self.assertHTMLEqual(str(study_seattle.find(id='link_food')['href']), 
-        str(soup404_seattle.find(id='link_food')['href']))
-        self.assertHTMLEqual(str(study_tacoma.find(id='link_food')['href']), 
-        str(soup404_tacoma.find(id='link_food')['href']))
-        self.assertHTMLEqual(str(study_bothell.find(id='link_food')['href']), 
-        str(soup404_bothell.find(id='link_food')['href']))
-
-        """Test study buttons"""
-        self.assertHTMLEqual(str(study_seattle.find(id='link_study')['href']), 
-        str(soup404_seattle.find(id='link_study')['href']))
-        self.assertHTMLEqual(str(study_tacoma.find(id='link_study')['href']), 
-        str(soup404_tacoma.find(id='link_study')['href']))
-        self.assertHTMLEqual(str(study_bothell.find(id='link_study')['href']), 
-        str(soup404_bothell.find(id='link_study')['href']))
-        
-        """Test tech buttons"""
-        self.assertHTMLEqual(str(study_seattle.find(id='link_tech')['href']), 
-        str(soup404_seattle.find(id='link_tech')['href']))
-        self.assertHTMLEqual(str(study_tacoma.find(id='link_tech')['href']), 
-        str(soup404_tacoma.find(id='link_tech')['href']))
-        self.assertHTMLEqual(str(study_bothell.find(id='link_tech')['href']), 
-        str(soup404_bothell.find(id='link_tech')['href']))
+        self.assertHTMLEqual(str(study_seattle.find(id='link_home')['href']), str(soup404_seattle.find(id='link_home')['href']))
+        self.assertHTMLEqual(str(study_tacoma.find(id='link_home')['href']), str(soup404_tacoma.find(id='link_home')['href']))
+        self.assertHTMLEqual(str(study_bothell.find(id='link_home')['href']), str(soup404_bothell.find(id='link_home')['href']))
+        """Test Food button"""
+        self.assertHTMLEqual(str(study_seattle.find(id='link_food')['href']), str(soup404_seattle.find(id='link_food')['href']))
+        self.assertHTMLEqual(str(study_tacoma.find(id='link_food')['href']), str(soup404_tacoma.find(id='link_food')['href']))
+        self.assertHTMLEqual(str(study_bothell.find(id='link_food')['href']), str(soup404_bothell.find(id='link_food')['href']))
+        """Test study button"""
+        self.assertHTMLEqual(str(study_seattle.find(id='link_study')['href']), str(soup404_seattle.find(id='link_study')['href']))
+        self.assertHTMLEqual(str(study_tacoma.find(id='link_study')['href']), str(soup404_tacoma.find(id='link_study')['href']))
+        self.assertHTMLEqual(str(study_bothell.find(id='link_study')['href']), str(soup404_bothell.find(id='link_study')['href']))
+        """Test tech button"""
+        self.assertHTMLEqual(str(study_seattle.find(id='link_tech')['href']), str(soup404_seattle.find(id='link_tech')['href']))
+        self.assertHTMLEqual(str(study_tacoma.find(id='link_tech')['href']), str(soup404_tacoma.find(id='link_tech')['href']))
+        self.assertHTMLEqual(str(study_bothell.find(id='link_tech')['href']), str(soup404_bothell.find(id='link_tech')['href']))
