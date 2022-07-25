@@ -484,7 +484,6 @@ def item_image_view(request, image_id, item_id):
     except Exception:
         raise Http404
 
-
 def _load_filter_params_checked(request, filter_types):
     context = {}
 
