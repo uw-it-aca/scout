@@ -13,7 +13,7 @@ from scout.test import ScoutTestCase
 
 baseUrl = "/seattle/"
 baseUrlTacoma = "/tacoma/"
-baseUrlBothell = "/bothell"
+baseUrlBothell = "/bothell/"
 
 
 class ContentTest(ScoutTestCase):
