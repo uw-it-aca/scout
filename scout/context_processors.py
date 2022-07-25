@@ -48,14 +48,3 @@ def compress_enabled(request):
     return {
         'compress_enabled': settings.COMPRESS_ENABLED
     }
-
-def campus_detect_url(request):
-   url = request.get_full_path()
-   for campus in settings.CAMPUS_URL_LIST:
-       if campus in url:
-           return{
-               'campus': campus
-           }
-   return{
-       'campus': settings.CAMPUS_URL_LIST[0]
-   }
