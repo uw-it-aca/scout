@@ -40,4 +40,4 @@ def campus_detect_url(request):
     for campus in settings.CAMPUS_URL_LIST:
         if campus in url:
             return {"campus": campus}
-    return {"campus": settings.CAMPUS_URL_LIST[0]}
+    return {"campus": "seattle"}
