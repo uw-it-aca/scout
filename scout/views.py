@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from django.http import Http404, HttpResponse
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 from django.template import RequestContext
 from django.core.exceptions import ImproperlyConfigured
 from django.conf import settings
@@ -47,7 +47,7 @@ def validate_campus_selection(function):
         if kwargs['campus'] in campuses:
             return function(request, *args, **kwargs)
         else:
-            raise Http404
+            return HttpResponse(status=500)
     return wrap
 
 
@@ -213,18 +213,14 @@ class DiscoverCardView(TemplateView):
         try:
             discover_data = discover_categories[kwargs['discover_category']]
         except KeyError:
-            self.response_class = Response404
-            self.template_name = "404.html"
-            return custom_404_context(kwargs["campus"])
+            raise Http404(str(kwargs["campus"]))
 
         discover_data["filter"].append(('extended_info:campus',
                                         kwargs['campus']))
 
         spots = get_spots_by_filter(discover_data["filter"])
         if len(spots) == 0:
-            self.response_class = Response404
-            self.template_name = "404.html"
-            return custom_404_context(kwargs["campus"])
+            raise Http404(str(kwargs["campus"]))
         if kwargs['discover_category'] in ['foodrandom', 'studyrandom']:
             spots = get_random_limit_from_spots(spots, 5)
 
@@ -275,9 +271,7 @@ class FoodDetailView(TemplateView):
         spot = get_spot_by_id(kwargs['spot_id'])
         spot = validate_detail_info(spot, kwargs['campus'], "food")
         if not spot:
-            self.response_class = Response404
-            self.template_name = "404.html"
-            return custom_404_context(kwargs["campus"])
+            raise Http404(str(kwargs["campus"]))
 
         context = {"spot": spot,
                    "campus": kwargs['campus'],
@@ -332,9 +326,7 @@ class StudyDetailView(TemplateView):
         spot = get_spot_by_id(kwargs['spot_id'])
         spot = validate_detail_info(spot, kwargs['campus'], "study")
         if not spot:
-            self.response_class = Response404
-            self.template_name = "404.html"
-            return custom_404_context(kwargs["campus"])
+            raise Http404(str(kwargs["campus"]))
 
         context = {"spot": spot,
                    "campus": kwargs['campus'],
@@ -397,9 +389,7 @@ class TechDetailView(TemplateView):
         spot = get_item_by_id(int(kwargs['item_id']))
         spot = validate_detail_info(spot, kwargs['campus'], "tech")
         if not spot:
-            self.response_class = Response404
-            self.template_name = "404.html"
-            return custom_404_context(kwargs["campus"])
+            raise Http404(str(kwargs["campus"]))
 
         context = {"spot": spot,
                    "campus": kwargs['campus'],
@@ -481,7 +471,7 @@ def spot_image_view(request, image_id, spot_id):
         response['etag'] = etag
         return response
     except Exception:
-        raise Http404
+        raise Http404("")
 
 
 def item_image_view(request, image_id, item_id):
@@ -494,27 +484,26 @@ def item_image_view(request, image_id, item_id):
         response['etag'] = etag
         return response
     except Exception:
-        raise Http404
+        raise Http404("")
 
 
 # Custom method-based 404 page
-def custom_404_response(request, campus="seattle"):
-    context = custom_404_context(campus)
-    response = render_to_response('404.html', context,
-                                  RequestContext(request))
+def custom_404_response(request, exception, template_name='404.html'):
+    print("404 response called")
+    message = exception.args[0]
+    if not "tried" in exception:
+        print('exception: ' + message)
+    campus = ''
+    if exception not in settings.CAMPUS_URL_LIST:
+        #if no campus context was retained default to seattle
+        campus = settings.CAMPUS_URL_LIST[0]
+    else:
+        #otherwise use the campus context passed through the exception message
+        campus = message
+    context = {"campus":campus}
+    response = render(request, template_name, context, RequestContext(request))
     response.status_code = 404
     return response
-
-
-def custom_404_context(campus="seattle"):
-    context = {"campus": campus,
-               "campus_locations": CAMPUS_LOCATIONS}
-    return context
-
-
-class Response404(TemplateResponse):
-    status_code = 404
-
 
 def _load_filter_params_checked(request, filter_types):
     context = {}
