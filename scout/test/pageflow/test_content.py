@@ -56,28 +56,28 @@ class ContentTest(ScoutTestCase):
         self.assertOneExists(bs, "#page_filter")
 
     def test_404_static_navigation(self):
-        """SCOUT-1037 Test that base html
+        """SCOUT-1037 Test that base html 
         static content is complete on 404.html"""
         study = self.get_soup(baseUrl + "study/")
         soup404 = self.get_soup(baseUrl + "404/")
         """Test Privacy Policy"""
         self.assertHTMLEqual(
-            str(study.find(id="link_privacy")),
+            str(study.find(id="link_privacy")), 
             str(soup404.find(id="link_privacy"))
         )
         """Test Terms of Use"""
         self.assertHTMLEqual(
-            str(study.find(id="link_terms")),
+            str(study.find(id="link_terms")), 
             str(soup404.find(id="link_terms"))
         )
         """Test UW Help"""
         self.assertHTMLEqual(
-            str(study.find(id="link_help")),
+            str(study.find(id="link_help")), 
             str(soup404.find(id="link_help"))
         )
 
     def test_404_context_navigation(self):
-        """SCOUT-1037 Test that base html
+        """SCOUT-1037 Test that base html 
         dynamic content is complete on 404.html"""
         study_seattle = self.get_soup(baseUrl + "study/")
         soup404_seattle = self.get_soup(baseUrl + "404/")
