@@ -329,14 +329,15 @@
 
 {% if spot.images %}
 <script type="text/javascript">
-  console.log("calling slider function");
   // study detail image slider
-  if ($(".photo-gallery").length) {
+  $(document).ready({
+    if ($(".photo-gallery").length) {
     $('.photo-gallery').not('.slick-initialized').slick({
       dots: true,
       arrows: false,
     });
-  }
+    }
+  });
 </script>
 {% endif %}
 

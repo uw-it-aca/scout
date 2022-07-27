@@ -263,14 +263,15 @@
 
 {% if spot.item.images %}
 <script type="text/javascript">
-  console.log("calling slider function");
-  // study detail image slider
-  if ($(".photo-gallery").length) {
-    $('.photo-gallery').not('.slick-initialized').slick({
-      dots: true,
-      arrows: false,
-    });
-  }
+  // study tech image slider
+  $(document).ready(function () {
+    if ($(".photo-gallery").length) {
+      $('.photo-gallery').not('.slick-initialized').slick({
+        dots: true,
+        arrows: false,
+      });
+    }
+  });
 </script>
 {% endif %}
 
