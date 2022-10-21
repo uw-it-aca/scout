@@ -251,3 +251,19 @@
 <!-- show a map on the list page -->
 <div id="study_detail_map" class="scout-spot-detail-map" style="height:100%;" aria-hidden="true"></div>
 {% endblock %}
+
+{% if spot.images %}
+<script type="text/javascript">
+  // study detail image slider
+  var gallery = $(".photo-gallery");
+  $(document).ready(function () {
+    if (gallery.length > 0) {
+      gallery.slick({
+        dots: true,
+        arrows: false,
+        infinite: true,
+      });
+    }
+  });
+</script>
+{% endif %}

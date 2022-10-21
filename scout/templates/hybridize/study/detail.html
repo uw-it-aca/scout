@@ -330,12 +330,14 @@
 {% if spot.images %}
 <script type="text/javascript">
   // study detail image slider
-  $(document).ready({
-    if ($(".photo-gallery").length) {
-    $('.photo-gallery').not('.slick-initialized').slick({
-      dots: true,
-      arrows: false,
-    });
+  var gallery = $(".photo-gallery");
+  $(document).ready(function () {
+    if (gallery.length > 0) {
+      gallery.slick({
+        dots: true,
+        arrows: false,
+        infinite: true
+      });
     }
   });
 </script>
