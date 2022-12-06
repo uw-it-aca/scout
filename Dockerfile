@@ -1,4 +1,4 @@
-ARG DJANGO_CONTAINER_VERSION=1.3.8
+ARG DJANGO_CONTAINER_VERSION=1.4.1
 
 FROM gcr.io/uwit-mci-axdd/django-container:${DJANGO_CONTAINER_VERSION} as app-container
 
@@ -17,7 +17,7 @@ ADD --chown=acait:acait . /app/
 ADD --chown=acait:acait docker/ project/
 
 #TODO: when moving to django-container 1.4.0 stop pinning node version
-RUN . /app/bin/activate && pip install nodeenv && nodeenv -p --node=17.9.0 &&\
+RUN . /app/bin/activate && pip install nodeenv && nodeenv -p &&\
     npm install -g npm && ./bin/npm install less -g
 
 RUN . /app/bin/activate && python manage.py collectstatic --noinput &&\
