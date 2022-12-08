@@ -13,7 +13,7 @@ setup(
         "beautifulsoup4",
         "django~=2.2",
         "django-appconf",
-        "django_compressor",
+        "django_compressor<4.0",
         "django-pyscss",
         "django-user-agents",
         "html5lib",
