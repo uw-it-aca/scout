@@ -116,21 +116,6 @@ class DiscoverCardView(TemplateView):
                     ('extended_info:app_type', 'food')
                 ]
             },
-            "open": {
-                "title": "Open Now",
-                "spot_type": "food",
-                "filter_url": "open_now=true",
-                "filter": [
-                    ('limit', 5),
-                    ('open_now', True),
-                    ('center_latitude', hlat if hlat else lat if lat else
-                        DEFAULT_LAT),
-                    ('center_longitude', hlon if hlon else lon if lon else
-                        DEFAULT_LON),
-                    ('distance', 100000),
-                    ('extended_info:app_type', 'food')
-                    ]
-            },
             "morning": {
                 "title": "Open Mornings (5am - 11am)",
                 "spot_type": "food",
