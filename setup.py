@@ -14,7 +14,7 @@ setup(
         "django~=2.2",
         "django-appconf",
         "django_compressor<4.0",
-        "django-pyscss",
+        "django-libsass",
         "django-user-agents",
         "html5lib",
         "pytz",

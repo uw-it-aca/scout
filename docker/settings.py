@@ -13,10 +13,7 @@ MIDDLEWARE += ["django_user_agents.middleware.UserAgentMiddleware"]
 COMPRESS_ROOT = "/static/"
 
 COMPRESS_PRECOMPILERS = (
-    (
-        "text/x-scss",
-        "django_pyscss.compressor.DjangoScssFilter",
-    ),
+    ('text/x-scss', 'django_libsass.SassCompiler'),
 )
 
 COMPRESS_ENABLED = os.getenv("COMPRESS_ENABLED", "True") == "True"
