@@ -56,24 +56,19 @@
 
         <div id="discover_cards">
 
-            <div id="safestudy"></div>
-            <div id="safefood"></div>
             <div id="open"></div>
             <div id="morning"></div>
             <div id="studycomputerlab"></div>
             <div id="{{ random_cards|random }}"></div>
-            <div {% include "scout/discover_tech.html" %}</div>
+            <div>{% include "scout/discover_tech.html" %}</div>
             <div id="late"></div>
             <div id="studyoutdoors"></div>
-            {% comment %}
-            <!--<div>{% include "scout/discover_notice.html" %}</div>-->
-            {% endcomment %}
 
         </div>
 
     </div>
 
-</div>
+</main>
 {% endblock %}
 
 {% block secondary_content %}
