@@ -8,6 +8,8 @@
     <head>
         <title>{% block title %}{% endblock %} &middot; UW Scout</title>
         {% include "scout/include/head.html" %}
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     </head>
 
     <body {% if request|is_mobile or request|is_tablet %}data-mobile="true"{% endif %}>
@@ -54,8 +56,26 @@
 
             <div id="footer" class="scout-footer" role="contentinfo">
                 <div style="margin-left:20px;float:left;">&copy; {% now "Y" %} UW-IT, AXDD <a id="link_privacy" href="http://www.washington.edu/online/privacy/" title="UW Privacy Policy">Privacy</a> <a id="link_terms" href="http://www.washington.edu/online/terms/" style="margin-left:5px;" title="UW Terms & Conditions of Use">Terms</a></div>
-                <div style="float:right;margin-right:20px;"><a id="link_help" href="mailto:help@uw.edu?subject=Scout:%20Help%20needed" title="Request help via email">Help</a></div>
-            </div>
+                <div style="float:right;margin-top:0px;"class="dropup">
+                  
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    Help
+                  </button>
+
+                  <div class="dropup-content">
+                    <ul class="dropdown-menu show" data-popper-placement="bottom-start">
+                        <li><a class="dropdown-item" href="https://itconnect.uw.edu/tools-services-support/teaching-learning/spacescout/faq/">About Scout</a></li>
+                        <li><a class="dropdown-item" href="https://itconnect.uw.edu/tools-services-support/teaching-learning/spacescout/">Scout help</a></li>
+                        <li><a class="dropdown-item" href="https://itconnect.uw.edu/tools-services-support/teaching-learning/spacescout/faq/">FAQ</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <!-- <li><a class="dropdown-item disabled" href="#">Report a Problem with a Space</a></li> -->
+                        <li><a class="dropdown-item" href="https://uwconnect.uw.edu/sp?id=sc_cat_item&sys_id=dcf2fcac1bc2e5d0cc990dc0604bcb2a">Suggest a Space</a></li>
+                      </ul>
+                  </div>
+
+              </div>        
+
+</div>
 
         </div>
 
