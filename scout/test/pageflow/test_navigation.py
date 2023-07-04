@@ -116,7 +116,7 @@ class MainNavigationTest(ScoutTestCase):
         soup = self.get_soup(path)
         self.check_footer_links(soup)
 
-   def check_footer_links(self, soup):
+    def check_footer_links(self, soup):
         """Checks the footer links at the given soup"""
         footerLinks = soup.select("div#footer a")
         privacyLink, termsLink, aboutLink, helpLink, faqLink, suggestSpaceLink = footerLinks
@@ -143,4 +143,3 @@ class MainNavigationTest(ScoutTestCase):
             suggestSpaceLink.get("href"),
             "https://uwconnect.uw.edu/sp?id=sc_cat_item&sys_id=dcf2fcac1bc2e5d0cc990dc0604bcb2a",
         )
-
