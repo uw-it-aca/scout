@@ -14,12 +14,18 @@ $footer-height: 40px;
 
 .dummy {
     color: #bdc3c7 !important;
-    * { color: #bdc3c7 !important; }
+
+    * {
+        color: #bdc3c7 !important;
+    }
 }
 
 .scope {
     color: #e74c3c !important;
-    * { color: #e74c3c !important; }
+
+    * {
+        color: #e74c3c !important;
+    }
 }
 
 // scrolling body
@@ -31,71 +37,170 @@ $footer-height: 40px;
         // details
         .scout-details-container {
 
-            .scout-spot-meta { }
+            .scout-spot-meta {}
 
-            .scout-spot-notes { color: #767676; font-size: 14px; line-height: 20px; }
+            .scout-spot-notes {
+                color: #767676;
+                font-size: 14px;
+                line-height: 20px;
+            }
 
-            .scout-spot-contact-info { }
+            .scout-spot-contact-info {}
 
             .scout-spot-content {
 
                 // spot details
-                .scout-spot-location { margin-bottom: 20px; }
+                .scout-spot-location {
+                    margin-bottom: 20px;
+                }
 
-                .scout-spot-description { margin-bottom: 20px; color: #333; font-size: 14px; line-height: 20px; }
+                .scout-spot-description {
+                    margin-bottom: 20px;
+                    color: #333;
+                    font-size: 14px;
+                    line-height: 20px;
+                }
 
-                .scout-spot-hours { margin-bottom: 20px; color: #333; font-size: 14px;
+                .scout-spot-hours {
+                    margin-bottom: 20px;
+                    color: #333;
+                    font-size: 14px;
 
-                    ul { margin: 0; padding: 0;
-                        li { list-style: none; white-space: nowrap; color: #666; line-height: 20px; margin-bottom: 8px;
+                    ul {
+                        margin: 0;
+                        padding: 0;
 
-                            span { display: inline-block;
-                                &.day { width: 35%; text-transform: capitalize; color: #222; vertical-align: top;}
-                                &.closed { color: #a94442; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; }
-                                &.day-hours { width: 65%; white-space: normal; }
+                        li {
+                            list-style: none;
+                            white-space: nowrap;
+                            color: #666;
+                            line-height: 20px;
+                            margin-bottom: 8px;
+
+                            span {
+                                display: inline-block;
+
+                                &.day {
+                                    width: 35%;
+                                    text-transform: capitalize;
+                                    color: #222;
+                                    vertical-align: top;
+                                }
+
+                                &.closed {
+                                    color: #a94442;
+                                    text-transform: uppercase;
+                                    font-size: 12px;
+                                    letter-spacing: 1px;
+                                }
+
+                                &.day-hours {
+                                    width: 65%;
+                                    white-space: normal;
+                                }
                             }
                         }
                     }
-                    span { display: inline-block; }
+
+                    span {
+                        display: inline-block;
+                    }
                 }
 
-                .scout-spot-building-info { color: #333; font-size: 14px; line-height: 20px; }
+                .scout-spot-building-info {
+                    color: #333;
+                    font-size: 14px;
+                    line-height: 20px;
+                }
 
-                .scout-spot-map { height:200px; margin-bottom: 10px; }
-                .scout-spot-map-link { margin-bottom: 15px; font-size: 14px;
+                .scout-spot-map {
+                    height: 200px;
+                    margin-bottom: 10px;
+                }
 
-                    a { display: block; text-decoration: none; line-height: 30px;
+                .scout-spot-map-link {
+                    margin-bottom: 15px;
+                    font-size: 14px;
 
-                        .fa-stack { font-size: 12px; }
-                        .fa-circle { color: $scout-blue; }
+                    a {
+                        display: block;
+                        text-decoration: none;
+                        line-height: 30px;
 
-                        .scout-map-action-text { color: $scout-link; text-decoration: underline; }
+                        .fa-stack {
+                            font-size: 12px;
+                        }
+
+                        .fa-circle {
+                            color: $scout-blue;
+                        }
+
+                        .scout-map-action-text {
+                            color: $scout-link;
+                            text-decoration: underline;
+                        }
 
                     }
 
                 }
 
-                .scout-spot-reservation { margin-bottom: 20px; color: #333; font-size: 14px; line-height: 16px; }
-
-                .scout-spot-payment { margin-bottom: 20px; color: #333; font-size: 14px;
-
-                    ul { margin: 0; padding: 0;
-                        li { list-style: none; line-height: 20px; }
-                    }
-                    span { margin-right: 10px; }
+                .scout-spot-reservation {
+                    margin-bottom: 20px;
+                    color: #333;
+                    font-size: 14px;
+                    line-height: 16px;
                 }
 
-                .scout-spot-coupon { color: #333; font-size: 14px; line-height: 16px;
+                .scout-spot-payment {
+                    margin-bottom: 20px;
+                    color: #333;
+                    font-size: 14px;
 
-                    .scout-spot-coupon-expire { margin: 10px 0;
-                        span { color: #767676; }
+                    ul {
+                        margin: 0;
+                        padding: 0;
+
+                        li {
+                            list-style: none;
+                            line-height: 20px;
+                        }
                     }
-                    a { display: block; text-decoration: none; line-height: 30px;
 
-                        .fa-stack { font-size: 12px; }
-                        .fa-circle { color: $scout-blue; }
+                    span {
+                        margin-right: 10px;
+                    }
+                }
 
-                        .scout-coupon-action-text { color: $scout-link; text-decoration: underline; }
+                .scout-spot-coupon {
+                    color: #333;
+                    font-size: 14px;
+                    line-height: 16px;
+
+                    .scout-spot-coupon-expire {
+                        margin: 10px 0;
+
+                        span {
+                            color: #767676;
+                        }
+                    }
+
+                    a {
+                        display: block;
+                        text-decoration: none;
+                        line-height: 30px;
+
+                        .fa-stack {
+                            font-size: 12px;
+                        }
+
+                        .fa-circle {
+                            color: $scout-blue;
+                        }
+
+                        .scout-coupon-action-text {
+                            color: $scout-link;
+                            text-decoration: underline;
+                        }
 
                     }
 
@@ -109,17 +214,40 @@ $footer-height: 40px;
 }
 
 // no result text
-.steps-list li {list-style:disc; margin-left:30px;}
-.steps-list-item {padding-bottom:10px;}
+.steps-list li {
+    list-style: disc;
+    margin-left: 30px;
+}
+
+.steps-list-item {
+    padding-bottom: 10px;
+}
 
 // google maps
 
-.map-label { background: none; color: #f9f9f9; /*cursor: default !important;*/
-    .marker-text { color: #000; margin-left: 8px; text-shadow: 0 0 2px #fff, 0 0 2px #fff; font-weight: bold; display: inline-block; white-space: nowrap;}
-    .fa-cutlery:before { margin-left: 1.8px; }
+.map-label {
+    background: none;
+    color: #f9f9f9;
+
+    /*cursor: default !important;*/
+    .marker-text {
+        color: #000;
+        margin-left: 8px;
+        text-shadow: 0 0 2px #fff, 0 0 2px #fff;
+        font-weight: bold;
+        display: inline-block;
+        white-space: nowrap;
+    }
+
+    .fa-cutlery:before {
+        margin-left: 1.8px;
+    }
 }
 
-.cluster div { color: #fff !important; font-weight: normal !important; }
+.cluster div {
+    color: #fff !important;
+    font-weight: normal !important;
+}
 
 // formatting menu
 
@@ -128,7 +256,7 @@ $footer-height: 40px;
     display: inline-block;
 }
 
-.dropup-content a {
+.dropdown-menu a {
     color: black;
     padding: 1px 8px;
     text-decoration: none;
@@ -136,24 +264,7 @@ $footer-height: 40px;
     line-height: 25px;
     font-size: 12px;
     margin-top: 0;
-}
-
-.dropup-content a:hover {
-    background-color: #dddddd;
-    width: 90%;
-    text-decoration: none;
-
-}
-.dropup:hover .dropup-content {
-    display: block;
-}
-
-button .dropup-content:hover {
-    display: block;
-}
-
-.button.btn.btn-secondary.dropdown-toggle:focus .dropup-content {
-    display:block;
+    margin-left: 10px;
 }
 
 
@@ -163,30 +274,17 @@ button.btn.btn-secondary.dropdown-toggle {
     background-color: #f1f1f1;
     float: right;
     margin-right: 10px;
-    margin-top: 5px;
     border-color: #f1f1f1;
     font-size: 100%;
 
 }
 
 @media only screen and (max-width: 600px) {
-    .dropup-content {
+    .dropdown-menu {
         display: flex;
-justify-content: center;
-align-items: center;
-margin: 0 auto;
-    }    
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+    }
 
-}
-
-.dropup-content {
-    // display: flex;
-    // position: absolute;
-    // bottom: 200px;
-    // right: 170px;
-    background-color: #f1f1f1;
-   
-    box-shadow: 0px 5px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-    text-decoration: none;
 }

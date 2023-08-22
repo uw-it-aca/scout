@@ -207,14 +207,14 @@ body {
 .dropup {
     position: relative;
     display: inline-block;
+    margin-bottom: 3px;
 }
 
 
-.dropup-content {
+.dropdown-menu {
     display: none;
     position: absolute;
-    bottom: 30px;
-    background-color: #f1f1f1;
+    bottom: 0px;
     min-width: 30px;
     box-shadow: 0px 5px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
@@ -222,7 +222,7 @@ body {
 }
 
 // the links inside drop menu
-.dropup-content a {
+.dropdown-menu a {
     color: black;
     padding: 1px 8px;
     text-decoration: none;
@@ -230,30 +230,7 @@ body {
     line-height: 30px;
     font-size: 80%;
     margin-top: 0;
-}
-
-//change color on hover
-
-        //links
-        .dropup-content      {
-            background-color: #dddddd;
-            width: 90%;
-            text-decoration: none;
-
-        }
-
-        //button
-        button.btn.btn-secondary.dropdown-toggle:hover {
-            background-color: #dddddd; 
-        }
-
-//show popup on hover
-.dropup:hover .dropup-content {
-    display: block;
-}
-
-button .dropup-content:hover {
-    display: block;
+    margin-left: 10px;
 }
 
 
@@ -263,7 +240,6 @@ button.btn.btn-secondary.dropdown-toggle {
     background-color: #fafafa;
     float: right;
     margin-right: 10px;
-    margin-top: 5px;
     border-color: #fafafa;
     font-size: 100%;
     // &:hover { text-decoration: underline !important; }
