@@ -106,5 +106,10 @@ Discover = {
       }
     });
     spot_parent.append(spots);
-  }
+  },
+
+
+
+
+
 };
