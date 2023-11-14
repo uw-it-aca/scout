@@ -23,5 +23,3 @@ services:
       OAUTH_USER: ${OAUTH_USER:-javerage}
       SCOUT_SHOW_ALT_TECH: ${SCOUT_SHOW_ALT_TECH:-False}
       COMPRESS_ENABLED: ${COMPRESS_ENABLED:-True}
-
-
