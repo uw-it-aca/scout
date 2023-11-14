@@ -3,6 +3,7 @@
 
 from django.conf import settings
 from uw_spotseeker import Spotseeker
+from uw_spotseeker.models import Spot
 from restclients_core.exceptions import DataFailureException
 import datetime
 import pytz
@@ -442,7 +443,7 @@ def _get_names_for_extended_info(prefix, mapping, info):
     return names
 
 
-def add_payment_names(spot):
+def add_payment_names(spot) -> Spot:
     PAYMENT_PREFIX = "s_pay"
     PAYMENT_MAPPING = {
         "s_pay_cash": "Cash",
