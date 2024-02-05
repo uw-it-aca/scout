@@ -6,7 +6,6 @@ services:
     container_name: scout
     build:
       context: .
-      dockerfile: ${DOCKERFILE:-Dockerfile}
       target: app-container
     volumes:
       - ./scout:/app/scout
@@ -14,13 +13,13 @@ services:
       - "${PORT:-8000}:8000"
     environment:
       ENV: localdev
+      APP_NAME: ${APP_NAME:-"scout"}
       SCOUT_SHOW_NEWSSPLASH: ${SCOUT_SHOW_NEWSSPLASH:-False}
       RESTCLIENTS_SPOTSEEKER_HOST: ${RESTCLIENTS_SPOTSEEKER_HOST:-""}
-      SPOTSEEKER_OAUTH_KEY: ${SPOTSEEKER_OAUTH_KEY:-""}
-      SPOTSEEKER_OAUTH_SECRET: ${SPOTSEEKER_OAUTH_SECRET:-""}
+      SPOTSEEKER_OAUTH_CREDENTIAL: ${SPOTSEEKER_OAUTH_CREDENTIAL:-""}
+      SCOPE: ${SCOPE:-read}
+      DEBUG_CACHING: ${DEBUG_CACHING:-True}
       RESTCLIENTS_SPOTSEEKER_DAO_CLASS: ${RESTCLIENTS_SPOTSEEKER_DAO_CLASS:-Mock}
       OAUTH_USER: ${OAUTH_USER:-javerage}
       SCOUT_SHOW_ALT_TECH: ${SCOUT_SHOW_ALT_TECH:-False}
       COMPRESS_ENABLED: ${COMPRESS_ENABLED:-True}
-
-
