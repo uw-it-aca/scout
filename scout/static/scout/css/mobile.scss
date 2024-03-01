@@ -120,3 +120,68 @@ $footer-height: 40px;
 }
 
 .cluster div { color: #fff !important; font-weight: normal !important; }
+
+// formatting menu
+
+.dropup {
+    position: relative;
+    display: inline-block;
+}
+
+.dropup-content a {
+    color: black;
+    padding: 1px 8px;
+    text-decoration: none;
+    display: block;
+    line-height: 25px;
+    font-size: 12px;
+    margin-top: 0;
+}
+
+.dropup-content a:hover {
+    background-color: #dddddd;
+    width: 90%;
+    text-decoration: none;
+    
+}
+.dropup:hover .dropup-content {
+    display: block;
+}
+
+button .dropup-content:hover {
+    display: block;
+}
+
+.button.btn.btn-secondary.dropdown-toggle:focus .dropup-content {
+    display:block;
+}
+
+
+//help button
+button.btn.btn-secondary.dropdown-toggle {
+    color: #257592;
+    background-color: #f1f1f1;
+    float: right;
+    margin-right: 10px;
+    margin-top: 5px;
+    border-color: #f1f1f1;
+    font-size: 100%;
+
+}
+
+@media only screen and (max-width: 600px) {
+    .dropup-content {
+        right: 170px;
+       
+    }    
+
+}
+
+.dropup-content {
+    bottom: 200px;
+    background-color: #f1f1f1;
+    min-width: 30px;
+    box-shadow: 0px 5px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    text-decoration: none;
+}
