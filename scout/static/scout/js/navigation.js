@@ -13,6 +13,7 @@ var Navigation = {
             window.location= "/" + new_campus + type;
         });
     },
+    
 
     swap_campus_urls: function (new_campus) {
         // Handles case where user impatiently clicks links while waiting for

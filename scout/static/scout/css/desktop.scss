@@ -7,40 +7,70 @@ $image-height: 278px;
 
 // desktop styles
 
-body { overflow: hidden; }
+body {
+    overflow: hidden;
+}
 
 // global overrides for action links
 
-.scout-geolocation-action a, .scout-spot-action-text, .scout-coupon-action-text, .scout-footer a, .scout-error a {
+.scout-geolocation-action a,
+.scout-spot-action-text,
+.scout-coupon-action-text,
+.scout-footer a,
+.scout-error a {
     text-decoration: none !important;
-    &:hover { text-decoration: underline !important; }
+
+    &:hover {
+        text-decoration: underline !important;
+    }
 }
 
 // main container
-.scout-primary { position:absolute; width: $view-panel-width; top:0; bottom:0;
+.scout-primary {
+    position: absolute;
+    width: $view-panel-width;
+    top: 0;
+    bottom: 0;
     //-webkit-box-shadow: 5px 0 20px 0 rgba(0,0,0,0.3); box-shadow: 5px 0 20px 0 rgba(0,0,0,0.3);
-    box-shadow: 0 0 5px rgba(57,70,78,.2);
+    box-shadow: 0 0 5px rgba(57, 70, 78, .2);
 
     z-index: 1;
 
     // header
-    .scout-header { width: $view-panel-width;
+    .scout-header {
+        width: $view-panel-width;
+
         h1 {
-            a { padding-left: 58px;}
+            a {
+                padding-left: 58px;
+            }
         }
     }
 
     // scrolling body
-    .scout-scroll { position: fixed; top: $header-height; bottom: $footer-height; width: $view-panel-width; left:0; overflow-y: scroll; overflow-x: hidden;margin-top: 0; z-index: -1;
+    .scout-scroll {
+        position: fixed;
+        top: $header-height;
+        bottom: $footer-height;
+        width: $view-panel-width;
+        left: 0;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        margin-top: 0;
+        z-index: -1;
 
         // content
         .scout-content {
 
             // filter results
             .scout-filter-results-container {
-                .scout-filter-results { display: block; width: 100%; }
+                .scout-filter-results {
+                    display: block;
+                    width: 100%;
+                }
+
                 .scout-filter-display {
-                    a {  }
+                    a {}
                 }
             }
 
@@ -56,12 +86,25 @@ body { overflow: hidden; }
 
                         a {
 
-                            .scout-spot-image { width:23%; }
-                            .scout-spot-content { width:77%; position: relative;
-                                .scout-spot-name { }
-                                .scout-spot-status { }
-                                .scout-spot-location { width: 83%;  }
-                                .scout-spot-distance { right: 0; }
+                            .scout-spot-image {
+                                width: 23%;
+                            }
+
+                            .scout-spot-content {
+                                width: 77%;
+                                position: relative;
+
+                                .scout-spot-name {}
+
+                                .scout-spot-status {}
+
+                                .scout-spot-location {
+                                    width: 83%;
+                                }
+
+                                .scout-spot-distance {
+                                    right: 0;
+                                }
                             }
                         }
 
@@ -75,10 +118,15 @@ body { overflow: hidden; }
 
                 .scout-spot-image {
                     height: $image-height;
-                    .scout-spot-status {  }
+
+                    .scout-spot-status {}
+
                     .scout-spot-open-period {
                         width: 350px;
-                        span { margin-bottom: 0; }
+
+                        span {
+                            margin-bottom: 0;
+                        }
                     }
                 }
             }
@@ -90,43 +138,110 @@ body { overflow: hidden; }
             /*** filter page ***/
             .scout-filter-container {
 
-                select[multiple] { height: 200px; }
+                select[multiple] {
+                    height: 200px;
+                }
             }
 
             /*** discover page ***/
-            .scout-discover-container {
-
-            }
+            .scout-discover-container {}
 
         }
 
     }
 
     // footer
-    .scout-footer { width: $view-panel-width; position: absolute; bottom: 0; text-align: left; }
+    .scout-footer {
+        width: $view-panel-width;
+        position: absolute;
+        bottom: 0;
+        text-align: left;
+    }
 
 }
 
 // native browser sticky headers (safari/ios and firefox only)
 
-.sticky-header { top: 0; }
+.sticky-header {
+    top: 0;
+}
 
 // map sidebar container
-.scout-secondary { position: fixed; top:0; right:0; bottom:0; left:$view-panel-width; z-index:0; }
+.scout-secondary {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: $view-panel-width;
+    z-index: 0;
+}
 
 // google map & font awesome icons
 .scout-spot-list-map {
-    .gmnoprint { cursor: pointer !important; }
+    .gmnoprint {
+        cursor: pointer !important;
+    }
 }
 
 // gmap tooltip styles
-.gm-style-iw { line-height: 17px !important;
-    a { color: #427fed; text-decoration: none;
-        &:hover { text-decoration: underline; }
+.gm-style-iw {
+    line-height: 17px !important;
+
+    a {
+        color: #427fed;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
     }
 }
 
 // loading spinner
 .sk-fading-circle {
     margin: 90px auto;
+}
+
+// formatting help menu
+
+.dropup {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 3px;
+}
+
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    bottom: 0px;
+    min-width: 30px;
+    box-shadow: 0px 5px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    text-decoration: none;
+}
+
+// the links inside drop menu
+.dropdown-menu a {
+    color: black;
+    padding: 1px 8px;
+    text-decoration: none;
+    display: block;
+    line-height: 30px;
+    font-size: 80%;
+    margin-top: 0;
+    margin-left: 10px;
+}
+
+
+//help button
+button.btn.btn-secondary.dropdown-toggle {
+    color: #257592;
+    background-color: #fafafa;
+    float: right;
+    margin-right: 10px;
+    border-color: #fafafa;
+    font-size: 100%;
+    // &:hover { text-decoration: underline !important; }
+
 }

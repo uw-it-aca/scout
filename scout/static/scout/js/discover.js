@@ -154,5 +154,5 @@ Discover = {
         }
         var spot_data = Discover.get_spot_locations(spots);
         ScoutMap.load_discover_map(spot_data);
-    }
+    },
 };
