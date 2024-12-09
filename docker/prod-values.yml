@@ -52,9 +52,6 @@ database:
   secretName: prod.scout.uw.edu-sql-secrets
 repo: scout
 instance: prod
-image:
-  repository: gcr.io/uwit-mci-axdd/scout
-  tag: IMAGE_TAG
 memcached:
   enabled: false
 cronjob:
