@@ -63,17 +63,16 @@ class ContentTest(ScoutTestCase):
         """Test Privacy Policy"""
         self.assertHTMLEqual(
             str(study.find(id="link_privacy")),
-            str(soup404.find(id="link_privacy"))
+            str(soup404.find(id="link_privacy")),
         )
         """Test Terms of Use"""
         self.assertHTMLEqual(
             str(study.find(id="link_terms")),
-            str(soup404.find(id="link_terms"))
+            str(soup404.find(id="link_terms")),
         )
         """Test UW Help"""
         self.assertHTMLEqual(
-            str(study.find(id="link_help")),
-            str(soup404.find(id="link_help"))
+            str(study.find(id="link_help")), str(soup404.find(id="link_help"))
         )
 
     def test_404_context_navigation(self):
