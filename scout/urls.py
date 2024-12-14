@@ -57,7 +57,7 @@ else:
             name="discover",
         ),
         re_path(
-            r"^(?P<campus>[^/]+)/discover_card/(?P<discover_category>[a-zA-Z]+)/$",
+            r"^(?P<campus>[^/]+)/discover_card/(?P<discover_category>[a-zA-Z]+)/$",  # noqa
             DiscoverCardView.as_view(),
             {"template_name": "scout/discover_card.html"},
             name="discovercard",
@@ -133,7 +133,7 @@ else:
             name="hybriddiscover",
         ),
         re_path(
-            r"^h/(?P<campus>[^/]+)/discover_card/(?P<discover_category>[a-zA-Z]+)/$",
+            r"^h/(?P<campus>[^/]+)/discover_card/(?P<discover_category>[a-zA-Z]+)/$",  # noqa
             DiscoverCardView.as_view(),
             {"template_name": "hybridize/discover_card.html"},
             name="hybriddiscovercard",
