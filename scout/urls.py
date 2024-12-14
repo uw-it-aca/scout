@@ -37,6 +37,12 @@ if show_newssplash:
     ]
 else:
     urlpatterns = [
+        re_path(
+            r"^robots.txt$",
+            TemplateView.as_view(
+                template_name="robots.txt", content_type="text/plain"
+            ),
+        ),
         # home
         re_path(
             r"^$",
@@ -115,7 +121,9 @@ else:
         ),
         # hybrid home
         re_path(
-            r"^h/$", RedirectView.as_view(url="/h/seattle"), name="hybridhome"
+            r"^h/$",
+            RedirectView.as_view(url="/h/seattle"),
+            name="hybridhome",
         ),
         # hybrid discover
         re_path(
@@ -134,7 +142,10 @@ else:
         re_path(
             r"^h/(?P<campus>[^/]+)/food/$",
             PlaceHolderView.as_view(),
-            {"template_name": "hybridize/food/list.html", "app_type": "food"},
+            {
+                "template_name": "hybridize/food/list.html",
+                "app_type": "food",
+            },
             name="hybridfoodlist",
         ),
         re_path(
@@ -193,7 +204,10 @@ else:
         re_path(
             r"^h/(?P<campus>[^/]+)/tech/$",
             PlaceHolderView.as_view(),
-            {"template_name": "hybridize/tech/list.html", "app_type": "tech"},
+            {
+                "template_name": "hybridize/tech/list.html",
+                "app_type": "tech",
+            },
             name="hybridtechlist",
         ),
         re_path(
