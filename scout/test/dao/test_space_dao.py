@@ -1,4 +1,4 @@
-# Copyright 2023 UW-IT, University of Washington
+# Copyright 2025 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
 import datetime
@@ -6,12 +6,25 @@ from django.test.client import RequestFactory
 from scout.test import ScoutTestCase
 import pytz
 from django.test.utils import override_settings
-from scout.dao.space import add_foodtype_names_to_spot, add_cuisine_names, \
-    add_payment_names, add_additional_info, get_is_spot_open, organize_hours, \
-    get_open_periods_by_day, get_spot_list, _get_spot_filters, OPEN_PERIODS,\
-    get_spot_by_id, group_spots_by_building, get_avg_latlng_for_spots,\
-    add_latlng_to_building, get_spots_by_filter, adjust_time_by_offset, \
-    _get_period_filter
+from scout.dao.space import (
+    add_foodtype_names_to_spot,
+    add_cuisine_names,
+    add_payment_names,
+    add_additional_info,
+    get_is_spot_open,
+    organize_hours,
+    get_open_periods_by_day,
+    get_spot_list,
+    _get_spot_filters,
+    OPEN_PERIODS,
+    get_spot_by_id,
+    group_spots_by_building,
+    get_avg_latlng_for_spots,
+    add_latlng_to_building,
+    get_spots_by_filter,
+    adjust_time_by_offset,
+    _get_period_filter,
+)
 from scout.dao import space
 from uw_spotseeker.models import Spot, SpotAvailableHours
 from uw_spotseeker import Spotseeker
@@ -21,22 +34,23 @@ from restclients_core.exceptions import DataFailureException
 class SpaceDAOTest(ScoutTestCase):
 
     def test_get_spots_by_filter(self):
-        """ tests function used by discover cards to load spaces with
+        """tests function used by discover cards to load spaces with
         selected filters. Uses mock data that matches order of this filter.
         """
 
         filters = [
-                    ('limit', 5), ('center_latitude', u'47.653811'),
-                    ('center_longitude', u'-122.307815'),
-                    ('distance', 100000),
-                    ('fuzzy_hours_start', 'Tuesday,05:00'),
-                    ('fuzzy_hours_end', 'Tuesday,11:00'),
-                    ('extended_info:app_type', 'food')
+            ("limit", 5),
+            ("center_latitude", "47.653811"),
+            ("center_longitude", "-122.307815"),
+            ("distance", 100000),
+            ("fuzzy_hours_start", "Tuesday,05:00"),
+            ("fuzzy_hours_end", "Tuesday,11:00"),
+            ("extended_info:app_type", "food"),
         ]
 
         spots = get_spots_by_filter(filters)
         self.assertEqual(len(spots), 5)
-        self.assertEqual(spots[0].extended_info[3].value, 'food')
+        self.assertEqual(spots[0].extended_info[3].value, "food")
 
     def test_add_foodtypes(self):
         sc = Spotseeker()
@@ -54,9 +68,10 @@ class SpaceDAOTest(ScoutTestCase):
         sc = Spotseeker()
         spot = sc.get_spot_by_id(1)
         spot = add_payment_names(spot)
-        self.assertEqual(spot.payment_names, ["Cash", "Dining Account",
-                                              "Husky Card", "Mastercard",
-                                              "Visa"])
+        self.assertEqual(
+            spot.payment_names,
+            ["Cash", "Dining Account", "Husky Card", "Mastercard", "Visa"],
+        )
 
     def test_add_additional_info(self):
         sc = Spotseeker()
@@ -69,7 +84,8 @@ class SpaceDAOTest(ScoutTestCase):
         self.assertEqual(
             spot.menu_url,
             "https://www.hfs.washington.edu/uploadedFiles/Dining/"
-            "Dining_Locations/Bahnwebmenu%202014.pdf")
+            "Dining_Locations/Bahnwebmenu%202014.pdf",
+        )
         self.assertEqual(spot.hours_notes, None)
         self.assertEqual(spot.access_notes, None)
         self.assertEqual(spot.has_coupon, None)
@@ -77,33 +93,40 @@ class SpaceDAOTest(ScoutTestCase):
         self.assertEqual(spot.coupon_url, None)
         self.assertEqual(spot.phone, "206-685-4950")
         self.assertEqual(
-            spot.website_url, "https://www.hfs.washington.edu/dining/"
-            "Default.aspx?id=3620#gsc.tab=0")
+            spot.website_url,
+            "https://www.hfs.washington.edu/dining/"
+            "Default.aspx?id=3620#gsc.tab=0",
+        )
 
     def test_spot_open(self):
-        local_tz = pytz.timezone('America/Los_Angeles')
+        local_tz = pytz.timezone("America/Los_Angeles")
         sc = Spotseeker()
         spot = sc.get_spot_by_id(4)
         spot = organize_hours(spot)
 
         # monday
-        current_time = local_tz.localize(datetime.datetime(
-            2015, 12, 14, 7, 0, 0, 0))
+        current_time = local_tz.localize(
+            datetime.datetime(2015, 12, 14, 7, 0, 0, 0)
+        )
         self.assertFalse(get_is_spot_open(spot, current_time))
-        current_time = local_tz.localize(datetime.datetime(
-            2015, 12, 14, 10, 30, 0, 0))
+        current_time = local_tz.localize(
+            datetime.datetime(2015, 12, 14, 10, 30, 0, 0)
+        )
         self.assertTrue(get_is_spot_open(spot, current_time))
         # tuesday (still open from monday)
-        current_time = local_tz.localize(datetime.datetime(
-            2015, 12, 15, 1, 0, 0, 0))
+        current_time = local_tz.localize(
+            datetime.datetime(2015, 12, 15, 1, 0, 0, 0)
+        )
         self.assertTrue(get_is_spot_open(spot, current_time))
         # tuesday after monday's opening is closed
-        current_time = local_tz.localize(datetime.datetime(
-            2015, 12, 15, 3, 0, 0, 0))
+        current_time = local_tz.localize(
+            datetime.datetime(2015, 12, 15, 3, 0, 0, 0)
+        )
         self.assertFalse(get_is_spot_open(spot, current_time))
         # saturday (only open from friday's opening)
-        current_time = local_tz.localize(datetime.datetime(
-            2015, 12, 19, 10, 0, 0, 0))
+        current_time = local_tz.localize(
+            datetime.datetime(2015, 12, 19, 10, 0, 0, 0)
+        )
         self.assertFalse(get_is_spot_open(spot, current_time))
 
     def assertOpenPeriods(self, spot, time_tuple, open_periods):
@@ -119,13 +142,15 @@ class SpaceDAOTest(ScoutTestCase):
             if period_name in open_periods:
                 self.assertTrue(
                     periods[period_name],
-                    'Expected spot to be open in period %s on date %s'
-                    % (period_name, current_time))
+                    "Expected spot to be open in period %s on date %s"
+                    % (period_name, current_time),
+                )
             else:
                 self.assertFalse(
                     periods[period_name],
-                    'Expected spot to be closed in period %s on date %s'
-                    % (period_name, current_time))
+                    "Expected spot to be closed in period %s on date %s"
+                    % (period_name, current_time),
+                )
 
     def test_open_periods(self):
         sc = Spotseeker()
@@ -133,24 +158,20 @@ class SpaceDAOTest(ScoutTestCase):
         spot = organize_hours(spot)
 
         self.assertOpenPeriods(
-            spot,
-            (2015, 12, 21, 0, 0, 0),
-            ('morning', 'afternoon', 'evening'))
+            spot, (2015, 12, 21, 0, 0, 0), ("morning", "afternoon", "evening")
+        )
+
+        self.assertOpenPeriods(spot, (2015, 12, 20, 0, 0, 0), ())
 
         self.assertOpenPeriods(
-            spot,
-            (2015, 12, 20, 0, 0, 0),
-            ())
-
-        self.assertOpenPeriods(
-            spot,
-            (2015, 12, 24, 0, 0, 0),
-            ('morning', 'afternoon'))
+            spot, (2015, 12, 24, 0, 0, 0), ("morning", "afternoon")
+        )
 
         self.assertOpenPeriods(
             spot,
             (2015, 12, 25, 0, 0, 0),
-            ('morning', 'afternoon', 'evening', 'late_night'))
+            ("morning", "afternoon", "evening", "late_night"),
+        )
 
         # Test spot open across midnight
         spot = sc.get_spot_by_id(4)
@@ -158,42 +179,46 @@ class SpaceDAOTest(ScoutTestCase):
         self.assertOpenPeriods(
             spot,
             (2015, 12, 25, 0, 0, 0),
-            ('afternoon', 'evening', 'late_night'))
+            ("afternoon", "evening", "late_night"),
+        )
 
         # Test spots that exactly fill period hours
         spot = sc.get_spot_by_id(5)
         spot = organize_hours(spot)
         # Monday
-        self.assertOpenPeriods(spot, (2016, 4, 18, 0, 0, 0), ('late_night',))
+        self.assertOpenPeriods(spot, (2016, 4, 18, 0, 0, 0), ("late_night",))
         # Tuesday
-        self.assertOpenPeriods(spot, (2016, 4, 19, 0, 0, 0), ('morning',))
+        self.assertOpenPeriods(spot, (2016, 4, 19, 0, 0, 0), ("morning",))
         # Wednesday
-        self.assertOpenPeriods(spot, (2016, 4, 20, 0, 0, 0), ('afternoon',))
+        self.assertOpenPeriods(spot, (2016, 4, 20, 0, 0, 0), ("afternoon",))
         # Thursday
-        self.assertOpenPeriods(spot, (2016, 4, 21, 0, 0, 0), ('evening',))
+        self.assertOpenPeriods(spot, (2016, 4, 21, 0, 0, 0), ("evening",))
         # Friday
-        self.assertOpenPeriods(spot, (2016, 4, 22, 0, 0, 0), ('late_night',))
+        self.assertOpenPeriods(spot, (2016, 4, 22, 0, 0, 0), ("late_night",))
         # Sunday
         self.assertOpenPeriods(spot, (2016, 4, 24, 0, 0, 0), ())
 
     def test_get_spot_list(self):
-        self.assertEqual(len(get_spot_list(app_type='food')), 3)
-        self.assertEqual(len(get_spot_list(app_type='study')), 0)
-        self.assertEqual(len(get_spot_list(app_type='tech')), 3)
+        self.assertEqual(len(get_spot_list(app_type="food")), 3)
+        self.assertEqual(len(get_spot_list(app_type="study")), 0)
+        self.assertEqual(len(get_spot_list(app_type="tech")), 3)
 
     def test_get_spots_by_filter_pasta_food_court(self):
-        filtered_spots = get_spots_by_filter([
-            ('extended_info:s_food_pasta', True),
-            ('type', 'food_court'),
-            ('extended_info:app_type', 'food')
-        ])
+        filtered_spots = get_spots_by_filter(
+            [
+                ("extended_info:s_food_pasta", True),
+                ("type", "food_court"),
+                ("extended_info:app_type", "food"),
+            ]
+        )
         self.assertEqual(len(filtered_spots), 1)
 
     def test_get_spot_filters(self):
         request = RequestFactory().get(
-            '/?payment0=s_pay_dining&type0=food_court&food0=s_food_entrees&'
-            'food1=s_food_pasta&cuisine0=s_cuisine_chinese&period0=morning'
-            '&open_now=true')
+            "/?payment0=s_pay_dining&type0=food_court&food0=s_food_entrees&"
+            "food1=s_food_pasta&cuisine0=s_cuisine_chinese&period0=morning"
+            "&open_now=true"
+        )
         filters = _get_spot_filters(request)
         self.assertEqual(len(filters), 8)
 
@@ -214,9 +239,10 @@ class SpaceDAOTest(ScoutTestCase):
         grouped_spots = group_spots_by_building(spots)
 
         self.assertEqual(len(grouped_spots), 2)
-        self.assertEqual(grouped_spots[1]['name'],
-                         "Odegaard Undergraduate Library")
-        self.assertEqual(len(grouped_spots[1]['spots']), 2)
+        self.assertEqual(
+            grouped_spots[1]["name"], "Odegaard Undergraduate Library"
+        )
+        self.assertEqual(len(grouped_spots[1]["spots"]), 2)
 
     def test_get_avg_latlng(self):
         spots = []
@@ -235,16 +261,18 @@ class SpaceDAOTest(ScoutTestCase):
         spots.append(sc.get_spot_by_id(5))
         grouped_spots = group_spots_by_building(spots)
         grouped_spots = add_latlng_to_building(grouped_spots)
-        self.assertEqual(grouped_spots[1]['latitude'], 47.656462)
-        self.assertEqual(grouped_spots[1]['longitude'], -122.3125347)
+        self.assertEqual(grouped_spots[1]["latitude"], 47.656462)
+        self.assertEqual(grouped_spots[1]["longitude"], -122.3125347)
 
     def test_period_filter(self):
         period = "morning"
         dt = datetime.datetime(2016, 4, 20, 0, 0, 0)
         period_filter = _get_period_filter(period, dt)
 
-        expected_response = [('fuzzy_hours_start', 'Wednesday,05:01'),
-                             ('fuzzy_hours_end', 'Wednesday,10:59')]
+        expected_response = [
+            ("fuzzy_hours_start", "Wednesday,05:01"),
+            ("fuzzy_hours_end", "Wednesday,10:59"),
+        ]
 
         self.assertEqual(period_filter, expected_response)
 
@@ -262,8 +290,9 @@ class FakeClient(object):
     """
     Fake spot client that will cause data failure exceptions
     """
+
     def data_failure(*args, **kwargs):
-        raise DataFailureException('http://foo/bar', 567, 'Foo Bar')
+        raise DataFailureException("http://foo/bar", 567, "Foo Bar")
 
     get_spot_by_id = data_failure
     search_spots = data_failure
@@ -273,6 +302,7 @@ class DAOErrorsTest(ScoutTestCase):
     """
     Ensure DataFailureExceptions are handled properly in space DAO
     """
+
     def setUp(self):
         # Use our fake spot client in space dao instead of the real one
         self.old_client = space.Spotseeker

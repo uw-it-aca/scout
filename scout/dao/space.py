@@ -1,4 +1,4 @@
-# Copyright 2023 UW-IT, University of Washington
+# Copyright 2025 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
 from django.conf import settings
@@ -10,24 +10,24 @@ import random
 
 OPEN_PERIODS = {
     # 5am - 10:59am
-    'morning': {
-        'start': datetime.time(5, 0, 00, 0),
-        'end':  datetime.time(11, 0, 0, 0)
+    "morning": {
+        "start": datetime.time(5, 0, 00, 0),
+        "end": datetime.time(11, 0, 0, 0),
     },
     # 11am - 2:59pm
-    'afternoon': {
-        'start': datetime.time(11, 0, 0, 0),
-        'end':  datetime.time(15, 0, 0, 0)
+    "afternoon": {
+        "start": datetime.time(11, 0, 0, 0),
+        "end": datetime.time(15, 0, 0, 0),
     },
     # 3pm - 9:59pm
-    'evening': {
-        'start': datetime.time(15, 0, 0, 0),
-        'end':  datetime.time(22, 0, 0, 0)
+    "evening": {
+        "start": datetime.time(15, 0, 0, 0),
+        "end": datetime.time(22, 0, 0, 0),
     },
     # 10pm - 4:59am (spans midnight)
-    'late_night': {
-        'start': datetime.time(22, 0, 0, 0),
-        'end':  datetime.time(5, 0, 0, 0)
+    "late_night": {
+        "start": datetime.time(22, 0, 0, 0),
+        "end": datetime.time(5, 0, 0, 0),
     },
 }
 
@@ -36,16 +36,16 @@ def get_spot_list(app_type=None, groups=[]):
     spot_client = Spotseeker()
     res = []
     filters = []
-    filters.append(('limit', 0))
+    filters.append(("limit", 0))
 
     try:
         if app_type:
-            filters.append(('extended_info:app_type', app_type))
+            filters.append(("extended_info:app_type", app_type))
         else:
             # study spots have no app_type, and must filter on something
-            filters.append(('open_now', 'true'))
+            filters.append(("open_now", "true"))
         for group in groups:
-            filters.append(('extended_info:group', group))
+            filters.append(("extended_info:group", group))
         spots = spot_client.search_spots(filters)
         for spot in spots:
             spot = process_extended_info(spot)
@@ -90,17 +90,18 @@ def get_filtered_spots(request, campus, app_type=None):
     # adding 'default' filter params
     # if limit is not in the query tuple, add default
     if "limit" not in dict(filters):
-        filters.append(('limit', 0))
+        filters.append(("limit", 0))
     filters.append(("extended_info:campus", campus))
 
-    if(app_type == "food"):
-        filters.append(('extended_info:app_type', 'food'))
-    elif(app_type == "tech"):
-        filters.append(('extended_info:app_type', 'tech'))
-    elif(app_type == "study"):
+    if app_type == "food":
+        filters.append(("extended_info:app_type", "food"))
+    elif app_type == "tech":
+        filters.append(("extended_info:app_type", "tech"))
+    elif app_type == "study":
         if ("open_at" not in dict(filters)) and (
-                "all_published" not in dict(filters)):
-            filters.append(('open_now', 'true'))
+            "all_published" not in dict(filters)
+        ):
+            filters.append(("open_now", "true"))
     return get_spots_by_filter(filters)
 
 
@@ -110,9 +111,7 @@ def _get_spot_filters(request):
         if "type" in param:
             params.append(("type", request.GET[param]))
         if "food" in param:
-            params.append(
-                ("extended_info:food_nearby", request.GET[param])
-            )
+            params.append(("extended_info:food_nearby", request.GET[param]))
         if "cuisine" in param:
             params.append(
                 ("extended_info:or_group:cuisine", request.GET[param])
@@ -151,9 +150,7 @@ def _get_spot_filters(request):
         if "subcategory" in param:
             params.append(("item:subcategory", request.GET[param]))
         if "brand" in param:
-            params.append(
-                ("item:extended_info:i_brand", request.GET[param])
-            )
+            params.append(("item:extended_info:i_brand", request.GET[param]))
         if "item_is_active" in param:
             params.append(("item:extended_info:i_is_active", "true"))
         # distance, lat, long and limit are essential to distance sorting
@@ -175,8 +172,7 @@ def get_period_filter(param):
 
 def _get_period_filter(param, now):
     today = now.strftime("%A")
-    tomorrow = (now +
-                datetime.timedelta(days=1)).strftime("%A")
+    tomorrow = (now + datetime.timedelta(days=1)).strftime("%A")
     """
     adding 1 minute to start and subtracting 1 from end to prevent returning
     spots where spot closes at filter open time or opens at filter close time
@@ -196,8 +192,10 @@ def _get_period_filter(param, now):
     else:
         end_string = "%s,%s" % (today, end_time_string)
 
-    return [("fuzzy_hours_start", start_string),
-            ("fuzzy_hours_end", end_string)]
+    return [
+        ("fuzzy_hours_start", start_string),
+        ("fuzzy_hours_end", end_string),
+    ]
 
 
 def adjust_time_by_offset(time, minutes):
@@ -231,7 +229,7 @@ def process_extended_info(spot):
     spot = add_item_info(spot)
 
     now = datetime.datetime.now(
-        pytz.timezone(getattr(settings, 'TIME_ZONE', 'America/Los_Angeles'))
+        pytz.timezone(getattr(settings, "TIME_ZONE", "America/Los_Angeles"))
     )
     spot.is_open = get_is_spot_open(spot, now)
     spot.open_periods = get_open_periods_by_day(spot, now)
@@ -239,13 +237,15 @@ def process_extended_info(spot):
 
 
 def organize_hours(spot):
-    days_list = ('monday',
-                 'tuesday',
-                 'wednesday',
-                 'thursday',
-                 'friday',
-                 'saturday',
-                 'sunday')
+    days_list = (
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "friday",
+        "saturday",
+        "sunday",
+    )
     hours_object = {}
     raw_hours = list(spot.spot_availability)
     for idx, day in enumerate(days_list):
@@ -268,10 +268,12 @@ def organize_hours(spot):
 
 def get_open_periods_by_day(spot, now):
     # defining 'late night' as any time not covered by another period
-    open_periods = {'morning': False,
-                    'afternoon': False,
-                    'evening': False,
-                    'late_night': False}
+    open_periods = {
+        "morning": False,
+        "afternoon": False,
+        "evening": False,
+        "late_night": False,
+    }
     hours = spot.hours[now.strftime("%A").lower()]
     for opening in hours:
         start = opening[0]
@@ -279,22 +281,22 @@ def get_open_periods_by_day(spot, now):
         # spot spans midnight
         if start > end:
             end = datetime.time(23, 59, 59)
-            open_periods['late_night'] = True
+            open_periods["late_night"] = True
         # open for morning
-        morning = OPEN_PERIODS['morning']
-        if morning['start'] < end and morning['end'] > start:
-            open_periods['morning'] = True
+        morning = OPEN_PERIODS["morning"]
+        if morning["start"] < end and morning["end"] > start:
+            open_periods["morning"] = True
         # open for afternoon
-        afternoon = OPEN_PERIODS['afternoon']
-        if afternoon['start'] < end and afternoon['end'] > start:
-            open_periods['afternoon'] = True
+        afternoon = OPEN_PERIODS["afternoon"]
+        if afternoon["start"] < end and afternoon["end"] > start:
+            open_periods["afternoon"] = True
         # open for evening
-        evening = OPEN_PERIODS['evening']
-        if evening['start'] < end and evening['end'] > start:
-            open_periods['evening'] = True
+        evening = OPEN_PERIODS["evening"]
+        if evening["start"] < end and evening["end"] > start:
+            open_periods["evening"] = True
         # open late night
-        if start < morning['start'] or end > evening['end']:
-            open_periods['late_night'] = True
+        if start < morning["start"] or end > evening["end"]:
+            open_periods["late_night"] = True
     return open_periods
 
 
@@ -326,39 +328,45 @@ def get_is_spot_open(spot, now):
 def add_additional_info(spot):
     # global extended_info (study & food)
     spot.app_type = _get_extended_info_by_key("app_type", spot.extended_info)
-    spot.location_description = \
-        _get_extended_info_by_key("location_description",
-                                  spot.extended_info)
+    spot.location_description = _get_extended_info_by_key(
+        "location_description", spot.extended_info
+    )
     spot.campus = _get_extended_info_by_key("campus", spot.extended_info)
-    spot.hours_notes = _get_extended_info_by_key("hours_notes",
-                                                 spot.extended_info)
-    spot.access_notes = _get_extended_info_by_key("access_notes",
-                                                  spot.extended_info)
-    spot.has_alert = _get_extended_info_by_key("has_alert",
-                                               spot.extended_info)
-    spot.alert_notes = _get_extended_info_by_key("alert_notes",
-                                                 spot.extended_info)
+    spot.hours_notes = _get_extended_info_by_key(
+        "hours_notes", spot.extended_info
+    )
+    spot.access_notes = _get_extended_info_by_key(
+        "access_notes", spot.extended_info
+    )
+    spot.has_alert = _get_extended_info_by_key("has_alert", spot.extended_info)
+    spot.alert_notes = _get_extended_info_by_key(
+        "alert_notes", spot.extended_info
+    )
     # new extended_info (food only)
-    spot.description = \
-        _get_extended_info_by_key("s_description", spot.extended_info)
-    spot.s_has_reservation = _get_extended_info_by_key("s_has_reservation",
-                                                       spot.extended_info)
-    spot.s_reservation_notes = _get_extended_info_by_key("s_reservation_notes",
-                                                         spot.extended_info)
-    spot.menu_url = _get_extended_info_by_key("s_menu_url",
-                                              spot.extended_info)
-    spot.has_coupon = _get_extended_info_by_key("s_has_coupon",
-                                                spot.extended_info)
-    spot.coupon_expiration = _get_extended_info_by_key("s_coupon_expiration",
-                                                       spot.extended_info)
-    spot.coupon_url = _get_extended_info_by_key("s_coupon_url",
-                                                spot.extended_info)
-    spot.phone = _get_extended_info_by_key("s_phone",
-                                           spot.extended_info)
-    spot.email = _get_extended_info_by_key("s_email",
-                                           spot.extended_info)
-    spot.website_url = _get_extended_info_by_key("s_website_url",
-                                                 spot.extended_info)
+    spot.description = _get_extended_info_by_key(
+        "s_description", spot.extended_info
+    )
+    spot.s_has_reservation = _get_extended_info_by_key(
+        "s_has_reservation", spot.extended_info
+    )
+    spot.s_reservation_notes = _get_extended_info_by_key(
+        "s_reservation_notes", spot.extended_info
+    )
+    spot.menu_url = _get_extended_info_by_key("s_menu_url", spot.extended_info)
+    spot.has_coupon = _get_extended_info_by_key(
+        "s_has_coupon", spot.extended_info
+    )
+    spot.coupon_expiration = _get_extended_info_by_key(
+        "s_coupon_expiration", spot.extended_info
+    )
+    spot.coupon_url = _get_extended_info_by_key(
+        "s_coupon_url", spot.extended_info
+    )
+    spot.phone = _get_extended_info_by_key("s_phone", spot.extended_info)
+    spot.email = _get_extended_info_by_key("s_email", spot.extended_info)
+    spot.website_url = _get_extended_info_by_key(
+        "s_website_url", spot.extended_info
+    )
 
     if spot.app_type is None:
         spot.app_type = "study"
@@ -374,41 +382,51 @@ def add_study_info(spot):
         "has_printing": "Printing",
         "has_scanner": "Scanner",
         "has_displays": "Displays",
-        "has_projector": "Projector"
+        "has_projector": "Projector",
     }
-    spot.spot_resources = _get_names_for_extended_info("",
-                                                       RESOURCE_MAPPING,
-                                                       spot.extended_info)
+    spot.spot_resources = _get_names_for_extended_info(
+        "", RESOURCE_MAPPING, spot.extended_info
+    )
 
-    spot.num_computers = _get_extended_info_by_key("num_computers",
-                                                   spot.extended_info)
+    spot.num_computers = _get_extended_info_by_key(
+        "num_computers", spot.extended_info
+    )
 
-    if (_get_extended_info_by_key("has_natural_light", spot.extended_info) ==
-            "true"):
+    if (
+        _get_extended_info_by_key("has_natural_light", spot.extended_info)
+        == "true"
+    ):
         spot.natural_light = True
 
-    spot.spot_noise = _get_extended_info_by_key("noise_level",
-                                                spot.extended_info)
+    spot.spot_noise = _get_extended_info_by_key(
+        "noise_level", spot.extended_info
+    )
 
-    spot.food_nearby = _get_extended_info_by_key("food_nearby",
-                                                 spot.extended_info)
+    spot.food_nearby = _get_extended_info_by_key(
+        "food_nearby", spot.extended_info
+    )
 
-    spot.reservable = _get_extended_info_by_key("reservable",
-                                                spot.extended_info)
+    spot.reservable = _get_extended_info_by_key(
+        "reservable", spot.extended_info
+    )
 
-    spot.reservation_notes = _get_extended_info_by_key("reservation_notes",
-                                                       spot.extended_info)
+    spot.reservation_notes = _get_extended_info_by_key(
+        "reservation_notes", spot.extended_info
+    )
 
-    spot.labstats_id = _get_extended_info_by_key("labstats_id",
-                                                 spot.extended_info)
+    spot.labstats_id = _get_extended_info_by_key(
+        "labstats_id", spot.extended_info
+    )
     spot.auto_labstats_total = _get_extended_info_by_key(
-                                                 "auto_labstats_total",
-                                                 spot.extended_info)
+        "auto_labstats_total", spot.extended_info
+    )
     spot.auto_labstats_available = _get_extended_info_by_key(
-                                                 "auto_labstats_available",
-                                                 spot.extended_info)
-    if spot.auto_labstats_available is None\
-       or spot.auto_labstats_total is None:
+        "auto_labstats_available", spot.extended_info
+    )
+    if (
+        spot.auto_labstats_available is None
+        or spot.auto_labstats_total is None
+    ):
         spot.auto_labstats_total = 0
         spot.auto_labstats_available = 0
 
@@ -416,10 +434,12 @@ def add_study_info(spot):
 
 
 def add_tech_info(spot):
-    spot.has_cte_techloan = _get_extended_info_by_key("has_cte_techloan",
-                                                      spot.extended_info)
-    spot.cte_techloan_id = _get_extended_info_by_key("cte_techloan_id",
-                                                     spot.extended_info)
+    spot.has_cte_techloan = _get_extended_info_by_key(
+        "has_cte_techloan", spot.extended_info
+    )
+    spot.cte_techloan_id = _get_extended_info_by_key(
+        "cte_techloan_id", spot.extended_info
+    )
 
     return spot
 
@@ -451,9 +471,9 @@ def add_payment_names(spot):
         "s_pay_husky": "Husky Card",
         "s_pay_dining": "Dining Account",
     }
-    spot.payment_names = _get_names_for_extended_info(PAYMENT_PREFIX,
-                                                      PAYMENT_MAPPING,
-                                                      spot.extended_info)
+    spot.payment_names = _get_names_for_extended_info(
+        PAYMENT_PREFIX, PAYMENT_MAPPING, spot.extended_info
+    )
     return spot
 
 
@@ -470,9 +490,9 @@ def add_cuisine_names(spot):
         "s_cuisine_mexican": "Mexican",
         "s_cuisine_vietnamese": "Vietnamese",
     }
-    spot.cuisinetype_names = _get_names_for_extended_info(CUISINE_TYPE_PREFIX,
-                                                          CUISINE_TYPE_MAPPING,
-                                                          spot.extended_info)
+    spot.cuisinetype_names = _get_names_for_extended_info(
+        CUISINE_TYPE_PREFIX, CUISINE_TYPE_MAPPING, spot.extended_info
+    )
     return spot
 
 
@@ -497,9 +517,9 @@ def add_foodtype_names_to_spot(spot):
         "s_food_sushi_packaged": "Sushi (packaged)",
         "s_food_tacos": "Tacos",
     }
-    spot.foodtype_names = _get_names_for_extended_info(FOOD_TYPE_PREFIX,
-                                                       FOOD_TYPE_MAPPING,
-                                                       spot.extended_info)
+    spot.foodtype_names = _get_names_for_extended_info(
+        FOOD_TYPE_PREFIX, FOOD_TYPE_MAPPING, spot.extended_info
+    )
     return spot
 
 
@@ -512,16 +532,16 @@ def group_spots_by_building(spots):
             grouped_spots[spot.building_name] = [spot]
     list_structure = []
     for name in grouped_spots:
-        building_dict = {"name": name,
-                         "spots": grouped_spots[name]}
+        building_dict = {"name": name, "spots": grouped_spots[name]}
         list_structure.append(building_dict)
     return add_latlng_to_building(list_structure)
 
 
 def add_latlng_to_building(building_list):
     for building in building_list:
-        building['latitude'], building['longitude'] = \
-            get_avg_latlng_for_spots(building['spots'])
+        building["latitude"], building["longitude"] = get_avg_latlng_for_spots(
+            building["spots"]
+        )
     return building_list
 
 
@@ -533,7 +553,7 @@ def get_avg_latlng_for_spots(spots):
         avg_lat += spot.latitude
         avg_lng += spot.longitude
 
-    return avg_lat/count, avg_lng/count
+    return avg_lat / count, avg_lng / count
 
 
 def validate_detail_info(spot, campus, app_type):

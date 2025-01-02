@@ -1,8 +1,9 @@
-# Copyright 2023 UW-IT, University of Washington
+# Copyright 2025 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
 import os
 from django.core.wsgi import get_wsgi_application
+
 """
 WSGI config for scout project.
 

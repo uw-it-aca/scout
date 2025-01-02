@@ -1,4 +1,4 @@
-# Copyright 2023 UW-IT, University of Washington
+# Copyright 2025 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
 """
@@ -63,17 +63,16 @@ class ContentTest(ScoutTestCase):
         """Test Privacy Policy"""
         self.assertHTMLEqual(
             str(study.find(id="link_privacy")),
-            str(soup404.find(id="link_privacy"))
+            str(soup404.find(id="link_privacy")),
         )
         """Test Terms of Use"""
         self.assertHTMLEqual(
             str(study.find(id="link_terms")),
-            str(soup404.find(id="link_terms"))
+            str(soup404.find(id="link_terms")),
         )
         """Test UW Help"""
         self.assertHTMLEqual(
-            str(study.find(id="link_help")),
-            str(soup404.find(id="link_help"))
+            str(study.find(id="link_help")), str(soup404.find(id="link_help"))
         )
 
     def test_404_context_navigation(self):

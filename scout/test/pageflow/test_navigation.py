@@ -1,4 +1,4 @@
-# Copyright 2023 UW-IT, University of Washington
+# Copyright 2025 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
 """
@@ -119,7 +119,14 @@ class MainNavigationTest(ScoutTestCase):
     def check_footer_links(self, soup):
         """Checks the footer links at the given soup"""
         footerLinks = soup.select("div#footer a")
-        privacyLink, termsLink, mailtoLink = footerLinks
+        (
+            privacyLink,
+            termsLink,
+            aboutLink,
+            helpLink,
+            faqLink,
+            suggestSpaceLink,
+        ) = footerLinks
         self.assertEqual(
             privacyLink.get("href"),
             "http://www.washington.edu/online/privacy/",
@@ -128,6 +135,30 @@ class MainNavigationTest(ScoutTestCase):
             termsLink.get("href"), "http://www.washington.edu/online/terms/"
         )
         self.assertEqual(
-            mailtoLink.get("href"),
-            "mailto:help@uw.edu?subject=Scout:%20Help%20needed",
+            aboutLink.get("href"),
+            (
+                "https://itconnect.uw.edu/tools-services-support/"
+                "teaching-learning/spacescout/faq/"
+            ),
+        )
+        self.assertEqual(
+            helpLink.get("href"),
+            (
+                "https://itconnect.uw.edu/tools-services-support/"
+                "teaching-learning/spacescout/"
+            ),
+        )
+        self.assertEqual(
+            faqLink.get("href"),
+            (
+                "https://itconnect.uw.edu/tools-services-support/"
+                "teaching-learning/spacescout/faq/"
+            ),
+        )
+        self.assertEqual(
+            suggestSpaceLink.get("href"),
+            (
+                "https://uwconnect.uw.edu/"
+                "sp?id=sc_cat_item&sys_id=dcf2fcac1bc2e5d0cc990dc0604bcb2a"
+            ),
         )
