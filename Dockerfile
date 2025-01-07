@@ -4,6 +4,7 @@ FROM us-docker.pkg.dev/uwit-mci-axdd/containers/django-container:${DJANGO_CONTAI
 
 USER root
 RUN apt-get update && apt-get install mysql-client libmysqlclient-dev -y
+COPY docker/locations.conf /etc/nginx/includes/locations.conf
 USER acait
 
 ADD --chown=acait:acait scout/VERSION /app/scout/
