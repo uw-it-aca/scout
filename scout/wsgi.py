@@ -3,6 +3,7 @@
 
 import os
 from django.core.wsgi import get_wsgi_application
+
 """
 WSGI config for scout project.
 

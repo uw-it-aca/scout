@@ -136,21 +136,29 @@ class MainNavigationTest(ScoutTestCase):
         )
         self.assertEqual(
             aboutLink.get("href"),
-            ("https://itconnect.uw.edu/tools-services-support/"
-             "teaching-learning/spacescout/faq/"),
+            (
+                "https://itconnect.uw.edu/tools-services-support/"
+                "teaching-learning/spacescout/faq/"
+            ),
         )
         self.assertEqual(
             helpLink.get("href"),
-            ("https://itconnect.uw.edu/tools-services-support/"
-             "teaching-learning/spacescout/"),
+            (
+                "https://itconnect.uw.edu/tools-services-support/"
+                "teaching-learning/spacescout/"
+            ),
         )
         self.assertEqual(
             faqLink.get("href"),
-            ("https://itconnect.uw.edu/tools-services-support/"
-             "teaching-learning/spacescout/faq/"),
+            (
+                "https://itconnect.uw.edu/tools-services-support/"
+                "teaching-learning/spacescout/faq/"
+            ),
         )
         self.assertEqual(
             suggestSpaceLink.get("href"),
-            ("https://uwconnect.uw.edu/"
-             "sp?id=sc_cat_item&sys_id=dcf2fcac1bc2e5d0cc990dc0604bcb2a"),
+            (
+                "https://uwconnect.uw.edu/"
+                "sp?id=sc_cat_item&sys_id=dcf2fcac1bc2e5d0cc990dc0604bcb2a"
+            ),
         )
