@@ -19,36 +19,52 @@ These instructions will get you a copy of the project up and running on your loc
 
 First, clone the repository:
 
-    $ git clone https://github.com/uw-it-aca/scout.git
-
+```bash
+git clone https://github.com/uw-it-aca/scout.git
+```
 
 If you wish to change the default settings, navigate to the repository and copy the sample environment variables into your own `.env` file:
 
-```
+```bash
 cd scout
 cp sample.env .env
 ```
 
-Optionally, add custom 404 response to `docker/urls.py`:
-
-```
-handler404 = 'scout.views.custom_404_response'
-```
-
 ## Development
+
+### Setting up the correct environment variables
+
+Settings `RESTCLIENTS_SPOTSEEKER_DAO_CLASS` to `Mock` will allow you to run the app without connecting to a live Spotseeker server. This is useful for testing and development. However, if you want to properly test the app against a live Spotseeker server, you will need to set up the following environment variables:
+
+```bash
+RESTCLIENTS_SPOTSEEKER_DAO_CLASS=Live
+RESTCLIENTS_SPOTSEEKER_HOST=[your spotseeker server url]
+
+SPOTSEEKER_OAUTH_CREDENTIAL=[your spotseeker server oauth credential]
+```
+
+You must go to your live spotseeker server instance to get the oauth credential. In spotseeker server, run the following command:
+
+```bash
+docker exec -ti spotseeker-server bin/python manage.py register_application [-s/--show-credential]
+```
+
+You will be prompted for an app name. The default name for this app is `scout`. You can change this name by setting the `APP_NAME` environment variable. The command will give you a credential. Copy and paste this credential into the `SPOTSEEKER_OAUTH_CREDENTIAL` environment variable and you should be good to go.
+
+It is recommended that you keep the scope to read only as that is what scout is designed for.
 
 ### Running the App with Docker
 
 Run the following command to build your docker container:
 
-```
+```bash
 docker-compose up --build
 ```
 
 ### Running Unit Tests with Docker
 
-```
-docker-compose run --rm app bin/python manage.py test
+```bash
+docker exec -ti scout bin/python manage.py test
 ```
 
 ### Running the app against a Live Spotseeker Server ###
@@ -82,7 +98,7 @@ See also the list of [contributors](https://github.com/uw-it-aca/scout/contribut
 
 ## License
 
-Copyright 2012-2016 UW Information Technology, University of Washington
+Copyright 2012-2023 UW Information Technology, University of Washington
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -98,18 +114,25 @@ limitations under the License.
 
 ## List of settings
 
-(To be moved to the wiki eventually.)
-
-CAMPUS_URL_LIST
-
 GOOGLE_ANALYTICS_KEY
 
 GOOGLE_MAPS_API
 
+COMPRESS_ENABLED
+
+OAUTH_USER
+
+SCOUT_SHOW_ALT_TECH
+
+DEBUG_CACHING
+- If set to True, will use a real cache even while in DEBUG=True. This is useful for testing.
+
 RESTCLIENTS_SPOTSEEKER_DAO_CLASS
 
-RESTCLIENTS_SPOTSEEKER_HOST = ''
+RESTCLIENTS_SPOTSEEKER_HOST
 
-SPOTSEEKER_OAUTH_KEY = ''
+SPOTSEEKER_OAUTH_CREDENTIAL
 
-SPOTSEEKER_OAUTH_SECRET = ''
+SPOTSEEKER_OAUTH_SCOPE
+
+APP_NAME

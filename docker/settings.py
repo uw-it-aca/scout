@@ -8,6 +8,8 @@ INSTALLED_APPS += [
     "hybridize",
 ]
 
+APP_NAME = os.getenv("APP_NAME", "scout")
+
 MIDDLEWARE += ["django_user_agents.middleware.UserAgentMiddleware"]
 
 COMPRESS_ROOT = "/static/"
@@ -51,10 +53,26 @@ if os.getenv("ENV", "") == "localdev":
 CAMPUS_URL_LIST = ["seattle", "tacoma", "bothell"]
 SCOUT_SHOW_NEWSSPLASH = os.getenv("SCOUT_SHOW_NEWSSPLASH") == "True"
 RESTCLIENTS_SPOTSEEKER_HOST = os.getenv("RESTCLIENTS_SPOTSEEKER_HOST", "")
-SPOTSEEKER_OAUTH_KEY = os.getenv("SPOTSEEKER_OAUTH_KEY", "")
-SPOTSEEKER_OAUTH_SECRET = os.getenv("SPOTSEEKER_OAUTH_SECRET", "")
+SPOTSEEKER_OAUTH_CREDENTIAL = os.getenv("SPOTSEEKER_OAUTH_CREDENTIAL", "")
+SPOTSEEKER_OAUTH_SCOPE = os.getenv("SPOTSEEKER_OAUTH_SCOPE", "read")
 RESTCLIENTS_SPOTSEEKER_DAO_CLASS = os.getenv(
     "RESTCLIENTS_SPOTSEEKER_DAO_CLASS", "Mock"
 )
 OAUTH_USER = os.getenv("OAUTH_USER", "javerage")
 SCOUT_SHOW_ALT_TECH = os.getenv("SCOUT_SHOW_ALT_TECH") == "True"
+
+DEBUG_CACHING = os.getenv("DEBUG_CACHING", "True") == "True"
+
+if DEBUG and not DEBUG_CACHING:
+    CACHES = {
+        "default": {
+            "BACKEND": "django.core.cache.backends.dummy.DummyCache",
+        }
+    }
+else:
+    CACHES = {
+        'default': {
+            'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+            'LOCATION': 'scout',
+        }
+    }

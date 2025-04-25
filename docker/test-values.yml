@@ -59,6 +59,8 @@ environmentVariables:
     value: 'False'
   - name: SCOUT_SHOW_ALT_TECH
     value: 'False'
+  - name: SPOTSEEKER_OAUTH_SCOPE
+    value: 'read'
 externalSecrets:
   enabled: true
   secrets:
@@ -71,6 +73,10 @@ externalSecrets:
           property: google-analytics-key
         - name: google-maps-api-key
           property: google-maps-api-key
+        - name: oauth-user
+          property: oauth-user
+        - name: spotseeker-oauth-credential
+          property: spotseeker-oauth-credential
         - name: spotseeker-oauth-key
           property: spotseeker-oauth-key
         - name: spotseeker-oauth-secret
@@ -95,11 +101,14 @@ environmentVariablesSecrets:
     name: GOOGLE_MAPS_API
     secretName: test.scout.uw.edu-secrets
     secretKey: google-maps-api-key
+  oauthUser:
+    name: OAUTH_USER
+    secretName: test.scout.uw.edu-secrets
+    secretKey: oauth-user
+  spotseekerOauthCredential:
+    secretName: test.scout.uw.edu-secrets
+    secretKey: spotseeker-oauth-credential
   spotseekerOauthKey:
     name: SPOTSEEKER_OAUTH_KEY
     secretName: test.scout.uw.edu-secrets
-    secretKey: spotseeker-oauth-key
-  spotseekerOauthSecret:
-    name: SPOTSEEKER_OAUTH_SECRET
-    secretName: test.scout.uw.edu-secrets
-    secretKey: spotseeker-oauth-secret
+    secretKey: spotseeker-oauth-credential
