@@ -60,7 +60,7 @@ environmentVariables:
   - name: SCOUT_SHOW_ALT_TECH
     value: 'False'
   - name: SPOTSEEKER_OAUTH_SCOPE
-    value: 'read'
+    value: read
 externalSecrets:
   enabled: true
   secrets:
