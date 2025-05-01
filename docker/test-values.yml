@@ -60,7 +60,7 @@ environmentVariables:
   - name: SCOUT_SHOW_ALT_TECH
     value: 'False'
   - name: SPOTSEEKER_OAUTH_SCOPE
-    value: read
+    value: 'read'
 externalSecrets:
   enabled: true
   secrets:
@@ -106,6 +106,7 @@ environmentVariablesSecrets:
     secretName: test.scout.uw.edu-secrets
     secretKey: oauth-user
   spotseekerOauthCredential:
+    name: SPOTSEEKER_OAUTH_CREDENTIAL
     secretName: test.scout.uw.edu-secrets
     secretKey: spotseeker-oauth-credential
   spotseekerOauthKey:
