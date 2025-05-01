@@ -48,6 +48,8 @@ GOOGLE_MAPS_API = os.getenv("GOOGLE_MAPS_API", "")
 
 if os.getenv("ENV", "") == "localdev":
     DEBUG = True
+else:
+    DEBUG = False
 
 # scout settings
 CAMPUS_URL_LIST = ["seattle", "tacoma", "bothell"]
