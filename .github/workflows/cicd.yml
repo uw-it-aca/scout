@@ -47,7 +47,7 @@ on:
 
 jobs:
   context:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
 
     outputs:
       commit_hash: ${{ steps.context.outputs.commit_hash }}
@@ -62,18 +62,18 @@ jobs:
           release_name: ${{ env.RELEASE_NAME }}
 
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
 
     needs: context
 
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v3
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.8'
+          python-version: '3.10'
 
       - name: Run Python Linters
         uses: uw-it-aca/actions/python-linters@main
@@ -82,10 +82,10 @@ jobs:
           exclude_paths: 'migrations'
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
+        uses: docker/setup-buildx-action@v3
 
       - name: Cache Docker layers
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: /tmp/.buildx-cache
           key: ${{ runner.os }}-buildx-$(echo ${{ hashFiles('Dockerfile') }} | head -c 16)
@@ -93,7 +93,7 @@ jobs:
             ${{ runner.os }}-buildx-
 
       - name: Build App Image
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v6
         with:
           context: .
           target: app-container
@@ -104,7 +104,7 @@ jobs:
           cache-to: type=local,dest=/tmp/.buildx-cache
 
       - name: Build Test Image
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v6
         with:
           target: app-test-container
           tags: app-test-container
@@ -127,7 +127,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         shell: bash
         run: |
-          python -m pip install --upgrade pip coverage coveralls==2.2.0
+          python -m pip install --upgrade pip coverage coveralls==3.3.1
           coverage combine
           coveralls
 
@@ -146,11 +146,11 @@ jobs:
     outputs:
       context: ${{ steps.context.outputs.context }}
 
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
 
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Deployment Pipeline
         if: >-
@@ -183,7 +183,7 @@ jobs:
 
     needs: [context, build, deploy]
 
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
 
     steps:
       - name: House Keeping
