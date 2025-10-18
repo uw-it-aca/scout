@@ -42,6 +42,8 @@ database:
   secretName: test.scout.uw.edu-sql-secrets
 repo: scout
 instance: test
+namespace:
+  enabled: true
 memcached:
   enabled: false
 cronjob:
