@@ -52,7 +52,7 @@
             </div>
 
             <div id="scroll" class="scout-scroll">
-            <div class="alert alert-info" role="alert" style="margin: 20px">Important Notice:</span> UW Scout will be retired on <span style="font-weight: bold">March 20, 2026</span>. The iOS and Android apps have already been removed from their respective app stores. Going forward, support will be limited to maintaining current functionality only; no new features or changes will be accepted.</div>
+            <div class="alert alert-info" role="alert" style="margin: 20px"><span class="close" style="float: right; cursor: pointer; font-size: 20px; line-height: 20px; margin-left: 15px; color: inherit;">&times;</span><span style="font-weight: bold">Important Notice:</span> UW Scout will be retired on <span style="font-weight: bold">March 20, 2026</span>. The iOS and Android apps have already been removed from their respective app stores. Going forward, support will be limited to maintaining current functionality only; no new features or changes will be accepted.</div>
                 {% block web_content %}{% endblock %}
             </div>
 
@@ -87,7 +87,21 @@
             {% block secondary_content %}{% endblock %}
         </div>
         {% endif %}
-
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function() {
+  const alertElement = document.querySelector('.alert.alert-info'); // Or a more specific selector if you have multiple alerts
+  if (alertElement) {
+    const closeButton = alertElement.querySelector('.close');
+    if (closeButton) {
+      closeButton.addEventListener('click', function() {
+        alertElement.style.display = 'none';
+        // Or you could add a class to hide it, e.g., alertElement.classList.add('hidden');
+        // and define .hidden { display: none; } in your CSS
+      });
+    }
+  }
+});
+</script>
     </body>
 </html>
 <div>
