@@ -648,3 +648,9 @@ hr { border: 0; height: 0; border-bottom: 1px solid #ddd; margin: 0 -20px 20px -
   0%, 39%, 100% { opacity: 0; }
   40% { opacity: 1; }
 }
+
+@media (max-width: 768px) {
+  #alert-retirement {
+    top: 100px;
+  }
+}
