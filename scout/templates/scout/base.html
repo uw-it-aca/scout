@@ -15,7 +15,7 @@
 
     <body {% if request|is_mobile or request|is_tablet %}data-mobile="true"{% endif %}>
 
-            <div id="alert-retirement" class="alert alert-info" role="alert" style="margin: 20px; z-index:2;"><span class="close" style="float: right; cursor: pointer; font-size: 20px; line-height: 20px; margin-left: 15px; color: inherit;">&times;</span><span style="font-weight: bold">Important Notice:</span> UW Scout will be retired on <span style="font-weight: bold">March 20, 2026</span>. The iOS and Android apps have already been removed from their respective app stores. Going forward, support will be limited to maintaining current functionality only; no new features or changes will be accepted.</div>
+        <div id="alert-retirement" class="alert alert-info" role="alert" style="margin: 20px; z-index:2;"><span class="close" style="float: right; cursor: pointer; font-size: 20px; line-height: 20px; margin-left: 15px; color: inherit;">&times;</span><span style="font-weight: bold">Important Notice:</span> UW Scout will be retired on <span style="font-weight: bold">March 20, 2026</span>. The iOS and Android apps have already been removed from their respective app stores. Going forward, support will be limited to maintaining current functionality only; no new features or changes will be accepted.</div>
         <div class="scout-primary">
 
             <div id="header" class="scout-header">
@@ -87,43 +87,43 @@
             {% block secondary_content %}{% endblock %}
         </div>
         {% endif %}
-<script type="text/javascript">
-document.addEventListener('DOMContentLoaded', function() {
-    // Select the specific alert element. Use the unique ID we added.
-    const alertElement = document.getElementById('alert-retirement'); // Use the ID you set in HTML
+        <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function() {
+            // Select the specific alert element. Use the unique ID we added.
+            const alertElement = document.getElementById('alert-retirement'); // Use the ID you set in HTML
 
-    if (alertElement) { // Only proceed if the alert element exists
-        const alertId = alertElement.id || alertElement.dataset.alertId;
-        const localStorageKey = `dismissedAlert_${alertId}`;
+            if (alertElement) { // Only proceed if the alert element exists
+                const alertId = alertElement.id || alertElement.dataset.alertId;
+                const localStorageKey = `dismissedAlert_${alertId}`;
 
-        // Function to handle dismissal and persist to localStorage
-        const dismissAlert = function() {
-            alertElement.style.display = 'none'; // Or alertElement.classList.add('hidden'); if using CSS class
-            localStorage.setItem(localStorageKey, 'true');
-        };
+                // Function to handle dismissal and persist to localStorage
+                const dismissAlert = function() {
+                    alertElement.style.display = 'none'; // Or alertElement.classList.add('hidden'); if using CSS class
+                    localStorage.setItem(localStorageKey, 'true');
+                };
 
-        // Check if the alert was previously dismissed on page load
-        if (localStorage.getItem(localStorageKey) === 'true') {
-            alertElement.style.display = 'none'; // Or alertElement.classList.add('hidden');
-        } else {
-            // Ensure the close button exists and attach the event listener
-            let closeButton = alertElement.querySelector('.close');
+                // Check if the alert was previously dismissed on page load
+                if (localStorage.getItem(localStorageKey) === 'true') {
+                    alertElement.style.display = 'none'; // Or alertElement.classList.add('hidden');
+                } else {
+                    // Ensure the close button exists and attach the event listener
+                    let closeButton = alertElement.querySelector('.close');
 
-            // If for some reason the close button isn't in the HTML, create it dynamically
-            if (!closeButton) {
-                closeButton = document.createElement('span');
-                closeButton.classList.add('close');
-                closeButton.innerHTML = '&times;';
-                alertElement.prepend(closeButton);
-                // Note: If dynamically creating, you'd also need to apply its styles here
-                // or ensure your CSS rules are robust enough to style it.
+                    // If for some reason the close button isn't in the HTML, create it dynamically
+                    if (!closeButton) {
+                        closeButton = document.createElement('span');
+                        closeButton.classList.add('close');
+                        closeButton.innerHTML = '&times;';
+                        alertElement.prepend(closeButton);
+                        // Note: If dynamically creating, you'd also need to apply its styles here
+                        // or ensure your CSS rules are robust enough to style it.
+                    }
+
+                    // Attach the event listener to the close button
+                    closeButton.addEventListener('click', dismissAlert);
+                }
             }
-
-            // Attach the event listener to the close button
-            closeButton.addEventListener('click', dismissAlert);
-        }
-    }
-});
-</script>
+        });
+        </script>
     </body>
 </html>
