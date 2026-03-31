@@ -17,9 +17,17 @@ ingress:
       secretName: scout.uw.edu-ingress-cert
       hosts:
         - scout.uw.edu
+    scout-manager:
+      secretName: manager.scout.uw.edu-ingress-cert
+      hosts:
+        - manager.scout.uw.edu
   hosts:
     scout:
       host: scout.uw.edu
+      paths:
+        - "/"
+    scout-manager:
+      host: manager.scout.uw.edu
       paths:
         - "/"
   annotations:
