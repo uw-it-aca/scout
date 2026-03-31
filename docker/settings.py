@@ -8,6 +8,11 @@ INSTALLED_APPS += [
     "hybridize",
 ]
 
+ALLOWED_HOSTS += [
+        "test.manager.scout.uw.edu",
+        "manager.scout.uw.edu",
+    ]
+
 MIDDLEWARE += ["django_user_agents.middleware.UserAgentMiddleware"]
 
 COMPRESS_ROOT = "/static/"
